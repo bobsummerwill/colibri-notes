@@ -14,7 +14,7 @@
 
 ## computer4 (where Claude Code runs)
 - Has Bob's git identity (Bob Summerwill <bob@summerwill.net>) and `gh` logged in as bobsummerwill (HTTPS; the ssh key is not registered with GitHub). No nvcc — CUDA builds happen on shadowfax.
-- Local clone of the work: `colibri-local` (remote `origin` = shadowfax:/tmp/colibri, remote `fork` = github bobsummerwill/colibri; push with `git -c credential.helper='!gh auth git-credential' push fork ...`).
+- Local clone of the code: `~/Projects/colibri` (remote `origin` = the fork bobsummerwill/colibri, HTTPS with `credential.helper=!gh auth git-credential`; remote `upstream` = JustVugg/colibri, push URL disabled; remote `shadowfax` = maplemercury@shadowfax:/tmp/colibri, fetch only). These notes: `~/Projects/colibri-claude`.
 
 ## Build / run
 - CUDA engine (generic, no DeepGEMM on sm_86): `cd c && make -f Makefile.deepseek-v4 deepseek-v4 CUDA=1 CUDA_HOME=/usr NVCC=/usr/bin/nvcc CUDA_ARCH=sm_86 NO_TC=1 -j8`

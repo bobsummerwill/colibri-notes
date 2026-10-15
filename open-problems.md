@@ -11,6 +11,7 @@
    - add a manifest for C (DOUBLE).
 4. **PR #2 decode re-measurement.** Use the final binary and >=3 samples per arm. Arms: one-GPU, X1, X2, X3. Compare full text and state the environment. Do not set DOUBLE in the decode arms (F43-F45).
 5. **PR descriptions.** Draft one for each of the three PRs (`review/PR1_DESCRIPTION_DRAFT_v1.md` is outdated). Drafts only — never submitted.
+6. **Rebase onto current upstream dev before submitting.** Our base is 7b55a9b3. As of 2026-10-15, upstream dev is 2fc033dc, 14 commits ahead. Most of those are Vulkan, web and serve changes. The only file we share is a 3-line change to `c/deepseek_v4.c` from cfab4f65. `git merge-tree` shows both pr1/fixed and pr2/fixed merging cleanly. Re-run `make check` after rebasing.
 
 ## Untested / known gaps
 - **F18:** the peer-compute success path never checks the peer context for asynchronous faults. A sticky peer fault could let a wrong token through or hang. The hang case has not been tested.
