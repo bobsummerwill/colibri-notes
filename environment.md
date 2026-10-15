@@ -1,5 +1,7 @@
 # Environment
 
+Two machines: **computer4** runs Claude Code, holds the git clones (`~/Projects/colibri`, `~/Projects/colibri-claude`), pushes to GitHub and does CPU builds / `make check`. **shadowfax** is the GPU testground only (CUDA builds, GPU tests, benchmarks), reached with `ssh maplemercury@shadowfax`. Paths below are on the machine whose section they are in.
+
 ## shadowfax (GPU box)
 - AMD Ryzen 9 9950X3D (16C/32T), 62 GB DDR5, WD_BLACK SN850X 4 TB (ext4, O_DIRECT reads ~6.5 GB/s), Ubuntu 24.04.4, kernel 7.0.0-34, gcc 13.3, CUDA toolkit 12.0.140 (apt), driver 595.84.
 - 2x RTX 3090 24 GB, **each on PCIe 4.0 x8** (host->GPU uploads measured ~12 GB/s), **joined by an NVLink bridge** (`nvidia-smi topo -m` shows NV4, P2P OK, ~56 GB/s). GeForce cards normally lack P2P; the bridge is why the peer pool works.
@@ -9,10 +11,10 @@
   - `hermes-gateway.service` (**system** unit) — survives llama restarts.
   - `tailnet_http_proxy.py` on 127.0.0.1:8080 -> 18080; Exocortex static servers on 8000/8001 — never bind those ports. colibri tests use 8090.
 - Safe GPU-downtime pattern: a runner script run as its own transient user unit (`systemd-run --user --unit=... --collect`) that stops llama (`systemctl --user stop llama-server-active`), runs, and **restores it in an EXIT trap** (`systemctl --user start llama-server-active`, poll `curl 127.0.0.1:18080/health`). See `tools/bench/run_x.sh`, `run_pr1_bench.sh`.
-- Persistent work dir: `~/colibri-bench` (raw logs, evidence, scripts). Model: `~/colibri-models/deepseek-v4-flash-reap` (do not delete). `/tmp/colibri*` and `/tmp/cw/*` (clones/worktrees/builds) vanish on reboot.
+- Persistent work dir (on shadowfax): `~/colibri-bench` (raw logs, evidence, scripts). Model: `~/colibri-models/deepseek-v4-flash-reap` (do not delete). `/tmp/colibri*` and `/tmp/cw/*` (clones/worktrees/builds) vanish on reboot.
 - The shadowfax clone `/tmp/colibri` has its upstream push URL set to `DISABLED-no-upstream-pushes` on purpose.
 
-## computer4 (where Claude Code runs)
+## computer4 (where Claude Code runs; every `~/Projects/...` path is here)
 - Has Bob's git identity (Bob Summerwill <bob@summerwill.net>) and `gh` logged in as bobsummerwill (HTTPS; the ssh key is not registered with GitHub). No nvcc — CUDA builds happen on shadowfax.
 - Local clone of the code: `~/Projects/colibri` (remote `origin` = the fork bobsummerwill/colibri, HTTPS with `credential.helper=!gh auth git-credential`; remote `upstream` = JustVugg/colibri, push URL disabled; remote `shadowfax` = maplemercury@shadowfax:/tmp/colibri, fetch only). These notes: `~/Projects/colibri-claude`.
 
