@@ -1,0 +1,107 @@
+{
+  "version": 1,
+  "hypothesis": "Batched GPU prefill for expert-pruned checkpoints (pr1) speeds up REAP-132 prefill over upstream, which refuses the GPU batch path for !=256 experts and runs the CPU union",
+  "commit": "48767c016c993e59cd74f5511983be7bb65ec791",
+  "model": "DeepSeek V4 Flash REAP 150B (puwaer/DeepSeek-V4-Flash-0731-reap-150b, 132 routed experts, fp4 experts / fp8 dense), colibri safetensors layout, 79 GiB on disk",
+  "command": "build: cd c && make -f Makefile.deepseek-v4 deepseek-v4 CUDA=1 CUDA_HOME=/usr NVCC=/usr/bin/nvcc CUDA_ARCH=sm_86 NO_TC=1; run: python3 c/coli serve --model <REAP dir> --ram 40 --ctx 8192 --host 127.0.0.1 --port 8090 with the env in config; one cold server per sample; client bench_pr1.py sends request 1 (1992-token prompt, max_tokens 100) then request 2 (3005-token prompt, max_tokens 60), streamed, greedy; tok_s = prompt_tokens / time-to-first-token of the named request; metric: request 'long_prefill'",
+  "prompt_hash": "13fc61ddae676a87f55d68c32d7488f90f0c99af634f30dc846eaa8d1707257f",
+  "hardware": {
+    "cpu": "AMD Ryzen 9 9950X3D, 16 cores / 32 threads, 1 socket (engine: 16 OpenMP compute threads + 3 expert-loader lanes)",
+    "ram": "62 GiB DDR5; engine --ram 40 (31.6 GiB routed-expert RAM cache, 6.2 GiB dense resident)",
+    "storage": "WD_BLACK SN850X 4 TB NVMe (PCIe 4.0), ext4 root filesystem, model read with O_DIRECT (v4_ssd_io mode=direct-aligned)",
+    "os": "Ubuntu 24.04.4 LTS, kernel 7.0.0-34-generic, gcc 13.3.0, CUDA toolkit 12.0.140 (generic build CUDA_ARCH=sm_86 NO_TC=1), NVIDIA driver 595.84; GPU0 NVIDIA GeForce RTX 3090 24 GB on PCIe 4.0 x8 (one GPU used)"
+  },
+  "warmup_runs": 0,
+  "changed_variables": [
+    "engine_commit"
+  ],
+  "baseline": {
+    "config": {
+      "COLI_CUDA": "1",
+      "COLI_GPU": "0",
+      "DSV4_CUDA_DEVICE": "0",
+      "CUDA_DENSE": "1",
+      "COLI_CUDA_PIPE": "2",
+      "COLI_CUDA_ATTN_BATCH": "1",
+      "COLI_CUDA_MOE_BATCH": "1",
+      "V4_MOE_REFILL_GROUP": "12",
+      "V4_LOADER_LANES": "3",
+      "V4_PREFIX_CKPT_DISK": "0",
+      "ram_gib": "40",
+      "ctx": "8192",
+      "temperature": "0",
+      "engine_commit": "7b55a9b3792527f52d1a2337fd9e312b9a7983e3"
+    },
+    "samples": {
+      "tok_s": [
+        9.0923,
+        9.1063,
+        9.0978
+      ],
+      "ttft_s": [
+        219.085,
+        218.749,
+        218.955
+      ],
+      "decode_tok_s": [
+        2.1925,
+        2.2698,
+        2.2723
+      ]
+    },
+    "median_tok_s": 9.0978,
+    "quality": {
+      "method": "greedy (temperature 0): full output text of every request in every sample has the same sha256 as upstream dev (arm A); A itself identical across its 3 samples",
+      "passed": true
+    },
+    "evidence": {
+      "uri": "evidence/pr1-arm-A.tgz",
+      "sha256": "8d0255f4d3c778ecf362af922fb4967832cd017606f3edfdf158f18c2644f7dc"
+    }
+  },
+  "trial": {
+    "config": {
+      "COLI_CUDA": "1",
+      "COLI_GPU": "0",
+      "DSV4_CUDA_DEVICE": "0",
+      "CUDA_DENSE": "1",
+      "COLI_CUDA_PIPE": "2",
+      "COLI_CUDA_ATTN_BATCH": "1",
+      "COLI_CUDA_MOE_BATCH": "1",
+      "V4_MOE_REFILL_GROUP": "12",
+      "V4_LOADER_LANES": "3",
+      "V4_PREFIX_CKPT_DISK": "0",
+      "ram_gib": "40",
+      "ctx": "8192",
+      "temperature": "0",
+      "engine_commit": "48767c016c993e59cd74f5511983be7bb65ec791"
+    },
+    "samples": {
+      "tok_s": [
+        24.3226,
+        24.3174,
+        24.2768
+      ],
+      "ttft_s": [
+        81.899,
+        81.917,
+        82.054
+      ],
+      "decode_tok_s": [
+        2.0394,
+        2.0866,
+        2.0917
+      ]
+    },
+    "median_tok_s": 24.3174,
+    "quality": {
+      "method": "greedy (temperature 0): full output text of every request in every sample has the same sha256 as upstream dev (arm A); A itself identical across its 3 samples",
+      "passed": true
+    },
+    "evidence": {
+      "uri": "evidence/pr1-arm-B.tgz",
+      "sha256": "1815bf5051cbd18675dd705b5e7cfa25016f396f6d06fa43f803cf1a935b2232"
+    }
+  },
+  "outcome": "improvement"
+}

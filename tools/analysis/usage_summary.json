@@ -1,0 +1,42 @@
+{
+ "totals": {
+  "Claude's instructions": 2185016.8,
+  "Everything else": 28539589.200000007,
+  "File operations": 2328197.3000000003,
+  "Connectors": 90267.1,
+  "Subagents": 224108981.19999996
+ },
+ "sub": {
+  "PR #2 fixes": {
+   "agents": 30,
+   "eff": 62729447.2,
+   "raw": 391777965,
+   "max": 6489721.7
+  },
+  "In-depth review": {
+   "agents": 247,
+   "eff": 116416316.99999996,
+   "raw": 541832048,
+   "max": 5523712.4
+  },
+  "Three-PR restructure (running)": {
+   "agents": 6,
+   "eff": 18515244.1,
+   "raw": 113456805,
+   "max": 9574952.0
+  },
+  "PR #2 restructure": {
+   "agents": 3,
+   "eff": 5222372.2,
+   "raw": 33380143,
+   "max": 2850559.0
+  },
+  "PR #1 fixes": {
+   "agents": 12,
+   "eff": 21225600.700000003,
+   "raw": 124985250,
+   "max": 3654661.6
+  }
+ },
+ "grand": 257252051.59999996
+}
