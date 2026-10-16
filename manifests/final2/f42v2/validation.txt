@@ -1,0 +1,10 @@
+validator: c/experiment_manifest.py from a detached worktree of d0e19de23c3baf314ee932347c42d5f6d49ef4fb (/home/zombietiger/Projects/colibri/.wt/f42-val, blob d9babf6be5d87eae64c8e4a96997a1d87459bfdf), worktree clean (0 changed files), detached=yes, run 2026-10-16T06:24:08-07:00 on computer4
+one-variable record (GB -> U, COLI_CUDA_MOE_BATCH_MIN; texts byte-identical in all 5+5 samples):
+f42v2-prefill-path-24tok.json: ok (COLI_CUDA_MOE_BATCH_MIN, improvement)
+exit=0
+negative control (scratch copy neg.json with DSV4_CUDA_VRAM_RESERVE_MB also changed in the trial; must be rejected):
+neg.json: changed_variables ['COLI_CUDA_MOE_BATCH_MIN'] does not match config diff ['COLI_CUDA_MOE_BATCH_MIN', 'DSV4_CUDA_VRAM_RESERVE_MB']
+exit=1 (expected 1)
+evidence hashes named in the record match the files:
+baseline evidence/f42v2-arm-GB.tgz ok
+trial evidence/f42v2-arm-U.tgz ok

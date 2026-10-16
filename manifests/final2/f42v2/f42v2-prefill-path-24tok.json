@@ -1,0 +1,320 @@
+{
+  "version": 1,
+  "hypothesis": "H1 for F42: decode right after a long GPU-bank prefill is slower than after a CPU-union prefill of the same prompt because the bank refill looks each routed expert up in the RAM store only once per layer per prompt, so at decode start the 59-slot RAM tier of each layer holds late-first-seen experts with usage 1 and id-ranked pins, while the CPU union re-looks-up every chunk's experts and leaves the prompt tail's experts resident with frequency-ranked pins. Forcing the CPU union with COLI_CUDA_MOE_BATCH_MIN=100000 (the mirror reserve stays 3100 MiB) should then decode the identical answer faster, through less fetch_wait (fewer RAM misses = O_DIRECT SSD reads) concentrated in the first tokens, with uploads and attach unchanged",
+  "commit": "d0e19de23c3baf314ee932347c42d5f6d49ef4fb",
+  "model": "DeepSeek V4 Flash REAP 150B (puwaer/DeepSeek-V4-Flash-0731-reap-150b, 132 routed experts, fp4 experts / fp8 dense), colibri safetensors layout, 79 GiB on disk",
+  "command": "build: cd c && make -f Makefile.deepseek-v4 deepseek-v4 CUDA=1 CUDA_HOME=/usr NVCC=/usr/bin/nvcc CUDA_ARCH=sm_86 NO_TC=1 -j8 on d0e19de2 + probe/r8-pr2-f42probe.diff (final2/build_r8.sh); run: python3 c/coli serve --model <REAP dir> --ram 40 --ctx 8192 --host 127.0.0.1 --port 8090, server environment exactly PATH/HOME/USER/LOGNAME/LANG + the config's env keys (env -i); one freshly started server process per sample; order W(discarded) GB1 U1 U2 GB2 GBn1 GB3 U3 U4 GB4 GBn2 GB5 U5 GBn3; client bench_f42v2.py sends bench_pr1.py REQUESTS[0] byte for byte (the 1,992-token prompt ending 'Summarize the above in one sentence.', max_tokens 100), streamed, greedy; the answer is 25 content chunks then EOS; tok_s = 24 / (last chunk time - first chunk time) (bench_common decode_tok_s); baseline arm GB, trial arm U",
+  "prompt_hash": "e13a02a377c208b8eac583aa2a52ef82ab5ebff96a0c2e9bbf8c08954e97ca4d",
+  "hardware": {
+    "cpu": "AMD Ryzen 9 9950X3D, 16 cores / 32 threads, 1 socket, governor powersave (amd-pstate), max 5.76 GHz (engine: 16 OpenMP compute threads + 3 expert-loader lanes)",
+    "ram": "62 GiB DDR5 (8 GiB swap, 3.1 GiB of it in use by other processes); engine --ram 40 (59 routed-expert RAM slots per layer = 31.6 GiB cache, 6.2 GiB dense resident); MemAvailable 48.4 GiB (49570 MiB) at preflight with llama.cpp still loaded",
+    "storage": "WD_BLACK SN850X 4 TB NVMe (PCIe 4.0), ext4 root filesystem, model read with O_DIRECT (v4_ssd_io mode=direct-aligned); OS page cache not dropped between samples; one discarded warm-up sample first; serve-unit memory peaks 7.3-9.7 GiB (stats.json serve_unit_memory_peak_gib)",
+    "os": "Ubuntu 24.04.4 LTS, kernel 7.0.0-34-generic, gcc 13.3.0, Python 3.12.3, CUDA toolkit 12.0.140 (generic build CUDA_ARCH=sm_86 NO_TC=1), NVIDIA driver 595.84; 2x NVIDIA GeForce RTX 3090 24 GB on PCIe x8, NVLink bridge; GPU0 only (COLI_GPU=0 DSV4_CUDA_DEVICE=0), GPU1 idle"
+  },
+  "warmup_runs": 1,
+  "changed_variables": [
+    "COLI_CUDA_MOE_BATCH_MIN"
+  ],
+  "baseline": {
+    "config": {
+      "COLI_CUDA": "1",
+      "COLI_GPU": "0",
+      "DSV4_CUDA_DEVICE": "0",
+      "CUDA_DENSE": "1",
+      "COLI_CUDA_PIPE": "2",
+      "COLI_CUDA_ATTN_BATCH": "1",
+      "COLI_CUDA_MOE_BATCH": "1",
+      "V4_MOE_REFILL_GROUP": "12",
+      "V4_LOADER_LANES": "3",
+      "V4_PREFIX_CKPT_DISK": "0",
+      "V4_SERVE_STATS_LOG": "1",
+      "DSV4_DECODE_PROF": "1",
+      "V4_DEC_TRACE": "2",
+      "COLI_CUDA_MOE_DOUBLE": "unset (default 0)",
+      "DSV4_CUDA_VRAM_RESERVE_MB": "unset (default: bank-sized, 3100 MiB logged in every sample)",
+      "ram_gib": "40",
+      "ctx": "8192",
+      "temperature": "0 (greedy)",
+      "engine_commit": "d0e19de23c3baf314ee932347c42d5f6d49ef4fb",
+      "engine_build": "d0e19de2 + logging-only probe (probe/r8-pr2-f42probe.diff sha256 a003effa519301065e77ae3aeb9e67d2ad42ea27b3bf66ad5da536e5cd3690c4), binary sha256 3de5acf4d30720735081153a9d8a9c3ad1a9ec2e7b8cbe81e2aace3f80508b93",
+      "COLI_CUDA_MOE_BATCH_MIN": "unset (default 256: the 1,992-token prompt takes the GPU bank)"
+    },
+    "engine": {
+      "commit": "d0e19de23c3baf314ee932347c42d5f6d49ef4fb",
+      "binary_sha256": "3de5acf4d30720735081153a9d8a9c3ad1a9ec2e7b8cbe81e2aace3f80508b93",
+      "probe_diff_sha256": "a003effa519301065e77ae3aeb9e67d2ad42ea27b3bf66ad5da536e5cd3690c4"
+    },
+    "samples": {
+      "tok_s": [
+        2.0664,
+        2.1355,
+        2.1323,
+        2.1347,
+        2.1295
+      ],
+      "tok_s_mean": 2.1197,
+      "tok_s_stdev": 0.0299,
+      "sample_dirs": [
+        "GB/s1",
+        "GB/s2",
+        "GB/s3",
+        "GB/s4",
+        "GB/s5"
+      ],
+      "run_order_seq": [
+        2,
+        5,
+        7,
+        10,
+        12
+      ],
+      "ttft_s": [
+        82.105,
+        82.019,
+        82.062,
+        81.831,
+        82.194
+      ],
+      "text_sha256": [
+        "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba",
+        "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba",
+        "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba",
+        "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba",
+        "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba"
+      ],
+      "dec_moe": [
+        {
+          "calls": 1075.0,
+          "total_s": 8.3,
+          "fetch_wait_s": 2.82,
+          "attach_s": 3.94,
+          "uploads": 2687.0,
+          "gpu_s": 1.0
+        },
+        {
+          "calls": 1075.0,
+          "total_s": 7.92,
+          "fetch_wait_s": 2.77,
+          "attach_s": 3.62,
+          "uploads": 2687.0,
+          "gpu_s": 0.99
+        },
+        {
+          "calls": 1075.0,
+          "total_s": 7.93,
+          "fetch_wait_s": 2.76,
+          "attach_s": 3.63,
+          "uploads": 2687.0,
+          "gpu_s": 0.99
+        },
+        {
+          "calls": 1075.0,
+          "total_s": 7.92,
+          "fetch_wait_s": 2.76,
+          "attach_s": 3.63,
+          "uploads": 2687.0,
+          "gpu_s": 1.0
+        },
+        {
+          "calls": 1075.0,
+          "total_s": 7.94,
+          "fetch_wait_s": 2.77,
+          "attach_s": 3.64,
+          "uploads": 2687.0,
+          "gpu_s": 0.99
+        }
+      ],
+      "store_misses": [
+        1682,
+        1677,
+        1679,
+        1683,
+        1678
+      ],
+      "prefill_trace_start": [
+        "v4_dec_trace_start ord=1 pos=1991 wall=1792154823.0102 prefill_moe_chunk_layers bank=688 union=0 rows=0",
+        "v4_dec_trace_start ord=1 pos=1991 wall=1792155388.9005 prefill_moe_chunk_layers bank=688 union=0 rows=0",
+        "v4_dec_trace_start ord=1 pos=1991 wall=1792155589.8987 prefill_moe_chunk_layers bank=688 union=0 rows=0",
+        "v4_dec_trace_start ord=1 pos=1991 wall=1792156157.6305 prefill_moe_chunk_layers bank=688 union=0 rows=0",
+        "v4_dec_trace_start ord=1 pos=1991 wall=1792156356.4317 prefill_moe_chunk_layers bank=688 union=0 rows=0"
+      ],
+      "serve_unit_memory_peak_gib": [
+        9.7,
+        7.7,
+        7.5,
+        7.4,
+        7.3
+      ]
+    },
+    "median_tok_s": 2.1323,
+    "quality": {
+      "method": "greedy: the full output text has the same sha256 (32534c06abd640d5, the reference answer of the final PR #1 run) in all 5 GB and all 5 U samples (and in the 3 GBn samples on the unmodified binary and the warm-up); plus per sample the engine's real environment (/proc/<pid>/environ), tree SHA and diff sha256, binary sha256, client exit code, exactly one 'mirror-reserve=3100MiB' line, and the prefill path counted by the probe (v4_dec_trace_start: GB bank=688 union=0, U bank=0 union=688; GB has the 'moe-batch=on bank=132-experts' and refill lines, U has none)",
+      "passed": true,
+      "problems": []
+    },
+    "evidence": {
+      "uri": "evidence/f42v2-arm-GB.tgz",
+      "sha256": "bd3973336e8cff26262d148c4308e0b31ccf8a82eeb2976d2398a30e0f8d347a",
+      "contains": "f42v2/GB/s*/ (serve.log with the probe's v4_dec_trace_start / v4_dec_res / v4_dec_trace / v4_dec_layer lines and v4_serve_turn / v4_dec_moe / decprof, bench.jsonl with the full text and per-chunk times, sample.txt, engine_environ.txt, procs.txt, nvsmi.csv at 1 s, gpu_*.csv, mode.txt)",
+      "full_run": "f42v2.tgz (sha256 in f42v2.tgz.sha256): all arms, meta/ (host, trees, scripts, clients, probe diff, build logs, llama before/after), run.log, summary.json, summary.txt"
+    }
+  },
+  "trial": {
+    "config": {
+      "COLI_CUDA": "1",
+      "COLI_GPU": "0",
+      "DSV4_CUDA_DEVICE": "0",
+      "CUDA_DENSE": "1",
+      "COLI_CUDA_PIPE": "2",
+      "COLI_CUDA_ATTN_BATCH": "1",
+      "COLI_CUDA_MOE_BATCH": "1",
+      "V4_MOE_REFILL_GROUP": "12",
+      "V4_LOADER_LANES": "3",
+      "V4_PREFIX_CKPT_DISK": "0",
+      "V4_SERVE_STATS_LOG": "1",
+      "DSV4_DECODE_PROF": "1",
+      "V4_DEC_TRACE": "2",
+      "COLI_CUDA_MOE_DOUBLE": "unset (default 0)",
+      "DSV4_CUDA_VRAM_RESERVE_MB": "unset (default: bank-sized, 3100 MiB logged in every sample)",
+      "ram_gib": "40",
+      "ctx": "8192",
+      "temperature": "0 (greedy)",
+      "engine_commit": "d0e19de23c3baf314ee932347c42d5f6d49ef4fb",
+      "engine_build": "d0e19de2 + logging-only probe (probe/r8-pr2-f42probe.diff sha256 a003effa519301065e77ae3aeb9e67d2ad42ea27b3bf66ad5da536e5cd3690c4), binary sha256 3de5acf4d30720735081153a9d8a9c3ad1a9ec2e7b8cbe81e2aace3f80508b93",
+      "COLI_CUDA_MOE_BATCH_MIN": "100000"
+    },
+    "engine": {
+      "commit": "d0e19de23c3baf314ee932347c42d5f6d49ef4fb",
+      "binary_sha256": "3de5acf4d30720735081153a9d8a9c3ad1a9ec2e7b8cbe81e2aace3f80508b93",
+      "probe_diff_sha256": "a003effa519301065e77ae3aeb9e67d2ad42ea27b3bf66ad5da536e5cd3690c4"
+    },
+    "samples": {
+      "tok_s": [
+        2.303,
+        2.2992,
+        2.2811,
+        2.3077,
+        2.306
+      ],
+      "tok_s_mean": 2.2994,
+      "tok_s_stdev": 0.0107,
+      "sample_dirs": [
+        "U/s1",
+        "U/s2",
+        "U/s3",
+        "U/s4",
+        "U/s5"
+      ],
+      "run_order_seq": [
+        3,
+        4,
+        8,
+        9,
+        13
+      ],
+      "ttft_s": [
+        215.342,
+        215.967,
+        215.176,
+        214.937,
+        214.631
+      ],
+      "text_sha256": [
+        "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba",
+        "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba",
+        "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba",
+        "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba",
+        "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba"
+      ],
+      "dec_moe": [
+        {
+          "calls": 1075.0,
+          "total_s": 7.11,
+          "fetch_wait_s": 1.97,
+          "attach_s": 3.61,
+          "uploads": 2723.0,
+          "gpu_s": 1.0
+        },
+        {
+          "calls": 1075.0,
+          "total_s": 7.11,
+          "fetch_wait_s": 1.93,
+          "attach_s": 3.65,
+          "uploads": 2723.0,
+          "gpu_s": 1.0
+        },
+        {
+          "calls": 1075.0,
+          "total_s": 7.19,
+          "fetch_wait_s": 1.98,
+          "attach_s": 3.66,
+          "uploads": 2723.0,
+          "gpu_s": 1.0
+        },
+        {
+          "calls": 1075.0,
+          "total_s": 7.09,
+          "fetch_wait_s": 1.93,
+          "attach_s": 3.62,
+          "uploads": 2723.0,
+          "gpu_s": 1.0
+        },
+        {
+          "calls": 1075.0,
+          "total_s": 7.1,
+          "fetch_wait_s": 1.94,
+          "attach_s": 3.62,
+          "uploads": 2723.0,
+          "gpu_s": 1.0
+        }
+      ],
+      "store_misses": [
+        1072,
+        1072,
+        1071,
+        1070,
+        1073
+      ],
+      "prefill_trace_start": [
+        "v4_dec_trace_start ord=1 pos=1991 wall=1792155056.4130 prefill_moe_chunk_layers bank=0 union=688 rows=0",
+        "v4_dec_trace_start ord=1 pos=1991 wall=1792155289.2875 prefill_moe_chunk_layers bank=0 union=688 rows=0",
+        "v4_dec_trace_start ord=1 pos=1991 wall=1792155823.5515 prefill_moe_chunk_layers bank=0 union=688 rows=0",
+        "v4_dec_trace_start ord=1 pos=1991 wall=1792156058.2175 prefill_moe_chunk_layers bank=0 union=688 rows=0",
+        "v4_dec_trace_start ord=1 pos=1991 wall=1792156589.5663 prefill_moe_chunk_layers bank=0 union=688 rows=0"
+      ],
+      "serve_unit_memory_peak_gib": [
+        8.9,
+        7.7,
+        7.5,
+        8.1,
+        7.4
+      ]
+    },
+    "median_tok_s": 2.303,
+    "quality": {
+      "method": "greedy: the full output text has the same sha256 (32534c06abd640d5, the reference answer of the final PR #1 run) in all 5 GB and all 5 U samples (and in the 3 GBn samples on the unmodified binary and the warm-up); plus per sample the engine's real environment (/proc/<pid>/environ), tree SHA and diff sha256, binary sha256, client exit code, exactly one 'mirror-reserve=3100MiB' line, and the prefill path counted by the probe (v4_dec_trace_start: GB bank=688 union=0, U bank=0 union=688; GB has the 'moe-batch=on bank=132-experts' and refill lines, U has none)",
+      "passed": true,
+      "problems": []
+    },
+    "evidence": {
+      "uri": "evidence/f42v2-arm-U.tgz",
+      "sha256": "501126463aa59f6c14279ca6df39a655af1edb4d042fc13944c44ca7ee4e4124",
+      "contains": "f42v2/U/s*/ (serve.log with the probe's v4_dec_trace_start / v4_dec_res / v4_dec_trace / v4_dec_layer lines and v4_serve_turn / v4_dec_moe / decprof, bench.jsonl with the full text and per-chunk times, sample.txt, engine_environ.txt, procs.txt, nvsmi.csv at 1 s, gpu_*.csv, mode.txt)",
+      "full_run": "f42v2.tgz (sha256 in f42v2.tgz.sha256): all arms, meta/ (host, trees, scripts, clients, probe diff, build logs, llama before/after), run.log, summary.json, summary.txt"
+    }
+  },
+  "outcome": "improvement",
+  "notes": [
+    "Trial vs baseline median: +8.01% (U 2.3030 vs GB 2.1323 tok/s; means 2.2994 vs 2.1197; Welch t = 12.7 on tok/s). Without GB s1 (the first measured sample, serve-unit memory peak 9.7 GiB, an attach outlier) GB is 2.1335 (stdev 0.0027) and U/GB +7.9%.",
+    "Decomposition, means over 5+5 samples, GB minus U (decode forwards 1-25 on the server): wall +0.900 s, dec_moe total +0.882 s, fetch_wait +0.826 s, attach +0.060 s (Welch t 0.9: not significant; it comes from GB s1, 3.94 s vs 3.62-3.64 s in the other GB samples and 3.61-3.66 s in U, and is +0.007 s without it), gpu -0.006 s, non-MoE (attention etc.) +0.018 s; uploads -36 (GB 2687, U 2723 in every sample), store misses +608 (GB 1680 vs U 1072, +57%), +7.57 GiB read from SSD. fetch_wait per extra miss: 1.36 ms (one 13.4 MB O_DIRECT read).",
+    "Token windows (decode forward j produces content token j+1; means, GB minus U): forwards 1-5: time +347 ms, fetch_wait +315 ms, misses +309, uploads -1, attach +24 ms; 6-10: +242 / +237 / +135 / -8 / -1; 11-24: +297 / +253 / +159 / -18 / +42 (the 11-24 attach is GB s1's; without it -8 ms). Per token: 69, 48 and 21 ms, so front-loaded and decaying but not gone by token 24 (GB still misses 3-18 more experts per forward at forwards 17-25).",
+    "RAM tier at decode start (probe v4_dec_res, read under the store mutex): GB holds 59 experts per layer, all with usage 1 (the store saw 103.9 requests per layer: one per routed expert per prompt), 16 pins per layer all with usage 1, ranked by id (exactly the 16 lowest resident ids in 27-29 of 43 layers), 7.9 pins active per layer; U holds 59 per layer with mean usage 7.0 (3.1% at usage <= 1; 1064.9 requests per layer), 16 frequency-ranked pins per layer (median usage 9), all active. Of the experts decode routes in forwards 1-25, 869 of 2192 were resident at decode start in GB vs 1461 of 2207 in U; first forward: 83 of 258 vs 199 of 258. Resident-set overlap GB vs U: Jaccard 0.32.",
+    "Routing caveat: although the text is identical, the two prefill paths leave slightly different KV states, so decode routing differs in 430 of 1,075 token-layers (527 of 6,450 expert selections, layers 3-42; deterministic within each arm). This does not drive the gap: swapping routing and RAM sets, GB's routing against U's decode-start RAM finds 1450 experts resident (U's own: 1460) and U's routing against GB's RAM finds 880 (GB's own: 871); on the 645 token-layers with identical routing GB misses 1007 vs U 648.",
+    "Strictly one variable: GB and U run the same probe binary with the same server environment except COLI_CUDA_MOE_BATCH_MIN=100000 in U (sample.txt server_env, engine_environ.txt). Its only read is the bank's per-call gate (hint 1,992 fresh tokens < 100000 -> CPU union); the mirror reserve is sized from COLI_CUDA_MOE_BATCH and logs 3100 MiB in every sample; GPU0 peaks 21276 vs 21268 MiB.",
+    "Probe check: GBn (GB's environment on the unmodified d0e19de2 binary 63a667bac98a..., 3 samples) median 2.1348 tok/s = 1.0012x GB, identical text: the probe changes neither speed nor output.",
+    "U's TTFT is 215.2 s vs GB's 82.1 s: the CPU union is the slow prefill PR #1 replaces; this record is about the decode after it, not a recommendation to set COLI_CUDA_MOE_BATCH_MIN.",
+    "prompt_hash = sha256 of the prompt string of bench_pr1.py REQUESTS[0] (bench_f42v2.py checks it before every request).",
+    "warmup_runs: 1 = the discarded W sample (GB's configuration, the first sample after the llama.cpp stop); every measured sample is the first request to a freshly started server process.",
+    "llama.cpp (the Hermes backend) was stopped 2026-10-16 05:43:53 to 2026-10-16T06:18:34 PDT (2081 s) and restored healthy; the Hermes shadowfax-ensure-active-stack watchdog failed every 5 min in the window and restarted nothing (evidence/f42v2-host-journal.txt)."
+  ]
+}

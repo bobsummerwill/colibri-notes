@@ -1,0 +1,83 @@
+# f42v2 host journal extract from shadowfax, captured 2026-10-16T06:20:12-07:00 by capture_host_journal_f42v2.sh (read-only)
+## serve unit: journalctl --user -u colibri-final2-f42v2-serve.service (Started / Consumed lines)
+2026-10-16T05:43:54-07:00 shadowfax systemd[1600]: Started colibri-final2-f42v2-serve.service - /usr/bin/env -i PATH=/usr/local/bin:/usr/bin:/bin HOME=/home/maplemercury USER=maplemercury LOGNAME=maplemercury LANG=en_US.UTF-8 COLI_CUDA=1 COLI_GPU=0 DSV4_CUDA_DEVICE=0 CUDA_DENSE=1 COLI_CUDA_PIPE=2 COLI_CUDA_ATTN_BATCH=1 COLI_CUDA_MOE_BATCH=1 V4_MOE_REFILL_GROUP=12 V4_LOADER_LANES=3 V4_PREFIX_CKPT_D
+2026-10-16T05:45:34-07:00 shadowfax systemd[1600]: colibri-final2-f42v2-serve.service: Consumed 5min 44.512s CPU time, 7.3G memory peak, 0B memory swap peak.
+2026-10-16T05:45:34-07:00 shadowfax systemd[1600]: Started colibri-final2-f42v2-serve.service - /usr/bin/env -i PATH=/usr/local/bin:/usr/bin:/bin HOME=/home/maplemercury USER=maplemercury LOGNAME=maplemercury LANG=en_US.UTF-8 COLI_CUDA=1 COLI_GPU=0 DSV4_CUDA_DEVICE=0 CUDA_DENSE=1 COLI_CUDA_PIPE=2 COLI_CUDA_ATTN_BATCH=1 COLI_CUDA_MOE_BATCH=1 V4_MOE_REFILL_GROUP=12 V4_LOADER_LANES=3 V4_PREFIX_CKPT_D
+2026-10-16T05:47:16-07:00 shadowfax systemd[1600]: colibri-final2-f42v2-serve.service: Consumed 5min 45.054s CPU time, 9.7G memory peak, 0B memory swap peak.
+2026-10-16T05:47:16-07:00 shadowfax systemd[1600]: Started colibri-final2-f42v2-serve.service - /usr/bin/env -i PATH=/usr/local/bin:/usr/bin:/bin HOME=/home/maplemercury USER=maplemercury LOGNAME=maplemercury LANG=en_US.UTF-8 COLI_CUDA=1 COLI_GPU=0 DSV4_CUDA_DEVICE=0 CUDA_DENSE=1 COLI_CUDA_PIPE=2 COLI_CUDA_ATTN_BATCH=1 COLI_CUDA_MOE_BATCH=1 V4_MOE_REFILL_GROUP=12 V4_LOADER_LANES=3 V4_PREFIX_CKPT_D
+2026-10-16T05:51:08-07:00 shadowfax systemd[1600]: colibri-final2-f42v2-serve.service: Consumed 40min 9.260s CPU time, 8.9G memory peak, 0B memory swap peak.
+2026-10-16T05:51:09-07:00 shadowfax systemd[1600]: Started colibri-final2-f42v2-serve.service - /usr/bin/env -i PATH=/usr/local/bin:/usr/bin:/bin HOME=/home/maplemercury USER=maplemercury LOGNAME=maplemercury LANG=en_US.UTF-8 COLI_CUDA=1 COLI_GPU=0 DSV4_CUDA_DEVICE=0 CUDA_DENSE=1 COLI_CUDA_PIPE=2 COLI_CUDA_ATTN_BATCH=1 COLI_CUDA_MOE_BATCH=1 V4_MOE_REFILL_GROUP=12 V4_LOADER_LANES=3 V4_PREFIX_CKPT_D
+2026-10-16T05:55:01-07:00 shadowfax systemd[1600]: colibri-final2-f42v2-serve.service: Consumed 40min 20.360s CPU time, 7.7G memory peak, 0B memory swap peak.
+2026-10-16T05:55:02-07:00 shadowfax systemd[1600]: Started colibri-final2-f42v2-serve.service - /usr/bin/env -i PATH=/usr/local/bin:/usr/bin:/bin HOME=/home/maplemercury USER=maplemercury LOGNAME=maplemercury LANG=en_US.UTF-8 COLI_CUDA=1 COLI_GPU=0 DSV4_CUDA_DEVICE=0 CUDA_DENSE=1 COLI_CUDA_PIPE=2 COLI_CUDA_ATTN_BATCH=1 COLI_CUDA_MOE_BATCH=1 V4_MOE_REFILL_GROUP=12 V4_LOADER_LANES=3 V4_PREFIX_CKPT_D
+2026-10-16T05:56:42-07:00 shadowfax systemd[1600]: colibri-final2-f42v2-serve.service: Consumed 5min 44.581s CPU time, 7.7G memory peak, 0B memory swap peak.
+2026-10-16T05:56:43-07:00 shadowfax systemd[1600]: Started colibri-final2-f42v2-serve.service - /usr/bin/env -i PATH=/usr/local/bin:/usr/bin:/bin HOME=/home/maplemercury USER=maplemercury LOGNAME=maplemercury LANG=en_US.UTF-8 COLI_CUDA=1 COLI_GPU=0 DSV4_CUDA_DEVICE=0 CUDA_DENSE=1 COLI_CUDA_PIPE=2 COLI_CUDA_ATTN_BATCH=1 COLI_CUDA_MOE_BATCH=1 V4_MOE_REFILL_GROUP=12 V4_LOADER_LANES=3 V4_PREFIX_CKPT_D
+2026-10-16T05:58:22-07:00 shadowfax systemd[1600]: colibri-final2-f42v2-serve.service: Consumed 5min 44.431s CPU time, 7.5G memory peak, 0B memory swap peak.
+2026-10-16T05:58:23-07:00 shadowfax systemd[1600]: Started colibri-final2-f42v2-serve.service - /usr/bin/env -i PATH=/usr/local/bin:/usr/bin:/bin HOME=/home/maplemercury USER=maplemercury LOGNAME=maplemercury LANG=en_US.UTF-8 COLI_CUDA=1 COLI_GPU=0 DSV4_CUDA_DEVICE=0 CUDA_DENSE=1 COLI_CUDA_PIPE=2 COLI_CUDA_ATTN_BATCH=1 COLI_CUDA_MOE_BATCH=1 V4_MOE_REFILL_GROUP=12 V4_LOADER_LANES=3 V4_PREFIX_CKPT_D
+2026-10-16T06:00:03-07:00 shadowfax systemd[1600]: colibri-final2-f42v2-serve.service: Consumed 5min 44.929s CPU time, 7.5G memory peak, 0B memory swap peak.
+2026-10-16T06:00:04-07:00 shadowfax systemd[1600]: Started colibri-final2-f42v2-serve.service - /usr/bin/env -i PATH=/usr/local/bin:/usr/bin:/bin HOME=/home/maplemercury USER=maplemercury LOGNAME=maplemercury LANG=en_US.UTF-8 COLI_CUDA=1 COLI_GPU=0 DSV4_CUDA_DEVICE=0 CUDA_DENSE=1 COLI_CUDA_PIPE=2 COLI_CUDA_ATTN_BATCH=1 COLI_CUDA_MOE_BATCH=1 V4_MOE_REFILL_GROUP=12 V4_LOADER_LANES=3 V4_PREFIX_CKPT_D
+2026-10-16T06:03:55-07:00 shadowfax systemd[1600]: colibri-final2-f42v2-serve.service: Consumed 40min 11.080s CPU time, 7.5G memory peak, 0B memory swap peak.
+2026-10-16T06:03:57-07:00 shadowfax systemd[1600]: Started colibri-final2-f42v2-serve.service - /usr/bin/env -i PATH=/usr/local/bin:/usr/bin:/bin HOME=/home/maplemercury USER=maplemercury LOGNAME=maplemercury LANG=en_US.UTF-8 COLI_CUDA=1 COLI_GPU=0 DSV4_CUDA_DEVICE=0 CUDA_DENSE=1 COLI_CUDA_PIPE=2 COLI_CUDA_ATTN_BATCH=1 COLI_CUDA_MOE_BATCH=1 V4_MOE_REFILL_GROUP=12 V4_LOADER_LANES=3 V4_PREFIX_CKPT_D
+2026-10-16T06:07:50-07:00 shadowfax systemd[1600]: colibri-final2-f42v2-serve.service: Consumed 40min 5.974s CPU time, 8.1G memory peak, 0B memory swap peak.
+2026-10-16T06:07:51-07:00 shadowfax systemd[1600]: Started colibri-final2-f42v2-serve.service - /usr/bin/env -i PATH=/usr/local/bin:/usr/bin:/bin HOME=/home/maplemercury USER=maplemercury LOGNAME=maplemercury LANG=en_US.UTF-8 COLI_CUDA=1 COLI_GPU=0 DSV4_CUDA_DEVICE=0 CUDA_DENSE=1 COLI_CUDA_PIPE=2 COLI_CUDA_ATTN_BATCH=1 COLI_CUDA_MOE_BATCH=1 V4_MOE_REFILL_GROUP=12 V4_LOADER_LANES=3 V4_PREFIX_CKPT_D
+2026-10-16T06:09:29-07:00 shadowfax systemd[1600]: colibri-final2-f42v2-serve.service: Consumed 5min 43.178s CPU time, 7.4G memory peak, 0B memory swap peak.
+2026-10-16T06:09:29-07:00 shadowfax systemd[1600]: Started colibri-final2-f42v2-serve.service - /usr/bin/env -i PATH=/usr/local/bin:/usr/bin:/bin HOME=/home/maplemercury USER=maplemercury LOGNAME=maplemercury LANG=en_US.UTF-8 COLI_CUDA=1 COLI_GPU=0 DSV4_CUDA_DEVICE=0 CUDA_DENSE=1 COLI_CUDA_PIPE=2 COLI_CUDA_ATTN_BATCH=1 COLI_CUDA_MOE_BATCH=1 V4_MOE_REFILL_GROUP=12 V4_LOADER_LANES=3 V4_PREFIX_CKPT_D
+2026-10-16T06:11:09-07:00 shadowfax systemd[1600]: colibri-final2-f42v2-serve.service: Consumed 5min 43.233s CPU time, 7.5G memory peak, 0B memory swap peak.
+2026-10-16T06:11:10-07:00 shadowfax systemd[1600]: Started colibri-final2-f42v2-serve.service - /usr/bin/env -i PATH=/usr/local/bin:/usr/bin:/bin HOME=/home/maplemercury USER=maplemercury LOGNAME=maplemercury LANG=en_US.UTF-8 COLI_CUDA=1 COLI_GPU=0 DSV4_CUDA_DEVICE=0 CUDA_DENSE=1 COLI_CUDA_PIPE=2 COLI_CUDA_ATTN_BATCH=1 COLI_CUDA_MOE_BATCH=1 V4_MOE_REFILL_GROUP=12 V4_LOADER_LANES=3 V4_PREFIX_CKPT_D
+2026-10-16T06:12:49-07:00 shadowfax systemd[1600]: colibri-final2-f42v2-serve.service: Consumed 5min 45.174s CPU time, 7.3G memory peak, 0B memory swap peak.
+2026-10-16T06:12:50-07:00 shadowfax systemd[1600]: Started colibri-final2-f42v2-serve.service - /usr/bin/env -i PATH=/usr/local/bin:/usr/bin:/bin HOME=/home/maplemercury USER=maplemercury LOGNAME=maplemercury LANG=en_US.UTF-8 COLI_CUDA=1 COLI_GPU=0 DSV4_CUDA_DEVICE=0 CUDA_DENSE=1 COLI_CUDA_PIPE=2 COLI_CUDA_ATTN_BATCH=1 COLI_CUDA_MOE_BATCH=1 V4_MOE_REFILL_GROUP=12 V4_LOADER_LANES=3 V4_PREFIX_CKPT_D
+2026-10-16T06:16:41-07:00 shadowfax systemd[1600]: colibri-final2-f42v2-serve.service: Consumed 40min 4.920s CPU time, 7.4G memory peak, 0B memory swap peak.
+2026-10-16T06:16:43-07:00 shadowfax systemd[1600]: Started colibri-final2-f42v2-serve.service - /usr/bin/env -i PATH=/usr/local/bin:/usr/bin:/bin HOME=/home/maplemercury USER=maplemercury LOGNAME=maplemercury LANG=en_US.UTF-8 COLI_CUDA=1 COLI_GPU=0 DSV4_CUDA_DEVICE=0 CUDA_DENSE=1 COLI_CUDA_PIPE=2 COLI_CUDA_ATTN_BATCH=1 COLI_CUDA_MOE_BATCH=1 V4_MOE_REFILL_GROUP=12 V4_LOADER_LANES=3 V4_PREFIX_CKPT_D
+2026-10-16T06:18:22-07:00 shadowfax systemd[1600]: colibri-final2-f42v2-serve.service: Consumed 5min 44.876s CPU time, 7.3G memory peak, 0B memory swap peak.
+## llama.cpp unit: journalctl --user -u llama-server-active.service (state changes)
+2026-10-16T05:43:53-07:00 shadowfax systemd[1600]: Stopping llama-server-active.service - llama.cpp Server - local Qwen3.8 27B (MTP)...
+2026-10-16T05:43:54-07:00 shadowfax systemd[1600]: Stopped llama-server-active.service - llama.cpp Server - local Qwen3.8 27B (MTP).
+2026-10-16T05:43:54-07:00 shadowfax systemd[1600]: llama-server-active.service: Consumed 59.190s CPU time, 26.2G memory peak, 0B memory swap peak.
+2026-10-16T06:18:23-07:00 shadowfax systemd[1600]: Starting llama-server-active.service - llama.cpp Server - local Qwen3.8 27B (MTP)...
+2026-10-16T06:18:28-07:00 shadowfax systemd[1600]: Started llama-server-active.service - llama.cpp Server - local Qwen3.8 27B (MTP).
+## watchdog: journalctl --user -u shadowfax-ensure-active-stack.service (start/finish/failure lines)
+2026-10-16T05:44:50-07:00 shadowfax systemd[1600]: Starting shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy...
+2026-10-16T05:46:20-07:00 shadowfax env[1463126]:     "error": "backend unhealthy",
+2026-10-16T05:46:20-07:00 shadowfax env[1463126]:   "recovered": false,
+2026-10-16T05:46:20-07:00 shadowfax env[1463126]:     "backend": false,
+2026-10-16T05:46:20-07:00 shadowfax systemd[1600]: shadowfax-ensure-active-stack.service: Failed with result 'exit-code'.
+2026-10-16T05:46:20-07:00 shadowfax systemd[1600]: Failed to start shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy.
+2026-10-16T05:49:50-07:00 shadowfax systemd[1600]: Starting shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy...
+2026-10-16T05:51:20-07:00 shadowfax env[1467500]:     "error": "backend unhealthy",
+2026-10-16T05:51:20-07:00 shadowfax env[1467500]:   "recovered": false,
+2026-10-16T05:51:20-07:00 shadowfax env[1467500]:     "backend": false,
+2026-10-16T05:51:20-07:00 shadowfax systemd[1600]: shadowfax-ensure-active-stack.service: Failed with result 'exit-code'.
+2026-10-16T05:51:20-07:00 shadowfax systemd[1600]: Failed to start shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy.
+2026-10-16T05:54:50-07:00 shadowfax systemd[1600]: Starting shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy...
+2026-10-16T05:56:20-07:00 shadowfax env[1471712]:     "error": "backend unhealthy",
+2026-10-16T05:56:20-07:00 shadowfax env[1471712]:   "recovered": false,
+2026-10-16T05:56:20-07:00 shadowfax env[1471712]:     "backend": false,
+2026-10-16T05:56:20-07:00 shadowfax systemd[1600]: shadowfax-ensure-active-stack.service: Failed with result 'exit-code'.
+2026-10-16T05:56:20-07:00 shadowfax systemd[1600]: Failed to start shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy.
+2026-10-16T05:59:51-07:00 shadowfax systemd[1600]: Starting shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy...
+2026-10-16T06:01:21-07:00 shadowfax env[1476072]:     "error": "backend unhealthy",
+2026-10-16T06:01:21-07:00 shadowfax env[1476072]:   "recovered": false,
+2026-10-16T06:01:21-07:00 shadowfax env[1476072]:     "backend": false,
+2026-10-16T06:01:21-07:00 shadowfax systemd[1600]: shadowfax-ensure-active-stack.service: Failed with result 'exit-code'.
+2026-10-16T06:01:21-07:00 shadowfax systemd[1600]: Failed to start shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy.
+2026-10-16T06:04:51-07:00 shadowfax systemd[1600]: Starting shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy...
+2026-10-16T06:06:21-07:00 shadowfax env[1480502]:     "error": "backend unhealthy",
+2026-10-16T06:06:21-07:00 shadowfax env[1480502]:   "recovered": false,
+2026-10-16T06:06:21-07:00 shadowfax env[1480502]:     "backend": false,
+2026-10-16T06:06:21-07:00 shadowfax systemd[1600]: shadowfax-ensure-active-stack.service: Failed with result 'exit-code'.
+2026-10-16T06:06:21-07:00 shadowfax systemd[1600]: Failed to start shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy.
+2026-10-16T06:09:51-07:00 shadowfax systemd[1600]: Starting shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy...
+2026-10-16T06:11:22-07:00 shadowfax env[1484659]:     "error": "backend unhealthy",
+2026-10-16T06:11:22-07:00 shadowfax env[1484659]:   "recovered": false,
+2026-10-16T06:11:22-07:00 shadowfax env[1484659]:     "backend": false,
+2026-10-16T06:11:22-07:00 shadowfax systemd[1600]: shadowfax-ensure-active-stack.service: Failed with result 'exit-code'.
+2026-10-16T06:11:22-07:00 shadowfax systemd[1600]: Failed to start shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy.
+2026-10-16T06:14:52-07:00 shadowfax systemd[1600]: Starting shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy...
+2026-10-16T06:16:22-07:00 shadowfax env[1488823]:     "error": "backend unhealthy",
+2026-10-16T06:16:22-07:00 shadowfax env[1488823]:   "recovered": false,
+2026-10-16T06:16:22-07:00 shadowfax env[1488823]:     "backend": false,
+2026-10-16T06:16:22-07:00 shadowfax systemd[1600]: shadowfax-ensure-active-stack.service: Failed with result 'exit-code'.
+2026-10-16T06:16:22-07:00 shadowfax systemd[1600]: Failed to start shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy.
+2026-10-16T06:19:52-07:00 shadowfax systemd[1600]: Starting shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy...
+2026-10-16T06:19:53-07:00 shadowfax env[1493056]:   "recovered": false,
+2026-10-16T06:19:53-07:00 shadowfax env[1493056]:     "backend": true,
+2026-10-16T06:19:53-07:00 shadowfax systemd[1600]: Finished shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy.

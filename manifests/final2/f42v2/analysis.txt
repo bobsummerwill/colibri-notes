@@ -1,0 +1,107 @@
+problems: none
+texts: {'W': ['32534c06abd6'], 'GB': ['32534c06abd6'], 'U': ['32534c06abd6'], 'GBn': ['32534c06abd6']} distinct over GB/U/GBn: 1
+chunks: {'W': [25], 'GB': [25], 'U': [25], 'GBn': [25]} finish: {'W': ['stop'], 'GB': ['stop'], 'U': ['stop'], 'GBn': ['stop']}
+W   tok/s n=1 mean=2.0065 stdev=None median=2.0065 min=2.0065 max=2.0065  ttft median 81.78  gpu0max 21276
+     per sample: [(1, 1, 2.0065)]
+GB  tok/s n=5 mean=2.1197 stdev=0.0299 median=2.1323 min=2.0664 max=2.1355  ttft median 82.06  gpu0max 21276
+     per sample: [(1, 2, 2.0664), (2, 5, 2.1355), (3, 7, 2.1323), (4, 10, 2.1347), (5, 12, 2.1295)]
+U   tok/s n=5 mean=2.2994 stdev=0.0107 median=2.3030 min=2.2811 max=2.3077  ttft median 215.18  gpu0max 21268
+     per sample: [(1, 3, 2.303), (2, 4, 2.2992), (3, 8, 2.2811), (4, 9, 2.3077), (5, 13, 2.306)]
+GBn tok/s n=3 mean=2.1185 stdev=0.0346 median=2.1348 min=2.0788 max=2.1419  ttft median 82.11  gpu0max 21278
+     per sample: [(1, 6, 2.1419), (2, 11, 2.0788), (3, 14, 2.1348)]
+GB vs U: {'median_ratio_GB/U': 0.9259, 'mean_ratio_GB/U': 0.9218, 'welch_tok_s': {'diff': -0.17972, 't': -12.66}}
+GBn vs GB: {'median_ratio_GBn/GB': 1.0012, 'mean_ratio_GBn/GB': 0.9994, 'welch_tok_s': {'diff': -0.00118, 't': -0.05}}
+decomposition (means):
+   client_decode_s(24 intervals)              {'GB': 11.3242, 'U': 10.4376, 'GB-U': 0.8866, 'welch': {'diff': 0.8866, 't': 11.65}}
+   server_fwd1_25_s                           {'GB': 11.7599, 'U': 10.86, 'GB-U': 0.8999, 'welch': {'diff': 0.8999, 't': 11.3}}
+   dec_moe_total_s                            {'GB': 8.002, 'U': 7.12, 'GB-U': 0.882, 'welch': {'diff': 0.882, 't': 11.5}}
+   fetch_wait_s                               {'GB': 2.776, 'U': 1.95, 'GB-U': 0.826, 'welch': {'diff': 0.826, 't': 53.77}}
+   attach_s                                   {'GB': 3.692, 'U': 3.632, 'GB-U': 0.06, 'welch': {'diff': 0.06, 't': 0.95}}
+   gpu_s                                      {'GB': 0.994, 'U': 1.0, 'GB-U': -0.006, 'welch': {'diff': -0.006, 't': -2.45}}
+   uploads                                    {'GB': 2687, 'U': 2723, 'GB-U': -36, 'welch': {'diff': -36, 't': inf}}
+   store_misses                               {'GB': 1679.8, 'U': 1071.6, 'GB-U': 608.2, 'welch': {'diff': 608.2, 't': 480.82}}
+   store_GiB_read                             {'GB': 20.9155, 'U': 13.3427, 'GB-U': 7.5728, 'welch': {'diff': 7.5728, 't': 480.82}}
+   store_disk_s                               {'GB': 6.0211, 'U': 3.5875, 'GB-U': 2.4336, 'welch': {'diff': 2.43358, 't': 58.44}}
+   store_wait_s                               {'GB': 2.793, 'U': 1.9627, 'GB-U': 0.8303, 'welch': {'diff': 0.83026, 't': 48.74}}
+   non_moe_s (server_fwd - dec_moe_total)     {'GB': 3.7579, 'U': 3.74}
+windows (forwards), mean over samples: GB, U, GB-U (welch t)
+  fwd 1-5   client_ms: 2922.02/2574.94/+347.1(t=32.34)  t_ms: 2922.02/2574.98/+347(t=32.31)  fetch_wait_s: 0.721/0.4059/+0.315(t=27.66)  misses: 566.6/258/+308.6(t=247.08)  uploads: 808/809/-1(t=inf)  attach_s: 1.1377/1.1134/+0.0243(t=5.62)
+  fwd 6-10  client_ms: 2338.62/2096.14/+242.5(t=21.22)  t_ms: 2338.66/2096.16/+242.5(t=21.2)  fetch_wait_s: 0.6462/0.4091/+0.2372(t=62.74)  misses: 351.4/216.2/+135.2(t=246.84)  uploads: 460/468/-8(t=inf)  attach_s: 0.6352/0.6364/-0.0012(t=-0.14)
+  fwd 11-24 client_ms: 6063.66/5766.58/+297.1(t=5.32)  t_ms: 6063.66/5766.62/+297(t=5.32)  fetch_wait_s: 1.3078/1.0549/+0.2529(t=30.91)  misses: 713.8/554.4/+159.4(t=151.98)  uploads: 1326/1344/-18(t=inf)  attach_s: 1.7943/1.7519/+0.0423(t=0.83)
+  fwd 25-25 t_ms: 435.54/422.22/+13.32(t=3.39)  fetch_wait_s: 0.0995/0.0793/+0.0202(t=8.83)  misses: 48/43/+5(t=inf)  uploads: 93/102/-9(t=inf)  attach_s: 0.1247/0.1312/-0.0065(t=-1.49)
+  fwd 1-24  client_ms: 11324.3/10437.66/+886.6(t=11.66)  t_ms: 11324.34/10437.76/+886.6(t=11.66)  fetch_wait_s: 2.675/1.8699/+0.8051(t=47.04)  misses: 1631.8/1028.6/+603.2(t=476.87)  uploads: 2594/2621/-27(t=inf)  attach_s: 3.5672/3.5018/+0.0654(t=1.1)
+  fwd 1-25  t_ms: 11759.88/10859.98/+899.9(t=11.3)  fetch_wait_s: 2.7745/1.9492/+0.8253(t=49.61)  misses: 1679.8/1071.6/+608.2(t=480.82)  uploads: 2687/2723/-36(t=inf)  attach_s: 3.6919/3.633/+0.0589(t=0.92)
+per forward GB-U: t_ms fetch_ms misses uploads attach_ms | GB misses U misses
+   1    +78.6    +57.5 +113.2   +0.0   +20.2 |  176.8   63.6  ranges [173, 180] [63, 65]
+   2    +67.2    +64.4  +57.4   -1.0    +1.6 |  106.4   49.0  ranges [106, 107] [49, 49]
+   3    +57.3    +50.2  +47.0   +3.0    +5.1 |   96.8   49.8  ranges [95, 100] [49, 50]
+   4    +65.8    +61.1  +38.4   +2.0    +3.8 |   89.4   51.0  ranges [89, 90] [51, 51]
+   5    +78.1    +81.9  +52.6   -5.0    -6.3 |   97.2   44.6  ranges [96, 98] [44, 45]
+   6    +93.8    +91.9  +47.2   +0.0    -0.3 |   81.2   34.0  ranges [80, 82] [34, 34]
+   7    +35.6    +42.1  +35.0   -6.0    -8.3 |   81.2   46.2  ranges [80, 82] [46, 47]
+   8    +46.3    +50.4  +20.6   -4.0    -5.2 |   65.6   45.0  ranges [65, 66] [45, 45]
+   9    +29.9    +20.3  +15.8   +4.0    +9.0 |   54.8   39.0  ranges [53, 56] [39, 39]
+  10    +36.8    +32.5  +16.6   -2.0    +3.5 |   68.6   52.0  ranges [68, 69] [52, 52]
+  11    +17.8     +6.3   +9.6   +4.0   +10.8 |   33.6   24.0  ranges [33, 34] [24, 24]
+  12    +21.4    +23.2  +17.0   -5.0    -1.6 |   62.4   45.4  ranges [62, 63] [45, 46]
+  13    +27.6    +24.9  +14.0   -3.0    +2.6 |   55.0   41.0  ranges [55, 55] [41, 41]
+  14    +61.4    +52.4  +31.6   +3.0    +8.5 |   83.6   52.0  ranges [82, 85] [52, 52]
+  15    +28.2    +25.7  +13.4   -1.0    +2.6 |   58.6   45.2  ranges [58, 59] [45, 46]
+  16    +27.5    +22.0  +13.8   +0.0    +4.7 |   59.8   46.0  ranges [59, 60] [46, 46]
+  17     +9.6     +9.7   +2.6   -2.0    +0.6 |   52.6   50.0  ranges [51, 54] [50, 50]
+  18    +23.9    +14.1  +11.0   +2.0   +10.1 |   37.0   26.0  ranges [36, 38] [26, 26]
+  19    +13.6    +10.6   +7.8   +0.0    +3.3 |   48.0   40.2  ranges [48, 48] [40, 41]
+  20    +14.6     +9.4   +6.8   +1.0    +5.5 |   51.8   45.0  ranges [51, 52] [45, 45]
+  21     +7.8    +12.9   +3.0   -7.0    -4.3 |   24.0   21.0  ranges [24, 24] [21, 21]
+  22    +29.3    +31.2  +18.4   -4.0    +0.4 |   58.0   39.6  ranges [58, 58] [39, 40]
+  23    +18.4    +13.5   +3.2   -2.0    +0.8 |   43.2   40.0  ranges [43, 44] [40, 40]
+  24     -4.0     -3.0   +7.2   -4.0    -1.6 |   46.2   39.0  ranges [46, 47] [39, 39]
+  25    +13.3    +20.2   +5.0   -9.0    -6.5 |   48.0   43.0  ranges [48, 48] [43, 43]
+decode routing vs GB s1: {'W/s1': {'token_layers': 1075, 'differ_from_GB_s1': 0}, 'GB/s1': {'token_layers': 1075, 'differ_from_GB_s1': 0}, 'GB/s2': {'token_layers': 1075, 'differ_from_GB_s1': 0}, 'GB/s3': {'token_layers': 1075, 'differ_from_GB_s1': 0}, 'GB/s4': {'token_layers': 1075, 'differ_from_GB_s1': 0}, 'GB/s5': {'token_layers': 1075, 'differ_from_GB_s1': 0}, 'U/s1': {'token_layers': 1075, 'differ_from_GB_s1': 430}, 'U/s2': {'token_layers': 1075, 'differ_from_GB_s1': 430}, 'U/s3': {'token_layers': 1075, 'differ_from_GB_s1': 430}, 'U/s4': {'token_layers': 1075, 'differ_from_GB_s1': 430}, 'U/s5': {'token_layers': 1075, 'differ_from_GB_s1': 430}}
+uploads per sample: {'W': [2687], 'GB': [2687, 2687, 2687, 2687, 2687], 'U': [2723, 2723, 2723, 2723, 2723], 'GBn': [2687, 2687, 2687]}
+misses per sample: {'W': [1687], 'GB': [1682, 1677, 1679, 1683, 1678], 'U': [1072, 1072, 1071, 1070, 1073], 'GBn': [None, None, None]}
+res W  {'layers': 43, 'resident_mean': 59, 'resident_total': 2537, 'pinned_resident_mean': 7.88, 'pins_per_layer': 16, 'resident_usage_le1_frac': 1.0, 'resident_usage_mean': 1, 'resident_usage_max': 1, 'pin_usage_median': 1.0, 'pin_usage_max': 1, 'layers_pins_ids_0_to_15': 1, 'layers_pins_lowest_resident_ids': 28, 'lreq_mean': 103.9, 'decode_needed_distinct': 2192, 'decode_needed_resident_at_start': 865, 'first_fwd_needed': 258, 'first_fwd_resident_at_start': 80}
+res GB {'layers': 43, 'resident_mean': 59, 'resident_total': 2537, 'pinned_resident_mean': 7.88, 'pins_per_layer': 16, 'resident_usage_le1_frac': 1.0, 'resident_usage_mean': 1, 'resident_usage_max': 1, 'pin_usage_median': 1.0, 'pin_usage_max': 1, 'layers_pins_ids_0_to_15': 1, 'layers_pins_lowest_resident_ids': 29, 'lreq_mean': 103.9, 'decode_needed_distinct': 2192, 'decode_needed_resident_at_start': 869, 'first_fwd_needed': 258, 'first_fwd_resident_at_start': 84}
+res GB {'layers': 43, 'resident_mean': 59, 'resident_total': 2537, 'pinned_resident_mean': 7.88, 'pins_per_layer': 16, 'resident_usage_le1_frac': 1.0, 'resident_usage_mean': 1, 'resident_usage_max': 1, 'pin_usage_median': 1.0, 'pin_usage_max': 1, 'layers_pins_ids_0_to_15': 1, 'layers_pins_lowest_resident_ids': 27, 'lreq_mean': 103.9, 'decode_needed_distinct': 2192, 'decode_needed_resident_at_start': 872, 'first_fwd_needed': 258, 'first_fwd_resident_at_start': 86}
+res GB {'layers': 43, 'resident_mean': 59, 'resident_total': 2537, 'pinned_resident_mean': 7.88, 'pins_per_layer': 16, 'resident_usage_le1_frac': 1.0, 'resident_usage_mean': 1, 'resident_usage_max': 1, 'pin_usage_median': 1.0, 'pin_usage_max': 1, 'layers_pins_ids_0_to_15': 1, 'layers_pins_lowest_resident_ids': 29, 'lreq_mean': 103.9, 'decode_needed_distinct': 2192, 'decode_needed_resident_at_start': 872, 'first_fwd_needed': 258, 'first_fwd_resident_at_start': 84}
+res GB {'layers': 43, 'resident_mean': 59, 'resident_total': 2537, 'pinned_resident_mean': 7.88, 'pins_per_layer': 16, 'resident_usage_le1_frac': 1.0, 'resident_usage_mean': 1, 'resident_usage_max': 1, 'pin_usage_median': 1.0, 'pin_usage_max': 1, 'layers_pins_ids_0_to_15': 1, 'layers_pins_lowest_resident_ids': 29, 'lreq_mean': 103.9, 'decode_needed_distinct': 2192, 'decode_needed_resident_at_start': 870, 'first_fwd_needed': 258, 'first_fwd_resident_at_start': 82}
+res GB {'layers': 43, 'resident_mean': 59, 'resident_total': 2537, 'pinned_resident_mean': 7.88, 'pins_per_layer': 16, 'resident_usage_le1_frac': 1.0, 'resident_usage_mean': 1, 'resident_usage_max': 1, 'pin_usage_median': 1.0, 'pin_usage_max': 1, 'layers_pins_ids_0_to_15': 1, 'layers_pins_lowest_resident_ids': 29, 'lreq_mean': 103.9, 'decode_needed_distinct': 2192, 'decode_needed_resident_at_start': 872, 'first_fwd_needed': 258, 'first_fwd_resident_at_start': 81}
+res U  {'layers': 43, 'resident_mean': 59, 'resident_total': 2537, 'pinned_resident_mean': 16, 'pins_per_layer': 16, 'resident_usage_le1_frac': 0.0315, 'resident_usage_mean': 6.954, 'resident_usage_max': 13, 'pin_usage_median': 9.0, 'pin_usage_max': 13, 'layers_pins_ids_0_to_15': 0, 'layers_pins_lowest_resident_ids': 3, 'lreq_mean': 1064.9, 'decode_needed_distinct': 2207, 'decode_needed_resident_at_start': 1461, 'first_fwd_needed': 258, 'first_fwd_resident_at_start': 199}
+res U  {'layers': 43, 'resident_mean': 59, 'resident_total': 2537, 'pinned_resident_mean': 16, 'pins_per_layer': 16, 'resident_usage_le1_frac': 0.0315, 'resident_usage_mean': 6.954, 'resident_usage_max': 13, 'pin_usage_median': 9.0, 'pin_usage_max': 13, 'layers_pins_ids_0_to_15': 0, 'layers_pins_lowest_resident_ids': 3, 'lreq_mean': 1064.9, 'decode_needed_distinct': 2207, 'decode_needed_resident_at_start': 1461, 'first_fwd_needed': 258, 'first_fwd_resident_at_start': 199}
+res U  {'layers': 43, 'resident_mean': 59, 'resident_total': 2537, 'pinned_resident_mean': 16, 'pins_per_layer': 16, 'resident_usage_le1_frac': 0.0315, 'resident_usage_mean': 6.954, 'resident_usage_max': 13, 'pin_usage_median': 9.0, 'pin_usage_max': 13, 'layers_pins_ids_0_to_15': 0, 'layers_pins_lowest_resident_ids': 3, 'lreq_mean': 1064.9, 'decode_needed_distinct': 2207, 'decode_needed_resident_at_start': 1462, 'first_fwd_needed': 258, 'first_fwd_resident_at_start': 200}
+res U  {'layers': 43, 'resident_mean': 59, 'resident_total': 2537, 'pinned_resident_mean': 16, 'pins_per_layer': 16, 'resident_usage_le1_frac': 0.0315, 'resident_usage_mean': 6.954, 'resident_usage_max': 13, 'pin_usage_median': 9.0, 'pin_usage_max': 13, 'layers_pins_ids_0_to_15': 0, 'layers_pins_lowest_resident_ids': 3, 'lreq_mean': 1064.9, 'decode_needed_distinct': 2207, 'decode_needed_resident_at_start': 1459, 'first_fwd_needed': 258, 'first_fwd_resident_at_start': 199}
+res U  {'layers': 43, 'resident_mean': 59, 'resident_total': 2537, 'pinned_resident_mean': 16, 'pins_per_layer': 16, 'resident_usage_le1_frac': 0.0315, 'resident_usage_mean': 6.951, 'resident_usage_max': 13, 'pin_usage_median': 9.0, 'pin_usage_max': 13, 'layers_pins_ids_0_to_15': 0, 'layers_pins_lowest_resident_ids': 3, 'lreq_mean': 1064.9, 'decode_needed_distinct': 2207, 'decode_needed_resident_at_start': 1459, 'first_fwd_needed': 258, 'first_fwd_resident_at_start': 198}
+residency jaccard: {'GB_s1_vs_GB_others': [0.953, 0.9545, 0.9538, 0.9583], 'U_s1_vs_U_others': [1.0, 0.9976, 0.9976, 0.9976], 'GB_s1_vs_U': [0.321, 0.321, 0.3207, 0.321, 0.3214]}
+prefill store: {'W': [{'bank': 688, 'union': 0, 'rows': 0, 'req': 4468, 'hits': 0, 'misses': 4468, 'bytes': 59734228992, 'disk_s': 78.186, 'wait_s': 6.777}], 'GB': [{'bank': 688, 'union': 0, 'rows': 0, 'req': 4468, 'hits': 0, 'misses': 4468, 'bytes': 59734228992, 'disk_s': 79.484, 'wait_s': 6.911}, {'bank': 688, 'union': 0, 'rows': 0, 'req': 4468, 'hits': 0, 'misses': 4468, 'bytes': 59734228992, 'disk_s': 78.077, 'wait_s': 6.872}, {'bank': 688, 'union': 0, 'rows': 0, 'req': 4468, 'hits': 0, 'misses': 4468, 'bytes': 59734228992, 'disk_s': 78.419, 'wait_s': 6.898}, {'bank': 688, 'union': 0, 'rows': 0, 'req': 4468, 'hits': 0, 'misses': 4468, 'bytes': 59734228992, 'disk_s': 77.872, 'wait_s': 6.799}, {'bank': 688, 'union': 0, 'rows': 0, 'req': 4468, 'hits': 0, 'misses': 4468, 'bytes': 59734228992, 'disk_s': 77.736, 'wait_s': 6.809}], 'U': [{'bank': 0, 'union': 688, 'rows': 0, 'req': 45791, 'hits': 16162, 'misses': 29629, 'bytes': 396120293376, 'disk_s': 130.111, 'wait_s': 11.712}, {'bank': 0, 'union': 688, 'rows': 0, 'req': 45791, 'hits': 16170, 'misses': 29621, 'bytes': 396013338624, 'disk_s': 128.436, 'wait_s': 10.982}, {'bank': 0, 'union': 688, 'rows': 0, 'req': 45791, 'hits': 16171, 'misses': 29620, 'bytes': 395999969280, 'disk_s': 128.58, 'wait_s': 11.147}, {'bank': 0, 'union': 688, 'rows': 0, 'req': 45791, 'hits': 16163, 'misses': 29628, 'bytes': 396106924032, 'disk_s': 128.609, 'wait_s': 11.252}, {'bank': 0, 'union': 688, 'rows': 0, 'req': 45791, 'hits': 16182, 'misses': 29609, 'bytes': 395852906496, 'disk_s': 128.438, 'wait_s': 11.214}]}
+counterfactual (25 GB x U pairs):
+   decode_needed_resident_at_start GB-routing x GB-RAM            {'min': 869, 'max': 872, 'mean': 871}
+   decode_needed_resident_at_start GB-routing x U-RAM             {'min': 1448, 'max': 1452, 'mean': 1449.8}
+   decode_needed_resident_at_start U-routing x U-RAM              {'min': 1459, 'max': 1462, 'mean': 1460.4}
+   decode_needed_resident_at_start U-routing x GB-RAM             {'min': 879, 'max': 883, 'mean': 880}
+   fwd1_routed_resident GB-routing x GB-RAM                       {'min': 81, 'max': 86, 'mean': 83.4}
+   fwd1_routed_resident GB-routing x U-RAM                        {'min': 199, 'max': 201, 'mean': 200}
+   fwd1_routed_resident U-routing x U-RAM                         {'min': 198, 'max': 200, 'mean': 199}
+   fwd1_routed_resident U-routing x GB-RAM                        {'min': 79, 'max': 84, 'mean': 81.4}
+   token_layers_same_routing                                      {'min': 645, 'max': 645, 'mean': 645}
+   misses_on_same_routing_token_layers GB                         {'min': 1004, 'max': 1009, 'mean': 1006.8}
+   misses_on_same_routing_token_layers U                          {'min': 646, 'max': 650, 'mean': 648}
+   misses_on_differing_token_layers GB                            {'min': 672, 'max': 674, 'mean': 673}
+   misses_on_differing_token_layers U                             {'min': 423, 'max': 424, 'mean': 423.6}
+   expert_selections_differing (of 6450)                          {'min': 527, 'max': 527, 'mean': 527}
+   layers_with_any_routing_difference                             {'min': 40, 'max': 40, 'mean': 40}
+   first_layer_with_routing_difference                            {'min': 3, 'max': 3, 'mean': 3}
+first touch: {'GB': [{'needed': 2192, 'not_resident_at_start': 1323, 'misses': 1682}, {'needed': 2192, 'not_resident_at_start': 1320, 'misses': 1677}, {'needed': 2192, 'not_resident_at_start': 1320, 'misses': 1679}, {'needed': 2192, 'not_resident_at_start': 1322, 'misses': 1683}, {'needed': 2192, 'not_resident_at_start': 1320, 'misses': 1678}], 'U': [{'needed': 2207, 'not_resident_at_start': 746, 'misses': 1072}, {'needed': 2207, 'not_resident_at_start': 746, 'misses': 1072}, {'needed': 2207, 'not_resident_at_start': 745, 'misses': 1071}, {'needed': 2207, 'not_resident_at_start': 748, 'misses': 1070}, {'needed': 2207, 'not_resident_at_start': 748, 'misses': 1073}]}
+attach ms per upload:
+   W/s1    {'fwd1-7 all layers': 1.405, 'fwd8-25 L0-31': 1.546, 'fwd8-25 L32-41': 1.504, 'fwd8-25 L42': 1.439}
+   GB/s1   {'fwd1-7 all layers': 1.402, 'fwd8-25 L0-31': 1.321, 'fwd8-25 L32-41': 2.064, 'fwd8-25 L42': 1.434}
+   GB/s2   {'fwd1-7 all layers': 1.4, 'fwd8-25 L0-31': 1.317, 'fwd8-25 L32-41': 1.294, 'fwd8-25 L42': 1.368}
+   GB/s3   {'fwd1-7 all layers': 1.399, 'fwd8-25 L0-31': 1.313, 'fwd8-25 L32-41': 1.295, 'fwd8-25 L42': 1.68}
+   GB/s4   {'fwd1-7 all layers': 1.401, 'fwd8-25 L0-31': 1.313, 'fwd8-25 L32-41': 1.322, 'fwd8-25 L42': 1.489}
+   GB/s5   {'fwd1-7 all layers': 1.411, 'fwd8-25 L0-31': 1.31, 'fwd8-25 L32-41': 1.327, 'fwd8-25 L42': 1.449}
+   U/s1    {'fwd1-7 all layers': 1.369, 'fwd8-25 L0-31': 1.298, 'fwd8-25 L32-41': 1.278, 'fwd8-25 L42': 1.543}
+   U/s2    {'fwd1-7 all layers': 1.391, 'fwd8-25 L0-31': 1.301, 'fwd8-25 L32-41': 1.28, 'fwd8-25 L42': 1.668}
+   U/s3    {'fwd1-7 all layers': 1.386, 'fwd8-25 L0-31': 1.309, 'fwd8-25 L32-41': 1.321, 'fwd8-25 L42': 1.603}
+   U/s4    {'fwd1-7 all layers': 1.371, 'fwd8-25 L0-31': 1.308, 'fwd8-25 L32-41': 1.284, 'fwd8-25 L42': 1.428}
+   U/s5    {'fwd1-7 all layers': 1.371, 'fwd8-25 L0-31': 1.299, 'fwd8-25 L32-41': 1.279, 'fwd8-25 L42': 1.639}
+robustness (GB without s1): {"GB_s2-s5_tok_s": {"n": 4, "mean": 2.133, "stdev": 0.0027, "median": 2.1335, "min": 2.1295, "max": 2.1355}, "median_ratio_GB(s2-s5)/U": 0.9264, "fwd 1-5 client_ms GB(s2-s5)-U": 337.81, "fwd 1-5 fetch_wait_s GB(s2-s5)-U": 0.3051, "fwd 1-5 attach_s GB(s2-s5)-U": 0.0245, "fwd 1-5 misses GB(s2-s5)-U": 308.5, "fwd 1-5 uploads GB(s2-s5)-U": -1, "fwd 6-10 client_ms GB(s2-s5)-U": 232.685, "fwd 6-10 fetch_wait_s GB(s2-s5)-U": 0.2371, "fwd 6-10 attach_s GB(s2-s5)-U": -0.0096, "fwd 6-10 misses GB(s2-s5)-U": 135.55, "fwd 6-10 uploads GB(s2-s5)-U": -8, "fwd 11-24 client_ms GB(s2-s5)-U": 243.57, "fwd 11-24 fetch_wait_s GB(s2-s5)-U": 0.2494, "fwd 11-24 attach_s GB(s2-s5)-U": -0.0082, "fwd 11-24 misses GB(s2-s5)-U": 158.6, "fwd 11-24 uploads GB(s2-s5)-U": -18, "fwd 1-24 client_ms GB(s2-s5)-U": 814.065, "fwd 1-24 fetch_wait_s GB(s2-s5)-U": 0.7916, "fwd 1-24 attach_s GB(s2-s5)-U": 0.0067, "fwd 1-24 misses GB(s2-s5)-U": 602.65, "fwd 1-24 uploads GB(s2-s5)-U": -27}
+serve-unit memory peaks GiB: {'W/s1': 7.3, 'GB/s1': 9.7, 'U/s1': 8.9, 'U/s2': 7.7, 'GB/s2': 7.7, 'GBn/s1': 7.5, 'GB/s3': 7.5, 'U/s3': 7.5, 'U/s4': 8.1, 'GB/s4': 7.4, 'GBn/s2': 7.5, 'GB/s5': 7.3, 'U/s5': 7.4, 'GBn/s3': 7.3}
