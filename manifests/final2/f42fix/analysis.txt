@@ -1,0 +1,118 @@
+problems: none
+texts: {'W': ['32534c06abd6'], 'FX': ['32534c06abd6'], 'UX': ['32534c06abd6'], 'OX': ['32534c06abd6'], 'FXn': ['32534c06abd6']} distinct over FX/UX/OX/FXn: 1
+chunks: {'W': [25], 'FX': [25], 'UX': [25], 'OX': [25], 'FXn': [25]} finish: {'W': ['stop'], 'FX': ['stop'], 'UX': ['stop'], 'OX': ['stop'], 'FXn': ['stop']}
+W   tok/s n=1 mean=2.0746 stdev=None median=2.0746 min=2.0746 max=2.0746  ttft median 82.72 (mean 82.72)  gpu0max 21278
+     per sample (k, seq, tok/s, ttft): [(1, 1, 2.0746, 82.725)]
+FX  tok/s n=5 mean=2.2375 stdev=0.0629 median=2.2641 min=2.1254 max=2.2736  ttft median 82.26 (mean 82.30)  gpu0max 21276
+     per sample (k, seq, tok/s, ttft): [(1, 2, 2.1254, 82.725), (2, 7, 2.2641, 82.264), (3, 11, 2.2652, 82.123), (4, 12, 2.2736, 82.263), (5, 17, 2.2594, 82.147)]
+UX  tok/s n=5 mean=2.2948 stdev=0.0135 median=2.3005 min=2.2716 max=2.3049  ttft median 215.89 (mean 215.93)  gpu0max 21268
+     per sample (k, seq, tok/s, ttft): [(1, 4, 2.2716, 216.132), (2, 5, 2.3005, 215.894), (3, 10, 2.2949, 215.718), (4, 13, 2.302, 216.054), (5, 16, 2.3049, 215.849)]
+OX  tok/s n=5 mean=2.1203 stdev=0.0255 median=2.1305 min=2.0752 max=2.1368  ttft median 82.09 (mean 82.10)  gpu0max 21276
+     per sample (k, seq, tok/s, ttft): [(1, 3, 2.0752, 82.291), (2, 6, 2.1368, 82.088), (3, 9, 2.1305, 82.067), (4, 14, 2.1325, 81.854), (5, 18, 2.1267, 82.194)]
+FXn tok/s n=3 mean=2.2713 stdev=0.0064 median=2.2702 min=2.2655 max=2.2782  ttft median 82.24 (mean 82.19)  gpu0max 21276
+     per sample (k, seq, tok/s, ttft): [(1, 8, 2.2655, 82.243), (2, 15, 2.2702, 82.062), (3, 19, 2.2782, 82.28)]
+OX/UX   {'median_ratio': 0.9261, 'mean_ratio': 0.924, 'welch_tok_s': {'diff': -0.17444, 't': -13.53}, 'ttft_welch': {'diff': -133.8306, 't': -1287.67}, 'ttft_median_ratio': 0.3802}
+FX/UX   {'median_ratio': 0.9842, 'mean_ratio': 0.9751, 'welch_tok_s': {'diff': -0.05724, 't': -1.99}, 'ttft_welch': {'diff': -133.625, 't': -1014.6}, 'ttft_median_ratio': 0.381}
+FX/OX   {'median_ratio': 1.0627, 'mean_ratio': 1.0553, 'welch_tok_s': {'diff': 0.1172, 't': 3.86}, 'ttft_welch': {'diff': 0.2056, 't': 1.57}, 'ttft_median_ratio': 1.0021}
+FXn/FX  {'median_ratio': 1.0027, 'mean_ratio': 1.0151, 'welch_tok_s': {'diff': 0.03376, 't': 1.19}, 'ttft_welch': {'diff': -0.1094, 't': -0.85}}
+recovered share of the OX-UX tok/s gap: {'means': 0.672, 'medians': 0.786}
+decomposition (means): FX / UX / OX, pair differences, recovered = (FX-OX)/(UX-OX)
+   client_decode_s(24 intervals)  FX 10.733 UX 10.4588 OX 11.3202 | OX-UX +0.8614 (t=12.73) FX-UX +0.2742 (t=1.92) FX-OX -0.5872 (t=-3.83) | recovered 0.682
+   server_fwd1_25_s               FX 11.1521 UX 10.8814 OX 11.7519 | OX-UX +0.8705 (t=12.2) FX-UX +0.2707 (t=1.81) FX-OX -0.5998 (t=-3.73) | recovered 0.689
+   dec_moe_total_s                FX 7.4076 UX 7.142 OX 7.9946 | OX-UX +0.8526 (t=12.34) FX-UX +0.2656 (t=1.8) FX-OX -0.5870 (t=-3.72) | recovered 0.688
+   fetch_wait_s                   FX 2.1842 UX 1.9408 OX 2.748 | OX-UX +0.8072 (t=59.89) FX-UX +0.2434 (t=3.08) FX-OX -0.5638 (t=-7.07) | recovered 0.698
+   store_wait_s                   FX 2.199 UX 1.9533 OX 2.7691 | OX-UX +0.8158 (t=60.6) FX-UX +0.2457 (t=3.08) FX-OX -0.5701 (t=-7.08) | recovered 0.699
+   attach_s                       FX 3.6854 UX 3.6618 OX 3.7062 | OX-UX +0.0444 (t=0.58) FX-UX +0.0236 (t=0.33) FX-OX -0.0208 (t=-0.21) | recovered 0.468
+   store_misses                   FX 1244.4 UX 1071.8 OX 1683.6 | OX-UX +611.8000 (t=394.92) FX-UX +172.6000 (t=107.04) FX-OX -439.2000 (t=-221.83) | recovered 0.718
+   store_GiB_read                 FX 15.4942 UX 13.3452 OX 20.9628 | OX-UX +7.6176 (t=394.92) FX-UX +2.1490 (t=107.04) FX-OX -5.4686 (t=-221.83) | recovered 0.718
+   store_disk_s                   FX 4.3988 UX 3.5783 OX 5.9949 | OX-UX +2.4166 (t=182.5) FX-UX +0.8205 (t=5.74) FX-OX -1.5961 (t=-11.17) | recovered 0.66
+   non_moe_s                      FX 3.7445 UX 3.7394 OX 3.7573 | OX-UX +0.0179 (t=6.91) FX-UX +0.0051 (t=1.69) FX-OX -0.0128 (t=-3.47) | recovered 0.715
+windows (decode forwards), means FX / UX / OX, OX-UX, FX-UX, recovered
+  fwd 1-5    client_ms     FX       2880 UX       2574 OX       2920 | OX-UX    +345.5 (t=61.38) FX-UX      +306 (t=7.81) | recovered 0.114
+  fwd 1-5    t_ms          FX       2880 UX       2574 OX       2920 | OX-UX    +345.5 (t=61.42) FX-UX      +306 (t=7.81) | recovered 0.114
+  fwd 1-5    misses        FX      450.4 UX        258 OX        569 | OX-UX      +311 (t=491.73) FX-UX    +192.4 (t=220.7) | recovered 0.381
+  fwd 1-5    fetch_wait_s  FX     0.6794 UX     0.4007 OX     0.7172 | OX-UX   +0.3165 (t=85.27) FX-UX   +0.2787 (t=7.47) | recovered 0.12
+  fwd 1-5    wait_s        FX      0.684 UX     0.4034 OX     0.7231 | OX-UX   +0.3197 (t=86.25) FX-UX   +0.2806 (t=7.42) | recovered 0.122
+  fwd 1-5    attach_s      FX      1.137 UX      1.117 OX      1.137 | OX-UX   +0.0197 (t=5.5) FX-UX   +0.0192 (t=4.81) | recovered 0.022
+  fwd 6-10   client_ms     FX       2133 UX       2102 OX       2344 | OX-UX    +241.3 (t=23.69) FX-UX    +31.04 (t=1.74) | recovered 0.871
+  fwd 6-10   t_ms          FX       2134 UX       2102 OX       2344 | OX-UX    +241.2 (t=23.7) FX-UX    +31.08 (t=1.74) | recovered 0.871
+  fwd 6-10   misses        FX      224.4 UX        216 OX      351.4 | OX-UX    +135.4 (t=131.51) FX-UX      +8.4 (t=7.2) | recovered 0.938
+  fwd 6-10   fetch_wait_s  FX     0.4445 UX     0.4079 OX     0.6494 | OX-UX   +0.2415 (t=62.13) FX-UX   +0.0366 (t=3.37) | recovered 0.848
+  fwd 6-10   wait_s        FX     0.4472 UX     0.4104 OX     0.6534 | OX-UX   +0.2431 (t=63.92) FX-UX   +0.0368 (t=3.42) | recovered 0.849
+  fwd 6-10   attach_s      FX     0.6369 UX     0.6422 OX     0.6361 | OX-UX   -0.0061 (t=-0.56) FX-UX   -0.0053 (t=-0.69) | recovered 0.13
+  fwd 11-24  client_ms     FX       5720 UX       5782 OX       6057 | OX-UX    +274.9 (t=4.78) FX-UX    -62.62 (t=-0.72) | recovered 1.228
+  fwd 11-24  t_ms          FX       5720 UX       5782 OX       6057 | OX-UX    +274.9 (t=4.78) FX-UX    -62.68 (t=-0.72) | recovered 1.228
+  fwd 11-24  misses        FX        528 UX      554.8 OX      715.2 | OX-UX    +160.4 (t=170.99) FX-UX     -26.8 (t=-16.49) | recovered 1.167
+  fwd 11-24  fetch_wait_s  FX     0.9785 UX      1.053 OX      1.286 | OX-UX   +0.2329 (t=22.53) FX-UX   -0.0747 (t=-2.57) | recovered 1.321
+  fwd 11-24  wait_s        FX     0.9854 UX       1.06 OX      1.296 | OX-UX   +0.2363 (t=22.02) FX-UX   -0.0748 (t=-2.56) | recovered 1.317
+  fwd 11-24  attach_s      FX      1.786 UX       1.77 OX      1.808 | OX-UX    +0.038 (t=0.61) FX-UX   +0.0161 (t=0.28) | recovered 0.577
+  fwd 25-25  t_ms          FX      418.9 UX      422.6 OX      431.5 | OX-UX     +8.86 (t=2.19) FX-UX     -3.74 (t=-0.51) | recovered 1.422
+  fwd 25-25  misses        FX       41.6 UX         43 OX         48 | OX-UX        +5 (t=inf) FX-UX      -1.4 (t=-5.72) | recovered 1.28
+  fwd 25-25  fetch_wait_s  FX     0.0817 UX      0.079 OX     0.0953 | OX-UX   +0.0163 (t=11.46) FX-UX   +0.0027 (t=0.9) | recovered 0.833
+  fwd 25-25  wait_s        FX     0.0824 UX     0.0794 OX     0.0961 | OX-UX   +0.0167 (t=11.58) FX-UX    +0.003 (t=0.98) | recovered 0.818
+  fwd 25-25  attach_s      FX     0.1255 UX     0.1318 OX     0.1247 | OX-UX   -0.0072 (t=-1.58) FX-UX   -0.0063 (t=-1.46) | recovered 0.12
+  fwd 1-24   client_ms     FX  1.073e+04 UX  1.046e+04 OX  1.132e+04 | OX-UX    +861.6 (t=12.73) FX-UX    +274.4 (t=1.92) | recovered 0.681
+  fwd 1-24   t_ms          FX  1.073e+04 UX  1.046e+04 OX  1.132e+04 | OX-UX    +861.6 (t=12.73) FX-UX    +274.4 (t=1.92) | recovered 0.682
+  fwd 1-24   misses        FX       1203 UX       1029 OX       1636 | OX-UX    +606.8 (t=391.69) FX-UX      +174 (t=112.79) | recovered 0.713
+  fwd 1-24   fetch_wait_s  FX      2.102 UX      1.862 OX      2.653 | OX-UX   +0.7909 (t=63.64) FX-UX   +0.2406 (t=3.16) | recovered 0.696
+  fwd 1-24   wait_s        FX      2.117 UX      1.874 OX      2.673 | OX-UX   +0.7991 (t=64.25) FX-UX   +0.2427 (t=3.15) | recovered 0.696
+  fwd 1-24   attach_s      FX       3.56 UX       3.53 OX      3.582 | OX-UX   +0.0515 (t=0.72) FX-UX     +0.03 (t=0.45) | recovered 0.419
+  fwd 1-25   t_ms          FX  1.115e+04 UX  1.088e+04 OX  1.175e+04 | OX-UX    +870.5 (t=12.2) FX-UX    +270.7 (t=1.81) | recovered 0.689
+  fwd 1-25   misses        FX       1244 UX       1072 OX       1684 | OX-UX    +611.8 (t=394.92) FX-UX    +172.6 (t=107.04) | recovered 0.718
+  fwd 1-25   fetch_wait_s  FX      2.184 UX      1.941 OX      2.748 | OX-UX   +0.8072 (t=59.89) FX-UX   +0.2434 (t=3.08) | recovered 0.699
+  fwd 1-25   wait_s        FX      2.199 UX      1.953 OX      2.769 | OX-UX   +0.8158 (t=60.6) FX-UX   +0.2457 (t=3.08) | recovered 0.699
+  fwd 1-25   attach_s      FX      3.685 UX      3.662 OX      3.706 | OX-UX   +0.0444 (t=0.58) FX-UX   +0.0236 (t=0.33) | recovered 0.467
+per forward: misses FX / UX / OX (ranges) | fetch_wait ms FX / UX / OX | t_ms FX / UX / OX
+   1   160.8   63.6  177.4  [158, 163] [62, 65] [177, 179] |  177.0   67.0  118.6 |  764.2  637.8  709.4
+   2    92.6   49.0  107.2  [91, 95] [49, 49] [106, 108] |  147.4   71.1  138.4 |  589.5  507.8  576.6
+   3    74.8   50.0   98.2  [73, 77] [50, 50] [97, 100] |  127.9   90.1  145.6 |  538.2  493.7  555.0
+   4    60.8   51.0   89.0  [59, 62] [51, 51] [89, 89] |  121.7   95.8  153.8 |  498.4  468.4  531.1
+   5    61.4   44.4   97.2  [60, 64] [44, 45] [96, 98] |  105.4   76.7  160.7 |  489.8  466.4  547.5
+   6    42.6   34.0   81.2  [42, 43] [34, 34] [80, 82] |   84.3   63.0  156.2 |  433.9  411.9  506.4
+   7    52.2   46.0   80.8  [51, 53] [46, 46] [80, 82] |   91.4   85.9  129.2 |  449.3  451.4  486.6
+   8    43.0   45.0   65.4  [42, 44] [45, 45] [64, 66] |   86.0   79.8  130.9 |  409.2  410.1  455.6
+   9    44.0   39.0   55.2  [43, 45] [39, 39] [54, 56] |   97.7   84.9  107.0 |  417.0  394.7  426.7
+  10    42.6   52.0   68.8  [41, 44] [52, 52] [68, 70] |   85.1   94.2  126.1 |  424.1  434.3  468.3
+  11    22.0   24.0   33.6  [21, 23] [24, 24] [33, 34] |   43.0   47.6   53.8 |  359.5  355.3  370.9
+  12    37.6   45.6   62.8  [36, 39] [45, 46] [62, 63] |   67.2   80.1  104.2 |  417.7  431.4  457.1
+  13    34.2   41.0   55.0  [34, 35] [41, 41] [55, 55] |   61.7   78.6  102.1 |  404.1  422.6  448.8
+  14    54.0   52.0   83.6  [53, 55] [52, 52] [82, 85] |   86.8   91.1  141.1 |  480.6  476.4  541.3
+  15    39.8   45.2   58.4  [39, 41] [45, 46] [58, 59] |   78.4   85.6  107.3 |  412.3  418.2  446.8
+  16    41.6   45.8   60.4  [41, 42] [45, 46] [60, 61] |   82.8  100.7  118.9 |  414.7  429.8  450.1
+  17    46.2   50.0   52.0  [46, 47] [50, 50] [51, 53] |   83.1   93.6   99.9 |  417.0  427.9  433.9
+  18    21.8   26.0   37.6  [21, 22] [26, 26] [37, 38] |   35.5   43.6   59.7 |  371.6  374.5  399.9
+  19    42.8   40.2   48.0  [42, 44] [40, 41] [48, 48] |   84.5   81.3   92.7 |  415.0  411.7  423.5
+  20    42.8   45.0   51.8  [42, 44] [45, 45] [51, 52] |   82.7   95.5  104.2 |  427.9  437.2  453.9
+  21    22.0   21.0   24.0  [22, 22] [21, 21] [24, 24] |   51.2   37.0   46.2 |  377.2  368.9  371.2
+  22    45.8   40.0   58.0  [44, 47] [39, 41] [58, 58] |   73.1   65.1   95.7 |  432.1  424.0  452.9
+  23    38.6   40.0   43.2  [38, 39] [40, 40] [43, 44] |   79.0   74.5   84.2 |  403.7  403.3  410.1
+  24    38.8   39.0   46.8  [38, 39] [39, 39] [46, 47] |   69.5   79.0   76.3 |  386.4  401.0  396.8
+  25    41.6   43.0   48.0  [41, 42] [43, 43] [48, 48] |   81.7   79.0   95.3 |  418.9  422.6  431.5
+decode routing vs FX s1: {'W/s1': {'token_layers': 1075, 'differ_from_FX_s1': 0}, 'FX/s1': {'token_layers': 1075, 'differ_from_FX_s1': 0}, 'FX/s2': {'token_layers': 1075, 'differ_from_FX_s1': 0}, 'FX/s3': {'token_layers': 1075, 'differ_from_FX_s1': 0}, 'FX/s4': {'token_layers': 1075, 'differ_from_FX_s1': 0}, 'FX/s5': {'token_layers': 1075, 'differ_from_FX_s1': 0}, 'UX/s1': {'token_layers': 1075, 'differ_from_FX_s1': 430}, 'UX/s2': {'token_layers': 1075, 'differ_from_FX_s1': 430}, 'UX/s3': {'token_layers': 1075, 'differ_from_FX_s1': 430}, 'UX/s4': {'token_layers': 1075, 'differ_from_FX_s1': 430}, 'UX/s5': {'token_layers': 1075, 'differ_from_FX_s1': 430}, 'OX/s1': {'token_layers': 1075, 'differ_from_FX_s1': 0}, 'OX/s2': {'token_layers': 1075, 'differ_from_FX_s1': 0}, 'OX/s3': {'token_layers': 1075, 'differ_from_FX_s1': 0}, 'OX/s4': {'token_layers': 1075, 'differ_from_FX_s1': 0}, 'OX/s5': {'token_layers': 1075, 'differ_from_FX_s1': 0}}
+misses per sample: {'W': [1242], 'FX': [1247, 1242, 1240, 1246, 1247], 'UX': [1071, 1073, 1071, 1070, 1074], 'OX': [1687, 1681, 1686, 1684, 1680], 'FXn': [None, None, None]}
+res W  {'resident_mean': 59, 'pinned_resident_mean': 12, 'pins_per_layer': 16, 'resident_usage_le1_frac': 0.093, 'resident_usage_mean': 6.391, 'pin_usage_median': 9.0, 'pins_are_top_usage_frac': 0.75, 'layers_pins_ids_0_to_15': 0, 'layers_pins_lowest_resident_ids': 0, 'lreq_mean': 1068.5, 'decode_needed_distinct': 2192, 'decode_needed_resident_at_start': 1255, 'first_fwd_needed': 258, 'first_fwd_resident_at_start': 101, 'age_mean_decode_needed_residents': 66496.1, 'age_mean_other_residents': 60406.9}
+res FX {'resident_mean': 59, 'pinned_resident_mean': 11.95, 'pins_per_layer': 16, 'resident_usage_le1_frac': 0.0914, 'resident_usage_mean': 6.386, 'pin_usage_median': 9.0, 'pins_are_top_usage_frac': 0.7471, 'layers_pins_ids_0_to_15': 0, 'layers_pins_lowest_resident_ids': 0, 'lreq_mean': 1068.5, 'decode_needed_distinct': 2192, 'decode_needed_resident_at_start': 1254, 'first_fwd_needed': 258, 'first_fwd_resident_at_start': 100, 'age_mean_decode_needed_residents': 66839.5, 'age_mean_other_residents': 60614.6}
+res UX {'resident_mean': 59, 'pinned_resident_mean': 16, 'pins_per_layer': 16, 'resident_usage_le1_frac': 0.0315, 'resident_usage_mean': 6.954, 'pin_usage_median': 9.0, 'pins_are_top_usage_frac': 1.0, 'layers_pins_ids_0_to_15': 0, 'layers_pins_lowest_resident_ids': 3, 'lreq_mean': 1064.9, 'decode_needed_distinct': 2207, 'decode_needed_resident_at_start': 1461, 'first_fwd_needed': 258, 'first_fwd_resident_at_start': 199, 'age_mean_decode_needed_residents': 101172.2, 'age_mean_other_residents': 94210.1}
+res OX {'resident_mean': 59, 'pinned_resident_mean': 7.88, 'pins_per_layer': 16, 'resident_usage_le1_frac': 1.0, 'resident_usage_mean': 1, 'pin_usage_median': 1.0, 'pins_are_top_usage_frac': 1.0, 'layers_pins_ids_0_to_15': 1, 'layers_pins_lowest_resident_ids': 30, 'lreq_mean': 103.9, 'decode_needed_distinct': 2192, 'decode_needed_resident_at_start': 868, 'first_fwd_needed': 258, 'first_fwd_resident_at_start': 82, 'age_mean_decode_needed_residents': 8815.0, 'age_mean_other_residents': 9144.4}
+residency jaccard: {'FX_s1_vs_FX_others': [0.9545, 0.9561, 0.9523, 0.9576], 'UX_s1_vs_UX_others': [0.9976, 0.9984, 1.0, 0.9992], 'OX_s1_vs_OX_others': [0.9583, 0.9508, 0.9568, 0.9553], 'FX_s1_vs_UX': [0.526, 0.5265, 0.526, 0.526, 0.526], 'OX_s1_vs_UX': [0.3238, 0.3234, 0.3238, 0.3238, 0.3238], 'FX_s1_vs_OX': [0.4593, 0.4568, 0.4555, 0.4564, 0.4543]}
+prefill store: {'W': [{'bank': 688, 'union': 0, 'rows': 0, 'req': 4468, 'hits': 0, 'misses': 4468, 'bytes': 59734228992, 'disk_s': 78.404, 'wait_s': 6.846}], 'FX': [{'bank': 688, 'union': 0, 'rows': 0, 'req': 4468, 'hits': 0, 'misses': 4468, 'bytes': 59734228992, 'disk_s': 80.129, 'wait_s': 6.777}, {'bank': 688, 'union': 0, 'rows': 0, 'req': 4468, 'hits': 0, 'misses': 4468, 'bytes': 59734228992, 'disk_s': 78.12, 'wait_s': 6.757}, {'bank': 688, 'union': 0, 'rows': 0, 'req': 4468, 'hits': 0, 'misses': 4468, 'bytes': 59734228992, 'disk_s': 78.45, 'wait_s': 6.85}, {'bank': 688, 'union': 0, 'rows': 0, 'req': 4468, 'hits': 0, 'misses': 4468, 'bytes': 59734228992, 'disk_s': 78.179, 'wait_s': 6.831}, {'bank': 688, 'union': 0, 'rows': 0, 'req': 4468, 'hits': 0, 'misses': 4468, 'bytes': 59734228992, 'disk_s': 77.909, 'wait_s': 6.801}], 'UX': [{'bank': 0, 'union': 688, 'rows': 0, 'req': 45791, 'hits': 16165, 'misses': 29626, 'bytes': 396080185344, 'disk_s': 128.685, 'wait_s': 11.353}, {'bank': 0, 'union': 688, 'rows': 0, 'req': 45791, 'hits': 16169, 'misses': 29622, 'bytes': 396026707968, 'disk_s': 129.152, 'wait_s': 11.324}, {'bank': 0, 'union': 688, 'rows': 0, 'req': 45791, 'hits': 16158, 'misses': 29633, 'bytes': 396173770752, 'disk_s': 128.704, 'wait_s': 11.245}, {'bank': 0, 'union': 688, 'rows': 0, 'req': 45791, 'hits': 16160, 'misses': 29631, 'bytes': 396147032064, 'disk_s': 129.029, 'wait_s': 11.445}, {'bank': 0, 'union': 688, 'rows': 0, 'req': 45791, 'hits': 16163, 'misses': 29628, 'bytes': 396106924032, 'disk_s': 128.806, 'wait_s': 11.333}], 'OX': [{'bank': 688, 'union': 0, 'rows': 0, 'req': 4468, 'hits': 0, 'misses': 4468, 'bytes': 59734228992, 'disk_s': 78.873, 'wait_s': 6.817}, {'bank': 688, 'union': 0, 'rows': 0, 'req': 4468, 'hits': 0, 'misses': 4468, 'bytes': 59734228992, 'disk_s': 77.913, 'wait_s': 6.864}, {'bank': 688, 'union': 0, 'rows': 0, 'req': 4468, 'hits': 0, 'misses': 4468, 'bytes': 59734228992, 'disk_s': 77.759, 'wait_s': 6.863}, {'bank': 688, 'union': 0, 'rows': 0, 'req': 4468, 'hits': 0, 'misses': 4468, 'bytes': 59734228992, 'disk_s': 78.101, 'wait_s': 6.88}, {'bank': 688, 'union': 0, 'rows': 0, 'req': 4468, 'hits': 0, 'misses': 4468, 'bytes': 59734228992, 'disk_s': 77.704, 'wait_s': 6.81}]}
+counterfactual (arm x UX pairs):
+   needed_resident FX-routing x FX-RAM                        {'min': 1251, 'max': 1257, 'mean': 1254, 'n': 25}
+   needed_resident FX-routing x UX-RAM                        {'min': 1450, 'max': 1451, 'mean': 1450.4, 'n': 25}
+   needed_resident UX-routing x UX-RAM (pairs with FX)        {'min': 1460, 'max': 1462, 'mean': 1461, 'n': 25}
+   needed_resident UX-routing x FX-RAM                        {'min': 1259, 'max': 1269, 'mean': 1262.8, 'n': 25}
+   fwd1_resident FX-routing x FX-RAM                          {'min': 97, 'max': 102, 'mean': 99.6, 'n': 25}
+   fwd1_resident FX-routing x UX-RAM                          {'min': 199, 'max': 200, 'mean': 199.8, 'n': 25}
+   token_layers_same_routing FX vs UX                         {'min': 645, 'max': 645, 'mean': 645, 'n': 25}
+   misses_on_same_routing_token_layers FX                     {'min': 759, 'max': 763, 'mean': 761, 'n': 25}
+   misses_on_same_routing_token_layers UX (pairs with FX)     {'min': 647, 'max': 649, 'mean': 647.8, 'n': 25}
+   needed_resident OX-routing x OX-RAM                        {'min': 862, 'max': 873, 'mean': 867, 'n': 25}
+   needed_resident OX-routing x UX-RAM                        {'min': 1450, 'max': 1451, 'mean': 1450.4, 'n': 25}
+   needed_resident UX-routing x UX-RAM (pairs with OX)        {'min': 1460, 'max': 1462, 'mean': 1461, 'n': 25}
+   needed_resident UX-routing x OX-RAM                        {'min': 869, 'max': 881, 'mean': 875.4, 'n': 25}
+   fwd1_resident OX-routing x OX-RAM                          {'min': 81, 'max': 85, 'mean': 82.6, 'n': 25}
+   fwd1_resident OX-routing x UX-RAM                          {'min': 199, 'max': 200, 'mean': 199.8, 'n': 25}
+   token_layers_same_routing OX vs UX                         {'min': 645, 'max': 645, 'mean': 645, 'n': 25}
+   misses_on_same_routing_token_layers OX                     {'min': 1008, 'max': 1010, 'mean': 1009.2, 'n': 25}
+   misses_on_same_routing_token_layers UX (pairs with OX)     {'min': 647, 'max': 649, 'mean': 647.8, 'n': 25}
+first touch: {'FX': [{'needed': 2192, 'not_resident_at_start': 941, 'misses': 1247}, {'needed': 2192, 'not_resident_at_start': 936, 'misses': 1242}, {'needed': 2192, 'not_resident_at_start': 935, 'misses': 1240}, {'needed': 2192, 'not_resident_at_start': 938, 'misses': 1246}, {'needed': 2192, 'not_resident_at_start': 940, 'misses': 1247}], 'UX': [{'needed': 2207, 'not_resident_at_start': 746, 'misses': 1071}, {'needed': 2207, 'not_resident_at_start': 745, 'misses': 1073}, {'needed': 2207, 'not_resident_at_start': 747, 'misses': 1071}, {'needed': 2207, 'not_resident_at_start': 746, 'misses': 1070}, {'needed': 2207, 'not_resident_at_start': 746, 'misses': 1074}], 'OX': [{'needed': 2192, 'not_resident_at_start': 1324, 'misses': 1687}, {'needed': 2192, 'not_resident_at_start': 1323, 'misses': 1681}, {'needed': 2192, 'not_resident_at_start': 1330, 'misses': 1686}, {'needed': 2192, 'not_resident_at_start': 1329, 'misses': 1684}, {'needed': 2192, 'not_resident_at_start': 1319, 'misses': 1680}]}

@@ -1,0 +1,16 @@
+checks for the F42-fix measurement (no code committed; the measured trees and the probe)
+- CUDA builds on shadowfax (build_r9f.sh, make -f Makefile.deepseek-v4 deepseek-v4 CUDA=1 CUDA_HOME=/usr NVCC=/usr/bin/nvcc CUDA_ARCH=sm_86 NO_TC=1 -j8, fresh worktrees):
+    r9-pr1v5: EXIT=0 end=2026-10-16T09:40:23-07:00 warning/error lines (lto-wrapper notes excluded): 0
+    r9-pr1v5-probe: EXIT=0 end=2026-10-16T09:40:23-07:00 warning/error lines (lto-wrapper notes excluded): 0
+    r9-pr1-probe: EXIT=0 end=2026-10-16T09:40:23-07:00 warning/error lines (lto-wrapper notes excluded): 0
+- probe patch syntax check on computer4 (gcc -fsyntax-only -Wall -Wextra, every unit of Makefile.deepseek-v4.units incl. test units, -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER, with and without -DCOLI_V4_GPU_TIER) on 4feb6d48+probe and 93b74183+probe: 34 units each, 0 diagnostics; CPU-only build of 4feb6d48+probe: EXIT=0, 0 compiler warnings
+- the two probe diffs have identical +/- lines (run_f42fix.sh preflight); the engine sources (c/ without c/tests) of 93b74183..4feb6d48 differ by exactly c7f79815's +/- lines (preflight)
+- full make check on computer4 at 4feb6d48 (clean detached worktree .wt/f42fix-v5): Ran 2385 tests in 171.604s, OK (skipped=253), make EXIT=0
+- probe audit (f42fix_probe_patch.py, diffs shadowfax/r9-pr1v5-probe.diff sha256 d72e7c57..., shadowfax/r9-pr1-probe.diff sha256 b500a731...; 204 added, 7 removed lines, the same on both trees):
+    the 7 removed lines are re-expressed, not changed: the fetch loop's `!loader_active[slot] || profiled_expert_load_finish(...) != 0`
+    is assigned to a local (same short-circuit order) and tested right after; the decode `coli_v4_gpu_expert_attach` call is braced
+    with two clock reads around it; the batched block's three branches are braced around one probe counter increment each
+    (f42v2 edit 4, verbatim). Everything else added writes only probe-owned state (g_v4_dec_trace_ord, g_v4_dec_trace_*_chunks,
+    g_v4_dtr_calls/total_s/fetch_s/attach_s, the serve callback's static baselines), reads the store through ops->stats,
+    coli_v4_expert_store_wait_sec/disk_sec and coli_v4_dec_trace_residency (under the store mutex, read-only), and writes stderr.
+    Runtime check: the plain fixed binary (FXn, 3 samples) gives the identical text and 1.0027x FX's median decode tok/s.

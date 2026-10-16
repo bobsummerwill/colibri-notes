@@ -1,0 +1,15 @@
+validator: c/experiment_manifest.py from a detached worktree of 4feb6d487973e064abc53486f379032aa402efc6 (/home/zombietiger/Projects/colibri/.wt/f42fix-v5, blob d9babf6be5d87eae64c8e4a96997a1d87459bfdf), worktree changed tracked files: 0, detached=yes, run 2026-10-16T10:31:46-07:00 on computer4
+one-variable record (OX -> FX, engine_commit; texts byte-identical in all 5+5 samples, and in UX/FXn/W):
+f42fix-routing-books-24tok.json: ok (engine_commit, improvement)
+exit=0
+negative control (scratch copy neg.json with V4_LOADER_LANES also changed in the trial; must be rejected):
+neg.json: changed_variables ['engine_commit'] does not match config diff ['V4_LOADER_LANES', 'engine_commit']
+exit=1 (expected 1)
+negative control 2 (scratch copy neg2.json with engine_commit equal in both runs; must be rejected):
+neg2.json: changed_variables ['engine_commit'] does not match config diff []
+exit=1 (expected 1)
+evidence hashes named in the record match the files:
+baseline evidence/f42fix-arm-OX.tgz ok
+trial evidence/f42fix-arm-FX.tgz ok
+changed_variables ['engine_commit'] baseline engine_commit 93b741839677ec457868fd71ab668cc1249b9a22 trial engine_commit 4feb6d487973e064abc53486f379032aa402efc6 commit 4feb6d487973e064abc53486f379032aa402efc6
+median tok/s baseline 2.1305 trial 2.2641 outcome improvement

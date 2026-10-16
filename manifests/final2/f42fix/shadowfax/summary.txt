@@ -1,0 +1,105 @@
+F42 fix: decode after a GPU-bank prefill, fixed (FX) vs unfixed (OX) vs CPU union (UX), identical text: /home/maplemercury/colibri-bench/final2/f42fix
+texts (all arms but W): ['32534c06abd6']  reference 32534c06abd6
+first-forward routing distinct across FX/UX/OX probe samples: 2
+metric (median of samples)                    FX        UX        OX       FXn   FX/OX   FX/UX   OX/UX  FXn/FX   recov
+client tok/s                              2.2641    2.3005    2.1305    2.2701  1.0627  0.9842  0.9261  1.0027   0.672
+client decode s                             10.6    10.432    11.265    10.572   0.941  1.0161  1.0799  0.9974   0.682
+ttft s                                    82.263   215.894    82.088    82.243  1.0021   0.381  0.3802  0.9998   0.002
+server decode s (trace)                  11.0153   10.8502   11.6926      None  0.9421  1.0152  1.0776    None   0.689
+dec moe total s                           7.2682    7.1096    7.9354      None  0.9159  1.0223  1.1162    None   0.688
+fetch_wait s                               2.114    1.9362    2.7484      None  0.7692  1.0918  1.4195    None   0.698
+store wait s                              2.1304    1.9493    2.7772      None  0.7671  1.0929  1.4247    None   0.699
+attach s                                  3.6248    3.6413    3.6312      None  0.9982  0.9955  0.9972    None   0.468
+store misses (SSD reads)                  1246.0    1071.0    1684.0      None  0.7399  1.1634  1.5724    None   0.718
+store hits                                5204.0    5379.0    4766.0      None  1.0919  0.9675   0.886    None   0.718
+store GiB read                            15.514    13.335    20.968      None  0.7399  1.1634  1.5724    None   0.718
+first fwd RAM hits (of 258)                 97.0     194.0      81.0      None  1.1975     0.5  0.4175    None   0.146
+first fwd misses                           161.0      64.0     177.0      None  0.9096  2.5156  2.7656    None   0.146
+decode-start resident/layer                   59        59        59      None     1.0     1.0     1.0    None    None
+decode-start pinned residents/layer        11.95        16      7.88      None  1.5165  0.7469  0.4925    None   0.502
+decode-start pins/layer                       16        16        16      None     1.0     1.0     1.0    None    None
+decode-start pin usage median                9.0       9.0       1.0      None     9.0     1.0  0.1111    None     1.0
+decode-start layers pins=ids 0..15             0         0         1      None     0.0    None    None    None     1.0
+decode-start residents usage<=1/layer        5.4      1.86        59      None  0.0915  2.9032 31.7204    None   0.938
+decode-start layer requests mean          1068.5    1064.9     103.9      None 10.2839  1.0034  0.0976    None   1.004
+decode-needed resident at start             1254      1461       868      None  1.4447  0.8583  0.5941    None   0.652
+decode-needed distinct                      2192      2207      2192      None     1.0  0.9932  0.9932    None     0.0
+prefill store requests                    4468.0   45791.0    4468.0      None     1.0  0.0976  0.0976    None     0.0
+prefill store misses                      4468.0   29628.0    4468.0      None     1.0  0.1508  0.1508    None     0.0
+gpu0 max MiB                               21276     21268     21276     21276     1.0  1.0004  1.0004     1.0   0.043
+fwd 1-5 t_ms                              2842.2    2574.6    2922.5      None  0.9725  1.1039  1.1351    None   0.114
+fwd 1-5 fetch_wait_s                      0.6435    0.4007    0.7195      None  0.8944  1.6059  1.7956    None   0.119
+fwd 1-5 wait_s                             0.647    0.4022    0.7259      None  0.8913  1.6087  1.8048    None   0.122
+fwd 1-5 misses                             450.0     258.0     569.0      None  0.7909  1.7442  2.2054    None   0.381
+fwd 1-5 attach_s                          1.1376    1.1193    1.1348      None  1.0025  1.0163  1.0138    None   0.025
+fwd 6-10 t_ms                             2117.8    2103.1    2337.5      None   0.906   1.007  1.1115    None   0.871
+fwd 6-10 fetch_wait_s                     0.4382     0.409    0.6474      None  0.6769  1.0714  1.5829    None   0.848
+fwd 6-10 wait_s                            0.441    0.4107    0.6511      None  0.6773  1.0738  1.5853    None   0.849
+fwd 6-10 misses                            224.0     216.0     351.0      None  0.6382   1.037   1.625    None   0.938
+fwd 6-10 attach_s                         0.6306    0.6412     0.628      None  1.0041  0.9835  0.9794    None   0.131
+fwd 11-24 t_ms                            5635.2    5764.6    6006.6      None  0.9382  0.9776   1.042    None   1.228
+fwd 11-24 fetch_wait_s                    0.9519    1.0564     1.291      None  0.7373  0.9011  1.2221    None   1.321
+fwd 11-24 wait_s                          0.9576    1.0641    1.3059      None  0.7333  0.8999  1.2272    None   1.316
+fwd 11-24 misses                           529.0     554.0     716.0      None  0.7388  0.9549  1.2924    None   1.167
+fwd 11-24 attach_s                        1.7332    1.7499    1.7494      None  0.9907  0.9905  0.9997    None   0.577
+fwd 25-25 t_ms                             413.5     419.9     428.2      None  0.9657  0.9848  1.0198    None   1.422
+fwd 25-25 fetch_wait_s                    0.0802    0.0785    0.0968      None  0.8285  1.0217  1.2331    None   0.834
+fwd 25-25 wait_s                          0.0818    0.0788    0.0973      None  0.8407  1.0381  1.2348    None    0.82
+fwd 25-25 misses                            42.0      43.0      48.0      None   0.875  0.9767  1.1163    None    1.28
+fwd 25-25 attach_s                        0.1219    0.1298    0.1202      None  1.0141  0.9391   0.926    None   0.113
+fwd 1-24 t_ms                            10600.4   10432.4   11264.9      None   0.941  1.0161  1.0798    None   0.682
+fwd 1-24 fetch_wait_s                     2.0338    1.8575    2.6517      None   0.767  1.0949  1.4276    None   0.696
+fwd 1-24 wait_s                           2.0486    1.8715    2.6822      None  0.7638  1.0946  1.4332    None   0.696
+fwd 1-24 misses                           1205.0    1028.0    1636.0      None  0.7366  1.1722  1.5914    None   0.713
+fwd 1-24 attach_s                         3.5029    3.5116    3.5119      None  0.9974  0.9975  1.0001    None   0.419
+fwd 1-25 t_ms                            11015.3   10850.2   11692.6      None  0.9421  1.0152  1.0776    None   0.689
+fwd 1-25 fetch_wait_s                      2.114    1.9362    2.7484      None  0.7692  1.0918  1.4195    None   0.698
+fwd 1-25 wait_s                           2.1304    1.9493    2.7772      None  0.7671  1.0929  1.4247    None   0.699
+fwd 1-25 misses                           1246.0    1071.0    1684.0      None  0.7399  1.1634  1.5724    None   0.718
+fwd 1-25 attach_s                         3.6248    3.6413    3.6312      None  0.9982  0.9955  0.9972    None   0.468
+welch client tok/s FX-OX {'diff': 0.11722, 't': 3.86}  FX-UX {'diff': -0.05724, 't': -1.99}
+per decode forward, mean over samples: misses FX / UX / OX | fetch_wait ms FX / UX / OX
+  fwd  1   160.8   63.6  177.4 |   177.0    67.0   118.6
+  fwd  2    92.6   49.0  107.2 |   147.4    71.1   138.4
+  fwd  3    74.8   50.0   98.2 |   127.9    90.1   145.6
+  fwd  4    60.8   51.0   89.0 |   121.7    95.8   153.8
+  fwd  5    61.4   44.4   97.2 |   105.4    76.7   160.7
+  fwd  6    42.6   34.0   81.2 |    84.3    63.0   156.2
+  fwd  7    52.2   46.0   80.8 |    91.4    85.9   129.2
+  fwd  8    43.0   45.0   65.4 |    86.0    79.8   130.9
+  fwd  9    44.0   39.0   55.2 |    97.7    84.9   107.0
+  fwd 10    42.6   52.0   68.8 |    85.1    94.2   126.1
+  fwd 11    22.0   24.0   33.6 |    43.0    47.6    53.8
+  fwd 12    37.6   45.6   62.8 |    67.2    80.1   104.2
+  fwd 13    34.2   41.0   55.0 |    61.7    78.6   102.1
+  fwd 14    54.0   52.0   83.6 |    86.8    91.1   141.1
+  fwd 15    39.8   45.2   58.4 |    78.4    85.6   107.3
+  fwd 16    41.6   45.8   60.4 |    82.8   100.7   118.9
+  fwd 17    46.2   50.0   52.0 |    83.1    93.6    99.9
+  fwd 18    21.8   26.0   37.6 |    35.5    43.6    59.7
+  fwd 19    42.8   40.2   48.0 |    84.5    81.3    92.7
+  fwd 20    42.8   45.0   51.8 |    82.7    95.5   104.2
+  fwd 21    22.0   21.0   24.0 |    51.2    37.0    46.2
+  fwd 22    45.8   40.0   58.0 |    73.1    65.1    95.7
+  fwd 23    38.6   40.0   43.2 |    79.0    74.5    84.2
+  fwd 24    38.8   39.0   46.8 |    69.5    79.0    76.3
+  fwd 25    41.6   43.0   48.0 |    81.7    79.0    95.3
+  W   s1 seq=1 ttft=82.725 chunks=25 tok/s=2.0746 reserve=['3100'] paths={'bank': 688.0, 'union': 0.0, 'rows': 0.0} first_fwd={'hits': 98.0, 'misses': 160.0, 'fetch_ms': 230.84, 'wait_ms': 233.0, 'layers': 43} ok
+  FX  s1 seq=2 ttft=82.725 chunks=25 tok/s=2.1254 reserve=['3100'] paths={'bank': 688.0, 'union': 0.0, 'rows': 0.0} first_fwd={'hits': 95.0, 'misses': 163.0, 'fetch_ms': 237.56, 'wait_ms': 239.31, 'layers': 43} ok
+  FX  s2 seq=7 ttft=82.264 chunks=25 tok/s=2.2641 reserve=['3100'] paths={'bank': 688.0, 'union': 0.0, 'rows': 0.0} first_fwd={'hits': 98.0, 'misses': 160.0, 'fetch_ms': 163.11, 'wait_ms': 165.12, 'layers': 43} ok
+  FX  s3 seq=11 ttft=82.123 chunks=25 tok/s=2.2652 reserve=['3100'] paths={'bank': 688.0, 'union': 0.0, 'rows': 0.0} first_fwd={'hits': 96.0, 'misses': 162.0, 'fetch_ms': 163.88, 'wait_ms': 164.73, 'layers': 43} ok
+  FX  s4 seq=12 ttft=82.263 chunks=25 tok/s=2.2736 reserve=['3100'] paths={'bank': 688.0, 'union': 0.0, 'rows': 0.0} first_fwd={'hits': 97.0, 'misses': 161.0, 'fetch_ms': 163.4, 'wait_ms': 163.83, 'layers': 43} ok
+  FX  s5 seq=17 ttft=82.147 chunks=25 tok/s=2.2594 reserve=['3100'] paths={'bank': 688.0, 'union': 0.0, 'rows': 0.0} first_fwd={'hits': 100.0, 'misses': 158.0, 'fetch_ms': 156.98, 'wait_ms': 157.47, 'layers': 43} ok
+  UX  s1 seq=4 ttft=216.132 chunks=25 tok/s=2.2716 reserve=['3100'] paths={'bank': 0.0, 'union': 688.0, 'rows': 0.0} first_fwd={'hits': 195.0, 'misses': 63.0, 'fetch_ms': 67.6, 'wait_ms': 67.91, 'layers': 43} ok
+  UX  s2 seq=5 ttft=215.894 chunks=25 tok/s=2.3005 reserve=['3100'] paths={'bank': 0.0, 'union': 688.0, 'rows': 0.0} first_fwd={'hits': 193.0, 'misses': 65.0, 'fetch_ms': 68.5, 'wait_ms': 68.77, 'layers': 43} ok
+  UX  s3 seq=10 ttft=215.718 chunks=25 tok/s=2.2949 reserve=['3100'] paths={'bank': 0.0, 'union': 688.0, 'rows': 0.0} first_fwd={'hits': 194.0, 'misses': 64.0, 'fetch_ms': 66.09, 'wait_ms': 67.79, 'layers': 43} ok
+  UX  s4 seq=13 ttft=216.054 chunks=25 tok/s=2.302 reserve=['3100'] paths={'bank': 0.0, 'union': 688.0, 'rows': 0.0} first_fwd={'hits': 196.0, 'misses': 62.0, 'fetch_ms': 64.23, 'wait_ms': 64.75, 'layers': 43} ok
+  UX  s5 seq=16 ttft=215.849 chunks=25 tok/s=2.3049 reserve=['3100'] paths={'bank': 0.0, 'union': 688.0, 'rows': 0.0} first_fwd={'hits': 194.0, 'misses': 64.0, 'fetch_ms': 68.37, 'wait_ms': 68.74, 'layers': 43} ok
+  OX  s1 seq=3 ttft=82.291 chunks=25 tok/s=2.0752 reserve=['3100'] paths={'bank': 688.0, 'union': 0.0, 'rows': 0.0} first_fwd={'hits': 81.0, 'misses': 177.0, 'fetch_ms': 117.12, 'wait_ms': 117.93, 'layers': 43} ok
+  OX  s2 seq=6 ttft=82.088 chunks=25 tok/s=2.1368 reserve=['3100'] paths={'bank': 688.0, 'union': 0.0, 'rows': 0.0} first_fwd={'hits': 81.0, 'misses': 177.0, 'fetch_ms': 121.36, 'wait_ms': 122.28, 'layers': 43} ok
+  OX  s3 seq=9 ttft=82.067 chunks=25 tok/s=2.1305 reserve=['3100'] paths={'bank': 688.0, 'union': 0.0, 'rows': 0.0} first_fwd={'hits': 79.0, 'misses': 179.0, 'fetch_ms': 121.57, 'wait_ms': 123.71, 'layers': 43} ok
+  OX  s4 seq=14 ttft=81.854 chunks=25 tok/s=2.1325 reserve=['3100'] paths={'bank': 688.0, 'union': 0.0, 'rows': 0.0} first_fwd={'hits': 81.0, 'misses': 177.0, 'fetch_ms': 111.86, 'wait_ms': 112.97, 'layers': 43} ok
+  OX  s5 seq=18 ttft=82.194 chunks=25 tok/s=2.1266 reserve=['3100'] paths={'bank': 688.0, 'union': 0.0, 'rows': 0.0} first_fwd={'hits': 81.0, 'misses': 177.0, 'fetch_ms': 120.87, 'wait_ms': 122.23, 'layers': 43} ok
+  FXn s1 seq=8 ttft=82.243 chunks=25 tok/s=2.2655 reserve=['3100'] paths=None first_fwd=None ok
+  FXn s2 seq=15 ttft=82.062 chunks=25 tok/s=2.2701 reserve=['3100'] paths=None first_fwd=None ok
+  FXn s3 seq=19 ttft=82.28 chunks=25 tok/s=2.2783 reserve=['3100'] paths=None first_fwd=None ok

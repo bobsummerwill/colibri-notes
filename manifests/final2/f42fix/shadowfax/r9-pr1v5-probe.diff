@@ -1,0 +1,281 @@
+diff --git a/c/deepseek_v4.c b/c/deepseek_v4.c
+index bdbe512e4..8c256cb6c 100644
+--- a/c/deepseek_v4.c
++++ b/c/deepseek_v4.c
+@@ -5397,6 +5397,28 @@ static void v4_lanes_finish(ColiExpertStore *store, ExpertLoadJob *jobs,
+ }
+ #endif
+ 
++/* DEBUG ONLY (F42 decode trace, V4_DEC_TRACE): logging-only state, read by the
++ * serve unit. g_v4_dec_trace_ord: ordinal of the token the serve callback
++ * emitted last (the next decode forward consumes it); the chunk counters say
++ * which MoE path each batched (prefill) chunk-layer took; g_v4_dtr_*: the
++ * decode MoE counters pr2 keeps as g_v4_dec_* (V4_SERVE_STATS_LOG), measured
++ * the same way, here for decode forwards (after ordinal 1) while tracing. */
++int g_v4_dec_trace_ord = -1;
++unsigned long long g_v4_dec_trace_bank_chunks, g_v4_dec_trace_union_chunks,
++                   g_v4_dec_trace_rows_chunks;
++unsigned long long g_v4_dtr_calls;
++double g_v4_dtr_total_s, g_v4_dtr_fetch_s, g_v4_dtr_attach_s;
++double coli_v4_expert_store_wait_sec(ColiExpertStore *store);
++static int v4_dec_trace_level(void) {
++    static int level = -1;
++    if (level < 0) {
++        const char *setting = getenv("V4_DEC_TRACE");
++        level = setting ? atoi(setting) : 0;
++        if (level < 0) level = 0;
++    }
++    return level;
++}
++
+ static int moe_token_pipeline(float *output,
+                               const ColiDeepSeekV4LayerWeights *weights,
+                               const ColiDeepSeekV4Config *config,
+@@ -5404,6 +5426,20 @@ static int moe_token_pipeline(float *output,
+                               const float *input, int token) {
+ #ifdef COLI_V4_EXPERIMENTAL_BLOCK_OTHER_PROFILE
+     double profile_moe_began = coli_v4_block_profile_now();
++#endif
++#ifdef COLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER
++    /* DEBUG ONLY (F42 decode trace): decode forwards only, the routing included;
++     * this token-layer's counters before it */
++    int dtr_on = v4_dec_trace_level() > 0 && g_v4_dec_trace_ord >= 1;
++    double dtr_t0 = v4_wait_clock();
++    int trace_layer = dtr_on && store && store->ops && store->ops->stats &&
++        (v4_dec_trace_level() >= 2 || g_v4_dec_trace_ord == 1);
++    ColiExpertStoreStats trace_s0;
++    memset(&trace_s0, 0, sizeof(trace_s0));
++    double trace_f0 = g_v4_dtr_fetch_s, trace_a0 = g_v4_dtr_attach_s;
++    double trace_t0 = g_v4_dtr_total_s;
++    double trace_w0 = trace_layer ? coli_v4_expert_store_wait_sec(store) : 0.0;
++    if (trace_layer) store->ops->stats(store, &trace_s0);
+ #endif
+     int d = config->hidden_size;
+     int n = config->n_routed_experts;
+@@ -5568,8 +5604,11 @@ static int moe_token_pipeline(float *output,
+ #endif
+         for (int current = 0; !result && current < selected; current++) {
+             int slot = current % dual_loader_lanes();
+-            if (!loader_active[slot] ||
+-                profiled_expert_load_finish(&loaders[slot]) != 0) {
++            double dtr_fw0 = v4_wait_clock();   /* DEBUG ONLY (F42 decode trace) */
++            int dtr_finish_failed = !loader_active[slot] ||
++                profiled_expert_load_finish(&loaders[slot]) != 0;
++            if (dtr_on) g_v4_dtr_fetch_s += v4_wait_clock() - dtr_fw0;
++            if (dtr_finish_failed) {
+                 result = moe_fail("layer %d: the read of expert %d did not complete",
+                                   weights->plan.layer, jobs[slot].key.expert);
+                 break;
+@@ -5587,8 +5626,11 @@ static int moe_token_pipeline(float *output,
+                     /* peek only: uploads are decided once the token's full
+                      * miss count is known, by the q* pass below */
+                     coli_v4_gpu_expert_peek(store, &views[current]);
+-                else
++                else {
++                    double dtr_at0 = v4_wait_clock();   /* DEBUG ONLY (F42 decode trace) */
+                     coli_v4_gpu_expert_attach(store, &views[current]);
++                    if (dtr_on) g_v4_dtr_attach_s += v4_wait_clock() - dtr_at0;
++                }
+             }
+ #endif
+ #ifdef COLI_V4_GPU_TIER
+@@ -5910,6 +5952,38 @@ static int moe_token_pipeline(float *output,
+         if (!job.result)
+             coli_expert_release(store, &job.view);
+     }
++#endif
++#ifdef COLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER
++    if (dtr_on) {   /* DEBUG ONLY (F42 decode trace): pr2's v4_dec_moe totals */
++        g_v4_dtr_total_s += v4_wait_clock() - dtr_t0;
++        g_v4_dtr_calls++;
++    }
++    if (trace_layer) {   /* DEBUG ONLY (F42 decode trace): one line per decode token-layer */
++        ColiExpertStoreStats trace_s1;
++        memset(&trace_s1, 0, sizeof(trace_s1));
++        store->ops->stats(store, &trace_s1);
++        double trace_w1 = coli_v4_expert_store_wait_sec(store);
++        char trace_routed[192];
++        int trace_at = 0;
++        trace_routed[0] = 0;
++        for (int i = 0; expert_ids && i < selected &&
++                        trace_at < (int)sizeof(trace_routed) - 16; i++)
++            trace_at += snprintf(trace_routed + trace_at,
++                                 sizeof(trace_routed) - (size_t)trace_at,
++                                 "%s%d", i ? "," : "", expert_ids[i]);
++        fprintf(stderr, "v4_dec_layer ord=%d layer=%d routed=%s req=%llu hits=%llu "
++                "misses=%llu bytes=%llu fetch_ms=%.3f attach_ms=%.3f wait_ms=%.3f "
++                "total_ms=%.3f\n",
++                g_v4_dec_trace_ord, weights->plan.layer, trace_routed,
++                (unsigned long long)(trace_s1.requests - trace_s0.requests),
++                (unsigned long long)(trace_s1.hits - trace_s0.hits),
++                (unsigned long long)(trace_s1.misses - trace_s0.misses),
++                (unsigned long long)(trace_s1.bytes_read - trace_s0.bytes_read),
++                (g_v4_dtr_fetch_s - trace_f0) * 1e3,
++                (g_v4_dtr_attach_s - trace_a0) * 1e3,
++                (trace_w1 - trace_w0) * 1e3,
++                (g_v4_dtr_total_s - trace_t0) * 1e3);
++    }
+ #endif
+     free(shared_output); free(expert_output); free(expert_weights);
+     free(expert_ids); free(indices); free(route_weights); free(gate);
+@@ -6668,19 +6742,23 @@ int coli_v4_block_window_batch_ref(
+      * happens here. Any refusal falls through to the CPU paths below. */
+     if (!result && batch > 1 &&
+         coli_v4_gpu_moe_batch_union(ffn_branch, weights, config, experts,
+-                                    ffn_normalized, tokens, batch) == 0)
++                                    ffn_normalized, tokens, batch) == 0) {
+         coli_bf16_round_array(ffn_branch, (size_t)batch * d);
+-    else
++        g_v4_dec_trace_bank_chunks++;    /* DEBUG ONLY (F42 decode trace): a count */
++    } else
+ #endif
+-    if (!result && batch > 1 && v4_expert_union_enabled())
++    if (!result && batch > 1 && v4_expert_union_enabled()) {
+         result = v4_moe_batch_union(
+             ffn_branch, weights, config, experts,
+             ffn_normalized, tokens, batch);
+-    else
++        g_v4_dec_trace_union_chunks++;   /* DEBUG ONLY (F42 decode trace): a count */
++    } else {
++        if (!result) g_v4_dec_trace_rows_chunks++;   /* DEBUG ONLY (F42 decode trace) */
+         for (int item = 0; !result && item < batch; item++)
+             result = moe_token_pipeline(
+                 ffn_branch + (size_t)item * d, weights, config, experts,
+                 ffn_normalized + (size_t)item * d, tokens[item]);
++    }
+     V4_BLOCK_PROF_MARK(prof_moe);
+     if (!result) phase = "FFN hyper-connection post";
+     int gpu_hc3 = 0;
+@@ -9805,6 +9883,56 @@ void coli_v4_expert_store_prefill_pool(ColiExpertStore *store, int layer) {
+     pthread_mutex_unlock(&state->mutex);
+ }
+ 
++/* DEBUG ONLY (F42 decode trace, V4_DEC_TRACE): the RAM tier of every layer at
++ * one moment, read under the store mutex, nothing written. One line per layer:
++ * each resident expert as id:usage:age (usage = the hot policy's selection
++ * count, age = store clock minus the slot's last use; a trailing p = an active
++ * pin), the pin ranking (-1 = empty rank) and the layer's request count. */
++void coli_v4_dec_trace_residency(ColiExpertStore *store, const char *tag) {
++    V4HotPolicy *policy = store && store->state ? hot_find(store) : NULL;
++    if (!policy) {
++        fprintf(stderr, "v4_dec_res tag=%s no-hot-policy\n", tag);
++        return;
++    }
++    V4ExpertStoreState *state = store->state;
++    size_t cap = 256 + (size_t)state->experts_per_layer * 40 +
++                 (size_t)(policy->pin_count > 0 ? policy->pin_count : 0) * 8;
++    char *line = malloc(cap);
++    if (!line) return;
++    pthread_mutex_lock(&state->mutex);
++    for (int layer = 0; layer < state->layers; layer++) {
++        size_t at = 0;
++        int resident = 0, pinned = 0;
++        const uint64_t *usage = policy->usage +
++            (size_t)layer * state->experts_per_layer;
++#define RES_PUT(...) do { if (at < cap) { int n_ = snprintf(line + at, cap - at, __VA_ARGS__); \
++                              if (n_ > 0) at += (size_t)n_; } } while (0)
++        RES_PUT("v4_dec_res tag=%s layer=%d lreq=%llu clock=%llu res=", tag, layer,
++                (unsigned long long)policy->layer_requests[layer],
++                (unsigned long long)state->clock);
++        for (int expert = 0; expert < state->experts_per_layer; expert++) {
++            V4ExpertSlot *slot = indexed_expert_slot(state, (ColiExpertKey){layer, expert});
++            if (!slot || !slot->slab || slot->expert != expert) continue;
++            int is_pin = hot_is_pinned(policy, layer, expert);
++            RES_PUT("%s%d:%llu:%llu%s", resident ? "," : "", expert,
++                    (unsigned long long)usage[expert],
++                    (unsigned long long)(state->clock - slot->used), is_pin ? "p" : "");
++            resident++;
++            pinned += is_pin;
++        }
++        RES_PUT(" n=%d pinned_resident=%d pins=", resident, pinned);
++        for (int rank = 0; rank < policy->pin_count; rank++)
++            RES_PUT("%s%d", rank ? "," : "",
++                    policy->pins[(size_t)layer * policy->pin_count + rank]);
++#undef RES_PUT
++        if (at >= cap) at = cap - 1;
++        line[at] = 0;
++        fprintf(stderr, "%s\n", line);
++    }
++    pthread_mutex_unlock(&state->mutex);
++    free(line);
++}
++
+ /* The CUDA expert bank's side of the store (COLI_V4_UNIT_GPU,
+  * COLI_CUDA_MOE_BATCH=1). The bank reads each routed expert once per layer per
+  * prompt and computes every routing from VRAM, so its reads cannot keep the
+@@ -16529,6 +16657,75 @@ static int v4_serve_token(void *user_data, int token, float logit,
+         else
+             v4_serve_data(stdout, stream->request_id, piece, bytes);
+     }
++    {   /* DEBUG ONLY (F42 decode trace, V4_DEC_TRACE=1|2): one line per emitted
++         * token, cumulative from this request's first token (ordinal 1, from
++         * the prefill): the probe's decode MoE counters and the expert store's
++         * own counters. At ordinal 1 also the prefill's MoE paths and the RAM
++         * tier (v4_dec_res). Reads counters only, writes stderr. */
++        extern int g_v4_dec_trace_ord;
++        extern unsigned long long g_v4_dec_trace_bank_chunks,
++            g_v4_dec_trace_union_chunks, g_v4_dec_trace_rows_chunks;
++        extern unsigned long long g_v4_dtr_calls;
++        extern double g_v4_dtr_total_s, g_v4_dtr_fetch_s, g_v4_dtr_attach_s;
++        void coli_v4_dec_trace_residency(ColiExpertStore *store, const char *tag);
++        static int trace_level = -1;
++        static ColiExpertStoreStats ts0;
++        static double tt0, tf0, ta0, ttot0, tdisk0, twait0;
++        static unsigned long long tc0;
++        if (trace_level < 0) {
++            const char *setting = getenv("V4_DEC_TRACE");
++            trace_level = setting ? atoi(setting) : 0;
++        }
++        g_v4_dec_trace_ord = ordinal;
++        if (trace_level > 0) {
++            ColiExpertStore *experts = stream->session && stream->session->engine
++                ? stream->session->engine->experts : NULL;
++            ColiExpertStoreStats ts;
++            memset(&ts, 0, sizeof(ts));
++            if (experts && experts->ops && experts->ops->stats)
++                experts->ops->stats(experts, &ts);
++            double tdisk = experts ? coli_v4_expert_store_disk_sec(experts) : 0.0;
++            double twait = experts ? coli_v4_expert_store_wait_sec(experts) : 0.0;
++            double tnow = spec_now();
++            struct timespec twall;
++            clock_gettime(CLOCK_REALTIME, &twall);
++            double twall_s = (double)twall.tv_sec + twall.tv_nsec * 1e-9;
++            if (ordinal == 1) {
++                ts0 = ts; tt0 = tnow; tdisk0 = tdisk; twait0 = twait;
++                tf0 = g_v4_dtr_fetch_s; ta0 = g_v4_dtr_attach_s;
++                ttot0 = g_v4_dtr_total_s; tc0 = g_v4_dtr_calls;
++                fprintf(stderr, "v4_dec_trace_start ord=1 pos=%d wall=%.4f "
++                        "prefill_moe_chunk_layers bank=%llu union=%llu rows=%llu "
++                        "store_total req=%llu hits=%llu misses=%llu bytes=%llu "
++                        "prefetched=%llu prefetch_hits=%llu resident_bytes=%llu "
++                        "capacity_bytes=%llu disk_s=%.3f wait_s=%.3f "
++                        "dec_moe_total calls=%llu (process totals)\n",
++                        position, twall_s, g_v4_dec_trace_bank_chunks,
++                        g_v4_dec_trace_union_chunks, g_v4_dec_trace_rows_chunks,
++                        (unsigned long long)ts.requests, (unsigned long long)ts.hits,
++                        (unsigned long long)ts.misses, (unsigned long long)ts.bytes_read,
++                        (unsigned long long)ts.prefetched,
++                        (unsigned long long)ts.prefetch_hits,
++                        (unsigned long long)ts.resident_bytes,
++                        (unsigned long long)ts.capacity_bytes, tdisk, twait,
++                        g_v4_dtr_calls);
++                coli_v4_dec_trace_residency(experts, "decode-start");
++            }
++            fprintf(stderr, "v4_dec_trace ord=%d pos=%d tok=%d t=%.4f wall=%.4f "
++                    "calls=%llu total_s=%.4f fetch_wait_s=%.4f attach_s=%.4f "
++                    "req=%llu hits=%llu misses=%llu bytes=%llu prefetched=%llu "
++                    "disk_s=%.4f wait_s=%.4f\n",
++                    ordinal, position, token, tnow - tt0, twall_s,
++                    g_v4_dtr_calls - tc0, g_v4_dtr_total_s - ttot0,
++                    g_v4_dtr_fetch_s - tf0, g_v4_dtr_attach_s - ta0,
++                    (unsigned long long)(ts.requests - ts0.requests),
++                    (unsigned long long)(ts.hits - ts0.hits),
++                    (unsigned long long)(ts.misses - ts0.misses),
++                    (unsigned long long)(ts.bytes_read - ts0.bytes_read),
++                    (unsigned long long)(ts.prefetched - ts0.prefetched),
++                    tdisk - tdisk0, twait - twait0);
++        }
++    }
+     stream->tail[0] = 0;
+     if (!stream->mux && v4_serve_drain_commands(stream)) {
+         stream->cancelled = 1;
