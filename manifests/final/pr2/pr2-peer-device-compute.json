@@ -1,0 +1,372 @@
+{
+  "version": 1,
+  "hypothesis": "The PR #2 two-GPU default (DSV4_CUDA_PEER_DEVICE=1 with peer compute at its default) speeds up REAP-132 decode over VRAM-first decode on one GPU, with outputs unchanged (X1 -> X3: the one switch a user sets)",
+  "commit": "d0e19de23c3baf314ee932347c42d5f6d49ef4fb",
+  "model": "DeepSeek V4 Flash REAP 150B (puwaer/DeepSeek-V4-Flash-0731-reap-150b, 132 routed experts, fp4 experts / fp8 dense), colibri safetensors layout, 79 GiB on disk",
+  "command": "build: cd c && make -f Makefile.deepseek-v4 deepseek-v4 CUDA=1 CUDA_HOME=/usr NVCC=/usr/bin/nvcc CUDA_ARCH=sm_86 NO_TC=1 -j8; run: python3 c/coli serve --model <REAP dir> --ram 40 --ctx 8192 --host 127.0.0.1 --port 8090, server environment exactly PATH/HOME/USER/LOGNAME/LANG + the config's env keys (env -i; COLI_CUDA_MOE_DOUBLE unset); one cold server process per sample, 3 samples per arm interleaved with the arm order rotated per round (G1 X1 X2 X3 / X1 X2 X3 G1 / X2 X3 G1 X1); client bench_decode.py sends 6 prompts one after another, max_tokens 300 each, streamed; tok_s = mean over the 6 prompts of (chunks - 1) / (last chunk time - first chunk time); baseline arm X1, trial arm X3",
+  "prompt_hash": "f9ed5d77f965bc53da65ebb1a85da283e871b6342c867f13bb1cdd4914249202",
+  "hardware": {
+    "cpu": "AMD Ryzen 9 9950X3D, 16 cores / 32 threads, 1 socket, governor powersave (amd-pstate), max 5.76 GHz (engine: 16 OpenMP compute threads + 3 expert-loader lanes)",
+    "ram": "62 GiB DDR5 (8 GiB swap); engine --ram 40 (31.6 GiB routed-expert RAM cache, 6.2 GiB dense resident); MemAvailable 55.1 GiB (56440 MiB) at preflight with llama.cpp still loaded",
+    "storage": "WD_BLACK SN850X 4 TB NVMe (PCIe 4.0), ext4 root filesystem (rw,relatime), model read with O_DIRECT (v4_ssd_io mode=direct-aligned); OS page cache not dropped between samples and round 1 partly cold (the serve unit's systemd memory peak was 14.3G in X1 s1, 7.6G in X2 s1 and X3 s1 and 7.3G in the other 10 samples; stats.json notes.cache_state)",
+    "os": "Ubuntu 24.04.4 LTS, kernel 7.0.0-34-generic, gcc 13.3.0, Python 3.12.3, CUDA toolkit 12.0.140 (generic build CUDA_ARCH=sm_86 NO_TC=1), NVIDIA driver 595.84; 2x NVIDIA GeForce RTX 3090 24 GB on PCIe 4.0 x8, NVLink NV4 bridge (nvidia-smi topo -p2p r: OK both ways); GPU0 is the primary (COLI_GPU=0 DSV4_CUDA_DEVICE=0) in every arm; GPU1 is used only with DSV4_CUDA_PEER_DEVICE=1 (peer mirror pool)"
+  },
+  "warmup_runs": 0,
+  "changed_variables": [
+    "DSV4_CUDA_PEER_DEVICE"
+  ],
+  "baseline": {
+    "config": {
+      "COLI_CUDA": "1",
+      "COLI_GPU": "0",
+      "DSV4_CUDA_DEVICE": "0",
+      "CUDA_DENSE": "1",
+      "COLI_CUDA_PIPE": "2",
+      "COLI_CUDA_ATTN_BATCH": "1",
+      "COLI_CUDA_MOE_BATCH": "1",
+      "V4_MOE_REFILL_GROUP": "12",
+      "V4_LOADER_LANES": "3",
+      "V4_PREFIX_CKPT_DISK": "0",
+      "V4_SERVE_STATS_LOG": "1",
+      "COLI_CUDA_MOE_DOUBLE": "unset (default 0)",
+      "ram_gib": "40",
+      "ctx": "8192",
+      "temperature": "0 (greedy engine; request says 0.7, ignored)",
+      "engine_commit": "d0e19de23c3baf314ee932347c42d5f6d49ef4fb",
+      "V4_GPU_RESIDENT_FIRST": "1",
+      "DSV4_CUDA_PEER_COMPUTE": "unset (default 1)",
+      "DSV4_CUDA_PEER_DEVICE": "unset (no peer pool)"
+    },
+    "samples": {
+      "tok_s": [
+        2.941,
+        2.9432,
+        2.9492
+      ],
+      "per_prompt_tok_s": [
+        [
+          2.702,
+          2.826,
+          3.023,
+          2.792,
+          3.362,
+          2.941
+        ],
+        [
+          2.731,
+          2.822,
+          3.016,
+          2.787,
+          3.36,
+          2.943
+        ],
+        [
+          2.739,
+          2.826,
+          3.025,
+          2.792,
+          3.366,
+          2.947
+        ]
+      ],
+      "engine_tok_s": [
+        [
+          2.711,
+          2.835,
+          3.033,
+          2.801,
+          3.373,
+          2.951
+        ],
+        [
+          2.74,
+          2.831,
+          3.026,
+          2.797,
+          3.371,
+          2.953
+        ],
+        [
+          2.748,
+          2.836,
+          3.036,
+          2.802,
+          3.377,
+          2.957
+        ]
+      ],
+      "text_sha256": [
+        [
+          "2aa40adc7d4deb49fa84db4e070a48f4d14d10981ed8103efe83388292c84e9b",
+          "643fa3d128e4c41c671ffc829f6d554531d259c2eb075820085d8981e985af80",
+          "d64c91874f9ee22c50b943803c51eeeca79f4b613b4e551456b6735d57a318da",
+          "9fffce519994640443407e699f48b4c1762e8a23af2b6719531f317892cc5231",
+          "e3bb3209f760833a7e440b7371e35ceb90dbac2c459f65ab75131c179db1ebda",
+          "31cbd1c1700fd7f64dda1d79142ea7d5e2d1b442ccc6e879c44bee7a3bfb439e"
+        ],
+        [
+          "2aa40adc7d4deb49fa84db4e070a48f4d14d10981ed8103efe83388292c84e9b",
+          "643fa3d128e4c41c671ffc829f6d554531d259c2eb075820085d8981e985af80",
+          "d64c91874f9ee22c50b943803c51eeeca79f4b613b4e551456b6735d57a318da",
+          "9fffce519994640443407e699f48b4c1762e8a23af2b6719531f317892cc5231",
+          "e3bb3209f760833a7e440b7371e35ceb90dbac2c459f65ab75131c179db1ebda",
+          "31cbd1c1700fd7f64dda1d79142ea7d5e2d1b442ccc6e879c44bee7a3bfb439e"
+        ],
+        [
+          "2aa40adc7d4deb49fa84db4e070a48f4d14d10981ed8103efe83388292c84e9b",
+          "643fa3d128e4c41c671ffc829f6d554531d259c2eb075820085d8981e985af80",
+          "d64c91874f9ee22c50b943803c51eeeca79f4b613b4e551456b6735d57a318da",
+          "9fffce519994640443407e699f48b4c1762e8a23af2b6719531f317892cc5231",
+          "e3bb3209f760833a7e440b7371e35ceb90dbac2c459f65ab75131c179db1ebda",
+          "31cbd1c1700fd7f64dda1d79142ea7d5e2d1b442ccc6e879c44bee7a3bfb439e"
+        ]
+      ],
+      "sample_dirs": [
+        "X1/s1",
+        "X1/s2",
+        "X1/s3"
+      ],
+      "run_order_seq": [
+        2,
+        5,
+        12
+      ],
+      "gpu_mem_used_mib_at_ready": [
+        {
+          "0": 7220,
+          "1": 83
+        },
+        {
+          "0": 7220,
+          "1": 83
+        },
+        {
+          "0": 7220,
+          "1": 83
+        }
+      ],
+      "gpu_mem_used_mib_max": [
+        {
+          "0": 21214,
+          "1": 83
+        },
+        {
+          "0": 21214,
+          "1": 83
+        },
+        {
+          "0": 21214,
+          "1": 83
+        }
+      ],
+      "vram_first_hits_total": [
+        310011,
+        310011,
+        310011
+      ],
+      "store_fetches_total": [
+        152841,
+        152841,
+        152841
+      ],
+      "tok_s_mean": 2.9445,
+      "tok_s_stdev": 0.0042
+    },
+    "median_tok_s": 2.9432,
+    "engine": {
+      "commit": "d0e19de23c3baf314ee932347c42d5f6d49ef4fb",
+      "binary_sha256": "63a667bac98a95daffc42428f0a82a1fd5051588047b524d8f8b1c564a20b926"
+    },
+    "quality": {
+      "method": "greedy: the full output text of each of the 6 prompts in every sample of this arm has the same sha256 as the same prompt in the one-GPU reference (arm G1, sample 1), all 3 G1 samples agreeing; plus the engine's real environment (/proc/<pid>/environ), tree SHA, binary sha256, client exit code and the mode lines of serve.log (peer-mirrors mode, vram_first_hits_total) checked per sample",
+      "passed": true,
+      "problems": []
+    },
+    "evidence": {
+      "uri": "evidence/pr2-arm-X1.tgz",
+      "sha256": "1e3e09d5f3d12d6cc643412f48d7acf29ecda0e117e1c921babf5d6ba79ab0f2",
+      "contains": "pr2/X1/s*/ (serve.log with v4_serve_turn/v4_dec_moe stats, bench.jsonl with full texts, sample.txt, engine_environ.txt, procs.txt, nvsmi.csv, gpu_*.csv, mode.txt)",
+      "full_run": "pr2.tgz (sha256 in pr2.tgz.sha256): all arms, meta/ (host, trees, scripts, llama before/after), run.log, summary.json; its run.log ends at 'ALL DONE; packing', because run_pr2.sh appends the 'packed <tgz> <sha256>' line to the live run.log only after packing"
+    }
+  },
+  "trial": {
+    "config": {
+      "COLI_CUDA": "1",
+      "COLI_GPU": "0",
+      "DSV4_CUDA_DEVICE": "0",
+      "CUDA_DENSE": "1",
+      "COLI_CUDA_PIPE": "2",
+      "COLI_CUDA_ATTN_BATCH": "1",
+      "COLI_CUDA_MOE_BATCH": "1",
+      "V4_MOE_REFILL_GROUP": "12",
+      "V4_LOADER_LANES": "3",
+      "V4_PREFIX_CKPT_DISK": "0",
+      "V4_SERVE_STATS_LOG": "1",
+      "COLI_CUDA_MOE_DOUBLE": "unset (default 0)",
+      "ram_gib": "40",
+      "ctx": "8192",
+      "temperature": "0 (greedy engine; request says 0.7, ignored)",
+      "engine_commit": "d0e19de23c3baf314ee932347c42d5f6d49ef4fb",
+      "V4_GPU_RESIDENT_FIRST": "1",
+      "DSV4_CUDA_PEER_COMPUTE": "unset (default 1)",
+      "DSV4_CUDA_PEER_DEVICE": "1"
+    },
+    "samples": {
+      "tok_s": [
+        4.0438,
+        4.048,
+        4.038
+      ],
+      "per_prompt_tok_s": [
+        [
+          3.678,
+          4.078,
+          4.061,
+          3.936,
+          4.428,
+          4.082
+        ],
+        [
+          3.679,
+          4.075,
+          4.064,
+          3.949,
+          4.433,
+          4.088
+        ],
+        [
+          3.651,
+          4.078,
+          4.058,
+          3.934,
+          4.426,
+          4.081
+        ]
+      ],
+      "engine_tok_s": [
+        [
+          3.691,
+          4.091,
+          4.075,
+          3.949,
+          4.442,
+          4.096
+        ],
+        [
+          3.692,
+          4.088,
+          4.077,
+          3.962,
+          4.448,
+          4.102
+        ],
+        [
+          3.663,
+          4.092,
+          4.072,
+          3.948,
+          4.441,
+          4.094
+        ]
+      ],
+      "text_sha256": [
+        [
+          "2aa40adc7d4deb49fa84db4e070a48f4d14d10981ed8103efe83388292c84e9b",
+          "643fa3d128e4c41c671ffc829f6d554531d259c2eb075820085d8981e985af80",
+          "d64c91874f9ee22c50b943803c51eeeca79f4b613b4e551456b6735d57a318da",
+          "9fffce519994640443407e699f48b4c1762e8a23af2b6719531f317892cc5231",
+          "e3bb3209f760833a7e440b7371e35ceb90dbac2c459f65ab75131c179db1ebda",
+          "31cbd1c1700fd7f64dda1d79142ea7d5e2d1b442ccc6e879c44bee7a3bfb439e"
+        ],
+        [
+          "2aa40adc7d4deb49fa84db4e070a48f4d14d10981ed8103efe83388292c84e9b",
+          "643fa3d128e4c41c671ffc829f6d554531d259c2eb075820085d8981e985af80",
+          "d64c91874f9ee22c50b943803c51eeeca79f4b613b4e551456b6735d57a318da",
+          "9fffce519994640443407e699f48b4c1762e8a23af2b6719531f317892cc5231",
+          "e3bb3209f760833a7e440b7371e35ceb90dbac2c459f65ab75131c179db1ebda",
+          "31cbd1c1700fd7f64dda1d79142ea7d5e2d1b442ccc6e879c44bee7a3bfb439e"
+        ],
+        [
+          "2aa40adc7d4deb49fa84db4e070a48f4d14d10981ed8103efe83388292c84e9b",
+          "643fa3d128e4c41c671ffc829f6d554531d259c2eb075820085d8981e985af80",
+          "d64c91874f9ee22c50b943803c51eeeca79f4b613b4e551456b6735d57a318da",
+          "9fffce519994640443407e699f48b4c1762e8a23af2b6719531f317892cc5231",
+          "e3bb3209f760833a7e440b7371e35ceb90dbac2c459f65ab75131c179db1ebda",
+          "31cbd1c1700fd7f64dda1d79142ea7d5e2d1b442ccc6e879c44bee7a3bfb439e"
+        ]
+      ],
+      "sample_dirs": [
+        "X3/s1",
+        "X3/s2",
+        "X3/s3"
+      ],
+      "run_order_seq": [
+        4,
+        7,
+        10
+      ],
+      "gpu_mem_used_mib_at_ready": [
+        {
+          "0": 7220,
+          "1": 349
+        },
+        {
+          "0": 7220,
+          "1": 349
+        },
+        {
+          "0": 7220,
+          "1": 349
+        }
+      ],
+      "gpu_mem_used_mib_max": [
+        {
+          "0": 21214,
+          "1": 23137
+        },
+        {
+          "0": 21214,
+          "1": 23137
+        },
+        {
+          "0": 21214,
+          "1": 23137
+        }
+      ],
+      "vram_first_hits_total": [
+        418453,
+        418453,
+        418453
+      ],
+      "store_fetches_total": [
+        44399,
+        44399,
+        44399
+      ],
+      "tok_s_mean": 4.0433,
+      "tok_s_stdev": 0.005
+    },
+    "median_tok_s": 4.0438,
+    "engine": {
+      "commit": "d0e19de23c3baf314ee932347c42d5f6d49ef4fb",
+      "binary_sha256": "63a667bac98a95daffc42428f0a82a1fd5051588047b524d8f8b1c564a20b926"
+    },
+    "quality": {
+      "method": "greedy: the full output text of each of the 6 prompts in every sample of this arm has the same sha256 as the same prompt in the one-GPU reference (arm G1, sample 1), all 3 G1 samples agreeing; plus the engine's real environment (/proc/<pid>/environ), tree SHA, binary sha256, client exit code and the mode lines of serve.log (peer-mirrors mode, vram_first_hits_total) checked per sample",
+      "passed": true,
+      "problems": []
+    },
+    "evidence": {
+      "uri": "evidence/pr2-arm-X3.tgz",
+      "sha256": "36a2201d82a24e81ff058e60e57c4969d465445bae436e4d0b87e0a4bc05a0a9",
+      "contains": "pr2/X3/s*/ (serve.log with v4_serve_turn/v4_dec_moe stats, bench.jsonl with full texts, sample.txt, engine_environ.txt, procs.txt, nvsmi.csv, gpu_*.csv, mode.txt)",
+      "full_run": "pr2.tgz (sha256 in pr2.tgz.sha256): all arms, meta/ (host, trees, scripts, llama before/after), run.log, summary.json; its run.log ends at 'ALL DONE; packing', because run_pr2.sh appends the 'packed <tgz> <sha256>' line to the live run.log only after packing"
+    }
+  },
+  "outcome": "improvement",
+  "speedup_median_tok_s": 1.3739,
+  "notes": [
+    "Strictly one-variable, and one of the two lead PR #2 records with pr2-peer-compute.json: X1 and X3 both leave DSV4_CUDA_PEER_COMPUTE unset (default 1); X3 adds only DSV4_CUDA_PEER_DEVICE=1. The p2p-read step X1 -> X2 is only a two-variable supplementary comparison (supplementary/pr2-peer-device-p2p-read-two-variable.json).",
+    "Host activity in the llama-down window (15:24:22-17:33:10 PDT; evidence/pr2-host-journal.txt): the Hermes shadowfax-ensure-active-stack watchdog ran every 5 min (25 runs, 15:28:48-17:28:57), reported 'backend unhealthy' each time and restarted nothing (restarted_units [], recovered false); Hermes cron workers started at 15:30:23, 16:00:23, 16:30:23, 17:00:23 (two) and 17:30:23 with no LLM backend (4.3-4.7 s CPU each; the 17:30:23 one exited at 17:33:36, after llama was back), so those cron jobs ran without a model; no llama start inside the window, and the first watchdog run after the restore finished ok at 17:33:58. Nothing else showed up on the GPUs: every sample's gpu_apps.csv (taken at ready) lists only the engine, and GPU1 peaked at 83 MiB in the arms without a peer pool."
+  ]
+}

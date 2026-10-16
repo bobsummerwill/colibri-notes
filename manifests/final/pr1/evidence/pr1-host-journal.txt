@@ -1,0 +1,402 @@
+# pr1 host journal extract from shadowfax, captured 2026-10-15T19:19:18-07:00 by capture_host_journal_pr1.sh (read-only)
+## serve unit: journalctl --user -u colibri-final-pr1-serve.service (Started / Consumed lines)
+2026-10-15T14:12:55-07:00 shadowfax systemd[1600]: Started colibri-final-pr1-serve.service - /usr/bin/env -i PATH=/usr/local/bin:/usr/bin:/bin HOME=/home/maplemercury USER=maplemercury LOGNAME=maplemercury LANG=en_US.UTF-8 COLI_CUDA=1 COLI_GPU=0 DSV4_CUDA_DEVICE=0 CUDA_DENSE=1 COLI_CUDA_PIPE=2 COLI_CUDA_ATTN_BATCH=1 COLI_CUDA_MOE_BATCH=1 V4_MOE_REFILL_GROUP=12 V4_LOADER_LANES=3 V4_PREFIX_CKPT_DISK=0 /bin/bash -c "exec python3 /tmp/cw/r6-dev/c/coli serve --model /home/maplemercury/colibri-models/deepseek-v4-flash-reap --ram 40 --ctx 8192 --host 127.0.0.1 --port 8090 > /home/maplemercury/colibri-bench/final/pr1/A/s1/serve.log 2>&1".
+2026-10-15T14:22:55-07:00 shadowfax systemd[1600]: colibri-final-pr1-serve.service: Consumed 1h 45min 34.243s CPU time, 13.9G memory peak, 0B memory swap peak.
+2026-10-15T14:22:55-07:00 shadowfax systemd[1600]: Started colibri-final-pr1-serve.service - /usr/bin/env -i PATH=/usr/local/bin:/usr/bin:/bin HOME=/home/maplemercury USER=maplemercury LOGNAME=maplemercury LANG=en_US.UTF-8 COLI_CUDA=1 COLI_GPU=0 DSV4_CUDA_DEVICE=0 CUDA_DENSE=1 COLI_CUDA_PIPE=2 COLI_CUDA_ATTN_BATCH=1 COLI_CUDA_MOE_BATCH=1 V4_MOE_REFILL_GROUP=12 V4_LOADER_LANES=3 V4_PREFIX_CKPT_DISK=0 /bin/bash -c "exec python3 /tmp/cw/r6-pr1/c/coli serve --model /home/maplemercury/colibri-models/deepseek-v4-flash-reap --ram 40 --ctx 8192 --host 127.0.0.1 --port 8090 > /home/maplemercury/colibri-bench/final/pr1/B/s1/serve.log 2>&1".
+2026-10-15T14:26:59-07:00 shadowfax systemd[1600]: colibri-final-pr1-serve.service: Consumed 15min 5.226s CPU time, 14.6G memory peak, 0B memory swap peak.
+2026-10-15T14:27:00-07:00 shadowfax systemd[1600]: Started colibri-final-pr1-serve.service - /usr/bin/env -i PATH=/usr/local/bin:/usr/bin:/bin HOME=/home/maplemercury USER=maplemercury LOGNAME=maplemercury LANG=en_US.UTF-8 COLI_CUDA=1 COLI_GPU=0 DSV4_CUDA_DEVICE=0 CUDA_DENSE=1 COLI_CUDA_PIPE=2 COLI_CUDA_ATTN_BATCH=1 COLI_CUDA_MOE_BATCH=1 V4_MOE_REFILL_GROUP=12 V4_LOADER_LANES=3 V4_PREFIX_CKPT_DISK=0 COLI_CUDA_MOE_DOUBLE=1 /bin/bash -c "exec python3 /tmp/cw/r6-pr1/c/coli serve --model /home/maplemercury/colibri-models/deepseek-v4-flash-reap --ram 40 --ctx 8192 --host 127.0.0.1 --port 8090 > /home/maplemercury/colibri-bench/final/pr1/C/s1/serve.log 2>&1".
+2026-10-15T14:30:38-07:00 shadowfax systemd[1600]: colibri-final-pr1-serve.service: Consumed 13min 39.916s CPU time, 10.2G memory peak, 0B memory swap peak.
+2026-10-15T14:30:38-07:00 shadowfax systemd[1600]: Started colibri-final-pr1-serve.service - /usr/bin/env -i PATH=/usr/local/bin:/usr/bin:/bin HOME=/home/maplemercury USER=maplemercury LOGNAME=maplemercury LANG=en_US.UTF-8 COLI_CUDA=1 COLI_GPU=0 DSV4_CUDA_DEVICE=0 CUDA_DENSE=1 COLI_CUDA_PIPE=2 COLI_CUDA_ATTN_BATCH=1 COLI_CUDA_MOE_BATCH=1 V4_MOE_REFILL_GROUP=12 V4_LOADER_LANES=3 V4_PREFIX_CKPT_DISK=0 DSV4_MOE_EXPERT_MAJOR=0 /bin/bash -c "exec python3 /tmp/cw/r6-pr1/c/coli serve --model /home/maplemercury/colibri-models/deepseek-v4-flash-reap --ram 40 --ctx 8192 --host 127.0.0.1 --port 8090 > /home/maplemercury/colibri-bench/final/pr1/E/s1/serve.log 2>&1".
+2026-10-15T14:32:59-07:00 shadowfax systemd[1600]: colibri-final-pr1-serve.service: Consumed 6min 27.715s CPU time, 9.1G memory peak, 0B memory swap peak.
+2026-10-15T14:33:00-07:00 shadowfax systemd[1600]: Started colibri-final-pr1-serve.service - /usr/bin/env -i PATH=/usr/local/bin:/usr/bin:/bin HOME=/home/maplemercury USER=maplemercury LOGNAME=maplemercury LANG=en_US.UTF-8 COLI_CUDA=1 COLI_GPU=0 DSV4_CUDA_DEVICE=0 CUDA_DENSE=1 COLI_CUDA_PIPE=2 COLI_CUDA_ATTN_BATCH=1 COLI_CUDA_MOE_BATCH=1 V4_MOE_REFILL_GROUP=12 V4_LOADER_LANES=3 V4_PREFIX_CKPT_DISK=0 DSV4_MM_WARP=0 /bin/bash -c "exec python3 /tmp/cw/r6-pr1/c/coli serve --model /home/maplemercury/colibri-models/deepseek-v4-flash-reap --ram 40 --ctx 8192 --host 127.0.0.1 --port 8090 > /home/maplemercury/colibri-bench/final/pr1/F/s1/serve.log 2>&1".
+2026-10-15T14:34:43-07:00 shadowfax systemd[1600]: colibri-final-pr1-serve.service: Consumed 5min 49.101s CPU time, 7.9G memory peak, 0B memory swap peak.
+2026-10-15T14:34:43-07:00 shadowfax systemd[1600]: Started colibri-final-pr1-serve.service - /usr/bin/env -i PATH=/usr/local/bin:/usr/bin:/bin HOME=/home/maplemercury USER=maplemercury LOGNAME=maplemercury LANG=en_US.UTF-8 COLI_CUDA=1 COLI_GPU=0 DSV4_CUDA_DEVICE=0 CUDA_DENSE=1 COLI_CUDA_PIPE=2 COLI_CUDA_ATTN_BATCH=1 COLI_CUDA_MOE_BATCH=1 V4_MOE_REFILL_GROUP=12 V4_LOADER_LANES=3 V4_PREFIX_CKPT_DISK=0 /bin/bash -c "exec python3 /tmp/cw/r6-pr1/c/coli serve --model /home/maplemercury/colibri-models/deepseek-v4-flash-reap --ram 40 --ctx 8192 --host 127.0.0.1 --port 8090 > /home/maplemercury/colibri-bench/final/pr1/B/s2/serve.log 2>&1".
+2026-10-15T14:38:44-07:00 shadowfax systemd[1600]: colibri-final-pr1-serve.service: Consumed 15min 4.026s CPU time, 7.3G memory peak, 0B memory swap peak.
+2026-10-15T14:38:45-07:00 shadowfax systemd[1600]: Started colibri-final-pr1-serve.service - /usr/bin/env -i PATH=/usr/local/bin:/usr/bin:/bin HOME=/home/maplemercury USER=maplemercury LOGNAME=maplemercury LANG=en_US.UTF-8 COLI_CUDA=1 COLI_GPU=0 DSV4_CUDA_DEVICE=0 CUDA_DENSE=1 COLI_CUDA_PIPE=2 COLI_CUDA_ATTN_BATCH=1 COLI_CUDA_MOE_BATCH=1 V4_MOE_REFILL_GROUP=12 V4_LOADER_LANES=3 V4_PREFIX_CKPT_DISK=0 COLI_CUDA_MOE_DOUBLE=1 /bin/bash -c "exec python3 /tmp/cw/r6-pr1/c/coli serve --model /home/maplemercury/colibri-models/deepseek-v4-flash-reap --ram 40 --ctx 8192 --host 127.0.0.1 --port 8090 > /home/maplemercury/colibri-bench/final/pr1/C/s2/serve.log 2>&1".
+2026-10-15T14:42:20-07:00 shadowfax systemd[1600]: colibri-final-pr1-serve.service: Consumed 13min 38.174s CPU time, 7.3G memory peak, 0B memory swap peak.
+2026-10-15T14:42:21-07:00 shadowfax systemd[1600]: Started colibri-final-pr1-serve.service - /usr/bin/env -i PATH=/usr/local/bin:/usr/bin:/bin HOME=/home/maplemercury USER=maplemercury LOGNAME=maplemercury LANG=en_US.UTF-8 COLI_CUDA=1 COLI_GPU=0 DSV4_CUDA_DEVICE=0 CUDA_DENSE=1 COLI_CUDA_PIPE=2 COLI_CUDA_ATTN_BATCH=1 COLI_CUDA_MOE_BATCH=1 V4_MOE_REFILL_GROUP=12 V4_LOADER_LANES=3 V4_PREFIX_CKPT_DISK=0 DSV4_MOE_EXPERT_MAJOR=0 /bin/bash -c "exec python3 /tmp/cw/r6-pr1/c/coli serve --model /home/maplemercury/colibri-models/deepseek-v4-flash-reap --ram 40 --ctx 8192 --host 127.0.0.1 --port 8090 > /home/maplemercury/colibri-bench/final/pr1/E/s2/serve.log 2>&1".
+2026-10-15T14:44:43-07:00 shadowfax systemd[1600]: colibri-final-pr1-serve.service: Consumed 6min 26.971s CPU time, 7.3G memory peak, 0B memory swap peak.
+2026-10-15T14:44:43-07:00 shadowfax systemd[1600]: Started colibri-final-pr1-serve.service - /usr/bin/env -i PATH=/usr/local/bin:/usr/bin:/bin HOME=/home/maplemercury USER=maplemercury LOGNAME=maplemercury LANG=en_US.UTF-8 COLI_CUDA=1 COLI_GPU=0 DSV4_CUDA_DEVICE=0 CUDA_DENSE=1 COLI_CUDA_PIPE=2 COLI_CUDA_ATTN_BATCH=1 COLI_CUDA_MOE_BATCH=1 V4_MOE_REFILL_GROUP=12 V4_LOADER_LANES=3 V4_PREFIX_CKPT_DISK=0 DSV4_MM_WARP=0 /bin/bash -c "exec python3 /tmp/cw/r6-pr1/c/coli serve --model /home/maplemercury/colibri-models/deepseek-v4-flash-reap --ram 40 --ctx 8192 --host 127.0.0.1 --port 8090 > /home/maplemercury/colibri-bench/final/pr1/F/s2/serve.log 2>&1".
+2026-10-15T14:46:26-07:00 shadowfax systemd[1600]: colibri-final-pr1-serve.service: Consumed 5min 48.844s CPU time, 7.3G memory peak, 0B memory swap peak.
+2026-10-15T14:46:27-07:00 shadowfax systemd[1600]: Started colibri-final-pr1-serve.service - /usr/bin/env -i PATH=/usr/local/bin:/usr/bin:/bin HOME=/home/maplemercury USER=maplemercury LOGNAME=maplemercury LANG=en_US.UTF-8 COLI_CUDA=1 COLI_GPU=0 DSV4_CUDA_DEVICE=0 CUDA_DENSE=1 COLI_CUDA_PIPE=2 COLI_CUDA_ATTN_BATCH=1 COLI_CUDA_MOE_BATCH=1 V4_MOE_REFILL_GROUP=12 V4_LOADER_LANES=3 V4_PREFIX_CKPT_DISK=0 /bin/bash -c "exec python3 /tmp/cw/r6-dev/c/coli serve --model /home/maplemercury/colibri-models/deepseek-v4-flash-reap --ram 40 --ctx 8192 --host 127.0.0.1 --port 8090 > /home/maplemercury/colibri-bench/final/pr1/A/s2/serve.log 2>&1".
+2026-10-15T14:56:16-07:00 shadowfax systemd[1600]: colibri-final-pr1-serve.service: Consumed 1h 43min 52.519s CPU time, 7.3G memory peak, 0B memory swap peak.
+2026-10-15T14:56:17-07:00 shadowfax systemd[1600]: Started colibri-final-pr1-serve.service - /usr/bin/env -i PATH=/usr/local/bin:/usr/bin:/bin HOME=/home/maplemercury USER=maplemercury LOGNAME=maplemercury LANG=en_US.UTF-8 COLI_CUDA=1 COLI_GPU=0 DSV4_CUDA_DEVICE=0 CUDA_DENSE=1 COLI_CUDA_PIPE=2 COLI_CUDA_ATTN_BATCH=1 COLI_CUDA_MOE_BATCH=1 V4_MOE_REFILL_GROUP=12 V4_LOADER_LANES=3 V4_PREFIX_CKPT_DISK=0 COLI_CUDA_MOE_DOUBLE=1 /bin/bash -c "exec python3 /tmp/cw/r6-pr1/c/coli serve --model /home/maplemercury/colibri-models/deepseek-v4-flash-reap --ram 40 --ctx 8192 --host 127.0.0.1 --port 8090 > /home/maplemercury/colibri-bench/final/pr1/C/s3/serve.log 2>&1".
+2026-10-15T14:59:51-07:00 shadowfax systemd[1600]: colibri-final-pr1-serve.service: Consumed 13min 36.768s CPU time, 7.3G memory peak, 0B memory swap peak.
+2026-10-15T14:59:52-07:00 shadowfax systemd[1600]: Started colibri-final-pr1-serve.service - /usr/bin/env -i PATH=/usr/local/bin:/usr/bin:/bin HOME=/home/maplemercury USER=maplemercury LOGNAME=maplemercury LANG=en_US.UTF-8 COLI_CUDA=1 COLI_GPU=0 DSV4_CUDA_DEVICE=0 CUDA_DENSE=1 COLI_CUDA_PIPE=2 COLI_CUDA_ATTN_BATCH=1 COLI_CUDA_MOE_BATCH=1 V4_MOE_REFILL_GROUP=12 V4_LOADER_LANES=3 V4_PREFIX_CKPT_DISK=0 DSV4_MOE_EXPERT_MAJOR=0 /bin/bash -c "exec python3 /tmp/cw/r6-pr1/c/coli serve --model /home/maplemercury/colibri-models/deepseek-v4-flash-reap --ram 40 --ctx 8192 --host 127.0.0.1 --port 8090 > /home/maplemercury/colibri-bench/final/pr1/E/s3/serve.log 2>&1".
+2026-10-15T15:02:13-07:00 shadowfax systemd[1600]: colibri-final-pr1-serve.service: Consumed 6min 26.474s CPU time, 7.3G memory peak, 0B memory swap peak.
+2026-10-15T15:02:13-07:00 shadowfax systemd[1600]: Started colibri-final-pr1-serve.service - /usr/bin/env -i PATH=/usr/local/bin:/usr/bin:/bin HOME=/home/maplemercury USER=maplemercury LOGNAME=maplemercury LANG=en_US.UTF-8 COLI_CUDA=1 COLI_GPU=0 DSV4_CUDA_DEVICE=0 CUDA_DENSE=1 COLI_CUDA_PIPE=2 COLI_CUDA_ATTN_BATCH=1 COLI_CUDA_MOE_BATCH=1 V4_MOE_REFILL_GROUP=12 V4_LOADER_LANES=3 V4_PREFIX_CKPT_DISK=0 DSV4_MM_WARP=0 /bin/bash -c "exec python3 /tmp/cw/r6-pr1/c/coli serve --model /home/maplemercury/colibri-models/deepseek-v4-flash-reap --ram 40 --ctx 8192 --host 127.0.0.1 --port 8090 > /home/maplemercury/colibri-bench/final/pr1/F/s3/serve.log 2>&1".
+2026-10-15T15:03:56-07:00 shadowfax systemd[1600]: colibri-final-pr1-serve.service: Consumed 5min 49.118s CPU time, 7.3G memory peak, 0B memory swap peak.
+2026-10-15T15:03:56-07:00 shadowfax systemd[1600]: Started colibri-final-pr1-serve.service - /usr/bin/env -i PATH=/usr/local/bin:/usr/bin:/bin HOME=/home/maplemercury USER=maplemercury LOGNAME=maplemercury LANG=en_US.UTF-8 COLI_CUDA=1 COLI_GPU=0 DSV4_CUDA_DEVICE=0 CUDA_DENSE=1 COLI_CUDA_PIPE=2 COLI_CUDA_ATTN_BATCH=1 COLI_CUDA_MOE_BATCH=1 V4_MOE_REFILL_GROUP=12 V4_LOADER_LANES=3 V4_PREFIX_CKPT_DISK=0 /bin/bash -c "exec python3 /tmp/cw/r6-dev/c/coli serve --model /home/maplemercury/colibri-models/deepseek-v4-flash-reap --ram 40 --ctx 8192 --host 127.0.0.1 --port 8090 > /home/maplemercury/colibri-bench/final/pr1/A/s3/serve.log 2>&1".
+2026-10-15T15:13:47-07:00 shadowfax systemd[1600]: colibri-final-pr1-serve.service: Consumed 1h 44min 3.915s CPU time, 7.3G memory peak, 0B memory swap peak.
+2026-10-15T15:13:48-07:00 shadowfax systemd[1600]: Started colibri-final-pr1-serve.service - /usr/bin/env -i PATH=/usr/local/bin:/usr/bin:/bin HOME=/home/maplemercury USER=maplemercury LOGNAME=maplemercury LANG=en_US.UTF-8 COLI_CUDA=1 COLI_GPU=0 DSV4_CUDA_DEVICE=0 CUDA_DENSE=1 COLI_CUDA_PIPE=2 COLI_CUDA_ATTN_BATCH=1 COLI_CUDA_MOE_BATCH=1 V4_MOE_REFILL_GROUP=12 V4_LOADER_LANES=3 V4_PREFIX_CKPT_DISK=0 /bin/bash -c "exec python3 /tmp/cw/r6-pr1/c/coli serve --model /home/maplemercury/colibri-models/deepseek-v4-flash-reap --ram 40 --ctx 8192 --host 127.0.0.1 --port 8090 > /home/maplemercury/colibri-bench/final/pr1/B/s3/serve.log 2>&1".
+2026-10-15T15:17:48-07:00 shadowfax systemd[1600]: colibri-final-pr1-serve.service: Consumed 15min 3.801s CPU time, 7.3G memory peak, 0B memory swap peak.
+2026-10-15T15:17:49-07:00 shadowfax systemd[1600]: Started colibri-final-pr1-serve.service - /usr/bin/env -i PATH=/usr/local/bin:/usr/bin:/bin HOME=/home/maplemercury USER=maplemercury LOGNAME=maplemercury LANG=en_US.UTF-8 COLI_CUDA=1 COLI_GPU=0 DSV4_CUDA_DEVICE=0 CUDA_DENSE=1 COLI_CUDA_PIPE=2 COLI_CUDA_ATTN_BATCH=1 COLI_CUDA_MOE_BATCH=1 V4_MOE_REFILL_GROUP=12 V4_LOADER_LANES=3 V4_PREFIX_CKPT_DISK=0 DSV4_MOE_EXPERT_MAJOR_VERIFY=1 DSV4_MM_WARP_VERIFY=1 /bin/bash -c "exec python3 /tmp/cw/r6-pr1/c/coli serve --model /home/maplemercury/colibri-models/deepseek-v4-flash-reap --ram 40 --ctx 8192 --host 127.0.0.1 --port 8090 > /home/maplemercury/colibri-bench/final/pr1/V/s1/serve.log 2>&1".
+2026-10-15T15:20:39-07:00 shadowfax systemd[1600]: colibri-final-pr1-serve.service: Consumed 6min 56.379s CPU time, 7.3G memory peak, 0B memory swap peak.
+## llama.cpp unit and Hermes scopes: journalctl --user (llama-server-active, hermes-*)
+2026-10-15T14:12:54-07:00 shadowfax bash[706394]: [2026-10-15 14:12:54] stopping llama-server-active (the EXIT trap restarts it)
+2026-10-15T14:12:54-07:00 shadowfax systemd[1600]: Stopping llama-server-active.service - llama.cpp Server - local Qwen3.8 27B (MTP)...
+2026-10-15T14:12:55-07:00 shadowfax systemd[1600]: Stopped llama-server-active.service - llama.cpp Server - local Qwen3.8 27B (MTP).
+2026-10-15T14:12:55-07:00 shadowfax systemd[1600]: llama-server-active.service: Consumed 2h 5min 24.195s CPU time, 34.0G memory peak, 0B memory swap peak.
+2026-10-15T14:30:23-07:00 shadowfax systemd[1600]: Started hermes-probe-scope-524512-cfeb4e0c.scope - /bin/sh -c "exit 0".
+2026-10-15T14:30:23-07:00 shadowfax systemd[1600]: Started hermes-worker-cron-c937d60f9922-exec-4a539dfbb2734e8b844132c55ed2f509.scope - /home/maplemercury/.hermes/tools/python-3.14.7+20260901-linux-x64/bin/python3 -m cron.scheduler --external-worker-file /home/maplemercury/.hermes/cron/external-workers/4a539dfbb2734e8b844132c55ed2f509.json --ack-file /home/maplemercury/.hermes/cron/external-workers/4a539dfbb2734e8b844132c55ed2f509.ready.
+2026-10-15T14:35:37-07:00 shadowfax systemd[1600]: hermes-worker-cron-c937d60f9922-exec-4a539dfbb2734e8b844132c55ed2f509.scope: Consumed 4.446s CPU time.
+2026-10-15T15:00:23-07:00 shadowfax systemd[1600]: Started hermes-probe-scope-524512-b092945d.scope - /bin/sh -c "exit 0".
+2026-10-15T15:00:23-07:00 shadowfax systemd[1600]: Started hermes-worker-cron-c937d60f9922-exec-203cdda171e64d2dae3a7238f7119b19.scope - /home/maplemercury/.hermes/tools/python-3.14.7+20260901-linux-x64/bin/python3 -m cron.scheduler --external-worker-file /home/maplemercury/.hermes/cron/external-workers/203cdda171e64d2dae3a7238f7119b19.json --ack-file /home/maplemercury/.hermes/cron/external-workers/203cdda171e64d2dae3a7238f7119b19.ready.
+2026-10-15T15:05:26-07:00 shadowfax systemd[1600]: hermes-worker-cron-c937d60f9922-exec-203cdda171e64d2dae3a7238f7119b19.scope: Consumed 3.817s CPU time.
+2026-10-15T15:20:40-07:00 shadowfax bash[763609]: [2026-10-15 15:20:40] restore: starting llama-server-active (script status 0, GPU window 4066 s)
+2026-10-15T15:20:40-07:00 shadowfax systemd[1600]: Starting llama-server-active.service - llama.cpp Server - local Qwen3.8 27B (MTP)...
+2026-10-15T15:20:51-07:00 shadowfax systemd[1600]: Started llama-server-active.service - llama.cpp Server - local Qwen3.8 27B (MTP).
+## watchdog: journalctl --user -u shadowfax-ensure-active-stack.service
+2026-10-15T14:13:43-07:00 shadowfax systemd[1600]: Starting shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy...
+2026-10-15T14:15:13-07:00 shadowfax env[707139]: {
+2026-10-15T14:15:13-07:00 shadowfax env[707139]:   "active_profile": "qwen3.8-27b",
+2026-10-15T14:15:13-07:00 shadowfax env[707139]:   "drifted_units": [],
+2026-10-15T14:15:13-07:00 shadowfax env[707139]:   "exact_output_probe": {
+2026-10-15T14:15:13-07:00 shadowfax env[707139]:     "error": "backend unhealthy",
+2026-10-15T14:15:13-07:00 shadowfax env[707139]:     "ok": false
+2026-10-15T14:15:13-07:00 shadowfax env[707139]:   },
+2026-10-15T14:15:13-07:00 shadowfax env[707139]:   "gpu": {
+2026-10-15T14:15:13-07:00 shadowfax env[707139]:     "error": "no main PID",
+2026-10-15T14:15:13-07:00 shadowfax env[707139]:     "ok": false,
+2026-10-15T14:15:13-07:00 shadowfax env[707139]:     "state": {
+2026-10-15T14:15:13-07:00 shadowfax env[707139]:       "MainPID": "0",
+2026-10-15T14:15:13-07:00 shadowfax env[707139]:       "SubState": "dead"
+2026-10-15T14:15:13-07:00 shadowfax env[707139]:     }
+2026-10-15T14:15:13-07:00 shadowfax env[707139]:   },
+2026-10-15T14:15:13-07:00 shadowfax env[707139]:   "recovered": false,
+2026-10-15T14:15:13-07:00 shadowfax env[707139]:   "restarted_units": [],
+2026-10-15T14:15:13-07:00 shadowfax env[707139]:   "statuses": {
+2026-10-15T14:15:13-07:00 shadowfax env[707139]:     "backend": false,
+2026-10-15T14:15:13-07:00 shadowfax env[707139]:     "local_proxy": false
+2026-10-15T14:15:13-07:00 shadowfax env[707139]:   }
+2026-10-15T14:15:13-07:00 shadowfax env[707139]: }
+2026-10-15T14:15:13-07:00 shadowfax systemd[1600]: shadowfax-ensure-active-stack.service: Main process exited, code=exited, status=1/FAILURE
+2026-10-15T14:15:13-07:00 shadowfax systemd[1600]: shadowfax-ensure-active-stack.service: Failed with result 'exit-code'.
+2026-10-15T14:15:13-07:00 shadowfax systemd[1600]: Failed to start shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy.
+2026-10-15T14:18:43-07:00 shadowfax systemd[1600]: Starting shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy...
+2026-10-15T14:20:13-07:00 shadowfax env[711097]: {
+2026-10-15T14:20:13-07:00 shadowfax env[711097]:   "active_profile": "qwen3.8-27b",
+2026-10-15T14:20:13-07:00 shadowfax env[711097]:   "drifted_units": [],
+2026-10-15T14:20:13-07:00 shadowfax env[711097]:   "exact_output_probe": {
+2026-10-15T14:20:13-07:00 shadowfax env[711097]:     "error": "backend unhealthy",
+2026-10-15T14:20:13-07:00 shadowfax env[711097]:     "ok": false
+2026-10-15T14:20:13-07:00 shadowfax env[711097]:   },
+2026-10-15T14:20:13-07:00 shadowfax env[711097]:   "gpu": {
+2026-10-15T14:20:13-07:00 shadowfax env[711097]:     "error": "no main PID",
+2026-10-15T14:20:13-07:00 shadowfax env[711097]:     "ok": false,
+2026-10-15T14:20:13-07:00 shadowfax env[711097]:     "state": {
+2026-10-15T14:20:13-07:00 shadowfax env[711097]:       "MainPID": "0",
+2026-10-15T14:20:13-07:00 shadowfax env[711097]:       "SubState": "dead"
+2026-10-15T14:20:13-07:00 shadowfax env[711097]:     }
+2026-10-15T14:20:13-07:00 shadowfax env[711097]:   },
+2026-10-15T14:20:13-07:00 shadowfax env[711097]:   "recovered": false,
+2026-10-15T14:20:13-07:00 shadowfax env[711097]:   "restarted_units": [],
+2026-10-15T14:20:13-07:00 shadowfax env[711097]:   "statuses": {
+2026-10-15T14:20:13-07:00 shadowfax env[711097]:     "backend": false,
+2026-10-15T14:20:13-07:00 shadowfax env[711097]:     "local_proxy": false
+2026-10-15T14:20:13-07:00 shadowfax env[711097]:   }
+2026-10-15T14:20:13-07:00 shadowfax env[711097]: }
+2026-10-15T14:20:13-07:00 shadowfax systemd[1600]: shadowfax-ensure-active-stack.service: Main process exited, code=exited, status=1/FAILURE
+2026-10-15T14:20:13-07:00 shadowfax systemd[1600]: shadowfax-ensure-active-stack.service: Failed with result 'exit-code'.
+2026-10-15T14:20:13-07:00 shadowfax systemd[1600]: Failed to start shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy.
+2026-10-15T14:23:43-07:00 shadowfax systemd[1600]: Starting shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy...
+2026-10-15T14:25:14-07:00 shadowfax systemd[1600]: shadowfax-ensure-active-stack.service: Main process exited, code=exited, status=1/FAILURE
+2026-10-15T14:25:14-07:00 shadowfax systemd[1600]: shadowfax-ensure-active-stack.service: Failed with result 'exit-code'.
+2026-10-15T14:25:14-07:00 shadowfax systemd[1600]: Failed to start shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy.
+2026-10-15T14:28:44-07:00 shadowfax systemd[1600]: Starting shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy...
+2026-10-15T14:30:14-07:00 shadowfax env[719443]: {
+2026-10-15T14:30:14-07:00 shadowfax env[719443]:   "active_profile": "qwen3.8-27b",
+2026-10-15T14:30:14-07:00 shadowfax env[719443]:   "drifted_units": [],
+2026-10-15T14:30:14-07:00 shadowfax env[719443]:   "exact_output_probe": {
+2026-10-15T14:30:14-07:00 shadowfax env[719443]:     "error": "backend unhealthy",
+2026-10-15T14:30:14-07:00 shadowfax env[719443]:     "ok": false
+2026-10-15T14:30:14-07:00 shadowfax env[719443]:   },
+2026-10-15T14:30:14-07:00 shadowfax env[719443]:   "gpu": {
+2026-10-15T14:30:14-07:00 shadowfax env[719443]:     "error": "no main PID",
+2026-10-15T14:30:14-07:00 shadowfax env[719443]:     "ok": false,
+2026-10-15T14:30:14-07:00 shadowfax env[719443]:     "state": {
+2026-10-15T14:30:14-07:00 shadowfax env[719443]:       "MainPID": "0",
+2026-10-15T14:30:14-07:00 shadowfax env[719443]:       "SubState": "dead"
+2026-10-15T14:30:14-07:00 shadowfax env[719443]:     }
+2026-10-15T14:30:14-07:00 shadowfax env[719443]:   },
+2026-10-15T14:30:14-07:00 shadowfax env[719443]:   "recovered": false,
+2026-10-15T14:30:14-07:00 shadowfax env[719443]:   "restarted_units": [],
+2026-10-15T14:30:14-07:00 shadowfax env[719443]:   "statuses": {
+2026-10-15T14:30:14-07:00 shadowfax env[719443]:     "backend": false,
+2026-10-15T14:30:14-07:00 shadowfax env[719443]:     "local_proxy": false
+2026-10-15T14:30:14-07:00 shadowfax env[719443]:   }
+2026-10-15T14:30:14-07:00 shadowfax env[719443]: }
+2026-10-15T14:30:14-07:00 shadowfax systemd[1600]: shadowfax-ensure-active-stack.service: Main process exited, code=exited, status=1/FAILURE
+2026-10-15T14:30:14-07:00 shadowfax systemd[1600]: shadowfax-ensure-active-stack.service: Failed with result 'exit-code'.
+2026-10-15T14:30:14-07:00 shadowfax systemd[1600]: Failed to start shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy.
+2026-10-15T14:33:44-07:00 shadowfax systemd[1600]: Starting shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy...
+2026-10-15T14:35:14-07:00 shadowfax env[723982]: {
+2026-10-15T14:35:14-07:00 shadowfax env[723982]:   "active_profile": "qwen3.8-27b",
+2026-10-15T14:35:14-07:00 shadowfax env[723982]:   "drifted_units": [],
+2026-10-15T14:35:14-07:00 shadowfax env[723982]:   "exact_output_probe": {
+2026-10-15T14:35:14-07:00 shadowfax env[723982]:     "error": "backend unhealthy",
+2026-10-15T14:35:14-07:00 shadowfax env[723982]:     "ok": false
+2026-10-15T14:35:14-07:00 shadowfax env[723982]:   },
+2026-10-15T14:35:14-07:00 shadowfax env[723982]:   "gpu": {
+2026-10-15T14:35:14-07:00 shadowfax env[723982]:     "error": "no main PID",
+2026-10-15T14:35:14-07:00 shadowfax env[723982]:     "ok": false,
+2026-10-15T14:35:14-07:00 shadowfax env[723982]:     "state": {
+2026-10-15T14:35:14-07:00 shadowfax env[723982]:       "MainPID": "0",
+2026-10-15T14:35:14-07:00 shadowfax env[723982]:       "SubState": "dead"
+2026-10-15T14:35:14-07:00 shadowfax env[723982]:     }
+2026-10-15T14:35:14-07:00 shadowfax env[723982]:   },
+2026-10-15T14:35:14-07:00 shadowfax env[723982]:   "recovered": false,
+2026-10-15T14:35:14-07:00 shadowfax env[723982]:   "restarted_units": [],
+2026-10-15T14:35:14-07:00 shadowfax env[723982]:   "statuses": {
+2026-10-15T14:35:14-07:00 shadowfax env[723982]:     "backend": false,
+2026-10-15T14:35:14-07:00 shadowfax env[723982]:     "local_proxy": false
+2026-10-15T14:35:14-07:00 shadowfax env[723982]:   }
+2026-10-15T14:35:14-07:00 shadowfax env[723982]: }
+2026-10-15T14:35:14-07:00 shadowfax systemd[1600]: shadowfax-ensure-active-stack.service: Main process exited, code=exited, status=1/FAILURE
+2026-10-15T14:35:14-07:00 shadowfax systemd[1600]: shadowfax-ensure-active-stack.service: Failed with result 'exit-code'.
+2026-10-15T14:35:14-07:00 shadowfax systemd[1600]: Failed to start shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy.
+2026-10-15T14:38:45-07:00 shadowfax systemd[1600]: Starting shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy...
+2026-10-15T14:40:15-07:00 shadowfax systemd[1600]: shadowfax-ensure-active-stack.service: Main process exited, code=exited, status=1/FAILURE
+2026-10-15T14:40:15-07:00 shadowfax systemd[1600]: shadowfax-ensure-active-stack.service: Failed with result 'exit-code'.
+2026-10-15T14:40:15-07:00 shadowfax systemd[1600]: Failed to start shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy.
+2026-10-15T14:43:45-07:00 shadowfax systemd[1600]: Starting shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy...
+2026-10-15T14:45:15-07:00 shadowfax env[732545]: {
+2026-10-15T14:45:15-07:00 shadowfax env[732545]:   "active_profile": "qwen3.8-27b",
+2026-10-15T14:45:15-07:00 shadowfax env[732545]:   "drifted_units": [],
+2026-10-15T14:45:15-07:00 shadowfax env[732545]:   "exact_output_probe": {
+2026-10-15T14:45:15-07:00 shadowfax env[732545]:     "error": "backend unhealthy",
+2026-10-15T14:45:15-07:00 shadowfax env[732545]:     "ok": false
+2026-10-15T14:45:15-07:00 shadowfax env[732545]:   },
+2026-10-15T14:45:15-07:00 shadowfax env[732545]:   "gpu": {
+2026-10-15T14:45:15-07:00 shadowfax env[732545]:     "error": "no main PID",
+2026-10-15T14:45:15-07:00 shadowfax env[732545]:     "ok": false,
+2026-10-15T14:45:15-07:00 shadowfax env[732545]:     "state": {
+2026-10-15T14:45:15-07:00 shadowfax env[732545]:       "MainPID": "0",
+2026-10-15T14:45:15-07:00 shadowfax env[732545]:       "SubState": "dead"
+2026-10-15T14:45:15-07:00 shadowfax env[732545]:     }
+2026-10-15T14:45:15-07:00 shadowfax env[732545]:   },
+2026-10-15T14:45:15-07:00 shadowfax env[732545]:   "recovered": false,
+2026-10-15T14:45:15-07:00 shadowfax env[732545]:   "restarted_units": [],
+2026-10-15T14:45:15-07:00 shadowfax env[732545]:   "statuses": {
+2026-10-15T14:45:15-07:00 shadowfax env[732545]:     "backend": false,
+2026-10-15T14:45:15-07:00 shadowfax env[732545]:     "local_proxy": false
+2026-10-15T14:45:15-07:00 shadowfax env[732545]:   }
+2026-10-15T14:45:15-07:00 shadowfax env[732545]: }
+2026-10-15T14:45:15-07:00 shadowfax systemd[1600]: shadowfax-ensure-active-stack.service: Main process exited, code=exited, status=1/FAILURE
+2026-10-15T14:45:15-07:00 shadowfax systemd[1600]: shadowfax-ensure-active-stack.service: Failed with result 'exit-code'.
+2026-10-15T14:45:15-07:00 shadowfax systemd[1600]: Failed to start shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy.
+2026-10-15T14:48:45-07:00 shadowfax systemd[1600]: Starting shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy...
+2026-10-15T14:50:15-07:00 shadowfax env[736787]: {
+2026-10-15T14:50:15-07:00 shadowfax env[736787]:   "active_profile": "qwen3.8-27b",
+2026-10-15T14:50:15-07:00 shadowfax env[736787]:   "drifted_units": [],
+2026-10-15T14:50:15-07:00 shadowfax env[736787]:   "exact_output_probe": {
+2026-10-15T14:50:15-07:00 shadowfax env[736787]:     "error": "backend unhealthy",
+2026-10-15T14:50:15-07:00 shadowfax env[736787]:     "ok": false
+2026-10-15T14:50:15-07:00 shadowfax env[736787]:   },
+2026-10-15T14:50:15-07:00 shadowfax env[736787]:   "gpu": {
+2026-10-15T14:50:15-07:00 shadowfax env[736787]:     "error": "no main PID",
+2026-10-15T14:50:15-07:00 shadowfax env[736787]:     "ok": false,
+2026-10-15T14:50:15-07:00 shadowfax env[736787]:     "state": {
+2026-10-15T14:50:15-07:00 shadowfax env[736787]:       "MainPID": "0",
+2026-10-15T14:50:15-07:00 shadowfax env[736787]:       "SubState": "dead"
+2026-10-15T14:50:15-07:00 shadowfax env[736787]:     }
+2026-10-15T14:50:15-07:00 shadowfax env[736787]:   },
+2026-10-15T14:50:15-07:00 shadowfax env[736787]:   "recovered": false,
+2026-10-15T14:50:15-07:00 shadowfax env[736787]:   "restarted_units": [],
+2026-10-15T14:50:15-07:00 shadowfax env[736787]:   "statuses": {
+2026-10-15T14:50:15-07:00 shadowfax env[736787]:     "backend": false,
+2026-10-15T14:50:15-07:00 shadowfax env[736787]:     "local_proxy": false
+2026-10-15T14:50:15-07:00 shadowfax env[736787]:   }
+2026-10-15T14:50:15-07:00 shadowfax env[736787]: }
+2026-10-15T14:50:15-07:00 shadowfax systemd[1600]: shadowfax-ensure-active-stack.service: Main process exited, code=exited, status=1/FAILURE
+2026-10-15T14:50:15-07:00 shadowfax systemd[1600]: shadowfax-ensure-active-stack.service: Failed with result 'exit-code'.
+2026-10-15T14:50:15-07:00 shadowfax systemd[1600]: Failed to start shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy.
+2026-10-15T14:53:46-07:00 shadowfax systemd[1600]: Starting shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy...
+2026-10-15T14:55:16-07:00 shadowfax env[740943]: {
+2026-10-15T14:55:16-07:00 shadowfax env[740943]:   "active_profile": "qwen3.8-27b",
+2026-10-15T14:55:16-07:00 shadowfax env[740943]:   "drifted_units": [],
+2026-10-15T14:55:16-07:00 shadowfax env[740943]:   "exact_output_probe": {
+2026-10-15T14:55:16-07:00 shadowfax env[740943]:     "error": "backend unhealthy",
+2026-10-15T14:55:16-07:00 shadowfax env[740943]:     "ok": false
+2026-10-15T14:55:16-07:00 shadowfax env[740943]:   },
+2026-10-15T14:55:16-07:00 shadowfax env[740943]:   "gpu": {
+2026-10-15T14:55:16-07:00 shadowfax env[740943]:     "error": "no main PID",
+2026-10-15T14:55:16-07:00 shadowfax env[740943]:     "ok": false,
+2026-10-15T14:55:16-07:00 shadowfax env[740943]:     "state": {
+2026-10-15T14:55:16-07:00 shadowfax env[740943]:       "MainPID": "0",
+2026-10-15T14:55:16-07:00 shadowfax env[740943]:       "SubState": "dead"
+2026-10-15T14:55:16-07:00 shadowfax env[740943]:     }
+2026-10-15T14:55:16-07:00 shadowfax env[740943]:   },
+2026-10-15T14:55:16-07:00 shadowfax env[740943]:   "recovered": false,
+2026-10-15T14:55:16-07:00 shadowfax env[740943]:   "restarted_units": [],
+2026-10-15T14:55:16-07:00 shadowfax env[740943]:   "statuses": {
+2026-10-15T14:55:16-07:00 shadowfax env[740943]:     "backend": false,
+2026-10-15T14:55:16-07:00 shadowfax env[740943]:     "local_proxy": false
+2026-10-15T14:55:16-07:00 shadowfax env[740943]:   }
+2026-10-15T14:55:16-07:00 shadowfax env[740943]: }
+2026-10-15T14:55:16-07:00 shadowfax systemd[1600]: shadowfax-ensure-active-stack.service: Main process exited, code=exited, status=1/FAILURE
+2026-10-15T14:55:16-07:00 shadowfax systemd[1600]: shadowfax-ensure-active-stack.service: Failed with result 'exit-code'.
+2026-10-15T14:55:16-07:00 shadowfax systemd[1600]: Failed to start shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy.
+2026-10-15T14:58:46-07:00 shadowfax systemd[1600]: Starting shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy...
+2026-10-15T15:00:16-07:00 shadowfax env[745086]: {
+2026-10-15T15:00:16-07:00 shadowfax env[745086]:   "active_profile": "qwen3.8-27b",
+2026-10-15T15:00:16-07:00 shadowfax env[745086]:   "drifted_units": [],
+2026-10-15T15:00:16-07:00 shadowfax env[745086]:   "exact_output_probe": {
+2026-10-15T15:00:16-07:00 shadowfax env[745086]:     "error": "backend unhealthy",
+2026-10-15T15:00:16-07:00 shadowfax env[745086]:     "ok": false
+2026-10-15T15:00:16-07:00 shadowfax env[745086]:   },
+2026-10-15T15:00:16-07:00 shadowfax env[745086]:   "gpu": {
+2026-10-15T15:00:16-07:00 shadowfax env[745086]:     "error": "no main PID",
+2026-10-15T15:00:16-07:00 shadowfax env[745086]:     "ok": false,
+2026-10-15T15:00:16-07:00 shadowfax env[745086]:     "state": {
+2026-10-15T15:00:16-07:00 shadowfax env[745086]:       "MainPID": "0",
+2026-10-15T15:00:16-07:00 shadowfax env[745086]:       "SubState": "dead"
+2026-10-15T15:00:16-07:00 shadowfax env[745086]:     }
+2026-10-15T15:00:16-07:00 shadowfax env[745086]:   },
+2026-10-15T15:00:16-07:00 shadowfax env[745086]:   "recovered": false,
+2026-10-15T15:00:16-07:00 shadowfax env[745086]:   "restarted_units": [],
+2026-10-15T15:00:16-07:00 shadowfax env[745086]:   "statuses": {
+2026-10-15T15:00:16-07:00 shadowfax env[745086]:     "backend": false,
+2026-10-15T15:00:16-07:00 shadowfax env[745086]:     "local_proxy": false
+2026-10-15T15:00:16-07:00 shadowfax env[745086]:   }
+2026-10-15T15:00:16-07:00 shadowfax env[745086]: }
+2026-10-15T15:00:16-07:00 shadowfax systemd[1600]: shadowfax-ensure-active-stack.service: Main process exited, code=exited, status=1/FAILURE
+2026-10-15T15:00:16-07:00 shadowfax systemd[1600]: shadowfax-ensure-active-stack.service: Failed with result 'exit-code'.
+2026-10-15T15:00:16-07:00 shadowfax systemd[1600]: Failed to start shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy.
+2026-10-15T15:03:46-07:00 shadowfax systemd[1600]: Starting shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy...
+2026-10-15T15:05:16-07:00 shadowfax env[749701]: {
+2026-10-15T15:05:16-07:00 shadowfax env[749701]:   "active_profile": "qwen3.8-27b",
+2026-10-15T15:05:16-07:00 shadowfax env[749701]:   "drifted_units": [],
+2026-10-15T15:05:16-07:00 shadowfax env[749701]:   "exact_output_probe": {
+2026-10-15T15:05:16-07:00 shadowfax env[749701]:     "error": "backend unhealthy",
+2026-10-15T15:05:16-07:00 shadowfax env[749701]:     "ok": false
+2026-10-15T15:05:16-07:00 shadowfax env[749701]:   },
+2026-10-15T15:05:16-07:00 shadowfax env[749701]:   "gpu": {
+2026-10-15T15:05:16-07:00 shadowfax env[749701]:     "error": "no main PID",
+2026-10-15T15:05:16-07:00 shadowfax env[749701]:     "ok": false,
+2026-10-15T15:05:16-07:00 shadowfax env[749701]:     "state": {
+2026-10-15T15:05:16-07:00 shadowfax env[749701]:       "MainPID": "0",
+2026-10-15T15:05:16-07:00 shadowfax env[749701]:       "SubState": "dead"
+2026-10-15T15:05:16-07:00 shadowfax env[749701]:     }
+2026-10-15T15:05:16-07:00 shadowfax env[749701]:   },
+2026-10-15T15:05:16-07:00 shadowfax env[749701]:   "recovered": false,
+2026-10-15T15:05:16-07:00 shadowfax env[749701]:   "restarted_units": [],
+2026-10-15T15:05:16-07:00 shadowfax env[749701]:   "statuses": {
+2026-10-15T15:05:16-07:00 shadowfax env[749701]:     "backend": false,
+2026-10-15T15:05:16-07:00 shadowfax env[749701]:     "local_proxy": false
+2026-10-15T15:05:16-07:00 shadowfax env[749701]:   }
+2026-10-15T15:05:16-07:00 shadowfax env[749701]: }
+2026-10-15T15:05:16-07:00 shadowfax systemd[1600]: shadowfax-ensure-active-stack.service: Main process exited, code=exited, status=1/FAILURE
+2026-10-15T15:05:16-07:00 shadowfax systemd[1600]: shadowfax-ensure-active-stack.service: Failed with result 'exit-code'.
+2026-10-15T15:05:16-07:00 shadowfax systemd[1600]: Failed to start shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy.
+2026-10-15T15:08:47-07:00 shadowfax systemd[1600]: Starting shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy...
+2026-10-15T15:10:17-07:00 shadowfax env[753840]: {
+2026-10-15T15:10:17-07:00 shadowfax env[753840]:   "active_profile": "qwen3.8-27b",
+2026-10-15T15:10:17-07:00 shadowfax env[753840]:   "drifted_units": [],
+2026-10-15T15:10:17-07:00 shadowfax env[753840]:   "exact_output_probe": {
+2026-10-15T15:10:17-07:00 shadowfax env[753840]:     "error": "backend unhealthy",
+2026-10-15T15:10:17-07:00 shadowfax env[753840]:     "ok": false
+2026-10-15T15:10:17-07:00 shadowfax env[753840]:   },
+2026-10-15T15:10:17-07:00 shadowfax env[753840]:   "gpu": {
+2026-10-15T15:10:17-07:00 shadowfax env[753840]:     "error": "no main PID",
+2026-10-15T15:10:17-07:00 shadowfax env[753840]:     "ok": false,
+2026-10-15T15:10:17-07:00 shadowfax env[753840]:     "state": {
+2026-10-15T15:10:17-07:00 shadowfax env[753840]:       "MainPID": "0",
+2026-10-15T15:10:17-07:00 shadowfax env[753840]:       "SubState": "dead"
+2026-10-15T15:10:17-07:00 shadowfax env[753840]:     }
+2026-10-15T15:10:17-07:00 shadowfax env[753840]:   },
+2026-10-15T15:10:17-07:00 shadowfax env[753840]:   "recovered": false,
+2026-10-15T15:10:17-07:00 shadowfax env[753840]:   "restarted_units": [],
+2026-10-15T15:10:17-07:00 shadowfax env[753840]:   "statuses": {
+2026-10-15T15:10:17-07:00 shadowfax env[753840]:     "backend": false,
+2026-10-15T15:10:17-07:00 shadowfax env[753840]:     "local_proxy": false
+2026-10-15T15:10:17-07:00 shadowfax env[753840]:   }
+2026-10-15T15:10:17-07:00 shadowfax env[753840]: }
+2026-10-15T15:10:17-07:00 shadowfax systemd[1600]: shadowfax-ensure-active-stack.service: Main process exited, code=exited, status=1/FAILURE
+2026-10-15T15:10:17-07:00 shadowfax systemd[1600]: shadowfax-ensure-active-stack.service: Failed with result 'exit-code'.
+2026-10-15T15:10:17-07:00 shadowfax systemd[1600]: Failed to start shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy.
+2026-10-15T15:13:47-07:00 shadowfax systemd[1600]: Starting shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy...
+2026-10-15T15:15:17-07:00 shadowfax env[757772]: {
+2026-10-15T15:15:17-07:00 shadowfax env[757772]:   "active_profile": "qwen3.8-27b",
+2026-10-15T15:15:17-07:00 shadowfax env[757772]:   "drifted_units": [],
+2026-10-15T15:15:17-07:00 shadowfax env[757772]:   "exact_output_probe": {
+2026-10-15T15:15:17-07:00 shadowfax env[757772]:     "error": "backend unhealthy",
+2026-10-15T15:15:17-07:00 shadowfax env[757772]:     "ok": false
+2026-10-15T15:15:17-07:00 shadowfax env[757772]:   },
+2026-10-15T15:15:17-07:00 shadowfax env[757772]:   "gpu": {
+2026-10-15T15:15:17-07:00 shadowfax env[757772]:     "error": "no main PID",
+2026-10-15T15:15:17-07:00 shadowfax env[757772]:     "ok": false,
+2026-10-15T15:15:17-07:00 shadowfax env[757772]:     "state": {
+2026-10-15T15:15:17-07:00 shadowfax env[757772]:       "MainPID": "0",
+2026-10-15T15:15:17-07:00 shadowfax env[757772]:       "SubState": "dead"
+2026-10-15T15:15:17-07:00 shadowfax env[757772]:     }
+2026-10-15T15:15:17-07:00 shadowfax env[757772]:   },
+2026-10-15T15:15:17-07:00 shadowfax env[757772]:   "recovered": false,
+2026-10-15T15:15:17-07:00 shadowfax env[757772]:   "restarted_units": [],
+2026-10-15T15:15:17-07:00 shadowfax env[757772]:   "statuses": {
+2026-10-15T15:15:17-07:00 shadowfax env[757772]:     "backend": false,
+2026-10-15T15:15:17-07:00 shadowfax env[757772]:     "local_proxy": false
+2026-10-15T15:15:17-07:00 shadowfax env[757772]:   }
+2026-10-15T15:15:17-07:00 shadowfax env[757772]: }
+2026-10-15T15:15:17-07:00 shadowfax systemd[1600]: shadowfax-ensure-active-stack.service: Main process exited, code=exited, status=1/FAILURE
+2026-10-15T15:15:17-07:00 shadowfax systemd[1600]: shadowfax-ensure-active-stack.service: Failed with result 'exit-code'.
+2026-10-15T15:15:17-07:00 shadowfax systemd[1600]: Failed to start shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy.
+2026-10-15T15:18:47-07:00 shadowfax systemd[1600]: Starting shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy...
+2026-10-15T15:20:18-07:00 shadowfax env[762043]: {
+2026-10-15T15:20:18-07:00 shadowfax env[762043]:   "active_profile": "qwen3.8-27b",
+2026-10-15T15:20:18-07:00 shadowfax env[762043]:   "drifted_units": [],
+2026-10-15T15:20:18-07:00 shadowfax env[762043]:   "exact_output_probe": {
+2026-10-15T15:20:18-07:00 shadowfax env[762043]:     "error": "backend unhealthy",
+2026-10-15T15:20:18-07:00 shadowfax env[762043]:     "ok": false
+2026-10-15T15:20:18-07:00 shadowfax env[762043]:   },
+2026-10-15T15:20:18-07:00 shadowfax env[762043]:   "gpu": {
+2026-10-15T15:20:18-07:00 shadowfax env[762043]:     "error": "no main PID",
+2026-10-15T15:20:18-07:00 shadowfax env[762043]:     "ok": false,
+2026-10-15T15:20:18-07:00 shadowfax env[762043]:     "state": {
+2026-10-15T15:20:18-07:00 shadowfax env[762043]:       "MainPID": "0",
+2026-10-15T15:20:18-07:00 shadowfax env[762043]:       "SubState": "dead"
+2026-10-15T15:20:18-07:00 shadowfax env[762043]:     }
+2026-10-15T15:20:18-07:00 shadowfax env[762043]:   },
+2026-10-15T15:20:18-07:00 shadowfax env[762043]:   "recovered": false,
+2026-10-15T15:20:18-07:00 shadowfax env[762043]:   "restarted_units": [],
+2026-10-15T15:20:18-07:00 shadowfax env[762043]:   "statuses": {
+2026-10-15T15:20:18-07:00 shadowfax env[762043]:     "backend": false,
+2026-10-15T15:20:18-07:00 shadowfax env[762043]:     "local_proxy": false
+2026-10-15T15:20:18-07:00 shadowfax env[762043]:   }
+2026-10-15T15:20:18-07:00 shadowfax env[762043]: }
+2026-10-15T15:20:18-07:00 shadowfax systemd[1600]: shadowfax-ensure-active-stack.service: Main process exited, code=exited, status=1/FAILURE
+2026-10-15T15:20:18-07:00 shadowfax systemd[1600]: shadowfax-ensure-active-stack.service: Failed with result 'exit-code'.
+2026-10-15T15:20:18-07:00 shadowfax systemd[1600]: Failed to start shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy.
+2026-10-15T15:23:48-07:00 shadowfax systemd[1600]: Starting shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy...
+2026-10-15T15:23:48-07:00 shadowfax env[766131]: {
+2026-10-15T15:23:48-07:00 shadowfax env[766131]:   "active_profile": "qwen3.8-27b",
+2026-10-15T15:23:48-07:00 shadowfax env[766131]:   "drifted_units": [],
+2026-10-15T15:23:48-07:00 shadowfax env[766131]:   "exact_output_probe": {
+2026-10-15T15:23:48-07:00 shadowfax env[766131]:     "content": "READY",
+2026-10-15T15:23:48-07:00 shadowfax env[766131]:     "finish_reason": "stop",
+2026-10-15T15:23:48-07:00 shadowfax env[766131]:     "ok": true,
+2026-10-15T15:23:48-07:00 shadowfax env[766131]:     "visible_content": "READY"
+2026-10-15T15:23:48-07:00 shadowfax env[766131]:   },
+2026-10-15T15:23:48-07:00 shadowfax env[766131]:   "gpu": {
+2026-10-15T15:23:48-07:00 shadowfax env[766131]:     "devices": [
+2026-10-15T15:23:48-07:00 shadowfax env[766131]:       "GPU-0ee51b66-aca4-285d-105f-9f2dd6f58879",
+2026-10-15T15:23:48-07:00 shadowfax env[766131]:       "GPU-d64aca9a-d2ed-af21-2b47-abeaa19cef7a"
+2026-10-15T15:23:48-07:00 shadowfax env[766131]:     ],
+2026-10-15T15:23:48-07:00 shadowfax env[766131]:     "ok": true,
+2026-10-15T15:23:48-07:00 shadowfax env[766131]:     "pid": 763635,
+2026-10-15T15:23:48-07:00 shadowfax env[766131]:     "state": {
+2026-10-15T15:23:48-07:00 shadowfax env[766131]:       "MainPID": "763635",
+2026-10-15T15:23:48-07:00 shadowfax env[766131]:       "SubState": "running"
+2026-10-15T15:23:48-07:00 shadowfax env[766131]:     }
+2026-10-15T15:23:48-07:00 shadowfax env[766131]:   },
+2026-10-15T15:23:48-07:00 shadowfax env[766131]:   "recovered": false,
+2026-10-15T15:23:48-07:00 shadowfax env[766131]:   "restarted_units": [],
+2026-10-15T15:23:48-07:00 shadowfax env[766131]:   "statuses": {
+2026-10-15T15:23:48-07:00 shadowfax env[766131]:     "backend": true,
+2026-10-15T15:23:48-07:00 shadowfax env[766131]:     "local_proxy": true
+2026-10-15T15:23:48-07:00 shadowfax env[766131]:   }
+2026-10-15T15:23:48-07:00 shadowfax env[766131]: }
+2026-10-15T15:23:48-07:00 shadowfax systemd[1600]: Finished shadowfax-ensure-active-stack.service - Ensure the active Shadowfax local LLM stack is healthy.
+## Hermes cron executions claimed between 14:12:50 and 15:24:00 (executions.db, read-only) with their job name/schedule
+cron_execution {"claimed_at": "2026-10-15T14:30:23.448606-07:00", "error": "RuntimeError: Connection error.", "finished_at": "2026-10-15T14:35:37.312711-07:00", "id": "4a539dfbb2734e8b844132c55ed2f509", "job_id": "c937d60f9922", "job_name": "shadowfax-autonomous-heartbeat", "job_schedule": "*/30 * * * *", "started_at": "2026-10-15T14:30:25.201413-07:00", "status": "failed"}
+cron_execution {"claimed_at": "2026-10-15T15:00:23.447269-07:00", "error": "RuntimeError: Connection error.", "finished_at": "2026-10-15T15:05:25.799535-07:00", "id": "203cdda171e64d2dae3a7238f7119b19", "job_id": "c937d60f9922", "job_name": "shadowfax-autonomous-heartbeat", "job_schedule": "*/30 * * * *", "started_at": "2026-10-15T15:00:24.765693-07:00", "status": "failed"}

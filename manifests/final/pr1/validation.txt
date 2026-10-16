@@ -1,0 +1,8 @@
+validator: c/experiment_manifest.py from a detached worktree of 93b741839677ec457868fd71ab668cc1249b9a22 (blob d9babf6be5d87eae64c8e4a96997a1d87459bfdf, identical at 7b55a9b3, a2c8ba7a, d0e19de2), run 2026-10-15T19:33:07-07:00 on computer4
+pr1-engine-1992.json: ok (engine_commit, improvement)
+pr1-engine-3005.json: ok (engine_commit, improvement)
+pr1-expert-major-1992.json: ok (DSV4_MOE_EXPERT_MAJOR, improvement)
+pr1-mm-warp-1992.json: ok (DSV4_MM_WARP, improvement)
+pr1-moe-double-1992.json: ok (COLI_CUDA_MOE_DOUBLE, improvement)
+pr1-moe-double-3005.json: ok (COLI_CUDA_MOE_DOUBLE, improvement)
+exit=0

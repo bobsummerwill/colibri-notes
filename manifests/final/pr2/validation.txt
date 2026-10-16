@@ -1,0 +1,9 @@
+validator: c/experiment_manifest.py from a detached worktree of d0e19de23c3baf314ee932347c42d5f6d49ef4fb (blob d9babf6be5d87eae64c8e4a96997a1d87459bfdf, identical at 7b55a9b3, a2c8ba7a, 93b74183), worktree clean (0 changed files), run 2026-10-15T19:26:49-07:00 on computer4
+strictly one-variable manifests (the validated set):
+pr2-resident-first.json: ok (V4_GPU_RESIDENT_FIRST, improvement)
+pr2-peer-device-compute.json: ok (DSV4_CUDA_PEER_DEVICE, improvement)
+pr2-peer-compute.json: ok (DSV4_CUDA_PEER_COMPUTE, improvement)
+exit=0
+supplementary two-variable record (X1 -> X2; rejected by design, because changed_variables names two variables):
+supplementary/pr2-peer-device-p2p-read-two-variable.json: changed_variables must name exactly one variable
+exit=1 (expected 1)

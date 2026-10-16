@@ -1,0 +1,320 @@
+{
+  "version": 1,
+  "hypothesis": "The pr0/dsv4-fixes tip (decode-mirror uploads and in-place refills queued on the compute stream with h2d() instead of a legacy-stream cudaMemcpy, plus the other pr0 fixes) leaves one-GPU REAP-132 greedy decode output byte-identical to upstream dev and does not slow decode",
+  "commit": "a2c8ba7a149a31a781e84a992aa980afdb93497d",
+  "model": "DeepSeek V4 Flash REAP 150B (puwaer/DeepSeek-V4-Flash-0731-reap-150b, 132 routed experts, fp4 experts / fp8 dense), colibri safetensors layout, 79 GiB on disk",
+  "command": "build: cd c && make -f Makefile.deepseek-v4 deepseek-v4 CUDA=1 CUDA_HOME=/usr NVCC=/usr/bin/nvcc CUDA_ARCH=sm_86 NO_TC=1 -j8; run: python3 c/coli serve --model <REAP dir> --ram 40 --ctx 8192 --host 127.0.0.1 --port 8090, server environment exactly PATH/HOME/USER/LOGNAME/LANG + the config's env keys (env -i; COLI_CUDA_MOE_DOUBLE unset); one cold server process per sample, 3 samples per arm interleaved D Z / Z D / D Z (D = dev 7b55a9b3, Z = pr0 a2c8ba7a); client bench_decode.py sends 6 prompts one after another, max_tokens 300 each, streamed; tok_s = mean over the 6 prompts of (chunks - 1) / (last chunk time - first chunk time); baseline arm D, trial arm Z",
+  "prompt_hash": "f9ed5d77f965bc53da65ebb1a85da283e871b6342c867f13bb1cdd4914249202",
+  "hardware": {
+    "cpu": "AMD Ryzen 9 9950X3D, 16 cores / 32 threads, 1 socket, governor powersave (amd-pstate), max 5.76 GHz (engine: 16 OpenMP compute threads + 3 expert-loader lanes)",
+    "ram": "62 GiB DDR5 (8 GiB swap); engine --ram 40 (31.6 GiB routed-expert RAM cache, 6.2 GiB dense resident); MemAvailable 48.1 GiB (49211 MiB) at preflight with llama.cpp still loaded",
+    "storage": "WD_BLACK SN850X 4 TB NVMe (PCIe 4.0), ext4 root filesystem (rw,relatime), model read with O_DIRECT (v4_ssd_io mode=direct-aligned); OS page cache warm between samples",
+    "os": "Ubuntu 24.04.4 LTS, kernel 7.0.0-34-generic, gcc 13.3.0, Python 3.12.3, CUDA toolkit 12.0.140 (generic build CUDA_ARCH=sm_86 NO_TC=1), NVIDIA driver 595.84; 2x NVIDIA GeForce RTX 3090 24 GB on PCIe 4.0 x8, NVLink NV4 bridge; only GPU0 used (COLI_GPU=0 DSV4_CUDA_DEVICE=0; GPU1 stayed at 83 MiB in every sample)"
+  },
+  "warmup_runs": 0,
+  "changed_variables": [
+    "engine_commit"
+  ],
+  "baseline": {
+    "config": {
+      "COLI_CUDA": "1",
+      "COLI_GPU": "0",
+      "DSV4_CUDA_DEVICE": "0",
+      "CUDA_DENSE": "1",
+      "COLI_CUDA_PIPE": "2",
+      "COLI_CUDA_ATTN_BATCH": "1",
+      "COLI_CUDA_MOE_BATCH": "1",
+      "V4_MOE_REFILL_GROUP": "12",
+      "V4_LOADER_LANES": "3",
+      "V4_PREFIX_CKPT_DISK": "0",
+      "COLI_CUDA_MOE_DOUBLE": "unset (default 0)",
+      "ram_gib": "40",
+      "ctx": "8192",
+      "temperature": "0 (greedy engine; request says 0.7, ignored)",
+      "engine_commit": "7b55a9b3792527f52d1a2337fd9e312b9a7983e3"
+    },
+    "samples": {
+      "tok_s": [
+        2.8707,
+        2.8832,
+        2.8825
+      ],
+      "per_prompt_tok_s": [
+        [
+          2.633,
+          2.762,
+          2.951,
+          2.691,
+          3.312,
+          2.875
+        ],
+        [
+          2.687,
+          2.773,
+          2.957,
+          2.693,
+          3.311,
+          2.878
+        ],
+        [
+          2.688,
+          2.776,
+          2.954,
+          2.692,
+          3.311,
+          2.874
+        ]
+      ],
+      "text_sha256": [
+        [
+          "2aa40adc7d4deb49fa84db4e070a48f4d14d10981ed8103efe83388292c84e9b",
+          "643fa3d128e4c41c671ffc829f6d554531d259c2eb075820085d8981e985af80",
+          "d64c91874f9ee22c50b943803c51eeeca79f4b613b4e551456b6735d57a318da",
+          "9fffce519994640443407e699f48b4c1762e8a23af2b6719531f317892cc5231",
+          "e3bb3209f760833a7e440b7371e35ceb90dbac2c459f65ab75131c179db1ebda",
+          "31cbd1c1700fd7f64dda1d79142ea7d5e2d1b442ccc6e879c44bee7a3bfb439e"
+        ],
+        [
+          "2aa40adc7d4deb49fa84db4e070a48f4d14d10981ed8103efe83388292c84e9b",
+          "643fa3d128e4c41c671ffc829f6d554531d259c2eb075820085d8981e985af80",
+          "d64c91874f9ee22c50b943803c51eeeca79f4b613b4e551456b6735d57a318da",
+          "9fffce519994640443407e699f48b4c1762e8a23af2b6719531f317892cc5231",
+          "e3bb3209f760833a7e440b7371e35ceb90dbac2c459f65ab75131c179db1ebda",
+          "31cbd1c1700fd7f64dda1d79142ea7d5e2d1b442ccc6e879c44bee7a3bfb439e"
+        ],
+        [
+          "2aa40adc7d4deb49fa84db4e070a48f4d14d10981ed8103efe83388292c84e9b",
+          "643fa3d128e4c41c671ffc829f6d554531d259c2eb075820085d8981e985af80",
+          "d64c91874f9ee22c50b943803c51eeeca79f4b613b4e551456b6735d57a318da",
+          "9fffce519994640443407e699f48b4c1762e8a23af2b6719531f317892cc5231",
+          "e3bb3209f760833a7e440b7371e35ceb90dbac2c459f65ab75131c179db1ebda",
+          "31cbd1c1700fd7f64dda1d79142ea7d5e2d1b442ccc6e879c44bee7a3bfb439e"
+        ]
+      ],
+      "sample_dirs": [
+        "D/s1",
+        "D/s2",
+        "D/s3"
+      ],
+      "run_order_seq": [
+        1,
+        4,
+        5
+      ],
+      "gpu_mem_used_mib_at_ready": [
+        {
+          "0": 7220,
+          "1": 83
+        },
+        {
+          "0": 7220,
+          "1": 83
+        },
+        {
+          "0": 7220,
+          "1": 83
+        }
+      ],
+      "gpu_mem_used_mib_max": [
+        {
+          "0": 22030,
+          "1": 83
+        },
+        {
+          "0": 22030,
+          "1": 83
+        },
+        {
+          "0": 22030,
+          "1": 83
+        }
+      ],
+      "tok_s_mean": 2.8788,
+      "tok_s_stdev": 0.007
+    },
+    "median_tok_s": 2.8825,
+    "engine": {
+      "commit": "7b55a9b3792527f52d1a2337fd9e312b9a7983e3",
+      "binary_sha256": "beb037276ed54cd4c54a5e043bf876a38c4de900de661d8b30b75c314b36d127"
+    },
+    "quality": {
+      "method": "greedy: the full output text of each of the 6 prompts in every sample of this arm has the same sha256 as the same prompt in dev sample 1 (arm D s1), i.e. all 3 cold dev runs, all 3 cold pr0 runs and dev vs pr0 byte-identical; plus the engine's real environment (/proc/<pid>/environ), tree SHA, clean tree, binary sha256, client exit code, 300 streamed chunks per prompt, an unchanged .coli_usage and no failure line in serve.log, checked per sample",
+      "passed": true,
+      "problems": []
+    },
+    "evidence": {
+      "uri": "evidence/drift-arm-D.tgz",
+      "sha256": "b996629dbcf74266e822a98c0bca177a7a2481af30faae79285490331e806baa",
+      "contains": "drift/D/s*/ (serve.log, bench.jsonl with full texts, sample.txt, engine_environ.txt, procs.txt, nvsmi.csv, gpu_*.csv, mode.txt)",
+      "full_run": "drift.tgz (sha256 in drift.tgz.sha256): all arms, meta/ (host, trees, scripts, probe diffs, llama before/after), phase1.json, run.log, summary.json; the run.log inside ends at the 'ALL DONE; packing' line, because run_drift.sh appends its 'packed <sha256>' line only after writing the archive (the raw run.log on shadowfax has it)"
+    }
+  },
+  "trial": {
+    "config": {
+      "COLI_CUDA": "1",
+      "COLI_GPU": "0",
+      "DSV4_CUDA_DEVICE": "0",
+      "CUDA_DENSE": "1",
+      "COLI_CUDA_PIPE": "2",
+      "COLI_CUDA_ATTN_BATCH": "1",
+      "COLI_CUDA_MOE_BATCH": "1",
+      "V4_MOE_REFILL_GROUP": "12",
+      "V4_LOADER_LANES": "3",
+      "V4_PREFIX_CKPT_DISK": "0",
+      "COLI_CUDA_MOE_DOUBLE": "unset (default 0)",
+      "ram_gib": "40",
+      "ctx": "8192",
+      "temperature": "0 (greedy engine; request says 0.7, ignored)",
+      "engine_commit": "a2c8ba7a149a31a781e84a992aa980afdb93497d"
+    },
+    "samples": {
+      "tok_s": [
+        2.8862,
+        2.8915,
+        2.8942
+      ],
+      "per_prompt_tok_s": [
+        [
+          2.657,
+          2.783,
+          2.961,
+          2.705,
+          3.322,
+          2.889
+        ],
+        [
+          2.681,
+          2.791,
+          2.965,
+          2.703,
+          3.32,
+          2.889
+        ],
+        [
+          2.694,
+          2.788,
+          2.966,
+          2.705,
+          3.323,
+          2.889
+        ]
+      ],
+      "text_sha256": [
+        [
+          "2aa40adc7d4deb49fa84db4e070a48f4d14d10981ed8103efe83388292c84e9b",
+          "643fa3d128e4c41c671ffc829f6d554531d259c2eb075820085d8981e985af80",
+          "d64c91874f9ee22c50b943803c51eeeca79f4b613b4e551456b6735d57a318da",
+          "9fffce519994640443407e699f48b4c1762e8a23af2b6719531f317892cc5231",
+          "e3bb3209f760833a7e440b7371e35ceb90dbac2c459f65ab75131c179db1ebda",
+          "31cbd1c1700fd7f64dda1d79142ea7d5e2d1b442ccc6e879c44bee7a3bfb439e"
+        ],
+        [
+          "2aa40adc7d4deb49fa84db4e070a48f4d14d10981ed8103efe83388292c84e9b",
+          "643fa3d128e4c41c671ffc829f6d554531d259c2eb075820085d8981e985af80",
+          "d64c91874f9ee22c50b943803c51eeeca79f4b613b4e551456b6735d57a318da",
+          "9fffce519994640443407e699f48b4c1762e8a23af2b6719531f317892cc5231",
+          "e3bb3209f760833a7e440b7371e35ceb90dbac2c459f65ab75131c179db1ebda",
+          "31cbd1c1700fd7f64dda1d79142ea7d5e2d1b442ccc6e879c44bee7a3bfb439e"
+        ],
+        [
+          "2aa40adc7d4deb49fa84db4e070a48f4d14d10981ed8103efe83388292c84e9b",
+          "643fa3d128e4c41c671ffc829f6d554531d259c2eb075820085d8981e985af80",
+          "d64c91874f9ee22c50b943803c51eeeca79f4b613b4e551456b6735d57a318da",
+          "9fffce519994640443407e699f48b4c1762e8a23af2b6719531f317892cc5231",
+          "e3bb3209f760833a7e440b7371e35ceb90dbac2c459f65ab75131c179db1ebda",
+          "31cbd1c1700fd7f64dda1d79142ea7d5e2d1b442ccc6e879c44bee7a3bfb439e"
+        ]
+      ],
+      "sample_dirs": [
+        "Z/s1",
+        "Z/s2",
+        "Z/s3"
+      ],
+      "run_order_seq": [
+        2,
+        3,
+        6
+      ],
+      "gpu_mem_used_mib_at_ready": [
+        {
+          "0": 7220,
+          "1": 83
+        },
+        {
+          "0": 7220,
+          "1": 83
+        },
+        {
+          "0": 7220,
+          "1": 83
+        }
+      ],
+      "gpu_mem_used_mib_max": [
+        {
+          "0": 22030,
+          "1": 83
+        },
+        {
+          "0": 22030,
+          "1": 83
+        },
+        {
+          "0": 22030,
+          "1": 83
+        }
+      ],
+      "tok_s_mean": 2.8906,
+      "tok_s_stdev": 0.0041
+    },
+    "median_tok_s": 2.8915,
+    "engine": {
+      "commit": "a2c8ba7a149a31a781e84a992aa980afdb93497d",
+      "binary_sha256": "d26bc5526a6c05b03e254a5259da0503d02f1083d682124a6587fff124621812"
+    },
+    "quality": {
+      "method": "greedy: the full output text of each of the 6 prompts in every sample of this arm has the same sha256 as the same prompt in dev sample 1 (arm D s1), i.e. all 3 cold dev runs, all 3 cold pr0 runs and dev vs pr0 byte-identical; plus the engine's real environment (/proc/<pid>/environ), tree SHA, clean tree, binary sha256, client exit code, 300 streamed chunks per prompt, an unchanged .coli_usage and no failure line in serve.log, checked per sample",
+      "passed": true,
+      "problems": []
+    },
+    "evidence": {
+      "uri": "evidence/drift-arm-Z.tgz",
+      "sha256": "fdbbd4ae3a350fa1f4a3dae5c10fa35c6b4fcc2a84fee2d7ddf784a8ca0ce518",
+      "contains": "drift/Z/s*/ (serve.log, bench.jsonl with full texts, sample.txt, engine_environ.txt, procs.txt, nvsmi.csv, gpu_*.csv, mode.txt)",
+      "full_run": "drift.tgz (sha256 in drift.tgz.sha256): all arms, meta/ (host, trees, scripts, probe diffs, llama before/after), phase1.json, run.log, summary.json; the run.log inside ends at the 'ALL DONE; packing' line, because run_drift.sh appends its 'packed <sha256>' line only after writing the archive (the raw run.log on shadowfax has it)"
+    }
+  },
+  "outcome": "no-change",
+  "speedup_median_tok_s": 1.0031,
+  "drift_observation": {
+    "dev_text_differs_across_cold_runs": false,
+    "pr0_text_differs_across_cold_runs": false,
+    "dev_vs_pr0_text_differs": false,
+    "probe_logit_streams_identical": true,
+    "note": "dev did not drift in these runs: its 3 cold runs gave byte-identical text on all 6 prompts, and the probe builds gave bit-identical per-token logits and final-hidden-row hashes (2 dev, 2 pr0 runs x 600 tokens). The run lacked every documented trigger of the race: (1) no long first request (6 one-sentence prompts, TTFT 3.9-7.5 s; on a development tree with the same copies, runs differed from the first decode step after a long first request, pr0 commit b2c8ca61); (2) the default mirror budget (DSV4_CUDA_EXPERT_MIRRORS unset; a smaller budget made the drift show within a few tokens and flip a token in 2 of 3 runs, b2c8ca61); (3) no double bank (COLI_CUDA_MOE_DOUBLE unset; with it, 10-14 PR #1 arm C diverged in 2 of 3 cold runs before the fix); (4) refills not forced onto the pageable path (DSV4_CUDA_PIN_HOST unset, so refill sources were page-locked up to the 20 GiB cap, and dev queues page-locked refills on the compute stream; the PR #0 harness used DSV4_CUDA_PIN_HOST=0; whether any refill here went past the cap was not logged). The upload race pr0 fixes is timing-dependent, so this is no evidence that dev is race-free, and this manifest makes no claim that pr0 fixes a drift observed here. Probe builds ran at parity with the plain builds on the same two prompts (decode_0, decode_1; mean of the two per sample): D 2.6975/2.73/2.732, Z 2.72/2.736/2.741, Dp 2.735/2.735, Zp 2.746/2.7435 tok/s; probe/plain 1.0018x (dev) and 1.0032x (pr0) on medians, within 0.6% on means, so the logging did not slow decode. phase2 mean_tok_s is over these 2 prompts and phase-1 tok_s over all 6, so the two are not comparable directly. See stats.json phase2."
+  },
+  "speed_comparison": {
+    "dev_tok_s": [
+      2.8707,
+      2.8832,
+      2.8825
+    ],
+    "pr0_tok_s": [
+      2.8862,
+      2.8915,
+      2.8942
+    ],
+    "dev_median": 2.8825,
+    "pr0_median": 2.8915,
+    "median_ratio": 1.0031,
+    "every_pr0_sample_above_every_dev_sample": true,
+    "welch_pr0_vs_dev": {
+      "t": 2.52,
+      "df": 3.2,
+      "p_two_sided": 0.08
+    },
+    "no_change_threshold": "median ratio within 1% (0.99..1.01)",
+    "note": "pr0 median 2.8915 vs dev 2.8825 tok/s: +0.31%, below the 1% no-change threshold, so the outcome is no-change. Every pr0 sample is faster than every dev sample, but with n=3 per arm Welch's t = 2.52 (df 3.2), two-sided p = 0.08: not significant. Read: pr0 does not slow decode here; this is no evidence of a speed-up either."
+  },
+  "conclusion": "No drift was reproduced: dev 7b55a9b3 and pr0 a2c8ba7a gave byte-identical greedy text across 3 cold runs each and against each other on all 6 prompts, and the probe builds gave bit-identical per-token logit and final-hidden hashes (2 dev, 2 pr0 runs x 600 tokens). The run lacked every documented trigger of the race: (1) no long first request (6 one-sentence prompts, TTFT 3.9-7.5 s; on a development tree with the same copies, runs differed from the first decode step after a long first request, pr0 commit b2c8ca61); (2) the default mirror budget (DSV4_CUDA_EXPERT_MIRRORS unset; a smaller budget made the drift show within a few tokens and flip a token in 2 of 3 runs, b2c8ca61); (3) no double bank (COLI_CUDA_MOE_DOUBLE unset; with it, 10-14 PR #1 arm C diverged in 2 of 3 cold runs before the fix); (4) refills not forced onto the pageable path (DSV4_CUDA_PIN_HOST unset, so refill sources were page-locked up to the 20 GiB cap, and dev queues page-locked refills on the compute stream; the PR #0 harness used DSV4_CUDA_PIN_HOST=0; whether any refill here went past the cap was not logged). So this neither shows dev race-free nor demonstrates the fix end to end; the race itself is shown by PR #0's single-GPU harness (a refill in place under a queued fused MoE read the refilled expert in 50 of 50 and 300 of 300 trials on the unfixed backend, in none with the fix; b2c8ca61) and by the 10-14 double-bank divergence before the fix. Speed: pr0 median 2.8915 vs dev 2.8825 tok/s: +0.31%, below the 1% no-change threshold, so the outcome is no-change. Every pr0 sample is faster than every dev sample, but with n=3 per arm Welch's t = 2.52 (df 3.2), two-sided p = 0.08: not significant. Read: pr0 does not slow decode here; this is no evidence of a speed-up either.",
+  "side_effects": "Hermes during the GPU window (llama.cpp stopped 17:36:40-18:58:44 PDT): the shadowfax-ensure-active-stack watchdog (OnUnitActiveSec=5min user timer) ran 16 times from 17:38:57 to 18:54:02, reported the backend unhealthy every time and restarted nothing (restarted_units [], recovered false); the Hermes cron jobs that ran in the window had no LLM backend: shadowfax-autonomous-heartbeat at 18:00:25 (failed: RuntimeError: Connection error.), 18:30:25 (failed: RuntimeError: Connection error.). Source: evidence/hermes-window.txt."
+}

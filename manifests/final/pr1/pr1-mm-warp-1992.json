@@ -1,0 +1,171 @@
+{
+  "version": 1,
+  "hypothesis": "The warp-per-row dense batch matmul (auto: I<=1024, i.e. attn.wq_b) is faster than mm_batch in batched prefill",
+  "commit": "93b741839677ec457868fd71ab668cc1249b9a22",
+  "model": "DeepSeek V4 Flash REAP 150B (puwaer/DeepSeek-V4-Flash-0731-reap-150b, 132 routed experts, fp4 experts / fp8 dense), colibri safetensors layout, 79 GiB on disk",
+  "command": "build: cd c && make -f Makefile.deepseek-v4 deepseek-v4 CUDA=1 CUDA_HOME=/usr NVCC=/usr/bin/nvcc CUDA_ARCH=sm_86 NO_TC=1 -j8; run: python3 c/coli serve --model <REAP dir> --ram 40 --ctx 8192 --host 127.0.0.1 --port 8090, server environment exactly PATH/HOME/USER/LOGNAME/LANG + the config's env keys (env -i); one freshly started server process per sample (OS page cache not dropped between samples, see notes.cache_state), 3 samples per arm interleaved with the arm order rotated per round (A B C E F / B C E F A / C E F A B); client bench_pr1.py sends request 1 (long_prefill: 1992-token prompt, max_tokens 100) and, for arms A/B/C, then request 2 (long_prefill_2: 3005-token prompt, max_tokens 60), streamed, greedy; tok_s = prompt_tokens / time-to-first-token of the named request; metric: request 'long_prefill' (1992 prompt tokens); baseline arm F, trial arm B",
+  "prompt_hash": "13fc61ddae676a87f55d68c32d7488f90f0c99af634f30dc846eaa8d1707257f",
+  "hardware": {
+    "cpu": "AMD Ryzen 9 9950X3D, 16 cores / 32 threads, 1 socket, governor powersave (amd-pstate), max 5.76 GHz (engine: 16 OpenMP compute threads + 3 expert-loader lanes)",
+    "ram": "62 GiB DDR5 (8 GiB swap); engine --ram 40 (31.6 GiB routed-expert RAM cache, 6.2 GiB dense resident); MemAvailable 46.8 GiB (47933 MiB) at preflight with llama.cpp still loaded",
+    "storage": "WD_BLACK SN850X 4 TB NVMe (PCIe 4.0), ext4 root filesystem (rw,relatime), model read with O_DIRECT (v4_ssd_io mode=direct-aligned); OS page cache not dropped between samples; round 1 (samples 1-5) partly cold (serve-unit memory peak 7.9G-14.6G vs 7.3G in all 11 later samples), warm from round 2 on",
+    "os": "Ubuntu 24.04.4 LTS, kernel 7.0.0-34-generic, gcc 13.3.0, Python 3.12.3, CUDA toolkit 12.0.140 (generic build CUDA_ARCH=sm_86 NO_TC=1), NVIDIA driver 595.84; 2x NVIDIA GeForce RTX 3090 24 GB, PCIe 4.0 x16-capable cards running at link width x8, NVLink NV4 bridge; only GPU0 used (COLI_GPU=0 DSV4_CUDA_DEVICE=0)"
+  },
+  "warmup_runs": 0,
+  "changed_variables": [
+    "DSV4_MM_WARP"
+  ],
+  "baseline": {
+    "config": {
+      "COLI_CUDA": "1",
+      "COLI_GPU": "0",
+      "DSV4_CUDA_DEVICE": "0",
+      "CUDA_DENSE": "1",
+      "COLI_CUDA_PIPE": "2",
+      "COLI_CUDA_ATTN_BATCH": "1",
+      "COLI_CUDA_MOE_BATCH": "1",
+      "V4_MOE_REFILL_GROUP": "12",
+      "V4_LOADER_LANES": "3",
+      "V4_PREFIX_CKPT_DISK": "0",
+      "ram_gib": "40",
+      "ctx": "8192",
+      "temperature": "0",
+      "engine_commit": "93b741839677ec457868fd71ab668cc1249b9a22",
+      "DSV4_MM_WARP": "0"
+    },
+    "samples": {
+      "tok_s": [
+        23.325,
+        23.3031,
+        23.3207
+      ],
+      "ttft_s": [
+        85.402,
+        85.482,
+        85.418
+      ],
+      "decode_tok_s": [
+        2.0493,
+        2.0535,
+        2.0527
+      ],
+      "text_sha256": [
+        "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba",
+        "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba",
+        "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba"
+      ],
+      "sample_dirs": [
+        "F/s1",
+        "F/s2",
+        "F/s3"
+      ],
+      "run_order_seq": [
+        5,
+        9,
+        13
+      ],
+      "tok_s_mean": 23.3163,
+      "tok_s_stdev": 0.0116,
+      "ttft_s_mean": 85.434,
+      "ttft_s_stdev": 0.042
+    },
+    "median_tok_s": 23.3207,
+    "engine": {
+      "commit": "93b741839677ec457868fd71ab668cc1249b9a22",
+      "binary_sha256": "a0a65edd3a5041a040bdd6a8abed1fedff1a2226d303a58a177bc87d8fce7c5f"
+    },
+    "quality": {
+      "method": "greedy (temperature 0): the full output text of every request (long_prefill and, where run, long_prefill_2) in every sample of this arm has the same sha256 as upstream dev (arm A, itself identical across its 3 samples); the engine's real environment (/proc/<pid>/environ), tree SHA and binary sha256 checked per sample",
+      "passed": true,
+      "problems": []
+    },
+    "evidence": {
+      "uri": "evidence/pr1-arm-F.tgz",
+      "sha256": "9de2b498b675a2fffe48281db2654a3cfba63d9260d8850429c4c12d9a5d5c3b",
+      "contains": "pr1/F/s*/ (serve.log, bench.jsonl with full texts, sample.txt, engine_environ.txt, procs.txt, nvsmi.csv, gpu_*.csv, mode.txt)",
+      "full_run": "pr1.tgz (sha256 in pr1.tgz.sha256): all arms, meta/ (host, trees, scripts, llama before/after), run.log, summary.json"
+    }
+  },
+  "trial": {
+    "config": {
+      "COLI_CUDA": "1",
+      "COLI_GPU": "0",
+      "DSV4_CUDA_DEVICE": "0",
+      "CUDA_DENSE": "1",
+      "COLI_CUDA_PIPE": "2",
+      "COLI_CUDA_ATTN_BATCH": "1",
+      "COLI_CUDA_MOE_BATCH": "1",
+      "V4_MOE_REFILL_GROUP": "12",
+      "V4_LOADER_LANES": "3",
+      "V4_PREFIX_CKPT_DISK": "0",
+      "ram_gib": "40",
+      "ctx": "8192",
+      "temperature": "0",
+      "engine_commit": "93b741839677ec457868fd71ab668cc1249b9a22",
+      "DSV4_MM_WARP": "unset (auto)"
+    },
+    "samples": {
+      "tok_s": [
+        24.2913,
+        24.2157,
+        24.2675
+      ],
+      "ttft_s": [
+        82.005,
+        82.261,
+        82.085
+      ],
+      "decode_tok_s": [
+        1.947,
+        2.0531,
+        2.0555
+      ],
+      "text_sha256": [
+        "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba",
+        "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba",
+        "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba"
+      ],
+      "sample_dirs": [
+        "B/s1",
+        "B/s2",
+        "B/s3"
+      ],
+      "run_order_seq": [
+        2,
+        6,
+        15
+      ],
+      "tok_s_mean": 24.2582,
+      "tok_s_stdev": 0.0387,
+      "ttft_s_mean": 82.117,
+      "ttft_s_stdev": 0.131
+    },
+    "median_tok_s": 24.2675,
+    "engine": {
+      "commit": "93b741839677ec457868fd71ab668cc1249b9a22",
+      "binary_sha256": "a0a65edd3a5041a040bdd6a8abed1fedff1a2226d303a58a177bc87d8fce7c5f"
+    },
+    "quality": {
+      "method": "greedy (temperature 0): the full output text of every request (long_prefill and, where run, long_prefill_2) in every sample of this arm has the same sha256 as upstream dev (arm A, itself identical across its 3 samples); the engine's real environment (/proc/<pid>/environ), tree SHA and binary sha256 checked per sample",
+      "passed": true,
+      "problems": []
+    },
+    "evidence": {
+      "uri": "evidence/pr1-arm-B.tgz",
+      "sha256": "fda0cbb40bf461ad6fc5f6b586e5d1fd27179b648f40a065117e9f3e8d920488",
+      "contains": "pr1/B/s*/ (serve.log, bench.jsonl with full texts, sample.txt, engine_environ.txt, procs.txt, nvsmi.csv, gpu_*.csv, mode.txt)",
+      "full_run": "pr1.tgz (sha256 in pr1.tgz.sha256): all arms, meta/ (host, trees, scripts, llama before/after), run.log, summary.json"
+    }
+  },
+  "outcome": "improvement",
+  "speedup_median_tok_s": 1.0406,
+  "notes": {
+    "warmup": "warmup_runs 0: request 1 (long_prefill) is the first request the client sends to each freshly started server process; no warm-up request precedes it",
+    "cache_state": "The OS page cache was not dropped between samples. Round 1 (samples 1-5: A/s1 B/s1 C/s1 E/s1 F/s1) was partly cold: the serve unit's systemd memory peak (its cgroup, which counts the page cache the unit faulted in) was 13.9G A/s1, 14.6G B/s1, 10.2G C/s1, 9.1G E/s1, 7.9G F/s1, against 7.3G in all 11 later samples (evidence/pr1-host-journal.txt); from round 2 on the page cache was warm. Round 1 holds the lowest request-1 decode rate of every arm and the slowest A request-1 TTFT (A s1 223.9 s vs 218.4/219.1 s). Medians are over all 3 samples; the round-1-excluded ratios (s2/s3 means) are in notes.round1_excluded.",
+    "round1_excluded": "s2/s3 mean tok/s (round 1 excluded): F 23.3119, B 24.2416, ratio 1.0399",
+    "variability": "TTFT stdev / CV over 3 samples: F r1 0.042 s / 0.05%; B r1 0.131 s / 0.16%; TTFT coefficient of variation (stdev/mean, 3 samples) is <= 0.32% for every arm and request except A request 1 (1.36%, from the partly cold A s1); TTFT stdev is <= 0.268 s except A request 1 (3.002 s) and A request 2 (0.727 s).",
+    "earlier_run_2026_10_14": "F median 23.3962 tok/s on 2026-10-14 (48767c01) -> 23.3207 here (-0.32%); B median 24.3174 tok/s on 2026-10-14 (48767c01) -> 24.2675 here (-0.21%); all A/B/C/E/F arm/request medians of this run are -0.41% to -0.06% vs 2026-10-14, all lower; the 1-sample verify arm V, request 1: 12.9944 -> 12.9969 (+0.02%); B..F and V ran an earlier pr1 commit then",
+    "outputs": "25 outputs in 16 samples (A 6, B 6, C 6, E 3, F 3, V 1), all byte-identical (full-text sha256) to arm A's per-request reference; 19 of them come from the pr1-tip arms B C E F V.",
+    "host": "Host side effect of the window (llama.cpp down 14:12:54-15:20:51 PDT; evidence/pr1-host-journal.txt): the Hermes shadowfax-ensure-active-stack watchdog ran every 5 min (start to start 300-301 s; 14 runs, 14:13:43-15:20:18), reported the backend unhealthy each time (all 14 exited 1; 12 logged 'backend unhealthy' with restarted_units [] and recovered false, 2 logged no output) and restarted nothing; the first run after the restore (15:23:48) passed. Hermes cron ran without an LLM backend: shadowfax-autonomous-heartbeat (*/30 * * * *) 14:30:23-14:35:37, failed ('RuntimeError: Connection error.'), 4.446s CPU, during samples C/s1 E/s1 F/s1 B/s2; shadowfax-autonomous-heartbeat (*/30 * * * *) 15:00:23-15:05:25, failed ('RuntimeError: Connection error.'), 3.817s CPU, during samples E/s3 F/s3 A/s3."
+  }
+}

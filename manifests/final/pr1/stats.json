@@ -1,0 +1,1327 @@
+{
+  "reference_A_sha256": {
+    "long_prefill": "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba",
+    "long_prefill_2": "1f0192038c425512912a1df7d56dca6670c50f01935e664f0219589b802cdc8d"
+  },
+  "arms": {
+    "A": {
+      "samples": [
+        {
+          "dir": "A/s1",
+          "seq": 1,
+          "start": "2026-10-15T14:12:55-07:00",
+          "end": "2026-10-15T14:22:55-07:00",
+          "wall_s": 600,
+          "ready_s": 6,
+          "serve_unit_memory_peak_gib": 13.9,
+          "gpu_mem_used_mib_max": {
+            "0": 22128,
+            "1": 83
+          },
+          "gpu_links": {
+            "0": [
+              "gen4 x8"
+            ],
+            "1": [
+              "gen1 x8",
+              "gen2 x8",
+              "gen4 x8"
+            ]
+          },
+          "requests": {
+            "long_prefill": {
+              "ttft_s": 223.899,
+              "prefill_tok_s": 8.8968,
+              "decode_tok_s": 2.0451,
+              "decode_chunks": 25,
+              "total_s": 235.635,
+              "text_sha256": "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba"
+            },
+            "long_prefill_2": {
+              "ttft_s": 334.962,
+              "prefill_tok_s": 8.9712,
+              "decode_tok_s": 2.793,
+              "decode_chunks": 60,
+              "total_s": 356.086,
+              "text_sha256": "1f0192038c425512912a1df7d56dca6670c50f01935e664f0219589b802cdc8d"
+            }
+          }
+        },
+        {
+          "dir": "A/s2",
+          "seq": 10,
+          "start": "2026-10-15T14:46:27-07:00",
+          "end": "2026-10-15T14:56:17-07:00",
+          "wall_s": 590,
+          "ready_s": 4,
+          "serve_unit_memory_peak_gib": 7.3,
+          "gpu_mem_used_mib_max": {
+            "0": 22128,
+            "1": 83
+          },
+          "gpu_links": {
+            "0": [
+              "gen4 x8"
+            ],
+            "1": [
+              "gen1 x8"
+            ]
+          },
+          "requests": {
+            "long_prefill": {
+              "ttft_s": 218.381,
+              "prefill_tok_s": 9.1217,
+              "decode_tok_s": 2.247,
+              "decode_chunks": 25,
+              "total_s": 229.062,
+              "text_sha256": "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba"
+            },
+            "long_prefill_2": {
+              "ttft_s": 333.58,
+              "prefill_tok_s": 9.0083,
+              "decode_tok_s": 2.8219,
+              "decode_chunks": 60,
+              "total_s": 354.488,
+              "text_sha256": "1f0192038c425512912a1df7d56dca6670c50f01935e664f0219589b802cdc8d"
+            }
+          }
+        },
+        {
+          "dir": "A/s3",
+          "seq": 14,
+          "start": "2026-10-15T15:03:56-07:00",
+          "end": "2026-10-15T15:13:47-07:00",
+          "wall_s": 591,
+          "ready_s": 4,
+          "serve_unit_memory_peak_gib": 7.3,
+          "gpu_mem_used_mib_max": {
+            "0": 22128,
+            "1": 83
+          },
+          "gpu_links": {
+            "0": [
+              "gen4 x8"
+            ],
+            "1": [
+              "gen1 x8"
+            ]
+          },
+          "requests": {
+            "long_prefill": {
+              "ttft_s": 219.092,
+              "prefill_tok_s": 9.0921,
+              "decode_tok_s": 2.2459,
+              "decode_chunks": 25,
+              "total_s": 229.778,
+              "text_sha256": "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba"
+            },
+            "long_prefill_2": {
+              "ttft_s": 334.665,
+              "prefill_tok_s": 8.9791,
+              "decode_tok_s": 2.8285,
+              "decode_chunks": 60,
+              "total_s": 355.525,
+              "text_sha256": "1f0192038c425512912a1df7d56dca6670c50f01935e664f0219589b802cdc8d"
+            }
+          }
+        }
+      ],
+      "requests": {
+        "long_prefill": {
+          "ttft_s": {
+            "mean": 220.4573,
+            "stdev": 3.0017,
+            "cv_pct": 1.36,
+            "median": 219.092,
+            "min": 218.381,
+            "max": 223.899,
+            "n": 3
+          },
+          "prefill_tok_s": {
+            "mean": 9.0369,
+            "stdev": 0.1222,
+            "cv_pct": 1.35,
+            "median": 9.0921,
+            "min": 8.8968,
+            "max": 9.1217,
+            "n": 3
+          },
+          "decode_tok_s": {
+            "mean": 2.1793,
+            "stdev": 0.1163,
+            "cv_pct": 5.33,
+            "median": 2.2459,
+            "min": 2.0451,
+            "max": 2.247,
+            "n": 3
+          },
+          "identical_to_A": true
+        },
+        "long_prefill_2": {
+          "ttft_s": {
+            "mean": 334.4023,
+            "stdev": 0.7275,
+            "cv_pct": 0.22,
+            "median": 334.665,
+            "min": 333.58,
+            "max": 334.962,
+            "n": 3
+          },
+          "prefill_tok_s": {
+            "mean": 8.9862,
+            "stdev": 0.0195,
+            "cv_pct": 0.22,
+            "median": 8.9791,
+            "min": 8.9712,
+            "max": 9.0083,
+            "n": 3
+          },
+          "decode_tok_s": {
+            "mean": 2.8145,
+            "stdev": 0.0189,
+            "cv_pct": 0.67,
+            "median": 2.8219,
+            "min": 2.793,
+            "max": 2.8285,
+            "n": 3
+          },
+          "identical_to_A": true
+        }
+      },
+      "gate_problems": []
+    },
+    "B": {
+      "samples": [
+        {
+          "dir": "B/s1",
+          "seq": 2,
+          "start": "2026-10-15T14:22:55-07:00",
+          "end": "2026-10-15T14:27:00-07:00",
+          "wall_s": 245,
+          "ready_s": 7,
+          "serve_unit_memory_peak_gib": 14.6,
+          "gpu_mem_used_mib_max": {
+            "0": 23002,
+            "1": 83
+          },
+          "gpu_links": {
+            "0": [
+              "gen4 x8"
+            ],
+            "1": [
+              "gen1 x8"
+            ]
+          },
+          "requests": {
+            "long_prefill": {
+              "ttft_s": 82.005,
+              "prefill_tok_s": 24.2913,
+              "decode_tok_s": 1.947,
+              "decode_chunks": 25,
+              "total_s": 94.332,
+              "text_sha256": "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba"
+            },
+            "long_prefill_2": {
+              "ttft_s": 119.369,
+              "prefill_tok_s": 25.174,
+              "decode_tok_s": 2.7277,
+              "decode_chunks": 60,
+              "total_s": 140.999,
+              "text_sha256": "1f0192038c425512912a1df7d56dca6670c50f01935e664f0219589b802cdc8d"
+            }
+          }
+        },
+        {
+          "dir": "B/s2",
+          "seq": 6,
+          "start": "2026-10-15T14:34:43-07:00",
+          "end": "2026-10-15T14:38:45-07:00",
+          "wall_s": 242,
+          "ready_s": 4,
+          "serve_unit_memory_peak_gib": 7.3,
+          "gpu_mem_used_mib_max": {
+            "0": 23000,
+            "1": 83
+          },
+          "gpu_links": {
+            "0": [
+              "gen4 x8"
+            ],
+            "1": [
+              "gen1 x8"
+            ]
+          },
+          "requests": {
+            "long_prefill": {
+              "ttft_s": 82.261,
+              "prefill_tok_s": 24.2157,
+              "decode_tok_s": 2.0531,
+              "decode_chunks": 25,
+              "total_s": 93.951,
+              "text_sha256": "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba"
+            },
+            "long_prefill_2": {
+              "ttft_s": 119.392,
+              "prefill_tok_s": 25.1692,
+              "decode_tok_s": 2.7573,
+              "decode_chunks": 60,
+              "total_s": 140.789,
+              "text_sha256": "1f0192038c425512912a1df7d56dca6670c50f01935e664f0219589b802cdc8d"
+            }
+          }
+        },
+        {
+          "dir": "B/s3",
+          "seq": 15,
+          "start": "2026-10-15T15:13:48-07:00",
+          "end": "2026-10-15T15:17:49-07:00",
+          "wall_s": 241,
+          "ready_s": 4,
+          "serve_unit_memory_peak_gib": 7.3,
+          "gpu_mem_used_mib_max": {
+            "0": 23002,
+            "1": 83
+          },
+          "gpu_links": {
+            "0": [
+              "gen4 x8"
+            ],
+            "1": [
+              "gen1 x8"
+            ]
+          },
+          "requests": {
+            "long_prefill": {
+              "ttft_s": 82.085,
+              "prefill_tok_s": 24.2675,
+              "decode_tok_s": 2.0555,
+              "decode_chunks": 25,
+              "total_s": 93.761,
+              "text_sha256": "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba"
+            },
+            "long_prefill_2": {
+              "ttft_s": 119.242,
+              "prefill_tok_s": 25.2009,
+              "decode_tok_s": 2.7571,
+              "decode_chunks": 60,
+              "total_s": 140.642,
+              "text_sha256": "1f0192038c425512912a1df7d56dca6670c50f01935e664f0219589b802cdc8d"
+            }
+          }
+        }
+      ],
+      "requests": {
+        "long_prefill": {
+          "ttft_s": {
+            "mean": 82.117,
+            "stdev": 0.131,
+            "cv_pct": 0.16,
+            "median": 82.085,
+            "min": 82.005,
+            "max": 82.261,
+            "n": 3
+          },
+          "prefill_tok_s": {
+            "mean": 24.2582,
+            "stdev": 0.0387,
+            "cv_pct": 0.16,
+            "median": 24.2675,
+            "min": 24.2157,
+            "max": 24.2913,
+            "n": 3
+          },
+          "decode_tok_s": {
+            "mean": 2.0185,
+            "stdev": 0.062,
+            "cv_pct": 3.07,
+            "median": 2.0531,
+            "min": 1.947,
+            "max": 2.0555,
+            "n": 3
+          },
+          "identical_to_A": true
+        },
+        "long_prefill_2": {
+          "ttft_s": {
+            "mean": 119.3343,
+            "stdev": 0.0808,
+            "cv_pct": 0.07,
+            "median": 119.369,
+            "min": 119.242,
+            "max": 119.392,
+            "n": 3
+          },
+          "prefill_tok_s": {
+            "mean": 25.1814,
+            "stdev": 0.0171,
+            "cv_pct": 0.07,
+            "median": 25.174,
+            "min": 25.1692,
+            "max": 25.2009,
+            "n": 3
+          },
+          "decode_tok_s": {
+            "mean": 2.7474,
+            "stdev": 0.017,
+            "cv_pct": 0.62,
+            "median": 2.7571,
+            "min": 2.7277,
+            "max": 2.7573,
+            "n": 3
+          },
+          "identical_to_A": true
+        }
+      },
+      "gate_problems": []
+    },
+    "C": {
+      "samples": [
+        {
+          "dir": "C/s1",
+          "seq": 3,
+          "start": "2026-10-15T14:27:00-07:00",
+          "end": "2026-10-15T14:30:38-07:00",
+          "wall_s": 218,
+          "ready_s": 6,
+          "serve_unit_memory_peak_gib": 10.2,
+          "gpu_mem_used_mib_max": {
+            "0": 23056,
+            "1": 83
+          },
+          "gpu_links": {
+            "0": [
+              "gen4 x8"
+            ],
+            "1": [
+              "gen1 x8"
+            ]
+          },
+          "requests": {
+            "long_prefill": {
+              "ttft_s": 69.935,
+              "prefill_tok_s": 28.4838,
+              "decode_tok_s": 1.9991,
+              "decode_chunks": 25,
+              "total_s": 81.94,
+              "text_sha256": "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba"
+            },
+            "long_prefill_2": {
+              "ttft_s": 106.484,
+              "prefill_tok_s": 28.2202,
+              "decode_tok_s": 2.7309,
+              "decode_chunks": 60,
+              "total_s": 128.088,
+              "text_sha256": "1f0192038c425512912a1df7d56dca6670c50f01935e664f0219589b802cdc8d"
+            }
+          }
+        },
+        {
+          "dir": "C/s2",
+          "seq": 7,
+          "start": "2026-10-15T14:38:45-07:00",
+          "end": "2026-10-15T14:42:21-07:00",
+          "wall_s": 216,
+          "ready_s": 4,
+          "serve_unit_memory_peak_gib": 7.3,
+          "gpu_mem_used_mib_max": {
+            "0": 23056,
+            "1": 83
+          },
+          "gpu_links": {
+            "0": [
+              "gen4 x8"
+            ],
+            "1": [
+              "gen1 x8"
+            ]
+          },
+          "requests": {
+            "long_prefill": {
+              "ttft_s": 69.865,
+              "prefill_tok_s": 28.5121,
+              "decode_tok_s": 2.0274,
+              "decode_chunks": 25,
+              "total_s": 81.703,
+              "text_sha256": "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba"
+            },
+            "long_prefill_2": {
+              "ttft_s": 106.353,
+              "prefill_tok_s": 28.2551,
+              "decode_tok_s": 2.7313,
+              "decode_chunks": 60,
+              "total_s": 127.954,
+              "text_sha256": "1f0192038c425512912a1df7d56dca6670c50f01935e664f0219589b802cdc8d"
+            }
+          }
+        },
+        {
+          "dir": "C/s3",
+          "seq": 11,
+          "start": "2026-10-15T14:56:17-07:00",
+          "end": "2026-10-15T14:59:52-07:00",
+          "wall_s": 215,
+          "ready_s": 4,
+          "serve_unit_memory_peak_gib": 7.3,
+          "gpu_mem_used_mib_max": {
+            "0": 23056,
+            "1": 83
+          },
+          "gpu_links": {
+            "0": [
+              "gen4 x8"
+            ],
+            "1": [
+              "gen1 x8"
+            ]
+          },
+          "requests": {
+            "long_prefill": {
+              "ttft_s": 69.517,
+              "prefill_tok_s": 28.6548,
+              "decode_tok_s": 2.0386,
+              "decode_chunks": 25,
+              "total_s": 81.29,
+              "text_sha256": "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba"
+            },
+            "long_prefill_2": {
+              "ttft_s": 105.969,
+              "prefill_tok_s": 28.3574,
+              "decode_tok_s": 2.7398,
+              "decode_chunks": 60,
+              "total_s": 127.503,
+              "text_sha256": "1f0192038c425512912a1df7d56dca6670c50f01935e664f0219589b802cdc8d"
+            }
+          }
+        }
+      ],
+      "requests": {
+        "long_prefill": {
+          "ttft_s": {
+            "mean": 69.7723,
+            "stdev": 0.2239,
+            "cv_pct": 0.32,
+            "median": 69.865,
+            "min": 69.517,
+            "max": 69.935,
+            "n": 3
+          },
+          "prefill_tok_s": {
+            "mean": 28.5502,
+            "stdev": 0.0917,
+            "cv_pct": 0.32,
+            "median": 28.5121,
+            "min": 28.4838,
+            "max": 28.6548,
+            "n": 3
+          },
+          "decode_tok_s": {
+            "mean": 2.0217,
+            "stdev": 0.0204,
+            "cv_pct": 1.01,
+            "median": 2.0274,
+            "min": 1.9991,
+            "max": 2.0386,
+            "n": 3
+          },
+          "identical_to_A": true
+        },
+        "long_prefill_2": {
+          "ttft_s": {
+            "mean": 106.2687,
+            "stdev": 0.2677,
+            "cv_pct": 0.25,
+            "median": 106.353,
+            "min": 105.969,
+            "max": 106.484,
+            "n": 3
+          },
+          "prefill_tok_s": {
+            "mean": 28.2776,
+            "stdev": 0.0713,
+            "cv_pct": 0.25,
+            "median": 28.2551,
+            "min": 28.2202,
+            "max": 28.3574,
+            "n": 3
+          },
+          "decode_tok_s": {
+            "mean": 2.734,
+            "stdev": 0.005,
+            "cv_pct": 0.18,
+            "median": 2.7313,
+            "min": 2.7309,
+            "max": 2.7398,
+            "n": 3
+          },
+          "identical_to_A": true
+        }
+      },
+      "gate_problems": []
+    },
+    "E": {
+      "samples": [
+        {
+          "dir": "E/s1",
+          "seq": 4,
+          "start": "2026-10-15T14:30:38-07:00",
+          "end": "2026-10-15T14:33:00-07:00",
+          "wall_s": 142,
+          "ready_s": 4,
+          "serve_unit_memory_peak_gib": 9.1,
+          "gpu_mem_used_mib_max": {
+            "0": 21276,
+            "1": 83
+          },
+          "gpu_links": {
+            "0": [
+              "gen4 x8"
+            ],
+            "1": [
+              "gen1 x8"
+            ]
+          },
+          "requests": {
+            "long_prefill": {
+              "ttft_s": 123.712,
+              "prefill_tok_s": 16.1019,
+              "decode_tok_s": 2.027,
+              "decode_chunks": 25,
+              "total_s": 135.552,
+              "text_sha256": "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba"
+            }
+          }
+        },
+        {
+          "dir": "E/s2",
+          "seq": 8,
+          "start": "2026-10-15T14:42:21-07:00",
+          "end": "2026-10-15T14:44:43-07:00",
+          "wall_s": 142,
+          "ready_s": 4,
+          "serve_unit_memory_peak_gib": 7.3,
+          "gpu_mem_used_mib_max": {
+            "0": 21278,
+            "1": 83
+          },
+          "gpu_links": {
+            "0": [
+              "gen4 x8"
+            ],
+            "1": [
+              "gen1 x8"
+            ]
+          },
+          "requests": {
+            "long_prefill": {
+              "ttft_s": 123.748,
+              "prefill_tok_s": 16.0972,
+              "decode_tok_s": 2.0475,
+              "decode_chunks": 25,
+              "total_s": 135.47,
+              "text_sha256": "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba"
+            }
+          }
+        },
+        {
+          "dir": "E/s3",
+          "seq": 12,
+          "start": "2026-10-15T14:59:52-07:00",
+          "end": "2026-10-15T15:02:13-07:00",
+          "wall_s": 141,
+          "ready_s": 4,
+          "serve_unit_memory_peak_gib": 7.3,
+          "gpu_mem_used_mib_max": {
+            "0": 21276,
+            "1": 83
+          },
+          "gpu_links": {
+            "0": [
+              "gen4 x8"
+            ],
+            "1": [
+              "gen1 x8"
+            ]
+          },
+          "requests": {
+            "long_prefill": {
+              "ttft_s": 123.604,
+              "prefill_tok_s": 16.116,
+              "decode_tok_s": 2.0542,
+              "decode_chunks": 25,
+              "total_s": 135.288,
+              "text_sha256": "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba"
+            }
+          }
+        }
+      ],
+      "requests": {
+        "long_prefill": {
+          "ttft_s": {
+            "mean": 123.688,
+            "stdev": 0.0749,
+            "cv_pct": 0.06,
+            "median": 123.712,
+            "min": 123.604,
+            "max": 123.748,
+            "n": 3
+          },
+          "prefill_tok_s": {
+            "mean": 16.105,
+            "stdev": 0.0098,
+            "cv_pct": 0.06,
+            "median": 16.1019,
+            "min": 16.0972,
+            "max": 16.116,
+            "n": 3
+          },
+          "decode_tok_s": {
+            "mean": 2.0429,
+            "stdev": 0.0142,
+            "cv_pct": 0.69,
+            "median": 2.0475,
+            "min": 2.027,
+            "max": 2.0542,
+            "n": 3
+          },
+          "identical_to_A": true
+        }
+      },
+      "gate_problems": []
+    },
+    "F": {
+      "samples": [
+        {
+          "dir": "F/s1",
+          "seq": 5,
+          "start": "2026-10-15T14:33:00-07:00",
+          "end": "2026-10-15T14:34:43-07:00",
+          "wall_s": 103,
+          "ready_s": 4,
+          "serve_unit_memory_peak_gib": 7.9,
+          "gpu_mem_used_mib_max": {
+            "0": 21272,
+            "1": 83
+          },
+          "gpu_links": {
+            "0": [
+              "gen4 x8"
+            ],
+            "1": [
+              "gen1 x8"
+            ]
+          },
+          "requests": {
+            "long_prefill": {
+              "ttft_s": 85.402,
+              "prefill_tok_s": 23.325,
+              "decode_tok_s": 2.0493,
+              "decode_chunks": 25,
+              "total_s": 97.113,
+              "text_sha256": "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba"
+            }
+          }
+        },
+        {
+          "dir": "F/s2",
+          "seq": 9,
+          "start": "2026-10-15T14:44:43-07:00",
+          "end": "2026-10-15T14:46:27-07:00",
+          "wall_s": 104,
+          "ready_s": 4,
+          "serve_unit_memory_peak_gib": 7.3,
+          "gpu_mem_used_mib_max": {
+            "0": 21272,
+            "1": 83
+          },
+          "gpu_links": {
+            "0": [
+              "gen4 x8"
+            ],
+            "1": [
+              "gen1 x8"
+            ]
+          },
+          "requests": {
+            "long_prefill": {
+              "ttft_s": 85.482,
+              "prefill_tok_s": 23.3031,
+              "decode_tok_s": 2.0535,
+              "decode_chunks": 25,
+              "total_s": 97.169,
+              "text_sha256": "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba"
+            }
+          }
+        },
+        {
+          "dir": "F/s3",
+          "seq": 13,
+          "start": "2026-10-15T15:02:13-07:00",
+          "end": "2026-10-15T15:03:56-07:00",
+          "wall_s": 103,
+          "ready_s": 4,
+          "serve_unit_memory_peak_gib": 7.3,
+          "gpu_mem_used_mib_max": {
+            "0": 21272,
+            "1": 83
+          },
+          "gpu_links": {
+            "0": [
+              "gen4 x8"
+            ],
+            "1": [
+              "gen1 x8"
+            ]
+          },
+          "requests": {
+            "long_prefill": {
+              "ttft_s": 85.418,
+              "prefill_tok_s": 23.3207,
+              "decode_tok_s": 2.0527,
+              "decode_chunks": 25,
+              "total_s": 97.109,
+              "text_sha256": "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba"
+            }
+          }
+        }
+      ],
+      "requests": {
+        "long_prefill": {
+          "ttft_s": {
+            "mean": 85.434,
+            "stdev": 0.0423,
+            "cv_pct": 0.05,
+            "median": 85.418,
+            "min": 85.402,
+            "max": 85.482,
+            "n": 3
+          },
+          "prefill_tok_s": {
+            "mean": 23.3163,
+            "stdev": 0.0116,
+            "cv_pct": 0.05,
+            "median": 23.3207,
+            "min": 23.3031,
+            "max": 23.325,
+            "n": 3
+          },
+          "decode_tok_s": {
+            "mean": 2.0518,
+            "stdev": 0.0022,
+            "cv_pct": 0.11,
+            "median": 2.0527,
+            "min": 2.0493,
+            "max": 2.0535,
+            "n": 3
+          },
+          "identical_to_A": true
+        }
+      },
+      "gate_problems": []
+    },
+    "V": {
+      "samples": [
+        {
+          "dir": "V/s1",
+          "seq": 16,
+          "start": "2026-10-15T15:17:49-07:00",
+          "end": "2026-10-15T15:20:40-07:00",
+          "wall_s": 171,
+          "ready_s": 4,
+          "serve_unit_memory_peak_gib": 7.3,
+          "gpu_mem_used_mib_max": {
+            "0": 21298,
+            "1": 83
+          },
+          "gpu_links": {
+            "0": [
+              "gen4 x8"
+            ],
+            "1": [
+              "gen1 x8"
+            ]
+          },
+          "requests": {
+            "long_prefill": {
+              "ttft_s": 153.267,
+              "prefill_tok_s": 12.9969,
+              "decode_tok_s": 2.0531,
+              "decode_chunks": 25,
+              "total_s": 164.956,
+              "text_sha256": "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba"
+            }
+          }
+        }
+      ],
+      "requests": {
+        "long_prefill": {
+          "ttft_s": {
+            "mean": 153.267,
+            "stdev": null,
+            "cv_pct": null,
+            "median": 153.267,
+            "min": 153.267,
+            "max": 153.267,
+            "n": 1
+          },
+          "prefill_tok_s": {
+            "mean": 12.9969,
+            "stdev": null,
+            "cv_pct": null,
+            "median": 12.9969,
+            "min": 12.9969,
+            "max": 12.9969,
+            "n": 1
+          },
+          "decode_tok_s": {
+            "mean": 2.0531,
+            "stdev": null,
+            "cv_pct": null,
+            "median": 2.0531,
+            "min": 2.0531,
+            "max": 2.0531,
+            "n": 1
+          },
+          "identical_to_A": true
+        }
+      },
+      "gate_problems": []
+    }
+  },
+  "verify_V": {
+    "file": "V/s1/verify_counters.txt",
+    "lines": [
+      "moe-expert-major verify calls=100 fc1_mismatch=0 fc2_mismatch=0 (this call 0/0 of 3145728/3145728)",
+      "moe-expert-major verify calls=200 fc1_mismatch=0 fc2_mismatch=0 (this call 0/0 of 3145728/3145728)",
+      "moe-expert-major verify calls=300 fc1_mismatch=0 fc2_mismatch=0 (this call 0/0 of 3145728/3145728)",
+      "moe-expert-major verify calls=400 fc1_mismatch=0 fc2_mismatch=0 (this call 0/0 of 1769472/1769472)",
+      "mm-warp verify calls=500 mismatches=0 (this call 0 of 4194304, 32768x1024 T=128 fmt=8)",
+      "moe-expert-major verify calls=500 fc1_mismatch=0 fc2_mismatch=0 (this call 0/0 of 3145728/3145728)",
+      "moe-expert-major verify calls=600 fc1_mismatch=0 fc2_mismatch=0 (this call 0/0 of 3145728/3145728)"
+    ],
+    "mm_warp_max_calls": 500,
+    "mm_warp_max_mismatches": 0,
+    "expert_major_max_calls": 600,
+    "expert_major_max_fc1_mismatch": 0,
+    "expert_major_max_fc2_mismatch": 0,
+    "nonzero_mismatch_lines": [],
+    "note": "backend_cuda_dsv4.cu prints moe-expert-major every 100 calls and mm-warp every 500 calls, and either on any call with a mismatch (the cumulative mismatch count is in every line); max_calls is therefore a lower bound on the calls checked, and no line with a nonzero count means zero mismatches"
+  },
+  "notes": {
+    "cache_state": "The OS page cache was not dropped between samples. Round 1 (samples 1-5: A/s1 B/s1 C/s1 E/s1 F/s1) was partly cold: the serve unit's systemd memory peak (its cgroup, which counts the page cache the unit faulted in) was 13.9G A/s1, 14.6G B/s1, 10.2G C/s1, 9.1G E/s1, 7.9G F/s1, against 7.3G in all 11 later samples (evidence/pr1-host-journal.txt); from round 2 on the page cache was warm. Round 1 holds the lowest request-1 decode rate of every arm and the slowest A request-1 TTFT (A s1 223.9 s vs 218.4/219.1 s). Medians are over all 3 samples; the round-1-excluded ratios (s2/s3 means) are in notes.round1_excluded.",
+    "serve_unit_memory_peak_gib": {
+      "A/s1": 13.9,
+      "B/s1": 14.6,
+      "C/s1": 10.2,
+      "E/s1": 9.1,
+      "F/s1": 7.9,
+      "B/s2": 7.3,
+      "C/s2": 7.3,
+      "E/s2": 7.3,
+      "F/s2": 7.3,
+      "A/s2": 7.3,
+      "C/s3": 7.3,
+      "E/s3": 7.3,
+      "F/s3": 7.3,
+      "A/s3": 7.3,
+      "B/s3": 7.3,
+      "V/s1": 7.3
+    },
+    "round1_excluded": {
+      "pr1-engine-1992.json": "s2/s3 mean tok/s (round 1 excluded): A 9.1069, B 24.2416, ratio 2.6619",
+      "pr1-engine-3005.json": "s2/s3 mean tok/s (round 1 excluded): A 8.9937, B 25.1851, ratio 2.8003",
+      "pr1-moe-double-1992.json": "s2/s3 mean tok/s (round 1 excluded): B 24.2416, C 28.5835, ratio 1.1791",
+      "pr1-moe-double-3005.json": "s2/s3 mean tok/s (round 1 excluded): B 25.1851, C 28.3063, ratio 1.1239",
+      "pr1-expert-major-1992.json": "s2/s3 mean tok/s (round 1 excluded): E 16.1066, B 24.2416, ratio 1.5051",
+      "pr1-mm-warp-1992.json": "s2/s3 mean tok/s (round 1 excluded): F 23.3119, B 24.2416, ratio 1.0399"
+    },
+    "variability": "TTFT coefficient of variation (stdev/mean, 3 samples) is <= 0.32% for every arm and request except A request 1 (1.36%, from the partly cold A s1); TTFT stdev is <= 0.268 s except A request 1 (3.002 s) and A request 2 (0.727 s). Per arm and request (ttft stdev s / CV %): A r1 3.002/1.36, A r2 0.727/0.22, B r1 0.131/0.16, B r2 0.081/0.07, C r1 0.224/0.32, C r2 0.268/0.25, E r1 0.075/0.06, F r1 0.042/0.05.",
+    "earlier_run_2026_10_14": "Against the 2026-10-14 run (manifests/pr1-*.json, evidence/pr1bench-raw.tgz): every A/B/C/E/F arm/request median tok/s is slightly lower, by -0.41% to -0.06% (largest: B request 2, -0.41%); the 1-sample verify arm V, request 1: 12.9944 -> 12.9969 (+0.02%). That run's A was the same dev commit; its B, C, E, F, V were pr1 48767c01, an earlier commit than this tip 93b74183, so for B..F and V this is a comparison across commits, not a strict repeat. Per arm/request: A r1 9.0978 -> 9.0921 (-0.06%), A r2 9.0074 -> 8.9791 (-0.31%), B r1 24.3174 -> 24.2675 (-0.21%), B r2 25.2767 -> 25.1740 (-0.41%), C r1 28.5602 -> 28.5121 (-0.17%), C r2 28.2847 -> 28.2551 (-0.10%), E r1 16.1192 -> 16.1019 (-0.11%), F r1 23.3962 -> 23.3207 (-0.32%).",
+    "earlier_run_2026_10_14_table": {
+      "A long_prefill": {
+        "median_tok_s_2026_10_14": 9.0978,
+        "median_tok_s_final": 9.0921,
+        "delta_pct": -0.06,
+        "commit_2026_10_14": "7b55a9b3792527f52d1a2337fd9e312b9a7983e3",
+        "commit_final": "7b55a9b3792527f52d1a2337fd9e312b9a7983e3",
+        "same_texts_2026_10_14": true
+      },
+      "A long_prefill_2": {
+        "median_tok_s_2026_10_14": 9.0074,
+        "median_tok_s_final": 8.9791,
+        "delta_pct": -0.31,
+        "commit_2026_10_14": "7b55a9b3792527f52d1a2337fd9e312b9a7983e3",
+        "commit_final": "7b55a9b3792527f52d1a2337fd9e312b9a7983e3",
+        "same_texts_2026_10_14": true
+      },
+      "B long_prefill": {
+        "median_tok_s_2026_10_14": 24.3174,
+        "median_tok_s_final": 24.2675,
+        "delta_pct": -0.21,
+        "commit_2026_10_14": "48767c016c993e59cd74f5511983be7bb65ec791",
+        "commit_final": "93b741839677ec457868fd71ab668cc1249b9a22",
+        "same_texts_2026_10_14": true
+      },
+      "B long_prefill_2": {
+        "median_tok_s_2026_10_14": 25.2767,
+        "median_tok_s_final": 25.174,
+        "delta_pct": -0.41,
+        "commit_2026_10_14": "48767c016c993e59cd74f5511983be7bb65ec791",
+        "commit_final": "93b741839677ec457868fd71ab668cc1249b9a22",
+        "same_texts_2026_10_14": true
+      },
+      "C long_prefill": {
+        "median_tok_s_2026_10_14": 28.5602,
+        "median_tok_s_final": 28.5121,
+        "delta_pct": -0.17,
+        "commit_2026_10_14": "48767c016c993e59cd74f5511983be7bb65ec791",
+        "commit_final": "93b741839677ec457868fd71ab668cc1249b9a22",
+        "same_texts_2026_10_14": true
+      },
+      "C long_prefill_2": {
+        "median_tok_s_2026_10_14": 28.2847,
+        "median_tok_s_final": 28.2551,
+        "delta_pct": -0.1,
+        "commit_2026_10_14": "48767c016c993e59cd74f5511983be7bb65ec791",
+        "commit_final": "93b741839677ec457868fd71ab668cc1249b9a22",
+        "same_texts_2026_10_14": false
+      },
+      "E long_prefill": {
+        "median_tok_s_2026_10_14": 16.1192,
+        "median_tok_s_final": 16.1019,
+        "delta_pct": -0.11,
+        "commit_2026_10_14": "48767c016c993e59cd74f5511983be7bb65ec791",
+        "commit_final": "93b741839677ec457868fd71ab668cc1249b9a22",
+        "same_texts_2026_10_14": true
+      },
+      "F long_prefill": {
+        "median_tok_s_2026_10_14": 23.3962,
+        "median_tok_s_final": 23.3207,
+        "delta_pct": -0.32,
+        "commit_2026_10_14": "48767c016c993e59cd74f5511983be7bb65ec791",
+        "commit_final": "93b741839677ec457868fd71ab668cc1249b9a22",
+        "same_texts_2026_10_14": true
+      }
+    },
+    "earlier_run_2026_10_14_verify_arm_V": {
+      "median_tok_s_2026_10_14": 12.9944,
+      "median_tok_s_final": 12.9969,
+      "delta_pct": 0.02,
+      "n": 1,
+      "commit_2026_10_14": "48767c016c993e59cd74f5511983be7bb65ec791",
+      "commit_final": "93b741839677ec457868fd71ab668cc1249b9a22",
+      "same_texts_2026_10_14": true
+    },
+    "earlier_run_2026_10_14_evidence": {
+      "tgz": "../../evidence/pr1bench-raw.tgz",
+      "sha256": "3784fbc263785336fb1b69f6f4229463b9dcbec36fc6e70decc2d2305f16fdda",
+      "manifests": [
+        "pr1-engine-1992.json",
+        "pr1-expert-major-1992.json",
+        "pr1-mm-warp-1992.json"
+      ]
+    },
+    "observation_decode": "Observation (not this manifest's hypothesis; already documented in the PR docs, docs/deepseek-v4.md 'Expert-pruned checkpoints (REAP)', review finding F42): decode right after the GPU-batch prefill is slower on the pr1 tip than after dev's CPU-union prefill. Request 1: B 2.0543 vs A 2.2465 chunks/s (s2/s3 means, -8.6%; all 3 samples -7.4%); request 2: B 2.757 vs A 2.825 (-2.4%; all 3 samples -2.4%). Seen in both runs: on 2026-10-14 (pr1 48767c01) -8.0% and -3.1% (s2/s3 means). Decode rate = bench_pr1.py decode_tok_s, streamed chunks per second after the first chunk (25 chunks on request 1, 60 on request 2); the texts are byte-identical, so this is a speed difference only; the cause is not established.",
+    "observation_decode_table": {
+      "final long_prefill": {
+        "A_s2s3": 2.2465,
+        "B_s2s3": 2.0543,
+        "B_vs_A_s2s3_pct": -8.56,
+        "A_all": 2.1793,
+        "B_all": 2.0185,
+        "B_vs_A_all_pct": -7.38
+      },
+      "final long_prefill_2": {
+        "A_s2s3": 2.8252,
+        "B_s2s3": 2.7572,
+        "B_vs_A_s2s3_pct": -2.41,
+        "A_all": 2.8145,
+        "B_all": 2.7474,
+        "B_vs_A_all_pct": -2.38
+      },
+      "2026_10_14 long_prefill": {
+        "A_s2s3": 2.2711,
+        "B_s2s3": 2.0892,
+        "B_vs_A_s2s3_pct": -8.01,
+        "A_all": 2.2449,
+        "B_all": 2.0726,
+        "B_vs_A_all_pct": -7.68
+      },
+      "2026_10_14 long_prefill_2": {
+        "A_s2s3": 2.8435,
+        "B_s2s3": 2.7546,
+        "B_vs_A_s2s3_pct": -3.13,
+        "A_all": 2.8401,
+        "B_all": 2.7574,
+        "B_vs_A_all_pct": -2.91
+      }
+    },
+    "outputs": "25 outputs in 16 samples (A 6, B 6, C 6, E 3, F 3, V 1), all byte-identical (full-text sha256) to arm A's per-request reference; 19 of them come from the pr1-tip arms B C E F V.",
+    "gpu_memory": "Peak memory.used (nvsmi.csv, 1 s samples, max over the arm's samples): GPU0 A 22128, B 23002, C 23056, E 21278, F 21272, V 21298 MiB; GPU1 83 MiB (unused). GPU0 link seen during samples: gen4 x8; the cards are PCIe 4.0 x16-capable and ran at x8 (meta/host.txt).",
+    "gpu_mem_used_mib_max_per_arm": {
+      "A": {
+        "0": 22128,
+        "1": 83
+      },
+      "B": {
+        "0": 23002,
+        "1": 83
+      },
+      "C": {
+        "0": 23056,
+        "1": 83
+      },
+      "E": {
+        "0": 21278,
+        "1": 83
+      },
+      "F": {
+        "0": 21272,
+        "1": 83
+      },
+      "V": {
+        "0": 21298,
+        "1": 83
+      }
+    },
+    "memavailable_preflight": "47933 MiB = 46.8 GiB (run.log preflight, /proc/meminfo MemAvailable, llama.cpp still loaded)",
+    "warmup": {
+      "long_prefill": "warmup_runs 0: request 1 (long_prefill) is the first request the client sends to each freshly started server process; no warm-up request precedes it",
+      "long_prefill_2": "warmup_runs 1: request 2 (long_prefill_2) is served by the same server process right after request 1 (long_prefill, the 1992-token prompt, max_tokens 100), which is its one warm-up here; request 1 is itself measured, in the matching -1992 manifest"
+    },
+    "host": "Host side effect of the window (llama.cpp down 14:12:54-15:20:51 PDT; evidence/pr1-host-journal.txt): the Hermes shadowfax-ensure-active-stack watchdog ran every 5 min (start to start 300-301 s; 14 runs, 14:13:43-15:20:18), reported the backend unhealthy each time (all 14 exited 1; 12 logged 'backend unhealthy' with restarted_units [] and recovered false, 2 logged no output) and restarted nothing; the first run after the restore (15:23:48) passed. Hermes cron ran without an LLM backend: shadowfax-autonomous-heartbeat (*/30 * * * *) 14:30:23-14:35:37, failed ('RuntimeError: Connection error.'), 4.446s CPU, during samples C/s1 E/s1 F/s1 B/s2; shadowfax-autonomous-heartbeat (*/30 * * * *) 15:00:23-15:05:25, failed ('RuntimeError: Connection error.'), 3.817s CPU, during samples E/s3 F/s3 A/s3.",
+    "host_watchdog_runs": [
+      {
+        "start": "2026-10-15T14:13:43",
+        "end": "2026-10-15T14:15:13",
+        "result": "failed",
+        "logged": true,
+        "backend": false,
+        "probe_error": "backend unhealthy",
+        "restarted_units": [],
+        "recovered": false
+      },
+      {
+        "start": "2026-10-15T14:18:43",
+        "end": "2026-10-15T14:20:13",
+        "result": "failed",
+        "logged": true,
+        "backend": false,
+        "probe_error": "backend unhealthy",
+        "restarted_units": [],
+        "recovered": false
+      },
+      {
+        "start": "2026-10-15T14:23:43",
+        "end": "2026-10-15T14:25:14",
+        "result": "failed",
+        "logged": false,
+        "backend": null,
+        "probe_error": null,
+        "restarted_units": null,
+        "recovered": null
+      },
+      {
+        "start": "2026-10-15T14:28:44",
+        "end": "2026-10-15T14:30:14",
+        "result": "failed",
+        "logged": true,
+        "backend": false,
+        "probe_error": "backend unhealthy",
+        "restarted_units": [],
+        "recovered": false
+      },
+      {
+        "start": "2026-10-15T14:33:44",
+        "end": "2026-10-15T14:35:14",
+        "result": "failed",
+        "logged": true,
+        "backend": false,
+        "probe_error": "backend unhealthy",
+        "restarted_units": [],
+        "recovered": false
+      },
+      {
+        "start": "2026-10-15T14:38:45",
+        "end": "2026-10-15T14:40:15",
+        "result": "failed",
+        "logged": false,
+        "backend": null,
+        "probe_error": null,
+        "restarted_units": null,
+        "recovered": null
+      },
+      {
+        "start": "2026-10-15T14:43:45",
+        "end": "2026-10-15T14:45:15",
+        "result": "failed",
+        "logged": true,
+        "backend": false,
+        "probe_error": "backend unhealthy",
+        "restarted_units": [],
+        "recovered": false
+      },
+      {
+        "start": "2026-10-15T14:48:45",
+        "end": "2026-10-15T14:50:15",
+        "result": "failed",
+        "logged": true,
+        "backend": false,
+        "probe_error": "backend unhealthy",
+        "restarted_units": [],
+        "recovered": false
+      },
+      {
+        "start": "2026-10-15T14:53:46",
+        "end": "2026-10-15T14:55:16",
+        "result": "failed",
+        "logged": true,
+        "backend": false,
+        "probe_error": "backend unhealthy",
+        "restarted_units": [],
+        "recovered": false
+      },
+      {
+        "start": "2026-10-15T14:58:46",
+        "end": "2026-10-15T15:00:16",
+        "result": "failed",
+        "logged": true,
+        "backend": false,
+        "probe_error": "backend unhealthy",
+        "restarted_units": [],
+        "recovered": false
+      },
+      {
+        "start": "2026-10-15T15:03:46",
+        "end": "2026-10-15T15:05:16",
+        "result": "failed",
+        "logged": true,
+        "backend": false,
+        "probe_error": "backend unhealthy",
+        "restarted_units": [],
+        "recovered": false
+      },
+      {
+        "start": "2026-10-15T15:08:47",
+        "end": "2026-10-15T15:10:17",
+        "result": "failed",
+        "logged": true,
+        "backend": false,
+        "probe_error": "backend unhealthy",
+        "restarted_units": [],
+        "recovered": false
+      },
+      {
+        "start": "2026-10-15T15:13:47",
+        "end": "2026-10-15T15:15:17",
+        "result": "failed",
+        "logged": true,
+        "backend": false,
+        "probe_error": "backend unhealthy",
+        "restarted_units": [],
+        "recovered": false
+      },
+      {
+        "start": "2026-10-15T15:18:47",
+        "end": "2026-10-15T15:20:18",
+        "result": "failed",
+        "logged": true,
+        "backend": false,
+        "probe_error": "backend unhealthy",
+        "restarted_units": [],
+        "recovered": false
+      },
+      {
+        "start": "2026-10-15T15:23:48",
+        "end": "2026-10-15T15:23:48",
+        "result": "ok",
+        "logged": true,
+        "backend": true,
+        "probe_error": null,
+        "restarted_units": [],
+        "recovered": false
+      }
+    ],
+    "host_cron_executions": [
+      {
+        "claimed_at": "2026-10-15T14:30:23.448606-07:00",
+        "error": "RuntimeError: Connection error.",
+        "finished_at": "2026-10-15T14:35:37.312711-07:00",
+        "id": "4a539dfbb2734e8b844132c55ed2f509",
+        "job_id": "c937d60f9922",
+        "job_name": "shadowfax-autonomous-heartbeat",
+        "job_schedule": "*/30 * * * *",
+        "started_at": "2026-10-15T14:30:25.201413-07:00",
+        "status": "failed",
+        "cpu_time": "4.446s",
+        "overlapping_samples": [
+          "C/s1",
+          "E/s1",
+          "F/s1",
+          "B/s2"
+        ]
+      },
+      {
+        "claimed_at": "2026-10-15T15:00:23.447269-07:00",
+        "error": "RuntimeError: Connection error.",
+        "finished_at": "2026-10-15T15:05:25.799535-07:00",
+        "id": "203cdda171e64d2dae3a7238f7119b19",
+        "job_id": "c937d60f9922",
+        "job_name": "shadowfax-autonomous-heartbeat",
+        "job_schedule": "*/30 * * * *",
+        "started_at": "2026-10-15T15:00:24.765693-07:00",
+        "status": "failed",
+        "cpu_time": "3.817s",
+        "overlapping_samples": [
+          "E/s3",
+          "F/s3",
+          "A/s3"
+        ]
+      }
+    ],
+    "host_evidence": {
+      "file": "evidence/pr1-host-journal.txt",
+      "sha256": "f7e23a0cb0144b5a4e060e73e04f6b07a2dbfa7241c6557bac70ece940a03ecb",
+      "captured_by": "capture_host_journal_pr1.sh (read-only journalctl / sqlite on shadowfax)"
+    }
+  },
+  "manifests": [
+    "pr1-engine-1992.json",
+    "pr1-engine-3005.json",
+    "pr1-moe-double-1992.json",
+    "pr1-moe-double-3005.json",
+    "pr1-expert-major-1992.json",
+    "pr1-mm-warp-1992.json"
+  ],
+  "evidence": {
+    "A": {
+      "uri": "evidence/pr1-arm-A.tgz",
+      "sha256": "626509ea14d1956cd0bf397fd594e2b2edbb49adbe56682d76970113953a9d56",
+      "contains": "pr1/A/s*/ (serve.log, bench.jsonl with full texts, sample.txt, engine_environ.txt, procs.txt, nvsmi.csv, gpu_*.csv, mode.txt)",
+      "full_run": "pr1.tgz (sha256 in pr1.tgz.sha256): all arms, meta/ (host, trees, scripts, llama before/after), run.log, summary.json"
+    },
+    "B": {
+      "uri": "evidence/pr1-arm-B.tgz",
+      "sha256": "fda0cbb40bf461ad6fc5f6b586e5d1fd27179b648f40a065117e9f3e8d920488",
+      "contains": "pr1/B/s*/ (serve.log, bench.jsonl with full texts, sample.txt, engine_environ.txt, procs.txt, nvsmi.csv, gpu_*.csv, mode.txt)",
+      "full_run": "pr1.tgz (sha256 in pr1.tgz.sha256): all arms, meta/ (host, trees, scripts, llama before/after), run.log, summary.json"
+    },
+    "C": {
+      "uri": "evidence/pr1-arm-C.tgz",
+      "sha256": "a533b8d762bb0b6b4e114809c978a96daf45e0e83c10886f396087ab2aae8355",
+      "contains": "pr1/C/s*/ (serve.log, bench.jsonl with full texts, sample.txt, engine_environ.txt, procs.txt, nvsmi.csv, gpu_*.csv, mode.txt)",
+      "full_run": "pr1.tgz (sha256 in pr1.tgz.sha256): all arms, meta/ (host, trees, scripts, llama before/after), run.log, summary.json"
+    },
+    "E": {
+      "uri": "evidence/pr1-arm-E.tgz",
+      "sha256": "09b90d099436133ff42fd291c8306ee1219eb15083596a650da4cb1e189e3656",
+      "contains": "pr1/E/s*/ (serve.log, bench.jsonl with full texts, sample.txt, engine_environ.txt, procs.txt, nvsmi.csv, gpu_*.csv, mode.txt)",
+      "full_run": "pr1.tgz (sha256 in pr1.tgz.sha256): all arms, meta/ (host, trees, scripts, llama before/after), run.log, summary.json"
+    },
+    "F": {
+      "uri": "evidence/pr1-arm-F.tgz",
+      "sha256": "9de2b498b675a2fffe48281db2654a3cfba63d9260d8850429c4c12d9a5d5c3b",
+      "contains": "pr1/F/s*/ (serve.log, bench.jsonl with full texts, sample.txt, engine_environ.txt, procs.txt, nvsmi.csv, gpu_*.csv, mode.txt)",
+      "full_run": "pr1.tgz (sha256 in pr1.tgz.sha256): all arms, meta/ (host, trees, scripts, llama before/after), run.log, summary.json"
+    }
+  }
+}

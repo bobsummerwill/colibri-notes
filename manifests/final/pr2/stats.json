@@ -1,0 +1,2976 @@
+{
+  "reference": "G1 s1",
+  "reference_sha256": {
+    "decode_0": "2aa40adc7d4deb49fa84db4e070a48f4d14d10981ed8103efe83388292c84e9b",
+    "decode_1": "643fa3d128e4c41c671ffc829f6d554531d259c2eb075820085d8981e985af80",
+    "decode_2": "d64c91874f9ee22c50b943803c51eeeca79f4b613b4e551456b6735d57a318da",
+    "decode_3": "9fffce519994640443407e699f48b4c1762e8a23af2b6719531f317892cc5231",
+    "decode_4": "e3bb3209f760833a7e440b7371e35ceb90dbac2c459f65ab75131c179db1ebda",
+    "decode_5": "31cbd1c1700fd7f64dda1d79142ea7d5e2d1b442ccc6e879c44bee7a3bfb439e"
+  },
+  "prompt_hash": "f9ed5d77f965bc53da65ebb1a85da283e871b6342c867f13bb1cdd4914249202",
+  "arms": {
+    "G1": {
+      "tree": "d0e19de23c3baf314ee932347c42d5f6d49ef4fb",
+      "extra_env": {
+        "V4_SERVE_STATS_LOG": "1"
+      },
+      "samples": [
+        {
+          "dir": "G1/s1",
+          "seq": 1,
+          "start": "2026-10-15T15:24:22-07:00",
+          "wall_s": 664,
+          "ready_s": 4,
+          "client_s": 658,
+          "mean_tok_s": 2.8673,
+          "per_prompt": {
+            "decode_0": {
+              "decode_tok_s": 2.627,
+              "ttft_s": 7.46,
+              "decode_chunks": 300,
+              "decode_s": 113.81,
+              "total_s": 121.27,
+              "text_sha256": "2aa40adc7d4deb49fa84db4e070a48f4d14d10981ed8103efe83388292c84e9b"
+            },
+            "decode_1": {
+              "decode_tok_s": 2.763,
+              "ttft_s": 4.27,
+              "decode_chunks": 300,
+              "decode_s": 108.23,
+              "total_s": 112.5,
+              "text_sha256": "643fa3d128e4c41c671ffc829f6d554531d259c2eb075820085d8981e985af80"
+            },
+            "decode_2": {
+              "decode_tok_s": 2.946,
+              "ttft_s": 4.66,
+              "decode_chunks": 300,
+              "decode_s": 101.5,
+              "total_s": 106.15,
+              "text_sha256": "d64c91874f9ee22c50b943803c51eeeca79f4b613b4e551456b6735d57a318da"
+            },
+            "decode_3": {
+              "decode_tok_s": 2.69,
+              "ttft_s": 4.12,
+              "decode_chunks": 300,
+              "decode_s": 111.17,
+              "total_s": 115.29,
+              "text_sha256": "9fffce519994640443407e699f48b4c1762e8a23af2b6719531f317892cc5231"
+            },
+            "decode_4": {
+              "decode_tok_s": 3.3,
+              "ttft_s": 3.85,
+              "decode_chunks": 300,
+              "decode_s": 90.62,
+              "total_s": 94.46,
+              "text_sha256": "e3bb3209f760833a7e440b7371e35ceb90dbac2c459f65ab75131c179db1ebda"
+            },
+            "decode_5": {
+              "decode_tok_s": 2.878,
+              "ttft_s": 4.24,
+              "decode_chunks": 300,
+              "decode_s": 103.91,
+              "total_s": 108.14,
+              "text_sha256": "31cbd1c1700fd7f64dda1d79142ea7d5e2d1b442ccc6e879c44bee7a3bfb439e"
+            }
+          },
+          "per_prompt_identical_to_G1s1": {
+            "decode_0": true,
+            "decode_1": true,
+            "decode_2": true,
+            "decode_3": true,
+            "decode_4": true,
+            "decode_5": true
+          },
+          "gpu_mem_used_mib": {
+            "before": {
+              "0": 784,
+              "1": 80
+            },
+            "ready": {
+              "0": 7220,
+              "1": 83
+            },
+            "end": {
+              "0": 21214,
+              "1": 83
+            },
+            "max": {
+              "0": 21214,
+              "1": 83
+            }
+          },
+          "gpu_mean_util_pct": {
+            "0": 56.7,
+            "1": 0.8
+          },
+          "serve_unit_memory_peak": "7.3G",
+          "serve_stats": {
+            "turns": 6,
+            "engine_tok_s": [
+              2.636,
+              2.772,
+              2.956,
+              2.699,
+              3.311,
+              2.887
+            ],
+            "engine_decode_s": [
+              113.81,
+              108.23,
+              101.5,
+              111.17,
+              90.62,
+              103.91
+            ],
+            "completion": [
+              300,
+              300,
+              300,
+              300,
+              300,
+              300
+            ],
+            "prompt_tokens": [
+              33,
+              23,
+              29,
+              22,
+              23,
+              25
+            ],
+            "hit_pct": [
+              "83.2%",
+              "85.5%",
+              "86.3%",
+              "83.4%",
+              "90.5%",
+              "86.1%"
+            ],
+            "expert_wait_s": [
+              24.35,
+              20.27,
+              19.81,
+              22.78,
+              14.04,
+              19.78
+            ],
+            "expert_matmul_s": [
+              3.07,
+              2.03,
+              2.43,
+              1.97,
+              2.0,
+              2.15
+            ],
+            "attention_s": [
+              87.86,
+              84.29,
+              77.96,
+              84.55,
+              72.56,
+              80.24
+            ],
+            "vram_first_hits_total": 0,
+            "store_fetches_total": 462852,
+            "dec_moe_final": {
+              "calls": 77142,
+              "total_s": 386.13,
+              "fetch_wait_s": 111.36,
+              "attach_s": 165.24,
+              "uploads": 152922,
+              "gpu_s": 70.82
+            },
+            "peer_lines": [],
+            "mirror_lines": [
+              "v4_gpu mirror-reserve=3100MiB (132-slot bank 1683MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)",
+              "v4_gpu tier=dense-matvec device=0",
+              "v4_gpu layer=0 uploaded=129.039MiB in 0.041s wall=1792103063",
+              "v4_gpu layer=1 uploaded=129.039MiB in 0.041s wall=1792103063",
+              "v4_gpu layer=2 uploaded=149.039MiB in 0.043s wall=1792103063",
+              "v4_gpu layer=3 uploaded=137.039MiB in 0.039s wall=1792103063"
+            ]
+          },
+          "mode_problems": [],
+          "env_problems": []
+        },
+        {
+          "dir": "G1/s2",
+          "seq": 8,
+          "start": "2026-10-15T16:31:42-07:00",
+          "wall_s": 664,
+          "ready_s": 4,
+          "client_s": 657,
+          "mean_tok_s": 2.866,
+          "per_prompt": {
+            "decode_0": {
+              "decode_tok_s": 2.662,
+              "ttft_s": 7.27,
+              "decode_chunks": 300,
+              "decode_s": 112.32,
+              "total_s": 119.59,
+              "text_sha256": "2aa40adc7d4deb49fa84db4e070a48f4d14d10981ed8103efe83388292c84e9b"
+            },
+            "decode_1": {
+              "decode_tok_s": 2.757,
+              "ttft_s": 4.13,
+              "decode_chunks": 300,
+              "decode_s": 108.44,
+              "total_s": 112.57,
+              "text_sha256": "643fa3d128e4c41c671ffc829f6d554531d259c2eb075820085d8981e985af80"
+            },
+            "decode_2": {
+              "decode_tok_s": 2.938,
+              "ttft_s": 4.61,
+              "decode_chunks": 300,
+              "decode_s": 101.76,
+              "total_s": 106.37,
+              "text_sha256": "d64c91874f9ee22c50b943803c51eeeca79f4b613b4e551456b6735d57a318da"
+            },
+            "decode_3": {
+              "decode_tok_s": 2.678,
+              "ttft_s": 4.11,
+              "decode_chunks": 300,
+              "decode_s": 111.66,
+              "total_s": 115.77,
+              "text_sha256": "9fffce519994640443407e699f48b4c1762e8a23af2b6719531f317892cc5231"
+            },
+            "decode_4": {
+              "decode_tok_s": 3.292,
+              "ttft_s": 3.92,
+              "decode_chunks": 300,
+              "decode_s": 90.83,
+              "total_s": 94.75,
+              "text_sha256": "e3bb3209f760833a7e440b7371e35ceb90dbac2c459f65ab75131c179db1ebda"
+            },
+            "decode_5": {
+              "decode_tok_s": 2.869,
+              "ttft_s": 4.23,
+              "decode_chunks": 300,
+              "decode_s": 104.2,
+              "total_s": 108.43,
+              "text_sha256": "31cbd1c1700fd7f64dda1d79142ea7d5e2d1b442ccc6e879c44bee7a3bfb439e"
+            }
+          },
+          "per_prompt_identical_to_G1s1": {
+            "decode_0": true,
+            "decode_1": true,
+            "decode_2": true,
+            "decode_3": true,
+            "decode_4": true,
+            "decode_5": true
+          },
+          "gpu_mem_used_mib": {
+            "before": {
+              "0": 784,
+              "1": 80
+            },
+            "ready": {
+              "0": 7220,
+              "1": 83
+            },
+            "end": {
+              "0": 21214,
+              "1": 83
+            },
+            "max": {
+              "0": 21214,
+              "1": 83
+            }
+          },
+          "gpu_mean_util_pct": {
+            "0": 57.4,
+            "1": 0.0
+          },
+          "serve_unit_memory_peak": "7.3G",
+          "serve_stats": {
+            "turns": 6,
+            "engine_tok_s": [
+              2.671,
+              2.767,
+              2.948,
+              2.687,
+              3.303,
+              2.879
+            ],
+            "engine_decode_s": [
+              112.32,
+              108.44,
+              101.76,
+              111.66,
+              90.83,
+              104.2
+            ],
+            "completion": [
+              300,
+              300,
+              300,
+              300,
+              300,
+              300
+            ],
+            "prompt_tokens": [
+              33,
+              23,
+              29,
+              22,
+              23,
+              25
+            ],
+            "hit_pct": [
+              "83.2%",
+              "85.5%",
+              "86.3%",
+              "83.4%",
+              "90.5%",
+              "86.1%"
+            ],
+            "expert_wait_s": [
+              22.72,
+              19.92,
+              19.65,
+              22.85,
+              14.26,
+              19.88
+            ],
+            "expert_matmul_s": [
+              3.07,
+              2.02,
+              2.43,
+              1.96,
+              1.98,
+              2.15
+            ],
+            "attention_s": [
+              87.77,
+              84.69,
+              78.31,
+              84.95,
+              72.63,
+              80.41
+            ],
+            "vram_first_hits_total": 0,
+            "store_fetches_total": 462852,
+            "dec_moe_final": {
+              "calls": 77142,
+              "total_s": 385.42,
+              "fetch_wait_s": 109.96,
+              "attach_s": 165.53,
+              "uploads": 152922,
+              "gpu_s": 71.04
+            },
+            "peer_lines": [],
+            "mirror_lines": [
+              "v4_gpu mirror-reserve=3100MiB (132-slot bank 1683MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)",
+              "v4_gpu tier=dense-matvec device=0",
+              "v4_gpu layer=0 uploaded=129.039MiB in 0.043s wall=1792107102",
+              "v4_gpu layer=1 uploaded=129.039MiB in 0.041s wall=1792107102",
+              "v4_gpu layer=2 uploaded=149.039MiB in 0.044s wall=1792107102",
+              "v4_gpu layer=3 uploaded=137.039MiB in 0.043s wall=1792107102"
+            ]
+          },
+          "mode_problems": [],
+          "env_problems": []
+        },
+        {
+          "dir": "G1/s3",
+          "seq": 11,
+          "start": "2026-10-15T17:00:06-07:00",
+          "wall_s": 664,
+          "ready_s": 4,
+          "client_s": 658,
+          "mean_tok_s": 2.8647,
+          "per_prompt": {
+            "decode_0": {
+              "decode_tok_s": 2.663,
+              "ttft_s": 7.29,
+              "decode_chunks": 300,
+              "decode_s": 112.28,
+              "total_s": 119.57,
+              "text_sha256": "2aa40adc7d4deb49fa84db4e070a48f4d14d10981ed8103efe83388292c84e9b"
+            },
+            "decode_1": {
+              "decode_tok_s": 2.755,
+              "ttft_s": 4.12,
+              "decode_chunks": 300,
+              "decode_s": 108.52,
+              "total_s": 112.64,
+              "text_sha256": "643fa3d128e4c41c671ffc829f6d554531d259c2eb075820085d8981e985af80"
+            },
+            "decode_2": {
+              "decode_tok_s": 2.937,
+              "ttft_s": 4.62,
+              "decode_chunks": 300,
+              "decode_s": 101.8,
+              "total_s": 106.42,
+              "text_sha256": "d64c91874f9ee22c50b943803c51eeeca79f4b613b4e551456b6735d57a318da"
+            },
+            "decode_3": {
+              "decode_tok_s": 2.68,
+              "ttft_s": 4.11,
+              "decode_chunks": 300,
+              "decode_s": 111.56,
+              "total_s": 115.68,
+              "text_sha256": "9fffce519994640443407e699f48b4c1762e8a23af2b6719531f317892cc5231"
+            },
+            "decode_4": {
+              "decode_tok_s": 3.289,
+              "ttft_s": 3.86,
+              "decode_chunks": 300,
+              "decode_s": 90.9,
+              "total_s": 94.76,
+              "text_sha256": "e3bb3209f760833a7e440b7371e35ceb90dbac2c459f65ab75131c179db1ebda"
+            },
+            "decode_5": {
+              "decode_tok_s": 2.864,
+              "ttft_s": 4.24,
+              "decode_chunks": 300,
+              "decode_s": 104.4,
+              "total_s": 108.64,
+              "text_sha256": "31cbd1c1700fd7f64dda1d79142ea7d5e2d1b442ccc6e879c44bee7a3bfb439e"
+            }
+          },
+          "per_prompt_identical_to_G1s1": {
+            "decode_0": true,
+            "decode_1": true,
+            "decode_2": true,
+            "decode_3": true,
+            "decode_4": true,
+            "decode_5": true
+          },
+          "gpu_mem_used_mib": {
+            "before": {
+              "0": 784,
+              "1": 80
+            },
+            "ready": {
+              "0": 7220,
+              "1": 83
+            },
+            "end": {
+              "0": 21214,
+              "1": 83
+            },
+            "max": {
+              "0": 21214,
+              "1": 83
+            }
+          },
+          "gpu_mean_util_pct": {
+            "0": 58.2,
+            "1": 0.0
+          },
+          "serve_unit_memory_peak": "7.3G",
+          "serve_stats": {
+            "turns": 6,
+            "engine_tok_s": [
+              2.672,
+              2.764,
+              2.947,
+              2.689,
+              3.3,
+              2.874
+            ],
+            "engine_decode_s": [
+              112.28,
+              108.52,
+              101.8,
+              111.56,
+              90.9,
+              104.4
+            ],
+            "completion": [
+              300,
+              300,
+              300,
+              300,
+              300,
+              300
+            ],
+            "prompt_tokens": [
+              33,
+              23,
+              29,
+              22,
+              23,
+              25
+            ],
+            "hit_pct": [
+              "83.2%",
+              "85.5%",
+              "86.3%",
+              "83.4%",
+              "90.5%",
+              "86.1%"
+            ],
+            "expert_wait_s": [
+              22.69,
+              19.96,
+              19.71,
+              22.79,
+              14.12,
+              20.07
+            ],
+            "expert_matmul_s": [
+              3.08,
+              2.01,
+              2.43,
+              1.96,
+              1.99,
+              2.16
+            ],
+            "attention_s": [
+              87.77,
+              84.74,
+              78.31,
+              84.93,
+              72.78,
+              80.42
+            ],
+            "vram_first_hits_total": 0,
+            "store_fetches_total": 462852,
+            "dec_moe_final": {
+              "calls": 77142,
+              "total_s": 385.51,
+              "fetch_wait_s": 110.08,
+              "attach_s": 165.5,
+              "uploads": 152922,
+              "gpu_s": 71.08
+            },
+            "peer_lines": [],
+            "mirror_lines": [
+              "v4_gpu mirror-reserve=3100MiB (132-slot bank 1683MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)",
+              "v4_gpu tier=dense-matvec device=0",
+              "v4_gpu layer=0 uploaded=129.039MiB in 0.041s wall=1792108807",
+              "v4_gpu layer=1 uploaded=129.039MiB in 0.042s wall=1792108807",
+              "v4_gpu layer=2 uploaded=149.039MiB in 0.044s wall=1792108807",
+              "v4_gpu layer=3 uploaded=137.039MiB in 0.042s wall=1792108807"
+            ]
+          },
+          "mode_problems": [],
+          "env_problems": []
+        }
+      ],
+      "gate_problems": [],
+      "mean_tok_s": {
+        "mean": 2.866,
+        "stdev": 0.0013,
+        "median": 2.866,
+        "min": 2.8647,
+        "max": 2.8673,
+        "n": 3
+      },
+      "per_prompt_tok_s": {
+        "decode_0": {
+          "mean": 2.6507,
+          "stdev": 0.0205,
+          "median": 2.662,
+          "min": 2.627,
+          "max": 2.663,
+          "n": 3
+        },
+        "decode_1": {
+          "mean": 2.7583,
+          "stdev": 0.0042,
+          "median": 2.757,
+          "min": 2.755,
+          "max": 2.763,
+          "n": 3
+        },
+        "decode_2": {
+          "mean": 2.9403,
+          "stdev": 0.0049,
+          "median": 2.938,
+          "min": 2.937,
+          "max": 2.946,
+          "n": 3
+        },
+        "decode_3": {
+          "mean": 2.6827,
+          "stdev": 0.0064,
+          "median": 2.68,
+          "min": 2.678,
+          "max": 2.69,
+          "n": 3
+        },
+        "decode_4": {
+          "mean": 3.2937,
+          "stdev": 0.0057,
+          "median": 3.292,
+          "min": 3.289,
+          "max": 3.3,
+          "n": 3
+        },
+        "decode_5": {
+          "mean": 2.8703,
+          "stdev": 0.0071,
+          "median": 2.869,
+          "min": 2.864,
+          "max": 2.878,
+          "n": 3
+        }
+      },
+      "engine_tok_s_mean_of_6": {
+        "mean": 2.8757,
+        "stdev": 0.0013,
+        "median": 2.8758,
+        "min": 2.8743333333333334,
+        "max": 2.8768333333333334,
+        "n": 3
+      },
+      "gpu0_max_mib": {
+        "mean": 21214,
+        "stdev": 0.0,
+        "median": 21214,
+        "min": 21214,
+        "max": 21214,
+        "n": 3
+      },
+      "gpu1_max_mib": {
+        "mean": 83,
+        "stdev": 0.0,
+        "median": 83,
+        "min": 83,
+        "max": 83,
+        "n": 3
+      },
+      "dec_moe_final_mean": {
+        "calls": 77142,
+        "total_s": 385.69,
+        "fetch_wait_s": 110.47,
+        "attach_s": 165.42,
+        "uploads": 152922,
+        "gpu_s": 70.98
+      },
+      "identical_to_G1s1": true,
+      "vs_G1_mean": 1.0,
+      "vs_G1_median": 1.0
+    },
+    "X1": {
+      "tree": "d0e19de23c3baf314ee932347c42d5f6d49ef4fb",
+      "extra_env": {
+        "V4_SERVE_STATS_LOG": "1",
+        "V4_GPU_RESIDENT_FIRST": "1"
+      },
+      "samples": [
+        {
+          "dir": "X1/s1",
+          "seq": 2,
+          "start": "2026-10-15T15:35:26-07:00",
+          "wall_s": 649,
+          "ready_s": 6,
+          "client_s": 642,
+          "mean_tok_s": 2.941,
+          "per_prompt": {
+            "decode_0": {
+              "decode_tok_s": 2.702,
+              "ttft_s": 7.33,
+              "decode_chunks": 300,
+              "decode_s": 110.65,
+              "total_s": 117.98,
+              "text_sha256": "2aa40adc7d4deb49fa84db4e070a48f4d14d10981ed8103efe83388292c84e9b"
+            },
+            "decode_1": {
+              "decode_tok_s": 2.826,
+              "ttft_s": 4.01,
+              "decode_chunks": 300,
+              "decode_s": 105.81,
+              "total_s": 109.82,
+              "text_sha256": "643fa3d128e4c41c671ffc829f6d554531d259c2eb075820085d8981e985af80"
+            },
+            "decode_2": {
+              "decode_tok_s": 3.023,
+              "ttft_s": 4.64,
+              "decode_chunks": 300,
+              "decode_s": 98.9,
+              "total_s": 103.53,
+              "text_sha256": "d64c91874f9ee22c50b943803c51eeeca79f4b613b4e551456b6735d57a318da"
+            },
+            "decode_3": {
+              "decode_tok_s": 2.792,
+              "ttft_s": 4.01,
+              "decode_chunks": 300,
+              "decode_s": 107.11,
+              "total_s": 111.11,
+              "text_sha256": "9fffce519994640443407e699f48b4c1762e8a23af2b6719531f317892cc5231"
+            },
+            "decode_4": {
+              "decode_tok_s": 3.362,
+              "ttft_s": 3.8,
+              "decode_chunks": 300,
+              "decode_s": 88.94,
+              "total_s": 92.74,
+              "text_sha256": "e3bb3209f760833a7e440b7371e35ceb90dbac2c459f65ab75131c179db1ebda"
+            },
+            "decode_5": {
+              "decode_tok_s": 2.941,
+              "ttft_s": 4.18,
+              "decode_chunks": 300,
+              "decode_s": 101.65,
+              "total_s": 105.83,
+              "text_sha256": "31cbd1c1700fd7f64dda1d79142ea7d5e2d1b442ccc6e879c44bee7a3bfb439e"
+            }
+          },
+          "per_prompt_identical_to_G1s1": {
+            "decode_0": true,
+            "decode_1": true,
+            "decode_2": true,
+            "decode_3": true,
+            "decode_4": true,
+            "decode_5": true
+          },
+          "gpu_mem_used_mib": {
+            "before": {
+              "0": 784,
+              "1": 80
+            },
+            "ready": {
+              "0": 7220,
+              "1": 83
+            },
+            "end": {
+              "0": 21214,
+              "1": 83
+            },
+            "max": {
+              "0": 21214,
+              "1": 83
+            }
+          },
+          "gpu_mean_util_pct": {
+            "0": 58.1,
+            "1": 0.0
+          },
+          "serve_unit_memory_peak": "14.3G",
+          "serve_stats": {
+            "turns": 6,
+            "engine_tok_s": [
+              2.711,
+              2.835,
+              3.033,
+              2.801,
+              3.373,
+              2.951
+            ],
+            "engine_decode_s": [
+              110.65,
+              105.81,
+              98.9,
+              107.11,
+              88.94,
+              101.65
+            ],
+            "completion": [
+              300,
+              300,
+              300,
+              300,
+              300,
+              300
+            ],
+            "prompt_tokens": [
+              33,
+              23,
+              29,
+              22,
+              23,
+              25
+            ],
+            "hit_pct": [
+              "58.9%",
+              "63.8%",
+              "57.8%",
+              "61.1%",
+              "63.7%",
+              "60.6%"
+            ],
+            "expert_wait_s": [
+              20.92,
+              17.3,
+              16.93,
+              18.33,
+              12.19,
+              17.22
+            ],
+            "expert_matmul_s": [
+              3.12,
+              2.03,
+              2.47,
+              2.01,
+              2.02,
+              2.19
+            ],
+            "attention_s": [
+              87.92,
+              84.57,
+              78.15,
+              84.79,
+              72.65,
+              80.43
+            ],
+            "vram_first_hits_total": 310011,
+            "store_fetches_total": 152841,
+            "dec_moe_final": {
+              "calls": 77142,
+              "total_s": 369.52,
+              "fetch_wait_s": 94.73,
+              "attach_s": 165.64,
+              "uploads": 152841,
+              "gpu_s": 70.8
+            },
+            "peer_lines": [],
+            "mirror_lines": [
+              "v4_gpu mirror-reserve=3100MiB (132-slot bank 1683MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)",
+              "v4_gpu tier=dense-matvec device=0",
+              "v4_gpu layer=0 uploaded=129.039MiB in 0.041s wall=1792103727",
+              "v4_gpu layer=1 uploaded=129.039MiB in 0.042s wall=1792103727",
+              "v4_gpu layer=2 uploaded=149.039MiB in 0.044s wall=1792103727",
+              "v4_gpu layer=3 uploaded=137.039MiB in 0.041s wall=1792103727"
+            ]
+          },
+          "mode_problems": [],
+          "env_problems": []
+        },
+        {
+          "dir": "X1/s2",
+          "seq": 5,
+          "start": "2026-10-15T16:03:37-07:00",
+          "wall_s": 646,
+          "ready_s": 4,
+          "client_s": 641,
+          "mean_tok_s": 2.9432,
+          "per_prompt": {
+            "decode_0": {
+              "decode_tok_s": 2.731,
+              "ttft_s": 7.24,
+              "decode_chunks": 300,
+              "decode_s": 109.47,
+              "total_s": 116.71,
+              "text_sha256": "2aa40adc7d4deb49fa84db4e070a48f4d14d10981ed8103efe83388292c84e9b"
+            },
+            "decode_1": {
+              "decode_tok_s": 2.822,
+              "ttft_s": 3.99,
+              "decode_chunks": 300,
+              "decode_s": 105.96,
+              "total_s": 109.95,
+              "text_sha256": "643fa3d128e4c41c671ffc829f6d554531d259c2eb075820085d8981e985af80"
+            },
+            "decode_2": {
+              "decode_tok_s": 3.016,
+              "ttft_s": 4.6,
+              "decode_chunks": 300,
+              "decode_s": 99.15,
+              "total_s": 103.74,
+              "text_sha256": "d64c91874f9ee22c50b943803c51eeeca79f4b613b4e551456b6735d57a318da"
+            },
+            "decode_3": {
+              "decode_tok_s": 2.787,
+              "ttft_s": 3.98,
+              "decode_chunks": 300,
+              "decode_s": 107.27,
+              "total_s": 111.25,
+              "text_sha256": "9fffce519994640443407e699f48b4c1762e8a23af2b6719531f317892cc5231"
+            },
+            "decode_4": {
+              "decode_tok_s": 3.36,
+              "ttft_s": 3.79,
+              "decode_chunks": 300,
+              "decode_s": 88.99,
+              "total_s": 92.77,
+              "text_sha256": "e3bb3209f760833a7e440b7371e35ceb90dbac2c459f65ab75131c179db1ebda"
+            },
+            "decode_5": {
+              "decode_tok_s": 2.943,
+              "ttft_s": 4.18,
+              "decode_chunks": 300,
+              "decode_s": 101.61,
+              "total_s": 105.79,
+              "text_sha256": "31cbd1c1700fd7f64dda1d79142ea7d5e2d1b442ccc6e879c44bee7a3bfb439e"
+            }
+          },
+          "per_prompt_identical_to_G1s1": {
+            "decode_0": true,
+            "decode_1": true,
+            "decode_2": true,
+            "decode_3": true,
+            "decode_4": true,
+            "decode_5": true
+          },
+          "gpu_mem_used_mib": {
+            "before": {
+              "0": 784,
+              "1": 80
+            },
+            "ready": {
+              "0": 7220,
+              "1": 83
+            },
+            "end": {
+              "0": 21214,
+              "1": 83
+            },
+            "max": {
+              "0": 21214,
+              "1": 83
+            }
+          },
+          "gpu_mean_util_pct": {
+            "0": 59.4,
+            "1": 0.0
+          },
+          "serve_unit_memory_peak": "7.3G",
+          "serve_stats": {
+            "turns": 6,
+            "engine_tok_s": [
+              2.74,
+              2.831,
+              3.026,
+              2.797,
+              3.371,
+              2.953
+            ],
+            "engine_decode_s": [
+              109.47,
+              105.96,
+              99.15,
+              107.27,
+              88.99,
+              101.61
+            ],
+            "completion": [
+              300,
+              300,
+              300,
+              300,
+              300,
+              300
+            ],
+            "prompt_tokens": [
+              33,
+              23,
+              29,
+              22,
+              23,
+              25
+            ],
+            "hit_pct": [
+              "58.9%",
+              "63.9%",
+              "57.7%",
+              "61.1%",
+              "63.7%",
+              "60.5%"
+            ],
+            "expert_wait_s": [
+              19.85,
+              17.38,
+              17.04,
+              18.38,
+              12.21,
+              17.21
+            ],
+            "expert_matmul_s": [
+              3.07,
+              2.02,
+              2.44,
+              1.98,
+              1.99,
+              2.16
+            ],
+            "attention_s": [
+              87.78,
+              84.64,
+              78.29,
+              84.9,
+              72.71,
+              80.41
+            ],
+            "vram_first_hits_total": 310011,
+            "store_fetches_total": 152841,
+            "dec_moe_final": {
+              "calls": 77142,
+              "total_s": 368.75,
+              "fetch_wait_s": 93.88,
+              "attach_s": 165.46,
+              "uploads": 152841,
+              "gpu_s": 71.1
+            },
+            "peer_lines": [],
+            "mirror_lines": [
+              "v4_gpu mirror-reserve=3100MiB (132-slot bank 1683MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)",
+              "v4_gpu tier=dense-matvec device=0",
+              "v4_gpu layer=0 uploaded=129.039MiB in 0.043s wall=1792105418",
+              "v4_gpu layer=1 uploaded=129.039MiB in 0.040s wall=1792105418",
+              "v4_gpu layer=2 uploaded=149.039MiB in 0.043s wall=1792105418",
+              "v4_gpu layer=3 uploaded=137.039MiB in 0.042s wall=1792105418"
+            ]
+          },
+          "mode_problems": [],
+          "env_problems": []
+        },
+        {
+          "dir": "X1/s3",
+          "seq": 12,
+          "start": "2026-10-15T17:11:10-07:00",
+          "wall_s": 645,
+          "ready_s": 4,
+          "client_s": 639,
+          "mean_tok_s": 2.9492,
+          "per_prompt": {
+            "decode_0": {
+              "decode_tok_s": 2.739,
+              "ttft_s": 7.24,
+              "decode_chunks": 300,
+              "decode_s": 109.15,
+              "total_s": 116.39,
+              "text_sha256": "2aa40adc7d4deb49fa84db4e070a48f4d14d10981ed8103efe83388292c84e9b"
+            },
+            "decode_1": {
+              "decode_tok_s": 2.826,
+              "ttft_s": 4.01,
+              "decode_chunks": 300,
+              "decode_s": 105.79,
+              "total_s": 109.8,
+              "text_sha256": "643fa3d128e4c41c671ffc829f6d554531d259c2eb075820085d8981e985af80"
+            },
+            "decode_2": {
+              "decode_tok_s": 3.025,
+              "ttft_s": 4.59,
+              "decode_chunks": 300,
+              "decode_s": 98.83,
+              "total_s": 103.41,
+              "text_sha256": "d64c91874f9ee22c50b943803c51eeeca79f4b613b4e551456b6735d57a318da"
+            },
+            "decode_3": {
+              "decode_tok_s": 2.792,
+              "ttft_s": 3.97,
+              "decode_chunks": 300,
+              "decode_s": 107.08,
+              "total_s": 111.05,
+              "text_sha256": "9fffce519994640443407e699f48b4c1762e8a23af2b6719531f317892cc5231"
+            },
+            "decode_4": {
+              "decode_tok_s": 3.366,
+              "ttft_s": 3.79,
+              "decode_chunks": 300,
+              "decode_s": 88.83,
+              "total_s": 92.62,
+              "text_sha256": "e3bb3209f760833a7e440b7371e35ceb90dbac2c459f65ab75131c179db1ebda"
+            },
+            "decode_5": {
+              "decode_tok_s": 2.947,
+              "ttft_s": 4.19,
+              "decode_chunks": 300,
+              "decode_s": 101.44,
+              "total_s": 105.64,
+              "text_sha256": "31cbd1c1700fd7f64dda1d79142ea7d5e2d1b442ccc6e879c44bee7a3bfb439e"
+            }
+          },
+          "per_prompt_identical_to_G1s1": {
+            "decode_0": true,
+            "decode_1": true,
+            "decode_2": true,
+            "decode_3": true,
+            "decode_4": true,
+            "decode_5": true
+          },
+          "gpu_mem_used_mib": {
+            "before": {
+              "0": 784,
+              "1": 80
+            },
+            "ready": {
+              "0": 7220,
+              "1": 83
+            },
+            "end": {
+              "0": 21214,
+              "1": 83
+            },
+            "max": {
+              "0": 21214,
+              "1": 83
+            }
+          },
+          "gpu_mean_util_pct": {
+            "0": 60.4,
+            "1": 0.0
+          },
+          "serve_unit_memory_peak": "7.3G",
+          "serve_stats": {
+            "turns": 6,
+            "engine_tok_s": [
+              2.748,
+              2.836,
+              3.036,
+              2.802,
+              3.377,
+              2.957
+            ],
+            "engine_decode_s": [
+              109.15,
+              105.79,
+              98.83,
+              107.08,
+              88.83,
+              101.44
+            ],
+            "completion": [
+              300,
+              300,
+              300,
+              300,
+              300,
+              300
+            ],
+            "prompt_tokens": [
+              33,
+              23,
+              29,
+              22,
+              23,
+              25
+            ],
+            "hit_pct": [
+              "58.9%",
+              "63.8%",
+              "57.7%",
+              "61.1%",
+              "63.7%",
+              "60.5%"
+            ],
+            "expert_wait_s": [
+              19.85,
+              17.41,
+              16.93,
+              18.36,
+              12.19,
+              17.12
+            ],
+            "expert_matmul_s": [
+              3.08,
+              2.04,
+              2.43,
+              1.96,
+              1.99,
+              2.18
+            ],
+            "attention_s": [
+              87.47,
+              84.43,
+              78.08,
+              84.75,
+              72.59,
+              80.35
+            ],
+            "vram_first_hits_total": 310011,
+            "store_fetches_total": 152841,
+            "dec_moe_final": {
+              "calls": 77142,
+              "total_s": 367.92,
+              "fetch_wait_s": 93.65,
+              "attach_s": 165.37,
+              "uploads": 152841,
+              "gpu_s": 70.8
+            },
+            "peer_lines": [],
+            "mirror_lines": [
+              "v4_gpu mirror-reserve=3100MiB (132-slot bank 1683MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)",
+              "v4_gpu tier=dense-matvec device=0",
+              "v4_gpu layer=0 uploaded=129.039MiB in 0.043s wall=1792109471",
+              "v4_gpu layer=1 uploaded=129.039MiB in 0.041s wall=1792109471",
+              "v4_gpu layer=2 uploaded=149.039MiB in 0.044s wall=1792109471",
+              "v4_gpu layer=3 uploaded=137.039MiB in 0.042s wall=1792109471"
+            ]
+          },
+          "mode_problems": [],
+          "env_problems": []
+        }
+      ],
+      "gate_problems": [],
+      "mean_tok_s": {
+        "mean": 2.9445,
+        "stdev": 0.0042,
+        "median": 2.9432,
+        "min": 2.941,
+        "max": 2.9492,
+        "n": 3
+      },
+      "per_prompt_tok_s": {
+        "decode_0": {
+          "mean": 2.724,
+          "stdev": 0.0195,
+          "median": 2.731,
+          "min": 2.702,
+          "max": 2.739,
+          "n": 3
+        },
+        "decode_1": {
+          "mean": 2.8247,
+          "stdev": 0.0023,
+          "median": 2.826,
+          "min": 2.822,
+          "max": 2.826,
+          "n": 3
+        },
+        "decode_2": {
+          "mean": 3.0213,
+          "stdev": 0.0047,
+          "median": 3.023,
+          "min": 3.016,
+          "max": 3.025,
+          "n": 3
+        },
+        "decode_3": {
+          "mean": 2.7903,
+          "stdev": 0.0029,
+          "median": 2.792,
+          "min": 2.787,
+          "max": 2.792,
+          "n": 3
+        },
+        "decode_4": {
+          "mean": 3.3627,
+          "stdev": 0.0031,
+          "median": 3.362,
+          "min": 3.36,
+          "max": 3.366,
+          "n": 3
+        },
+        "decode_5": {
+          "mean": 2.9437,
+          "stdev": 0.0031,
+          "median": 2.943,
+          "min": 2.941,
+          "max": 2.947,
+          "n": 3
+        }
+      },
+      "engine_tok_s_mean_of_6": {
+        "mean": 2.9543,
+        "stdev": 0.0045,
+        "median": 2.953,
+        "min": 2.9506666666666668,
+        "max": 2.9593333333333334,
+        "n": 3
+      },
+      "gpu0_max_mib": {
+        "mean": 21214,
+        "stdev": 0.0,
+        "median": 21214,
+        "min": 21214,
+        "max": 21214,
+        "n": 3
+      },
+      "gpu1_max_mib": {
+        "mean": 83,
+        "stdev": 0.0,
+        "median": 83,
+        "min": 83,
+        "max": 83,
+        "n": 3
+      },
+      "dec_moe_final_mean": {
+        "calls": 77142,
+        "total_s": 368.73,
+        "fetch_wait_s": 94.09,
+        "attach_s": 165.49,
+        "uploads": 152841,
+        "gpu_s": 70.9
+      },
+      "identical_to_G1s1": true,
+      "vs_G1_mean": 1.0274,
+      "vs_G1_median": 1.0269
+    },
+    "X2": {
+      "tree": "d0e19de23c3baf314ee932347c42d5f6d49ef4fb",
+      "extra_env": {
+        "V4_SERVE_STATS_LOG": "1",
+        "V4_GPU_RESIDENT_FIRST": "1",
+        "DSV4_CUDA_PEER_DEVICE": "1",
+        "DSV4_CUDA_PEER_COMPUTE": "0"
+      },
+      "samples": [
+        {
+          "dir": "X2/s1",
+          "seq": 3,
+          "start": "2026-10-15T15:46:16-07:00",
+          "wall_s": 560,
+          "ready_s": 6,
+          "client_s": 551,
+          "mean_tok_s": 3.4415,
+          "per_prompt": {
+            "decode_0": {
+              "decode_tok_s": 3.225,
+              "ttft_s": 7.3,
+              "decode_chunks": 300,
+              "decode_s": 92.72,
+              "total_s": 100.01,
+              "text_sha256": "2aa40adc7d4deb49fa84db4e070a48f4d14d10981ed8103efe83388292c84e9b"
+            },
+            "decode_1": {
+              "decode_tok_s": 3.452,
+              "ttft_s": 4.14,
+              "decode_chunks": 300,
+              "decode_s": 86.62,
+              "total_s": 90.76,
+              "text_sha256": "643fa3d128e4c41c671ffc829f6d554531d259c2eb075820085d8981e985af80"
+            },
+            "decode_2": {
+              "decode_tok_s": 3.454,
+              "ttft_s": 4.71,
+              "decode_chunks": 300,
+              "decode_s": 86.56,
+              "total_s": 91.27,
+              "text_sha256": "d64c91874f9ee22c50b943803c51eeeca79f4b613b4e551456b6735d57a318da"
+            },
+            "decode_3": {
+              "decode_tok_s": 3.352,
+              "ttft_s": 4.12,
+              "decode_chunks": 300,
+              "decode_s": 89.2,
+              "total_s": 93.32,
+              "text_sha256": "9fffce519994640443407e699f48b4c1762e8a23af2b6719531f317892cc5231"
+            },
+            "decode_4": {
+              "decode_tok_s": 3.707,
+              "ttft_s": 4.01,
+              "decode_chunks": 300,
+              "decode_s": 80.65,
+              "total_s": 84.67,
+              "text_sha256": "e3bb3209f760833a7e440b7371e35ceb90dbac2c459f65ab75131c179db1ebda"
+            },
+            "decode_5": {
+              "decode_tok_s": 3.459,
+              "ttft_s": 4.52,
+              "decode_chunks": 300,
+              "decode_s": 86.43,
+              "total_s": 90.95,
+              "text_sha256": "31cbd1c1700fd7f64dda1d79142ea7d5e2d1b442ccc6e879c44bee7a3bfb439e"
+            }
+          },
+          "per_prompt_identical_to_G1s1": {
+            "decode_0": true,
+            "decode_1": true,
+            "decode_2": true,
+            "decode_3": true,
+            "decode_4": true,
+            "decode_5": true
+          },
+          "gpu_mem_used_mib": {
+            "before": {
+              "0": 784,
+              "1": 80
+            },
+            "ready": {
+              "0": 7220,
+              "1": 349
+            },
+            "end": {
+              "0": 21214,
+              "1": 23137
+            },
+            "max": {
+              "0": 21478,
+              "1": 23137
+            }
+          },
+          "gpu_mean_util_pct": {
+            "0": 54.0,
+            "1": 5.1
+          },
+          "serve_unit_memory_peak": "7.6G",
+          "serve_stats": {
+            "turns": 6,
+            "engine_tok_s": [
+              3.236,
+              3.463,
+              3.466,
+              3.363,
+              3.72,
+              3.471
+            ],
+            "engine_decode_s": [
+              92.72,
+              86.62,
+              86.56,
+              89.2,
+              80.65,
+              86.43
+            ],
+            "completion": [
+              300,
+              300,
+              300,
+              300,
+              300,
+              300
+            ],
+            "prompt_tokens": [
+              33,
+              23,
+              29,
+              22,
+              23,
+              25
+            ],
+            "hit_pct": [
+              "30.7%",
+              "41.7%",
+              "37.3%",
+              "41.8%",
+              "43.2%",
+              "38.5%"
+            ],
+            "expert_wait_s": [
+              15.08,
+              10.99,
+              11.66,
+              12.22,
+              8.3,
+              11.36
+            ],
+            "expert_matmul_s": [
+              3.07,
+              2.03,
+              2.43,
+              1.97,
+              2.01,
+              2.18
+            ],
+            "attention_s": [
+              75.89,
+              71.86,
+              71.29,
+              73.22,
+              68.53,
+              71.51
+            ],
+            "vram_first_hits_total": 418453,
+            "store_fetches_total": 44399,
+            "dec_moe_final": {
+              "calls": 77142,
+              "total_s": 281.44,
+              "fetch_wait_s": 60.6,
+              "attach_s": 50.1,
+              "uploads": 44399,
+              "gpu_s": 132.78
+            },
+            "peer_lines": [
+              "v4_gpu peer-mirrors device=1 reserve=1024MB mode=p2p-read (device 0 reads these experts in place over P2P)"
+            ],
+            "mirror_lines": [
+              "v4_gpu mirror-reserve=3100MiB (132-slot bank 1683MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)",
+              "v4_gpu peer-mirrors device=1 reserve=1024MB mode=p2p-read (device 0 reads these experts in place over P2P)",
+              "v4_gpu tier=dense-matvec device=0",
+              "v4_gpu layer=0 uploaded=129.039MiB in 0.041s wall=1792104377",
+              "v4_gpu layer=1 uploaded=129.039MiB in 0.041s wall=1792104377",
+              "v4_gpu layer=2 uploaded=149.039MiB in 0.045s wall=1792104377"
+            ]
+          },
+          "mode_problems": [],
+          "env_problems": []
+        },
+        {
+          "dir": "X2/s2",
+          "seq": 6,
+          "start": "2026-10-15T16:14:23-07:00",
+          "wall_s": 558,
+          "ready_s": 4,
+          "client_s": 552,
+          "mean_tok_s": 3.4405,
+          "per_prompt": {
+            "decode_0": {
+              "decode_tok_s": 3.224,
+              "ttft_s": 7.29,
+              "decode_chunks": 300,
+              "decode_s": 92.74,
+              "total_s": 100.03,
+              "text_sha256": "2aa40adc7d4deb49fa84db4e070a48f4d14d10981ed8103efe83388292c84e9b"
+            },
+            "decode_1": {
+              "decode_tok_s": 3.45,
+              "ttft_s": 4.13,
+              "decode_chunks": 300,
+              "decode_s": 86.66,
+              "total_s": 90.79,
+              "text_sha256": "643fa3d128e4c41c671ffc829f6d554531d259c2eb075820085d8981e985af80"
+            },
+            "decode_2": {
+              "decode_tok_s": 3.455,
+              "ttft_s": 4.73,
+              "decode_chunks": 300,
+              "decode_s": 86.54,
+              "total_s": 91.27,
+              "text_sha256": "d64c91874f9ee22c50b943803c51eeeca79f4b613b4e551456b6735d57a318da"
+            },
+            "decode_3": {
+              "decode_tok_s": 3.352,
+              "ttft_s": 4.09,
+              "decode_chunks": 300,
+              "decode_s": 89.2,
+              "total_s": 93.29,
+              "text_sha256": "9fffce519994640443407e699f48b4c1762e8a23af2b6719531f317892cc5231"
+            },
+            "decode_4": {
+              "decode_tok_s": 3.704,
+              "ttft_s": 4.0,
+              "decode_chunks": 300,
+              "decode_s": 80.73,
+              "total_s": 84.73,
+              "text_sha256": "e3bb3209f760833a7e440b7371e35ceb90dbac2c459f65ab75131c179db1ebda"
+            },
+            "decode_5": {
+              "decode_tok_s": 3.458,
+              "ttft_s": 4.52,
+              "decode_chunks": 300,
+              "decode_s": 86.47,
+              "total_s": 90.98,
+              "text_sha256": "31cbd1c1700fd7f64dda1d79142ea7d5e2d1b442ccc6e879c44bee7a3bfb439e"
+            }
+          },
+          "per_prompt_identical_to_G1s1": {
+            "decode_0": true,
+            "decode_1": true,
+            "decode_2": true,
+            "decode_3": true,
+            "decode_4": true,
+            "decode_5": true
+          },
+          "gpu_mem_used_mib": {
+            "before": {
+              "0": 784,
+              "1": 80
+            },
+            "ready": {
+              "0": 7220,
+              "1": 349
+            },
+            "end": {
+              "0": 21214,
+              "1": 23137
+            },
+            "max": {
+              "0": 21214,
+              "1": 23137
+            }
+          },
+          "gpu_mean_util_pct": {
+            "0": 56.3,
+            "1": 4.6
+          },
+          "serve_unit_memory_peak": "7.3G",
+          "serve_stats": {
+            "turns": 6,
+            "engine_tok_s": [
+              3.235,
+              3.462,
+              3.467,
+              3.363,
+              3.716,
+              3.47
+            ],
+            "engine_decode_s": [
+              92.74,
+              86.66,
+              86.54,
+              89.2,
+              80.73,
+              86.47
+            ],
+            "completion": [
+              300,
+              300,
+              300,
+              300,
+              300,
+              300
+            ],
+            "prompt_tokens": [
+              33,
+              23,
+              29,
+              22,
+              23,
+              25
+            ],
+            "hit_pct": [
+              "30.7%",
+              "41.7%",
+              "37.2%",
+              "41.7%",
+              "43.1%",
+              "38.5%"
+            ],
+            "expert_wait_s": [
+              15.26,
+              11.01,
+              11.62,
+              12.19,
+              8.44,
+              11.33
+            ],
+            "expert_matmul_s": [
+              3.06,
+              2.02,
+              2.42,
+              1.96,
+              2.0,
+              2.18
+            ],
+            "attention_s": [
+              75.76,
+              71.89,
+              71.34,
+              73.24,
+              68.49,
+              71.58
+            ],
+            "vram_first_hits_total": 418453,
+            "store_fetches_total": 44399,
+            "dec_moe_final": {
+              "calls": 77142,
+              "total_s": 281.72,
+              "fetch_wait_s": 60.86,
+              "attach_s": 50.09,
+              "uploads": 44399,
+              "gpu_s": 132.8
+            },
+            "peer_lines": [
+              "v4_gpu peer-mirrors device=1 reserve=1024MB mode=p2p-read (device 0 reads these experts in place over P2P)"
+            ],
+            "mirror_lines": [
+              "v4_gpu mirror-reserve=3100MiB (132-slot bank 1683MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)",
+              "v4_gpu peer-mirrors device=1 reserve=1024MB mode=p2p-read (device 0 reads these experts in place over P2P)",
+              "v4_gpu tier=dense-matvec device=0",
+              "v4_gpu layer=0 uploaded=129.039MiB in 0.042s wall=1792106064",
+              "v4_gpu layer=1 uploaded=129.039MiB in 0.040s wall=1792106064",
+              "v4_gpu layer=2 uploaded=149.039MiB in 0.045s wall=1792106064"
+            ]
+          },
+          "mode_problems": [],
+          "env_problems": []
+        },
+        {
+          "dir": "X2/s3",
+          "seq": 9,
+          "start": "2026-10-15T16:42:46-07:00",
+          "wall_s": 558,
+          "ready_s": 4,
+          "client_s": 551,
+          "mean_tok_s": 3.44,
+          "per_prompt": {
+            "decode_0": {
+              "decode_tok_s": 3.221,
+              "ttft_s": 7.31,
+              "decode_chunks": 300,
+              "decode_s": 92.84,
+              "total_s": 100.14,
+              "text_sha256": "2aa40adc7d4deb49fa84db4e070a48f4d14d10981ed8103efe83388292c84e9b"
+            },
+            "decode_1": {
+              "decode_tok_s": 3.452,
+              "ttft_s": 4.13,
+              "decode_chunks": 300,
+              "decode_s": 86.62,
+              "total_s": 90.75,
+              "text_sha256": "643fa3d128e4c41c671ffc829f6d554531d259c2eb075820085d8981e985af80"
+            },
+            "decode_2": {
+              "decode_tok_s": 3.453,
+              "ttft_s": 4.7,
+              "decode_chunks": 300,
+              "decode_s": 86.59,
+              "total_s": 91.28,
+              "text_sha256": "d64c91874f9ee22c50b943803c51eeeca79f4b613b4e551456b6735d57a318da"
+            },
+            "decode_3": {
+              "decode_tok_s": 3.35,
+              "ttft_s": 4.08,
+              "decode_chunks": 300,
+              "decode_s": 89.25,
+              "total_s": 93.34,
+              "text_sha256": "9fffce519994640443407e699f48b4c1762e8a23af2b6719531f317892cc5231"
+            },
+            "decode_4": {
+              "decode_tok_s": 3.706,
+              "ttft_s": 4.02,
+              "decode_chunks": 300,
+              "decode_s": 80.67,
+              "total_s": 84.69,
+              "text_sha256": "e3bb3209f760833a7e440b7371e35ceb90dbac2c459f65ab75131c179db1ebda"
+            },
+            "decode_5": {
+              "decode_tok_s": 3.458,
+              "ttft_s": 4.48,
+              "decode_chunks": 300,
+              "decode_s": 86.46,
+              "total_s": 90.95,
+              "text_sha256": "31cbd1c1700fd7f64dda1d79142ea7d5e2d1b442ccc6e879c44bee7a3bfb439e"
+            }
+          },
+          "per_prompt_identical_to_G1s1": {
+            "decode_0": true,
+            "decode_1": true,
+            "decode_2": true,
+            "decode_3": true,
+            "decode_4": true,
+            "decode_5": true
+          },
+          "gpu_mem_used_mib": {
+            "before": {
+              "0": 784,
+              "1": 80
+            },
+            "ready": {
+              "0": 7220,
+              "1": 349
+            },
+            "end": {
+              "0": 21214,
+              "1": 23137
+            },
+            "max": {
+              "0": 21214,
+              "1": 23137
+            }
+          },
+          "gpu_mean_util_pct": {
+            "0": 53.7,
+            "1": 5.2
+          },
+          "serve_unit_memory_peak": "7.3G",
+          "serve_stats": {
+            "turns": 6,
+            "engine_tok_s": [
+              3.232,
+              3.464,
+              3.465,
+              3.361,
+              3.719,
+              3.47
+            ],
+            "engine_decode_s": [
+              92.83,
+              86.62,
+              86.59,
+              89.25,
+              80.67,
+              86.46
+            ],
+            "completion": [
+              300,
+              300,
+              300,
+              300,
+              300,
+              300
+            ],
+            "prompt_tokens": [
+              33,
+              23,
+              29,
+              22,
+              23,
+              25
+            ],
+            "hit_pct": [
+              "30.6%",
+              "41.7%",
+              "37.3%",
+              "41.8%",
+              "43.2%",
+              "38.5%"
+            ],
+            "expert_wait_s": [
+              15.33,
+              10.98,
+              11.7,
+              12.25,
+              8.44,
+              11.35
+            ],
+            "expert_matmul_s": [
+              3.09,
+              2.02,
+              2.42,
+              1.95,
+              2.0,
+              2.17
+            ],
+            "attention_s": [
+              75.79,
+              71.89,
+              71.3,
+              73.25,
+              68.46,
+              71.55
+            ],
+            "vram_first_hits_total": 418453,
+            "store_fetches_total": 44399,
+            "dec_moe_final": {
+              "calls": 77142,
+              "total_s": 281.89,
+              "fetch_wait_s": 61.08,
+              "attach_s": 50.08,
+              "uploads": 44399,
+              "gpu_s": 132.79
+            },
+            "peer_lines": [
+              "v4_gpu peer-mirrors device=1 reserve=1024MB mode=p2p-read (device 0 reads these experts in place over P2P)"
+            ],
+            "mirror_lines": [
+              "v4_gpu mirror-reserve=3100MiB (132-slot bank 1683MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)",
+              "v4_gpu peer-mirrors device=1 reserve=1024MB mode=p2p-read (device 0 reads these experts in place over P2P)",
+              "v4_gpu tier=dense-matvec device=0",
+              "v4_gpu layer=0 uploaded=129.039MiB in 0.044s wall=1792107767",
+              "v4_gpu layer=1 uploaded=129.039MiB in 0.041s wall=1792107767",
+              "v4_gpu layer=2 uploaded=149.039MiB in 0.045s wall=1792107767"
+            ]
+          },
+          "mode_problems": [],
+          "env_problems": []
+        }
+      ],
+      "gate_problems": [],
+      "mean_tok_s": {
+        "mean": 3.4407,
+        "stdev": 0.0008,
+        "median": 3.4405,
+        "min": 3.44,
+        "max": 3.4415,
+        "n": 3
+      },
+      "per_prompt_tok_s": {
+        "decode_0": {
+          "mean": 3.2233,
+          "stdev": 0.0021,
+          "median": 3.224,
+          "min": 3.221,
+          "max": 3.225,
+          "n": 3
+        },
+        "decode_1": {
+          "mean": 3.4513,
+          "stdev": 0.0012,
+          "median": 3.452,
+          "min": 3.45,
+          "max": 3.452,
+          "n": 3
+        },
+        "decode_2": {
+          "mean": 3.454,
+          "stdev": 0.001,
+          "median": 3.454,
+          "min": 3.453,
+          "max": 3.455,
+          "n": 3
+        },
+        "decode_3": {
+          "mean": 3.3513,
+          "stdev": 0.0012,
+          "median": 3.352,
+          "min": 3.35,
+          "max": 3.352,
+          "n": 3
+        },
+        "decode_4": {
+          "mean": 3.7057,
+          "stdev": 0.0015,
+          "median": 3.706,
+          "min": 3.704,
+          "max": 3.707,
+          "n": 3
+        },
+        "decode_5": {
+          "mean": 3.4583,
+          "stdev": 0.0006,
+          "median": 3.458,
+          "min": 3.458,
+          "max": 3.459,
+          "n": 3
+        }
+      },
+      "engine_tok_s_mean_of_6": {
+        "mean": 3.4524,
+        "stdev": 0.0007,
+        "median": 3.4522,
+        "min": 3.4518333333333335,
+        "max": 3.4531666666666667,
+        "n": 3
+      },
+      "gpu0_max_mib": {
+        "mean": 21302,
+        "stdev": 152.4205,
+        "median": 21214,
+        "min": 21214,
+        "max": 21478,
+        "n": 3
+      },
+      "gpu1_max_mib": {
+        "mean": 23137,
+        "stdev": 0.0,
+        "median": 23137,
+        "min": 23137,
+        "max": 23137,
+        "n": 3
+      },
+      "dec_moe_final_mean": {
+        "calls": 77142,
+        "total_s": 281.68,
+        "fetch_wait_s": 60.85,
+        "attach_s": 50.09,
+        "uploads": 44399,
+        "gpu_s": 132.79
+      },
+      "identical_to_G1s1": true,
+      "vs_G1_mean": 1.2005,
+      "vs_G1_median": 1.2005
+    },
+    "X3": {
+      "tree": "d0e19de23c3baf314ee932347c42d5f6d49ef4fb",
+      "extra_env": {
+        "V4_SERVE_STATS_LOG": "1",
+        "V4_GPU_RESIDENT_FIRST": "1",
+        "DSV4_CUDA_PEER_DEVICE": "1"
+      },
+      "samples": [
+        {
+          "dir": "X3/s1",
+          "seq": 4,
+          "start": "2026-10-15T15:55:36-07:00",
+          "wall_s": 481,
+          "ready_s": 4,
+          "client_s": 474,
+          "mean_tok_s": 4.0438,
+          "per_prompt": {
+            "decode_0": {
+              "decode_tok_s": 3.678,
+              "ttft_s": 7.3,
+              "decode_chunks": 300,
+              "decode_s": 81.29,
+              "total_s": 88.58,
+              "text_sha256": "2aa40adc7d4deb49fa84db4e070a48f4d14d10981ed8103efe83388292c84e9b"
+            },
+            "decode_1": {
+              "decode_tok_s": 4.078,
+              "ttft_s": 4.15,
+              "decode_chunks": 300,
+              "decode_s": 73.33,
+              "total_s": 77.48,
+              "text_sha256": "643fa3d128e4c41c671ffc829f6d554531d259c2eb075820085d8981e985af80"
+            },
+            "decode_2": {
+              "decode_tok_s": 4.061,
+              "ttft_s": 4.71,
+              "decode_chunks": 300,
+              "decode_s": 73.62,
+              "total_s": 78.33,
+              "text_sha256": "d64c91874f9ee22c50b943803c51eeeca79f4b613b4e551456b6735d57a318da"
+            },
+            "decode_3": {
+              "decode_tok_s": 3.936,
+              "ttft_s": 4.12,
+              "decode_chunks": 300,
+              "decode_s": 75.97,
+              "total_s": 80.09,
+              "text_sha256": "9fffce519994640443407e699f48b4c1762e8a23af2b6719531f317892cc5231"
+            },
+            "decode_4": {
+              "decode_tok_s": 4.428,
+              "ttft_s": 4.02,
+              "decode_chunks": 300,
+              "decode_s": 67.53,
+              "total_s": 71.55,
+              "text_sha256": "e3bb3209f760833a7e440b7371e35ceb90dbac2c459f65ab75131c179db1ebda"
+            },
+            "decode_5": {
+              "decode_tok_s": 4.082,
+              "ttft_s": 4.5,
+              "decode_chunks": 300,
+              "decode_s": 73.25,
+              "total_s": 77.75,
+              "text_sha256": "31cbd1c1700fd7f64dda1d79142ea7d5e2d1b442ccc6e879c44bee7a3bfb439e"
+            }
+          },
+          "per_prompt_identical_to_G1s1": {
+            "decode_0": true,
+            "decode_1": true,
+            "decode_2": true,
+            "decode_3": true,
+            "decode_4": true,
+            "decode_5": true
+          },
+          "gpu_mem_used_mib": {
+            "before": {
+              "0": 784,
+              "1": 80
+            },
+            "ready": {
+              "0": 7220,
+              "1": 349
+            },
+            "end": {
+              "0": 21214,
+              "1": 23137
+            },
+            "max": {
+              "0": 21214,
+              "1": 23137
+            }
+          },
+          "gpu_mean_util_pct": {
+            "0": 45.9,
+            "1": 14.4
+          },
+          "serve_unit_memory_peak": "7.6G",
+          "serve_stats": {
+            "turns": 6,
+            "engine_tok_s": [
+              3.691,
+              4.091,
+              4.075,
+              3.949,
+              4.442,
+              4.096
+            ],
+            "engine_decode_s": [
+              81.28,
+              73.33,
+              73.62,
+              75.97,
+              67.53,
+              73.25
+            ],
+            "completion": [
+              300,
+              300,
+              300,
+              300,
+              300,
+              300
+            ],
+            "prompt_tokens": [
+              33,
+              23,
+              29,
+              22,
+              23,
+              25
+            ],
+            "hit_pct": [
+              "30.8%",
+              "41.6%",
+              "37.3%",
+              "41.8%",
+              "43.2%",
+              "38.5%"
+            ],
+            "expert_wait_s": [
+              14.91,
+              10.55,
+              11.39,
+              11.84,
+              8.02,
+              10.97
+            ],
+            "expert_matmul_s": [
+              3.12,
+              2.03,
+              2.43,
+              1.97,
+              2.0,
+              2.18
+            ],
+            "attention_s": [
+              64.61,
+              59.02,
+              58.63,
+              60.38,
+              55.72,
+              58.7
+            ],
+            "vram_first_hits_total": 418453,
+            "store_fetches_total": 44399,
+            "dec_moe_final": {
+              "calls": 77142,
+              "total_s": 204.5,
+              "fetch_wait_s": 58.7,
+              "attach_s": 50.02,
+              "uploads": 44399,
+              "gpu_s": 57.9
+            },
+            "peer_lines": [
+              "v4_gpu peer-mirrors device=1 reserve=1024MB mode=compute (the decode MoE runs these experts on device 1)"
+            ],
+            "mirror_lines": [
+              "v4_gpu mirror-reserve=3100MiB (132-slot bank 1683MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)",
+              "v4_gpu peer-mirrors device=1 reserve=1024MB mode=compute (the decode MoE runs these experts on device 1)",
+              "v4_gpu tier=dense-matvec device=0",
+              "v4_gpu layer=0 uploaded=129.039MiB in 0.042s wall=1792104937",
+              "v4_gpu layer=1 uploaded=129.039MiB in 0.041s wall=1792104937",
+              "v4_gpu layer=2 uploaded=149.039MiB in 0.043s wall=1792104937"
+            ]
+          },
+          "mode_problems": [],
+          "env_problems": []
+        },
+        {
+          "dir": "X3/s2",
+          "seq": 7,
+          "start": "2026-10-15T16:23:41-07:00",
+          "wall_s": 481,
+          "ready_s": 4,
+          "client_s": 473,
+          "mean_tok_s": 4.048,
+          "per_prompt": {
+            "decode_0": {
+              "decode_tok_s": 3.679,
+              "ttft_s": 7.28,
+              "decode_chunks": 300,
+              "decode_s": 81.26,
+              "total_s": 88.54,
+              "text_sha256": "2aa40adc7d4deb49fa84db4e070a48f4d14d10981ed8103efe83388292c84e9b"
+            },
+            "decode_1": {
+              "decode_tok_s": 4.075,
+              "ttft_s": 4.15,
+              "decode_chunks": 300,
+              "decode_s": 73.38,
+              "total_s": 77.53,
+              "text_sha256": "643fa3d128e4c41c671ffc829f6d554531d259c2eb075820085d8981e985af80"
+            },
+            "decode_2": {
+              "decode_tok_s": 4.064,
+              "ttft_s": 4.71,
+              "decode_chunks": 300,
+              "decode_s": 73.58,
+              "total_s": 78.29,
+              "text_sha256": "d64c91874f9ee22c50b943803c51eeeca79f4b613b4e551456b6735d57a318da"
+            },
+            "decode_3": {
+              "decode_tok_s": 3.949,
+              "ttft_s": 4.11,
+              "decode_chunks": 300,
+              "decode_s": 75.72,
+              "total_s": 79.83,
+              "text_sha256": "9fffce519994640443407e699f48b4c1762e8a23af2b6719531f317892cc5231"
+            },
+            "decode_4": {
+              "decode_tok_s": 4.433,
+              "ttft_s": 4.03,
+              "decode_chunks": 300,
+              "decode_s": 67.45,
+              "total_s": 71.48,
+              "text_sha256": "e3bb3209f760833a7e440b7371e35ceb90dbac2c459f65ab75131c179db1ebda"
+            },
+            "decode_5": {
+              "decode_tok_s": 4.088,
+              "ttft_s": 4.57,
+              "decode_chunks": 300,
+              "decode_s": 73.13,
+              "total_s": 77.71,
+              "text_sha256": "31cbd1c1700fd7f64dda1d79142ea7d5e2d1b442ccc6e879c44bee7a3bfb439e"
+            }
+          },
+          "per_prompt_identical_to_G1s1": {
+            "decode_0": true,
+            "decode_1": true,
+            "decode_2": true,
+            "decode_3": true,
+            "decode_4": true,
+            "decode_5": true
+          },
+          "gpu_mem_used_mib": {
+            "before": {
+              "0": 784,
+              "1": 80
+            },
+            "ready": {
+              "0": 7220,
+              "1": 349
+            },
+            "end": {
+              "0": 21214,
+              "1": 23137
+            },
+            "max": {
+              "0": 21214,
+              "1": 23137
+            }
+          },
+          "gpu_mean_util_pct": {
+            "0": 45.2,
+            "1": 13.3
+          },
+          "serve_unit_memory_peak": "7.3G",
+          "serve_stats": {
+            "turns": 6,
+            "engine_tok_s": [
+              3.692,
+              4.088,
+              4.077,
+              3.962,
+              4.448,
+              4.102
+            ],
+            "engine_decode_s": [
+              81.26,
+              73.38,
+              73.58,
+              75.72,
+              67.45,
+              73.13
+            ],
+            "completion": [
+              300,
+              300,
+              300,
+              300,
+              300,
+              300
+            ],
+            "prompt_tokens": [
+              33,
+              23,
+              29,
+              22,
+              23,
+              25
+            ],
+            "hit_pct": [
+              "30.7%",
+              "41.7%",
+              "37.3%",
+              "41.8%",
+              "43.1%",
+              "38.6%"
+            ],
+            "expert_wait_s": [
+              14.89,
+              10.65,
+              11.36,
+              11.59,
+              7.94,
+              10.89
+            ],
+            "expert_matmul_s": [
+              3.1,
+              2.03,
+              2.43,
+              1.96,
+              2.02,
+              2.29
+            ],
+            "attention_s": [
+              64.62,
+              58.99,
+              58.63,
+              60.39,
+              55.72,
+              58.65
+            ],
+            "vram_first_hits_total": 418453,
+            "store_fetches_total": 44399,
+            "dec_moe_final": {
+              "calls": 77142,
+              "total_s": 204.21,
+              "fetch_wait_s": 58.4,
+              "attach_s": 50.18,
+              "uploads": 44399,
+              "gpu_s": 57.91
+            },
+            "peer_lines": [
+              "v4_gpu peer-mirrors device=1 reserve=1024MB mode=compute (the decode MoE runs these experts on device 1)"
+            ],
+            "mirror_lines": [
+              "v4_gpu mirror-reserve=3100MiB (132-slot bank 1683MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)",
+              "v4_gpu peer-mirrors device=1 reserve=1024MB mode=compute (the decode MoE runs these experts on device 1)",
+              "v4_gpu tier=dense-matvec device=0",
+              "v4_gpu layer=0 uploaded=129.039MiB in 0.044s wall=1792106622",
+              "v4_gpu layer=1 uploaded=129.039MiB in 0.041s wall=1792106622",
+              "v4_gpu layer=2 uploaded=149.039MiB in 0.044s wall=1792106622"
+            ]
+          },
+          "mode_problems": [],
+          "env_problems": []
+        },
+        {
+          "dir": "X3/s3",
+          "seq": 10,
+          "start": "2026-10-15T16:52:04-07:00",
+          "wall_s": 482,
+          "ready_s": 4,
+          "client_s": 475,
+          "mean_tok_s": 4.038,
+          "per_prompt": {
+            "decode_0": {
+              "decode_tok_s": 3.651,
+              "ttft_s": 7.3,
+              "decode_chunks": 300,
+              "decode_s": 81.9,
+              "total_s": 89.2,
+              "text_sha256": "2aa40adc7d4deb49fa84db4e070a48f4d14d10981ed8103efe83388292c84e9b"
+            },
+            "decode_1": {
+              "decode_tok_s": 4.078,
+              "ttft_s": 4.15,
+              "decode_chunks": 300,
+              "decode_s": 73.32,
+              "total_s": 77.47,
+              "text_sha256": "643fa3d128e4c41c671ffc829f6d554531d259c2eb075820085d8981e985af80"
+            },
+            "decode_2": {
+              "decode_tok_s": 4.058,
+              "ttft_s": 4.71,
+              "decode_chunks": 300,
+              "decode_s": 73.68,
+              "total_s": 78.39,
+              "text_sha256": "d64c91874f9ee22c50b943803c51eeeca79f4b613b4e551456b6735d57a318da"
+            },
+            "decode_3": {
+              "decode_tok_s": 3.934,
+              "ttft_s": 4.12,
+              "decode_chunks": 300,
+              "decode_s": 76.0,
+              "total_s": 80.12,
+              "text_sha256": "9fffce519994640443407e699f48b4c1762e8a23af2b6719531f317892cc5231"
+            },
+            "decode_4": {
+              "decode_tok_s": 4.426,
+              "ttft_s": 4.02,
+              "decode_chunks": 300,
+              "decode_s": 67.55,
+              "total_s": 71.56,
+              "text_sha256": "e3bb3209f760833a7e440b7371e35ceb90dbac2c459f65ab75131c179db1ebda"
+            },
+            "decode_5": {
+              "decode_tok_s": 4.081,
+              "ttft_s": 4.49,
+              "decode_chunks": 300,
+              "decode_s": 73.27,
+              "total_s": 77.76,
+              "text_sha256": "31cbd1c1700fd7f64dda1d79142ea7d5e2d1b442ccc6e879c44bee7a3bfb439e"
+            }
+          },
+          "per_prompt_identical_to_G1s1": {
+            "decode_0": true,
+            "decode_1": true,
+            "decode_2": true,
+            "decode_3": true,
+            "decode_4": true,
+            "decode_5": true
+          },
+          "gpu_mem_used_mib": {
+            "before": {
+              "0": 784,
+              "1": 80
+            },
+            "ready": {
+              "0": 7220,
+              "1": 349
+            },
+            "end": {
+              "0": 21214,
+              "1": 23137
+            },
+            "max": {
+              "0": 21214,
+              "1": 23137
+            }
+          },
+          "gpu_mean_util_pct": {
+            "0": 44.0,
+            "1": 13.2
+          },
+          "serve_unit_memory_peak": "7.3G",
+          "serve_stats": {
+            "turns": 6,
+            "engine_tok_s": [
+              3.663,
+              4.092,
+              4.072,
+              3.948,
+              4.441,
+              4.094
+            ],
+            "engine_decode_s": [
+              81.9,
+              73.32,
+              73.68,
+              76.0,
+              67.55,
+              73.27
+            ],
+            "completion": [
+              300,
+              300,
+              300,
+              300,
+              300,
+              300
+            ],
+            "prompt_tokens": [
+              33,
+              23,
+              29,
+              22,
+              23,
+              25
+            ],
+            "hit_pct": [
+              "30.6%",
+              "41.7%",
+              "37.2%",
+              "41.8%",
+              "43.1%",
+              "38.5%"
+            ],
+            "expert_wait_s": [
+              14.93,
+              10.58,
+              11.41,
+              11.86,
+              7.99,
+              11.01
+            ],
+            "expert_matmul_s": [
+              3.07,
+              2.02,
+              2.42,
+              1.96,
+              2.0,
+              2.17
+            ],
+            "attention_s": [
+              65.25,
+              59.01,
+              58.67,
+              60.39,
+              55.76,
+              58.69
+            ],
+            "vram_first_hits_total": 418453,
+            "store_fetches_total": 44399,
+            "dec_moe_final": {
+              "calls": 77142,
+              "total_s": 205.22,
+              "fetch_wait_s": 58.77,
+              "attach_s": 50.67,
+              "uploads": 44399,
+              "gpu_s": 57.95
+            },
+            "peer_lines": [
+              "v4_gpu peer-mirrors device=1 reserve=1024MB mode=compute (the decode MoE runs these experts on device 1)"
+            ],
+            "mirror_lines": [
+              "v4_gpu mirror-reserve=3100MiB (132-slot bank 1683MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)",
+              "v4_gpu peer-mirrors device=1 reserve=1024MB mode=compute (the decode MoE runs these experts on device 1)",
+              "v4_gpu tier=dense-matvec device=0",
+              "v4_gpu layer=0 uploaded=129.039MiB in 0.041s wall=1792108325",
+              "v4_gpu layer=1 uploaded=129.039MiB in 0.040s wall=1792108325",
+              "v4_gpu layer=2 uploaded=149.039MiB in 0.045s wall=1792108325"
+            ]
+          },
+          "mode_problems": [],
+          "env_problems": []
+        }
+      ],
+      "gate_problems": [],
+      "mean_tok_s": {
+        "mean": 4.0433,
+        "stdev": 0.005,
+        "median": 4.0438,
+        "min": 4.038,
+        "max": 4.048,
+        "n": 3
+      },
+      "per_prompt_tok_s": {
+        "decode_0": {
+          "mean": 3.6693,
+          "stdev": 0.0159,
+          "median": 3.678,
+          "min": 3.651,
+          "max": 3.679,
+          "n": 3
+        },
+        "decode_1": {
+          "mean": 4.077,
+          "stdev": 0.0017,
+          "median": 4.078,
+          "min": 4.075,
+          "max": 4.078,
+          "n": 3
+        },
+        "decode_2": {
+          "mean": 4.061,
+          "stdev": 0.003,
+          "median": 4.061,
+          "min": 4.058,
+          "max": 4.064,
+          "n": 3
+        },
+        "decode_3": {
+          "mean": 3.9397,
+          "stdev": 0.0081,
+          "median": 3.936,
+          "min": 3.934,
+          "max": 3.949,
+          "n": 3
+        },
+        "decode_4": {
+          "mean": 4.429,
+          "stdev": 0.0036,
+          "median": 4.428,
+          "min": 4.426,
+          "max": 4.433,
+          "n": 3
+        },
+        "decode_5": {
+          "mean": 4.0837,
+          "stdev": 0.0038,
+          "median": 4.082,
+          "min": 4.081,
+          "max": 4.088,
+          "n": 3
+        }
+      },
+      "engine_tok_s_mean_of_6": {
+        "mean": 4.0568,
+        "stdev": 0.0049,
+        "median": 4.0573,
+        "min": 4.051666666666667,
+        "max": 4.0615000000000006,
+        "n": 3
+      },
+      "gpu0_max_mib": {
+        "mean": 21214,
+        "stdev": 0.0,
+        "median": 21214,
+        "min": 21214,
+        "max": 21214,
+        "n": 3
+      },
+      "gpu1_max_mib": {
+        "mean": 23137,
+        "stdev": 0.0,
+        "median": 23137,
+        "min": 23137,
+        "max": 23137,
+        "n": 3
+      },
+      "dec_moe_final_mean": {
+        "calls": 77142,
+        "total_s": 204.64,
+        "fetch_wait_s": 58.62,
+        "attach_s": 50.29,
+        "uploads": 44399,
+        "gpu_s": 57.92
+      },
+      "identical_to_G1s1": true,
+      "vs_G1_mean": 1.4108,
+      "vs_G1_median": 1.411
+    },
+    "P1": {
+      "tree": "93b741839677ec457868fd71ab668cc1249b9a22",
+      "extra_env": {
+        "V4_SERVE_STATS_LOG": "1"
+      },
+      "samples": [
+        {
+          "dir": "P1/s1",
+          "seq": 13,
+          "start": "2026-10-15T17:21:55-07:00",
+          "wall_s": 665,
+          "ready_s": 5,
+          "client_s": 658,
+          "mean_tok_s": 2.8643,
+          "per_prompt": {
+            "decode_0": {
+              "decode_tok_s": 2.665,
+              "ttft_s": 7.28,
+              "decode_chunks": 300,
+              "decode_s": 112.2,
+              "total_s": 119.48,
+              "text_sha256": "2aa40adc7d4deb49fa84db4e070a48f4d14d10981ed8103efe83388292c84e9b"
+            },
+            "decode_1": {
+              "decode_tok_s": 2.754,
+              "ttft_s": 4.14,
+              "decode_chunks": 300,
+              "decode_s": 108.57,
+              "total_s": 112.71,
+              "text_sha256": "643fa3d128e4c41c671ffc829f6d554531d259c2eb075820085d8981e985af80"
+            },
+            "decode_2": {
+              "decode_tok_s": 2.939,
+              "ttft_s": 4.65,
+              "decode_chunks": 300,
+              "decode_s": 101.73,
+              "total_s": 106.38,
+              "text_sha256": "d64c91874f9ee22c50b943803c51eeeca79f4b613b4e551456b6735d57a318da"
+            },
+            "decode_3": {
+              "decode_tok_s": 2.68,
+              "ttft_s": 4.14,
+              "decode_chunks": 300,
+              "decode_s": 111.56,
+              "total_s": 115.71,
+              "text_sha256": "9fffce519994640443407e699f48b4c1762e8a23af2b6719531f317892cc5231"
+            },
+            "decode_4": {
+              "decode_tok_s": 3.288,
+              "ttft_s": 3.89,
+              "decode_chunks": 300,
+              "decode_s": 90.95,
+              "total_s": 94.84,
+              "text_sha256": "e3bb3209f760833a7e440b7371e35ceb90dbac2c459f65ab75131c179db1ebda"
+            },
+            "decode_5": {
+              "decode_tok_s": 2.86,
+              "ttft_s": 4.24,
+              "decode_chunks": 300,
+              "decode_s": 104.55,
+              "total_s": 108.79,
+              "text_sha256": "31cbd1c1700fd7f64dda1d79142ea7d5e2d1b442ccc6e879c44bee7a3bfb439e"
+            }
+          },
+          "per_prompt_identical_to_G1s1": {
+            "decode_0": true,
+            "decode_1": true,
+            "decode_2": true,
+            "decode_3": true,
+            "decode_4": true,
+            "decode_5": true
+          },
+          "gpu_mem_used_mib": {
+            "before": {
+              "0": 784,
+              "1": 80
+            },
+            "ready": {
+              "0": 7220,
+              "1": 83
+            },
+            "end": {
+              "0": 21214,
+              "1": 83
+            },
+            "max": {
+              "0": 21214,
+              "1": 83
+            }
+          },
+          "gpu_mean_util_pct": {
+            "0": 55.7,
+            "1": 0.0
+          },
+          "serve_unit_memory_peak": "7.3G",
+          "serve_stats": {
+            "turns": 0,
+            "engine_tok_s": [],
+            "engine_decode_s": [],
+            "completion": [],
+            "prompt_tokens": [],
+            "hit_pct": [],
+            "expert_wait_s": [],
+            "expert_matmul_s": [],
+            "attention_s": [],
+            "vram_first_hits_total": null,
+            "store_fetches_total": null,
+            "dec_moe_final": null,
+            "peer_lines": [],
+            "mirror_lines": [
+              "v4_gpu mirror-reserve=3100MiB (132-slot bank 1683MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)",
+              "v4_gpu tier=dense-matvec device=0",
+              "v4_gpu layer=0 uploaded=129.039MiB in 0.043s wall=1792110116",
+              "v4_gpu layer=1 uploaded=129.039MiB in 0.042s wall=1792110116",
+              "v4_gpu layer=2 uploaded=149.039MiB in 0.044s wall=1792110116",
+              "v4_gpu layer=3 uploaded=137.039MiB in 0.043s wall=1792110116"
+            ]
+          },
+          "mode_problems": [],
+          "env_problems": []
+        }
+      ],
+      "gate_problems": [],
+      "mean_tok_s": {
+        "mean": 2.8643,
+        "stdev": null,
+        "median": 2.8643,
+        "min": 2.8643,
+        "max": 2.8643,
+        "n": 1
+      },
+      "per_prompt_tok_s": {
+        "decode_0": {
+          "mean": 2.665,
+          "stdev": null,
+          "median": 2.665,
+          "min": 2.665,
+          "max": 2.665,
+          "n": 1
+        },
+        "decode_1": {
+          "mean": 2.754,
+          "stdev": null,
+          "median": 2.754,
+          "min": 2.754,
+          "max": 2.754,
+          "n": 1
+        },
+        "decode_2": {
+          "mean": 2.939,
+          "stdev": null,
+          "median": 2.939,
+          "min": 2.939,
+          "max": 2.939,
+          "n": 1
+        },
+        "decode_3": {
+          "mean": 2.68,
+          "stdev": null,
+          "median": 2.68,
+          "min": 2.68,
+          "max": 2.68,
+          "n": 1
+        },
+        "decode_4": {
+          "mean": 3.288,
+          "stdev": null,
+          "median": 3.288,
+          "min": 3.288,
+          "max": 3.288,
+          "n": 1
+        },
+        "decode_5": {
+          "mean": 2.86,
+          "stdev": null,
+          "median": 2.86,
+          "min": 2.86,
+          "max": 2.86,
+          "n": 1
+        }
+      },
+      "engine_tok_s_mean_of_6": null,
+      "gpu0_max_mib": {
+        "mean": 21214,
+        "stdev": null,
+        "median": 21214,
+        "min": 21214,
+        "max": 21214,
+        "n": 1
+      },
+      "gpu1_max_mib": {
+        "mean": 83,
+        "stdev": null,
+        "median": 83,
+        "min": 83,
+        "max": 83,
+        "n": 1
+      },
+      "dec_moe_final_mean": null,
+      "identical_to_G1s1": true,
+      "vs_G1_mean": 0.9994,
+      "vs_G1_median": 0.9994
+    }
+  },
+  "manifests": [
+    "pr2-resident-first.json",
+    "pr2-peer-device-compute.json",
+    "pr2-peer-compute.json"
+  ],
+  "supplementary": [
+    "supplementary/pr2-peer-device-p2p-read-two-variable.json"
+  ],
+  "evidence": {
+    "G1": {
+      "uri": "evidence/pr2-arm-G1.tgz",
+      "sha256": "21c1ff04b09fa0078fedd2de9e0eb8f487acafaa52729a87531b099781763af1",
+      "contains": "pr2/G1/s*/ (serve.log with v4_serve_turn/v4_dec_moe stats, bench.jsonl with full texts, sample.txt, engine_environ.txt, procs.txt, nvsmi.csv, gpu_*.csv, mode.txt)",
+      "full_run": "pr2.tgz (sha256 in pr2.tgz.sha256): all arms, meta/ (host, trees, scripts, llama before/after), run.log, summary.json; its run.log ends at 'ALL DONE; packing', because run_pr2.sh appends the 'packed <tgz> <sha256>' line to the live run.log only after packing"
+    },
+    "X1": {
+      "uri": "evidence/pr2-arm-X1.tgz",
+      "sha256": "1e3e09d5f3d12d6cc643412f48d7acf29ecda0e117e1c921babf5d6ba79ab0f2",
+      "contains": "pr2/X1/s*/ (serve.log with v4_serve_turn/v4_dec_moe stats, bench.jsonl with full texts, sample.txt, engine_environ.txt, procs.txt, nvsmi.csv, gpu_*.csv, mode.txt)",
+      "full_run": "pr2.tgz (sha256 in pr2.tgz.sha256): all arms, meta/ (host, trees, scripts, llama before/after), run.log, summary.json; its run.log ends at 'ALL DONE; packing', because run_pr2.sh appends the 'packed <tgz> <sha256>' line to the live run.log only after packing"
+    },
+    "X3": {
+      "uri": "evidence/pr2-arm-X3.tgz",
+      "sha256": "36a2201d82a24e81ff058e60e57c4969d465445bae436e4d0b87e0a4bc05a0a9",
+      "contains": "pr2/X3/s*/ (serve.log with v4_serve_turn/v4_dec_moe stats, bench.jsonl with full texts, sample.txt, engine_environ.txt, procs.txt, nvsmi.csv, gpu_*.csv, mode.txt)",
+      "full_run": "pr2.tgz (sha256 in pr2.tgz.sha256): all arms, meta/ (host, trees, scripts, llama before/after), run.log, summary.json; its run.log ends at 'ALL DONE; packing', because run_pr2.sh appends the 'packed <tgz> <sha256>' line to the live run.log only after packing"
+    },
+    "X2": {
+      "uri": "evidence/pr2-arm-X2.tgz",
+      "sha256": "6a6deae15ac3b032fb11fa927d141203fa727419b25816dadfe80898a3515673",
+      "contains": "pr2/X2/s*/ (serve.log with v4_serve_turn/v4_dec_moe stats, bench.jsonl with full texts, sample.txt, engine_environ.txt, procs.txt, nvsmi.csv, gpu_*.csv, mode.txt)",
+      "full_run": "pr2.tgz (sha256 in pr2.tgz.sha256): all arms, meta/ (host, trees, scripts, llama before/after), run.log, summary.json; its run.log ends at 'ALL DONE; packing', because run_pr2.sh appends the 'packed <tgz> <sha256>' line to the live run.log only after packing"
+    }
+  },
+  "peer_compute_note": "X1 -> X2 is a two-variable comparison: X2 sets DSV4_CUDA_PEER_DEVICE=1 and DSV4_CUDA_PEER_COMPUTE=0, while X1 sets neither (no X1 engine_environ.txt has DSV4_CUDA_PEER_COMPUTE). Code inspection at d0e19de2 says the second variable is inert in X1: DSV4_CUDA_PEER_COMPUTE is read only inside peer_runs() (c/backend_cuda_dsv4.cu:1410-1412), which is called only for an expert mirrored on another device (backend_cuda_dsv4.cu:2107) and, through dsv4_cuda_peer_compute(), from v4_peer_mirrors_create (c/deepseek_v4.c:11812); neither path exists without DSV4_CUDA_PEER_DEVICE. So X1 -> X2 very likely measures the p2p-read peer pool alone, but that rests on reading the code, not on a measured X1 + DSV4_CUDA_PEER_COMPUTE=0 arm. It is therefore kept as a supplementary record (supplementary/pr2-peer-device-p2p-read-two-variable.json, changed_variables names both; c/experiment_manifest.py rejects it by design), and the strictly one-variable records for the peer pool are pr2-peer-device-compute.json (X1 -> X3) and pr2-peer-compute.json (X2 -> X3). To make X1 -> X2 strict, measure an X1 + DSV4_CUDA_PEER_COMPUTE=0 arm (3 samples) in a later GPU window.",
+  "host_journal": {
+    "source": "evidence/pr2-host-journal.txt",
+    "llama_stopped": "2026-10-15T15:24:22-07:00",
+    "llama_started": "2026-10-15T17:33:10-07:00",
+    "llama_starts_inside_window": 0,
+    "ensure_active_stack": {
+      "runs": 25,
+      "first": "15:28:48",
+      "last": "17:28:57",
+      "backend_unhealthy": 25,
+      "failed": 25,
+      "restarted_units": [
+        "[]"
+      ],
+      "recovered": [
+        "false"
+      ],
+      "first_run_after_restore_finished_ok": "17:33:58"
+    },
+    "hermes_cron_workers": [
+      {
+        "job": "hermes-worker-cron-c937d60f9922",
+        "started": "15:30:23",
+        "in_window": true,
+        "ended": "15:35:33",
+        "cpu_s": 4.321,
+        "exec": "da2b89a3d1364e1c97d656f6081a266d"
+      },
+      {
+        "job": "hermes-worker-cron-c937d60f9922",
+        "started": "16:00:23",
+        "in_window": true,
+        "ended": "16:05:44",
+        "cpu_s": 4.67,
+        "exec": "35620b76fe7a4ab098dcfa83f010826c"
+      },
+      {
+        "job": "hermes-worker-cron-c937d60f9922",
+        "started": "16:30:23",
+        "in_window": true,
+        "ended": "16:35:37",
+        "cpu_s": 4.711,
+        "exec": "51ec69b9462943ccbeec36809e38d19c"
+      },
+      {
+        "job": "hermes-worker-cron-d9d6abf6a201",
+        "started": "17:00:23",
+        "in_window": true,
+        "ended": "17:05:40",
+        "cpu_s": 4.5,
+        "exec": "bb9b64ee19ed4990b2393d6d40d9d8dc"
+      },
+      {
+        "job": "hermes-worker-cron-c937d60f9922",
+        "started": "17:00:23",
+        "in_window": true,
+        "ended": "17:05:33",
+        "cpu_s": 4.414,
+        "exec": "4c146cf0b1fa4c06be629f04f3b07c73"
+      },
+      {
+        "job": "hermes-worker-cron-c937d60f9922",
+        "started": "17:30:23",
+        "in_window": true,
+        "ended": "17:33:36",
+        "cpu_s": 4.317,
+        "exec": "11a44fdb2807467dbd14b91bf8fc6c4a"
+      }
+    ],
+    "exocortex_watchdog": {
+      "runs": 64,
+      "max_duration_s": 1.0
+    },
+    "serve_unit_memory_peaks": [
+      [
+        "2026-10-15T15:35:26-07:00",
+        "7.3G"
+      ],
+      [
+        "2026-10-15T15:46:15-07:00",
+        "14.3G"
+      ],
+      [
+        "2026-10-15T15:55:35-07:00",
+        "7.6G"
+      ],
+      [
+        "2026-10-15T16:03:36-07:00",
+        "7.6G"
+      ],
+      [
+        "2026-10-15T16:14:23-07:00",
+        "7.3G"
+      ],
+      [
+        "2026-10-15T16:23:41-07:00",
+        "7.3G"
+      ],
+      [
+        "2026-10-15T16:31:41-07:00",
+        "7.3G"
+      ],
+      [
+        "2026-10-15T16:42:45-07:00",
+        "7.3G"
+      ],
+      [
+        "2026-10-15T16:52:03-07:00",
+        "7.3G"
+      ],
+      [
+        "2026-10-15T17:00:05-07:00",
+        "7.3G"
+      ],
+      [
+        "2026-10-15T17:11:10-07:00",
+        "7.3G"
+      ],
+      [
+        "2026-10-15T17:21:55-07:00",
+        "7.3G"
+      ],
+      [
+        "2026-10-15T17:32:59-07:00",
+        "7.3G"
+      ]
+    ]
+  },
+  "notes": {
+    "manifest_set": "Lead PR #2 with the strictly one-variable records pr2-peer-device-compute.json (X1 -> X3, 1.374x) and pr2-peer-compute.json (X2 -> X3, 1.175x), with pr2-resident-first.json (G1 -> X1, 1.027x) for the one-GPU step. X1 -> X2 (p2p-read peer pool, 1.169x) changes two variables, so it is kept only as the supplementary record supplementary/pr2-peer-device-p2p-read-two-variable.json, which c/experiment_manifest.py rejects by design; see peer_compute_note.",
+    "vs_earlier_single_sample": {
+      "arms": {
+        "G1": {
+          "earlier_single_sample_tok_s": 2.78,
+          "median_tok_s": 2.866,
+          "ratio": 1.0309
+        },
+        "X1": {
+          "earlier_single_sample_tok_s": 2.84,
+          "median_tok_s": 2.9432,
+          "ratio": 1.0363
+        },
+        "X2": {
+          "earlier_single_sample_tok_s": 3.32,
+          "median_tok_s": 3.4405,
+          "ratio": 1.0363
+        },
+        "X3": {
+          "earlier_single_sample_tok_s": 3.87,
+          "median_tok_s": 4.0438,
+          "ratio": 1.0449
+        }
+      },
+      "text": "Medians are 3.1-4.5% above the earlier single-sample numbers (G1 2.78 -> 2.8660, +3.1%, X1 2.84 -> 2.9432, +3.6%, X2 3.32 -> 3.4405, +3.6%, X3 3.87 -> 4.0438, +4.5%). Likely cause, not tested in this run: the earlier runs had COLI_CUDA_MOE_DOUBLE=1 set (review F43; the review measured the double bank costing about 3-5% of decode) and used intermediate PR #2 binaries; this run isolated neither factor."
+    },
+    "spread": "Per-arm stdev of the per-sample means (mean of 6 prompts): G1 0.0013, X1 0.0042, X2 0.0008, X3 0.0050 tok/s. Per-prompt stdev over the 3 samples: decode_0 (each fresh server's first request) is the largest in every arm (G1 0.0205, X1 0.0195, X2 0.0021, X3 0.0159 tok/s); every other prompt is 0.0081 tok/s or less (largest X3 decode_3 0.0081, G1 decode_5 0.0071, G1 decode_3 0.0064).",
+    "vram_mib": "VRAM in MiB (nvidia-smi memory.used; 1 GiB = 1024 MiB), each RTX 3090 has 24576 MiB (24.0 GiB). GPU0: 7220 MiB at ready in all 13 samples, peak 21214 MiB (20.7 GiB) in 12 of 13 (21478 MiB in X2/s1). GPU1: 83 MiB peak in every G1, X1 and P1 sample (80 MiB idle before each sample; no peer pool); X2 and X3 349 MiB at ready and a 23137 MiB (22.6 GiB) peak in every sample, with the peer mirror pool.",
+    "dec_moe_totals": "v4_dec_moe totals at the end of each run, the mean of the 3 samples for every arm (the same statistic each time; per-sample values in arms.<arm>.samples[].serve_stats.dec_moe_final): total_s G1 385.69 s, X1 368.73 s, X2 281.68 s, X3 204.64 s; fetch_wait_s G1 110.47 s, X1 94.09 s, X2 60.85 s, X3 58.62 s; attach_s G1 165.42 s, X1 165.49 s, X2 50.09 s, X3 50.29 s; gpu_s G1 70.98 s, X1 70.90 s, X2 132.79 s, X3 57.92 s.",
+    "cache_state": "The OS page cache was not dropped between samples, and round 1 was partly cold: the serve unit's systemd memory peak was 14.3G for X1/s1 (seq 2) and 7.6G for X2/s1 (seq 3) and X3/s1 (seq 4), against 7.3G for every other sample (10 of 13, including G1/s1, seq 1). That is consistent with those servers reading model pages that were not cached yet; they are not systematically slower (X1/s1 -0.07%, X2/s1 +0.03%, X3/s1 +0.00% vs their arm medians).",
+    "host_activity": "Host activity in the llama-down window (15:24:22-17:33:10 PDT; evidence/pr2-host-journal.txt): the Hermes shadowfax-ensure-active-stack watchdog ran every 5 min (25 runs, 15:28:48-17:28:57), reported 'backend unhealthy' each time and restarted nothing (restarted_units [], recovered false); Hermes cron workers started at 15:30:23, 16:00:23, 16:30:23, 17:00:23 (two) and 17:30:23 with no LLM backend (4.3-4.7 s CPU each; the 17:30:23 one exited at 17:33:36, after llama was back), so those cron jobs ran without a model; no llama start inside the window, and the first watchdog run after the restore finished ok at 17:33:58. Nothing else showed up on the GPUs: every sample's gpu_apps.csv (taken at ready) lists only the engine, and GPU1 peaked at 83 MiB in the arms without a peer pool.",
+    "packed_run_log": "pr2.tgz's run.log (163 lines, sha256 cc35128f0a27) ends at 'ALL DONE; packing /home/maplemercury/colibri-bench/final/pr2.tgz': run_pr2.sh appends '[2026-10-15 17:33:10] packed /home/maplemercury/colibri-bench/final/pr2.tgz 290793b8...' to the live run.log only after packing, so the live copy on shadowfax has that one extra line (sha256 6d100ef326bb...). The other 197 of the 198 files are byte-identical to the tarball (checked 2026-10-15 from computer4)."
+  }
+}

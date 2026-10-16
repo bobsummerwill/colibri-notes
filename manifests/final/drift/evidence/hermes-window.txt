@@ -1,0 +1,33 @@
+# Hermes side effects during the drift GPU window (llama.cpp down 2026-10-15 17:36:40 - 18:58:44 PDT)
+# captured read-only on shadowfax by maplemercury at 2026-10-15T19:18:29-07:00
+
+## 1. shadowfax-ensure-active-stack (user timer, every 5 min): one line per run
+# source: journalctl --user -u shadowfax-ensure-active-stack.service --since '2026-10-15 17:33:00' --until '2026-10-15 19:00:00' -o json
+start    end      result backend   proxy   recovered  restarted_units / probe error
+17:33:57 17:33:58 ok     True      True    False      [] / -
+17:38:57 17:40:27 FAILED False     False   False      [] / backend unhealthy
+17:43:58 17:45:28 FAILED False     False   False      [] / backend unhealthy
+17:48:58 17:50:28 FAILED False     False   False      [] / backend unhealthy
+17:53:58 17:55:29 FAILED False     False   False      [] / backend unhealthy
+17:58:59 18:00:29 FAILED False     False   False      [] / backend unhealthy
+18:03:59 18:05:29 FAILED False     False   False      [] / backend unhealthy
+18:09:00 18:10:30 FAILED False     False   False      [] / backend unhealthy
+18:14:00 18:15:30 FAILED False     False   False      [] / backend unhealthy
+18:19:00 18:20:30 FAILED False     False   False      [] / backend unhealthy
+18:24:00 18:25:31 FAILED False     False   False      [] / backend unhealthy
+18:29:01 18:30:31 FAILED False     False   False      [] / backend unhealthy
+18:34:01 18:35:31 FAILED False     False   False      [] / backend unhealthy
+18:39:01 18:40:32 FAILED False     False   False      [] / backend unhealthy
+18:44:02 18:45:32 FAILED False     False   False      [] / backend unhealthy
+18:49:02 18:50:32 FAILED False     False   False      [] / backend unhealthy
+18:54:02 18:55:33 FAILED False     False   False      [] / backend unhealthy
+18:59:03 18:59:04 ok     True      True    False      [] / -
+
+## 2. Hermes cron executions claimed 17:00-19:05 PDT (job name, status, times, error, delivery outcome)
+# source: ~/.hermes/cron/executions.db (opened mode=ro), names from ~/.hermes/cron/jobs.json
+d9d6abf6a201 email-followup-watch             failed    started 17:00:24 finished 17:05:39 error='RuntimeError: Connection error.' delivery=delivered
+c937d60f9922 shadowfax-autonomous-heartbeat   failed    started 17:00:25 finished 17:05:32 error='RuntimeError: Connection error.' delivery=suppressed_acked
+c937d60f9922 shadowfax-autonomous-heartbeat   completed started 17:30:25 finished 17:33:35 error='' delivery=suppressed
+c937d60f9922 shadowfax-autonomous-heartbeat   failed    started 18:00:25 finished 18:05:29 error='RuntimeError: Connection error.' delivery=delivered
+c937d60f9922 shadowfax-autonomous-heartbeat   failed    started 18:30:25 finished 18:35:25 error='RuntimeError: Connection error.' delivery=suppressed_acked
+c937d60f9922 shadowfax-autonomous-heartbeat   completed started 19:00:24 finished 19:00:52 error='' delivery=suppressed

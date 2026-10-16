@@ -1,0 +1,3 @@
+validator: c/experiment_manifest.py from a detached worktree of a2c8ba7a149a31a781e84a992aa980afdb93497d (blob d9babf6be5d87eae64c8e4a96997a1d87459bfdf, identical at 7b55a9b3, 93b74183, d0e19de2), worktree clean (0 changed files), run 2026-10-15T19:21:50-07:00 on computer4
+pr0-engine-decode.json: ok (engine_commit, no-change)
+exit=0

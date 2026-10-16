@@ -15,7 +15,7 @@ Builds: dev 7b55a9b3, pr0/dsv4-fixes a2c8ba7a, pr1/reap-prefill 93b74183, pr2/tw
 | F B, warp dense off | 85.4 s | 23.32 (B is 1.04x) | — | — | identical |
 - Verify run (both VERIFY modes): 0 mismatches (mm-warp >= 500 calls, expert-major >= 600 calls), output identical.
 - Observation: decode right after the GPU-batch prefill is ~8.6% slower on request 1 and ~2.4% on request 2 than after dev's CPU-union prefill (seen in both runs; documented in the PR docs, F42).
-- Round 1 of samples was partly page-cache cold (serve memory peaks 7.9-14.6 GB vs 7.3 GB later); within-arm CV <= 0.32% except A request 1 (1.36%).
+- Round 1 of samples was partly page-cache cold (serve-unit memory peaks 7.9-14.6 GiB vs 7.3 GiB in all later samples); within-arm TTFT CV <= 0.32% except A request 1 (1.36%).
 
 ### PR #2 decode (`manifests/final/pr2/`, 6 prompts x 300 tokens, `COLI_CUDA_MOE_DOUBLE` unset everywhere)
 | Arm | Decode tok/s (median of 3) | vs G1 |
@@ -25,17 +25,20 @@ Builds: dev 7b55a9b3, pr0/dsv4-fixes a2c8ba7a, pr1/reap-prefill 93b74183, pr2/tw
 | X2 X1 + `DSV4_CUDA_PEER_DEVICE=1` `DSV4_CUDA_PEER_COMPUTE=0` (peer reads over NVLink) | 3.441 | 1.200 |
 | X3 X1 + `DSV4_CUDA_PEER_DEVICE=1` (peer compute) | **4.044** | **1.411 (+41%)** |
 | P1 pr1 tip, same env as G1 (1 sample, sanity) | 2.864 | 0.999 (no regression) |
-- All 13 samples x 6 prompts byte-identical to G1. Stdev <= 0.005 tok/s per arm. GPU0 peak 21.2 GB in every arm; peer pool takes GPU1 to 23.1 GB (X2/X3).
-- 3-4.5% above the earlier single-sample numbers (2.78/2.84/3.32/3.87, run with DOUBLE set on intermediate binaries).
+- All 13 samples x 6 prompts byte-identical to G1. Stdev of the per-sample means <= 0.005 tok/s per arm. GPU0 peaks at 21214 MiB (one X2 reading 21478 MiB); the peer pool takes GPU1 to 23137 MiB of 24576 (X2/X3); GPU1 otherwise unused.
+- 3-4.5% above the earlier single-sample numbers (2.78/2.84/3.32/3.87), likely because those ran with DOUBLE set, on intermediate binaries.
 - X1->X2 changes two env variables (PEER_DEVICE=1 and explicit PEER_COMPUTE=0); the strictly one-variable manifests are X1->X3 and X2->X3.
 
 ### PR #0 upload race on the GPU (`manifests/final/drift/`)
 - dev 7b55a9b3 vs pr0 a2c8ba7a, 3 cold runs each of the 6-prompt decode bench, then 2+2 runs of a logging-only per-token logit/hidden-hash probe.
-- **dev did not drift in these runs**: all runs byte-identical, all per-token logits bit-identical, and pr0 identical to dev. The known triggers (long first request, smaller mirror budget, double bank, pageable refills) were absent in this configuration, so this neither shows dev race-free nor demonstrates the fix end to end. The race itself is shown by the tiny CUDA harness in PR #0 (h2d_race WAR: 50/50 and 300/300 mismatches on dev, 0 with the fix) and by the 10-14 arm-C divergence (2 of 3) before the fix.
+- **dev did not drift in these runs**: all runs byte-identical, all per-token logits bit-identical, and pr0 identical to dev. The known triggers were absent (long first request, smaller mirror budget, double bank) and refills were not forced onto the pageable path (whether any refill passed the 20 GiB page-lock cap was not logged), so this neither shows dev race-free nor demonstrates the fix end to end. The race itself is shown by the tiny CUDA harness in PR #0 (h2d_race WAR: 50/50 and 300/300 mismatches on dev, 0 with the fix) and by the 10-14 arm-C divergence (2 of 3) before the fix.
 - pr0 vs dev decode speed: 2.892 vs 2.883 tok/s median (0.3%, below the 1% no-change threshold; manifest outcome no-change).
 
-### Side effect on Hermes during the GPU windows (14:12-15:21, 15:24-17:33, 17:36-18:59 PDT)
-llama.cpp was restored after each; the Hermes `shadowfax-ensure-active-stack` watchdog logged "backend unhealthy" every 5 min and restarted nothing (as intended); Hermes cron jobs that ran in those windows had no LLM backend.
+### Side effect on Hermes during the GPU windows (14:12-15:21, 15:24-17:33, 17:36-18:59 PDT, 2026-10-15)
+llama.cpp was restored after each window. During them:
+- Hermes cron runs had no LLM backend: `shadowfax-autonomous-heartbeat` (*/30) at 14:30, 15:00, 15:30, 16:00, 16:30, 17:00, 17:30, 18:00 and 18:30 (the logged ones failed with "Connection error"; the 18:00 failure notice was delivered), plus one run of job d9d6abf6a201 at 17:00.
+- The openclaw-team watchdog "Ensure the active Shadowfax local LLM stack is healthy" (`shadowfax-ensure-active-stack`) failed every 5 min with "backend unhealthy" and restarted nothing, as intended.
+Details per window: `manifests/final/*/stats.json`.
 
 ## Earlier measurements (2026-10-13/14, intermediate binaries) — superseded by FINAL above
 ### Prefill — PR #1 (3 cold samples per arm, pr1 48767c01)
