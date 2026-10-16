@@ -23,6 +23,10 @@
 - **Model download kept** (84.7 GB, expensive to re-fetch).
 - **Nothing installed system-wide; Hermes config, cron jobs and Exocortex left untouched; port 8000 never bound** (the handoff constraints).
 
+- **PR #0 split into six focused PRs (Bob, 2026-10-16).** Upstream has no single-commit or squash rule (CONTRIBUTING: "Keep changes focused"; template: "the smallest change that solves it"; merges are merge commits, and about half of external PRs have several commits), but one PR per problem fits "focused". The 13 PR #0 commits are almost all independent (10 apply and revert alone on dev; the only chains are textual: the CUDA-error fix after the upload-ordering fix, the shutdown fix after that). Split: 0a upload ordering + CUDA error hygiene + shutdown zeroing (4), 0b prefill bank lifecycle (3), 0c decode error paths (2), 0d DLL export + parity test (1), 0e CUDA test target (2), 0f docs sizes (1); each on dev with unchanged patches. The combined linear branch stays as PR #1's base; PR #1/#2 descriptions say they depend on the six.
+- **F42 fix added to PR #1** (commit "GPU-bank prefill keeps the expert store's routing books"): measured +6.3% decode after a long GPU-bank prefill, recovering 67-79% of the gap with no prefill cost or output change; the remaining ~2% (residency in the first ~5 tokens) is left as possible follow-up because closing it needs extra reads during prefill.
+- **Final GPU benchmark scheduled for 2026-10-17 01:00 PDT** (Bob's choice of downtime window), as a one-off systemd timer on shadowfax.
+
 ## Cost of the work (to 2026-10-14)
 - About 257M effective tokens. Effective tokens are weighted: cache reads 0.1x, cache writes 2x, output 5x. That is roughly 1.4B raw tokens.
 - Subagents account for 87% of it: 298 agents in total, and the in-depth review alone used about 116M effective tokens.
