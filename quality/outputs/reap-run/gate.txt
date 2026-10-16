@@ -1,0 +1,15 @@
+Qwen results: ['/home/maplemercury/colibri-bench/quality/results/qwen-hermes.jsonl', '/home/maplemercury/colibri-bench/quality/results/qwen-greedy.jsonl']
+   1 M1_strings         max_tokens= 7936 qwen_max=7263 expected_tokens= 7936 expected= 37.2 min cumulative=  37.2 min
+   2 C1_cron            max_tokens= 4096 qwen_max=1754 expected_tokens= 2631 expected= 13.1 min cumulative=  50.3 min
+   3 O1_pg_disk_plan    max_tokens= 3072 qwen_max=1343 expected_tokens= 2015 expected=  9.9 min cumulative=  60.2 min
+   4 M3_spinner         max_tokens= 7936 qwen_max=6267 expected_tokens= 7936 expected= 37.2 min cumulative=  97.4 min
+   5 F1_systemd         max_tokens= 2048 qwen_max=755 expected_tokens= 1133 expected=  6.0 min cumulative= 103.3 min
+   6 C3_expr            max_tokens= 4096 qwen_max=1737 expected_tokens= 2606 expected= 12.8 min cumulative= 116.2 min
+   7 O2_lost_update     max_tokens= 2048 qwen_max=1098 expected_tokens= 1647 expected=  8.2 min cumulative= 124.3 min
+   8 M2_crt             max_tokens= 8000 qwen_max=3067 expected_tokens= 4601 expected= 21.7 min cumulative= 146.0 min
+   9 O3_incident_email  max_tokens= 2048 qwen_max=320 expected_tokens=  480 expected=  3.1 min cumulative= 149.1 min
+  10 C2_shell_split     max_tokens= 4096 qwen_max=571 expected_tokens=  857 expected=  4.7 min cumulative= 153.9 min
+  11 M4_restart_order   max_tokens= 7808 qwen_max=2933 expected_tokens= 4400 expected= 20.9 min cumulative= 174.8 min
+  12 F2_tcp_time_wait   max_tokens= 2048 qwen_max=411 expected_tokens=  617 expected=  3.4 min cumulative= 178.2 min
+soft budget 120.0 min, hard stop 150.0 min, decode 3.6 tok/s assumed
+GATE OK

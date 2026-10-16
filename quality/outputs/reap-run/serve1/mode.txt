@@ -1,0 +1,4 @@
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+v4_gpu mirror-reserve=3100MiB (132-slot bank 1683MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)
+v4_gpu peer-mirrors device=1 reserve=1024MB mode=compute (the decode MoE runs these experts on device 1)

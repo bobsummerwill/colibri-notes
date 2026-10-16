@@ -1,0 +1,9 @@
+checked_at=2026-10-16T00:31:24-07:00
+active=active
+health={"status":"ok"}
+index, memory.used [MiB], memory.total [MiB]
+0, 19928 MiB, 24576 MiB
+1, 22719 MiB, 24576 MiB
+pid, process_name, used_gpu_memory [MiB]
+939644, /home/maplemercury/repos/llama.cpp/build/bin/llama-server, 19132 MiB
+939644, /home/maplemercury/repos/llama.cpp/build/bin/llama-server, 22626 MiB

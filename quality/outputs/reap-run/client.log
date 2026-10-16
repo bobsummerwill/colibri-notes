@@ -1,0 +1,12 @@
+M1_strings         s1 ok         finish=stop tok=1560 ttft=12.797s total=368.534s rate=4.382 reasoning_chars=0 | expected 7936 tok | elapsed 6.1 min
+C1_cron            s1 ok         finish=stop tok=1122 ttft=28.277s total=303.908s rate=4.067 reasoning_chars=0 | expected 1316 tok | elapsed 11.2 min
+O1_pg_disk_plan    s1 ok         finish=stop tok=1374 ttft=22.204s total=380.589s rate=3.831 reasoning_chars=0 | expected 1008 tok | elapsed 17.6 min
+M3_spinner         s1 ok         finish=stop tok=1418 ttft=13.767s total=329.486s rate=4.488 reasoning_chars=0 | expected 6014 tok | elapsed 23.0 min
+F1_systemd         s1 ok         finish=stop tok=522 ttft=21.059s total=152.031s rate=3.978 reasoning_chars=0 | expected 567 tok | elapsed 25.6 min
+C3_expr            s1 ok         finish=stop tok=2179 ttft=23.178s total=539.817s rate=4.216 reasoning_chars=0 | expected 1667 tok | elapsed 34.6 min
+O2_lost_update     s1 ok         finish=stop tok=923 ttft=20.744s total=256.703s rate=3.907 reasoning_chars=0 | expected 1097 tok | elapsed 38.9 min
+M2_crt             s1 ok         finish=stop tok=1586 ttft=7.742s total=359.554s rate=4.505 reasoning_chars=0 | expected 3181 tok | elapsed 44.8 min
+O3_incident_email  s1 ok         finish=stop tok=286 ttft=25.608s total=99.455s rate=3.859 reasoning_chars=0 | expected 320 tok | elapsed 46.5 min
+C2_shell_split     s1 ok         finish=stop tok=439 ttft=20.72s total=123.314s rate=4.269 reasoning_chars=0 | expected 593 tok | elapsed 48.6 min
+M4_restart_order   s1 ok         finish=stop tok=1495 ttft=24.758s total=382.967s rate=4.171 reasoning_chars=0 | expected 3213 tok | elapsed 54.9 min
+F2_tcp_time_wait   s1 ok         finish=stop tok=542 ttft=26.439s total=159.758s rate=4.058 reasoning_chars=0 | expected 427 tok | elapsed 57.6 min

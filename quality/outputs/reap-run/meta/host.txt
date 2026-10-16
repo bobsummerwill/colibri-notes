@@ -1,0 +1,79 @@
+exp=quality captured_at=2026-10-16T00:31:22-07:00 host=shadowfax runner_pid=1202371
+runner_unit=colibri-quality.service
+Linux shadowfax 7.0.0-34-generic #34~24.04.1-Ubuntu SMP PREEMPT_DYNAMIC Fri Sep  4 15:38:29 UTC 2 x86_64 x86_64 x86_64 GNU/Linux
+PRETTY_NAME="Ubuntu 24.04.4 LTS"
+VERSION="24.04.4 LTS (Noble Numbat)"
+CPU(s):                                  32
+Model name:                              AMD Ryzen 9 9950X3D 16-Core Processor
+Thread(s) per core:                      2
+Core(s) per socket:                      16
+Socket(s):                               1
+CPU(s) scaling MHz:                      55%
+CPU max MHz:                             5756.4521
+CPU min MHz:                             624.1940
+governor=powersave
+               total        used        free      shared  buff/cache   available
+Mem:     67030228992 19240538112 14060695552  2596786176 36964048896 47789690880
+Swap:     8589930496  3181891584  5408038912
+               total        used        free      shared  buff/cache   available
+Mem:              62          17          13           2          34          44
+Swap:              7           2           5
+gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+Cuda compilation tools, release 12.0, V12.0.140
+Build cuda_12.0.r12.0/compiler.32267302_0
+Python 3.12.3
+index, name, uuid, driver_version, memory.total [MiB], pcie.link.gen.max, pcie.link.width.max, pcie.link.gen.current, pcie.link.width.current, power.limit [W]
+0, NVIDIA GeForce RTX 3090, GPU-d64aca9a-d2ed-af21-2b47-abeaa19cef7a, 595.84, 24576 MiB, 4, 16, 1, 8, 300.00 W
+1, NVIDIA GeForce RTX 3090, GPU-0ee51b66-aca4-285d-105f-9f2dd6f58879, 595.84, 24576 MiB, 4, 16, 1, 8, 300.00 W
+	[4mGPU0	GPU1	CPU Affinity	NUMA Affinity	GPU NUMA ID[0m
+GPU0	 X 	NV4	0-31	0		N/A
+GPU1	NV4	 X 	0-31	0		N/A
+
+Legend:
+
+  X    = Self
+  SYS  = Connection traversing PCIe as well as the SMP interconnect between NUMA nodes (e.g., QPI/UPI)
+  NODE = Connection traversing PCIe as well as the interconnect between PCIe Host Bridges within a NUMA node
+  PHB  = Connection traversing PCIe as well as a PCIe Host Bridge (typically the CPU)
+  PXB  = Connection traversing multiple PCIe bridges (without traversing the PCIe Host Bridge)
+  PIX  = Connection traversing at most a single PCIe bridge
+  NV#  = Connection traversing a bonded set of # NVLinks
+GPU 0: NVIDIA GeForce RTX 3090 (UUID: GPU-d64aca9a-d2ed-af21-2b47-abeaa19cef7a)
+	 Link 0: 14.062 GB/s
+	 Link 1: 14.062 GB/s
+	 Link 2: 14.062 GB/s
+	 Link 3: 14.062 GB/s
+GPU 1: NVIDIA GeForce RTX 3090 (UUID: GPU-0ee51b66-aca4-285d-105f-9f2dd6f58879)
+	 Link 0: 14.062 GB/s
+	 Link 1: 14.062 GB/s
+	 Link 2: 14.062 GB/s
+	 Link 3: 14.062 GB/s
+NAME        MODEL                    SIZE TYPE MOUNTPOINT
+nvme0n1     WD_BLACK SN850X 4000GB   3.6T disk 
+├─nvme0n1p1                            1M part 
+└─nvme0n1p2                          3.6T part /
+TARGET SOURCE         FSTYPE OPTIONS
+/      /dev/nvme0n1p2 ext4   rw,relatime
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/nvme0n1p2  3.6T  717G  2.7T  21% /
+total 82714608
+drwxr-xr-x 4 maplemercury maplemercury       4096 2026-10-12 21:58:37.661830449 -0700 .
+drwxr-xr-x 3 maplemercury maplemercury       4096 2026-10-12 20:47:48.799268821 -0700 ..
+-rw-r--r-- 1 maplemercury maplemercury      13129 2026-10-12 20:47:51.589485016 -0700 chat_template.jinja
+-rw-r--r-- 1 maplemercury maplemercury     182474 2026-10-12 21:55:44.932583026 -0700 .coli_analysis.json
+-rw-r--r-- 1 maplemercury maplemercury       2394 2026-10-12 21:55:43.340384720 -0700 .colibri-download.json
+-rw-r--r-- 1 maplemercury maplemercury          0 2026-10-12 21:58:37.661830449 -0700 .coli_usage
+-rw-r--r-- 1 maplemercury maplemercury       2092 2026-10-12 20:47:50.732700569 -0700 config.json
+drwxr-xr-x 2 maplemercury maplemercury       4096 2026-10-12 20:47:51.910988036 -0700 encoding
+-rw-r--r-- 1 maplemercury maplemercury        170 2026-10-12 20:47:49.808544946 -0700 generation_config.json
+-rw-r--r-- 1 maplemercury maplemercury       1519 2026-10-12 20:47:50.429831999 -0700 .gitattributes
+drwxr-xr-x 2 maplemercury maplemercury       4096 2026-10-12 20:47:52.093890310 -0700 inference
+-rw-r--r-- 1 maplemercury maplemercury 5014320856 2026-10-12 21:55:43.339587292 -0700 model-00000.safetensors
+-rw-r--r-- 1 maplemercury maplemercury 5000134924 2026-10-12 20:54:23.854478755 -0700 model-00001.safetensors
+-rw-r--r-- 1 maplemercury maplemercury 5002667696 2026-10-12 21:07:48.468055844 -0700 model-00002.safetensors
+-rw-r--r-- 1 maplemercury maplemercury 5003627744 2026-10-12 21:14:56.545387444 -0700 model-00003.safetensors
+-rw-r--r-- 1 maplemercury maplemercury 5003627648 2026-10-12 21:11:55.752061592 -0700 model-00004.safetensors
+-rw-r--r-- 1 maplemercury maplemercury 5003629304 2026-10-12 21:18:06.920721189 -0700 model-00005.safetensors
+-rw-r--r-- 1 maplemercury maplemercury 5002547816 2026-10-12 20:58:04.145970044 -0700 model-00006.safetensors
+-rw-r--r-- 1 maplemercury maplemercury 5003629928 2026-10-12 21:25:11.029116551 -0700 model-00007.safetensors
+coli_usage size=0 mtime=1791867517

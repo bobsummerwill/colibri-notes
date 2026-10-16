@@ -1,0 +1,3 @@
+pid, process_name, used_gpu_memory [MiB]
+1202560, /tmp/cw/r6-pr2/c/deepseek_v4, 6428 MiB
+1202560, /tmp/cw/r6-pr2/c/deepseek_v4, 260 MiB

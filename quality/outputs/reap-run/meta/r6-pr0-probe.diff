@@ -1,0 +1,38 @@
+diff --git a/c/deepseek_v4.c b/c/deepseek_v4.c
+index ab319c7c9..7b6fd7d16 100644
+--- a/c/deepseek_v4.c
++++ b/c/deepseek_v4.c
+@@ -5673,6 +5673,16 @@ static int moe_token_pipeline(float *output,
+         if (hybrid_gpu_count == selected)
+             gpu_compute = 1;    /* every expert made it: use the fused path */
+     }
++    {   /* DEBUG ONLY (determinism probe): decode token-layers that miss the fused GPU path */
++        static int log_on = -1;
++        if (log_on < 0) { const char *e = getenv("V4_LOGIT_LOG"); log_on = e && *e == '1'; }
++        if (log_on && !result && store->gpu && !gpu_compute) {
++            int nogpu = 0;
++            for (int i = 0; i < selected; i++)
++                if (!views[i].gate.gpu || !views[i].up.gpu || !views[i].down.gpu) nogpu++;
++            fprintf(stderr, "v4_cpu_moe layer=%d experts_without_mirror=%d\n", weights->plan.layer, nogpu);
++        }
++    }
+     if (!result && gpu_compute && store->gpu) {
+         void *sg = coli_v4_layer_gpu(weights, "ffn.shared_experts.w1");
+         void *su = coli_v4_layer_gpu(weights, "ffn.shared_experts.w3");
+@@ -13549,6 +13559,16 @@ static int head_argmax(ColiV4Engine *engine, const float *hidden,
+     double t0 = spec_now();
+     int result = head_argmax_impl(engine, hidden, index, config, best_token, best_logit);
+     g_v4_prof_head_s += spec_now() - t0;
++    {   /* DEBUG ONLY (determinism probe): token, logit and an FNV-1a hash of the hidden row */
++        static int log_on = -1;
++        if (log_on < 0) { const char *e = getenv("V4_LOGIT_LOG"); log_on = e && *e == '1'; }
++        if (log_on && !result) {
++            const unsigned char *b = (const unsigned char *)hidden;
++            unsigned long long h = 1469598103934665603ULL;
++            for (size_t i = 0; i < (size_t)config->hidden_size * sizeof(float); i++) { h ^= b[i]; h *= 1099511628211ULL; }
++            fprintf(stderr, "v4_logit tok=%d logit=%a hidden=%016llx\n", *best_token, (double)*best_logit, h);
++        }
++    }
+     return result;
+ }
+ /* Every head score of one hidden row, in vocabulary order. head_argmax used

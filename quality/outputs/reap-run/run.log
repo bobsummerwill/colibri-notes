@@ -1,0 +1,40 @@
+[2026-10-16 00:31:22] run_quality.sh start (pid 1202371) budget=120 hard=150 min
+[2026-10-16 00:31:22] preflight ok: MemAvailable=45581 MiB, llama active
+Qwen results: ['/home/maplemercury/colibri-bench/quality/results/qwen-hermes.jsonl', '/home/maplemercury/colibri-bench/quality/results/qwen-greedy.jsonl']
+   1 M1_strings         max_tokens= 7936 qwen_max=7263 expected_tokens= 7936 expected= 37.2 min cumulative=  37.2 min
+   2 C1_cron            max_tokens= 4096 qwen_max=1754 expected_tokens= 2631 expected= 13.1 min cumulative=  50.3 min
+   3 O1_pg_disk_plan    max_tokens= 3072 qwen_max=1343 expected_tokens= 2015 expected=  9.9 min cumulative=  60.2 min
+   4 M3_spinner         max_tokens= 7936 qwen_max=6267 expected_tokens= 7936 expected= 37.2 min cumulative=  97.4 min
+   5 F1_systemd         max_tokens= 2048 qwen_max=755 expected_tokens= 1133 expected=  6.0 min cumulative= 103.3 min
+   6 C3_expr            max_tokens= 4096 qwen_max=1737 expected_tokens= 2606 expected= 12.8 min cumulative= 116.2 min
+   7 O2_lost_update     max_tokens= 2048 qwen_max=1098 expected_tokens= 1647 expected=  8.2 min cumulative= 124.3 min
+   8 M2_crt             max_tokens= 8000 qwen_max=3067 expected_tokens= 4601 expected= 21.7 min cumulative= 146.0 min
+   9 O3_incident_email  max_tokens= 2048 qwen_max=320 expected_tokens=  480 expected=  3.1 min cumulative= 149.1 min
+  10 C2_shell_split     max_tokens= 4096 qwen_max=571 expected_tokens=  857 expected=  4.7 min cumulative= 153.9 min
+  11 M4_restart_order   max_tokens= 7808 qwen_max=2933 expected_tokens= 4400 expected= 20.9 min cumulative= 174.8 min
+  12 F2_tcp_time_wait   max_tokens= 2048 qwen_max=411 expected_tokens=  617 expected=  3.4 min cumulative= 178.2 min
+soft budget 120.0 min, hard stop 150.0 min, decode 3.6 tok/s assumed
+GATE OK
+[2026-10-16 00:31:24] stopping llama-server-active (the EXIT trap restarts it)
+idle gpu 0, 784 MiB, 24576 MiB
+idle gpu 1, 80 MiB, 24576 MiB
+Running as unit: colibri-quality-serve.service; invocation ID: 809cd176faa943f69173b5772dcf4d3e
+[2026-10-16 00:31:29] serve 1: two-GPU decode confirmed: v4_gpu peer-mirrors device=1 reserve=1024MB mode=compute (the decode MoE runs these experts on device 1)
+[2026-10-16 00:31:29] serve ready; client starts (GPU window 5 s)
+[2026-10-16 01:29:05] client exit 0 (GPU window 3461 s)
+[2026-10-16 01:29:08] restore: starting llama-server-active (script status 0, GPU window 3464 s)
+[2026-10-16 01:29:19] restore: llama health '{"status":"ok"}' (ok=1) at 2026-10-16T01:29:19-07:00; llama-down window 3475 s
+M1_strings         ok              finish=stop tok=1560 prompt=86 ctx_clamped=False expected=7936 total_s=368.534 rate=4.382 reasoning_chars=0
+C1_cron            ok              finish=stop tok=1122 prompt=498 ctx_clamped=False expected=1316 total_s=303.908 rate=4.067 reasoning_chars=0
+O1_pg_disk_plan    ok              finish=stop tok=1374 prompt=181 ctx_clamped=False expected=1008 total_s=380.589 rate=3.831 reasoning_chars=0
+M3_spinner         ok              finish=stop tok=1418 prompt=119 ctx_clamped=False expected=6014 total_s=329.486 rate=4.488 reasoning_chars=0
+F1_systemd         ok              finish=stop tok=522 prompt=329 ctx_clamped=False expected=567 total_s=152.031 rate=3.978 reasoning_chars=0
+C3_expr            ok              finish=stop tok=2179 prompt=372 ctx_clamped=False expected=1667 total_s=539.817 rate=4.216 reasoning_chars=0
+O2_lost_update     ok              finish=stop tok=923 prompt=161 ctx_clamped=False expected=1097 total_s=256.703 rate=3.907 reasoning_chars=0
+M2_crt             ok              finish=stop tok=1586 prompt=57 ctx_clamped=False expected=3181 total_s=359.554 rate=4.505 reasoning_chars=0
+O3_incident_email  ok              finish=stop tok=286 prompt=449 ctx_clamped=False expected=320 total_s=99.455 rate=3.859 reasoning_chars=0
+C2_shell_split     ok              finish=stop tok=439 prompt=329 ctx_clamped=False expected=593 total_s=123.314 rate=4.269 reasoning_chars=0
+M4_restart_order   ok              finish=stop tok=1495 prompt=208 ctx_clamped=False expected=3213 total_s=382.967 rate=4.171 reasoning_chars=0
+F2_tcp_time_wait   ok              finish=stop tok=542 prompt=222 ctx_clamped=False expected=427 total_s=159.758 rate=4.058 reasoning_chars=0
+status counts: {'ok': 12}
+[2026-10-16 01:29:19] ALL DONE (serve 0, client exit 0)

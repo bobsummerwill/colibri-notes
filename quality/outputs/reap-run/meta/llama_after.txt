@@ -1,0 +1,12 @@
+restored_at=2026-10-16T01:29:19-07:00
+health={"status":"ok"}
+ok=1
+gpu_window_s=3475
+● llama-server-active.service - llama.cpp Server - local Qwen3.8 27B (MTP)
+     Loaded: loaded (/home/maplemercury/.config/systemd/user/llama-server-active.service; enabled; preset: enabled)
+     Active: active (running) since Fri 2026-10-16 01:29:14 PDT; 5s ago
+    Process: 1246859 ExecStartPre=/usr/bin/python3 /home/maplemercury/repos/openclaw-team/maplemercury/scripts/shadowfax_gpu_guard.py cuda --timeout 120 (code=exited, status=0/SUCCESS)
+    Process: 1246884 ExecStartPost=/usr/bin/python3 /home/maplemercury/repos/openclaw-team/maplemercury/scripts/shadowfax_gpu_guard.py allocations --timeout 120 (code=exited, status=0/SUCCESS)
+index, memory.used [MiB], memory.total [MiB]
+0, 19896 MiB, 24576 MiB
+1, 22671 MiB, 24576 MiB

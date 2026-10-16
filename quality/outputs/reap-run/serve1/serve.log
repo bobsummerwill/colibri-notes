@@ -1,0 +1,114 @@
+[OMP] deepseek-v4: 16 compute threads (the physical cores of 32 logical CPUs; the 3 expert-loader workers take the SMT siblings); OMP_NUM_THREADS=<n> overrides, COLI_NO_OMP_TUNE=1 disables
+ram_tiers available=40.00GiB dense=resident(6.23GiB) target_slots=59 target_cache=31.59GiB head=resident-bf16 projected=39.75GiB
+v4_open index=0.02s plan=0.00s (index built once, reused by plan/inventory/head)
+v4_ssd_io mode=direct-aligned fallback=buffered-pread
+v4_hot_policy pin_slots_per_layer=16 repin_interval=6 mode=resident-ram rows16=hot-pins
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+v4_gpu mirror-reserve=3100MiB (132-slot bank 1683MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)
+v4_gpu peer-mirrors device=1 reserve=1024MB mode=compute (the decode MoE runs these experts on device 1)
+v4_gpu tier=dense-matvec device=0
+v4_gpu layer=0 uploaded=129.039MiB in 0.044s wall=1792135885
+v4_gpu layer=1 uploaded=129.039MiB in 0.042s wall=1792135885
+v4_gpu layer=2 uploaded=149.039MiB in 0.043s wall=1792135885
+v4_gpu layer=3 uploaded=137.039MiB in 0.043s wall=1792135885
+v4_gpu layer=4 uploaded=149.039MiB in 0.044s wall=1792135886
+v4_gpu layer=5 uploaded=137.039MiB in 0.043s wall=1792135886
+v4_gpu layer=6 uploaded=149.039MiB in 0.044s wall=1792135886
+v4_gpu layer=7 uploaded=137.039MiB in 0.042s wall=1792135886
+v4_gpu layer=8 uploaded=149.039MiB in 0.043s wall=1792135886
+v4_gpu layer=9 uploaded=137.039MiB in 0.043s wall=1792135886
+v4_gpu layer=10 uploaded=149.039MiB in 0.045s wall=1792135886
+v4_gpu layer=11 uploaded=137.039MiB in 0.041s wall=1792135886
+v4_gpu layer=12 uploaded=149.039MiB in 0.043s wall=1792135886
+v4_gpu layer=13 uploaded=137.039MiB in 0.043s wall=1792135886
+v4_gpu layer=14 uploaded=149.039MiB in 0.042s wall=1792135886
+v4_gpu layer=15 uploaded=137.039MiB in 0.039s wall=1792135886
+v4_gpu layer=16 uploaded=149.039MiB in 0.041s wall=1792135886
+v4_gpu layer=17 uploaded=137.039MiB in 0.041s wall=1792135886
+v4_gpu layer=18 uploaded=149.039MiB in 0.042s wall=1792135887
+v4_gpu layer=19 uploaded=137.039MiB in 0.042s wall=1792135887
+v4_gpu layer=20 uploaded=149.039MiB in 0.043s wall=1792135887
+v4_gpu layer=21 uploaded=137.039MiB in 0.042s wall=1792135887
+v4_gpu layer=22 uploaded=149.039MiB in 0.044s wall=1792135887
+v4_gpu layer=23 uploaded=137.039MiB in 0.041s wall=1792135887
+v4_gpu layer=24 uploaded=149.039MiB in 0.043s wall=1792135887
+v4_gpu layer=25 uploaded=137.039MiB in 0.042s wall=1792135887
+v4_gpu layer=26 uploaded=149.039MiB in 0.043s wall=1792135887
+v4_gpu layer=27 uploaded=137.039MiB in 0.042s wall=1792135887
+v4_gpu layer=28 uploaded=149.039MiB in 0.043s wall=1792135887
+v4_gpu layer=29 uploaded=137.039MiB in 0.042s wall=1792135887
+v4_gpu layer=30 uploaded=149.039MiB in 0.042s wall=1792135887
+v4_gpu layer=31 uploaded=137.039MiB in 0.039s wall=1792135887
+v4_gpu layer=32 uploaded=149.039MiB in 0.040s wall=1792135888
+v4_gpu layer=33 uploaded=137.039MiB in 0.042s wall=1792135888
+v4_gpu layer=34 uploaded=149.039MiB in 0.041s wall=1792135888
+v4_gpu layer=35 uploaded=137.039MiB in 0.041s wall=1792135888
+v4_gpu layer=36 uploaded=149.039MiB in 0.043s wall=1792135888
+v4_gpu layer=37 uploaded=137.039MiB in 0.042s wall=1792135888
+v4_gpu layer=38 uploaded=149.039MiB in 0.042s wall=1792135888
+v4_gpu layer=39 uploaded=137.039MiB in 0.041s wall=1792135888
+v4_gpu layer=40 uploaded=149.039MiB in 0.043s wall=1792135888
+v4_gpu layer=41 uploaded=137.039MiB in 0.042s wall=1792135888
+v4_gpu layer=42 uploaded=149.039MiB in 0.043s wall=1792135888
+v4_dense_resident layers=43 bytes=6.226GiB
+[gateway] input modalities: text
+OpenAI-compatible API listening on http://127.0.0.1:8090/v1
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[V4] top_p 0.9 ignored; target engine is greedy
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[V4] top_p 0.9 ignored; target engine is greedy
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+v4_gpu moe-batch=on bank=132-experts
+v4_gpu moe-batch refill layer=0 missing=122 lookup=0.01s upload=0.20s
+v4_gpu moe-batch refill layer=0 missing=7 lookup=0.01s upload=0.01s
+v4_gpu moe-batch refill layer=0 missing=3 lookup=0.01s upload=0.00s
+v4_gpu moe-batch refill layer=1 missing=120 lookup=0.01s upload=0.22s
+v4_gpu moe-batch refill layer=1 missing=7 lookup=0.03s upload=0.01s
+v4_gpu moe-batch refill layer=1 missing=2 lookup=0.01s upload=0.00s
+v4_gpu moe-batch refill layer=1 missing=2 lookup=0.01s upload=0.00s
+[V4] top_p 0.9 ignored; target engine is greedy
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[V4] top_p 0.9 ignored; target engine is greedy
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[V4] top_p 0.9 ignored; target engine is greedy
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+v4_gpu moe-batch=on bank=132-experts
+v4_gpu moe-batch refill layer=0 missing=120 lookup=0.01s upload=0.20s
+v4_gpu moe-batch refill layer=0 missing=12 lookup=0.03s upload=0.01s
+v4_gpu moe-batch refill layer=1 missing=121 lookup=0.03s upload=0.22s
+v4_gpu moe-batch refill layer=1 missing=9 lookup=0.02s upload=0.01s
+[V4] top_p 0.9 ignored; target engine is greedy
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+v4_gpu moe-batch=on bank=132-experts
+v4_gpu moe-batch refill layer=0 missing=127 lookup=0.01s upload=0.21s
+v4_gpu moe-batch refill layer=0 missing=5 lookup=0.02s upload=0.01s
+v4_gpu moe-batch refill layer=1 missing=117 lookup=0.03s upload=0.23s
+v4_gpu moe-batch refill layer=1 missing=11 lookup=0.02s upload=0.01s
+v4_gpu moe-batch refill layer=1 missing=2 lookup=0.01s upload=0.00s
+[V4] top_p 0.9 ignored; target engine is greedy
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[V4] top_p 0.9 ignored; target engine is greedy
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[V4] top_p 0.9 ignored; target engine is greedy
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+v4_gpu moe-batch=on bank=132-experts
+v4_gpu moe-batch refill layer=0 missing=122 lookup=0.01s upload=0.20s
+v4_gpu moe-batch refill layer=0 missing=7 lookup=0.01s upload=0.01s
+v4_gpu moe-batch refill layer=0 missing=3 lookup=0.01s upload=0.00s
+v4_gpu moe-batch refill layer=1 missing=113 lookup=0.02s upload=0.20s
+v4_gpu moe-batch refill layer=1 missing=13 lookup=0.02s upload=0.01s
+v4_gpu moe-batch refill layer=1 missing=5 lookup=0.01s upload=0.01s
+v4_gpu moe-batch refill layer=1 missing=1 lookup=0.00s upload=0.00s
+[V4] top_p 0.9 ignored; target engine is greedy
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+v4_gpu moe-batch=on bank=132-experts
+v4_gpu moe-batch refill layer=0 missing=121 lookup=0.02s upload=0.20s
+v4_gpu moe-batch refill layer=0 missing=7 lookup=0.01s upload=0.01s
+v4_gpu moe-batch refill layer=1 missing=123 lookup=0.03s upload=0.23s
+v4_gpu moe-batch refill layer=1 missing=6 lookup=0.01s upload=0.01s
+v4_gpu moe-batch refill layer=1 missing=2 lookup=0.01s upload=0.00s
+[V4] top_p 0.9 ignored; target engine is greedy
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[V4] top_p 0.9 ignored; target engine is greedy
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -

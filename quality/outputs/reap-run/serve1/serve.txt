@@ -1,0 +1,4 @@
+server_env=PATH=/usr/local/bin:/usr/bin:/bin HOME=/home/maplemercury USER=maplemercury LOGNAME=maplemercury LANG=en_US.UTF-8 COLI_CUDA=1 COLI_GPU=0 DSV4_CUDA_DEVICE=0 CUDA_DENSE=1 COLI_CUDA_PIPE=2 COLI_CUDA_ATTN_BATCH=1 COLI_CUDA_MOE_BATCH=1 V4_MOE_REFILL_GROUP=12 V4_LOADER_LANES=3 V4_PREFIX_CKPT_DISK=0 V4_GPU_RESIDENT_FIRST=1 DSV4_CUDA_PEER_DEVICE=1
+serve_cmd=python3 /tmp/cw/r6-pr2/c/coli serve --model /home/maplemercury/colibri-models/deepseek-v4-flash-reap --ram 40 --ctx 8192 --host 127.0.0.1 --port 8090
+start=2026-10-16T00:31:25-07:00
+ready_s=4

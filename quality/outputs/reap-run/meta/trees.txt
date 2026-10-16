@@ -1,0 +1,8 @@
+tree=/tmp/cw/r6-pr2
+  head=d0e19de23c3baf314ee932347c42d5f6d49ef4fb
+  parent=b1fefd772d14860e20f94320dc2ca9c978ca5d8a
+  subject=deepseek-v4: document two-GPU decode and VRAM-first lookups
+  status_lines=0
+  binary_sha256=63a667bac98a95daffc42428f0a82a1fd5051588047b524d8f8b1c564a20b926
+  binary_mtime=2026-10-15 13:53:41.052575945 -0700
+  build_log=/home/maplemercury/colibri-bench/final/builds/r6-pr2.build.log

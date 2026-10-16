@@ -7,7 +7,7 @@ Project notebook for Bob Summerwill's work on [colibri](https://github.com/JustV
 ## Status (2026-10-15)
 - Model under test: **DeepSeek V4 Flash REAP 150B** (`puwaer/DeepSeek-V4-Flash-0731-reap-150b`, 132 routed experts/layer instead of 256, fp4 experts, 79 GiB) on **shadowfax** (2x RTX 3090 + NVLink, 62 GB RAM) — see [environment.md](environment.md).
 - Results ([measurements.md](measurements.md)): prefill 9 -> 24-28 tok/s (2.7-3.1x); decode 2.78 -> 3.87 tok/s with two GPUs (+39%); all greedy outputs identical to upstream.
-- Practical verdict ([decisions.md](decisions.md)): great upstream contribution, not a replacement for Qwen3.8-27B on llama.cpp (~72 tok/s) for Hermes.
+- Practical verdict ([decisions.md](decisions.md)): great upstream contribution, not a replacement for Qwen3.8-27B on llama.cpp for Hermes. A blind 12-prompt quality comparison (2026-10-16, [quality/REPORT.md](quality/REPORT.md)) found REAP-150B **not better** than Qwen3.8-27B (worse on code, factual precision and one explanation; ties on maths; one ops-plan win) while ~21x slower and needing Hermes stopped.
 - Planned upstream PRs (target `dev`, base `7b55a9b3`):
   - **PR #0 DeepSeek V4 CUDA bug fixes** — 12 standalone upstream fixes (incl. a real decode race, F26 loader jobs, F2 speculative batches, F27 CUDA last-error, F4 mirror-slot rollback, the `make dsv4-cuda-test` stub stop) + doc corrections.
   - **PR #1 GPU batched prefill for expert-pruned checkpoints** + expert-major MoE kernel + warp dense kernel.

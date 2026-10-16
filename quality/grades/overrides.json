@@ -1,0 +1,6 @@
+{
+ "reap/M4_restart_order/1": {
+  "score": 1.0,
+  "reason": "content-correct: the response defines api (A), auth (U), cache (C), db (D), proxy (P), worker (W) in its first line, so 'ANSWER: P, A, C, U, D, W' = proxy, api, cache, auth, db, worker = reference; format non-compliant (abbreviations instead of the requested names), automatic strict extraction read nothing -> 0"
+ }
+}

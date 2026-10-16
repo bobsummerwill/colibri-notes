@@ -1,0 +1,4 @@
+COMMON_ENV=COLI_CUDA=1 COLI_GPU=0 DSV4_CUDA_DEVICE=0 CUDA_DENSE=1 COLI_CUDA_PIPE=2 COLI_CUDA_ATTN_BATCH=1 COLI_CUDA_MOE_BATCH=1 V4_MOE_REFILL_GROUP=12 V4_LOADER_LANES=3 V4_PREFIX_CKPT_DISK=0
+BASE_ENV=PATH=/usr/local/bin:/usr/bin:/bin HOME=/home/maplemercury USER=maplemercury LOGNAME=maplemercury LANG=en_US.UTF-8
+SERVE_ARGS=--model /home/maplemercury/colibri-models/deepseek-v4-flash-reap --ram 40 --ctx 8192 --host 127.0.0.1 --port 8090
+NVSMI_MS=5000
