@@ -1,0 +1,5990 @@
+{
+  "run": {
+    "llama_down": "2026-10-16 02:38:14",
+    "llama_restored": "2026-10-16T04:57:03-07:00",
+    "gpu_window_s": 8329,
+    "preflight_mem_available_mib": 47976,
+    "pilot_result": "NODIFF",
+    "phase2_setting": "L8",
+    "phase2_mode": "long",
+    "phase2_budget": "8",
+    "phase2_tokens": 166,
+    "phase2_env": "DSV4_CUDA_PIN_HOST=0 DSV4_CUDA_EXPERT_MIRRORS=8",
+    "trees": {
+      "D": {
+        "tree": "/tmp/cw/r6-dev",
+        "head": "7b55a9b3792527f52d1a2337fd9e312b9a7983e3",
+        "parent": "88f25a60776036414f62f087905a634890ca5a61",
+        "subject": "Merge pull request #2080 from JustVugg/fix/vk-dense-bf16-exact",
+        "status_lines": "0",
+        "binary_sha256": "beb037276ed54cd4c54a5e043bf876a38c4de900de661d8b30b75c314b36d127",
+        "binary_mtime": "2026-10-15 13:53:40.186585897 -0700",
+        "build_log": "/home/maplemercury/colibri-bench/final/builds/r6-dev.build.log"
+      },
+      "H": {
+        "tree": "/tmp/cw/r7-devh2d",
+        "head": "cc9c9fab4d7d0e8c962d38a7ffb8c752a6458505",
+        "parent": "7b55a9b3792527f52d1a2337fd9e312b9a7983e3",
+        "subject": "deepseek-v4: order host->device uploads on the compute stream",
+        "status_lines": "0",
+        "binary_sha256": "9caf56c81259624af79bee596bb04b9907175c6b22333f284c04122865845508",
+        "binary_mtime": "2026-10-15 22:23:26.084489850 -0700",
+        "build_log": "/home/maplemercury/colibri-bench/final2/builds/r7-devh2d.build.log"
+      },
+      "Z": {
+        "tree": "/tmp/cw/r6-pr0",
+        "head": "a2c8ba7a149a31a781e84a992aa980afdb93497d",
+        "parent": "3675850c39e49b6079d6b1207aaa2f1fd8cdaacd",
+        "subject": "deepseek-v4: real expert-bank and mirror sizes in the docs and comments",
+        "status_lines": "0",
+        "binary_sha256": "d26bc5526a6c05b03e254a5259da0503d02f1083d682124a6587fff124621812",
+        "binary_mtime": "2026-10-15 13:53:39.908589092 -0700",
+        "build_log": "/home/maplemercury/colibri-bench/final/builds/r6-pr0.build.log"
+      },
+      "Dp": {
+        "tree": "/tmp/cw/r6-dev-probe",
+        "head": "7b55a9b3792527f52d1a2337fd9e312b9a7983e3",
+        "parent": "88f25a60776036414f62f087905a634890ca5a61",
+        "subject": "Merge pull request #2080 from JustVugg/fix/vk-dense-bf16-exact",
+        "status_lines": "1",
+        "diff_sha256": "4568b67e85165e61e91b0875d441825f76b25ddd5f007c363bb2db931dabdf8b",
+        "binary_sha256": "dea9bd9d0214cf090e196758fea665caa3f272da65b60aebb4c0d7af32092ba0",
+        "binary_mtime": "2026-10-15 13:57:33.115878569 -0700",
+        "build_log": "/home/maplemercury/colibri-bench/final/builds/r6-dev-probe.build.log"
+      },
+      "Hp": {
+        "tree": "/tmp/cw/r7-devh2d-probe",
+        "head": "cc9c9fab4d7d0e8c962d38a7ffb8c752a6458505",
+        "parent": "7b55a9b3792527f52d1a2337fd9e312b9a7983e3",
+        "subject": "deepseek-v4: order host->device uploads on the compute stream",
+        "status_lines": "1",
+        "diff_sha256": "4568b67e85165e61e91b0875d441825f76b25ddd5f007c363bb2db931dabdf8b",
+        "binary_sha256": "e4ef9252605373dc7600a3c8c21efd28ca955136f6ec922ae4addcfcc051dc99",
+        "binary_mtime": "2026-10-15 22:23:36.065363962 -0700",
+        "build_log": "/home/maplemercury/colibri-bench/final2/builds/r7-devh2d-probe.build.log"
+      },
+      "Zp": {
+        "tree": "/tmp/cw/r6-pr0-probe",
+        "head": "a2c8ba7a149a31a781e84a992aa980afdb93497d",
+        "parent": "3675850c39e49b6079d6b1207aaa2f1fd8cdaacd",
+        "subject": "deepseek-v4: real expert-bank and mirror sizes in the docs and comments",
+        "status_lines": "1",
+        "diff_sha256": "bc1cec431a2cc79207fe0d263486bc17f6c25c461544523e20cce1c321d9e7f9",
+        "binary_sha256": "f8d5d9ed927c2af243467a225c7c179147c869c1612599d821e74224e840f19f",
+        "binary_mtime": "2026-10-15 13:57:33.126878440 -0700",
+        "build_log": "/home/maplemercury/colibri-bench/final/builds/r6-pr0-probe.build.log"
+      },
+      "Qp": {
+        "tree": "/tmp/cw/r7-p1pre-probe",
+        "head": "48767c016c993e59cd74f5511983be7bb65ec791",
+        "parent": "4c87961888718fdb8e6be177aa5eea15637cf063",
+        "subject": "deepseek-v4: describe the second-bank reserve with the per-prefill retry",
+        "status_lines": "1",
+        "diff_sha256": "95323fd471cebd34836c21375c7b7261e272cd2a9dae247ce91368ca48cc8723",
+        "binary_sha256": "df6c66f769c91bc1955576fa64f638ea98324612cc832735f4889ba317387add",
+        "binary_mtime": "2026-10-15 22:23:46.670230281 -0700",
+        "build_log": "/home/maplemercury/colibri-bench/final2/builds/r7-p1pre-probe.build.log"
+      },
+      "Fp": {
+        "tree": "/tmp/cw/r7-p1fix-probe",
+        "head": "a406901b2c256499ed02140c8d10aa34aa00b1eb",
+        "parent": "48767c016c993e59cd74f5511983be7bb65ec791",
+        "subject": "deepseek-v4: order host->device uploads on the compute stream",
+        "status_lines": "1",
+        "diff_sha256": "95323fd471cebd34836c21375c7b7261e272cd2a9dae247ce91368ca48cc8723",
+        "binary_sha256": "d4060046df4fbdd8859196f78a75110e942a0169a222b447986d2e8f3b8d2e3a",
+        "binary_mtime": "2026-10-15 22:23:57.258096891 -0700",
+        "build_log": "/home/maplemercury/colibri-bench/final2/builds/r7-p1fix-probe.build.log"
+      }
+    }
+  },
+  "pilot": {
+    "L48": {
+      "samples": [
+        {
+          "dir": "P_L48/s1",
+          "seq": 7,
+          "probe": true,
+          "tree_head": "7b55a9b3792527f52d1a2337fd9e312b9a7983e3",
+          "binary_sha256": "dea9bd9d0214cf090e196758fea665caa3f272da65b60aebb4c0d7af32092ba0",
+          "tree_diff_sha256": "4568b67e85165e61e91b0875d441825f76b25ddd5f007c363bb2db931dabdf8b",
+          "extra_env": {
+            "DSV4_CUDA_PIN_HOST": "0",
+            "V4_LOGIT_LOG": "1",
+            "DSV4_CUDA_EXPERT_MIRRORS": "48"
+          },
+          "start": "2026-10-16T03:00:01-07:00",
+          "ready_s": 4,
+          "client_s": 291,
+          "wall_s": 297,
+          "requests": [
+            "race_long_120"
+          ],
+          "ttft_s": [
+            223.989
+          ],
+          "decode_tok_s": [
+            1.7719
+          ],
+          "decode_s": [
+            67.16
+          ],
+          "chunks": [
+            120
+          ],
+          "finish": [
+            "length"
+          ],
+          "text_sha256": [
+            "4ee15603e709bb9a8902d6cb747aefe6c4cacc94b576de2b7ccf58d145069161"
+          ],
+          "text_chars": [
+            586
+          ],
+          "logit_lines": 120,
+          "logit_seq_sha256": "888e910e8e23690c547b5420866f12eea5b72b9b8d0459f788d37cffb6fdc956",
+          "logit_lines_per_request": [
+            120
+          ],
+          "cpu_moe_lines": 0,
+          "gpu0_ready_mib": 7220,
+          "gpu0_max_mib": 7986,
+          "gpu1_max_mib": 83,
+          "mode_lines": [
+            "v4_gpu moe-batch=off (unsupported model geometry)"
+          ],
+          "usage_before": "size=0 mtime=1791867517",
+          "usage_after": "size=0 mtime=1791867517",
+          "checks": []
+        },
+        {
+          "dir": "P_L48/s2",
+          "seq": 8,
+          "probe": true,
+          "tree_head": "7b55a9b3792527f52d1a2337fd9e312b9a7983e3",
+          "binary_sha256": "dea9bd9d0214cf090e196758fea665caa3f272da65b60aebb4c0d7af32092ba0",
+          "tree_diff_sha256": "4568b67e85165e61e91b0875d441825f76b25ddd5f007c363bb2db931dabdf8b",
+          "extra_env": {
+            "DSV4_CUDA_PIN_HOST": "0",
+            "V4_LOGIT_LOG": "1",
+            "DSV4_CUDA_EXPERT_MIRRORS": "48"
+          },
+          "start": "2026-10-16T03:04:58-07:00",
+          "ready_s": 4,
+          "client_s": 291,
+          "wall_s": 297,
+          "requests": [
+            "race_long_120"
+          ],
+          "ttft_s": [
+            224.034
+          ],
+          "decode_tok_s": [
+            1.7726
+          ],
+          "decode_s": [
+            67.132
+          ],
+          "chunks": [
+            120
+          ],
+          "finish": [
+            "length"
+          ],
+          "text_sha256": [
+            "4ee15603e709bb9a8902d6cb747aefe6c4cacc94b576de2b7ccf58d145069161"
+          ],
+          "text_chars": [
+            586
+          ],
+          "logit_lines": 120,
+          "logit_seq_sha256": "888e910e8e23690c547b5420866f12eea5b72b9b8d0459f788d37cffb6fdc956",
+          "logit_lines_per_request": [
+            120
+          ],
+          "cpu_moe_lines": 0,
+          "gpu0_ready_mib": 7220,
+          "gpu0_max_mib": 7986,
+          "gpu1_max_mib": 83,
+          "mode_lines": [
+            "v4_gpu moe-batch=off (unsupported model geometry)"
+          ],
+          "usage_before": "size=0 mtime=1791867517",
+          "usage_after": "size=0 mtime=1791867517",
+          "checks": []
+        }
+      ],
+      "compare": {
+        "n": 2,
+        "n_probe": 2,
+        "distinct_text_sha256": [
+          {
+            "sha256": [
+              "4ee15603e709bb9a8902d6cb747aefe6c4cacc94b576de2b7ccf58d145069161"
+            ],
+            "samples": [
+              "P_L48#1",
+              "P_L48#2"
+            ]
+          }
+        ],
+        "n_distinct_texts": 1,
+        "distinct_logit_seq_sha256": [
+          {
+            "sha256": "888e910e8e23690c547b5420866f12eea5b72b9b8d0459f788d37cffb6fdc956",
+            "samples": [
+              "P_L48#1",
+              "P_L48#2"
+            ]
+          }
+        ],
+        "n_distinct_logit_seqs": 1,
+        "any_text_diff": false,
+        "any_logit_diff": false,
+        "bit_identical": true,
+        "pairs": {
+          "P_L48#1_vs_P_L48#2": {
+            "text": [
+              {
+                "request": "race_long_120",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 120,
+              "len_a": 120,
+              "len_b": 120,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                120
+              ],
+              "req_lines_b": [
+                120
+              ]
+            }
+          }
+        }
+      },
+      "tok_s": {
+        "mean": 1.7723,
+        "stdev": 0.0005,
+        "median": 1.7723,
+        "min": 1.7719,
+        "max": 1.7726,
+        "n": 2
+      },
+      "ttft_s": {
+        "mean": 224.0115,
+        "stdev": 0.0318,
+        "median": 224.0115,
+        "min": 223.989,
+        "max": 224.034,
+        "n": 2
+      },
+      "wall_s": {
+        "mean": 297,
+        "stdev": 0.0,
+        "median": 297.0,
+        "min": 297,
+        "max": 297,
+        "n": 2
+      },
+      "gpu0_max_mib": {
+        "mean": 7986,
+        "stdev": 0.0,
+        "median": 7986.0,
+        "min": 7986,
+        "max": 7986,
+        "n": 2
+      }
+    },
+    "L8": {
+      "samples": [
+        {
+          "dir": "P_L8/s1",
+          "seq": 1,
+          "probe": true,
+          "tree_head": "7b55a9b3792527f52d1a2337fd9e312b9a7983e3",
+          "binary_sha256": "dea9bd9d0214cf090e196758fea665caa3f272da65b60aebb4c0d7af32092ba0",
+          "tree_diff_sha256": "4568b67e85165e61e91b0875d441825f76b25ddd5f007c363bb2db931dabdf8b",
+          "extra_env": {
+            "DSV4_CUDA_PIN_HOST": "0",
+            "V4_LOGIT_LOG": "1",
+            "DSV4_CUDA_EXPERT_MIRRORS": "8"
+          },
+          "start": "2026-10-16T02:38:15-07:00",
+          "ready_s": 4,
+          "client_s": 292,
+          "wall_s": 297,
+          "requests": [
+            "race_long_120"
+          ],
+          "ttft_s": [
+            223.606
+          ],
+          "decode_tok_s": [
+            1.7442
+          ],
+          "decode_s": [
+            68.226
+          ],
+          "chunks": [
+            120
+          ],
+          "finish": [
+            "length"
+          ],
+          "text_sha256": [
+            "4ee15603e709bb9a8902d6cb747aefe6c4cacc94b576de2b7ccf58d145069161"
+          ],
+          "text_chars": [
+            586
+          ],
+          "logit_lines": 120,
+          "logit_seq_sha256": "888e910e8e23690c547b5420866f12eea5b72b9b8d0459f788d37cffb6fdc956",
+          "logit_lines_per_request": [
+            120
+          ],
+          "cpu_moe_lines": 0,
+          "gpu0_ready_mib": 7220,
+          "gpu0_max_mib": 7496,
+          "gpu1_max_mib": 83,
+          "mode_lines": [
+            "v4_gpu moe-batch=off (unsupported model geometry)"
+          ],
+          "usage_before": "size=0 mtime=1791867517",
+          "usage_after": "size=0 mtime=1791867517",
+          "checks": []
+        },
+        {
+          "dir": "P_L8/s2",
+          "seq": 2,
+          "probe": true,
+          "tree_head": "7b55a9b3792527f52d1a2337fd9e312b9a7983e3",
+          "binary_sha256": "dea9bd9d0214cf090e196758fea665caa3f272da65b60aebb4c0d7af32092ba0",
+          "tree_diff_sha256": "4568b67e85165e61e91b0875d441825f76b25ddd5f007c363bb2db931dabdf8b",
+          "extra_env": {
+            "DSV4_CUDA_PIN_HOST": "0",
+            "V4_LOGIT_LOG": "1",
+            "DSV4_CUDA_EXPERT_MIRRORS": "8"
+          },
+          "start": "2026-10-16T02:43:12-07:00",
+          "ready_s": 6,
+          "client_s": 293,
+          "wall_s": 300,
+          "requests": [
+            "race_long_120"
+          ],
+          "ttft_s": [
+            224.359
+          ],
+          "decode_tok_s": [
+            1.7405
+          ],
+          "decode_s": [
+            68.371
+          ],
+          "chunks": [
+            120
+          ],
+          "finish": [
+            "length"
+          ],
+          "text_sha256": [
+            "4ee15603e709bb9a8902d6cb747aefe6c4cacc94b576de2b7ccf58d145069161"
+          ],
+          "text_chars": [
+            586
+          ],
+          "logit_lines": 120,
+          "logit_seq_sha256": "888e910e8e23690c547b5420866f12eea5b72b9b8d0459f788d37cffb6fdc956",
+          "logit_lines_per_request": [
+            120
+          ],
+          "cpu_moe_lines": 0,
+          "gpu0_ready_mib": 7220,
+          "gpu0_max_mib": 7496,
+          "gpu1_max_mib": 83,
+          "mode_lines": [
+            "v4_gpu moe-batch=off (unsupported model geometry)"
+          ],
+          "usage_before": "size=0 mtime=1791867517",
+          "usage_after": "size=0 mtime=1791867517",
+          "checks": []
+        }
+      ],
+      "compare": {
+        "n": 2,
+        "n_probe": 2,
+        "distinct_text_sha256": [
+          {
+            "sha256": [
+              "4ee15603e709bb9a8902d6cb747aefe6c4cacc94b576de2b7ccf58d145069161"
+            ],
+            "samples": [
+              "P_L8#1",
+              "P_L8#2"
+            ]
+          }
+        ],
+        "n_distinct_texts": 1,
+        "distinct_logit_seq_sha256": [
+          {
+            "sha256": "888e910e8e23690c547b5420866f12eea5b72b9b8d0459f788d37cffb6fdc956",
+            "samples": [
+              "P_L8#1",
+              "P_L8#2"
+            ]
+          }
+        ],
+        "n_distinct_logit_seqs": 1,
+        "any_text_diff": false,
+        "any_logit_diff": false,
+        "bit_identical": true,
+        "pairs": {
+          "P_L8#1_vs_P_L8#2": {
+            "text": [
+              {
+                "request": "race_long_120",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 120,
+              "len_a": 120,
+              "len_b": 120,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                120
+              ],
+              "req_lines_b": [
+                120
+              ]
+            }
+          }
+        }
+      },
+      "tok_s": {
+        "mean": 1.7424,
+        "stdev": 0.0026,
+        "median": 1.7424,
+        "min": 1.7405,
+        "max": 1.7442,
+        "n": 2
+      },
+      "ttft_s": {
+        "mean": 223.9825,
+        "stdev": 0.5325,
+        "median": 223.9825,
+        "min": 223.606,
+        "max": 224.359,
+        "n": 2
+      },
+      "wall_s": {
+        "mean": 298.5,
+        "stdev": 2.1213,
+        "median": 298.5,
+        "min": 297,
+        "max": 300,
+        "n": 2
+      },
+      "gpu0_max_mib": {
+        "mean": 7496,
+        "stdev": 0.0,
+        "median": 7496.0,
+        "min": 7496,
+        "max": 7496,
+        "n": 2
+      }
+    },
+    "Ldef": {
+      "samples": [
+        {
+          "dir": "P_Ldef/s1",
+          "seq": 5,
+          "probe": true,
+          "tree_head": "7b55a9b3792527f52d1a2337fd9e312b9a7983e3",
+          "binary_sha256": "dea9bd9d0214cf090e196758fea665caa3f272da65b60aebb4c0d7af32092ba0",
+          "tree_diff_sha256": "4568b67e85165e61e91b0875d441825f76b25ddd5f007c363bb2db931dabdf8b",
+          "extra_env": {
+            "DSV4_CUDA_PIN_HOST": "0",
+            "V4_LOGIT_LOG": "1"
+          },
+          "start": "2026-10-16T02:50:49-07:00",
+          "ready_s": 4,
+          "client_s": 270,
+          "wall_s": 277,
+          "requests": [
+            "race_long_120"
+          ],
+          "ttft_s": [
+            224.164
+          ],
+          "decode_tok_s": [
+            2.5793
+          ],
+          "decode_s": [
+            46.137
+          ],
+          "chunks": [
+            120
+          ],
+          "finish": [
+            "length"
+          ],
+          "text_sha256": [
+            "4ee15603e709bb9a8902d6cb747aefe6c4cacc94b576de2b7ccf58d145069161"
+          ],
+          "text_chars": [
+            586
+          ],
+          "logit_lines": 120,
+          "logit_seq_sha256": "888e910e8e23690c547b5420866f12eea5b72b9b8d0459f788d37cffb6fdc956",
+          "logit_lines_per_request": [
+            120
+          ],
+          "cpu_moe_lines": 0,
+          "gpu0_ready_mib": 7220,
+          "gpu0_max_mib": 22074,
+          "gpu1_max_mib": 83,
+          "mode_lines": [
+            "v4_gpu moe-batch=off (unsupported model geometry)"
+          ],
+          "usage_before": "size=0 mtime=1791867517",
+          "usage_after": "size=0 mtime=1791867517",
+          "checks": []
+        },
+        {
+          "dir": "P_Ldef/s2",
+          "seq": 6,
+          "probe": true,
+          "tree_head": "7b55a9b3792527f52d1a2337fd9e312b9a7983e3",
+          "binary_sha256": "dea9bd9d0214cf090e196758fea665caa3f272da65b60aebb4c0d7af32092ba0",
+          "tree_diff_sha256": "4568b67e85165e61e91b0875d441825f76b25ddd5f007c363bb2db931dabdf8b",
+          "extra_env": {
+            "DSV4_CUDA_PIN_HOST": "0",
+            "V4_LOGIT_LOG": "1"
+          },
+          "start": "2026-10-16T02:55:26-07:00",
+          "ready_s": 4,
+          "client_s": 269,
+          "wall_s": 275,
+          "requests": [
+            "race_long_120"
+          ],
+          "ttft_s": [
+            224.095
+          ],
+          "decode_tok_s": [
+            2.6373
+          ],
+          "decode_s": [
+            45.123
+          ],
+          "chunks": [
+            120
+          ],
+          "finish": [
+            "length"
+          ],
+          "text_sha256": [
+            "4ee15603e709bb9a8902d6cb747aefe6c4cacc94b576de2b7ccf58d145069161"
+          ],
+          "text_chars": [
+            586
+          ],
+          "logit_lines": 120,
+          "logit_seq_sha256": "888e910e8e23690c547b5420866f12eea5b72b9b8d0459f788d37cffb6fdc956",
+          "logit_lines_per_request": [
+            120
+          ],
+          "cpu_moe_lines": 0,
+          "gpu0_ready_mib": 7220,
+          "gpu0_max_mib": 22074,
+          "gpu1_max_mib": 83,
+          "mode_lines": [
+            "v4_gpu moe-batch=off (unsupported model geometry)"
+          ],
+          "usage_before": "size=0 mtime=1791867517",
+          "usage_after": "size=0 mtime=1791867517",
+          "checks": []
+        }
+      ],
+      "compare": {
+        "n": 2,
+        "n_probe": 2,
+        "distinct_text_sha256": [
+          {
+            "sha256": [
+              "4ee15603e709bb9a8902d6cb747aefe6c4cacc94b576de2b7ccf58d145069161"
+            ],
+            "samples": [
+              "P_Ldef#1",
+              "P_Ldef#2"
+            ]
+          }
+        ],
+        "n_distinct_texts": 1,
+        "distinct_logit_seq_sha256": [
+          {
+            "sha256": "888e910e8e23690c547b5420866f12eea5b72b9b8d0459f788d37cffb6fdc956",
+            "samples": [
+              "P_Ldef#1",
+              "P_Ldef#2"
+            ]
+          }
+        ],
+        "n_distinct_logit_seqs": 1,
+        "any_text_diff": false,
+        "any_logit_diff": false,
+        "bit_identical": true,
+        "pairs": {
+          "P_Ldef#1_vs_P_Ldef#2": {
+            "text": [
+              {
+                "request": "race_long_120",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 120,
+              "len_a": 120,
+              "len_b": 120,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                120
+              ],
+              "req_lines_b": [
+                120
+              ]
+            }
+          }
+        }
+      },
+      "tok_s": {
+        "mean": 2.6083,
+        "stdev": 0.041,
+        "median": 2.6083,
+        "min": 2.5793,
+        "max": 2.6373,
+        "n": 2
+      },
+      "ttft_s": {
+        "mean": 224.1295,
+        "stdev": 0.0488,
+        "median": 224.1295,
+        "min": 224.095,
+        "max": 224.164,
+        "n": 2
+      },
+      "wall_s": {
+        "mean": 276,
+        "stdev": 1.4142,
+        "median": 276.0,
+        "min": 275,
+        "max": 277,
+        "n": 2
+      },
+      "gpu0_max_mib": {
+        "mean": 22074,
+        "stdev": 0.0,
+        "median": 22074.0,
+        "min": 22074,
+        "max": 22074,
+        "n": 2
+      }
+    },
+    "S192": {
+      "samples": [
+        {
+          "dir": "P_S192/s1",
+          "seq": 11,
+          "probe": true,
+          "tree_head": "7b55a9b3792527f52d1a2337fd9e312b9a7983e3",
+          "binary_sha256": "dea9bd9d0214cf090e196758fea665caa3f272da65b60aebb4c0d7af32092ba0",
+          "tree_diff_sha256": "4568b67e85165e61e91b0875d441825f76b25ddd5f007c363bb2db931dabdf8b",
+          "extra_env": {
+            "DSV4_CUDA_PIN_HOST": "0",
+            "V4_LOGIT_LOG": "1",
+            "DSV4_CUDA_EXPERT_MIRRORS": "192"
+          },
+          "start": "2026-10-16T03:12:32-07:00",
+          "ready_s": 4,
+          "client_s": 73,
+          "wall_s": 78,
+          "requests": [
+            "race_short_120"
+          ],
+          "ttft_s": [
+            7.325
+          ],
+          "decode_tok_s": [
+            1.8153
+          ],
+          "decode_s": [
+            65.553
+          ],
+          "chunks": [
+            120
+          ],
+          "finish": [
+            "length"
+          ],
+          "text_sha256": [
+            "a088907d2c880b951fa9e1d7302058f726e361a0cebedaeef57cf40f28f37638"
+          ],
+          "text_chars": [
+            556
+          ],
+          "logit_lines": 120,
+          "logit_seq_sha256": "5662f3ebfa1a0dcdc11ac56a690335395d3bcb56c9ff17bdf24cb9a6d6df7aeb",
+          "logit_lines_per_request": [
+            120
+          ],
+          "cpu_moe_lines": 0,
+          "gpu0_ready_mib": 7220,
+          "gpu0_max_mib": 9722,
+          "gpu1_max_mib": 83,
+          "mode_lines": [],
+          "usage_before": "size=0 mtime=1791867517",
+          "usage_after": "size=0 mtime=1791867517",
+          "checks": []
+        },
+        {
+          "dir": "P_S192/s2",
+          "seq": 12,
+          "probe": true,
+          "tree_head": "7b55a9b3792527f52d1a2337fd9e312b9a7983e3",
+          "binary_sha256": "dea9bd9d0214cf090e196758fea665caa3f272da65b60aebb4c0d7af32092ba0",
+          "tree_diff_sha256": "4568b67e85165e61e91b0875d441825f76b25ddd5f007c363bb2db931dabdf8b",
+          "extra_env": {
+            "DSV4_CUDA_PIN_HOST": "0",
+            "V4_LOGIT_LOG": "1",
+            "DSV4_CUDA_EXPERT_MIRRORS": "192"
+          },
+          "start": "2026-10-16T03:13:50-07:00",
+          "ready_s": 4,
+          "client_s": 72,
+          "wall_s": 78,
+          "requests": [
+            "race_short_120"
+          ],
+          "ttft_s": [
+            7.322
+          ],
+          "decode_tok_s": [
+            1.8297
+          ],
+          "decode_s": [
+            65.037
+          ],
+          "chunks": [
+            120
+          ],
+          "finish": [
+            "length"
+          ],
+          "text_sha256": [
+            "a088907d2c880b951fa9e1d7302058f726e361a0cebedaeef57cf40f28f37638"
+          ],
+          "text_chars": [
+            556
+          ],
+          "logit_lines": 120,
+          "logit_seq_sha256": "5662f3ebfa1a0dcdc11ac56a690335395d3bcb56c9ff17bdf24cb9a6d6df7aeb",
+          "logit_lines_per_request": [
+            120
+          ],
+          "cpu_moe_lines": 0,
+          "gpu0_ready_mib": 7220,
+          "gpu0_max_mib": 9722,
+          "gpu1_max_mib": 83,
+          "mode_lines": [],
+          "usage_before": "size=0 mtime=1791867517",
+          "usage_after": "size=0 mtime=1791867517",
+          "checks": []
+        }
+      ],
+      "compare": {
+        "n": 2,
+        "n_probe": 2,
+        "distinct_text_sha256": [
+          {
+            "sha256": [
+              "a088907d2c880b951fa9e1d7302058f726e361a0cebedaeef57cf40f28f37638"
+            ],
+            "samples": [
+              "P_S192#1",
+              "P_S192#2"
+            ]
+          }
+        ],
+        "n_distinct_texts": 1,
+        "distinct_logit_seq_sha256": [
+          {
+            "sha256": "5662f3ebfa1a0dcdc11ac56a690335395d3bcb56c9ff17bdf24cb9a6d6df7aeb",
+            "samples": [
+              "P_S192#1",
+              "P_S192#2"
+            ]
+          }
+        ],
+        "n_distinct_logit_seqs": 1,
+        "any_text_diff": false,
+        "any_logit_diff": false,
+        "bit_identical": true,
+        "pairs": {
+          "P_S192#1_vs_P_S192#2": {
+            "text": [
+              {
+                "request": "race_short_120",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 120,
+              "len_a": 120,
+              "len_b": 120,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                120
+              ],
+              "req_lines_b": [
+                120
+              ]
+            }
+          }
+        }
+      },
+      "tok_s": {
+        "mean": 1.8225,
+        "stdev": 0.0102,
+        "median": 1.8225,
+        "min": 1.8153,
+        "max": 1.8297,
+        "n": 2
+      },
+      "ttft_s": {
+        "mean": 7.3235,
+        "stdev": 0.0021,
+        "median": 7.3235,
+        "min": 7.322,
+        "max": 7.325,
+        "n": 2
+      },
+      "wall_s": {
+        "mean": 78,
+        "stdev": 0.0,
+        "median": 78.0,
+        "min": 78,
+        "max": 78,
+        "n": 2
+      },
+      "gpu0_max_mib": {
+        "mean": 9722,
+        "stdev": 0.0,
+        "median": 9722.0,
+        "min": 9722,
+        "max": 9722,
+        "n": 2
+      }
+    },
+    "S48": {
+      "samples": [
+        {
+          "dir": "P_S48/s1",
+          "seq": 9,
+          "probe": true,
+          "tree_head": "7b55a9b3792527f52d1a2337fd9e312b9a7983e3",
+          "binary_sha256": "dea9bd9d0214cf090e196758fea665caa3f272da65b60aebb4c0d7af32092ba0",
+          "tree_diff_sha256": "4568b67e85165e61e91b0875d441825f76b25ddd5f007c363bb2db931dabdf8b",
+          "extra_env": {
+            "DSV4_CUDA_PIN_HOST": "0",
+            "V4_LOGIT_LOG": "1",
+            "DSV4_CUDA_EXPERT_MIRRORS": "48"
+          },
+          "start": "2026-10-16T03:09:55-07:00",
+          "ready_s": 4,
+          "client_s": 73,
+          "wall_s": 78,
+          "requests": [
+            "race_short_120"
+          ],
+          "ttft_s": [
+            7.404
+          ],
+          "decode_tok_s": [
+            1.8298
+          ],
+          "decode_s": [
+            65.036
+          ],
+          "chunks": [
+            120
+          ],
+          "finish": [
+            "length"
+          ],
+          "text_sha256": [
+            "a088907d2c880b951fa9e1d7302058f726e361a0cebedaeef57cf40f28f37638"
+          ],
+          "text_chars": [
+            556
+          ],
+          "logit_lines": 120,
+          "logit_seq_sha256": "5662f3ebfa1a0dcdc11ac56a690335395d3bcb56c9ff17bdf24cb9a6d6df7aeb",
+          "logit_lines_per_request": [
+            120
+          ],
+          "cpu_moe_lines": 0,
+          "gpu0_ready_mib": 7220,
+          "gpu0_max_mib": 7886,
+          "gpu1_max_mib": 83,
+          "mode_lines": [],
+          "usage_before": "size=0 mtime=1791867517",
+          "usage_after": "size=0 mtime=1791867517",
+          "checks": []
+        },
+        {
+          "dir": "P_S48/s2",
+          "seq": 10,
+          "probe": true,
+          "tree_head": "7b55a9b3792527f52d1a2337fd9e312b9a7983e3",
+          "binary_sha256": "dea9bd9d0214cf090e196758fea665caa3f272da65b60aebb4c0d7af32092ba0",
+          "tree_diff_sha256": "4568b67e85165e61e91b0875d441825f76b25ddd5f007c363bb2db931dabdf8b",
+          "extra_env": {
+            "DSV4_CUDA_PIN_HOST": "0",
+            "V4_LOGIT_LOG": "1",
+            "DSV4_CUDA_EXPERT_MIRRORS": "48"
+          },
+          "start": "2026-10-16T03:11:14-07:00",
+          "ready_s": 4,
+          "client_s": 72,
+          "wall_s": 79,
+          "requests": [
+            "race_short_120"
+          ],
+          "ttft_s": [
+            7.349
+          ],
+          "decode_tok_s": [
+            1.8306
+          ],
+          "decode_s": [
+            65.006
+          ],
+          "chunks": [
+            120
+          ],
+          "finish": [
+            "length"
+          ],
+          "text_sha256": [
+            "a088907d2c880b951fa9e1d7302058f726e361a0cebedaeef57cf40f28f37638"
+          ],
+          "text_chars": [
+            556
+          ],
+          "logit_lines": 120,
+          "logit_seq_sha256": "5662f3ebfa1a0dcdc11ac56a690335395d3bcb56c9ff17bdf24cb9a6d6df7aeb",
+          "logit_lines_per_request": [
+            120
+          ],
+          "cpu_moe_lines": 0,
+          "gpu0_ready_mib": 7220,
+          "gpu0_max_mib": 7886,
+          "gpu1_max_mib": 83,
+          "mode_lines": [],
+          "usage_before": "size=0 mtime=1791867517",
+          "usage_after": "size=0 mtime=1791867517",
+          "checks": []
+        }
+      ],
+      "compare": {
+        "n": 2,
+        "n_probe": 2,
+        "distinct_text_sha256": [
+          {
+            "sha256": [
+              "a088907d2c880b951fa9e1d7302058f726e361a0cebedaeef57cf40f28f37638"
+            ],
+            "samples": [
+              "P_S48#1",
+              "P_S48#2"
+            ]
+          }
+        ],
+        "n_distinct_texts": 1,
+        "distinct_logit_seq_sha256": [
+          {
+            "sha256": "5662f3ebfa1a0dcdc11ac56a690335395d3bcb56c9ff17bdf24cb9a6d6df7aeb",
+            "samples": [
+              "P_S48#1",
+              "P_S48#2"
+            ]
+          }
+        ],
+        "n_distinct_logit_seqs": 1,
+        "any_text_diff": false,
+        "any_logit_diff": false,
+        "bit_identical": true,
+        "pairs": {
+          "P_S48#1_vs_P_S48#2": {
+            "text": [
+              {
+                "request": "race_short_120",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 120,
+              "len_a": 120,
+              "len_b": 120,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                120
+              ],
+              "req_lines_b": [
+                120
+              ]
+            }
+          }
+        }
+      },
+      "tok_s": {
+        "mean": 1.8302,
+        "stdev": 0.0006,
+        "median": 1.8302,
+        "min": 1.8298,
+        "max": 1.8306,
+        "n": 2
+      },
+      "ttft_s": {
+        "mean": 7.3765,
+        "stdev": 0.0389,
+        "median": 7.3765,
+        "min": 7.349,
+        "max": 7.404,
+        "n": 2
+      },
+      "wall_s": {
+        "mean": 78.5,
+        "stdev": 0.7071,
+        "median": 78.5,
+        "min": 78,
+        "max": 79,
+        "n": 2
+      },
+      "gpu0_max_mib": {
+        "mean": 7886,
+        "stdev": 0.0,
+        "median": 7886.0,
+        "min": 7886,
+        "max": 7886,
+        "n": 2
+      }
+    },
+    "S8": {
+      "samples": [
+        {
+          "dir": "P_S8/s1",
+          "seq": 3,
+          "probe": true,
+          "tree_head": "7b55a9b3792527f52d1a2337fd9e312b9a7983e3",
+          "binary_sha256": "dea9bd9d0214cf090e196758fea665caa3f272da65b60aebb4c0d7af32092ba0",
+          "tree_diff_sha256": "4568b67e85165e61e91b0875d441825f76b25ddd5f007c363bb2db931dabdf8b",
+          "extra_env": {
+            "DSV4_CUDA_PIN_HOST": "0",
+            "V4_LOGIT_LOG": "1",
+            "DSV4_CUDA_EXPERT_MIRRORS": "8"
+          },
+          "start": "2026-10-16T02:48:12-07:00",
+          "ready_s": 4,
+          "client_s": 73,
+          "wall_s": 78,
+          "requests": [
+            "race_short_120"
+          ],
+          "ttft_s": [
+            7.521
+          ],
+          "decode_tok_s": [
+            1.8251
+          ],
+          "decode_s": [
+            65.202
+          ],
+          "chunks": [
+            120
+          ],
+          "finish": [
+            "length"
+          ],
+          "text_sha256": [
+            "a088907d2c880b951fa9e1d7302058f726e361a0cebedaeef57cf40f28f37638"
+          ],
+          "text_chars": [
+            556
+          ],
+          "logit_lines": 120,
+          "logit_seq_sha256": "5662f3ebfa1a0dcdc11ac56a690335395d3bcb56c9ff17bdf24cb9a6d6df7aeb",
+          "logit_lines_per_request": [
+            120
+          ],
+          "cpu_moe_lines": 0,
+          "gpu0_ready_mib": 7220,
+          "gpu0_max_mib": 7402,
+          "gpu1_max_mib": 83,
+          "mode_lines": [],
+          "usage_before": "size=0 mtime=1791867517",
+          "usage_after": "size=0 mtime=1791867517",
+          "checks": []
+        },
+        {
+          "dir": "P_S8/s2",
+          "seq": 4,
+          "probe": true,
+          "tree_head": "7b55a9b3792527f52d1a2337fd9e312b9a7983e3",
+          "binary_sha256": "dea9bd9d0214cf090e196758fea665caa3f272da65b60aebb4c0d7af32092ba0",
+          "tree_diff_sha256": "4568b67e85165e61e91b0875d441825f76b25ddd5f007c363bb2db931dabdf8b",
+          "extra_env": {
+            "DSV4_CUDA_PIN_HOST": "0",
+            "V4_LOGIT_LOG": "1",
+            "DSV4_CUDA_EXPERT_MIRRORS": "8"
+          },
+          "start": "2026-10-16T02:49:30-07:00",
+          "ready_s": 4,
+          "client_s": 74,
+          "wall_s": 79,
+          "requests": [
+            "race_short_120"
+          ],
+          "ttft_s": [
+            7.393
+          ],
+          "decode_tok_s": [
+            1.789
+          ],
+          "decode_s": [
+            66.519
+          ],
+          "chunks": [
+            120
+          ],
+          "finish": [
+            "length"
+          ],
+          "text_sha256": [
+            "a088907d2c880b951fa9e1d7302058f726e361a0cebedaeef57cf40f28f37638"
+          ],
+          "text_chars": [
+            556
+          ],
+          "logit_lines": 120,
+          "logit_seq_sha256": "5662f3ebfa1a0dcdc11ac56a690335395d3bcb56c9ff17bdf24cb9a6d6df7aeb",
+          "logit_lines_per_request": [
+            120
+          ],
+          "cpu_moe_lines": 0,
+          "gpu0_ready_mib": 7220,
+          "gpu0_max_mib": 7402,
+          "gpu1_max_mib": 83,
+          "mode_lines": [],
+          "usage_before": "size=0 mtime=1791867517",
+          "usage_after": "size=0 mtime=1791867517",
+          "checks": []
+        }
+      ],
+      "compare": {
+        "n": 2,
+        "n_probe": 2,
+        "distinct_text_sha256": [
+          {
+            "sha256": [
+              "a088907d2c880b951fa9e1d7302058f726e361a0cebedaeef57cf40f28f37638"
+            ],
+            "samples": [
+              "P_S8#1",
+              "P_S8#2"
+            ]
+          }
+        ],
+        "n_distinct_texts": 1,
+        "distinct_logit_seq_sha256": [
+          {
+            "sha256": "5662f3ebfa1a0dcdc11ac56a690335395d3bcb56c9ff17bdf24cb9a6d6df7aeb",
+            "samples": [
+              "P_S8#1",
+              "P_S8#2"
+            ]
+          }
+        ],
+        "n_distinct_logit_seqs": 1,
+        "any_text_diff": false,
+        "any_logit_diff": false,
+        "bit_identical": true,
+        "pairs": {
+          "P_S8#1_vs_P_S8#2": {
+            "text": [
+              {
+                "request": "race_short_120",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 120,
+              "len_a": 120,
+              "len_b": 120,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                120
+              ],
+              "req_lines_b": [
+                120
+              ]
+            }
+          }
+        }
+      },
+      "tok_s": {
+        "mean": 1.807,
+        "stdev": 0.0255,
+        "median": 1.807,
+        "min": 1.789,
+        "max": 1.8251,
+        "n": 2
+      },
+      "ttft_s": {
+        "mean": 7.457,
+        "stdev": 0.0905,
+        "median": 7.457,
+        "min": 7.393,
+        "max": 7.521,
+        "n": 2
+      },
+      "wall_s": {
+        "mean": 78.5,
+        "stdev": 0.7071,
+        "median": 78.5,
+        "min": 78,
+        "max": 79,
+        "n": 2
+      },
+      "gpu0_max_mib": {
+        "mean": 7402,
+        "stdev": 0.0,
+        "median": 7402.0,
+        "min": 7402,
+        "max": 7402,
+        "n": 2
+      }
+    },
+    "all_long_runs": {
+      "n": 6,
+      "n_probe": 6,
+      "distinct_text_sha256": [
+        {
+          "sha256": [
+            "4ee15603e709bb9a8902d6cb747aefe6c4cacc94b576de2b7ccf58d145069161"
+          ],
+          "samples": [
+            "P_L48#1",
+            "P_L48#2",
+            "P_L8#1",
+            "P_L8#2",
+            "P_Ldef#1",
+            "P_Ldef#2"
+          ]
+        }
+      ],
+      "n_distinct_texts": 1,
+      "distinct_logit_seq_sha256": [
+        {
+          "sha256": "888e910e8e23690c547b5420866f12eea5b72b9b8d0459f788d37cffb6fdc956",
+          "samples": [
+            "P_L48#1",
+            "P_L48#2",
+            "P_L8#1",
+            "P_L8#2",
+            "P_Ldef#1",
+            "P_Ldef#2"
+          ]
+        }
+      ],
+      "n_distinct_logit_seqs": 1,
+      "any_text_diff": false,
+      "any_logit_diff": false,
+      "bit_identical": true,
+      "logit_pairs_differing": []
+    },
+    "all_short_runs": {
+      "n": 6,
+      "n_probe": 6,
+      "distinct_text_sha256": [
+        {
+          "sha256": [
+            "a088907d2c880b951fa9e1d7302058f726e361a0cebedaeef57cf40f28f37638"
+          ],
+          "samples": [
+            "P_S192#1",
+            "P_S192#2",
+            "P_S48#1",
+            "P_S48#2",
+            "P_S8#1",
+            "P_S8#2"
+          ]
+        }
+      ],
+      "n_distinct_texts": 1,
+      "distinct_logit_seq_sha256": [
+        {
+          "sha256": "5662f3ebfa1a0dcdc11ac56a690335395d3bcb56c9ff17bdf24cb9a6d6df7aeb",
+          "samples": [
+            "P_S192#1",
+            "P_S192#2",
+            "P_S48#1",
+            "P_S48#2",
+            "P_S8#1",
+            "P_S8#2"
+          ]
+        }
+      ],
+      "n_distinct_logit_seqs": 1,
+      "any_text_diff": false,
+      "any_logit_diff": false,
+      "bit_identical": true,
+      "logit_pairs_differing": []
+    }
+  },
+  "phase2": {
+    "D": {
+      "samples": [
+        {
+          "dir": "D/s1",
+          "seq": 20,
+          "probe": false,
+          "tree_head": "7b55a9b3792527f52d1a2337fd9e312b9a7983e3",
+          "binary_sha256": "beb037276ed54cd4c54a5e043bf876a38c4de900de661d8b30b75c314b36d127",
+          "tree_diff_sha256": null,
+          "extra_env": {
+            "DSV4_CUDA_PIN_HOST": "0",
+            "DSV4_CUDA_EXPERT_MIRRORS": "8"
+          },
+          "start": "2026-10-16T03:52:31-07:00",
+          "ready_s": 4,
+          "client_s": 317,
+          "wall_s": 324,
+          "requests": [
+            "race_long_166"
+          ],
+          "ttft_s": [
+            224.729
+          ],
+          "decode_tok_s": [
+            1.7725
+          ],
+          "decode_s": [
+            93.088
+          ],
+          "chunks": [
+            166
+          ],
+          "finish": [
+            "length"
+          ],
+          "text_sha256": [
+            "3adbb4b30090b79351b60a309ee1f3d2306bdcc596ca412d79addd66339864f6"
+          ],
+          "text_chars": [
+            826
+          ],
+          "logit_lines": 0,
+          "logit_seq_sha256": null,
+          "logit_lines_per_request": [
+            0
+          ],
+          "cpu_moe_lines": 0,
+          "gpu0_ready_mib": 7220,
+          "gpu0_max_mib": 7598,
+          "gpu1_max_mib": 83,
+          "mode_lines": [
+            "v4_gpu moe-batch=off (unsupported model geometry)"
+          ],
+          "usage_before": "size=0 mtime=1791867517",
+          "usage_after": "size=0 mtime=1791867517",
+          "checks": []
+        },
+        {
+          "dir": "D/s2",
+          "seq": 27,
+          "probe": false,
+          "tree_head": "7b55a9b3792527f52d1a2337fd9e312b9a7983e3",
+          "binary_sha256": "beb037276ed54cd4c54a5e043bf876a38c4de900de661d8b30b75c314b36d127",
+          "tree_diff_sha256": null,
+          "extra_env": {
+            "DSV4_CUDA_PIN_HOST": "0",
+            "DSV4_CUDA_EXPERT_MIRRORS": "8"
+          },
+          "start": "2026-10-16T04:29:56-07:00",
+          "ready_s": 4,
+          "client_s": 318,
+          "wall_s": 324,
+          "requests": [
+            "race_long_166"
+          ],
+          "ttft_s": [
+            224.547
+          ],
+          "decode_tok_s": [
+            1.7598
+          ],
+          "decode_s": [
+            93.763
+          ],
+          "chunks": [
+            166
+          ],
+          "finish": [
+            "length"
+          ],
+          "text_sha256": [
+            "3adbb4b30090b79351b60a309ee1f3d2306bdcc596ca412d79addd66339864f6"
+          ],
+          "text_chars": [
+            826
+          ],
+          "logit_lines": 0,
+          "logit_seq_sha256": null,
+          "logit_lines_per_request": [
+            0
+          ],
+          "cpu_moe_lines": 0,
+          "gpu0_ready_mib": 7220,
+          "gpu0_max_mib": 7496,
+          "gpu1_max_mib": 83,
+          "mode_lines": [
+            "v4_gpu moe-batch=off (unsupported model geometry)"
+          ],
+          "usage_before": "size=0 mtime=1791867517",
+          "usage_after": "size=0 mtime=1791867517",
+          "checks": []
+        }
+      ],
+      "compare": {
+        "n": 2,
+        "n_probe": 0,
+        "distinct_text_sha256": [
+          {
+            "sha256": [
+              "3adbb4b30090b79351b60a309ee1f3d2306bdcc596ca412d79addd66339864f6"
+            ],
+            "samples": [
+              "D#1",
+              "D#2"
+            ]
+          }
+        ],
+        "n_distinct_texts": 1,
+        "distinct_logit_seq_sha256": [],
+        "n_distinct_logit_seqs": 0,
+        "any_text_diff": false,
+        "any_logit_diff": false,
+        "bit_identical": true,
+        "pairs": {
+          "D#1_vs_D#2": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ]
+          }
+        }
+      },
+      "tok_s": {
+        "mean": 1.7662,
+        "stdev": 0.009,
+        "median": 1.7662,
+        "min": 1.7598,
+        "max": 1.7725,
+        "n": 2
+      },
+      "ttft_s": {
+        "mean": 224.638,
+        "stdev": 0.1287,
+        "median": 224.638,
+        "min": 224.547,
+        "max": 224.729,
+        "n": 2
+      },
+      "wall_s": {
+        "mean": 324,
+        "stdev": 0.0,
+        "median": 324.0,
+        "min": 324,
+        "max": 324,
+        "n": 2
+      },
+      "gpu0_max_mib": {
+        "mean": 7547,
+        "stdev": 72.1249,
+        "median": 7547.0,
+        "min": 7496,
+        "max": 7598,
+        "n": 2
+      }
+    },
+    "H": {
+      "samples": [
+        {
+          "dir": "H/s1",
+          "seq": 21,
+          "probe": false,
+          "tree_head": "cc9c9fab4d7d0e8c962d38a7ffb8c752a6458505",
+          "binary_sha256": "9caf56c81259624af79bee596bb04b9907175c6b22333f284c04122865845508",
+          "tree_diff_sha256": null,
+          "extra_env": {
+            "DSV4_CUDA_PIN_HOST": "0",
+            "DSV4_CUDA_EXPERT_MIRRORS": "8"
+          },
+          "start": "2026-10-16T03:57:55-07:00",
+          "ready_s": 4,
+          "client_s": 314,
+          "wall_s": 319,
+          "requests": [
+            "race_long_166"
+          ],
+          "ttft_s": [
+            223.649
+          ],
+          "decode_tok_s": [
+            1.8292
+          ],
+          "decode_s": [
+            90.202
+          ],
+          "chunks": [
+            166
+          ],
+          "finish": [
+            "length"
+          ],
+          "text_sha256": [
+            "3adbb4b30090b79351b60a309ee1f3d2306bdcc596ca412d79addd66339864f6"
+          ],
+          "text_chars": [
+            826
+          ],
+          "logit_lines": 0,
+          "logit_seq_sha256": null,
+          "logit_lines_per_request": [
+            0
+          ],
+          "cpu_moe_lines": 0,
+          "gpu0_ready_mib": 7220,
+          "gpu0_max_mib": 7496,
+          "gpu1_max_mib": 83,
+          "mode_lines": [
+            "v4_gpu moe-batch=off (unsupported model geometry)"
+          ],
+          "usage_before": "size=0 mtime=1791867517",
+          "usage_after": "size=0 mtime=1791867517",
+          "checks": []
+        },
+        {
+          "dir": "H/s2",
+          "seq": 25,
+          "probe": false,
+          "tree_head": "cc9c9fab4d7d0e8c962d38a7ffb8c752a6458505",
+          "binary_sha256": "9caf56c81259624af79bee596bb04b9907175c6b22333f284c04122865845508",
+          "tree_diff_sha256": null,
+          "extra_env": {
+            "DSV4_CUDA_PIN_HOST": "0",
+            "DSV4_CUDA_EXPERT_MIRRORS": "8"
+          },
+          "start": "2026-10-16T04:19:16-07:00",
+          "ready_s": 4,
+          "client_s": 314,
+          "wall_s": 320,
+          "requests": [
+            "race_long_166"
+          ],
+          "ttft_s": [
+            223.781
+          ],
+          "decode_tok_s": [
+            1.8302
+          ],
+          "decode_s": [
+            90.153
+          ],
+          "chunks": [
+            166
+          ],
+          "finish": [
+            "length"
+          ],
+          "text_sha256": [
+            "3adbb4b30090b79351b60a309ee1f3d2306bdcc596ca412d79addd66339864f6"
+          ],
+          "text_chars": [
+            826
+          ],
+          "logit_lines": 0,
+          "logit_seq_sha256": null,
+          "logit_lines_per_request": [
+            0
+          ],
+          "cpu_moe_lines": 0,
+          "gpu0_ready_mib": 7220,
+          "gpu0_max_mib": 7496,
+          "gpu1_max_mib": 83,
+          "mode_lines": [
+            "v4_gpu moe-batch=off (unsupported model geometry)"
+          ],
+          "usage_before": "size=0 mtime=1791867517",
+          "usage_after": "size=0 mtime=1791867517",
+          "checks": []
+        }
+      ],
+      "compare": {
+        "n": 2,
+        "n_probe": 0,
+        "distinct_text_sha256": [
+          {
+            "sha256": [
+              "3adbb4b30090b79351b60a309ee1f3d2306bdcc596ca412d79addd66339864f6"
+            ],
+            "samples": [
+              "H#1",
+              "H#2"
+            ]
+          }
+        ],
+        "n_distinct_texts": 1,
+        "distinct_logit_seq_sha256": [],
+        "n_distinct_logit_seqs": 0,
+        "any_text_diff": false,
+        "any_logit_diff": false,
+        "bit_identical": true,
+        "pairs": {
+          "H#1_vs_H#2": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ]
+          }
+        }
+      },
+      "tok_s": {
+        "mean": 1.8297,
+        "stdev": 0.0007,
+        "median": 1.8297,
+        "min": 1.8292,
+        "max": 1.8302,
+        "n": 2
+      },
+      "ttft_s": {
+        "mean": 223.715,
+        "stdev": 0.0933,
+        "median": 223.715,
+        "min": 223.649,
+        "max": 223.781,
+        "n": 2
+      },
+      "wall_s": {
+        "mean": 319.5,
+        "stdev": 0.7071,
+        "median": 319.5,
+        "min": 319,
+        "max": 320,
+        "n": 2
+      },
+      "gpu0_max_mib": {
+        "mean": 7496,
+        "stdev": 0.0,
+        "median": 7496.0,
+        "min": 7496,
+        "max": 7496,
+        "n": 2
+      }
+    },
+    "Z": {
+      "samples": [
+        {
+          "dir": "Z/s1",
+          "seq": 19,
+          "probe": false,
+          "tree_head": "a2c8ba7a149a31a781e84a992aa980afdb93497d",
+          "binary_sha256": "d26bc5526a6c05b03e254a5259da0503d02f1083d682124a6587fff124621812",
+          "tree_diff_sha256": null,
+          "extra_env": {
+            "DSV4_CUDA_PIN_HOST": "0",
+            "DSV4_CUDA_EXPERT_MIRRORS": "8"
+          },
+          "start": "2026-10-16T03:47:12-07:00",
+          "ready_s": 4,
+          "client_s": 314,
+          "wall_s": 319,
+          "requests": [
+            "race_long_166"
+          ],
+          "ttft_s": [
+            224.192
+          ],
+          "decode_tok_s": [
+            1.8402
+          ],
+          "decode_s": [
+            89.662
+          ],
+          "chunks": [
+            166
+          ],
+          "finish": [
+            "length"
+          ],
+          "text_sha256": [
+            "3adbb4b30090b79351b60a309ee1f3d2306bdcc596ca412d79addd66339864f6"
+          ],
+          "text_chars": [
+            826
+          ],
+          "logit_lines": 0,
+          "logit_seq_sha256": null,
+          "logit_lines_per_request": [
+            0
+          ],
+          "cpu_moe_lines": 0,
+          "gpu0_ready_mib": 7220,
+          "gpu0_max_mib": 7496,
+          "gpu1_max_mib": 83,
+          "mode_lines": [
+            "v4_gpu moe-batch=off (unsupported model geometry)"
+          ],
+          "usage_before": "size=0 mtime=1791867517",
+          "usage_after": "size=0 mtime=1791867517",
+          "checks": []
+        },
+        {
+          "dir": "Z/s2",
+          "seq": 26,
+          "probe": false,
+          "tree_head": "a2c8ba7a149a31a781e84a992aa980afdb93497d",
+          "binary_sha256": "d26bc5526a6c05b03e254a5259da0503d02f1083d682124a6587fff124621812",
+          "tree_diff_sha256": null,
+          "extra_env": {
+            "DSV4_CUDA_PIN_HOST": "0",
+            "DSV4_CUDA_EXPERT_MIRRORS": "8"
+          },
+          "start": "2026-10-16T04:24:36-07:00",
+          "ready_s": 4,
+          "client_s": 315,
+          "wall_s": 320,
+          "requests": [
+            "race_long_166"
+          ],
+          "ttft_s": [
+            224.524
+          ],
+          "decode_tok_s": [
+            1.8258
+          ],
+          "decode_s": [
+            90.371
+          ],
+          "chunks": [
+            166
+          ],
+          "finish": [
+            "length"
+          ],
+          "text_sha256": [
+            "3adbb4b30090b79351b60a309ee1f3d2306bdcc596ca412d79addd66339864f6"
+          ],
+          "text_chars": [
+            826
+          ],
+          "logit_lines": 0,
+          "logit_seq_sha256": null,
+          "logit_lines_per_request": [
+            0
+          ],
+          "cpu_moe_lines": 0,
+          "gpu0_ready_mib": 7220,
+          "gpu0_max_mib": 7496,
+          "gpu1_max_mib": 83,
+          "mode_lines": [
+            "v4_gpu moe-batch=off (unsupported model geometry)"
+          ],
+          "usage_before": "size=0 mtime=1791867517",
+          "usage_after": "size=0 mtime=1791867517",
+          "checks": []
+        }
+      ],
+      "compare": {
+        "n": 2,
+        "n_probe": 0,
+        "distinct_text_sha256": [
+          {
+            "sha256": [
+              "3adbb4b30090b79351b60a309ee1f3d2306bdcc596ca412d79addd66339864f6"
+            ],
+            "samples": [
+              "Z#1",
+              "Z#2"
+            ]
+          }
+        ],
+        "n_distinct_texts": 1,
+        "distinct_logit_seq_sha256": [],
+        "n_distinct_logit_seqs": 0,
+        "any_text_diff": false,
+        "any_logit_diff": false,
+        "bit_identical": true,
+        "pairs": {
+          "Z#1_vs_Z#2": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ]
+          }
+        }
+      },
+      "tok_s": {
+        "mean": 1.833,
+        "stdev": 0.0102,
+        "median": 1.833,
+        "min": 1.8258,
+        "max": 1.8402,
+        "n": 2
+      },
+      "ttft_s": {
+        "mean": 224.358,
+        "stdev": 0.2348,
+        "median": 224.358,
+        "min": 224.192,
+        "max": 224.524,
+        "n": 2
+      },
+      "wall_s": {
+        "mean": 319.5,
+        "stdev": 0.7071,
+        "median": 319.5,
+        "min": 319,
+        "max": 320,
+        "n": 2
+      },
+      "gpu0_max_mib": {
+        "mean": 7496,
+        "stdev": 0.0,
+        "median": 7496.0,
+        "min": 7496,
+        "max": 7496,
+        "n": 2
+      }
+    },
+    "Dp": {
+      "samples": [
+        {
+          "dir": "Dp/s1",
+          "seq": 13,
+          "probe": true,
+          "tree_head": "7b55a9b3792527f52d1a2337fd9e312b9a7983e3",
+          "binary_sha256": "dea9bd9d0214cf090e196758fea665caa3f272da65b60aebb4c0d7af32092ba0",
+          "tree_diff_sha256": "4568b67e85165e61e91b0875d441825f76b25ddd5f007c363bb2db931dabdf8b",
+          "extra_env": {
+            "DSV4_CUDA_PIN_HOST": "0",
+            "DSV4_CUDA_EXPERT_MIRRORS": "8",
+            "V4_LOGIT_LOG": "1"
+          },
+          "start": "2026-10-16T03:15:08-07:00",
+          "ready_s": 4,
+          "client_s": 318,
+          "wall_s": 323,
+          "requests": [
+            "race_long_166"
+          ],
+          "ttft_s": [
+            223.916
+          ],
+          "decode_tok_s": [
+            1.7629
+          ],
+          "decode_s": [
+            93.596
+          ],
+          "chunks": [
+            166
+          ],
+          "finish": [
+            "length"
+          ],
+          "text_sha256": [
+            "3adbb4b30090b79351b60a309ee1f3d2306bdcc596ca412d79addd66339864f6"
+          ],
+          "text_chars": [
+            826
+          ],
+          "logit_lines": 166,
+          "logit_seq_sha256": "790d5251e473c2e699dd57e4133107e329e69ea1aa00795cd1f379c2827fdeda",
+          "logit_lines_per_request": [
+            166
+          ],
+          "cpu_moe_lines": 0,
+          "gpu0_ready_mib": 7220,
+          "gpu0_max_mib": 7496,
+          "gpu1_max_mib": 83,
+          "mode_lines": [
+            "v4_gpu moe-batch=off (unsupported model geometry)"
+          ],
+          "usage_before": "size=0 mtime=1791867517",
+          "usage_after": "size=0 mtime=1791867517",
+          "checks": []
+        },
+        {
+          "dir": "Dp/s2",
+          "seq": 18,
+          "probe": true,
+          "tree_head": "7b55a9b3792527f52d1a2337fd9e312b9a7983e3",
+          "binary_sha256": "dea9bd9d0214cf090e196758fea665caa3f272da65b60aebb4c0d7af32092ba0",
+          "tree_diff_sha256": "4568b67e85165e61e91b0875d441825f76b25ddd5f007c363bb2db931dabdf8b",
+          "extra_env": {
+            "DSV4_CUDA_PIN_HOST": "0",
+            "DSV4_CUDA_EXPERT_MIRRORS": "8",
+            "V4_LOGIT_LOG": "1"
+          },
+          "start": "2026-10-16T03:41:49-07:00",
+          "ready_s": 4,
+          "client_s": 318,
+          "wall_s": 323,
+          "requests": [
+            "race_long_166"
+          ],
+          "ttft_s": [
+            223.92
+          ],
+          "decode_tok_s": [
+            1.7636
+          ],
+          "decode_s": [
+            93.559
+          ],
+          "chunks": [
+            166
+          ],
+          "finish": [
+            "length"
+          ],
+          "text_sha256": [
+            "3adbb4b30090b79351b60a309ee1f3d2306bdcc596ca412d79addd66339864f6"
+          ],
+          "text_chars": [
+            826
+          ],
+          "logit_lines": 166,
+          "logit_seq_sha256": "790d5251e473c2e699dd57e4133107e329e69ea1aa00795cd1f379c2827fdeda",
+          "logit_lines_per_request": [
+            166
+          ],
+          "cpu_moe_lines": 0,
+          "gpu0_ready_mib": 7220,
+          "gpu0_max_mib": 7496,
+          "gpu1_max_mib": 83,
+          "mode_lines": [
+            "v4_gpu moe-batch=off (unsupported model geometry)"
+          ],
+          "usage_before": "size=0 mtime=1791867517",
+          "usage_after": "size=0 mtime=1791867517",
+          "checks": []
+        },
+        {
+          "dir": "Dp/s3",
+          "seq": 22,
+          "probe": true,
+          "tree_head": "7b55a9b3792527f52d1a2337fd9e312b9a7983e3",
+          "binary_sha256": "dea9bd9d0214cf090e196758fea665caa3f272da65b60aebb4c0d7af32092ba0",
+          "tree_diff_sha256": "4568b67e85165e61e91b0875d441825f76b25ddd5f007c363bb2db931dabdf8b",
+          "extra_env": {
+            "DSV4_CUDA_PIN_HOST": "0",
+            "DSV4_CUDA_EXPERT_MIRRORS": "8",
+            "V4_LOGIT_LOG": "1"
+          },
+          "start": "2026-10-16T04:03:14-07:00",
+          "ready_s": 4,
+          "client_s": 317,
+          "wall_s": 323,
+          "requests": [
+            "race_long_166"
+          ],
+          "ttft_s": [
+            224.2
+          ],
+          "decode_tok_s": [
+            1.773
+          ],
+          "decode_s": [
+            93.061
+          ],
+          "chunks": [
+            166
+          ],
+          "finish": [
+            "length"
+          ],
+          "text_sha256": [
+            "3adbb4b30090b79351b60a309ee1f3d2306bdcc596ca412d79addd66339864f6"
+          ],
+          "text_chars": [
+            826
+          ],
+          "logit_lines": 166,
+          "logit_seq_sha256": "790d5251e473c2e699dd57e4133107e329e69ea1aa00795cd1f379c2827fdeda",
+          "logit_lines_per_request": [
+            166
+          ],
+          "cpu_moe_lines": 0,
+          "gpu0_ready_mib": 7220,
+          "gpu0_max_mib": 7496,
+          "gpu1_max_mib": 83,
+          "mode_lines": [
+            "v4_gpu moe-batch=off (unsupported model geometry)"
+          ],
+          "usage_before": "size=0 mtime=1791867517",
+          "usage_after": "size=0 mtime=1791867517",
+          "checks": []
+        }
+      ],
+      "compare": {
+        "n": 3,
+        "n_probe": 3,
+        "distinct_text_sha256": [
+          {
+            "sha256": [
+              "3adbb4b30090b79351b60a309ee1f3d2306bdcc596ca412d79addd66339864f6"
+            ],
+            "samples": [
+              "Dp#1",
+              "Dp#2",
+              "Dp#3"
+            ]
+          }
+        ],
+        "n_distinct_texts": 1,
+        "distinct_logit_seq_sha256": [
+          {
+            "sha256": "790d5251e473c2e699dd57e4133107e329e69ea1aa00795cd1f379c2827fdeda",
+            "samples": [
+              "Dp#1",
+              "Dp#2",
+              "Dp#3"
+            ]
+          }
+        ],
+        "n_distinct_logit_seqs": 1,
+        "any_text_diff": false,
+        "any_logit_diff": false,
+        "bit_identical": true,
+        "pairs": {
+          "Dp#1_vs_Dp#2": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 166,
+              "len_a": 166,
+              "len_b": 166,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                166
+              ],
+              "req_lines_b": [
+                166
+              ]
+            }
+          },
+          "Dp#1_vs_Dp#3": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 166,
+              "len_a": 166,
+              "len_b": 166,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                166
+              ],
+              "req_lines_b": [
+                166
+              ]
+            }
+          },
+          "Dp#2_vs_Dp#3": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 166,
+              "len_a": 166,
+              "len_b": 166,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                166
+              ],
+              "req_lines_b": [
+                166
+              ]
+            }
+          }
+        }
+      },
+      "tok_s": {
+        "mean": 1.7665,
+        "stdev": 0.0056,
+        "median": 1.7636,
+        "min": 1.7629,
+        "max": 1.773,
+        "n": 3
+      },
+      "ttft_s": {
+        "mean": 224.012,
+        "stdev": 0.1628,
+        "median": 223.92,
+        "min": 223.916,
+        "max": 224.2,
+        "n": 3
+      },
+      "wall_s": {
+        "mean": 323,
+        "stdev": 0.0,
+        "median": 323,
+        "min": 323,
+        "max": 323,
+        "n": 3
+      },
+      "gpu0_max_mib": {
+        "mean": 7496,
+        "stdev": 0.0,
+        "median": 7496,
+        "min": 7496,
+        "max": 7496,
+        "n": 3
+      }
+    },
+    "Hp": {
+      "samples": [
+        {
+          "dir": "Hp/s1",
+          "seq": 14,
+          "probe": true,
+          "tree_head": "cc9c9fab4d7d0e8c962d38a7ffb8c752a6458505",
+          "binary_sha256": "e4ef9252605373dc7600a3c8c21efd28ca955136f6ec922ae4addcfcc051dc99",
+          "tree_diff_sha256": "4568b67e85165e61e91b0875d441825f76b25ddd5f007c363bb2db931dabdf8b",
+          "extra_env": {
+            "DSV4_CUDA_PIN_HOST": "0",
+            "DSV4_CUDA_EXPERT_MIRRORS": "8",
+            "V4_LOGIT_LOG": "1"
+          },
+          "start": "2026-10-16T03:20:31-07:00",
+          "ready_s": 4,
+          "client_s": 314,
+          "wall_s": 319,
+          "requests": [
+            "race_long_166"
+          ],
+          "ttft_s": [
+            224.125
+          ],
+          "decode_tok_s": [
+            1.8406
+          ],
+          "decode_s": [
+            89.643
+          ],
+          "chunks": [
+            166
+          ],
+          "finish": [
+            "length"
+          ],
+          "text_sha256": [
+            "3adbb4b30090b79351b60a309ee1f3d2306bdcc596ca412d79addd66339864f6"
+          ],
+          "text_chars": [
+            826
+          ],
+          "logit_lines": 166,
+          "logit_seq_sha256": "790d5251e473c2e699dd57e4133107e329e69ea1aa00795cd1f379c2827fdeda",
+          "logit_lines_per_request": [
+            166
+          ],
+          "cpu_moe_lines": 0,
+          "gpu0_ready_mib": 7220,
+          "gpu0_max_mib": 7496,
+          "gpu1_max_mib": 83,
+          "mode_lines": [
+            "v4_gpu moe-batch=off (unsupported model geometry)"
+          ],
+          "usage_before": "size=0 mtime=1791867517",
+          "usage_after": "size=0 mtime=1791867517",
+          "checks": []
+        },
+        {
+          "dir": "Hp/s2",
+          "seq": 16,
+          "probe": true,
+          "tree_head": "cc9c9fab4d7d0e8c962d38a7ffb8c752a6458505",
+          "binary_sha256": "e4ef9252605373dc7600a3c8c21efd28ca955136f6ec922ae4addcfcc051dc99",
+          "tree_diff_sha256": "4568b67e85165e61e91b0875d441825f76b25ddd5f007c363bb2db931dabdf8b",
+          "extra_env": {
+            "DSV4_CUDA_PIN_HOST": "0",
+            "DSV4_CUDA_EXPERT_MIRRORS": "8",
+            "V4_LOGIT_LOG": "1"
+          },
+          "start": "2026-10-16T03:31:11-07:00",
+          "ready_s": 4,
+          "client_s": 314,
+          "wall_s": 319,
+          "requests": [
+            "race_long_166"
+          ],
+          "ttft_s": [
+            224.066
+          ],
+          "decode_tok_s": [
+            1.8409
+          ],
+          "decode_s": [
+            89.629
+          ],
+          "chunks": [
+            166
+          ],
+          "finish": [
+            "length"
+          ],
+          "text_sha256": [
+            "3adbb4b30090b79351b60a309ee1f3d2306bdcc596ca412d79addd66339864f6"
+          ],
+          "text_chars": [
+            826
+          ],
+          "logit_lines": 166,
+          "logit_seq_sha256": "790d5251e473c2e699dd57e4133107e329e69ea1aa00795cd1f379c2827fdeda",
+          "logit_lines_per_request": [
+            166
+          ],
+          "cpu_moe_lines": 0,
+          "gpu0_ready_mib": 7220,
+          "gpu0_max_mib": 7496,
+          "gpu1_max_mib": 83,
+          "mode_lines": [
+            "v4_gpu moe-batch=off (unsupported model geometry)"
+          ],
+          "usage_before": "size=0 mtime=1791867517",
+          "usage_after": "size=0 mtime=1791867517",
+          "checks": []
+        },
+        {
+          "dir": "Hp/s3",
+          "seq": 23,
+          "probe": true,
+          "tree_head": "cc9c9fab4d7d0e8c962d38a7ffb8c752a6458505",
+          "binary_sha256": "e4ef9252605373dc7600a3c8c21efd28ca955136f6ec922ae4addcfcc051dc99",
+          "tree_diff_sha256": "4568b67e85165e61e91b0875d441825f76b25ddd5f007c363bb2db931dabdf8b",
+          "extra_env": {
+            "DSV4_CUDA_PIN_HOST": "0",
+            "DSV4_CUDA_EXPERT_MIRRORS": "8",
+            "V4_LOGIT_LOG": "1"
+          },
+          "start": "2026-10-16T04:08:37-07:00",
+          "ready_s": 4,
+          "client_s": 315,
+          "wall_s": 320,
+          "requests": [
+            "race_long_166"
+          ],
+          "ttft_s": [
+            224.271
+          ],
+          "decode_tok_s": [
+            1.8275
+          ],
+          "decode_s": [
+            90.288
+          ],
+          "chunks": [
+            166
+          ],
+          "finish": [
+            "length"
+          ],
+          "text_sha256": [
+            "3adbb4b30090b79351b60a309ee1f3d2306bdcc596ca412d79addd66339864f6"
+          ],
+          "text_chars": [
+            826
+          ],
+          "logit_lines": 166,
+          "logit_seq_sha256": "790d5251e473c2e699dd57e4133107e329e69ea1aa00795cd1f379c2827fdeda",
+          "logit_lines_per_request": [
+            166
+          ],
+          "cpu_moe_lines": 0,
+          "gpu0_ready_mib": 7220,
+          "gpu0_max_mib": 7496,
+          "gpu1_max_mib": 83,
+          "mode_lines": [
+            "v4_gpu moe-batch=off (unsupported model geometry)"
+          ],
+          "usage_before": "size=0 mtime=1791867517",
+          "usage_after": "size=0 mtime=1791867517",
+          "checks": []
+        }
+      ],
+      "compare": {
+        "n": 3,
+        "n_probe": 3,
+        "distinct_text_sha256": [
+          {
+            "sha256": [
+              "3adbb4b30090b79351b60a309ee1f3d2306bdcc596ca412d79addd66339864f6"
+            ],
+            "samples": [
+              "Hp#1",
+              "Hp#2",
+              "Hp#3"
+            ]
+          }
+        ],
+        "n_distinct_texts": 1,
+        "distinct_logit_seq_sha256": [
+          {
+            "sha256": "790d5251e473c2e699dd57e4133107e329e69ea1aa00795cd1f379c2827fdeda",
+            "samples": [
+              "Hp#1",
+              "Hp#2",
+              "Hp#3"
+            ]
+          }
+        ],
+        "n_distinct_logit_seqs": 1,
+        "any_text_diff": false,
+        "any_logit_diff": false,
+        "bit_identical": true,
+        "pairs": {
+          "Hp#1_vs_Hp#2": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 166,
+              "len_a": 166,
+              "len_b": 166,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                166
+              ],
+              "req_lines_b": [
+                166
+              ]
+            }
+          },
+          "Hp#1_vs_Hp#3": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 166,
+              "len_a": 166,
+              "len_b": 166,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                166
+              ],
+              "req_lines_b": [
+                166
+              ]
+            }
+          },
+          "Hp#2_vs_Hp#3": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 166,
+              "len_a": 166,
+              "len_b": 166,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                166
+              ],
+              "req_lines_b": [
+                166
+              ]
+            }
+          }
+        }
+      },
+      "tok_s": {
+        "mean": 1.8363,
+        "stdev": 0.0077,
+        "median": 1.8406,
+        "min": 1.8275,
+        "max": 1.8409,
+        "n": 3
+      },
+      "ttft_s": {
+        "mean": 224.154,
+        "stdev": 0.1055,
+        "median": 224.125,
+        "min": 224.066,
+        "max": 224.271,
+        "n": 3
+      },
+      "wall_s": {
+        "mean": 319.3333,
+        "stdev": 0.5774,
+        "median": 319,
+        "min": 319,
+        "max": 320,
+        "n": 3
+      },
+      "gpu0_max_mib": {
+        "mean": 7496,
+        "stdev": 0.0,
+        "median": 7496,
+        "min": 7496,
+        "max": 7496,
+        "n": 3
+      }
+    },
+    "Zp": {
+      "samples": [
+        {
+          "dir": "Zp/s1",
+          "seq": 15,
+          "probe": true,
+          "tree_head": "a2c8ba7a149a31a781e84a992aa980afdb93497d",
+          "binary_sha256": "f8d5d9ed927c2af243467a225c7c179147c869c1612599d821e74224e840f19f",
+          "tree_diff_sha256": "bc1cec431a2cc79207fe0d263486bc17f6c25c461544523e20cce1c321d9e7f9",
+          "extra_env": {
+            "DSV4_CUDA_PIN_HOST": "0",
+            "DSV4_CUDA_EXPERT_MIRRORS": "8",
+            "V4_LOGIT_LOG": "1"
+          },
+          "start": "2026-10-16T03:25:51-07:00",
+          "ready_s": 4,
+          "client_s": 314,
+          "wall_s": 321,
+          "requests": [
+            "race_long_166"
+          ],
+          "ttft_s": [
+            223.789
+          ],
+          "decode_tok_s": [
+            1.8258
+          ],
+          "decode_s": [
+            90.37
+          ],
+          "chunks": [
+            166
+          ],
+          "finish": [
+            "length"
+          ],
+          "text_sha256": [
+            "3adbb4b30090b79351b60a309ee1f3d2306bdcc596ca412d79addd66339864f6"
+          ],
+          "text_chars": [
+            826
+          ],
+          "logit_lines": 166,
+          "logit_seq_sha256": "790d5251e473c2e699dd57e4133107e329e69ea1aa00795cd1f379c2827fdeda",
+          "logit_lines_per_request": [
+            166
+          ],
+          "cpu_moe_lines": 0,
+          "gpu0_ready_mib": 7220,
+          "gpu0_max_mib": 7496,
+          "gpu1_max_mib": 83,
+          "mode_lines": [
+            "v4_gpu moe-batch=off (unsupported model geometry)"
+          ],
+          "usage_before": "size=0 mtime=1791867517",
+          "usage_after": "size=0 mtime=1791867517",
+          "checks": []
+        },
+        {
+          "dir": "Zp/s2",
+          "seq": 17,
+          "probe": true,
+          "tree_head": "a2c8ba7a149a31a781e84a992aa980afdb93497d",
+          "binary_sha256": "f8d5d9ed927c2af243467a225c7c179147c869c1612599d821e74224e840f19f",
+          "tree_diff_sha256": "bc1cec431a2cc79207fe0d263486bc17f6c25c461544523e20cce1c321d9e7f9",
+          "extra_env": {
+            "DSV4_CUDA_PIN_HOST": "0",
+            "DSV4_CUDA_EXPERT_MIRRORS": "8",
+            "V4_LOGIT_LOG": "1"
+          },
+          "start": "2026-10-16T03:36:30-07:00",
+          "ready_s": 4,
+          "client_s": 314,
+          "wall_s": 319,
+          "requests": [
+            "race_long_166"
+          ],
+          "ttft_s": [
+            224.088
+          ],
+          "decode_tok_s": [
+            1.8421
+          ],
+          "decode_s": [
+            89.574
+          ],
+          "chunks": [
+            166
+          ],
+          "finish": [
+            "length"
+          ],
+          "text_sha256": [
+            "3adbb4b30090b79351b60a309ee1f3d2306bdcc596ca412d79addd66339864f6"
+          ],
+          "text_chars": [
+            826
+          ],
+          "logit_lines": 166,
+          "logit_seq_sha256": "790d5251e473c2e699dd57e4133107e329e69ea1aa00795cd1f379c2827fdeda",
+          "logit_lines_per_request": [
+            166
+          ],
+          "cpu_moe_lines": 0,
+          "gpu0_ready_mib": 7220,
+          "gpu0_max_mib": 7496,
+          "gpu1_max_mib": 83,
+          "mode_lines": [
+            "v4_gpu moe-batch=off (unsupported model geometry)"
+          ],
+          "usage_before": "size=0 mtime=1791867517",
+          "usage_after": "size=0 mtime=1791867517",
+          "checks": []
+        },
+        {
+          "dir": "Zp/s3",
+          "seq": 24,
+          "probe": true,
+          "tree_head": "a2c8ba7a149a31a781e84a992aa980afdb93497d",
+          "binary_sha256": "f8d5d9ed927c2af243467a225c7c179147c869c1612599d821e74224e840f19f",
+          "tree_diff_sha256": "bc1cec431a2cc79207fe0d263486bc17f6c25c461544523e20cce1c321d9e7f9",
+          "extra_env": {
+            "DSV4_CUDA_PIN_HOST": "0",
+            "DSV4_CUDA_EXPERT_MIRRORS": "8",
+            "V4_LOGIT_LOG": "1"
+          },
+          "start": "2026-10-16T04:13:57-07:00",
+          "ready_s": 4,
+          "client_s": 314,
+          "wall_s": 319,
+          "requests": [
+            "race_long_166"
+          ],
+          "ttft_s": [
+            223.683
+          ],
+          "decode_tok_s": [
+            1.841
+          ],
+          "decode_s": [
+            89.627
+          ],
+          "chunks": [
+            166
+          ],
+          "finish": [
+            "length"
+          ],
+          "text_sha256": [
+            "3adbb4b30090b79351b60a309ee1f3d2306bdcc596ca412d79addd66339864f6"
+          ],
+          "text_chars": [
+            826
+          ],
+          "logit_lines": 166,
+          "logit_seq_sha256": "790d5251e473c2e699dd57e4133107e329e69ea1aa00795cd1f379c2827fdeda",
+          "logit_lines_per_request": [
+            166
+          ],
+          "cpu_moe_lines": 0,
+          "gpu0_ready_mib": 7220,
+          "gpu0_max_mib": 7496,
+          "gpu1_max_mib": 83,
+          "mode_lines": [
+            "v4_gpu moe-batch=off (unsupported model geometry)"
+          ],
+          "usage_before": "size=0 mtime=1791867517",
+          "usage_after": "size=0 mtime=1791867517",
+          "checks": []
+        }
+      ],
+      "compare": {
+        "n": 3,
+        "n_probe": 3,
+        "distinct_text_sha256": [
+          {
+            "sha256": [
+              "3adbb4b30090b79351b60a309ee1f3d2306bdcc596ca412d79addd66339864f6"
+            ],
+            "samples": [
+              "Zp#1",
+              "Zp#2",
+              "Zp#3"
+            ]
+          }
+        ],
+        "n_distinct_texts": 1,
+        "distinct_logit_seq_sha256": [
+          {
+            "sha256": "790d5251e473c2e699dd57e4133107e329e69ea1aa00795cd1f379c2827fdeda",
+            "samples": [
+              "Zp#1",
+              "Zp#2",
+              "Zp#3"
+            ]
+          }
+        ],
+        "n_distinct_logit_seqs": 1,
+        "any_text_diff": false,
+        "any_logit_diff": false,
+        "bit_identical": true,
+        "pairs": {
+          "Zp#1_vs_Zp#2": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 166,
+              "len_a": 166,
+              "len_b": 166,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                166
+              ],
+              "req_lines_b": [
+                166
+              ]
+            }
+          },
+          "Zp#1_vs_Zp#3": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 166,
+              "len_a": 166,
+              "len_b": 166,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                166
+              ],
+              "req_lines_b": [
+                166
+              ]
+            }
+          },
+          "Zp#2_vs_Zp#3": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 166,
+              "len_a": 166,
+              "len_b": 166,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                166
+              ],
+              "req_lines_b": [
+                166
+              ]
+            }
+          }
+        }
+      },
+      "tok_s": {
+        "mean": 1.8363,
+        "stdev": 0.0091,
+        "median": 1.841,
+        "min": 1.8258,
+        "max": 1.8421,
+        "n": 3
+      },
+      "ttft_s": {
+        "mean": 223.8533,
+        "stdev": 0.21,
+        "median": 223.789,
+        "min": 223.683,
+        "max": 224.088,
+        "n": 3
+      },
+      "wall_s": {
+        "mean": 319.6667,
+        "stdev": 1.1547,
+        "median": 319,
+        "min": 319,
+        "max": 321,
+        "n": 3
+      },
+      "gpu0_max_mib": {
+        "mean": 7496,
+        "stdev": 0.0,
+        "median": 7496,
+        "min": 7496,
+        "max": 7496,
+        "n": 3
+      }
+    }
+  },
+  "phase3": {
+    "Qp": {
+      "what": "pr1-line before the fix (48767c01)",
+      "samples": [
+        {
+          "dir": "Qp/s1",
+          "seq": 28,
+          "probe": true,
+          "tree_head": "48767c016c993e59cd74f5511983be7bb65ec791",
+          "binary_sha256": "df6c66f769c91bc1955576fa64f638ea98324612cc832735f4889ba317387add",
+          "tree_diff_sha256": "95323fd471cebd34836c21375c7b7261e272cd2a9dae247ce91368ca48cc8723",
+          "extra_env": {
+            "COLI_CUDA_MOE_DOUBLE": "1",
+            "V4_LOGIT_LOG": "1"
+          },
+          "start": "2026-10-16T04:35:20-07:00",
+          "ready_s": 4,
+          "client_s": 209,
+          "wall_s": 215,
+          "requests": [
+            "long_prefill",
+            "long_prefill_2"
+          ],
+          "ttft_s": [
+            69.441,
+            105.934
+          ],
+          "decode_tok_s": [
+            1.9873,
+            2.7184
+          ],
+          "decode_s": [
+            null,
+            null
+          ],
+          "chunks": [
+            25,
+            60
+          ],
+          "finish": [
+            null,
+            null
+          ],
+          "text_sha256": [
+            "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba",
+            "1f0192038c425512912a1df7d56dca6670c50f01935e664f0219589b802cdc8d"
+          ],
+          "text_chars": [
+            133,
+            177
+          ],
+          "logit_lines": 86,
+          "logit_seq_sha256": "06d373feaf98cfeddfe9c0ed259290433348eb65c2f52b8b31514e53d6d30f43",
+          "logit_lines_per_request": [
+            26,
+            60
+          ],
+          "cpu_moe_lines": 0,
+          "gpu0_ready_mib": 7220,
+          "gpu0_max_mib": 23056,
+          "gpu1_max_mib": 83,
+          "mode_lines": [
+            "v4_gpu mirror-reserve=4783MiB (132-slot bank 1683MiB x2 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)",
+            "v4_gpu moe-batch=on bank=132-experts",
+            "v4_gpu moe-double=on",
+            "v4_gpu moe-double swaps=42 prefetched=5544"
+          ],
+          "usage_before": "size=0 mtime=1791867517",
+          "usage_after": "size=0 mtime=1791867517",
+          "checks": []
+        },
+        {
+          "dir": "Qp/s2",
+          "seq": 31,
+          "probe": true,
+          "tree_head": "48767c016c993e59cd74f5511983be7bb65ec791",
+          "binary_sha256": "df6c66f769c91bc1955576fa64f638ea98324612cc832735f4889ba317387add",
+          "tree_diff_sha256": "95323fd471cebd34836c21375c7b7261e272cd2a9dae247ce91368ca48cc8723",
+          "extra_env": {
+            "COLI_CUDA_MOE_DOUBLE": "1",
+            "V4_LOGIT_LOG": "1"
+          },
+          "start": "2026-10-16T04:46:07-07:00",
+          "ready_s": 4,
+          "client_s": 210,
+          "wall_s": 217,
+          "requests": [
+            "long_prefill",
+            "long_prefill_2"
+          ],
+          "ttft_s": [
+            69.871,
+            106.329
+          ],
+          "decode_tok_s": [
+            2.0234,
+            2.7193
+          ],
+          "decode_s": [
+            null,
+            null
+          ],
+          "chunks": [
+            25,
+            60
+          ],
+          "finish": [
+            null,
+            null
+          ],
+          "text_sha256": [
+            "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba",
+            "1f0192038c425512912a1df7d56dca6670c50f01935e664f0219589b802cdc8d"
+          ],
+          "text_chars": [
+            133,
+            177
+          ],
+          "logit_lines": 86,
+          "logit_seq_sha256": "06d373feaf98cfeddfe9c0ed259290433348eb65c2f52b8b31514e53d6d30f43",
+          "logit_lines_per_request": [
+            26,
+            60
+          ],
+          "cpu_moe_lines": 0,
+          "gpu0_ready_mib": 7220,
+          "gpu0_max_mib": 23056,
+          "gpu1_max_mib": 83,
+          "mode_lines": [
+            "v4_gpu mirror-reserve=4783MiB (132-slot bank 1683MiB x2 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)",
+            "v4_gpu moe-batch=on bank=132-experts",
+            "v4_gpu moe-double=on",
+            "v4_gpu moe-double swaps=42 prefetched=5544"
+          ],
+          "usage_before": "size=0 mtime=1791867517",
+          "usage_after": "size=0 mtime=1791867517",
+          "checks": []
+        },
+        {
+          "dir": "Qp/s3",
+          "seq": 32,
+          "probe": true,
+          "tree_head": "48767c016c993e59cd74f5511983be7bb65ec791",
+          "binary_sha256": "df6c66f769c91bc1955576fa64f638ea98324612cc832735f4889ba317387add",
+          "tree_diff_sha256": "95323fd471cebd34836c21375c7b7261e272cd2a9dae247ce91368ca48cc8723",
+          "extra_env": {
+            "COLI_CUDA_MOE_DOUBLE": "1",
+            "V4_LOGIT_LOG": "1"
+          },
+          "start": "2026-10-16T04:49:44-07:00",
+          "ready_s": 4,
+          "client_s": 207,
+          "wall_s": 213,
+          "requests": [
+            "long_prefill",
+            "long_prefill_2"
+          ],
+          "ttft_s": [
+            69.814,
+            106.272
+          ],
+          "decode_tok_s": [
+            2.0301,
+            2.6787
+          ],
+          "decode_s": [
+            null,
+            null
+          ],
+          "chunks": [
+            25,
+            52
+          ],
+          "finish": [
+            null,
+            null
+          ],
+          "text_sha256": [
+            "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba",
+            "e757561e14bd665e1a6ff87ca00a634b3d72dd1030803bf9446056465e1f8004"
+          ],
+          "text_chars": [
+            133,
+            133
+          ],
+          "logit_lines": 79,
+          "logit_seq_sha256": "14074e883fc640aea335aadf0d4385b5ddf4f137447dee38134e6e268feac73a",
+          "logit_lines_per_request": [
+            26,
+            53
+          ],
+          "cpu_moe_lines": 0,
+          "gpu0_ready_mib": 7220,
+          "gpu0_max_mib": 23056,
+          "gpu1_max_mib": 83,
+          "mode_lines": [
+            "v4_gpu mirror-reserve=4783MiB (132-slot bank 1683MiB x2 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)",
+            "v4_gpu moe-batch=on bank=132-experts",
+            "v4_gpu moe-double=on",
+            "v4_gpu moe-double swaps=42 prefetched=5544"
+          ],
+          "usage_before": "size=0 mtime=1791867517",
+          "usage_after": "size=0 mtime=1791867517",
+          "checks": []
+        }
+      ],
+      "compare": {
+        "n": 3,
+        "n_probe": 3,
+        "distinct_text_sha256": [
+          {
+            "sha256": [
+              "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba",
+              "1f0192038c425512912a1df7d56dca6670c50f01935e664f0219589b802cdc8d"
+            ],
+            "samples": [
+              "Qp#1",
+              "Qp#2"
+            ]
+          },
+          {
+            "sha256": [
+              "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba",
+              "e757561e14bd665e1a6ff87ca00a634b3d72dd1030803bf9446056465e1f8004"
+            ],
+            "samples": [
+              "Qp#3"
+            ]
+          }
+        ],
+        "n_distinct_texts": 2,
+        "distinct_logit_seq_sha256": [
+          {
+            "sha256": "06d373feaf98cfeddfe9c0ed259290433348eb65c2f52b8b31514e53d6d30f43",
+            "samples": [
+              "Qp#1",
+              "Qp#2"
+            ]
+          },
+          {
+            "sha256": "14074e883fc640aea335aadf0d4385b5ddf4f137447dee38134e6e268feac73a",
+            "samples": [
+              "Qp#3"
+            ]
+          }
+        ],
+        "n_distinct_logit_seqs": 2,
+        "any_text_diff": true,
+        "any_logit_diff": true,
+        "bit_identical": false,
+        "pairs": {
+          "Qp#1_vs_Qp#2": {
+            "text": [
+              {
+                "request": "long_prefill",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              },
+              {
+                "request": "long_prefill_2",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 86,
+              "len_a": 86,
+              "len_b": 86,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                26,
+                60
+              ],
+              "req_lines_b": [
+                26,
+                60
+              ]
+            }
+          },
+          "Qp#1_vs_Qp#3": {
+            "text": [
+              {
+                "request": "long_prefill",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              },
+              {
+                "request": "long_prefill_2",
+                "identical": false,
+                "first_diff_char": 100,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 79,
+              "len_a": 86,
+              "len_b": 79,
+              "identical": false,
+              "first_diff_line": 27,
+              "first_token_diff": 69,
+              "first_logit_diff": 27,
+              "first_hidden_diff": 27,
+              "n_diff_lines": 52,
+              "first_a": "v4_logit tok=8740 logit=0x1.1d6c9ap+5 hidden=d7eab15f540d0df7",
+              "first_b": "v4_logit tok=8740 logit=0x1.1b664cp+5 hidden=3070f9cbc3077cd2",
+              "where_first_diff_line": {
+                "request": "long_prefill_2",
+                "token_index_in_request": 1
+              },
+              "where_first_token_diff": {
+                "request": "long_prefill_2",
+                "token_index_in_request": 43
+              },
+              "req_lines_a": [
+                26,
+                60
+              ],
+              "req_lines_b": [
+                26,
+                53
+              ]
+            }
+          },
+          "Qp#2_vs_Qp#3": {
+            "text": [
+              {
+                "request": "long_prefill",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              },
+              {
+                "request": "long_prefill_2",
+                "identical": false,
+                "first_diff_char": 100,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 79,
+              "len_a": 86,
+              "len_b": 79,
+              "identical": false,
+              "first_diff_line": 27,
+              "first_token_diff": 69,
+              "first_logit_diff": 27,
+              "first_hidden_diff": 27,
+              "n_diff_lines": 52,
+              "first_a": "v4_logit tok=8740 logit=0x1.1d6c9ap+5 hidden=d7eab15f540d0df7",
+              "first_b": "v4_logit tok=8740 logit=0x1.1b664cp+5 hidden=3070f9cbc3077cd2",
+              "where_first_diff_line": {
+                "request": "long_prefill_2",
+                "token_index_in_request": 1
+              },
+              "where_first_token_diff": {
+                "request": "long_prefill_2",
+                "token_index_in_request": 43
+              },
+              "req_lines_a": [
+                26,
+                60
+              ],
+              "req_lines_b": [
+                26,
+                53
+              ]
+            }
+          }
+        }
+      },
+      "texts_vs_dev_reference": [
+        {
+          "long_prefill": true,
+          "long_prefill_2": true
+        },
+        {
+          "long_prefill": true,
+          "long_prefill_2": true
+        },
+        {
+          "long_prefill": true,
+          "long_prefill_2": false
+        }
+      ],
+      "ttft_s": {
+        "long_prefill": {
+          "mean": 69.7087,
+          "stdev": 0.2336,
+          "median": 69.814,
+          "min": 69.441,
+          "max": 69.871,
+          "n": 3
+        },
+        "long_prefill_2": {
+          "mean": 106.1783,
+          "stdev": 0.2135,
+          "median": 106.272,
+          "min": 105.934,
+          "max": 106.329,
+          "n": 3
+        }
+      },
+      "decode_tok_s": {
+        "long_prefill": {
+          "mean": 2.0136,
+          "stdev": 0.023,
+          "median": 2.0234,
+          "min": 1.9873,
+          "max": 2.0301,
+          "n": 3
+        },
+        "long_prefill_2": {
+          "mean": 2.7055,
+          "stdev": 0.0232,
+          "median": 2.7184,
+          "min": 2.6787,
+          "max": 2.7193,
+          "n": 3
+        }
+      },
+      "mode_lines": [
+        "v4_gpu moe-batch=on bank=132-experts",
+        "v4_gpu moe-double=on"
+      ]
+    },
+    "Fp": {
+      "what": "pr1-line with the fix (a406901b)",
+      "samples": [
+        {
+          "dir": "Fp/s1",
+          "seq": 29,
+          "probe": true,
+          "tree_head": "a406901b2c256499ed02140c8d10aa34aa00b1eb",
+          "binary_sha256": "d4060046df4fbdd8859196f78a75110e942a0169a222b447986d2e8f3b8d2e3a",
+          "tree_diff_sha256": "95323fd471cebd34836c21375c7b7261e272cd2a9dae247ce91368ca48cc8723",
+          "extra_env": {
+            "COLI_CUDA_MOE_DOUBLE": "1",
+            "V4_LOGIT_LOG": "1"
+          },
+          "start": "2026-10-16T04:38:55-07:00",
+          "ready_s": 4,
+          "client_s": 210,
+          "wall_s": 217,
+          "requests": [
+            "long_prefill",
+            "long_prefill_2"
+          ],
+          "ttft_s": [
+            69.876,
+            106.442
+          ],
+          "decode_tok_s": [
+            1.9892,
+            2.7226
+          ],
+          "decode_s": [
+            null,
+            null
+          ],
+          "chunks": [
+            25,
+            60
+          ],
+          "finish": [
+            null,
+            null
+          ],
+          "text_sha256": [
+            "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba",
+            "1f0192038c425512912a1df7d56dca6670c50f01935e664f0219589b802cdc8d"
+          ],
+          "text_chars": [
+            133,
+            177
+          ],
+          "logit_lines": 86,
+          "logit_seq_sha256": "7a39fe44606ddf62ec6ee2d14d941b7da28ff6ab9ce48864944e30e5c2c6aac0",
+          "logit_lines_per_request": [
+            26,
+            60
+          ],
+          "cpu_moe_lines": 0,
+          "gpu0_ready_mib": 7220,
+          "gpu0_max_mib": 23056,
+          "gpu1_max_mib": 83,
+          "mode_lines": [
+            "v4_gpu mirror-reserve=4783MiB (132-slot bank 1683MiB x2 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)",
+            "v4_gpu moe-batch=on bank=132-experts",
+            "v4_gpu moe-double=on",
+            "v4_gpu moe-double swaps=42 prefetched=5544"
+          ],
+          "usage_before": "size=0 mtime=1791867517",
+          "usage_after": "size=0 mtime=1791867517",
+          "checks": []
+        },
+        {
+          "dir": "Fp/s2",
+          "seq": 30,
+          "probe": true,
+          "tree_head": "a406901b2c256499ed02140c8d10aa34aa00b1eb",
+          "binary_sha256": "d4060046df4fbdd8859196f78a75110e942a0169a222b447986d2e8f3b8d2e3a",
+          "tree_diff_sha256": "95323fd471cebd34836c21375c7b7261e272cd2a9dae247ce91368ca48cc8723",
+          "extra_env": {
+            "COLI_CUDA_MOE_DOUBLE": "1",
+            "V4_LOGIT_LOG": "1"
+          },
+          "start": "2026-10-16T04:42:32-07:00",
+          "ready_s": 4,
+          "client_s": 210,
+          "wall_s": 215,
+          "requests": [
+            "long_prefill",
+            "long_prefill_2"
+          ],
+          "ttft_s": [
+            69.657,
+            106.044
+          ],
+          "decode_tok_s": [
+            2.0127,
+            2.7228
+          ],
+          "decode_s": [
+            null,
+            null
+          ],
+          "chunks": [
+            25,
+            60
+          ],
+          "finish": [
+            null,
+            null
+          ],
+          "text_sha256": [
+            "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba",
+            "1f0192038c425512912a1df7d56dca6670c50f01935e664f0219589b802cdc8d"
+          ],
+          "text_chars": [
+            133,
+            177
+          ],
+          "logit_lines": 86,
+          "logit_seq_sha256": "7a39fe44606ddf62ec6ee2d14d941b7da28ff6ab9ce48864944e30e5c2c6aac0",
+          "logit_lines_per_request": [
+            26,
+            60
+          ],
+          "cpu_moe_lines": 0,
+          "gpu0_ready_mib": 7220,
+          "gpu0_max_mib": 23056,
+          "gpu1_max_mib": 83,
+          "mode_lines": [
+            "v4_gpu mirror-reserve=4783MiB (132-slot bank 1683MiB x2 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)",
+            "v4_gpu moe-batch=on bank=132-experts",
+            "v4_gpu moe-double=on",
+            "v4_gpu moe-double swaps=42 prefetched=5544"
+          ],
+          "usage_before": "size=0 mtime=1791867517",
+          "usage_after": "size=0 mtime=1791867517",
+          "checks": []
+        },
+        {
+          "dir": "Fp/s3",
+          "seq": 33,
+          "probe": true,
+          "tree_head": "a406901b2c256499ed02140c8d10aa34aa00b1eb",
+          "binary_sha256": "d4060046df4fbdd8859196f78a75110e942a0169a222b447986d2e8f3b8d2e3a",
+          "tree_diff_sha256": "95323fd471cebd34836c21375c7b7261e272cd2a9dae247ce91368ca48cc8723",
+          "extra_env": {
+            "COLI_CUDA_MOE_DOUBLE": "1",
+            "V4_LOGIT_LOG": "1"
+          },
+          "start": "2026-10-16T04:53:17-07:00",
+          "ready_s": 4,
+          "client_s": 210,
+          "wall_s": 215,
+          "requests": [
+            "long_prefill",
+            "long_prefill_2"
+          ],
+          "ttft_s": [
+            69.704,
+            106.048
+          ],
+          "decode_tok_s": [
+            2.0198,
+            2.7253
+          ],
+          "decode_s": [
+            null,
+            null
+          ],
+          "chunks": [
+            25,
+            60
+          ],
+          "finish": [
+            null,
+            null
+          ],
+          "text_sha256": [
+            "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba",
+            "1f0192038c425512912a1df7d56dca6670c50f01935e664f0219589b802cdc8d"
+          ],
+          "text_chars": [
+            133,
+            177
+          ],
+          "logit_lines": 86,
+          "logit_seq_sha256": "7a39fe44606ddf62ec6ee2d14d941b7da28ff6ab9ce48864944e30e5c2c6aac0",
+          "logit_lines_per_request": [
+            26,
+            60
+          ],
+          "cpu_moe_lines": 0,
+          "gpu0_ready_mib": 7220,
+          "gpu0_max_mib": 23056,
+          "gpu1_max_mib": 83,
+          "mode_lines": [
+            "v4_gpu mirror-reserve=4783MiB (132-slot bank 1683MiB x2 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)",
+            "v4_gpu moe-batch=on bank=132-experts",
+            "v4_gpu moe-double=on",
+            "v4_gpu moe-double swaps=42 prefetched=5544"
+          ],
+          "usage_before": "size=0 mtime=1791867517",
+          "usage_after": "size=0 mtime=1791867517",
+          "checks": []
+        }
+      ],
+      "compare": {
+        "n": 3,
+        "n_probe": 3,
+        "distinct_text_sha256": [
+          {
+            "sha256": [
+              "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba",
+              "1f0192038c425512912a1df7d56dca6670c50f01935e664f0219589b802cdc8d"
+            ],
+            "samples": [
+              "Fp#1",
+              "Fp#2",
+              "Fp#3"
+            ]
+          }
+        ],
+        "n_distinct_texts": 1,
+        "distinct_logit_seq_sha256": [
+          {
+            "sha256": "7a39fe44606ddf62ec6ee2d14d941b7da28ff6ab9ce48864944e30e5c2c6aac0",
+            "samples": [
+              "Fp#1",
+              "Fp#2",
+              "Fp#3"
+            ]
+          }
+        ],
+        "n_distinct_logit_seqs": 1,
+        "any_text_diff": false,
+        "any_logit_diff": false,
+        "bit_identical": true,
+        "pairs": {
+          "Fp#1_vs_Fp#2": {
+            "text": [
+              {
+                "request": "long_prefill",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              },
+              {
+                "request": "long_prefill_2",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 86,
+              "len_a": 86,
+              "len_b": 86,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                26,
+                60
+              ],
+              "req_lines_b": [
+                26,
+                60
+              ]
+            }
+          },
+          "Fp#1_vs_Fp#3": {
+            "text": [
+              {
+                "request": "long_prefill",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              },
+              {
+                "request": "long_prefill_2",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 86,
+              "len_a": 86,
+              "len_b": 86,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                26,
+                60
+              ],
+              "req_lines_b": [
+                26,
+                60
+              ]
+            }
+          },
+          "Fp#2_vs_Fp#3": {
+            "text": [
+              {
+                "request": "long_prefill",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              },
+              {
+                "request": "long_prefill_2",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 86,
+              "len_a": 86,
+              "len_b": 86,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                26,
+                60
+              ],
+              "req_lines_b": [
+                26,
+                60
+              ]
+            }
+          }
+        }
+      },
+      "texts_vs_dev_reference": [
+        {
+          "long_prefill": true,
+          "long_prefill_2": true
+        },
+        {
+          "long_prefill": true,
+          "long_prefill_2": true
+        },
+        {
+          "long_prefill": true,
+          "long_prefill_2": true
+        }
+      ],
+      "ttft_s": {
+        "long_prefill": {
+          "mean": 69.7457,
+          "stdev": 0.1153,
+          "median": 69.704,
+          "min": 69.657,
+          "max": 69.876,
+          "n": 3
+        },
+        "long_prefill_2": {
+          "mean": 106.178,
+          "stdev": 0.2286,
+          "median": 106.048,
+          "min": 106.044,
+          "max": 106.442,
+          "n": 3
+        }
+      },
+      "decode_tok_s": {
+        "long_prefill": {
+          "mean": 2.0072,
+          "stdev": 0.016,
+          "median": 2.0127,
+          "min": 1.9892,
+          "max": 2.0198,
+          "n": 3
+        },
+        "long_prefill_2": {
+          "mean": 2.7236,
+          "stdev": 0.0015,
+          "median": 2.7228,
+          "min": 2.7226,
+          "max": 2.7253,
+          "n": 3
+        }
+      },
+      "mode_lines": [
+        "v4_gpu moe-batch=on bank=132-experts",
+        "v4_gpu moe-double=on"
+      ]
+    },
+    "cross_Qp_vs_Fp": {
+      "Qp#1_vs_Fp#1": {
+        "text": [
+          {
+            "request": "long_prefill",
+            "identical": true,
+            "first_diff_char": null,
+            "first_diff_chunk": null
+          },
+          {
+            "request": "long_prefill_2",
+            "identical": true,
+            "first_diff_char": null,
+            "first_diff_chunk": null
+          }
+        ],
+        "logits": {
+          "compared": 86,
+          "len_a": 86,
+          "len_b": 86,
+          "identical": false,
+          "first_diff_line": 27,
+          "first_token_diff": null,
+          "first_logit_diff": 27,
+          "first_hidden_diff": 27,
+          "n_diff_lines": 59,
+          "first_a": "v4_logit tok=8740 logit=0x1.1d6c9ap+5 hidden=d7eab15f540d0df7",
+          "first_b": "v4_logit tok=8740 logit=0x1.1d679p+5 hidden=0c8dc5e5196c9c01",
+          "where_first_diff_line": {
+            "request": "long_prefill_2",
+            "token_index_in_request": 1
+          },
+          "where_first_token_diff": null,
+          "req_lines_a": [
+            26,
+            60
+          ],
+          "req_lines_b": [
+            26,
+            60
+          ]
+        }
+      },
+      "Qp#1_vs_Fp#2": {
+        "text": [
+          {
+            "request": "long_prefill",
+            "identical": true,
+            "first_diff_char": null,
+            "first_diff_chunk": null
+          },
+          {
+            "request": "long_prefill_2",
+            "identical": true,
+            "first_diff_char": null,
+            "first_diff_chunk": null
+          }
+        ],
+        "logits": {
+          "compared": 86,
+          "len_a": 86,
+          "len_b": 86,
+          "identical": false,
+          "first_diff_line": 27,
+          "first_token_diff": null,
+          "first_logit_diff": 27,
+          "first_hidden_diff": 27,
+          "n_diff_lines": 59,
+          "first_a": "v4_logit tok=8740 logit=0x1.1d6c9ap+5 hidden=d7eab15f540d0df7",
+          "first_b": "v4_logit tok=8740 logit=0x1.1d679p+5 hidden=0c8dc5e5196c9c01",
+          "where_first_diff_line": {
+            "request": "long_prefill_2",
+            "token_index_in_request": 1
+          },
+          "where_first_token_diff": null,
+          "req_lines_a": [
+            26,
+            60
+          ],
+          "req_lines_b": [
+            26,
+            60
+          ]
+        }
+      },
+      "Qp#1_vs_Fp#3": {
+        "text": [
+          {
+            "request": "long_prefill",
+            "identical": true,
+            "first_diff_char": null,
+            "first_diff_chunk": null
+          },
+          {
+            "request": "long_prefill_2",
+            "identical": true,
+            "first_diff_char": null,
+            "first_diff_chunk": null
+          }
+        ],
+        "logits": {
+          "compared": 86,
+          "len_a": 86,
+          "len_b": 86,
+          "identical": false,
+          "first_diff_line": 27,
+          "first_token_diff": null,
+          "first_logit_diff": 27,
+          "first_hidden_diff": 27,
+          "n_diff_lines": 59,
+          "first_a": "v4_logit tok=8740 logit=0x1.1d6c9ap+5 hidden=d7eab15f540d0df7",
+          "first_b": "v4_logit tok=8740 logit=0x1.1d679p+5 hidden=0c8dc5e5196c9c01",
+          "where_first_diff_line": {
+            "request": "long_prefill_2",
+            "token_index_in_request": 1
+          },
+          "where_first_token_diff": null,
+          "req_lines_a": [
+            26,
+            60
+          ],
+          "req_lines_b": [
+            26,
+            60
+          ]
+        }
+      },
+      "Qp#2_vs_Fp#1": {
+        "text": [
+          {
+            "request": "long_prefill",
+            "identical": true,
+            "first_diff_char": null,
+            "first_diff_chunk": null
+          },
+          {
+            "request": "long_prefill_2",
+            "identical": true,
+            "first_diff_char": null,
+            "first_diff_chunk": null
+          }
+        ],
+        "logits": {
+          "compared": 86,
+          "len_a": 86,
+          "len_b": 86,
+          "identical": false,
+          "first_diff_line": 27,
+          "first_token_diff": null,
+          "first_logit_diff": 27,
+          "first_hidden_diff": 27,
+          "n_diff_lines": 59,
+          "first_a": "v4_logit tok=8740 logit=0x1.1d6c9ap+5 hidden=d7eab15f540d0df7",
+          "first_b": "v4_logit tok=8740 logit=0x1.1d679p+5 hidden=0c8dc5e5196c9c01",
+          "where_first_diff_line": {
+            "request": "long_prefill_2",
+            "token_index_in_request": 1
+          },
+          "where_first_token_diff": null,
+          "req_lines_a": [
+            26,
+            60
+          ],
+          "req_lines_b": [
+            26,
+            60
+          ]
+        }
+      },
+      "Qp#2_vs_Fp#2": {
+        "text": [
+          {
+            "request": "long_prefill",
+            "identical": true,
+            "first_diff_char": null,
+            "first_diff_chunk": null
+          },
+          {
+            "request": "long_prefill_2",
+            "identical": true,
+            "first_diff_char": null,
+            "first_diff_chunk": null
+          }
+        ],
+        "logits": {
+          "compared": 86,
+          "len_a": 86,
+          "len_b": 86,
+          "identical": false,
+          "first_diff_line": 27,
+          "first_token_diff": null,
+          "first_logit_diff": 27,
+          "first_hidden_diff": 27,
+          "n_diff_lines": 59,
+          "first_a": "v4_logit tok=8740 logit=0x1.1d6c9ap+5 hidden=d7eab15f540d0df7",
+          "first_b": "v4_logit tok=8740 logit=0x1.1d679p+5 hidden=0c8dc5e5196c9c01",
+          "where_first_diff_line": {
+            "request": "long_prefill_2",
+            "token_index_in_request": 1
+          },
+          "where_first_token_diff": null,
+          "req_lines_a": [
+            26,
+            60
+          ],
+          "req_lines_b": [
+            26,
+            60
+          ]
+        }
+      },
+      "Qp#2_vs_Fp#3": {
+        "text": [
+          {
+            "request": "long_prefill",
+            "identical": true,
+            "first_diff_char": null,
+            "first_diff_chunk": null
+          },
+          {
+            "request": "long_prefill_2",
+            "identical": true,
+            "first_diff_char": null,
+            "first_diff_chunk": null
+          }
+        ],
+        "logits": {
+          "compared": 86,
+          "len_a": 86,
+          "len_b": 86,
+          "identical": false,
+          "first_diff_line": 27,
+          "first_token_diff": null,
+          "first_logit_diff": 27,
+          "first_hidden_diff": 27,
+          "n_diff_lines": 59,
+          "first_a": "v4_logit tok=8740 logit=0x1.1d6c9ap+5 hidden=d7eab15f540d0df7",
+          "first_b": "v4_logit tok=8740 logit=0x1.1d679p+5 hidden=0c8dc5e5196c9c01",
+          "where_first_diff_line": {
+            "request": "long_prefill_2",
+            "token_index_in_request": 1
+          },
+          "where_first_token_diff": null,
+          "req_lines_a": [
+            26,
+            60
+          ],
+          "req_lines_b": [
+            26,
+            60
+          ]
+        }
+      },
+      "Qp#3_vs_Fp#1": {
+        "text": [
+          {
+            "request": "long_prefill",
+            "identical": true,
+            "first_diff_char": null,
+            "first_diff_chunk": null
+          },
+          {
+            "request": "long_prefill_2",
+            "identical": false,
+            "first_diff_char": 100,
+            "first_diff_chunk": null
+          }
+        ],
+        "logits": {
+          "compared": 79,
+          "len_a": 79,
+          "len_b": 86,
+          "identical": false,
+          "first_diff_line": 27,
+          "first_token_diff": 69,
+          "first_logit_diff": 27,
+          "first_hidden_diff": 27,
+          "n_diff_lines": 52,
+          "first_a": "v4_logit tok=8740 logit=0x1.1b664cp+5 hidden=3070f9cbc3077cd2",
+          "first_b": "v4_logit tok=8740 logit=0x1.1d679p+5 hidden=0c8dc5e5196c9c01",
+          "where_first_diff_line": {
+            "request": "long_prefill_2",
+            "token_index_in_request": 1
+          },
+          "where_first_token_diff": {
+            "request": "long_prefill_2",
+            "token_index_in_request": 43
+          },
+          "req_lines_a": [
+            26,
+            53
+          ],
+          "req_lines_b": [
+            26,
+            60
+          ]
+        }
+      },
+      "Qp#3_vs_Fp#2": {
+        "text": [
+          {
+            "request": "long_prefill",
+            "identical": true,
+            "first_diff_char": null,
+            "first_diff_chunk": null
+          },
+          {
+            "request": "long_prefill_2",
+            "identical": false,
+            "first_diff_char": 100,
+            "first_diff_chunk": null
+          }
+        ],
+        "logits": {
+          "compared": 79,
+          "len_a": 79,
+          "len_b": 86,
+          "identical": false,
+          "first_diff_line": 27,
+          "first_token_diff": 69,
+          "first_logit_diff": 27,
+          "first_hidden_diff": 27,
+          "n_diff_lines": 52,
+          "first_a": "v4_logit tok=8740 logit=0x1.1b664cp+5 hidden=3070f9cbc3077cd2",
+          "first_b": "v4_logit tok=8740 logit=0x1.1d679p+5 hidden=0c8dc5e5196c9c01",
+          "where_first_diff_line": {
+            "request": "long_prefill_2",
+            "token_index_in_request": 1
+          },
+          "where_first_token_diff": {
+            "request": "long_prefill_2",
+            "token_index_in_request": 43
+          },
+          "req_lines_a": [
+            26,
+            53
+          ],
+          "req_lines_b": [
+            26,
+            60
+          ]
+        }
+      },
+      "Qp#3_vs_Fp#3": {
+        "text": [
+          {
+            "request": "long_prefill",
+            "identical": true,
+            "first_diff_char": null,
+            "first_diff_chunk": null
+          },
+          {
+            "request": "long_prefill_2",
+            "identical": false,
+            "first_diff_char": 100,
+            "first_diff_chunk": null
+          }
+        ],
+        "logits": {
+          "compared": 79,
+          "len_a": 79,
+          "len_b": 86,
+          "identical": false,
+          "first_diff_line": 27,
+          "first_token_diff": 69,
+          "first_logit_diff": 27,
+          "first_hidden_diff": 27,
+          "n_diff_lines": 52,
+          "first_a": "v4_logit tok=8740 logit=0x1.1b664cp+5 hidden=3070f9cbc3077cd2",
+          "first_b": "v4_logit tok=8740 logit=0x1.1d679p+5 hidden=0c8dc5e5196c9c01",
+          "where_first_diff_line": {
+            "request": "long_prefill_2",
+            "token_index_in_request": 1
+          },
+          "where_first_token_diff": {
+            "request": "long_prefill_2",
+            "token_index_in_request": 43
+          },
+          "req_lines_a": [
+            26,
+            53
+          ],
+          "req_lines_b": [
+            26,
+            60
+          ]
+        }
+      }
+    }
+  },
+  "phase2_verdict": {
+    "per_build": {
+      "dev": {
+        "n": 5,
+        "n_probe": 3,
+        "distinct_text_sha256": [
+          {
+            "sha256": [
+              "3adbb4b30090b79351b60a309ee1f3d2306bdcc596ca412d79addd66339864f6"
+            ],
+            "samples": [
+              "Dp#1",
+              "Dp#2",
+              "D#1",
+              "Dp#3",
+              "D#2"
+            ]
+          }
+        ],
+        "n_distinct_texts": 1,
+        "distinct_logit_seq_sha256": [
+          {
+            "sha256": "790d5251e473c2e699dd57e4133107e329e69ea1aa00795cd1f379c2827fdeda",
+            "samples": [
+              "Dp#1",
+              "Dp#2",
+              "Dp#3"
+            ]
+          }
+        ],
+        "n_distinct_logit_seqs": 1,
+        "any_text_diff": false,
+        "any_logit_diff": false,
+        "bit_identical": true,
+        "pairs": {
+          "Dp#1_vs_Dp#2": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 166,
+              "len_a": 166,
+              "len_b": 166,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                166
+              ],
+              "req_lines_b": [
+                166
+              ]
+            }
+          },
+          "Dp#1_vs_D#1": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ]
+          },
+          "Dp#1_vs_Dp#3": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 166,
+              "len_a": 166,
+              "len_b": 166,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                166
+              ],
+              "req_lines_b": [
+                166
+              ]
+            }
+          },
+          "Dp#1_vs_D#2": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ]
+          },
+          "Dp#2_vs_D#1": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ]
+          },
+          "Dp#2_vs_Dp#3": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 166,
+              "len_a": 166,
+              "len_b": 166,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                166
+              ],
+              "req_lines_b": [
+                166
+              ]
+            }
+          },
+          "Dp#2_vs_D#2": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ]
+          },
+          "D#1_vs_Dp#3": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ]
+          },
+          "D#1_vs_D#2": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ]
+          },
+          "Dp#3_vs_D#2": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ]
+          }
+        },
+        "tok_s": {
+          "mean": 1.7664,
+          "stdev": 0.006,
+          "median": 1.7636,
+          "min": 1.7598,
+          "max": 1.773,
+          "n": 5
+        },
+        "ttft_s": {
+          "mean": 224.2624,
+          "stdev": 0.3674,
+          "median": 224.2,
+          "min": 223.916,
+          "max": 224.729,
+          "n": 5
+        },
+        "wall_s": {
+          "mean": 323.4,
+          "stdev": 0.5477,
+          "median": 323,
+          "min": 323,
+          "max": 324,
+          "n": 5
+        },
+        "gpu0_max_mib": {
+          "mean": 7516.4,
+          "stdev": 45.6158,
+          "median": 7496,
+          "min": 7496,
+          "max": 7598,
+          "n": 5
+        }
+      },
+      "dev+h2d": {
+        "n": 5,
+        "n_probe": 3,
+        "distinct_text_sha256": [
+          {
+            "sha256": [
+              "3adbb4b30090b79351b60a309ee1f3d2306bdcc596ca412d79addd66339864f6"
+            ],
+            "samples": [
+              "Hp#1",
+              "Hp#2",
+              "H#1",
+              "Hp#3",
+              "H#2"
+            ]
+          }
+        ],
+        "n_distinct_texts": 1,
+        "distinct_logit_seq_sha256": [
+          {
+            "sha256": "790d5251e473c2e699dd57e4133107e329e69ea1aa00795cd1f379c2827fdeda",
+            "samples": [
+              "Hp#1",
+              "Hp#2",
+              "Hp#3"
+            ]
+          }
+        ],
+        "n_distinct_logit_seqs": 1,
+        "any_text_diff": false,
+        "any_logit_diff": false,
+        "bit_identical": true,
+        "pairs": {
+          "Hp#1_vs_Hp#2": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 166,
+              "len_a": 166,
+              "len_b": 166,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                166
+              ],
+              "req_lines_b": [
+                166
+              ]
+            }
+          },
+          "Hp#1_vs_H#1": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ]
+          },
+          "Hp#1_vs_Hp#3": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 166,
+              "len_a": 166,
+              "len_b": 166,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                166
+              ],
+              "req_lines_b": [
+                166
+              ]
+            }
+          },
+          "Hp#1_vs_H#2": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ]
+          },
+          "Hp#2_vs_H#1": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ]
+          },
+          "Hp#2_vs_Hp#3": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 166,
+              "len_a": 166,
+              "len_b": 166,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                166
+              ],
+              "req_lines_b": [
+                166
+              ]
+            }
+          },
+          "Hp#2_vs_H#2": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ]
+          },
+          "H#1_vs_Hp#3": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ]
+          },
+          "H#1_vs_H#2": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ]
+          },
+          "Hp#3_vs_H#2": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ]
+          }
+        },
+        "tok_s": {
+          "mean": 1.8337,
+          "stdev": 0.0065,
+          "median": 1.8302,
+          "min": 1.8275,
+          "max": 1.8409,
+          "n": 5
+        },
+        "ttft_s": {
+          "mean": 223.9784,
+          "stdev": 0.2561,
+          "median": 224.066,
+          "min": 223.649,
+          "max": 224.271,
+          "n": 5
+        },
+        "wall_s": {
+          "mean": 319.4,
+          "stdev": 0.5477,
+          "median": 319,
+          "min": 319,
+          "max": 320,
+          "n": 5
+        },
+        "gpu0_max_mib": {
+          "mean": 7496,
+          "stdev": 0.0,
+          "median": 7496,
+          "min": 7496,
+          "max": 7496,
+          "n": 5
+        }
+      },
+      "pr0": {
+        "n": 5,
+        "n_probe": 3,
+        "distinct_text_sha256": [
+          {
+            "sha256": [
+              "3adbb4b30090b79351b60a309ee1f3d2306bdcc596ca412d79addd66339864f6"
+            ],
+            "samples": [
+              "Zp#1",
+              "Zp#2",
+              "Z#1",
+              "Zp#3",
+              "Z#2"
+            ]
+          }
+        ],
+        "n_distinct_texts": 1,
+        "distinct_logit_seq_sha256": [
+          {
+            "sha256": "790d5251e473c2e699dd57e4133107e329e69ea1aa00795cd1f379c2827fdeda",
+            "samples": [
+              "Zp#1",
+              "Zp#2",
+              "Zp#3"
+            ]
+          }
+        ],
+        "n_distinct_logit_seqs": 1,
+        "any_text_diff": false,
+        "any_logit_diff": false,
+        "bit_identical": true,
+        "pairs": {
+          "Zp#1_vs_Zp#2": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 166,
+              "len_a": 166,
+              "len_b": 166,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                166
+              ],
+              "req_lines_b": [
+                166
+              ]
+            }
+          },
+          "Zp#1_vs_Z#1": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ]
+          },
+          "Zp#1_vs_Zp#3": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 166,
+              "len_a": 166,
+              "len_b": 166,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                166
+              ],
+              "req_lines_b": [
+                166
+              ]
+            }
+          },
+          "Zp#1_vs_Z#2": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ]
+          },
+          "Zp#2_vs_Z#1": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ]
+          },
+          "Zp#2_vs_Zp#3": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 166,
+              "len_a": 166,
+              "len_b": 166,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                166
+              ],
+              "req_lines_b": [
+                166
+              ]
+            }
+          },
+          "Zp#2_vs_Z#2": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ]
+          },
+          "Z#1_vs_Zp#3": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ]
+          },
+          "Z#1_vs_Z#2": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ]
+          },
+          "Zp#3_vs_Z#2": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ]
+          }
+        },
+        "tok_s": {
+          "mean": 1.835,
+          "stdev": 0.0084,
+          "median": 1.8402,
+          "min": 1.8258,
+          "max": 1.8421,
+          "n": 5
+        },
+        "ttft_s": {
+          "mean": 224.0552,
+          "stdev": 0.335,
+          "median": 224.088,
+          "min": 223.683,
+          "max": 224.524,
+          "n": 5
+        },
+        "wall_s": {
+          "mean": 319.6,
+          "stdev": 0.8944,
+          "median": 319,
+          "min": 319,
+          "max": 321,
+          "n": 5
+        },
+        "gpu0_max_mib": {
+          "mean": 7496,
+          "stdev": 0.0,
+          "median": 7496,
+          "min": 7496,
+          "max": 7496,
+          "n": 5
+        }
+      }
+    },
+    "cross_build": {
+      "Dp_vs_Hp": {
+        "all_texts_identical": true,
+        "all_logits_identical": true,
+        "pairs": {
+          "Dp#1_vs_Hp#1": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 166,
+              "len_a": 166,
+              "len_b": 166,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                166
+              ],
+              "req_lines_b": [
+                166
+              ]
+            }
+          },
+          "Dp#1_vs_Hp#2": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 166,
+              "len_a": 166,
+              "len_b": 166,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                166
+              ],
+              "req_lines_b": [
+                166
+              ]
+            }
+          },
+          "Dp#1_vs_Hp#3": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 166,
+              "len_a": 166,
+              "len_b": 166,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                166
+              ],
+              "req_lines_b": [
+                166
+              ]
+            }
+          },
+          "Dp#2_vs_Hp#1": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 166,
+              "len_a": 166,
+              "len_b": 166,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                166
+              ],
+              "req_lines_b": [
+                166
+              ]
+            }
+          },
+          "Dp#2_vs_Hp#2": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 166,
+              "len_a": 166,
+              "len_b": 166,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                166
+              ],
+              "req_lines_b": [
+                166
+              ]
+            }
+          },
+          "Dp#2_vs_Hp#3": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 166,
+              "len_a": 166,
+              "len_b": 166,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                166
+              ],
+              "req_lines_b": [
+                166
+              ]
+            }
+          },
+          "Dp#3_vs_Hp#1": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 166,
+              "len_a": 166,
+              "len_b": 166,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                166
+              ],
+              "req_lines_b": [
+                166
+              ]
+            }
+          },
+          "Dp#3_vs_Hp#2": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 166,
+              "len_a": 166,
+              "len_b": 166,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                166
+              ],
+              "req_lines_b": [
+                166
+              ]
+            }
+          },
+          "Dp#3_vs_Hp#3": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 166,
+              "len_a": 166,
+              "len_b": 166,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                166
+              ],
+              "req_lines_b": [
+                166
+              ]
+            }
+          }
+        }
+      },
+      "Hp_vs_Zp": {
+        "all_texts_identical": true,
+        "all_logits_identical": true,
+        "pairs": {
+          "Hp#1_vs_Zp#1": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 166,
+              "len_a": 166,
+              "len_b": 166,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                166
+              ],
+              "req_lines_b": [
+                166
+              ]
+            }
+          },
+          "Hp#1_vs_Zp#2": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 166,
+              "len_a": 166,
+              "len_b": 166,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                166
+              ],
+              "req_lines_b": [
+                166
+              ]
+            }
+          },
+          "Hp#1_vs_Zp#3": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 166,
+              "len_a": 166,
+              "len_b": 166,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                166
+              ],
+              "req_lines_b": [
+                166
+              ]
+            }
+          },
+          "Hp#2_vs_Zp#1": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 166,
+              "len_a": 166,
+              "len_b": 166,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                166
+              ],
+              "req_lines_b": [
+                166
+              ]
+            }
+          },
+          "Hp#2_vs_Zp#2": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 166,
+              "len_a": 166,
+              "len_b": 166,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                166
+              ],
+              "req_lines_b": [
+                166
+              ]
+            }
+          },
+          "Hp#2_vs_Zp#3": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 166,
+              "len_a": 166,
+              "len_b": 166,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                166
+              ],
+              "req_lines_b": [
+                166
+              ]
+            }
+          },
+          "Hp#3_vs_Zp#1": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 166,
+              "len_a": 166,
+              "len_b": 166,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                166
+              ],
+              "req_lines_b": [
+                166
+              ]
+            }
+          },
+          "Hp#3_vs_Zp#2": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 166,
+              "len_a": 166,
+              "len_b": 166,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                166
+              ],
+              "req_lines_b": [
+                166
+              ]
+            }
+          },
+          "Hp#3_vs_Zp#3": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 166,
+              "len_a": 166,
+              "len_b": 166,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                166
+              ],
+              "req_lines_b": [
+                166
+              ]
+            }
+          }
+        }
+      },
+      "Dp_vs_Zp": {
+        "all_texts_identical": true,
+        "all_logits_identical": true,
+        "pairs": {
+          "Dp#1_vs_Zp#1": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 166,
+              "len_a": 166,
+              "len_b": 166,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                166
+              ],
+              "req_lines_b": [
+                166
+              ]
+            }
+          },
+          "Dp#1_vs_Zp#2": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 166,
+              "len_a": 166,
+              "len_b": 166,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                166
+              ],
+              "req_lines_b": [
+                166
+              ]
+            }
+          },
+          "Dp#1_vs_Zp#3": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 166,
+              "len_a": 166,
+              "len_b": 166,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                166
+              ],
+              "req_lines_b": [
+                166
+              ]
+            }
+          },
+          "Dp#2_vs_Zp#1": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 166,
+              "len_a": 166,
+              "len_b": 166,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                166
+              ],
+              "req_lines_b": [
+                166
+              ]
+            }
+          },
+          "Dp#2_vs_Zp#2": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 166,
+              "len_a": 166,
+              "len_b": 166,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                166
+              ],
+              "req_lines_b": [
+                166
+              ]
+            }
+          },
+          "Dp#2_vs_Zp#3": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 166,
+              "len_a": 166,
+              "len_b": 166,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                166
+              ],
+              "req_lines_b": [
+                166
+              ]
+            }
+          },
+          "Dp#3_vs_Zp#1": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 166,
+              "len_a": 166,
+              "len_b": 166,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                166
+              ],
+              "req_lines_b": [
+                166
+              ]
+            }
+          },
+          "Dp#3_vs_Zp#2": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 166,
+              "len_a": 166,
+              "len_b": 166,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                166
+              ],
+              "req_lines_b": [
+                166
+              ]
+            }
+          },
+          "Dp#3_vs_Zp#3": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ],
+            "logits": {
+              "compared": 166,
+              "len_a": 166,
+              "len_b": 166,
+              "identical": true,
+              "first_diff_line": null,
+              "first_token_diff": null,
+              "first_logit_diff": null,
+              "first_hidden_diff": null,
+              "n_diff_lines": 0,
+              "where_first_diff_line": null,
+              "where_first_token_diff": null,
+              "req_lines_a": [
+                166
+              ],
+              "req_lines_b": [
+                166
+              ]
+            }
+          }
+        }
+      },
+      "D_vs_H": {
+        "all_texts_identical": true,
+        "all_logits_identical": null,
+        "pairs": {
+          "D#1_vs_H#1": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ]
+          },
+          "D#1_vs_H#2": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ]
+          },
+          "D#2_vs_H#1": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ]
+          },
+          "D#2_vs_H#2": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ]
+          }
+        }
+      },
+      "H_vs_Z": {
+        "all_texts_identical": true,
+        "all_logits_identical": null,
+        "pairs": {
+          "H#1_vs_Z#1": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ]
+          },
+          "H#1_vs_Z#2": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ]
+          },
+          "H#2_vs_Z#1": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ]
+          },
+          "H#2_vs_Z#2": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ]
+          }
+        }
+      },
+      "D_vs_Z": {
+        "all_texts_identical": true,
+        "all_logits_identical": null,
+        "pairs": {
+          "D#1_vs_Z#1": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ]
+          },
+          "D#1_vs_Z#2": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ]
+          },
+          "D#2_vs_Z#1": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ]
+          },
+          "D#2_vs_Z#2": {
+            "text": [
+              {
+                "request": "race_long_166",
+                "identical": true,
+                "first_diff_char": null,
+                "first_diff_chunk": null
+              }
+            ]
+          }
+        }
+      },
+      "probe_prefix_vs_pilot": {
+        "reference": "P_L48#1",
+        "pilot_long_runs_identical_to_reference": true,
+        "per_sample": {
+          "Dp#1": {
+            "compared": 120,
+            "identical_prefix": true,
+            "text_prefix_identical": true
+          },
+          "Dp#2": {
+            "compared": 120,
+            "identical_prefix": true,
+            "text_prefix_identical": true
+          },
+          "Dp#3": {
+            "compared": 120,
+            "identical_prefix": true,
+            "text_prefix_identical": true
+          },
+          "Hp#1": {
+            "compared": 120,
+            "identical_prefix": true,
+            "text_prefix_identical": true
+          },
+          "Hp#2": {
+            "compared": 120,
+            "identical_prefix": true,
+            "text_prefix_identical": true
+          },
+          "Hp#3": {
+            "compared": 120,
+            "identical_prefix": true,
+            "text_prefix_identical": true
+          },
+          "Zp#1": {
+            "compared": 120,
+            "identical_prefix": true,
+            "text_prefix_identical": true
+          },
+          "Zp#2": {
+            "compared": 120,
+            "identical_prefix": true,
+            "text_prefix_identical": true
+          },
+          "Zp#3": {
+            "compared": 120,
+            "identical_prefix": true,
+            "text_prefix_identical": true
+          }
+        }
+      }
+    },
+    "dev_differs_among_its_runs": false,
+    "h_bit_identical_across_its_runs": true,
+    "z_bit_identical_across_its_runs": true,
+    "PASS": false,
+    "criterion": "dev differs among its own runs (text or per-token logit line) while H and Z are bit-identical across all of theirs (all texts equal, all probe logit lines equal)"
+  },
+  "phase3_verdict": {
+    "pre_fix_differs_among_its_runs": true,
+    "fix_bit_identical_across_its_runs": true,
+    "PASS": true,
+    "criterion": "pre-fix 48767c01 differs among its runs while fix a406901b is bit-identical across all of its runs"
+  },
+  "check_problems": {},
+  "evidence": {
+    "D": {
+      "uri": "evidence/race-arm-D.tgz",
+      "sha256": "db0e0c719ab6b0ce0aa8cf3d883fbdb3c514d2fc846607b085308042f559b0a9",
+      "contains": "race/D/s*/ (serve.log with the v4_logit lines on probe builds, bench.jsonl with full texts and per-chunk times, sample.txt, engine_environ.txt, procs.txt, nvsmi.csv, gpu_*.csv, mode.txt)",
+      "full_run": "race.tgz (sha256 in race.tgz.sha256): all groups, meta/ (host, trees, scripts, clients, probe diffs, build logs, llama before/after), run.log, summary.json, summary.txt; the run.log inside ends at the 'ALL DONE; packing' line (the 'packed <sha256>' line is appended after the archive)"
+    },
+    "Dp": {
+      "uri": "evidence/race-arm-Dp.tgz",
+      "sha256": "11755eefcf2f424c370a64bcff3f33c5c16339a0351d3dc61b7e55b46ac82e96",
+      "contains": "race/Dp/s*/ (serve.log with the v4_logit lines on probe builds, bench.jsonl with full texts and per-chunk times, sample.txt, engine_environ.txt, procs.txt, nvsmi.csv, gpu_*.csv, mode.txt)",
+      "full_run": "race.tgz (sha256 in race.tgz.sha256): all groups, meta/ (host, trees, scripts, clients, probe diffs, build logs, llama before/after), run.log, summary.json, summary.txt; the run.log inside ends at the 'ALL DONE; packing' line (the 'packed <sha256>' line is appended after the archive)"
+    },
+    "Fp": {
+      "uri": "evidence/race-arm-Fp.tgz",
+      "sha256": "ebccabfde0488e86d4f16210f66f9747979e229c93d829e8e6977e2bac5f6731",
+      "contains": "race/Fp/s*/ (serve.log with the v4_logit lines on probe builds, bench.jsonl with full texts and per-chunk times, sample.txt, engine_environ.txt, procs.txt, nvsmi.csv, gpu_*.csv, mode.txt)",
+      "full_run": "race.tgz (sha256 in race.tgz.sha256): all groups, meta/ (host, trees, scripts, clients, probe diffs, build logs, llama before/after), run.log, summary.json, summary.txt; the run.log inside ends at the 'ALL DONE; packing' line (the 'packed <sha256>' line is appended after the archive)"
+    },
+    "H": {
+      "uri": "evidence/race-arm-H.tgz",
+      "sha256": "1921bfda0c96456de1e9c9fa48aa2f872f46664f01ac1799001b7f15f716e3ea",
+      "contains": "race/H/s*/ (serve.log with the v4_logit lines on probe builds, bench.jsonl with full texts and per-chunk times, sample.txt, engine_environ.txt, procs.txt, nvsmi.csv, gpu_*.csv, mode.txt)",
+      "full_run": "race.tgz (sha256 in race.tgz.sha256): all groups, meta/ (host, trees, scripts, clients, probe diffs, build logs, llama before/after), run.log, summary.json, summary.txt; the run.log inside ends at the 'ALL DONE; packing' line (the 'packed <sha256>' line is appended after the archive)"
+    },
+    "Hp": {
+      "uri": "evidence/race-arm-Hp.tgz",
+      "sha256": "f7dcea605c30745aadb309cf1aedc1288caaa23b0e0ecb7a7db1936d38f3d1e6",
+      "contains": "race/Hp/s*/ (serve.log with the v4_logit lines on probe builds, bench.jsonl with full texts and per-chunk times, sample.txt, engine_environ.txt, procs.txt, nvsmi.csv, gpu_*.csv, mode.txt)",
+      "full_run": "race.tgz (sha256 in race.tgz.sha256): all groups, meta/ (host, trees, scripts, clients, probe diffs, build logs, llama before/after), run.log, summary.json, summary.txt; the run.log inside ends at the 'ALL DONE; packing' line (the 'packed <sha256>' line is appended after the archive)"
+    },
+    "Qp": {
+      "uri": "evidence/race-arm-Qp.tgz",
+      "sha256": "766c521da0e99323d6c58f6c144d204c20dc324b9fbb05edb7ea1e91fb4729d3",
+      "contains": "race/Qp/s*/ (serve.log with the v4_logit lines on probe builds, bench.jsonl with full texts and per-chunk times, sample.txt, engine_environ.txt, procs.txt, nvsmi.csv, gpu_*.csv, mode.txt)",
+      "full_run": "race.tgz (sha256 in race.tgz.sha256): all groups, meta/ (host, trees, scripts, clients, probe diffs, build logs, llama before/after), run.log, summary.json, summary.txt; the run.log inside ends at the 'ALL DONE; packing' line (the 'packed <sha256>' line is appended after the archive)"
+    },
+    "Z": {
+      "uri": "evidence/race-arm-Z.tgz",
+      "sha256": "3f9f6291a6c8572af789bb83a81224bb7ef138bfb1e53fba426056c5d4dea1d0",
+      "contains": "race/Z/s*/ (serve.log with the v4_logit lines on probe builds, bench.jsonl with full texts and per-chunk times, sample.txt, engine_environ.txt, procs.txt, nvsmi.csv, gpu_*.csv, mode.txt)",
+      "full_run": "race.tgz (sha256 in race.tgz.sha256): all groups, meta/ (host, trees, scripts, clients, probe diffs, build logs, llama before/after), run.log, summary.json, summary.txt; the run.log inside ends at the 'ALL DONE; packing' line (the 'packed <sha256>' line is appended after the archive)"
+    },
+    "Zp": {
+      "uri": "evidence/race-arm-Zp.tgz",
+      "sha256": "37b8e148c4322e6a1485a802bfaa27dcc337aa99ded100b8ed2b189b16f239c2",
+      "contains": "race/Zp/s*/ (serve.log with the v4_logit lines on probe builds, bench.jsonl with full texts and per-chunk times, sample.txt, engine_environ.txt, procs.txt, nvsmi.csv, gpu_*.csv, mode.txt)",
+      "full_run": "race.tgz (sha256 in race.tgz.sha256): all groups, meta/ (host, trees, scripts, clients, probe diffs, build logs, llama before/after), run.log, summary.json, summary.txt; the run.log inside ends at the 'ALL DONE; packing' line (the 'packed <sha256>' line is appended after the archive)"
+    },
+    "pilot": {
+      "uri": "evidence/race-pilot.tgz",
+      "sha256": "569cdb3c94f5d9394da3dd54bc964395e643972b934c0f0a1a018f0e65f45b03",
+      "contains": "race/P_L48/s*/, race/P_L8/s*/, race/P_Ldef/s*/, race/P_S192/s*/, race/P_S48/s*/, race/P_S8/s*/ (serve.log with the v4_logit lines on probe builds, bench.jsonl with full texts and per-chunk times, sample.txt, engine_environ.txt, procs.txt, nvsmi.csv, gpu_*.csv, mode.txt)",
+      "full_run": "race.tgz (sha256 in race.tgz.sha256): all groups, meta/ (host, trees, scripts, clients, probe diffs, build logs, llama before/after), run.log, summary.json, summary.txt; the run.log inside ends at the 'ALL DONE; packing' line (the 'packed <sha256>' line is appended after the archive)"
+    }
+  },
+  "host_journal": {
+    "uri": "evidence/race-host-journal.txt",
+    "sha256": "4e6cca295a0da5befd6e33305d0048227cf426c14d8ebbabdc12e82a554ec5ff",
+    "watchdog_runs_in_window": 28,
+    "watchdog_runs_after_restore": [
+      "04:59:46"
+    ],
+    "restarted_units_values": [
+      "[]"
+    ],
+    "watchdog_first": "02:39:36",
+    "watchdog_last": "04:54:46",
+    "watchdog_failed": 28,
+    "watchdog_finished_ok": [
+      "04:59:47"
+    ],
+    "watchdog_recovered_values": [
+      "false"
+    ],
+    "serve_unit_memory_peaks": [
+      "8.4G",
+      "14.6G",
+      "8.3G",
+      "7.5G",
+      "7.5G",
+      "7.5G",
+      "7.5G",
+      "7.3G",
+      "7.3G",
+      "7.3G",
+      "7.3G",
+      "7.3G",
+      "7.3G",
+      "7.3G",
+      "7.3G",
+      "7.4G",
+      "7.3G",
+      "7.3G",
+      "7.3G",
+      "7.3G",
+      "7.3G",
+      "7.3G",
+      "7.3G",
+      "7.3G",
+      "7.3G",
+      "7.3G",
+      "7.3G",
+      "7.3G",
+      "7.4G",
+      "7.3G",
+      "7.3G",
+      "7.3G",
+      "7.3G"
+    ]
+  },
+  "manifest": {
+    "name": "race-engine-dev-h2d.json",
+    "not_written_because": [],
+    "outcome": "improvement",
+    "speed_comparison": {
+      "dev_tok_s": [
+        1.7629,
+        1.7636,
+        1.773
+      ],
+      "h_tok_s": [
+        1.8406,
+        1.8409,
+        1.8275
+      ],
+      "dev_median": 1.7636,
+      "h_median": 1.8406,
+      "median_ratio": 1.0437,
+      "welch_h_vs_dev": {
+        "t": 12.72,
+        "df": 3.7,
+        "p_two_sided": 0.00036
+      },
+      "plain_build_tok_s": {
+        "D": [
+          1.7725,
+          1.7598
+        ],
+        "H": [
+          1.8292,
+          1.8302
+        ],
+        "Z": [
+          1.8402,
+          1.8258
+        ],
+        "Zp": [
+          1.8258,
+          1.8421,
+          1.841
+        ]
+      },
+      "no_change_threshold": "median ratio within 1% (0.99..1.01)"
+    }
+  }
+}

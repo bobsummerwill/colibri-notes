@@ -1,0 +1,116 @@
+== text identity
+  long_200: {'GB': ['59c44faffdb4', '59c44faffdb4', '59c44faffdb4'], 'CU': ['6382d9356284', '6382d9356284', '6382d9356284'], 'GR': ['59c44faffdb4', '59c44faffdb4', '59c44faffdb4']}
+  short_200: {'GB': ['69ff9de2df81', '69ff9de2df81', '69ff9de2df81'], 'CU': ['69ff9de2df81', '69ff9de2df81', '69ff9de2df81'], 'GR': ['69ff9de2df81', '69ff9de2df81', '69ff9de2df81']}
+  long_200 GB s1 first chunk differing from GB s1: None
+  long_200 GB s2 first chunk differing from GB s1: None
+  long_200 GB s3 first chunk differing from GB s1: None
+  long_200 CU s1 first chunk differing from GB s1: 0
+  long_200 CU s2 first chunk differing from GB s1: 0
+  long_200 CU s3 first chunk differing from GB s1: 0
+  long_200 GR s1 first chunk differing from GB s1: None
+  long_200 GR s2 first chunk differing from GB s1: None
+  long_200 GR s3 first chunk differing from GB s1: None
+
+== per-sample decode (client chunk rates; v4_serve_turn tok_s) and dec_moe deltas per request
+arm  s   req          tok/s  first24  after24 turn_tps |  calls   total  fetchw  attach    upl    gpu |  ms/upl   hit% mirrors
+GB   s1  long_200    2.5306   2.2139   2.5813    2.543 |   8557   49.21   15.39   21.65  18806   7.85 |   1.151   77.4  1095.9
+GB   s1  short_200   2.6601   2.7615   2.6467    2.673 |   8557   47.87   13.98   21.77  20189   7.84 |   1.078   83.2  1095.9
+GB   s2  long_200    2.5778   2.3893   2.6059    2.591 |   8557   47.71   14.32   21.21  18806   7.89 |   1.128   77.4  1095.9
+GB   s2  short_200   2.6649   2.7681   2.6513    2.678 |   8557   47.74   13.81   21.76  20189   7.86 |   1.078   83.2  1095.9
+GB   s3  long_200    2.5780    2.389   2.6063    2.591 |   8557   47.72   14.40   21.11  18806   7.89 |   1.123   77.4  1095.9
+GB   s3  short_200   2.6657   2.7657   2.6525    2.679 |   8557   47.76   13.91   21.66  20189   7.86 |   1.073   83.1  1095.9
+CU   s1  long_200    2.6885   2.4725   2.7212    2.702 |   8557   44.53   14.43   17.89  15725   7.89 |   1.138   61.3  1272.5
+CU   s1  short_200   2.7453   2.9087   2.7243    2.759 |   8557   45.65   14.10   19.41  18103   7.84 |   1.072   83.5  1272.5
+CU   s2  long_200    2.7014   2.5066   2.7305    2.715 |   8557   44.23   14.16   17.86  15725   7.88 |   1.136   61.3  1272.5
+CU   s2  short_200   2.7410   2.9075   2.7197    2.755 |   8557   45.73   14.17   19.41  18103   7.85 |   1.072   83.5  1272.5
+CU   s3  long_200    2.7123   2.5214   2.7407    2.726 |   8557   43.92   13.98   17.76  15725   7.89 |   1.129   61.3  1272.5
+CU   s3  short_200   2.7427   2.9133   2.7208    2.756 |   8557   45.65   14.09   19.39  18103   7.85 |   1.071   83.5  1272.5
+GR   s1  long_200    2.6365   2.4234   2.6687    2.650 |   8557   46.02   14.73   19.12  16897   7.89 |   1.132   77.4  1271.3
+GR   s1  short_200   2.7326    2.842   2.7183    2.746 |   8557   45.86   14.22   19.47  18154   7.85 |   1.072   83.2  1271.3
+GR   s2  long_200    2.6282   2.4091   2.6614    2.641 |   8557   46.19   14.79   19.20  16897   7.89 |   1.136   77.4  1271.3
+GR   s2  short_200   2.7323   2.8359   2.7186    2.746 |   8557   45.92   14.23   19.55  18154   7.85 |   1.077   83.2  1271.3
+GR   s3  long_200    2.6355   2.4294   2.6665    2.649 |   8557   46.05   14.76   19.10  16897   7.89 |   1.130   77.5  1271.3
+GR   s3  short_200   2.7365   2.8431   2.7225    2.750 |   8557   45.85   14.23   19.47  18154   7.85 |   1.072   83.2  1271.3
+
+== per-arm mean +- stdev (3 samples)
+metric                                                         GB                     CU                     GR     GB-GR     GR-CU     GB-CU
+long tok/s (all 199 intervals)                   2.5621 +- 0.0273       2.7007 +- 0.0119       2.6334 +- 0.0045   -0.0713   -0.0673   -0.1386
+long tok/s first 24                              2.3307 +- 0.1012       2.5002 +- 0.0251       2.4206 +- 0.0104   -0.0899   -0.0795   -0.1694
+long tok/s after 24                              2.5978 +- 0.0143       2.7308 +- 0.0098       2.6655 +- 0.0037   -0.0677   -0.0653   -0.1330
+long ttft s                                     85.0053 +- 0.1116     220.6137 +- 0.0995      85.1090 +- 0.0615   -0.1037 -135.5047 -135.6083
+long s/tok                                       0.3903 +- 0.0042       0.3703 +- 0.0016       0.3797 +- 0.0007    0.0106    0.0095    0.0201
+long dec_moe total s                            48.2133 +- 0.8632      44.2267 +- 0.3050      46.0867 +- 0.0907    2.1267    1.8600    3.9867
+long fetch_wait s                               14.7033 +- 0.5960      14.1900 +- 0.2265      14.7600 +- 0.0300   -0.0567    0.5700    0.5133
+long attach s                                   21.3233 +- 0.2873      17.8367 +- 0.0681      19.1400 +- 0.0529    2.1833    1.3033    3.4867
+long uploads                                 18806.0000 +- 0.0000   15725.0000 +- 0.0000   16897.0000 +- 0.0000 1909.0000 1172.0000 3081.0000
+long gpu s                                       7.8767 +- 0.0231       7.8867 +- 0.0058       7.8900 +- 0.0000   -0.0133    0.0033   -0.0100
+long dec_moe other s (total-fw-att-gpu)          4.3100 +- 0.0173       4.3133 +- 0.0208       4.2967 +- 0.0153    0.0133   -0.0167   -0.0033
+long attach ms/upload                            1.1339 +- 0.0153       1.1343 +- 0.0043       1.1327 +- 0.0031    0.0011   -0.0015   -0.0004
+long decprof attn s                             24.0750 +- 0.0538      24.0630 +- 0.0192      24.0877 +- 0.0293   -0.0127    0.0247    0.0120
+long decprof moe s                              48.0230 +- 0.8652      43.9803 +- 0.3020      45.9267 +- 0.0898    2.0963    1.9463    4.0427
+long decprof hc s                                1.1910 +- 0.0017       1.1990 +- 0.0149       1.1940 +- 0.0122   -0.0030   -0.0050   -0.0080
+long client decode s                            77.6757 +- 0.8324      73.6844 +- 0.3248      75.5669 +- 0.1313    2.1087    1.8825    3.9913
+long mirrors (VRAM est)                       1095.9000 +- 0.0000    1272.5000 +- 0.0000    1271.3000 +- 0.0000 -175.4000   -1.2000 -176.6000
+long VRAM0 decode max MiB                    21322.0000 +- 0.0000   23562.0000 +- 0.0000   23558.0000 +- 0.0000 -2236.0000   -4.0000 -2240.0000
+short tok/s                                      2.6636 +- 0.0030       2.7430 +- 0.0022       2.7338 +- 0.0023   -0.0702   -0.0092   -0.0794
+short s/tok                                      0.3754 +- 0.0004       0.3646 +- 0.0003       0.3658 +- 0.0003    0.0096    0.0012    0.0109
+short dec_moe total s                           47.7900 +- 0.0700      45.6767 +- 0.0462      45.8767 +- 0.0379    1.9133    0.2000    2.1133
+short fetch_wait s                              13.9000 +- 0.0854      14.1200 +- 0.0436      14.2267 +- 0.0058   -0.3267    0.1067   -0.2200
+short attach s                                  21.7300 +- 0.0608      19.4033 +- 0.0115      19.4967 +- 0.0462    2.2333    0.0933    2.3267
+short uploads                                20189.0000 +- 0.0000   18103.0000 +- 0.0000   18154.0000 +- 0.0000 2035.0000   51.0000 2086.0000
+short gpu s                                      7.8533 +- 0.0115       7.8467 +- 0.0058       7.8500 +- 0.0000    0.0033    0.0033    0.0067
+short attach ms/upload                           1.0763 +- 0.0030       1.0718 +- 0.0006       1.0740 +- 0.0025    0.0024    0.0021    0.0045
+short decprof attn s                            21.6657 +- 0.0117      21.6177 +- 0.0224      21.6520 +- 0.0274    0.0137    0.0343    0.0480
+short decprof moe s                             47.7207 +- 0.0751      45.6703 +- 0.0448      45.7863 +- 0.0370    1.9343    0.1160    2.0503
+
+== per-token-window profile of the long answer (mean over samples): client interval ms / decprof moe ms / decprof attn ms
+   window = decode token index (interval k = chunk k-1 -> chunk k; decprof row k = the forward producing chunk k)
+  tok   1- 10  GB  484.1/ 335.0/ 122.5 | CU  459.1/ 310.6/ 122.0 | GR  467.5/ 318.8/ 122.2 | GB-GR  +16.5  GR-CU   +8.5 ms/tok (interval)
+  tok  11- 24  GB  390.7/ 241.9/ 122.3 | CU  357.8/ 209.4/ 122.0 | GR  374.3/ 225.7/ 122.1 | GB-GR  +16.4  GR-CU  +16.4 ms/tok (interval)
+  tok  25- 50  GB  407.7/ 259.3/ 121.8 | CU  418.4/ 268.9/ 122.3 | GR  397.9/ 249.3/ 122.0 | GB-GR   +9.8  GR-CU  -20.5 ms/tok (interval)
+  tok  51-100  GB  403.5/ 255.4/ 121.6 | CU  341.2/ 193.7/ 121.2 | GR  393.7/ 245.5/ 121.7 | GB-GR   +9.8  GR-CU  +52.5 ms/tok (interval)
+  tok 101-199  GB  369.6/ 222.2/ 121.3 | CU  365.1/ 217.0/ 121.4 | GR  359.8/ 212.5/ 121.4 | GB-GR   +9.8  GR-CU   -5.3 ms/tok (interval)
+
+== cumulative gap of the long answer (client time, mean over samples), s
+  first  10 intervals: GB    4.84 GR    4.68 CU    4.59 | GB-GR  +0.17  GR-CU  +0.08  GB-CU  +0.25
+  first  24 intervals: GB   10.31 GR    9.91 CU    9.60 | GB-GR  +0.40  GR-CU  +0.31  GB-CU  +0.71
+  first  50 intervals: GB   20.91 GR   20.26 CU   20.48 | GB-GR  +0.65  GR-CU  -0.22  GB-CU  +0.43
+  first 100 intervals: GB   41.09 GR   39.95 CU   37.54 | GB-GR  +1.14  GR-CU  +2.41  GB-CU  +3.55
+  first 150 intervals: GB   60.52 GR   58.91 CU   55.52 | GB-GR  +1.61  GR-CU  +3.39  GB-CU  +4.99
+  first 199 intervals: GB   77.68 GR   75.57 CU   73.68 | GB-GR  +2.11  GR-CU  +1.88  GB-CU  +3.99
+  same for decprof moe (s):
+  first  10 tokens: GB    3.35 GR    3.19 CU    3.11 | GB-GR  +0.16  GR-CU  +0.08  GB-CU  +0.24
+  first  24 tokens: GB    6.74 GR    6.35 CU    6.04 | GB-GR  +0.39  GR-CU  +0.31  GB-CU  +0.70
+  first  50 tokens: GB   13.48 GR   12.83 CU   13.03 | GB-GR  +0.65  GR-CU  -0.20  GB-CU  +0.45
+  first 100 tokens: GB   26.25 GR   25.10 CU   22.71 | GB-GR  +1.14  GR-CU  +2.39  GB-CU  +3.54
+  first 150 tokens: GB   38.28 GR   36.67 CU   33.31 | GB-GR  +1.61  GR-CU  +3.36  GB-CU  +4.98
+  first 199 tokens: GB   48.02 GR   45.93 CU   43.98 | GB-GR  +2.10  GR-CU  +1.95  GB-CU  +4.04
+
+== short answer profile (identical text in every arm)
+  tok   1- 10  GB  378.4/ 249.2 | CU  357.0/ 234.8 | GR  370.3/ 238.5 | GB-GR   +8.0  GR-CU  +13.3
+  tok  11- 24  GB  349.7/ 215.8 | CU  334.1/ 200.0 | GR  339.0/ 205.4 | GB-GR  +10.7  GR-CU   +4.9
+  tok  25- 50  GB  376.4/ 242.3 | CU  369.7/ 236.3 | GR  371.2/ 236.9 | GB-GR   +5.3  GR-CU   +1.5
+  tok  51-100  GB  377.1/ 243.3 | CU  366.8/ 233.2 | GR  367.2/ 233.4 | GB-GR   +9.9  GR-CU   +0.4
+  tok 101-199  GB  377.7/ 239.9 | CU  367.2/ 229.5 | GR  367.0/ 229.2 | GB-GR  +10.7  GR-CU   -0.2
+
+== VRAM GPU0: ready / prefill median / decode plateau / seconds from first token to 98% of plateau
+  GB s1 ready=7220 prefill_med=9032 prefill_max=9054 last_before_decode=7370 plateau=21322 t98=5.0s mirrors_est=1095.9 modes=['v4_gpu mirror-reserve=3100MiB (132-slot bank 1683MiB x1 + 600MiB headroom + 64 mirrors; DS', 'v4_gpu moe-batch=on bank=132-experts']
+  GB s2 ready=7220 prefill_med=9032 prefill_max=9054 last_before_decode=7370 plateau=21322 t98=5.0s mirrors_est=1095.9 modes=['v4_gpu mirror-reserve=3100MiB (132-slot bank 1683MiB x1 + 600MiB headroom + 64 mirrors; DS', 'v4_gpu moe-batch=on bank=132-experts']
+  GB s3 ready=7220 prefill_med=9032 prefill_max=9054 last_before_decode=9054 plateau=21322 t98=4.8s mirrors_est=1095.9 modes=['v4_gpu mirror-reserve=3100MiB (132-slot bank 1683MiB x1 + 600MiB headroom + 64 mirrors; DS', 'v4_gpu moe-batch=on bank=132-experts']
+  CU s1 ready=7220 prefill_med=7338.0 prefill_max=7374 last_before_decode=7360 plateau=23562 t98=6.3s mirrors_est=1272.5 modes=[]
+  CU s2 ready=7220 prefill_med=7338.0 prefill_max=7360 last_before_decode=7360 plateau=23562 t98=5.4s mirrors_est=1272.5 modes=[]
+  CU s3 ready=7220 prefill_med=7338.0 prefill_max=7360 last_before_decode=7360 plateau=23562 t98=6.3s mirrors_est=1272.5 modes=[]
+  GR s1 ready=7220 prefill_med=9032 prefill_max=9054 last_before_decode=9054 plateau=23558 t98=5.9s mirrors_est=1271.3 modes=['v4_gpu moe-batch=on bank=132-experts']
+  GR s2 ready=7220 prefill_med=9032 prefill_max=9054 last_before_decode=9054 plateau=23558 t98=5.8s mirrors_est=1271.3 modes=['v4_gpu moe-batch=on bank=132-experts']
+  GR s3 ready=7220 prefill_med=9032 prefill_max=9054 last_before_decode=9054 plateau=23558 t98=5.9s mirrors_est=1271.3 modes=['v4_gpu moe-batch=on bank=132-experts']
+
+== problems
+  GB s1 seq=1: ok
+  GB s2 seq=6: ok
+  GB s3 seq=8: ok
+  CU s1 seq=2: ok
+  CU s2 seq=4: ok
+  CU s3 seq=9: ok
+  GR s1 seq=3: ok
+  GR s2 seq=5: ok
+  GR s3 seq=7: ok

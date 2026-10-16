@@ -1,0 +1,236 @@
+{
+  "version": 1,
+  "hypothesis": "With the mirror reserve held at 600 MiB, the prefill path (GPU bank vs CPU union) of the preceding long prompt does not change the following short-prompt decode",
+  "commit": "d0e19de23c3baf314ee932347c42d5f6d49ef4fb",
+  "model": "DeepSeek V4 Flash REAP 150B (puwaer/DeepSeek-V4-Flash-0731-reap-150b, 132 routed experts, fp4 experts / fp8 dense), colibri safetensors layout, 79 GiB on disk",
+  "command": "build: cd c && make -f Makefile.deepseek-v4 deepseek-v4 CUDA=1 CUDA_HOME=/usr NVCC=/usr/bin/nvcc CUDA_ARCH=sm_86 NO_TC=1 -j8; run: python3 c/coli serve --model <REAP dir> --ram 40 --ctx 8192 --host 127.0.0.1 --port 8090, server environment exactly PATH/HOME/USER/LOGNAME/LANG + the config's env keys (env -i); one freshly started server process per sample; 3 samples per arm (GB, CU, GR) interleaved with the order rotated per round (GB CU GR / CU GR GB / GR GB CU); client bench_f42.py sends long_200 (bench_pr1.py's 1,992-token filler + a closing question asking for a long answer, 2041 prompt tokens, max_tokens 200) and then short_200 (bench_decode.py prompt 0, 33 tokens, max_tokens 200) to the same server, streamed, greedy; tok_s = short_200 decode rate (chunks - 1) / (last chunk time - first chunk time) = 199 / decode seconds; baseline arm CU, trial arm GR",
+  "prompt_hash": "b4f45ed8908d379e301640f75f59320b5bc60800845d38c57dcf2da29323639d",
+  "hardware": {
+    "cpu": "AMD Ryzen 9 9950X3D, 16 cores / 32 threads, 1 socket, governor powersave (amd-pstate), max 5.76 GHz (engine: 16 OpenMP compute threads + 3 expert-loader lanes)",
+    "ram": "62 GiB DDR5 (8 GiB swap, 3.0 GiB of it in use by other processes); engine --ram 40 (31.6 GiB routed-expert RAM cache, 6.2 GiB dense resident); MemAvailable 48.0 GiB (49114 MiB) at preflight with llama.cpp still loaded",
+    "storage": "WD_BLACK SN850X 4 TB NVMe (PCIe 4.0), ext4 root filesystem (rw,relatime), model read with O_DIRECT (v4_ssd_io mode=direct-aligned); OS page cache not dropped between samples. It warmed through the run: the serve unit's systemd memory peak fell from 14.6G (GB s1, CU s1) to 7.9-8.0G in round 3 (evidence/f42-host-journal.txt, stats.json samples.*.serve_unit_memory_peak_gib)",
+    "os": "Ubuntu 24.04.4 LTS, kernel 7.0.0-34-generic, gcc 13.3.0, Python 3.12.3, CUDA toolkit 12.0.140 (generic build CUDA_ARCH=sm_86 NO_TC=1), NVIDIA driver 595.84; 2x NVIDIA GeForce RTX 3090 24 GB on PCIe 4.0 x8 (x16-capable), NVLink NV4 bridge; GPU0 only (COLI_GPU=0 DSV4_CUDA_DEVICE=0), GPU1 idle"
+  },
+  "warmup_runs": 1,
+  "changed_variables": [
+    "COLI_CUDA_MOE_BATCH",
+    "DSV4_CUDA_VRAM_RESERVE_MB"
+  ],
+  "baseline": {
+    "config": {
+      "COLI_CUDA": "1",
+      "COLI_GPU": "0",
+      "DSV4_CUDA_DEVICE": "0",
+      "CUDA_DENSE": "1",
+      "COLI_CUDA_PIPE": "2",
+      "COLI_CUDA_ATTN_BATCH": "1",
+      "V4_MOE_REFILL_GROUP": "12",
+      "V4_LOADER_LANES": "3",
+      "V4_PREFIX_CKPT_DISK": "0",
+      "V4_SERVE_STATS_LOG": "1",
+      "DSV4_DECODE_PROF": "1",
+      "COLI_CUDA_MOE_DOUBLE": "unset (default 0)",
+      "ram_gib": "40",
+      "ctx": "8192",
+      "temperature": "0 (greedy)",
+      "engine_commit": "d0e19de23c3baf314ee932347c42d5f6d49ef4fb",
+      "COLI_CUDA_MOE_BATCH": "0",
+      "DSV4_CUDA_VRAM_RESERVE_MB": "unset"
+    },
+    "engine": {
+      "commit": "d0e19de23c3baf314ee932347c42d5f6d49ef4fb",
+      "binary_sha256": "63a667bac98a95daffc42428f0a82a1fd5051588047b524d8f8b1c564a20b926"
+    },
+    "effective_mirror_reserve": "600 MiB: no bank wanted, so the default is the headroom only (no mirror-reserve line)",
+    "samples": {
+      "tok_s": [
+        2.7453,
+        2.741,
+        2.7427
+      ],
+      "tok_s_mean": 2.743,
+      "tok_s_stdev": 0.0022,
+      "sample_dirs": [
+        "CU/s1",
+        "CU/s2",
+        "CU/s3"
+      ],
+      "run_order_seq": [
+        2,
+        4,
+        9
+      ],
+      "text_sha256": [
+        "69ff9de2df81b48a077b524562a934a85e9faaf327361f42a8e9efc6afc4c97c",
+        "69ff9de2df81b48a077b524562a934a85e9faaf327361f42a8e9efc6afc4c97c",
+        "69ff9de2df81b48a077b524562a934a85e9faaf327361f42a8e9efc6afc4c97c"
+      ],
+      "dec_moe": [
+        {
+          "calls": 8557.0,
+          "total_s": 45.65,
+          "fetch_wait_s": 14.1,
+          "attach_s": 19.41,
+          "uploads": 18103.0,
+          "gpu_s": 7.84
+        },
+        {
+          "calls": 8557.0,
+          "total_s": 45.73,
+          "fetch_wait_s": 14.17,
+          "attach_s": 19.41,
+          "uploads": 18103.0,
+          "gpu_s": 7.85
+        },
+        {
+          "calls": 8557.0,
+          "total_s": 45.65,
+          "fetch_wait_s": 14.09,
+          "attach_s": 19.39,
+          "uploads": 18103.0,
+          "gpu_s": 7.85
+        }
+      ],
+      "mirrors_est": [
+        1272.5,
+        1272.5,
+        1272.5
+      ],
+      "vram0_decode_max_mib": [
+        23562,
+        23562,
+        23562
+      ],
+      "serve_unit_memory_peak_gib": [
+        null,
+        null,
+        null
+      ]
+    },
+    "median_tok_s": 2.7427,
+    "quality": {
+      "method": "greedy: the full output text of short_200 has the same sha256 (69ff9de2df81b48a) in all 3 samples of this arm and of the other arm of this record; plus the engine's real environment (/proc/<pid>/environ), tree SHA, binary sha256, client exit code, the mode lines of serve.log (moe-batch=on bank=132-experts / mirror-reserve) and 200 chunks with finish_reason length checked per sample (final_tools.py f42_sample: no problems)",
+      "passed": true,
+      "problems": []
+    },
+    "evidence": {
+      "uri": "evidence/f42-arm-CU.tgz",
+      "sha256": "9ca4f0947dbd0a41798ec357002f690924a0d42d0489ada8780feca1b11aa56e",
+      "contains": "f42/CU/s*/ (serve.log with v4_serve_turn / v4_dec_moe / decprof lines, bench.jsonl with full texts and per-chunk times, sample.txt, engine_environ.txt, procs.txt, nvsmi.csv at 1 s, gpu_*.csv, mode.txt)",
+      "full_run": "f42.tgz (sha256 in f42.tgz.sha256): all arms, meta/ (host, trees, scripts, clients, llama before/after), run.log, summary.json, summary.txt"
+    }
+  },
+  "trial": {
+    "config": {
+      "COLI_CUDA": "1",
+      "COLI_GPU": "0",
+      "DSV4_CUDA_DEVICE": "0",
+      "CUDA_DENSE": "1",
+      "COLI_CUDA_PIPE": "2",
+      "COLI_CUDA_ATTN_BATCH": "1",
+      "V4_MOE_REFILL_GROUP": "12",
+      "V4_LOADER_LANES": "3",
+      "V4_PREFIX_CKPT_DISK": "0",
+      "V4_SERVE_STATS_LOG": "1",
+      "DSV4_DECODE_PROF": "1",
+      "COLI_CUDA_MOE_DOUBLE": "unset (default 0)",
+      "ram_gib": "40",
+      "ctx": "8192",
+      "temperature": "0 (greedy)",
+      "engine_commit": "d0e19de23c3baf314ee932347c42d5f6d49ef4fb",
+      "COLI_CUDA_MOE_BATCH": "1",
+      "DSV4_CUDA_VRAM_RESERVE_MB": "600"
+    },
+    "engine": {
+      "commit": "d0e19de23c3baf314ee932347c42d5f6d49ef4fb",
+      "binary_sha256": "63a667bac98a95daffc42428f0a82a1fd5051588047b524d8f8b1c564a20b926"
+    },
+    "effective_mirror_reserve": "600 MiB: explicit DSV4_CUDA_VRAM_RESERVE_MB (no mirror-reserve line)",
+    "samples": {
+      "tok_s": [
+        2.7326,
+        2.7323,
+        2.7365
+      ],
+      "tok_s_mean": 2.7338,
+      "tok_s_stdev": 0.0023,
+      "sample_dirs": [
+        "GR/s1",
+        "GR/s2",
+        "GR/s3"
+      ],
+      "run_order_seq": [
+        3,
+        5,
+        7
+      ],
+      "text_sha256": [
+        "69ff9de2df81b48a077b524562a934a85e9faaf327361f42a8e9efc6afc4c97c",
+        "69ff9de2df81b48a077b524562a934a85e9faaf327361f42a8e9efc6afc4c97c",
+        "69ff9de2df81b48a077b524562a934a85e9faaf327361f42a8e9efc6afc4c97c"
+      ],
+      "dec_moe": [
+        {
+          "calls": 8557.0,
+          "total_s": 45.86,
+          "fetch_wait_s": 14.22,
+          "attach_s": 19.47,
+          "uploads": 18154.0,
+          "gpu_s": 7.85
+        },
+        {
+          "calls": 8557.0,
+          "total_s": 45.92,
+          "fetch_wait_s": 14.23,
+          "attach_s": 19.55,
+          "uploads": 18154.0,
+          "gpu_s": 7.85
+        },
+        {
+          "calls": 8557.0,
+          "total_s": 45.85,
+          "fetch_wait_s": 14.23,
+          "attach_s": 19.47,
+          "uploads": 18154.0,
+          "gpu_s": 7.85
+        }
+      ],
+      "mirrors_est": [
+        1271.3,
+        1271.3,
+        1271.3
+      ],
+      "vram0_decode_max_mib": [
+        23558,
+        23558,
+        23558
+      ],
+      "serve_unit_memory_peak_gib": [
+        null,
+        null,
+        null
+      ]
+    },
+    "median_tok_s": 2.7326,
+    "quality": {
+      "method": "greedy: the full output text of short_200 has the same sha256 (69ff9de2df81b48a) in all 3 samples of this arm and of the other arm of this record; plus the engine's real environment (/proc/<pid>/environ), tree SHA, binary sha256, client exit code, the mode lines of serve.log (moe-batch=on bank=132-experts / mirror-reserve) and 200 chunks with finish_reason length checked per sample (final_tools.py f42_sample: no problems)",
+      "passed": true,
+      "problems": []
+    },
+    "evidence": {
+      "uri": "evidence/f42-arm-GR.tgz",
+      "sha256": "e6f7558175e1ba962c39ebf41c3ab444afb41ebff0a49387e34629066f1343eb",
+      "contains": "f42/GR/s*/ (serve.log with v4_serve_turn / v4_dec_moe / decprof lines, bench.jsonl with full texts and per-chunk times, sample.txt, engine_environ.txt, procs.txt, nvsmi.csv at 1 s, gpu_*.csv, mode.txt)",
+      "full_run": "f42.tgz (sha256 in f42.tgz.sha256): all arms, meta/ (host, trees, scripts, clients, llama before/after), run.log, summary.json, summary.txt"
+    }
+  },
+  "outcome": "no-change",
+  "notes": [
+    "Two literal variables (COLI_CUDA_MOE_BATCH 0 -> 1 and DSV4_CUDA_VRAM_RESERVE_MB unset -> 600), so the validator rejects it by design. The effective reserve is 600 MiB in both: CU has no bank, so its default is the 600 MiB headroom, and the VRAM plateaus are 23562 vs 23558 MiB. This is the cleanest test of the prefill path: identical text, equal mirror capacity.",
+    "DSV4_CUDA_VRAM_RESERVE_MB is the free VRAM the decode mirror cache leaves on GPU0 while it grows. Unset with COLI_CUDA_MOE_BATCH=1, it is the bank-sized default (3100 MiB = 600 headroom + 1683 MiB 132-slot bank + 64 mirrors), so the next long prefill finds its bank. At 600 the cache took 2236 MiB more (VRAM plateau 23558 vs 21322 MiB, about 1271 vs 1096 mirrors of 12.75 MiB). Decode then uploads fewer experts. Not measured here: the cost on a later long prefill, which would have to find bank VRAM the mirrors hold. short_200 is below COLI_CUDA_MOE_BATCH_MIN and never takes the bank.",
+    "prompt_hash = sha256(json.dumps([long_200 prompt, short_200 prompt])) of bench_common.py (both requests of each sample).",
+    "warmup_runs: 1: short_200 runs in the same server right after long_200 (2041-token prompt + 200-token answer), its one warm-up",
+    "Trial vs baseline median: -0.37%.",
+    "llama.cpp (the Hermes backend) was stopped 2026-10-16 01:46:15 to 2026-10-16T02:30:15 PDT (2640 s) and restored healthy; the Hermes shadowfax-ensure-active-stack watchdog failed every 5 min in the window and restarted nothing (evidence/f42-host-journal.txt)."
+  ]
+}

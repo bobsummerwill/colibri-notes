@@ -1,0 +1,61 @@
+race-engine-dev-h2d.json improvement 1.7636 -> 1.8406 tok/s (1.0437x)
+pilot result NODIFF, phase 2 setting L8 (long, budget 8, 166 tokens, env 'DSV4_CUDA_PIN_HOST=0 DSV4_CUDA_EXPERT_MIRRORS=8')
+  pilot L48    n=2 distinct_texts=1 distinct_logit_seqs=1 tok/s=[1.7719, 1.7726]
+  pilot L8     n=2 distinct_texts=1 distinct_logit_seqs=1 tok/s=[1.7442, 1.7405]
+  pilot Ldef   n=2 distinct_texts=1 distinct_logit_seqs=1 tok/s=[2.5793, 2.6373]
+  pilot S192   n=2 distinct_texts=1 distinct_logit_seqs=1 tok/s=[1.8153, 1.8297]
+  pilot S48    n=2 distinct_texts=1 distinct_logit_seqs=1 tok/s=[1.8298, 1.8306]
+  pilot S8     n=2 distinct_texts=1 distinct_logit_seqs=1 tok/s=[1.8251, 1.789]
+  pilot all_long_runs   n=6 distinct_texts=1 distinct_logit_seqs=1 differing_pairs=[]
+  pilot all_short_runs  n=6 distinct_texts=1 distinct_logit_seqs=1 differing_pairs=[]
+  phase2 dev      n=5 (probe 3) distinct_texts=1 distinct_logit_seqs=1 tok/s mean 1.7664 sd 0.006
+    Dp#1_vs_Dp#2   text_identical=True first_diff_chunk=[None] logits identical=True first_token=None first_logit=None first_hidden=None
+    Dp#1_vs_D#1    text_identical=True first_diff_chunk=[None]
+    Dp#1_vs_Dp#3   text_identical=True first_diff_chunk=[None] logits identical=True first_token=None first_logit=None first_hidden=None
+    Dp#1_vs_D#2    text_identical=True first_diff_chunk=[None]
+    Dp#2_vs_D#1    text_identical=True first_diff_chunk=[None]
+    Dp#2_vs_Dp#3   text_identical=True first_diff_chunk=[None] logits identical=True first_token=None first_logit=None first_hidden=None
+    Dp#2_vs_D#2    text_identical=True first_diff_chunk=[None]
+    D#1_vs_Dp#3    text_identical=True first_diff_chunk=[None]
+    D#1_vs_D#2     text_identical=True first_diff_chunk=[None]
+    Dp#3_vs_D#2    text_identical=True first_diff_chunk=[None]
+  phase2 dev+h2d  n=5 (probe 3) distinct_texts=1 distinct_logit_seqs=1 tok/s mean 1.8337 sd 0.0065
+    Hp#1_vs_Hp#2   text_identical=True first_diff_chunk=[None] logits identical=True first_token=None first_logit=None first_hidden=None
+    Hp#1_vs_H#1    text_identical=True first_diff_chunk=[None]
+    Hp#1_vs_Hp#3   text_identical=True first_diff_chunk=[None] logits identical=True first_token=None first_logit=None first_hidden=None
+    Hp#1_vs_H#2    text_identical=True first_diff_chunk=[None]
+    Hp#2_vs_H#1    text_identical=True first_diff_chunk=[None]
+    Hp#2_vs_Hp#3   text_identical=True first_diff_chunk=[None] logits identical=True first_token=None first_logit=None first_hidden=None
+    Hp#2_vs_H#2    text_identical=True first_diff_chunk=[None]
+    H#1_vs_Hp#3    text_identical=True first_diff_chunk=[None]
+    H#1_vs_H#2     text_identical=True first_diff_chunk=[None]
+    Hp#3_vs_H#2    text_identical=True first_diff_chunk=[None]
+  phase2 pr0      n=5 (probe 3) distinct_texts=1 distinct_logit_seqs=1 tok/s mean 1.835 sd 0.0084
+    Zp#1_vs_Zp#2   text_identical=True first_diff_chunk=[None] logits identical=True first_token=None first_logit=None first_hidden=None
+    Zp#1_vs_Z#1    text_identical=True first_diff_chunk=[None]
+    Zp#1_vs_Zp#3   text_identical=True first_diff_chunk=[None] logits identical=True first_token=None first_logit=None first_hidden=None
+    Zp#1_vs_Z#2    text_identical=True first_diff_chunk=[None]
+    Zp#2_vs_Z#1    text_identical=True first_diff_chunk=[None]
+    Zp#2_vs_Zp#3   text_identical=True first_diff_chunk=[None] logits identical=True first_token=None first_logit=None first_hidden=None
+    Zp#2_vs_Z#2    text_identical=True first_diff_chunk=[None]
+    Z#1_vs_Zp#3    text_identical=True first_diff_chunk=[None]
+    Z#1_vs_Z#2     text_identical=True first_diff_chunk=[None]
+    Zp#3_vs_Z#2    text_identical=True first_diff_chunk=[None]
+  cross Dp_vs_Hp   all_texts_identical=True all_logits_identical=True
+  cross Hp_vs_Zp   all_texts_identical=True all_logits_identical=True
+  cross Dp_vs_Zp   all_texts_identical=True all_logits_identical=True
+  cross D_vs_H     all_texts_identical=True all_logits_identical=None
+  cross H_vs_Z     all_texts_identical=True all_logits_identical=None
+  cross D_vs_Z     all_texts_identical=True all_logits_identical=None
+  phase-2 probe runs vs pilot P_L48#1 (first 120 tokens): pilot long runs all identical=True, prefix identical {'Dp#1': True, 'Dp#2': True, 'Dp#3': True, 'Hp#1': True, 'Hp#2': True, 'Hp#3': True, 'Zp#1': True, 'Zp#2': True, 'Zp#3': True}
+  phase2 PASS=False (dev differs=False, H identical=True, Z identical=True)
+  phase3 Qp n=3 distinct_texts=2 distinct_logit_seqs=2 vs_dev_ref=[{'long_prefill': True, 'long_prefill_2': True}, {'long_prefill': True, 'long_prefill_2': True}, {'long_prefill': True, 'long_prefill_2': False}] mode=['v4_gpu moe-batch=on bank=132-experts', 'v4_gpu moe-double=on']
+    Qp#1_vs_Qp#2   text_identical=[True, True] first_diff_char=[None, None] logits identical=True first_token=None first_logit=None first_hidden=None n_diff=0
+    Qp#1_vs_Qp#3   text_identical=[True, False] first_diff_char=[None, 100] logits identical=False first_token=69 first_logit=27 first_hidden=27 n_diff=52
+    Qp#2_vs_Qp#3   text_identical=[True, False] first_diff_char=[None, 100] logits identical=False first_token=69 first_logit=27 first_hidden=27 n_diff=52
+  phase3 Fp n=3 distinct_texts=1 distinct_logit_seqs=1 vs_dev_ref=[{'long_prefill': True, 'long_prefill_2': True}, {'long_prefill': True, 'long_prefill_2': True}, {'long_prefill': True, 'long_prefill_2': True}] mode=['v4_gpu moe-batch=on bank=132-experts', 'v4_gpu moe-double=on']
+    Fp#1_vs_Fp#2   text_identical=[True, True] first_diff_char=[None, None] logits identical=True first_token=None first_logit=None first_hidden=None n_diff=0
+    Fp#1_vs_Fp#3   text_identical=[True, True] first_diff_char=[None, None] logits identical=True first_token=None first_logit=None first_hidden=None n_diff=0
+    Fp#2_vs_Fp#3   text_identical=[True, True] first_diff_char=[None, None] logits identical=True first_token=None first_logit=None first_hidden=None n_diff=0
+  phase3 PASS=True (pre-fix differs=True, fix identical=True)
+  check problems: none

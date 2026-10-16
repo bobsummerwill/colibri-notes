@@ -1,0 +1,276 @@
+{
+  "version": 1,
+  "hypothesis": "Upstream dev + only the upload-ordering commit cc9c9fab (decode-mirror uploads and in-place refills queued on the compute stream with h2d() instead of a legacy-stream cudaMemcpy) leaves one-GPU REAP-132 greedy decode byte-identical to dev under the race's documented triggers (pageable refills, smallest live mirror budget, long first request), and does not slow that decode",
+  "commit": "cc9c9fab4d7d0e8c962d38a7ffb8c752a6458505",
+  "model": "DeepSeek V4 Flash REAP 150B (puwaer/DeepSeek-V4-Flash-0731-reap-150b, 132 routed experts, fp4 experts / fp8 dense), colibri safetensors layout, 79 GiB on disk",
+  "command": "build: cd c && make -f Makefile.deepseek-v4 deepseek-v4 CUDA=1 CUDA_HOME=/usr NVCC=/usr/bin/nvcc CUDA_ARCH=sm_86 NO_TC=1 -j8, after applying the logging-only probe (final2/probe/probe_patch.py; the same diff, sha256 4568b67e85165e61e91b0875d441825f76b25ddd5f007c363bb2db931dabdf8b, on both trees); run: python3 c/coli serve --model <REAP dir> --ram 40 --ctx 8192 --host 127.0.0.1 --port 8090, server environment exactly PATH/HOME/USER/LOGNAME/LANG + the config's env keys (env -i); one freshly started server process per sample; phase-2 rounds interleaved with the build order rotated per round (D H Z / H Z D / Z D H / D H Z / H Z D; rounds 1, 2, 4 on the probe builds, 3 and 5 on the plain builds); client bench_race.py RACE_MODE=long RACE_NTOK=166: one streamed greedy request, bench_pr1.py's 1,992-token filler + a closing question asking for a long answer (2041 prompt tokens), max_tokens 166; tok_s = (chunks - 1) / (last chunk time - first chunk time); baseline arm Dp (dev 7b55a9b3 + probe), trial arm Hp (cc9c9fab + the same probe)",
+  "prompt_hash": "1852e6b7d696d3cf7792a73dd7d98c9875c5bc1275b650daeb5edaeff564a1e5",
+  "hardware": {
+    "cpu": "AMD Ryzen 9 9950X3D, 16 cores / 32 threads, 1 socket, governor powersave (amd-pstate), max 5.76 GHz (engine: 16 OpenMP compute threads + 3 expert-loader lanes)",
+    "ram": "62 GiB DDR5 (8 GiB swap); engine --ram 40 (31.6 GiB routed-expert RAM cache, 6.2 GiB dense resident); MemAvailable 46.9 GiB (47976 MiB) at preflight with llama.cpp still loaded",
+    "storage": "WD_BLACK SN850X 4 TB NVMe (PCIe 4.0), ext4 root filesystem (rw,relatime), model read with O_DIRECT (v4_ssd_io mode=direct-aligned); OS page cache not dropped between samples",
+    "os": "Ubuntu 24.04.4 LTS, kernel 7.0.0-34-generic, gcc 13.3.0, Python 3.12.3, CUDA toolkit 12.0.140 (generic build CUDA_ARCH=sm_86 NO_TC=1), NVIDIA driver 595.84; 2x NVIDIA GeForce RTX 3090 24 GB on PCIe 4.0 x8 (x16-capable), NVLink NV4 bridge; GPU0 only (COLI_GPU=0 DSV4_CUDA_DEVICE=0), GPU1 idle"
+  },
+  "warmup_runs": 0,
+  "changed_variables": [
+    "engine_commit"
+  ],
+  "baseline": {
+    "config": {
+      "COLI_CUDA": "1",
+      "COLI_GPU": "0",
+      "DSV4_CUDA_DEVICE": "0",
+      "CUDA_DENSE": "1",
+      "COLI_CUDA_PIPE": "2",
+      "COLI_CUDA_ATTN_BATCH": "1",
+      "COLI_CUDA_MOE_BATCH": "1",
+      "V4_MOE_REFILL_GROUP": "12",
+      "V4_LOADER_LANES": "3",
+      "V4_PREFIX_CKPT_DISK": "0",
+      "COLI_CUDA_MOE_DOUBLE": "unset (default 0)",
+      "ram_gib": "40",
+      "ctx": "8192",
+      "temperature": "0 (greedy)",
+      "DSV4_CUDA_PIN_HOST": "0",
+      "DSV4_CUDA_EXPERT_MIRRORS": "8",
+      "V4_LOGIT_LOG": "1",
+      "probe_diff_sha256": "4568b67e85165e61e91b0875d441825f76b25ddd5f007c363bb2db931dabdf8b",
+      "engine_commit": "7b55a9b3792527f52d1a2337fd9e312b9a7983e3"
+    },
+    "engine": {
+      "commit": "7b55a9b3792527f52d1a2337fd9e312b9a7983e3",
+      "binary_sha256": "dea9bd9d0214cf090e196758fea665caa3f272da65b60aebb4c0d7af32092ba0",
+      "tree": "/tmp/cw/r6-dev-probe",
+      "probe_diff_sha256": "4568b67e85165e61e91b0875d441825f76b25ddd5f007c363bb2db931dabdf8b"
+    },
+    "samples": {
+      "tok_s": [
+        1.7629,
+        1.7636,
+        1.773
+      ],
+      "tok_s_mean": 1.7665,
+      "tok_s_stdev": 0.0056,
+      "ttft_s": [
+        223.916,
+        223.92,
+        224.2
+      ],
+      "decode_s": [
+        93.596,
+        93.559,
+        93.061
+      ],
+      "chunks": [
+        166,
+        166,
+        166
+      ],
+      "text_sha256": [
+        "3adbb4b30090b79351b60a309ee1f3d2306bdcc596ca412d79addd66339864f6",
+        "3adbb4b30090b79351b60a309ee1f3d2306bdcc596ca412d79addd66339864f6",
+        "3adbb4b30090b79351b60a309ee1f3d2306bdcc596ca412d79addd66339864f6"
+      ],
+      "logit_seq_sha256": [
+        "790d5251e473c2e699dd57e4133107e329e69ea1aa00795cd1f379c2827fdeda",
+        "790d5251e473c2e699dd57e4133107e329e69ea1aa00795cd1f379c2827fdeda",
+        "790d5251e473c2e699dd57e4133107e329e69ea1aa00795cd1f379c2827fdeda"
+      ],
+      "sample_dirs": [
+        "Dp/s1",
+        "Dp/s2",
+        "Dp/s3"
+      ],
+      "run_order_seq": [
+        13,
+        18,
+        22
+      ],
+      "gpu0_ready_mib": [
+        7220,
+        7220,
+        7220
+      ],
+      "gpu0_max_mib": [
+        7496,
+        7496,
+        7496
+      ],
+      "gpu1_max_mib": [
+        83,
+        83,
+        83
+      ]
+    },
+    "median_tok_s": 1.7636,
+    "quality": {
+      "method": "greedy, token-exact: the full 166-token output text has the same sha256 (3adbb4b30090b793) in every run of this record's two arms and in the 2 plain-build runs of each (D, H: the unmodified binaries), and the per-token probe lines (argmax token, max logit bits, FNV-1a of the final hidden row) are bit-identical in all 6 probe runs of dev and H (logit stream sha256 790d5251e473c2e6); plus, per sample, the engine's real environment (/proc/<pid>/environ: the config keys, no CUDA_LAUNCH_BLOCKING, no COLI_CUDA_MOE_DOUBLE), tree SHA, probe-diff sha256, binary sha256, client exit code, 166 streamed chunks with finish_reason length, one probe line per token, an unchanged .coli_usage and no failure line in serve.log",
+      "passed": true,
+      "problems": []
+    },
+    "evidence": {
+      "uri": "evidence/race-arm-Dp.tgz",
+      "sha256": "11755eefcf2f424c370a64bcff3f33c5c16339a0351d3dc61b7e55b46ac82e96",
+      "contains": "race/Dp/s*/ (serve.log with the v4_logit lines on probe builds, bench.jsonl with full texts and per-chunk times, sample.txt, engine_environ.txt, procs.txt, nvsmi.csv, gpu_*.csv, mode.txt)",
+      "full_run": "race.tgz (sha256 in race.tgz.sha256): all groups, meta/ (host, trees, scripts, clients, probe diffs, build logs, llama before/after), run.log, summary.json, summary.txt; the run.log inside ends at the 'ALL DONE; packing' line (the 'packed <sha256>' line is appended after the archive)"
+    }
+  },
+  "trial": {
+    "config": {
+      "COLI_CUDA": "1",
+      "COLI_GPU": "0",
+      "DSV4_CUDA_DEVICE": "0",
+      "CUDA_DENSE": "1",
+      "COLI_CUDA_PIPE": "2",
+      "COLI_CUDA_ATTN_BATCH": "1",
+      "COLI_CUDA_MOE_BATCH": "1",
+      "V4_MOE_REFILL_GROUP": "12",
+      "V4_LOADER_LANES": "3",
+      "V4_PREFIX_CKPT_DISK": "0",
+      "COLI_CUDA_MOE_DOUBLE": "unset (default 0)",
+      "ram_gib": "40",
+      "ctx": "8192",
+      "temperature": "0 (greedy)",
+      "DSV4_CUDA_PIN_HOST": "0",
+      "DSV4_CUDA_EXPERT_MIRRORS": "8",
+      "V4_LOGIT_LOG": "1",
+      "probe_diff_sha256": "4568b67e85165e61e91b0875d441825f76b25ddd5f007c363bb2db931dabdf8b",
+      "engine_commit": "cc9c9fab4d7d0e8c962d38a7ffb8c752a6458505"
+    },
+    "engine": {
+      "commit": "cc9c9fab4d7d0e8c962d38a7ffb8c752a6458505",
+      "binary_sha256": "e4ef9252605373dc7600a3c8c21efd28ca955136f6ec922ae4addcfcc051dc99",
+      "tree": "/tmp/cw/r7-devh2d-probe",
+      "probe_diff_sha256": "4568b67e85165e61e91b0875d441825f76b25ddd5f007c363bb2db931dabdf8b"
+    },
+    "samples": {
+      "tok_s": [
+        1.8406,
+        1.8409,
+        1.8275
+      ],
+      "tok_s_mean": 1.8363,
+      "tok_s_stdev": 0.0077,
+      "ttft_s": [
+        224.125,
+        224.066,
+        224.271
+      ],
+      "decode_s": [
+        89.643,
+        89.629,
+        90.288
+      ],
+      "chunks": [
+        166,
+        166,
+        166
+      ],
+      "text_sha256": [
+        "3adbb4b30090b79351b60a309ee1f3d2306bdcc596ca412d79addd66339864f6",
+        "3adbb4b30090b79351b60a309ee1f3d2306bdcc596ca412d79addd66339864f6",
+        "3adbb4b30090b79351b60a309ee1f3d2306bdcc596ca412d79addd66339864f6"
+      ],
+      "logit_seq_sha256": [
+        "790d5251e473c2e699dd57e4133107e329e69ea1aa00795cd1f379c2827fdeda",
+        "790d5251e473c2e699dd57e4133107e329e69ea1aa00795cd1f379c2827fdeda",
+        "790d5251e473c2e699dd57e4133107e329e69ea1aa00795cd1f379c2827fdeda"
+      ],
+      "sample_dirs": [
+        "Hp/s1",
+        "Hp/s2",
+        "Hp/s3"
+      ],
+      "run_order_seq": [
+        14,
+        16,
+        23
+      ],
+      "gpu0_ready_mib": [
+        7220,
+        7220,
+        7220
+      ],
+      "gpu0_max_mib": [
+        7496,
+        7496,
+        7496
+      ],
+      "gpu1_max_mib": [
+        83,
+        83,
+        83
+      ]
+    },
+    "median_tok_s": 1.8406,
+    "quality": {
+      "method": "greedy, token-exact: the full 166-token output text has the same sha256 (3adbb4b30090b793) in every run of this record's two arms and in the 2 plain-build runs of each (D, H: the unmodified binaries), and the per-token probe lines (argmax token, max logit bits, FNV-1a of the final hidden row) are bit-identical in all 6 probe runs of dev and H (logit stream sha256 790d5251e473c2e6); plus, per sample, the engine's real environment (/proc/<pid>/environ: the config keys, no CUDA_LAUNCH_BLOCKING, no COLI_CUDA_MOE_DOUBLE), tree SHA, probe-diff sha256, binary sha256, client exit code, 166 streamed chunks with finish_reason length, one probe line per token, an unchanged .coli_usage and no failure line in serve.log",
+      "passed": true,
+      "problems": []
+    },
+    "evidence": {
+      "uri": "evidence/race-arm-Hp.tgz",
+      "sha256": "f7dcea605c30745aadb309cf1aedc1288caaa23b0e0ecb7a7db1936d38f3d1e6",
+      "contains": "race/Hp/s*/ (serve.log with the v4_logit lines on probe builds, bench.jsonl with full texts and per-chunk times, sample.txt, engine_environ.txt, procs.txt, nvsmi.csv, gpu_*.csv, mode.txt)",
+      "full_run": "race.tgz (sha256 in race.tgz.sha256): all groups, meta/ (host, trees, scripts, clients, probe diffs, build logs, llama before/after), run.log, summary.json, summary.txt; the run.log inside ends at the 'ALL DONE; packing' line (the 'packed <sha256>' line is appended after the archive)"
+    }
+  },
+  "outcome": "improvement",
+  "speedup_median_tok_s": 1.0437,
+  "speed_comparison": {
+    "dev_tok_s": [
+      1.7629,
+      1.7636,
+      1.773
+    ],
+    "h_tok_s": [
+      1.8406,
+      1.8409,
+      1.8275
+    ],
+    "dev_median": 1.7636,
+    "h_median": 1.8406,
+    "median_ratio": 1.0437,
+    "welch_h_vs_dev": {
+      "t": 12.72,
+      "df": 3.7,
+      "p_two_sided": 0.00036
+    },
+    "plain_build_tok_s": {
+      "D": [
+        1.7725,
+        1.7598
+      ],
+      "H": [
+        1.8292,
+        1.8302
+      ],
+      "Z": [
+        1.8402,
+        1.8258
+      ],
+      "Zp": [
+        1.8258,
+        1.8421,
+        1.841
+      ]
+    },
+    "no_change_threshold": "median ratio within 1% (0.99..1.01)"
+  },
+  "drift_observation": {
+    "dev_differs_among_its_runs": false,
+    "h_bit_identical": true,
+    "pr0_bit_identical": true,
+    "pass_criterion_met": false,
+    "note": "dev did not drift in this run: its 5 cold runs (3 probe + 2 plain) gave byte-identical text and its probe runs bit-identical per-token logit lines. Phase 1 (pilot on the dev probe build, 2 cold runs per setting, 120 tokens): L48 identical, L8 identical, Ldef identical, S192 identical, S48 identical, S8 identical; all 6 long-mode pilot runs gave one logit stream, all 6 short-mode runs another (the mirror budget alone does not change the numbers). Phase 2 then ran the fallback setting L8 (no pilot setting diverged): DSV4_CUDA_PIN_HOST=0 (every refill and upload from pageable memory, so on dev every one goes through the legacy-stream cudaMemcpy the commit replaces), DSV4_CUDA_EXPERT_MIRRORS=8 (in-place recycling of nearly every expert of every token-layer; 0 v4_cpu_moe lines: every decode token-layer ran on the fused GPU path) and a long first request (2041-token prompt, CPU-union prefill, decode right after it). The race is timing-dependent, so this is no evidence that dev is race-free, and this record makes no claim that cc9c9fab fixes a drift observed here. Across phases: the first 120 per-token probe lines of all 9 phase-2 probe runs (dev, H, pr0) equal those of all 6 long-mode pilot runs on dev (identical), so 9 cold dev runs of this request (6 pilot, 3 phase-2 probe) agree bit for bit on those tokens.",
+    "phase3_same_run": "Not part of this record (another tree pair, another configuration): phase 3 of the same run, the pr1 line just before the same upload-ordering change (48767c01) and with it (a406901b), GPU-bank prefill + COLI_CUDA_MOE_DOUBLE=1, bench_pr1.py's two requests (1,992 / 3,005 prompt tokens), 3 cold probe runs each: pre-fix 2 distinct texts and 2 distinct logit streams in 3 runs (differing pairs ['Qp#1_vs_Qp#3', 'Qp#2_vs_Qp#3']; first differing logit line 27 = long_prefill_2 token 1, the first decode step after the 3,005-token prefill), fix 1 text and 1 logit stream in 3 runs; every pre-fix run differs from every fix run in the logits from that same step. stats.json phase3."
+  },
+  "notes": [
+    "prompt_hash = sha256 of the request's prompt text (bench_common.long_prompt(); bench.jsonl prompt_sha256).",
+    "warmup_runs 0: the request is the first one to each freshly started server process.",
+    "The probe builds carry the logging-only probe (one v4_logit line per token); the same diff is on both arms, so engine_commit is the only difference. The plain builds' runs (D, H: 2 each) are in stats.json and agree with the probe texts.",
+    "Trial vs baseline median: +4.37%; Welch t = 12.72 (df 3.7), two-sided p = 0.00036; every H sample is above every dev sample (plain builds: D [1.7725, 1.7598], H [1.8292, 1.8302] tok/s).",
+    "The speed difference is measured in a stress configuration chosen to provoke the race, not in a default one: every refill and upload pageable (DSV4_CUDA_PIN_HOST=0) and DSV4_CUDA_EXPERT_MIRRORS=8, so nearly every expert of every token-layer is refilled in place (dev decodes at 1.76 tok/s here vs 2.61 with the default budget in the pilot, P_Ldef). It says nothing about decode speed at the defaults (there the final drift run measured pr0 vs dev +0.31%, no-change).",
+    "llama.cpp (the Hermes backend) was stopped 2026-10-16 02:38:14 to 04:57:03 PDT (8329 s) and restored healthy; the shadowfax-ensure-active-stack watchdog ran 28 times in the window (02:39:36 to 04:54:46), failed every time with backend unhealthy and restarted nothing (restarted_units ['[]'], recovered ['false']; evidence/race-host-journal.txt); the Hermes cron database was not opened, so which Hermes jobs ran without a backend is not recorded."
+  ]
+}
