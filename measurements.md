@@ -2,6 +2,17 @@
 
 All on shadowfax (see environment.md), DeepSeek V4 Flash REAP 150B, `--ram 40 --ctx 8192`, llama.cpp stopped for the window, one fresh server per sample. The engine is greedy, so "identical" means byte-identical output text (sha256 compared).
 
+## FINAL CODE (2026-10-17 02:00-03:16 PDT, `manifests/final3/`) — pr1/v6 9222a65a (with the F42 fix), pr2/v5 ef3ade98
+3 cold samples per PR #1 arm after a discarded warm-up; all gates passed; every output byte-identical to the dev reference.
+| Arm | 1992-tok TTFT | tok/s | answer decode | 3005-tok TTFT | tok/s | answer decode |
+|---|---|---|---|---|---|---|
+| A dev | 219.4 s | 9.08 | 2.207 | 335.2 s | 8.96 | 2.820 |
+| B pr1 | 82.2 s | 24.25 (**2.67x**) | 2.170 (**0.983x A**, was 0.914x before the fix) | 119.1 s | 25.24 (**2.82x**) | 2.794 (0.991x) |
+| C B + DOUBLE | 69.8 s | 28.52 (**3.14x**) | 2.049 | 106.4 s | 28.24 (3.15x) | 2.732 |
+- F42 essentially closed against dev: decode right after the long GPU prefill is now 1.7% (2k) / 1.0% (3k) behind dev, vs 8.6% / 2.4% before the fix.
+- PR #2 sanity on the final tip (1 sample each, 6x300): G1 2.896, X3 4.084 tok/s (+41%), all 6 texts identical to the 10-15 reference; both within ~1% of the 10-15 medians.
+- Prefill numbers match 10-15 within 0.5%. Hermes: llama.cpp down 02:00:02-03:15:39 PDT.
+
 ## FINAL (2026-10-15, on the final stack tips) — evidence and validated manifests in `manifests/final/`
 Builds: dev 7b55a9b3, pr0/dsv4-fixes a2c8ba7a, pr1/reap-prefill 93b74183, pr2/two-gpu-decode d0e19de2 (CUDA 12.0, sm_86, NO_TC=1). 3 samples per arm unless noted; samples interleaved across arms.
 
