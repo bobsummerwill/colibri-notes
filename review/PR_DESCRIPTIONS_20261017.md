@@ -38,14 +38,22 @@ Three smaller fixes in the same file, each its own commit:
 which stream copies run on and on failure paths.
 
 ### Evidence
-- A small CUDA harness reproduces the race: on dev, 50/50 and 300/300 output mismatches; 0 with
-  this change.
-- On the batched-prefill path of PR #1 (double bank) the pre-fix build diverged in 1 of 3 cold
-  runs, and its per-token logits differed from the fixed build from the first decode step after
-  a 3,005-token prefill; the fixed build was bit-identical in 3/3.
-- Plain dev decode did **not** drift in 17 stressed cold runs on an RTX 3090 (small mirror
-  budgets, long first requests, every refill pageable), so we do not claim a visible end-to-end
-  fix on dev; the change removes the race the harness shows.
+Three small single-GPU harnesses, linked against `backend_cuda_dsv4.cu`, reproduce each bug on
+upstream dev and pass with this PR (RTX 3090, 2026-10-18; sources, build/run commands and logs:
+[evidence/pr0-harness](https://github.com/bobsummerwill/colibri-notes/tree/e19cfc03500f0e8ff7e27e4c49b50d841b3515db/evidence/pr0-harness)):
+
+| harness | upstream dev 62eaa9dc | this PR |
+|---|---|---|
+| `h2d_race 300 20` (pageable refill; WAR / RAW / UPLOAD mismatched) | **300/300** / 0/300 / 0/300 | 0 / 0 / 0 |
+| `bank_lasterr` (an unrelated launch after a failed bank allocation) | **fails** (stale OOM) | passes |
+| `shutdown_reinit` (matvec after shutdown + init in one process) | **fails** | passes |
+
+Only the write-after-read case races: an in-place refill landing under a queued kernel. In
+full-engine runs, plain dev decode did not change its output (17 stressed cold runs on an RTX
+3090), so we do not claim a visible end-to-end fix there. On the batched-prefill path with the
+double bank (PR #1) it did: the pre-fix build diverged in 1 of 3 cold runs, with per-token logits
+differing from the first decode step after a 3,005-token prefill; the fixed build was
+bit-identical in 3/3.
 
 ### How this was tested
 - `make check` at the combined PR #0 tip: 2,572 tests pass (upstream dev: 2,560); every commit
