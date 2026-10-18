@@ -1,0 +1,22 @@
+final4 benchmark: /home/maplemercury/colibri-bench/final4/bench
+tips (resolved 2026-10-17T22:31:32-07:00): pr1 rb/pr1/reap-prefill 7e9d2d20816398c25dc979e952ce924cc1012fc3 (tree 2de8c223fc1188ce5c60d628028af704184395a0), pr2 rb/pr2/two-gpu-decode bffe2aed04640c5871fbc9e6e4a1f570e8a515fa (tree 7ac4c4d2087d8f80bd1a7ee369b07ea79a8af1f3), dev 62eaa9dc249b67567b9cbc83e43fbc875a8b94c1
+llama: stopped 2026-10-17T22:34:34-07:00, restored 2026-10-17T23:37:59-07:00, down 3805 s, health ok=1, script status 0
+W long_prefill    n=1 ttft=76.548 (sd None) prefill_tok_s=26.023 (sd None) decode_tok_s=2.1074 (sd None) identical_to_dev_ref=True  (warm-up, discarded)
+W long_prefill_2  n=1 ttft=110.431 (sd None) prefill_tok_s=27.2116 (sd None) decode_tok_s=2.879 (sd None) identical_to_dev_ref=True  (warm-up, discarded)
+   per sample: s1 seq=1 wall=227s reserve=mirror-reserve=3100MiB 1:76.548/26.023/2.1074 2:110.431/27.2116/2.879
+A long_prefill    n=3 ttft=129.0047 (sd 0.2978) prefill_tok_s=15.4414 (sd 0.0356) decode_tok_s=2.2662 (sd 0.0423) identical_to_dev_ref=True
+A long_prefill_2  n=3 ttft=204.7013 (sd 0.5853) prefill_tok_s=14.68 (sd 0.0419) decode_tok_s=2.934 (sd 0.0079) identical_to_dev_ref=True
+   per sample: s1 seq=2 wall=375s reserve=- 1:129.337/15.4016/2.2174 2:205.377/14.6316/2.9249; s2 seq=7 wall=372s reserve=- 1:128.915/15.4521/2.2901 2:204.378/14.7032/2.9387; s3 seq=9 wall=372s reserve=- 1:128.762/15.4704/2.2911 2:204.349/14.7052/2.9384
+B long_prefill    n=3 ttft=76.414 (sd 0.1723) prefill_tok_s=26.0685 (sd 0.0589) decode_tok_s=2.2327 (sd 0.0233) identical_to_dev_ref=True
+B long_prefill_2  n=3 ttft=110.2133 (sd 0.1795) prefill_tok_s=27.2654 (sd 0.0444) decode_tok_s=2.9155 (sd 0.0032) identical_to_dev_ref=True
+   per sample: s1 seq=3 wall=226s reserve=mirror-reserve=3100MiB 1:76.215/26.1365/2.2215 2:110.133/27.2852/2.9171; s2 seq=5 wall=226s reserve=mirror-reserve=3100MiB 1:76.513/26.0348/2.2172 2:110.088/27.2964/2.9176; s3 seq=10 wall=227s reserve=mirror-reserve=3100MiB 1:76.514/26.0343/2.2595 2:110.419/27.2145/2.9118
+C long_prefill    n=3 ttft=64.0533 (sd 0.0731) prefill_tok_s=31.0991 (sd 0.0354) decode_tok_s=2.094 (sd 0.0046) identical_to_dev_ref=True
+C long_prefill_2  n=3 ttft=98.0463 (sd 0.0121) prefill_tok_s=30.6487 (sd 0.0038) decode_tok_s=2.84 (sd 0.0036) identical_to_dev_ref=True
+   per sample: s1 seq=4 wall=202s reserve=mirror-reserve=4783MiB 1:64.071/31.0906/2.0893 2:98.037/30.6516/2.8436; s2 seq=6 wall=204s reserve=mirror-reserve=4783MiB 1:64.116/31.0687/2.0942 2:98.06/30.6444/2.8364; s3 seq=8 wall=202s reserve=mirror-reserve=4783MiB 1:63.973/31.138/2.0985 2:98.042/30.6502/2.84
+PR1 long_prefill    prefill B/A=1.6882 (median 1.6849) C/B=1.193 C/A=2.014 | decode B/A=0.9852 C/B=0.9379 | vs 10-15: A pf 1.7087 dec 1.0399, B pf 1.0746 dec 1.1061, C pf 1.0893 dec 1.0358
+PR1 long_prefill_2  prefill B/A=1.8573 (median 1.8557) C/B=1.1241 C/A=2.0878 | decode B/A=0.9937 C/B=0.9741 | vs 10-15: A pf 1.6336 dec 1.0425, B pf 1.0828 dec 1.0612, C pf 1.0839 dec 1.0388
+G1 s1 mean_tok_s=3.011 per_prompt=[2.799, 2.892, 3.082, 2.801, 3.484, 3.008] engine=[2.809, 2.902, 3.093, 2.81, 3.495, 3.018] identical_to_G1_1015=[True, True, True, True, True, True] vram_first=0 gpu0_max=21902 gpu1_max=85 
+X3 s1 mean_tok_s=4.3408 per_prompt=[3.92, 4.385, 4.353, 4.233, 4.767, 4.387] engine=[3.933, 4.4, 4.367, 4.248, 4.783, 4.402] identical_to_G1_1015=[True, True, True, True, True, True] vram_first=420436 gpu0_max=21902 gpu1_max=23138 v4_gpu peer-mirrors device=1 reserve=1024MB mode=compute (the decode MoE runs these experts on device 1)
+PR2 G1=3.011 (10-15 2.866, ratio 1.0506) X3=4.3408 (10-15 4.0433, ratio 1.0736) X3/G1=1.4416 (10-15 1.4108)
+usage history (.coli_usage) changed during: no sample
+GATES: PASS (0 problems)

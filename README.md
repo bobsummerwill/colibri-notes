@@ -4,27 +4,28 @@ Project notebook for Bob Summerwill's work on [colibri](https://github.com/JustV
 
 **Rule: no PRs and no pushes to upstream JustVugg/colibri.** Branches go to the fork only; Bob decides on submission.
 
-## Status (2026-10-15)
+## Status (2026-10-17)
 - Model under test: **DeepSeek V4 Flash REAP 150B** (`puwaer/DeepSeek-V4-Flash-0731-reap-150b`, 132 routed experts/layer instead of 256, fp4 experts, 79 GiB) on **shadowfax** (2x RTX 3090 + NVLink, 62 GB RAM) — see [environment.md](environment.md).
-- Results ([measurements.md](measurements.md)): prefill 9 -> 24-28 tok/s (2.7-3.1x); decode 2.78 -> 3.87 tok/s with two GPUs (+39%); all greedy outputs identical to upstream.
-- Practical verdict ([decisions.md](decisions.md)): great upstream contribution, not a replacement for Qwen3.8-27B on llama.cpp for Hermes. A blind 12-prompt quality comparison (2026-10-16, [quality/REPORT.md](quality/REPORT.md)) found REAP-150B **not better** than Qwen3.8-27B (worse on code, factual precision and one explanation; ties on maths; one ops-plan win) while ~21x slower and needing Hermes stopped.
-- Planned upstream PRs (target `dev`, base `7b55a9b3`):
-  - **PR #0 DeepSeek V4 CUDA bug fixes** — 12 standalone upstream fixes (incl. a real decode race, F26 loader jobs, F2 speculative batches, F27 CUDA last-error, F4 mirror-slot rollback, the `make dsv4-cuda-test` stub stop) + doc corrections.
-  - **PR #1 GPU batched prefill for expert-pruned checkpoints** + expert-major MoE kernel + warp dense kernel.
-  - **PR #2 Two-GPU decode** (VRAM-first lookups, peer mirror pool over NVLink, peer compute).
+- **Rebased onto upstream dev 62eaa9dc** (298 commits past the old base 7b55a9b3) on 2026-10-17 and re-validated there: `make check` passes at every tip, every commit compiles with 0 diagnostics, CUDA builds clean, `dsv4-cuda-test` / `cuda-test` pass on the GPUs, and the final GPU benchmark (`manifests/final4/`) passed every gate. Details: [review/REBASE_20261017.md](review/REBASE_20261017.md).
+- Results on the new base ([measurements.md](measurements.md)): prefill 1.69x / 1.86x over upstream dev (2.01x / 2.09x with the double bank) — upstream's own prefill got ~1.7x faster since 7b55a9b3, so the old 2.7-3.1x no longer applies; two-GPU decode 3.01 -> 4.34 tok/s (+44%); all greedy outputs identical to upstream.
+- Practical verdict ([decisions.md](decisions.md)): great upstream contribution, not a replacement for Qwen3.8-27B on llama.cpp for Hermes. A blind 12-prompt quality comparison (2026-10-16, [quality/REPORT.md](quality/REPORT.md)) found REAP-150B **not better** than Qwen3.8-27B while ~21x slower and needing Hermes stopped.
+- Upstream PRs (target `dev`, base `62eaa9dc`), drafts in [review/PR_DESCRIPTIONS_20261017.md](review/PR_DESCRIPTIONS_20261017.md): six independent PR #0 fixes (0a-0f), then PR #1 (REAP prefill) and PR #2 (two-GPU decode), which depend on all six. **Not submitted** — Bob decides.
 
 ## Branch map (fork)
-Compare against `dev` (upstream's PR target), never `main`.
+Compare against upstream `dev`, never `main`. **The rebased branches are on the fork as `rebased/<name>`** (force-pushing over the old names needs Bob's go-ahead); the old names still hold the 2026-10-15 stack on 7b55a9b3.
 
-| Branch | What |
+| Branch (fork) | What |
 |---|---|
-| `pr0/dsv4-fixes` | **PR #0 final**: 12 upstream bug fixes + docs, 13 commits on dev 7b55a9b3 (a2c8ba7a) — [compare](https://github.com/bobsummerwill/colibri/compare/dev...pr0/dsv4-fixes) |
-| `pr1/reap-prefill` | **PR #1 final**: REAP batched prefill + kernels, 7 commits on PR #0 (93b74183) — [compare](https://github.com/bobsummerwill/colibri/compare/pr0/dsv4-fixes...pr1/reap-prefill) |
-| `pr2/two-gpu-decode` | **PR #2 final**: two-GPU decode, 8 commits on PR #1 (d0e19de2) — [compare](https://github.com/bobsummerwill/colibri/compare/pr1/reap-prefill...pr2/two-gpu-decode) |
-| `pr1/fixed`, `pr2/fixed` | The benchmarked/validated code (a406901b, fe28d80a), straight on dev; reference only. Final PR #1/#2 code = these + the PR #0 fixes they lacked + text fixes (see review/STACK_CHECK.md "code differences") |
-| `pr0/v3`, `pr1/v3`, `pr0/dsv4-fixes-v1`, `-v2`, `pr1/reap-prefill-v1`, `-v2`, `pr2/two-gpu-decode-v1`, `-v2`, `pr2/split`, `pr2/ref`, `fix1/*`, `fix2/*`, `reap-gpu-prefill`, `vram-first` | Earlier versions / history |
-
-Final stack check: ready, 0 blockers/majors — `review/STACK_CHECK.md`; draft PR summaries — `review/PR_SUMMARIES_DRAFT.md`.
+| `rebased/pr0a/dsv4-upload-ordering` | PR 0a: h2d upload ordering + CUDA error hygiene + shutdown zeroing (4 commits) |
+| `rebased/pr0b/dsv4-prefill-bank-lifecycle` | PR 0b: prefill bank lifecycle, speculative batches, missing-bias guard (3) |
+| `rebased/pr0c/dsv4-decode-error-paths` | PR 0c: mirror slot rollback, loader lanes on every MoE exit (2) |
+| `rebased/pr0d/dsv4-dll-export` | PR 0d: DLL export + parity test (1) |
+| `rebased/pr0e/dsv4-cuda-test-target` | PR 0e: dsv4-cuda-test passes on generic builds (2) |
+| `rebased/pr0f/dsv4-docs-sizes` | PR 0f: real bank/mirror sizes in docs (1) |
+| `rebased/pr0/dsv4-fixes` | the six combined (13 commits) — base of PR #1 |
+| `rebased/pr1/reap-prefill` | PR #1 final (8 commits on pr0) |
+| `rebased/pr2/two-gpu-decode` | PR #2 final (8 commits on PR #1) |
+| `pr0*/…`, `pr1/reap-prefill`, `pr2/two-gpu-decode`, `pr1/v6`, `pr1/v7`, `pr2/v5`, … | the 2026-10-15/16 stack on 7b55a9b3 (history) |
 
 ## Contents
 - [environment.md](environment.md) — hardware, services, safe GPU-downtime procedure, build/run commands, paths.

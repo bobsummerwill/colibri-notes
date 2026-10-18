@@ -1,0 +1,6 @@
+validator: c/experiment_manifest.py from a detached worktree of rb/pr1/reap-prefill at 4412cc1b60371424dbbdd479ca9fde054ec55186 (blob 6e0fa6a37c8c52a206a804611ff7feda2b32290e, identical at the measured pr1 tip 7e9d2d20 and at dev 62eaa9dc; the 2026-10-15 validation used blob d9babf6b), run 2026-10-17T23:48:02-07:00 on computer4
+pr1-engine-1992.json: ok (engine_commit, improvement)
+pr1-engine-3005.json: ok (engine_commit, improvement)
+pr1-moe-double-1992.json: ok (COLI_CUDA_MOE_DOUBLE, improvement)
+pr1-moe-double-3005.json: ok (COLI_CUDA_MOE_DOUBLE, improvement)
+exit=0

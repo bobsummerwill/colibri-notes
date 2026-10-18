@@ -31,3 +31,11 @@
 - About 257M effective tokens. Effective tokens are weighted: cache reads 0.1x, cache writes 2x, output 5x. That is roughly 1.4B raw tokens.
 - Subagents account for 87% of it: 298 agents in total, and the in-depth review alone used about 116M effective tokens.
 - Script: `tools/analysis/usage_analysis.py`. Summary: `tools/analysis/usage_summary.json`.
+
+## Rebase onto upstream dev 62eaa9dc (2026-10-17)
+- **Rebased all eight branches onto 62eaa9dc** (Bob asked for the branches to be refreshed and prepped). PR #0 cherry-picked cleanly (identical patches); PR #1 had one conflict with #2109 (serve prewarm: hot_lookup counts nothing while warming — kept, with our hot_count_locked inside it); PR #2 one with upstream's GGUF format guard in the mirror attach (kept, with V4_MIRROR_RECYCLE_MIN). pr2 was restacked onto pr1/v7 (v7 = v6 + the F42 docs numbers).
+- **Review fixes folded into their commits**: no VRAM reserve for a bank a GGUF can never create (`v4_gpu_mirror_reserve_size(.., bank_possible)`); upstream's new `keep_free_bytes` in four test initializers; the colibri session's open PR #2 items (note_vram source assertion, hit[e] check, pin-ranking docs clause); a GGUF note in the two-GPU docs; measurements labelled with their base.
+- **Left out on purpose**: review item #6 (format check in the bank-upload paths) — that is upstream's own code (9876c4db, 66fca1e7), not ours; a possible separate follow-up.
+- **Benchmarks re-done on the new base** (final4) and the docs/PR text use those numbers; the old 2.7-3.1x is history.
+- **Fork**: rebased branches pushed as `rebased/<name>`; overwriting the old names (force-push) was not done — it needs Bob's explicit OK.
+

@@ -2,6 +2,20 @@
 
 All on shadowfax (see environment.md), DeepSeek V4 Flash REAP 150B, `--ram 40 --ctx 8192`, llama.cpp stopped for the window, one fresh server per sample. The engine is greedy, so "identical" means byte-identical output text (sha256 compared).
 
+## REBASED (2026-10-17 22:34-23:38 PDT, `manifests/final4/`) — on upstream dev 62eaa9dc; pr1 7e9d2d20, pr2 bffe2aed (code trees identical to the final rebased/* tips)
+Same harness as final3 (`run_final4.sh`), 3 cold samples per arm (+1 discarded warm-up), medians; `.coli_usage` empty, so upstream's serve prewarm (#2109) reads nothing at `--ram 40`. GATES: PASS. GPUs exclusive (no llama start attempts in the window; an earlier 21:34 attempt was contended by repeated llama-server-active starts and discarded: `bench.contended-2134`).
+
+| arm | 1,992-tok TTFT | 3,005-tok TTFT | decode after (2k / 3k) | text |
+|---|---|---|---|---|
+| A upstream dev 62eaa9dc (CPU union) | 128.9 s (15.45 tok/s) | 204.4 s (14.70) | 2.290 / 2.938 | reference |
+| B PR #1 | 76.5 s (26.03), 1.69x | 110.1 s (27.29), 1.86x | 2.221 / 2.917 | identical |
+| C B + `COLI_CUDA_MOE_DOUBLE=1` | 64.1 s (31.09), 2.01x | 98.0 s (30.65), 2.09x | 2.094 / 2.840 | identical |
+
+- Upstream dev itself prefills ~1.7x faster than 7b55a9b3 (219 s -> 129 s on 2k), most likely #2069 (faster CPU decode kernels); PR #1's relative gain shrinks accordingly.
+- PR #2 (one sample each, six 300-token answers, DOUBLE unset): G1 one GPU 3.011 tok/s, X3 VRAM-first + peer compute 4.341 tok/s (+44%); all six texts identical to the 10-15 reference.
+- CUDA tests in the same window: `make dsv4-cuda-test` rc=0 at the pr1 and pr2 tips, `make -C c cuda-test` rc=0 at pr2 (0 warnings).
+- `make check` (computer4): upstream dev 2560 tests OK; pr0 2572; pr1 2579; pr2 2586 (277 skipped each).
+
 ## FINAL CODE (2026-10-17 02:00-03:16 PDT, `manifests/final3/`) — pr1/v6 9222a65a (with the F42 fix), pr2/v5 ef3ade98
 3 cold samples per PR #1 arm after a discarded warm-up; all gates passed; every output byte-identical to the dev reference.
 | Arm | 1992-tok TTFT | tok/s | answer decode | 3005-tok TTFT | tok/s | answer decode |
