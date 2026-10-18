@@ -1,5 +1,11 @@
 # Measurements
 
+> **Naming key.** These notes use internal names for the upstream pull requests. **PR #0** is the six
+> fixes opened as JustVugg/colibri [#2212](https://github.com/JustVugg/colibri/pull/2212) (0a), [#2213](https://github.com/JustVugg/colibri/pull/2213) (0b), [#2214](https://github.com/JustVugg/colibri/pull/2214) (0c), [#2215](https://github.com/JustVugg/colibri/pull/2215) (0d),
+> [#2216](https://github.com/JustVugg/colibri/pull/2216) (0e) and [#2217](https://github.com/JustVugg/colibri/pull/2217) (0f). **PR #1** (batched GPU prefill for expert-pruned checkpoints) and
+> **PR #2** (two-GPU decode) are not opened yet. Documents dated before 2026-10-17 describe earlier
+> versions of these changes, on the old base 7b55a9b3.
+
 All on shadowfax (see environment.md), DeepSeek V4 Flash REAP 150B, `--ram 40 --ctx 8192`, llama.cpp stopped for the window, one fresh server per sample. The engine is greedy, so "identical" means byte-identical output text (sha256 compared).
 
 ## REBASED (2026-10-17 22:34-23:38 PDT, `manifests/final4/`) — on upstream dev 62eaa9dc; pr1 7e9d2d20, pr2 bffe2aed (code trees identical to the final rebased/* tips)
@@ -54,7 +60,7 @@ Builds: dev 7b55a9b3, pr0/dsv4-fixes a2c8ba7a, pr1/reap-prefill 93b74183, pr2/tw
 - 3-4.5% above the earlier single-sample numbers (2.78/2.84/3.32/3.87), likely because those ran with DOUBLE set, on intermediate binaries.
 - X1->X2 changes two env variables (PEER_DEVICE=1 and explicit PEER_COMPUTE=0); the strictly one-variable manifests are X1->X3 and X2->X3.
 
-### PR #0 upload race on the GPU (`manifests/final/drift/`)
+### PR #0 (#2212) upload race on the GPU (`manifests/final/drift/`)
 - dev 7b55a9b3 vs pr0 a2c8ba7a, 3 cold runs each of the 6-prompt decode bench, then 2+2 runs of a logging-only per-token logit/hidden-hash probe.
 - **dev did not drift in these runs**: all runs byte-identical, all per-token logits bit-identical, and pr0 identical to dev. The known triggers were absent (long first request, smaller mirror budget, double bank) and refills were not forced onto the pageable path (whether any refill passed the 20 GiB page-lock cap was not logged), so this neither shows dev race-free nor demonstrates the fix end to end. The race itself is shown by the tiny CUDA harness in PR #0 (h2d_race WAR: 50/50 and 300/300 mismatches on dev, 0 with the fix) and by the 10-14 arm-C divergence (2 of 3) before the fix.
 - pr0 vs dev decode speed: 2.892 vs 2.883 tok/s median (0.3%, below the 1% no-change threshold; manifest outcome no-change).

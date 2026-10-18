@@ -1,5 +1,11 @@
 # Investigations
 
+> **Naming key.** These notes use internal names for the upstream pull requests. **PR #0** is the six
+> fixes opened as JustVugg/colibri [#2212](https://github.com/JustVugg/colibri/pull/2212) (0a), [#2213](https://github.com/JustVugg/colibri/pull/2213) (0b), [#2214](https://github.com/JustVugg/colibri/pull/2214) (0c), [#2215](https://github.com/JustVugg/colibri/pull/2215) (0d),
+> [#2216](https://github.com/JustVugg/colibri/pull/2216) (0e) and [#2217](https://github.com/JustVugg/colibri/pull/2217) (0f). **PR #1** (batched GPU prefill for expert-pruned checkpoints) and
+> **PR #2** (two-GPU decode) are not opened yet. Documents dated before 2026-10-17 describe earlier
+> versions of these changes, on the old base 7b55a9b3.
+
 ## 1. Why prefill was slow on REAP (-> PR #1)
 - The REAP checkpoint has 132 routed experts per layer instead of 256. The upstream GPU batched-prefill path assumed the 256-expert layout, so REAP fell back to slower per-token MoE work (~9 tok/s prefill).
 - PR #1 makes batched GPU prefill (`coli_v4_gpu_moe_batch_union`, expert bank) work for expert-pruned checkpoints, with route-aware refill.

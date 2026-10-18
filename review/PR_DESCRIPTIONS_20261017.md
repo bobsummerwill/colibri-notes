@@ -1,5 +1,11 @@
 # PR descriptions (drafts, 2026-10-17) — NOT submitted
 
+> **Naming key.** These notes use internal names for the upstream pull requests. **PR #0** is the six
+> fixes opened as JustVugg/colibri [#2212](https://github.com/JustVugg/colibri/pull/2212) (0a), [#2213](https://github.com/JustVugg/colibri/pull/2213) (0b), [#2214](https://github.com/JustVugg/colibri/pull/2214) (0c), [#2215](https://github.com/JustVugg/colibri/pull/2215) (0d),
+> [#2216](https://github.com/JustVugg/colibri/pull/2216) (0e) and [#2217](https://github.com/JustVugg/colibri/pull/2217) (0f). **PR #1** (batched GPU prefill for expert-pruned checkpoints) and
+> **PR #2** (two-GPU decode) are not opened yet. Documents dated before 2026-10-17 describe earlier
+> versions of these changes, on the old base 7b55a9b3.
+
 Target: upstream `JustVugg/colibri` branch `dev`, base **62eaa9dc**. Branches are on the fork
 `bobsummerwill/colibri` as `rebased/<name>` (e.g. `rebased/pr0a/dsv4-upload-ordering`); the
 names in the headings below are the intended PR branch names. Bob submits; never us. Eight PRs: six independent PR #0 fixes

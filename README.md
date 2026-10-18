@@ -1,5 +1,11 @@
 # colibri-notes
 
+> **Naming key.** These notes use internal names for the upstream pull requests. **PR #0** is the six
+> fixes opened as JustVugg/colibri [#2212](https://github.com/JustVugg/colibri/pull/2212) (0a), [#2213](https://github.com/JustVugg/colibri/pull/2213) (0b), [#2214](https://github.com/JustVugg/colibri/pull/2214) (0c), [#2215](https://github.com/JustVugg/colibri/pull/2215) (0d),
+> [#2216](https://github.com/JustVugg/colibri/pull/2216) (0e) and [#2217](https://github.com/JustVugg/colibri/pull/2217) (0f). **PR #1** (batched GPU prefill for expert-pruned checkpoints) and
+> **PR #2** (two-GPU decode) are not opened yet. Documents dated before 2026-10-17 describe earlier
+> versions of these changes, on the old base 7b55a9b3.
+
 Project notebook for Bob Summerwill's work on [colibri](https://github.com/JustVugg/colibri) (pure-C/CUDA engine that runs huge MoE models by streaming experts from NVMe and caching hot experts in RAM/VRAM), done with Claude Code on 2026-10-12..14. Not branch-specific; the code lives in the fork [bobsummerwill/colibri](https://github.com/bobsummerwill/colibri).
 
 **Rule: no PRs and no pushes to upstream JustVugg/colibri.** Branches go to the fork only; Bob decides on submission.
@@ -16,13 +22,13 @@ Compare against upstream `dev`, never `main`. **The rebased branches are on the 
 
 | Branch (fork) | What |
 |---|---|
-| `rebased/pr0a/dsv4-upload-ordering` | PR 0a: h2d upload ordering + CUDA error hygiene + shutdown zeroing (4 commits) |
-| `rebased/pr0b/dsv4-prefill-bank-lifecycle` | PR 0b: prefill bank lifecycle, speculative batches, missing-bias guard (3) |
-| `rebased/pr0c/dsv4-decode-error-paths` | PR 0c: mirror slot rollback, loader lanes on every MoE exit (2) |
-| `rebased/pr0d/dsv4-dll-export` | PR 0d: DLL export + parity test (1) |
-| `rebased/pr0e/dsv4-cuda-test-target` | PR 0e: dsv4-cuda-test passes on generic builds (2) |
-| `rebased/pr0f/dsv4-docs-sizes` | PR 0f: real bank/mirror sizes in docs (1) |
-| `rebased/pr0/dsv4-fixes` | the six combined (13 commits) — base of PR #1 |
+| `rebased/pr0a/dsv4-upload-ordering` | [#2212](https://github.com/JustVugg/colibri/pull/2212) (0a): h2d upload ordering + CUDA error hygiene + shutdown zeroing (4 commits) |
+| `rebased/pr0b/dsv4-prefill-bank-lifecycle` | [#2213](https://github.com/JustVugg/colibri/pull/2213) (0b): prefill bank lifecycle, speculative batches, missing-bias guard (3) |
+| `rebased/pr0c/dsv4-decode-error-paths` | [#2214](https://github.com/JustVugg/colibri/pull/2214) (0c): mirror slot rollback, loader lanes on every MoE exit (2) |
+| `rebased/pr0d/dsv4-dll-export` | [#2215](https://github.com/JustVugg/colibri/pull/2215) (0d): DLL export + parity test (1) |
+| `rebased/pr0e/dsv4-cuda-test-target` | [#2216](https://github.com/JustVugg/colibri/pull/2216) (0e): dsv4-cuda-test passes on generic builds (2) |
+| `rebased/pr0f/dsv4-docs-sizes` | [#2217](https://github.com/JustVugg/colibri/pull/2217) (0f): real bank/mirror sizes in docs (1) |
+| `rebased/pr0/dsv4-fixes` | the six combined (13 commits, #2212–#2217) — base of PR #1 |
 | `rebased/pr1/reap-prefill` | PR #1 final (8 commits on pr0) |
 | `rebased/pr2/two-gpu-decode` | PR #2 final (8 commits on PR #1) |
 | `pr0*/…`, `pr1/reap-prefill`, `pr2/two-gpu-decode`, `pr1/v6`, `pr1/v7`, `pr2/v5`, … | the 2026-10-15/16 stack on 7b55a9b3 (history) |
