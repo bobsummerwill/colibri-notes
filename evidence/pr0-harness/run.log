@@ -1,0 +1,15 @@
+start 2026-10-18T09:01:57-07:00
+== 62eaa9dc
+h2d ordering (pageable, backlog 20): WAR 300/300 RAW 0/300 UPLOAD 0/300 mismatched
+after a failed bank allocation the next launch check FAILED (stale out-of-memory error)
+first init: matvec ok (worst rel err 0) after shutdown + init: matvec FAILED (worst rel err 0) 
+== ce2d4eff
+h2d ordering (pageable, backlog 20): WAR 0/300 RAW 0/300 UPLOAD 0/300 mismatched
+after a failed bank allocation the next launch check passes: OK
+first init: matvec ok (worst rel err 0) after shutdown + init: matvec ok (worst rel err 0) 
+== 760cb44a
+h2d ordering (pageable, backlog 20): WAR 0/300 RAW 0/300 UPLOAD 0/300 mismatched
+after a failed bank allocation the next launch check passes: OK
+first init: matvec ok (worst rel err 0) after shutdown + init: matvec ok (worst rel err 0) 
+end 2026-10-18T09:05:04-07:00
+{"status":"ok"} restored 09:05:10
