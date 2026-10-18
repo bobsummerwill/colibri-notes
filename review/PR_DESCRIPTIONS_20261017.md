@@ -47,6 +47,27 @@ which stream copies run on and on failure paths.
   budgets, long first requests, every refill pageable), so we do not claim a visible end-to-end
   fix on dev; the change removes the race the harness shows.
 
+### How this was tested
+- `make check` at the combined PR #0 tip: 2,572 tests pass (upstream dev: 2,560); every commit
+  compiles with `-Wall -Wextra`, 0 diagnostics; CUDA build (sm_86) 0 warnings; `make -C c
+  dsv4-cuda-test` and `make -C c cuda-test` pass on 2× RTX 3090 at the PR #1/#2 tips, which
+  contain this change.
+- How the race was found and fixed: [investigations §3](https://github.com/bobsummerwill/colibri-notes/blob/2c8e5e61a63d3f6771bb7405bc7e08c37d23d8f9/investigations.md); the
+  double-bank divergence before/after the fix, with per-token logit hashes:
+  [manifests/final2/race](https://github.com/bobsummerwill/colibri-notes/tree/2c8e5e61a63d3f6771bb7405bc7e08c37d23d8f9/manifests/final2/race), [evidence/determinism](https://github.com/bobsummerwill/colibri-notes/tree/2c8e5e61a63d3f6771bb7405bc7e08c37d23d8f9/evidence/determinism).
+- No regression (measured on the previous base 7b55a9b3): dev vs this change on the 6-prompt
+  decode benchmark, identical text, 0.3 % difference, a validated no-change manifest:
+  [manifests/final/drift](https://github.com/bobsummerwill/colibri-notes/tree/2c8e5e61a63d3f6771bb7405bc7e08c37d23d8f9/manifests/final/drift).
+- **Review:** an earlier version of this series went through a multi-agent adversarial code
+  review that raised 60 findings ([F1–F60](https://github.com/bobsummerwill/colibri-notes/blob/2c8e5e61a63d3f6771bb7405bc7e08c37d23d8f9/review/REVIEW_REPORT.md)); the commit messages name
+  the finding each change resolves, and a final stack check approved every PR with no serious
+  findings ([STACK_CHECK](https://github.com/bobsummerwill/colibri-notes/blob/2c8e5e61a63d3f6771bb7405bc7e08c37d23d8f9/review/STACK_CHECK.md)). After rebasing onto 62eaa9dc the series was
+  reviewed again for interactions with upstream's newer code (GGUF DeepSeek V4 loading, the serve
+  prewarm) and re-tested ([rebase notes](https://github.com/bobsummerwill/colibri-notes/blob/2c8e5e61a63d3f6771bb7405bc7e08c37d23d8f9/review/REBASE_20261017.md)).
+- **Everything else** (environment, every measurement, investigations, decisions):
+  [colibri-notes](https://github.com/bobsummerwill/colibri-notes/blob/2c8e5e61a63d3f6771bb7405bc7e08c37d23d8f9/README.md). Developed with AI assistance (Claude Code; see the
+  `Co-Authored-By` trailers); every change was reviewed and tested as described here.
+
 ### Validation
 - [x] `make -C c check` (combined PR #0 tip: 2572 tests, OK, 277 skipped)
 - [x] CUDA changes tested with `make -C c dsv4-cuda-test` (RTX 3090, sm_86, `-DCOLI_DSV4_NO_TC`)
@@ -78,6 +99,20 @@ Three fixes to the batched GPU prefill (`COLI_CUDA_MOE_BATCH=1`):
 tests for the bank lifecycle and the speculative guard
 (`c/tests/test_v4_moe_batch_lifecycle_source.py`, `c/tests/test_v4_moe_batch_speculative_source.py`).
 
+### How this was tested
+- New source tests: `test_v4_moe_batch_lifecycle_source.py` (the bank is released on every
+  `generate()` exit and at close) and `test_v4_moe_batch_speculative_source.py` (verify/replay
+  batches never reach the bank); `make check` 2,572 tests pass; CUDA build 0 warnings.
+- **Review:** an earlier version of this series went through a multi-agent adversarial code
+  review that raised 60 findings ([F1–F60](https://github.com/bobsummerwill/colibri-notes/blob/2c8e5e61a63d3f6771bb7405bc7e08c37d23d8f9/review/REVIEW_REPORT.md)); the commit messages name
+  the finding each change resolves, and a final stack check approved every PR with no serious
+  findings ([STACK_CHECK](https://github.com/bobsummerwill/colibri-notes/blob/2c8e5e61a63d3f6771bb7405bc7e08c37d23d8f9/review/STACK_CHECK.md)). After rebasing onto 62eaa9dc the series was
+  reviewed again for interactions with upstream's newer code (GGUF DeepSeek V4 loading, the serve
+  prewarm) and re-tested ([rebase notes](https://github.com/bobsummerwill/colibri-notes/blob/2c8e5e61a63d3f6771bb7405bc7e08c37d23d8f9/review/REBASE_20261017.md)).
+- **Everything else** (environment, every measurement, investigations, decisions):
+  [colibri-notes](https://github.com/bobsummerwill/colibri-notes/blob/2c8e5e61a63d3f6771bb7405bc7e08c37d23d8f9/README.md). Developed with AI assistance (Claude Code; see the
+  `Co-Authored-By` trailers); every change was reviewed and tested as described here.
+
 ### Validation
 - [x] `make -C c check`
 - [x] CUDA build sm_86, 0 warnings; `make -C c dsv4-cuda-test`
@@ -104,6 +139,19 @@ Related to 0a but independent: without 0a a failed mirror upload's stale CUDA er
 next GPU check fail once; 0c's rollback is correct either way, so the two can merge in either
 order.
 
+### How this was tested
+- `make check` 2,572 tests pass; every commit compiles with `-Wall -Wextra`, 0 diagnostics; CUDA
+  build 0 warnings; exercised by the GPU runs of PR #1/#2 (outputs identical to upstream).
+- **Review:** an earlier version of this series went through a multi-agent adversarial code
+  review that raised 60 findings ([F1–F60](https://github.com/bobsummerwill/colibri-notes/blob/2c8e5e61a63d3f6771bb7405bc7e08c37d23d8f9/review/REVIEW_REPORT.md)); the commit messages name
+  the finding each change resolves, and a final stack check approved every PR with no serious
+  findings ([STACK_CHECK](https://github.com/bobsummerwill/colibri-notes/blob/2c8e5e61a63d3f6771bb7405bc7e08c37d23d8f9/review/STACK_CHECK.md)). After rebasing onto 62eaa9dc the series was
+  reviewed again for interactions with upstream's newer code (GGUF DeepSeek V4 loading, the serve
+  prewarm) and re-tested ([rebase notes](https://github.com/bobsummerwill/colibri-notes/blob/2c8e5e61a63d3f6771bb7405bc7e08c37d23d8f9/review/REBASE_20261017.md)).
+- **Everything else** (environment, every measurement, investigations, decisions):
+  [colibri-notes](https://github.com/bobsummerwill/colibri-notes/blob/2c8e5e61a63d3f6771bb7405bc7e08c37d23d8f9/README.md). Developed with AI assistance (Claude Code; see the
+  `Co-Authored-By` trailers); every change was reviewed and tested as described here.
+
 ### Validation
 - [x] `make -C c check`
 - [x] CUDA build sm_86, 0 warnings
@@ -127,6 +175,20 @@ lists it, and a parity test checks that every `dsv4_cuda_*` symbol the loader re
 exported.
 
 1 commit (+128, mostly the test).
+
+### How this was tested
+- New `test_backend_loader_dsv4_parity.py`: every `dsv4_cuda_*` symbol the loader resolves must be
+  in `dsv4.def`. On upstream dev 62eaa9dc two of its seven tests fail, both naming exactly
+  `dsv4_cuda_device_unified`; with this change all seven pass. `make check` 2,572 tests pass.
+- **Review:** an earlier version of this series went through a multi-agent adversarial code
+  review that raised 60 findings ([F1–F60](https://github.com/bobsummerwill/colibri-notes/blob/2c8e5e61a63d3f6771bb7405bc7e08c37d23d8f9/review/REVIEW_REPORT.md)); the commit messages name
+  the finding each change resolves, and a final stack check approved every PR with no serious
+  findings ([STACK_CHECK](https://github.com/bobsummerwill/colibri-notes/blob/2c8e5e61a63d3f6771bb7405bc7e08c37d23d8f9/review/STACK_CHECK.md)). After rebasing onto 62eaa9dc the series was
+  reviewed again for interactions with upstream's newer code (GGUF DeepSeek V4 loading, the serve
+  prewarm) and re-tested ([rebase notes](https://github.com/bobsummerwill/colibri-notes/blob/2c8e5e61a63d3f6771bb7405bc7e08c37d23d8f9/review/REBASE_20261017.md)).
+- **Everything else** (environment, every measurement, investigations, decisions):
+  [colibri-notes](https://github.com/bobsummerwill/colibri-notes/blob/2c8e5e61a63d3f6771bb7405bc7e08c37d23d8f9/README.md). Developed with AI assistance (Claude Code; see the
+  `Co-Authored-By` trailers); every change was reviewed and tested as described here.
 
 ### Validation
 - [x] `make -C c check` (the parity test runs there; Linux only — no Windows build was available)
@@ -152,6 +214,20 @@ These follow the four 0a backend commits in the commit text but do not depend on
 
 2 commits, the two tests only (`c/tests/test_dsv4_attention_batch_cuda.c`, `c/tests/test_dsv4_moe_batch_cuda.c`; +35/−13).
 
+### How this was tested
+- `make -C c dsv4-cuda-test` passes on RTX 3090s (at the PR #1/#2 tips; on dev it stops at the
+  attention stub on every generic build);
+  `make check` 2,572 tests pass.
+- **Review:** an earlier version of this series went through a multi-agent adversarial code
+  review that raised 60 findings ([F1–F60](https://github.com/bobsummerwill/colibri-notes/blob/2c8e5e61a63d3f6771bb7405bc7e08c37d23d8f9/review/REVIEW_REPORT.md)); the commit messages name
+  the finding each change resolves, and a final stack check approved every PR with no serious
+  findings ([STACK_CHECK](https://github.com/bobsummerwill/colibri-notes/blob/2c8e5e61a63d3f6771bb7405bc7e08c37d23d8f9/review/STACK_CHECK.md)). After rebasing onto 62eaa9dc the series was
+  reviewed again for interactions with upstream's newer code (GGUF DeepSeek V4 loading, the serve
+  prewarm) and re-tested ([rebase notes](https://github.com/bobsummerwill/colibri-notes/blob/2c8e5e61a63d3f6771bb7405bc7e08c37d23d8f9/review/REBASE_20261017.md)).
+- **Everything else** (environment, every measurement, investigations, decisions):
+  [colibri-notes](https://github.com/bobsummerwill/colibri-notes/blob/2c8e5e61a63d3f6771bb7405bc7e08c37d23d8f9/README.md). Developed with AI assistance (Claude Code; see the
+  `Co-Authored-By` trailers); every change was reviewed and tested as described here.
+
 ### Validation
 - [x] `make -C c dsv4-cuda-test` on an RTX 3090 (sm_86): dense batch passes, attention prints the
   sparse-batch SKIP and passes the output projection, MoE prints its generic-build SKIP
@@ -168,6 +244,19 @@ These follow the four 0a backend commits in the commit text but do not depend on
 ### Summary
 Docs and comments gave wrong sizes; they now give the computed ones: 12.75 MiB per decode mirror
 and a 3264 MiB expert bank (256 experts). Docs (`docs/deepseek-v4.md`) and comments in `c/deepseek_v4.c` only (+64/−38).
+
+### How this was tested
+- Sizes recomputed from the code (12.75 MiB per mirror, 3264 MiB for a 256-slot bank);
+  `make check` 2,572 tests pass.
+- **Review:** an earlier version of this series went through a multi-agent adversarial code
+  review that raised 60 findings ([F1–F60](https://github.com/bobsummerwill/colibri-notes/blob/2c8e5e61a63d3f6771bb7405bc7e08c37d23d8f9/review/REVIEW_REPORT.md)); the commit messages name
+  the finding each change resolves, and a final stack check approved every PR with no serious
+  findings ([STACK_CHECK](https://github.com/bobsummerwill/colibri-notes/blob/2c8e5e61a63d3f6771bb7405bc7e08c37d23d8f9/review/STACK_CHECK.md)). After rebasing onto 62eaa9dc the series was
+  reviewed again for interactions with upstream's newer code (GGUF DeepSeek V4 loading, the serve
+  prewarm) and re-tested ([rebase notes](https://github.com/bobsummerwill/colibri-notes/blob/2c8e5e61a63d3f6771bb7405bc7e08c37d23d8f9/review/REBASE_20261017.md)).
+- **Everything else** (environment, every measurement, investigations, decisions):
+  [colibri-notes](https://github.com/bobsummerwill/colibri-notes/blob/2c8e5e61a63d3f6771bb7405bc7e08c37d23d8f9/README.md). Developed with AI assistance (Claude Code; see the
+  `Co-Authored-By` trailers); every change was reviewed and tested as described here.
 
 ### Validation
 - [x] `make -C c check`
@@ -224,6 +313,28 @@ prompts, with hashed raw evidence.
 For reference, on the previous base 7b55a9b3 the speedups were 2.67×/2.82× (3.14×/3.15× with the
 double bank); upstream's own prefill has since become ~1.6–1.7× faster (#2069).
 
+### How this was tested
+- New tests: `test_dsv4_generic_bitwise_cuda.c` (old vs new kernels bit-identical on the GPU),
+  `test_dsv4_bank_bytes_cuda.c` (bank sizing), `test_v4_moe_batch_books_source.py`, and two store
+  cases in `test_deepseek_v4.c` (the bank's routing books match the CPU union's after every chunk,
+  and the saved `.coli_usage` files are byte-identical); `make check` 2,579 tests pass;
+  `dsv4-cuda-test` passes on an RTX 3090.
+- Bit-identity of the two new kernels: `_VERIFY=1` modes report 0 mismatching bits over full
+  prefills; the review re-checked them at runtime over tens of millions of outputs.
+- Benchmarks: four manifests validated with `c/experiment_manifest.py`, raw evidence hashed:
+  [manifests/final4](https://github.com/bobsummerwill/colibri-notes/tree/2c8e5e61a63d3f6771bb7405bc7e08c37d23d8f9/manifests/final4); all measurements and the earlier base:
+  [measurements.md](https://github.com/bobsummerwill/colibri-notes/blob/2c8e5e61a63d3f6771bb7405bc7e08c37d23d8f9/measurements.md). The F42 decode-after-prefill investigation (cause,
+  fix, +6.3 %): [manifests/final2](https://github.com/bobsummerwill/colibri-notes/tree/2c8e5e61a63d3f6771bb7405bc7e08c37d23d8f9/manifests/final2).
+- **Review:** an earlier version of this series went through a multi-agent adversarial code
+  review that raised 60 findings ([F1–F60](https://github.com/bobsummerwill/colibri-notes/blob/2c8e5e61a63d3f6771bb7405bc7e08c37d23d8f9/review/REVIEW_REPORT.md)); the commit messages name
+  the finding each change resolves, and a final stack check approved every PR with no serious
+  findings ([STACK_CHECK](https://github.com/bobsummerwill/colibri-notes/blob/2c8e5e61a63d3f6771bb7405bc7e08c37d23d8f9/review/STACK_CHECK.md)). After rebasing onto 62eaa9dc the series was
+  reviewed again for interactions with upstream's newer code (GGUF DeepSeek V4 loading, the serve
+  prewarm) and re-tested ([rebase notes](https://github.com/bobsummerwill/colibri-notes/blob/2c8e5e61a63d3f6771bb7405bc7e08c37d23d8f9/review/REBASE_20261017.md)).
+- **Everything else** (environment, every measurement, investigations, decisions):
+  [colibri-notes](https://github.com/bobsummerwill/colibri-notes/blob/2c8e5e61a63d3f6771bb7405bc7e08c37d23d8f9/README.md). Developed with AI assistance (Claude Code; see the
+  `Co-Authored-By` trailers); every change was reviewed and tested as described here.
+
 ### Validation
 - [x] `make -C c check`: 2579 tests, OK (277 skipped)
 - [x] CUDA: build sm_86 0 warnings; `make -C c dsv4-cuda-test` passes on an RTX 3090 (0 warnings)
@@ -262,6 +373,24 @@ All new behaviour is opt-in:
 (peer compute) **4.34 tok/s (+44 %)**; all six answers identical. One sample per configuration
 (a sanity check, not a manifest); on the previous base the same comparison gave 2.90 → 4.08
 (+41 %).
+
+### How this was tested
+- New tests: `test_dsv4_peer_init_cuda.cu` and `test_dsv4_peer_moe_cuda.c` (two-GPU init,
+  rollback, peer compute bit-identical to one GPU; they skip without two peer-capable GPUs),
+  `test_v4_peer_init_source.py`, and a VRAM-first store test in `test_deepseek_v4.c`;
+  `make check` 2,586 tests pass; `dsv4-cuda-test` and `cuda-test` pass on 2× RTX 3090 + NVLink.
+- Earlier per-switch measurements with validated manifests:
+  [manifests/final/pr2](https://github.com/bobsummerwill/colibri-notes/tree/2c8e5e61a63d3f6771bb7405bc7e08c37d23d8f9/manifests/final/pr2); today's re-check on the new base:
+  [manifests/final4/pr2-NOTE.md](https://github.com/bobsummerwill/colibri-notes/blob/2c8e5e61a63d3f6771bb7405bc7e08c37d23d8f9/manifests/final4/pr2-NOTE.md).
+- **Review:** an earlier version of this series went through a multi-agent adversarial code
+  review that raised 60 findings ([F1–F60](https://github.com/bobsummerwill/colibri-notes/blob/2c8e5e61a63d3f6771bb7405bc7e08c37d23d8f9/review/REVIEW_REPORT.md)); the commit messages name
+  the finding each change resolves, and a final stack check approved every PR with no serious
+  findings ([STACK_CHECK](https://github.com/bobsummerwill/colibri-notes/blob/2c8e5e61a63d3f6771bb7405bc7e08c37d23d8f9/review/STACK_CHECK.md)). After rebasing onto 62eaa9dc the series was
+  reviewed again for interactions with upstream's newer code (GGUF DeepSeek V4 loading, the serve
+  prewarm) and re-tested ([rebase notes](https://github.com/bobsummerwill/colibri-notes/blob/2c8e5e61a63d3f6771bb7405bc7e08c37d23d8f9/review/REBASE_20261017.md)).
+- **Everything else** (environment, every measurement, investigations, decisions):
+  [colibri-notes](https://github.com/bobsummerwill/colibri-notes/blob/2c8e5e61a63d3f6771bb7405bc7e08c37d23d8f9/README.md). Developed with AI assistance (Claude Code; see the
+  `Co-Authored-By` trailers); every change was reviewed and tested as described here.
 
 ### Validation
 - [x] `make -C c check`: 2586 tests, OK (277 skipped)
