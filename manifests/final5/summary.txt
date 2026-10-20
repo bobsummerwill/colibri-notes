@@ -1,0 +1,24 @@
+final5 benchmark: /home/maplemercury/colibri-bench/final5/bench
+dev 736a0682d38f0a1c6592f34b1c6749fea221da42 | pr1 34fe3f808d348f28e0813b02f42eeea14c2414d3 | pr2 4558700fa51606cc4f4cadac0f9e2ca59a852eb9
+gates: PASS (0 problems, 0 notes)
+
+Prefill client (bench_pr1.py): mean [median] over samples; texts vs this run's dev (A s1)
+  W  long_prefill    ttft   77.391 s [  77.391]  prefill 25.7395 tok/s [25.7395]  decode  2.028 tok/s  n=1  texts_same=True  (warm-up, discarded)
+  W  long_prefill_2  ttft   110.56 s [  110.56]  prefill 27.1797 tok/s [27.1797]  decode 2.8753 tok/s  n=1  texts_same=True  (warm-up, discarded)
+  A  long_prefill    ttft 130.2143 s [ 130.159]  prefill 15.2988 tok/s [15.3044]  decode 2.2651 tok/s  n=3  texts_same=True
+  A  long_prefill_2  ttft  206.047 s [ 205.935]  prefill 14.5847 tok/s [ 14.592]  decode 2.9404 tok/s  n=3  texts_same=True
+  B  long_prefill    ttft   76.809 s [  76.781]  prefill 25.9346 tok/s [25.9439]  decode 2.2029 tok/s  n=3  texts_same=True
+  B  long_prefill_2  ttft  111.004 s [ 110.962]  prefill 27.0712 tok/s [27.0814]  decode 2.8947 tok/s  n=3  texts_same=True
+  C  long_prefill    ttft  64.0627 s [  64.064]  prefill 31.0947 tok/s [ 31.094]  decode  2.074 tok/s  n=3  texts_same=True
+  C  long_prefill_2  ttft  97.9703 s [  97.849]  prefill 30.6727 tok/s [30.7106]  decode 2.8273 tok/s  n=3  texts_same=True
+  long_prefill: TTFT speedup B vs A 1.6953x (median 1.6952x), C vs A 2.0326x (median 2.0317x), C vs B 1.199x; decode B/A 0.9725 C/B 0.9415
+  long_prefill_2: TTFT speedup B vs A 1.8562x (median 1.8559x), C vs A 2.1032x (median 2.1046x), C vs B 1.133x; decode B/A 0.9845 C/B 0.9767
+
+Decode client (bench_decode.py, 6 x 300 tokens): per-sample mean over prompts; texts vs this run's dev (D0 s1)
+  D0 mean 3.0116 tok/s [median 3.0113, cv 0.02%, n=3] samples [3.0122, 3.0113, 3.0112]  vram_first_hits [None, None, None]  texts_same=True
+  G1 mean 2.9826 tok/s [median 2.983, cv 0.06%, n=3] samples [2.9842, 2.9807, 2.983]  vram_first_hits [0, 0, 0]  texts_same=True
+  R1 mean 3.0722 tok/s [median 3.0722, cv 0.01%, n=3] samples [3.0725, 3.0722, 3.0718]  vram_first_hits [310011, 310011, 310011]  texts_same=True
+  X3 mean 4.2841 tok/s [median 4.2865, cv 0.1%, n=3] samples [4.279, 4.2868, 4.2865]  vram_first_hits [418453, 418453, 418453]  texts_same=True
+  G1/D0 0.9904 (PR2 switches off vs dev)  R1/G1 1.03 (VRAM-first)  X3/R1 1.3945 (second GPU)  X3/G1 1.4364  X3/D0 1.4225
+
+llama: stopped 2026-10-20T00:15:02-07:00, restored 2026-10-20T03:00:01-07:00, healthy=1, down 9899 s, script status 0

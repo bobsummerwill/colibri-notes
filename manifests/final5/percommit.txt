@@ -1,0 +1,22 @@
+# Per-commit compile check, computer4 (gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0), 2026-10-20T03:13:39-07:00
+# per commit of upstream/dev 736a0682..refresh/pr2-two-gpu-decode 4558700f:
+#  (1) cd c && make -f Makefile.deepseek-v4 deepseek-v4 -j16 (CPU engine, from clean)
+#  (2) gcc -O2 -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -fopenmp -pthread -march=native -fsyntax-only -DCOLI_V4_GPU_TIER -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER deepseek_v4.c
+#  (3) gcc -O2 -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -fopenmp -pthread -march=native -fsyntax-only -DCOLI_V4_TEST_HOOKS -I. tests/test_deepseek_v4.c
+# diag = lines matching 'warning:|error:' excluding lto-wrapper's 'using serial compilation' note
+faa0040290 build=0 gpu_tier=0 test=0 diag=0  deepseek-v4: size the batched-MoE expert bank to the routed-expert cou
+f672fd738c build=0 gpu_tier=0 test=0 diag=0  deepseek-v4: batched GPU prefill for expert-pruned checkpoints
+016d5de291 build=0 gpu_tier=0 test=0 diag=0  deepseek-v4: GPU-bank prefill keeps the expert store's routing books
+975f364f53 build=0 gpu_tier=0 test=0 diag=0  deepseek-v4: size the decode-mirror VRAM reserve from the expert bank
+911b86dba6 build=0 gpu_tier=0 test=0 diag=0  deepseek-v4: expert-major fp4 kernel for the generic batched MoE
+838416e6b1 build=0 gpu_tier=0 test=0 diag=0  deepseek-v4: warp-per-row kernel for short fp8 dense batch matmuls
+d45e4a34bb build=0 gpu_tier=0 test=0 diag=0  deepseek-v4: V4_MOE_BATCH_PROF splits the batched prefill MoE time
+34fe3f808d build=0 gpu_tier=0 test=0 diag=0  deepseek-v4: document REAP prefill and the generic batched kernels
+d18bed5bd2 build=0 gpu_tier=0 test=0 diag=0  deepseek-v4: DSV4_CUDA_PIN_CAP_GB caps the page-locked expert slabs
+db85512a28 build=0 gpu_tier=0 test=0 diag=0  deepseek-v4: V4_SERVE_STATS_LOG per-turn decode stats and MoE counters
+2cec687067 build=0 gpu_tier=0 test=0 diag=0  deepseek-v4: VRAM-first decode lookups (V4_GPU_RESIDENT_FIRST)
+61e31442b9 build=0 gpu_tier=0 test=0 diag=0  deepseek-v4: per-cache mirror growth-guard state and one LRU clock
+5d818d7729 build=0 gpu_tier=0 test=0 diag=0  deepseek-v4: mirror caches keep their VRAM reserve, drop failed upload
+d470bc465d build=0 gpu_tier=0 test=0 diag=0  deepseek-v4: peer mirror pool on a second GPU (DSV4_CUDA_PEER_DEVICE)
+3c5b73b0ab build=0 gpu_tier=0 test=0 diag=0  deepseek-v4: peer compute on the second GPU (DSV4_CUDA_PEER_COMPUTE)
+4558700fa5 build=0 gpu_tier=0 test=0 diag=0  deepseek-v4: document two-GPU decode and VRAM-first lookups

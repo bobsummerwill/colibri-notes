@@ -1,0 +1,184 @@
+{
+  "version": 1,
+  "hypothesis": "Batched GPU prefill for expert-pruned checkpoints (pr1 tip) speeds up REAP-132 prefill over upstream dev, which refuses the GPU batch path for a 132-expert model (moe-batch=off) and runs the CPU expert union",
+  "commit": "34fe3f808d348f28e0813b02f42eeea14c2414d3",
+  "model": "DeepSeek V4 Flash REAP 150B (puwaer/DeepSeek-V4-Flash-0731-reap-150b, 132 routed experts, fp4 experts / fp8 dense), colibri safetensors layout, 78.9 GiB on disk",
+  "command": "build: cd c && make -f Makefile.deepseek-v4 deepseek-v4 CUDA=1 CUDA_HOME=/usr NVCC=/usr/bin/nvcc CUDA_ARCH=sm_86 NO_TC=1 -j8; run: python3 c/coli serve --model <REAP dir> --ram 40 --ctx 8192 --host 127.0.0.1 --port 8090, server environment exactly PATH/HOME/USER/LOGNAME/LANG + the config's env keys (env -i); one freshly started server process per sample (OS page cache not dropped between samples, see notes.cache_state); one discarded warm-up sample W on the pr1 tip first, then 3 samples per arm interleaved with the arm order rotated per round (A B C / B C A / C A B); client bench_pr1.py sends request 1 (long_prefill: 1992-token prompt, max_tokens 100) then request 2 (long_prefill_2: 3005-token prompt, max_tokens 60), streamed, greedy; tok_s = prompt_tokens / time-to-first-token of the named request; metric: request 'long_prefill' (1992 prompt tokens); baseline arm A, trial arm B",
+  "prompt_hash": "13fc61ddae676a87f55d68c32d7488f90f0c99af634f30dc846eaa8d1707257f",
+  "hardware": {
+    "cpu": "AMD Ryzen 9 9950X3D, 16 cores / 32 threads, 1 socket, governor powersave, max 5.76 GHz (engine: 16 OpenMP compute threads + 3 expert-loader lanes)",
+    "ram": "62.4 GiB (free -b; 8.0 GiB swap); engine --ram 40 (ram_tiers: 31.59 GiB routed-expert RAM cache = 59 of 132 experts per layer, 6.23 GiB dense resident); MemAvailable 45.6 GiB (46705 MiB) at preflight with Hermes's model server still loaded",
+    "storage": "WD_BLACK SN850X 4 TB NVMe, ext4 root filesystem (rw,relatime), model read with O_DIRECT (v4_ssd_io mode=direct-aligned); OS page cache not dropped between samples",
+    "os": "Ubuntu 24.04.4 LTS, kernel 7.0.0-34-generic, gcc 13.3.0, Python 3.12.3, CUDA toolkit 12.0.140 (generic build CUDA_ARCH=sm_86 NO_TC=1), NVIDIA driver 595.84; 2x NVIDIA GeForce RTX 3090 24 GB, PCIe gen4 x16-capable, GPU0 ran at gen4 x8 during samples, NVLink NV4 bridge; only GPU0 used (COLI_GPU=0 DSV4_CUDA_DEVICE=0)"
+  },
+  "warmup_runs": 0,
+  "changed_variables": [
+    "engine_commit"
+  ],
+  "baseline": {
+    "config": {
+      "COLI_CUDA": "1",
+      "COLI_GPU": "0",
+      "DSV4_CUDA_DEVICE": "0",
+      "CUDA_DENSE": "1",
+      "COLI_CUDA_PIPE": "2",
+      "COLI_CUDA_ATTN_BATCH": "1",
+      "COLI_CUDA_MOE_BATCH": "1",
+      "V4_MOE_REFILL_GROUP": "12",
+      "V4_LOADER_LANES": "3",
+      "V4_PREFIX_CKPT_DISK": "0",
+      "ram_gib": "40",
+      "ctx": "8192",
+      "temperature": "0",
+      "engine_commit": "736a0682d38f0a1c6592f34b1c6749fea221da42"
+    },
+    "samples": {
+      "tok_s": [
+        15.1512,
+        15.3044,
+        15.4408
+      ],
+      "ttft_s": [
+        131.475,
+        130.159,
+        129.009
+      ],
+      "decode_tok_s": [
+        2.2344,
+        2.2776,
+        2.2832
+      ],
+      "prompt_tokens": [
+        1992,
+        1992,
+        1992
+      ],
+      "text_sha256": [
+        "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba",
+        "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba",
+        "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba"
+      ],
+      "sample_dirs": [
+        "A/s1",
+        "A/s2",
+        "A/s3"
+      ],
+      "run_order_seq": [
+        2,
+        7,
+        9
+      ],
+      "tok_s_mean": 15.2988,
+      "tok_s_stdev": 0.1449,
+      "ttft_s_mean": 130.214,
+      "ttft_s_stdev": 1.234
+    },
+    "median_tok_s": 15.3044,
+    "engine": {
+      "commit": "736a0682d38f0a1c6592f34b1c6749fea221da42",
+      "binary_sha256": "a382ddac3f8d79a61d39aa38727a3bf420003ead35cd4840866934793e8b6f68"
+    },
+    "quality": {
+      "method": "greedy (temperature 0): the full output text of both requests (long_prefill, long_prefill_2) in every sample of this arm has the same sha256 (recomputed from the stored text) as upstream dev (arm A, itself identical across its 3 samples and to the 2026-10-15 dev reference); the engine's real environment (/proc/<pid>/environ), tree SHA, binary sha256, empty unchanged .coli_usage and the serve.log moe-batch/moe-double lines checked per sample",
+      "passed": true,
+      "problems": []
+    },
+    "evidence": {
+      "uri": "evidence/final5-arm-A.tgz",
+      "sha256": "1870412ebfa381eb2618fa946a5f6c725d72d3d1197f7585c3c1d0cf1c216161",
+      "contains": "final5/A/s*/ (serve.log, bench.jsonl with full texts, sample.txt, engine_environ.txt, serve_environ.txt, procs.txt, nvsmi.csv, gpu_*.csv, mode.txt, bench.out/err, error_count.txt)",
+      "full_run": "bench.tgz (sha256 ca62ce11f6b18cce0d233675eaa0d5083c6f2a0990dfee8b942bcdb8d3bbb37d, also in bench.tgz.sha256): all arms incl. W/D0/G1/R1/X3, meta/ (host, tips, trees, scripts, build logs, llama before/after), run.log, summary.json"
+    }
+  },
+  "trial": {
+    "config": {
+      "COLI_CUDA": "1",
+      "COLI_GPU": "0",
+      "DSV4_CUDA_DEVICE": "0",
+      "CUDA_DENSE": "1",
+      "COLI_CUDA_PIPE": "2",
+      "COLI_CUDA_ATTN_BATCH": "1",
+      "COLI_CUDA_MOE_BATCH": "1",
+      "V4_MOE_REFILL_GROUP": "12",
+      "V4_LOADER_LANES": "3",
+      "V4_PREFIX_CKPT_DISK": "0",
+      "ram_gib": "40",
+      "ctx": "8192",
+      "temperature": "0",
+      "engine_commit": "34fe3f808d348f28e0813b02f42eeea14c2414d3"
+    },
+    "samples": {
+      "tok_s": [
+        25.9439,
+        25.8382,
+        26.0218
+      ],
+      "ttft_s": [
+        76.781,
+        77.095,
+        76.551
+      ],
+      "decode_tok_s": [
+        2.1843,
+        2.2049,
+        2.2196
+      ],
+      "prompt_tokens": [
+        1992,
+        1992,
+        1992
+      ],
+      "text_sha256": [
+        "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba",
+        "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba",
+        "32534c06abd640d59d2eb39ab6609051f63e9876f533aad1d75dd5cd775835ba"
+      ],
+      "sample_dirs": [
+        "B/s1",
+        "B/s2",
+        "B/s3"
+      ],
+      "run_order_seq": [
+        3,
+        5,
+        10
+      ],
+      "tok_s_mean": 25.9346,
+      "tok_s_stdev": 0.0922,
+      "ttft_s_mean": 76.809,
+      "ttft_s_stdev": 0.273
+    },
+    "median_tok_s": 25.9439,
+    "engine": {
+      "commit": "34fe3f808d348f28e0813b02f42eeea14c2414d3",
+      "binary_sha256": "3efddcd5d132ea040a405430f67a3af0724729c74f1eb3ae09d0336d25f23ed4"
+    },
+    "quality": {
+      "method": "greedy (temperature 0): the full output text of both requests (long_prefill, long_prefill_2) in every sample of this arm has the same sha256 (recomputed from the stored text) as upstream dev (arm A, itself identical across its 3 samples and to the 2026-10-15 dev reference); the engine's real environment (/proc/<pid>/environ), tree SHA, binary sha256, empty unchanged .coli_usage and the serve.log moe-batch/moe-double lines checked per sample",
+      "passed": true,
+      "problems": []
+    },
+    "evidence": {
+      "uri": "evidence/final5-arm-B.tgz",
+      "sha256": "062a2ba8dc7e854fed2ec13b5c57a55912caee79c53df98a2b31d1e20fadf30a",
+      "contains": "final5/B/s*/ (serve.log, bench.jsonl with full texts, sample.txt, engine_environ.txt, serve_environ.txt, procs.txt, nvsmi.csv, gpu_*.csv, mode.txt, bench.out/err, error_count.txt)",
+      "full_run": "bench.tgz (sha256 ca62ce11f6b18cce0d233675eaa0d5083c6f2a0990dfee8b942bcdb8d3bbb37d, also in bench.tgz.sha256): all arms incl. W/D0/G1/R1/X3, meta/ (host, tips, trees, scripts, build logs, llama before/after), run.log, summary.json"
+    }
+  },
+  "outcome": "improvement",
+  "speedup_median_tok_s": 1.6952,
+  "notes": {
+    "run": "final5, shadowfax, samples 00:18:53 - 00:59:00 PDT (Hermes's model server down 00:15:02 - 03:00:01); bench.tgz sha256 ca62ce11f6b18cce0d233675eaa0d5083c6f2a0990dfee8b942bcdb8d3bbb37d",
+    "base": "New base: arm A is upstream dev 736a0682d38f0a1c6592f34b1c6749fea221da42 ('Merge pull request #2255 from JustVugg/perf/cuda-f32-gemm'), after PR #0 (#2212-#2217) merged; the final4 manifests (../final4) used dev 62eaa9dc249b67567b9cbc83e43fbc875a8b94c1. The pr1 tip 34fe3f808d348f28e0813b02f42eeea14c2414d3 (refresh/pr1-reap-prefill, tree 517adae7cb35c09eb59ee2588989d659a589bfa2) is 8 commits on top of this base (meta/tips.txt: dev_is_ancestor_of_pr1=yes). dev still refuses the batched GPU MoE for the 132-expert model: every A serve.log has 'v4_gpu moe-batch=off (unsupported model geometry)', every B/C serve.log 'v4_gpu moe-batch=on bank=132-experts', and only C 'v4_gpu moe-double=on'.",
+    "prewarm": "Expert-cache prewarm: the base includes upstream #2111 (463f8443, 'a serve fills the expert cache before its first request (#2109)'), so both dev and the pr1 tip prewarm at serve start. At --ram 40 the plan holds 59 of 132 experts per layer, so the prewarm picks experts from .coli_usage, which was empty (size 0, same mtime) before and after every sample (sample.txt usage_before/usage_after; summary.json usage_history_changed []). Every A/B/C serve.log says '[v4] expert cache: 59 of 132 experts per layer fit and no usage history says which, so it fills as experts are used': the prewarm read nothing, and the expert cache started empty in every sample as on 2026-10-15.",
+    "warmup": "warmup_runs 0: request 1 (long_prefill) is the first request the client sends to each freshly started server process; no warm-up request precedes it in that process. (The run's discarded W sample was a separate server process before A s1; see notes.cache_state.)",
+    "cache_state": "The OS page cache was not dropped between samples. The run began with one discarded warm-up sample W (seq 1, a separate server process on the pr1 tip, both requests; texts identical to the reference) before A s1. Unlike the 2026-10-15 run, no host journal was captured for this window, so the serve unit's memory peak (used then to show round 1 was partly cold) is not available and the cache state per sample cannot be stated from evidence. Observed: A request-1 TTFT s1 131.475 s vs s2/s3 130.159/129.009 s (s1 1.46% slower than the s2/s3 mean); medians are over all 3 samples. Run order (seq 2-10): A s1 B s1 C s1 B s2 C s2 A s2 C s3 A s3 B s3.",
+    "variability": "TTFT stdev / CV over 3 samples: A r1 1.234 s / 0.95%; B r1 0.273 s / 0.36%; prompt tok/s CV A 0.95%; B 0.36%",
+    "earlier_run_final4": "A median 15.4521 tok/s in final4, 2026-10-17 (62eaa9dc) -> 15.3044 here (736a0682, -0.96%); B median 26.0348 tok/s in final4, 2026-10-17 (7e9d2d20) -> 25.9439 here (34fe3f80, -0.35%); median ratio then 1.6849 (../final4/pr1-engine-1992.json), now 1.6952. Both arms changed commit (new dev base; pr1 7e9d2d20 then, the same 8 patches rebased), so this is a comparison across commits, not a repeat.",
+    "outputs": "18 outputs in 9 samples (A 6, B 6, C 6), all byte-identical (full-text sha256, recomputed from the stored text) to arm A's per-request text; A's texts are identical to the fixed 2026-10-15 dev references (meta/final_tools.py REF_PR1: long_prefill 32534c06abd6, long_prefill_2 1f0192038c42). The discarded warm-up W also matched.",
+    "gpu": "Peak memory.used (nvsmi.csv, max over the arm's samples): GPU0 A 22106, B 22982, C 23036 MiB; GPU1 85 MiB (unused). GPU0 link seen during samples: gen4 x8 (PCIe gen4 x16-capable cards, meta/host.txt). Decode-mirror VRAM reserve from serve.log: A none printed, B mirror-reserve=3100MiB, C mirror-reserve=4783MiB.",
+    "host": "Hermes's model server (llama-server-active, now TabbyAPI) was stopped 00:15:02 and restored 03:00:01 PDT (health ok, run.log), so the arms ran without it on the GPUs. The host journal (Hermes watchdog / cron activity) was not captured for this run, so whether other host jobs ran during samples cannot be stated from evidence.",
+    "not_filled": "Fields of the 2026-10-15 generator not filled from this run's evidence: the host journal (serve-unit memory peaks, watchdog and cron activity) was not captured, so there is no cold/warm-round analysis and no host-activity statement; there is no verify arm V and no E/F arms, so no expert-major / mm-warp manifests; memory type (DDR5), the cpufreq driver (amd-pstate) and the NVMe PCIe generation are not recorded in this run's meta/host.txt and are omitted from hardware; the model's HF id and expert format come from the model directory being the same as on 2026-10-15 (meta/host.txt lists the same directory and file mtimes of 2026-10-12), not from a new hash of the weights.",
+    "observation_decode": "Observation (not this manifest's hypothesis): decode right after the prefill, bench_pr1.py decode_tok_s (streamed chunks per second after the first chunk; 25 chunks on request 1, 60 on request 2), 3-sample means: request 1 A 2.2651, B 2.2029 (-2.75% vs A), C 2.0740 (-5.85% vs B); request 2 A 2.9404, B 2.8947 (-1.55%), C 2.8273 (-2.33%). The texts are byte-identical, so this is a speed difference only; the cause is not established by this run."
+  }
+}

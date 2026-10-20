@@ -1,0 +1,6 @@
+pr1-engine-1992.json: ok (engine_commit, improvement)
+pr1-engine-3005.json: ok (engine_commit, improvement)
+pr1-moe-double-1992.json: ok (COLI_CUDA_MOE_DOUBLE, improvement)
+pr1-moe-double-3005.json: ok (COLI_CUDA_MOE_DOUBLE, improvement)
+pr2-peer-device.json: ok (DSV4_CUDA_PEER_DEVICE, improvement)
+pr2-vram-first.json: ok (V4_GPU_RESIDENT_FIRST, improvement)

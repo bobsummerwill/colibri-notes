@@ -1,0 +1,17 @@
+pr1-engine-1992.json       improvement  15.3044 ->  25.9439 tok/s (1.6952x) quality True/True
+pr1-engine-3005.json       improvement  14.5920 ->  27.0814 tok/s (1.8559x) quality True/True
+pr1-moe-double-1992.json   improvement  25.9439 ->  31.0940 tok/s (1.1985x) quality True/True
+pr1-moe-double-3005.json   improvement  27.0814 ->  30.7106 tok/s (1.1340x) quality True/True
+A long_prefill    ttft mean  130.214 sd  1.234 | tok/s median 15.3044 mean 15.2988 sd 0.1449 | identical_to_A=True
+A long_prefill_2  ttft mean  206.047 sd  1.716 | tok/s median 14.5920 mean 14.5847 sd 0.1214 | identical_to_A=True
+B long_prefill    ttft mean   76.809 sd  0.273 | tok/s median 25.9439 mean 25.9346 sd 0.0922 | identical_to_A=True
+B long_prefill_2  ttft mean  111.004 sd  0.175 | tok/s median 27.0814 mean 27.0712 sd 0.0426 | identical_to_A=True
+C long_prefill    ttft mean   64.063 sd  0.184 | tok/s median 31.0940 mean 31.0947 sd 0.0893 | identical_to_A=True
+C long_prefill_2  ttft mean   97.970 sd  0.248 | tok/s median 30.7106 mean 30.6727 sd 0.0777 | identical_to_A=True
+pr2-vram-first.json        improvement   2.9830 ->   3.0722 tok/s (1.0299x) quality True/True
+pr2-peer-device.json       improvement   3.0722 ->   4.2865 tok/s (1.3953x) quality True/True
+D0 decode tok/s [3.0122, 3.0113, 3.0112] median 3.0113 gate ok
+G1 decode tok/s [2.9842, 2.9807, 2.983] median 2.9830 gate ok
+R1 decode tok/s [3.0725, 3.0722, 3.0718] median 3.0722 gate ok
+X3 decode tok/s [4.279, 4.2868, 4.2865] median 4.2865 gate ok
+ratios (median): {'G1/D0': 0.9906, 'R1/G1': 1.0299, 'X3/R1': 1.3953, 'X3/G1': 1.437, 'X3/D0': 1.4235}
