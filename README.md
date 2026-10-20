@@ -31,6 +31,8 @@ Compare against upstream `dev`, never `main`. **The rebased branches are on the 
 | `rebased/pr0/dsv4-fixes` | the six combined (13 commits, #2212–#2217) — base of PR #1 |
 | `rebased/pr1/reap-prefill` | PR #1 final (8 commits on pr0) |
 | `rebased/pr2/two-gpu-decode` | PR #2 final (8 commits on PR #1) |
+| `refresh/pr1-reap-prefill` | **PR #1 on upstream dev 736a0682** (2026-10-19, after PR #0 merged): the same 8 commits directly on dev |
+| `refresh/pr2-two-gpu-decode` | **PR #2 on upstream dev 736a0682** (2026-10-19): the same 8 commits on refresh/pr1 |
 | `pr0*/…`, `pr1/reap-prefill`, `pr2/two-gpu-decode`, `pr1/v6`, `pr1/v7`, `pr2/v5`, … | the 2026-10-15/16 stack on 7b55a9b3 (history) |
 
 ## Contents

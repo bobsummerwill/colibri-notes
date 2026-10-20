@@ -38,6 +38,13 @@
 - Subagents account for 87% of it: 298 agents in total, and the in-depth review alone used about 116M effective tokens.
 - Script: `tools/analysis/usage_analysis.py`. Summary: `tools/analysis/usage_summary.json`.
 
+## Refresh onto upstream dev 736a0682 (2026-10-19)
+- **All six PR #0 PRs (#2212–#2217) were merged upstream.** `git cherry` confirms all 13 PR #0 commits are on upstream dev, so PR #1 now sits directly on dev.
+- **Fork dev fast-forwarded** from 7b55a9b3 to upstream dev 736a0682 (574 commits, no force-push).
+- **PR #1 and PR #2 rebased onto 736a0682** (Bob asked): no conflicts. `git range-diff` shows all 8 PR #1 patches identical; 7 of 8 PR #2 patches identical, and the 8th ("peer mirror pool") differs only in one context line (upstream's new GGUF-to-Vulkan hand-off sits above our peer init, which is unchanged and still correct). Pushed as `refresh/pr1-reap-prefill` and `refresh/pr2-two-gpu-decode` (new names; the `rebased/*` branches are untouched, which avoided a force-push).
+- **Tests at the new tips:** `make -C c check` 2612 OK (PR #1) and 2619 OK (PR #2), 284 skipped. On shadowfax, 2× RTX 3090 + NVLink, CUDA 12.0, with `NVCCFLAGS=... -DCOLI_DSV4_NO_TC` (needed: CUDA 12.0 lacks the 12.8 cuBLASLt block-scaling API): `dsv4-cuda-test` passes at both tips with 0 warnings, including the peer tests (bit-identical peer compute, fault latch). `cuda-test` passes at PR #2. Its 36 warnings are all in upstream files these PRs do not touch (OpenMP pragmas in quant.h/idot.h, unused parameters in backend_cuda.cu).
+- **Not yet redone:** the performance measurements. The PR descriptions still cite 62eaa9dc numbers, and upstream has 574 more commits, including CUDA perf work (#2255).
+
 ## Rebase onto upstream dev 62eaa9dc (2026-10-17)
 - **Rebased all eight branches onto 62eaa9dc** (Bob asked for the branches to be refreshed and prepped). PR #0 cherry-picked cleanly (identical patches); PR #1 had one conflict with #2109 (serve prewarm: hot_lookup counts nothing while warming — kept, with our hot_count_locked inside it); PR #2 one with upstream's GGUF format guard in the mirror attach (kept, with V4_MIRROR_RECYCLE_MIN). pr2 was restacked onto pr1/v7 (v7 = v6 + the F42 docs numbers).
 - **Review fixes folded into their commits**: no VRAM reserve for a bank a GGUF can never create (`v4_gpu_mirror_reserve_size(.., bank_possible)`); upstream's new `keep_free_bytes` in four test initializers; the colibri session's open PR #2 items (note_vram source assertion, hit[e] check, pin-ranking docs clause); a GGUF note in the two-GPU docs; measurements labelled with their base.
