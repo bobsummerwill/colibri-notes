@@ -38,6 +38,25 @@
 - Subagents account for 87% of it: 298 agents in total, and the in-depth review alone used about 116M effective tokens.
 - Script: `tools/analysis/usage_analysis.py`. Summary: `tools/analysis/usage_summary.json`.
 
+## final5 benchmark and docs refresh (2026-10-20)
+- **Overnight GPU run `final5`** (shadowfax, 00:15–03:00, Hermes's model server down and restored by the EXIT trap): the
+  final4 harness pointed at dev 736a0682 and the refresh tips, plus two decode arms (D0 = dev, R1 = VRAM-first only)
+  and 3 samples for every decode arm. Fixes needed for the Tabby production server: the GPU-exclusivity check
+  accepts every process in llama-server-active's cgroup, and the health check accepts `"healthy"`. Every gate
+  passed; all 102 outputs identical to dev's.
+- **Results** (manifests/final5, six manifests validated): PR #1 TTFT 1.70× / 1.86× (2.03× / 2.10× with the double
+  bank), as on 62eaa9dc; PR #2 VRAM-first +3.0 %, second GPU +39.5 %, +43.7 % overall: the first PR #2 measurement with
+  3 samples per arm and one switch per manifest.
+- **Explained, not hidden:** PR #2 with every switch off decodes 0.9 % below dev, and decode after a bank prefill is
+  1.6–3.2 % behind. With `COLI_CUDA_MOE_BATCH=1` the bank's share of the VRAM reserve (3100 MiB) leaves room for fewer
+  decode mirrors (GPU0 peak 21,192 vs 22,008 MiB). Stated in the PR texts and docs, with the workarounds.
+- **Per-commit check** on the new base: all 16 commits build and compile with `-Wall -Wextra`, 0 diagnostics
+  (manifests/final5/percommit.txt).
+- **Docs refresh as new branches** `docs5/pr1-reap-prefill` / `docs5/pr2-two-gpu-decode`: only the two docs commits
+  changed (tables and notes to the final5 numbers, PR #2's docs commit message to match); the code equals the
+  benchmarked trees; `make check` 2619 OK at the PR #2 tip. New names, so no force-push: these are the branches to
+  open the PRs from. PR texts: review/PR_DESCRIPTIONS_20261020.md.
+
 ## Refresh onto upstream dev 736a0682 (2026-10-19)
 - **All six PR #0 PRs (#2212–#2217) were merged upstream.** `git cherry` confirms all 13 PR #0 commits are on upstream dev, so PR #1 now sits directly on dev.
 - **Fork dev fast-forwarded** from 7b55a9b3 to upstream dev 736a0682 (574 commits, no force-push).

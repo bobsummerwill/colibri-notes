@@ -8,6 +8,27 @@
 
 All on shadowfax (see environment.md), DeepSeek V4 Flash REAP 150B, `--ram 40 --ctx 8192`, llama.cpp stopped for the window, one fresh server per sample. The engine is greedy, so "identical" means byte-identical output text (sha256 compared).
 
+## FINAL5 (2026-10-20 00:15-03:00 PDT, `manifests/final5/`) — on upstream dev 736a0682 (PR #0 merged); pr1 34fe3f80, pr2 4558700f (= refresh/* tips; the docs5/* branches to submit differ only in docs/)
+Harness `run_final5.sh` = final4's plus decode arms D0 (dev) and R1 (VRAM-first only) and 3 samples for every decode arm; Hermes's model server is now TabbyAPI (GPU check covers its whole cgroup, health accepts "healthy"). 3 cold samples per arm (+1 discarded warm-up), rotated order, medians; `.coli_usage` empty. GATES: PASS; all 102 outputs identical to this run's dev text (and to the older fixed references). Six manifests, all valid.
+
+| arm | 1,992-tok TTFT | 3,005-tok TTFT | decode after (2k / 3k, medians) | text |
+|---|---|---|---|---|
+| A upstream dev 736a0682 (CPU union) | 130.2 s (15.30 tok/s) | 205.9 s (14.59) | 2.278 / 2.940 | reference |
+| B PR #1 | 76.8 s (25.94), 1.70x | 111.0 s (27.08), 1.86x | 2.205 / 2.893 | identical |
+| C B + `COLI_CUDA_MOE_DOUBLE=1` | 64.1 s (31.09), 2.03x | 97.8 s (30.71), 2.10x | 2.087 / 2.835 | identical |
+
+| decode arm (6 x 300-token answers; per-sample mean, median of 3) | tok/s | vs row above | VRAM-first hits |
+|---|---|---|---|
+| D0 upstream dev | 3.011 | | n/a |
+| G1 PR #2, every switch off (`V4_SERVE_STATS_LOG=1`) | 2.983 | -0.9% | 0 |
+| R1 G1 + `V4_GPU_RESIDENT_FIRST=1` | 3.072 | +3.0% | 310,011 |
+| X3 R1 + `DSV4_CUDA_PEER_DEVICE=1` (peer compute) | 4.287 | +39.5% | 418,453 |
+
+- CVs: decode arms <= 0.1%; TTFT <= 1%. X3 vs G1 +43.7%, vs dev +42.4%.
+- G1 < D0 and B/C decode-after < A: with `COLI_CUDA_MOE_BATCH=1` the pr tips reserve 3100 MiB for the 132-slot bank (`v4_gpu mirror-reserve=3100MiB`), dev reserves none for this model; GPU0 peak 21,192 vs 22,008 MiB, i.e. fewer decode mirrors. Not PR #2 code.
+- Speedups vs final4 (62eaa9dc): PR #1 1.69/1.86 -> 1.70/1.86 (double 2.01/2.09 -> 2.03/2.10); PR #2 one-sample +44% -> 3-sample +43.7%.
+- CUDA tests in the window: `dsv4-cuda-test` rc=0 at both tips (0 warnings), `cuda-test` rc=0 at pr2. `make check` (computer4): pr1 2612, pr2 2619 OK (284 skipped); docs5/pr2 2619 OK. Per-commit: 16/16 commits 0 diagnostics (`percommit.txt`).
+
 ## REBASED (2026-10-17 22:34-23:38 PDT, `manifests/final4/`) — on upstream dev 62eaa9dc; pr1 7e9d2d20, pr2 bffe2aed (code trees identical to the final rebased/* tips)
 Same harness as final3 (`run_final4.sh`), 3 cold samples per arm (+1 discarded warm-up), medians; `.coli_usage` empty, so upstream's serve prewarm (#2109) reads nothing at `--ram 40`. GATES: PASS. GPUs exclusive (no llama start attempts in the window; an earlier 21:34 attempt was contended by repeated llama-server-active starts and discarded: `bench.contended-2134`).
 
