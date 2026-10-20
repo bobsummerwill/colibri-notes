@@ -9,7 +9,7 @@
 All on shadowfax (see environment.md), DeepSeek V4 Flash REAP 150B, `--ram 40 --ctx 8192`, llama.cpp stopped for the window, one fresh server per sample. The engine is greedy, so "identical" means byte-identical output text (sha256 compared).
 
 ## FINAL5 (2026-10-20 00:15-03:00 PDT, `manifests/final5/`) — on upstream dev 736a0682 (PR #0 merged); pr1 34fe3f80, pr2 4558700f (= refresh/* tips; the docs5/* branches to submit differ only in docs/)
-Harness `run_final5.sh` = final4's plus decode arms D0 (dev) and R1 (VRAM-first only) and 3 samples for every decode arm; Hermes's model server is now TabbyAPI (GPU check covers its whole cgroup, health accepts "healthy"). 3 cold samples per arm (+1 discarded warm-up), rotated order, medians; `.coli_usage` empty. GATES: PASS; all 102 outputs identical to this run's dev text (and to the older fixed references). Six manifests, all valid.
+Harness `run_final5.sh` = final4's plus decode arms D0 (dev) and R1 (VRAM-first only) and 3 samples for every decode arm; Hermes's model server is now TabbyAPI (GPU check covers its whole cgroup, health accepts "healthy"). 3 cold samples per arm (+1 discarded warm-up), rotated order, medians; `.coli_usage` empty. GATES: PASS; all 92 outputs identical to this run's dev text (and to the older fixed references). Six manifests, all valid.
 
 | arm | 1,992-tok TTFT | 3,005-tok TTFT | decode after (2k / 3k, medians) | text |
 |---|---|---|---|---|

@@ -43,7 +43,7 @@
   final4 harness pointed at dev 736a0682 and the refresh tips, plus two decode arms (D0 = dev, R1 = VRAM-first only)
   and 3 samples for every decode arm. Fixes needed for the Tabby production server: the GPU-exclusivity check
   accepts every process in llama-server-active's cgroup, and the health check accepts `"healthy"`. Every gate
-  passed; all 102 outputs identical to dev's.
+  passed; all 92 outputs identical to dev's.
 - **Results** (manifests/final5, six manifests validated): PR #1 TTFT 1.70× / 1.86× (2.03× / 2.10× with the double
   bank), as on 62eaa9dc; PR #2 VRAM-first +3.0 %, second GPU +39.5 %, +43.7 % overall: the first PR #2 measurement with
   3 samples per arm and one switch per manifest.
