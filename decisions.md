@@ -38,6 +38,14 @@
 - Subagents account for 87% of it: 298 agents in total, and the in-depth review alone used about 116M effective tokens.
 - Script: `tools/analysis/usage_analysis.py`. Summary: `tools/analysis/usage_summary.json`.
 
+## PR #1 opened (2026-10-20)
+- **Opened as [JustVugg/colibri#2264](https://github.com/JustVugg/colibri/pull/2264)** at Bob's request, from
+  `docs5/pr1-reap-prefill` (833c6762) into `dev`, body = the PR #1 text of review/PR_DESCRIPTIONS_20261020.md on
+  upstream's template. Upstream dev had moved 32 commits overnight (to bf2962f2, touching deepseek_v4.c and
+  Makefile.deepseek-v4); PR #1 merges cleanly into it, and on that merge `make -C c check` (2612 OK) and the CPU and
+  CUDA sm_86 engine builds (0 diagnostics) pass, as the PR body says. Not rebased (the measured base stays 736a0682).
+  PR #2 not opened.
+
 ## final5 benchmark and docs refresh (2026-10-20)
 - **Overnight GPU run `final5`** (shadowfax, 00:15–03:00, Hermes's model server down and restored by the EXIT trap): the
   final4 harness pointed at dev 736a0682 and the refresh tips, plus two decode arms (D0 = dev, R1 = VRAM-first only)

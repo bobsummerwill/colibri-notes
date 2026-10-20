@@ -1,7 +1,7 @@
 # PR descriptions (drafts, 2026-10-20) — NOT submitted
 
 > **Naming key.** **PR #0** was the six fixes JustVugg/colibri [#2212](https://github.com/JustVugg/colibri/pull/2212)–[#2217](https://github.com/JustVugg/colibri/pull/2217), **all merged** into `dev`.
-> **PR #1** (batched GPU prefill for expert-pruned checkpoints) and **PR #2** (two-GPU decode) are not opened yet.
+> **PR #1** (batched GPU prefill for expert-pruned checkpoints) **opened 2026-10-20 as [#2264](https://github.com/JustVugg/colibri/pull/2264)** (from `docs5/pr1-reap-prefill`, at Bob's request); **PR #2** (two-GPU decode) not opened yet.
 > This file supersedes [PR_DESCRIPTIONS_20261017.md](PR_DESCRIPTIONS_20261017.md) (base 62eaa9dc, PR #0 still open).
 
 Target: upstream `JustVugg/colibri` branch `dev`, base **736a0682**. Branches on the fork `bobsummerwill/colibri`
