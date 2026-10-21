@@ -38,6 +38,19 @@
 - Subagents account for 87% of it: 298 agents in total, and the in-depth review alone used about 116M effective tokens.
 - Script: `tools/analysis/usage_analysis.py`. Summary: `tools/analysis/usage_summary.json`.
 
+## REAP-150B with thinking on, through the Hermes bake-off (2026-10-21)
+- Run on colibri bb08dc4b (= PR #1 + PR #2, VRAM-first + second GPU, `--ctx 32768`) via `bakeoff.py` endpoint mode
+  with `enable_thinking` and `reasoning_effort=high` (colibri has no hard reasoning cap; "high" is DeepSeek's soft
+  ~1,500-token prompt), token limits ×3. Results (openclaw-team af28e3d8, `20261021-think-comparison.md`):
+  tool calls 11/12, agentic 5/7; core_v1 fails because colibri's deepseek_v4 engine rejects `response_format`
+  grammars; coding invalid (19/23 hit the harness's 600 s request timeout; the 4 that finished passed);
+  stopped before agentic_v2 at Bob's request.
+- Against the Qwen3.8-27B incumbent with a 4K thinking cap (tool calls 11/12, coding 21/23, agentic 7/7, 6/6;
+  ~34 min) and the full DeepSeek-V4-Flash on llama.cpp RPC with the same cap (12/12, 19/23, 6/7, 6/6; ~2 h 12 min),
+  REAP is weaker and 15–20× slower than Qwen. **Verdict (Bob): not worth pursuing, no coding rerun.** The PRs stand
+  on their own as engine contributions; REAP is not a model for this setup.
+- Possible upstream follow-up (not done): `response_format` grammar support in the deepseek_v4 engine.
+
 ## PR #1 opened (2026-10-20)
 - **Opened as [JustVugg/colibri#2264](https://github.com/JustVugg/colibri/pull/2264)** at Bob's request, from
   `docs5/pr1-reap-prefill` (833c6762) into `dev`, body = the PR #1 text of review/PR_DESCRIPTIONS_20261020.md on
