@@ -2,8 +2,8 @@
 
 > **Naming key.** These notes use internal names for the upstream pull requests. **PR #0** is the six
 > fixes opened as JustVugg/colibri [#2212](https://github.com/JustVugg/colibri/pull/2212) (0a), [#2213](https://github.com/JustVugg/colibri/pull/2213) (0b), [#2214](https://github.com/JustVugg/colibri/pull/2214) (0c), [#2215](https://github.com/JustVugg/colibri/pull/2215) (0d),
-> [#2216](https://github.com/JustVugg/colibri/pull/2216) (0e) and [#2217](https://github.com/JustVugg/colibri/pull/2217) (0f). **PR #1** (batched GPU prefill for expert-pruned checkpoints) and
-> **PR #2** (two-GPU decode) are not opened yet. Documents dated before 2026-10-17 describe earlier
+> [#2216](https://github.com/JustVugg/colibri/pull/2216) (0e) and [#2217](https://github.com/JustVugg/colibri/pull/2217) (0f). **PR #1** (batched GPU prefill for expert-pruned checkpoints) is
+> [#2264](https://github.com/JustVugg/colibri/pull/2264), opened 2026-10-20; **PR #2** (two-GPU decode) is not opened yet. Documents dated before 2026-10-17 describe earlier
 > versions of these changes, on the old base 7b55a9b3.
 
 All paths are relative to `review/tree/` unless marked otherwise. `c/dsv4.def` is not included in `tree/`; its contents were checked on the test box at `/tmp/colibri-vf`. PR #1 is commits 1–2 (dfdc47d, ed001c6). PR #2 is the two‑GPU decode work (b347a73, 2a7ae83). Commit 3 (21a83c5, `V4_SERVE_STATS_LOG`) belongs with PR #2, because its VRAM‑first fields come from b347a73.

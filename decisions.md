@@ -2,8 +2,8 @@
 
 > **Naming key.** These notes use internal names for the upstream pull requests. **PR #0** is the six
 > fixes opened as JustVugg/colibri [#2212](https://github.com/JustVugg/colibri/pull/2212) (0a), [#2213](https://github.com/JustVugg/colibri/pull/2213) (0b), [#2214](https://github.com/JustVugg/colibri/pull/2214) (0c), [#2215](https://github.com/JustVugg/colibri/pull/2215) (0d),
-> [#2216](https://github.com/JustVugg/colibri/pull/2216) (0e) and [#2217](https://github.com/JustVugg/colibri/pull/2217) (0f). **PR #1** (batched GPU prefill for expert-pruned checkpoints) and
-> **PR #2** (two-GPU decode) are not opened yet. Documents dated before 2026-10-17 describe earlier
+> [#2216](https://github.com/JustVugg/colibri/pull/2216) (0e) and [#2217](https://github.com/JustVugg/colibri/pull/2217) (0f). **PR #1** (batched GPU prefill for expert-pruned checkpoints) is
+> [#2264](https://github.com/JustVugg/colibri/pull/2264), opened 2026-10-20; **PR #2** (two-GPU decode) is not opened yet. Documents dated before 2026-10-17 describe earlier
 > versions of these changes, on the old base 7b55a9b3.
 
 - **No upstream PRs or pushes.** Bob's instruction (2026-10-14): build the PRs so they are ready, but never submit them. Work goes to the fork only. The shadowfax clone's upstream push URL is deliberately disabled.
@@ -37,6 +37,44 @@
 - About 257M effective tokens. Effective tokens are weighted: cache reads 0.1x, cache writes 2x, output 5x. That is roughly 1.4B raw tokens.
 - Subagents account for 87% of it: 298 agents in total, and the in-depth review alone used about 116M effective tokens.
 - Script: `tools/analysis/usage_analysis.py`. Summary: `tools/analysis/usage_summary.json`.
+
+## #2264 review: dev merge, full V4 Flash measurement (2026-10-22)
+- **JustVugg's review** ([comment](https://github.com/JustVugg/colibri/pull/2264#issuecomment-6335156265)) kept PR #1 out
+  of the day's batch (#2284) for three points: merge dev; measure the default configuration on the full V4 Flash because
+  `DSV4_MM_WARP` (auto) is on for every FP8 checkpoint's `mm_batch`, not only under `COLI_CUDA_MOE_BATCH=1`; and say why
+  `test_v4_moe_batch_speculative_source.py` is deleted.
+- **Merged, not rebased** (as asked, and no force-push): upstream dev 7df8c27c into `docs5/pr1-reap-prefill` (ebe82123).
+  One conflict, the one JustVugg named: dev's `g_v4_gpu_open_device = device;` and our `v4_gpu_mirror_reserve_size(...)`,
+  both kept. Then ebe82123 into `docs5/pr2-two-gpu-decode` (073f18d2), two more conflicts, both from dev's new CUDA
+  routed-expert tier (`cu_tier.c`, 9327e66e): the MoE cleanup in `moe_token_pipeline` (our lease-aware release and decode
+  timing under dev's widened `#if COLI_VULKAN || COLI_CUDA`) and `deepseek_v4_internal.h` (our VRAM-first declarations,
+  then dev's tier table). The two tiers never meet at run time: `v4_cu_open` leaves the experts to the FP4 checkpoint's own
+  CUDA tier unless the model is a GGUF, and VRAM-first decode is on that FP4 tier only.
+- **The deleted test:** its checks moved unchanged into `test_v4_moe_batch_lifecycle_source.py` (commit f672fd73 says so);
+  one line added to the PR description.
+- **Measure rather than turn `DSV4_MM_WARP` off by default** (Bob's choice). The kernel is compiled only into generic
+  builds (`#ifndef COLI_DSV4_DEEPGEMM`) and auto takes only fp8 shapes with I a multiple of 256 and <= 1024 (e.g.
+  `attn.wq_b`), so the default configuration exercises it through the batched attention (`COLI_CUDA_ATTN_BATCH=1`).
+- **Full V4 Flash** (`deepseek-ai/DeepSeek-V4-Flash-0731`, 48 shards, 167 GB) downloaded to shadowfax
+  `~/colibri-models/deepseek-v4-flash` with `hf` from its own venv (`~/colibri-bench/hf-venv`, made with uv; Hermes's venvs
+  untouched). Never run here before.
+- **One long GPU window instead of a short one** (Bob, 2026-10-22: Hermes can be down from the evening through the
+  night). Besides the requested A/B, `final6` takes every open item this box can test: the 256-expert bank (F7/F8/F12,
+  never run), speculative decoding with the bank on (F2), two requests at once, an ~8k-token prompt, PR #2's decode arms
+  re-measured after the dev merge, and PR #2 paths never run end to end (`DSV4_CUDA_PEER_COMPUTE=0` = F45,
+  `DSV4_HYBRID=1`, `DSV4_CUDA_BATCHED=0`). Left out: F18 fault injection (needs a debug build first), DeepGEMM (needs
+  CUDA >= 12.8 and an sm_90+ card: computer4's RTX 5070 after tasks-personal #2822), Vulkan (no `glslc` on shadowfax),
+  Windows (no machine; upstream CI builds it), mixed-GPU P2P (no such pair).
+- **Harness `final6`** ([tools/bench/final6/](tools/bench/final6/)): final5's runner and helpers with a per-arm model,
+  context and client; the base environment is final5's minus `COLI_CUDA_MOE_BATCH=1` (the canonical serve line without
+  it), and arms add it back where they need it. Arm table and premises in `final6_tools.py`; texts are compared within
+  groups (full model / ~8k prompt / REAP decode) against each group's first sample, as the full model has no older
+  reference. `bench_f6.py` adds the ~8k prompt and the two-at-once requests. Only A/B/V failures can abort the run; any
+  other arm that breaks a premise is skipped. Trees and builds under `~/colibri-bench/cw22` (persistent).
+  **Pilot first** (Bob): `PILOT=1` runs one default and one bank sample on the full model, then `dsv4-cuda-test` at both
+  merged tips and `cuda-test` at PR #2. Launched 16:51 (llama stop 17:30).
+- **CUDA builds at the merged tips** (sm_86, NO_TC=1): dev, PR #1 and PR #2 build with 0 warnings
+  (`~/colibri-bench/cw22/build-*.log`).
 
 ## REAP-150B with thinking on, through the Hermes bake-off (2026-10-21)
 - Run on colibri bb08dc4b (= PR #1 + PR #2, VRAM-first + second GPU, `--ctx 32768`) via `bakeoff.py` endpoint mode

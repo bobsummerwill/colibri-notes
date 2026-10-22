@@ -2,8 +2,8 @@
 
 > **Naming key.** These notes use internal names for the upstream pull requests. **PR #0** is the six
 > fixes opened as JustVugg/colibri [#2212](https://github.com/JustVugg/colibri/pull/2212) (0a), [#2213](https://github.com/JustVugg/colibri/pull/2213) (0b), [#2214](https://github.com/JustVugg/colibri/pull/2214) (0c), [#2215](https://github.com/JustVugg/colibri/pull/2215) (0d),
-> [#2216](https://github.com/JustVugg/colibri/pull/2216) (0e) and [#2217](https://github.com/JustVugg/colibri/pull/2217) (0f). **PR #1** (batched GPU prefill for expert-pruned checkpoints) and
-> **PR #2** (two-GPU decode) are not opened yet. Documents dated before 2026-10-17 describe earlier
+> [#2216](https://github.com/JustVugg/colibri/pull/2216) (0e) and [#2217](https://github.com/JustVugg/colibri/pull/2217) (0f). **PR #1** (batched GPU prefill for expert-pruned checkpoints) is
+> [#2264](https://github.com/JustVugg/colibri/pull/2264), opened 2026-10-20; **PR #2** (two-GPU decode) is not opened yet. Documents dated before 2026-10-17 describe earlier
 > versions of these changes, on the old base 7b55a9b3.
 
 Two machines: **computer4** runs Claude Code, holds the git clones (`~/Projects/colibri`, `~/Projects/colibri-claude`), pushes to GitHub and does CPU builds / `make check`. **shadowfax** is the GPU testground only (CUDA builds, GPU tests, benchmarks), reached with `ssh maplemercury@shadowfax`. Paths below are on the machine whose section they are in.
