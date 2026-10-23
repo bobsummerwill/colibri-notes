@@ -21,8 +21,12 @@ Project notebook for Bob Summerwill's work on [colibri](https://github.com/JustV
   split), HY differs (probably dev's hybrid path), and F18's fault leaves CUDA unusable for the process (PR #2's message
   is wrong). Follow-ups: **[TEST_PLAN_20261023.md](TEST_PLAN_20261023.md)** (final7).
 - **Pushed 2026-10-23:** `docs5/pr1-reap-prefill` b286167e (two unused variables in the DeepGEMM kernels, upstream code;
-  found by the first DeepGEMM build) and `docs5/pr2-two-gpu-decode` 0523e8e0 (its merge).
-- **Not done yet:** final6 manifests, the reply on #2264 (draft first).
+  found by the first DeepGEMM build) and `docs5/pr2-two-gpu-decode` 0523e8e0 (its merge), after `make check` at both
+  tips (2,688 / 2,695 OK, 292 skipped). PR #2 stays on the fork (Bob: PR #1 first; PR #2 is rebased, retested and
+  opened only after #2264 merges).
+- **final6 manifests done** (`manifests/final6/`, `manifests/final6-c4ab/`, all valid). **final7 running** on shadowfax
+  since 10:00 ([TEST_PLAN_20261023.md](TEST_PLAN_20261023.md)).
+- **Not done yet:** the reply on #2264 (draft first, after final7).
 
 ## Status (2026-10-22)
 - **PR #1 is [#2264](https://github.com/JustVugg/colibri/pull/2264)** (opened 2026-10-20). JustVugg's review (2026-10-22, [comment](https://github.com/JustVugg/colibri/pull/2264#issuecomment-6335156265)) left it out of the day's batch (#2284) for three points: (1) merge dev (a one-line conflict in `coli_v4_gpu_engine_open`); (2) `DSV4_MM_WARP` is on by default (auto), so measure the **default configuration (no `COLI_CUDA_MOE_BATCH`) on the full V4 Flash**, dev against the branch, prompt and decode, interleaved; it stays on by default if bit-identical and not slower; (3) say in the description why `test_v4_moe_batch_speculative_source.py` is deleted (its checks moved into `test_v4_moe_batch_lifecycle_source.py`).
