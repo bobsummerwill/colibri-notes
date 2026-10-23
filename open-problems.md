@@ -9,8 +9,8 @@
 ## Open now (2026-10-23) — plan: [TEST_PLAN_20261023.md](TEST_PLAN_20261023.md)
 1. **#2264:** final6 answered JustVugg's question (bit-identical, 0.98-0.99x TTFT, decode equal; verify 0 mismatches;
    DeepGEMM the same). To do: manifests (`manifests/final6/`), and the comment on #2264 (draft first; Bob posts or OKs).
-2. **Bank like-for-like:** dev's bank failed once in AK, so BK/AK has one sample and its prompt-2 ratio is not
-   like-for-like. final7 arm 1.
+2. **Bank like-for-like:** dev loses its bank on a second prompt (its 2800 MiB default reserve is below the bank),
+   so BK/AK's prompt-2 ratio is not like-for-like. final7 arm 1 (AR: dev with 4681 MiB).
 3. **Vulkan:** QB was a host OOM kill (pool sized from free RAM at start, upstream `vk_tier.c`); Vulkan texts likely
    depend on run-time timings (CPU/GPU split). final7 arms 2-5; upstream issue drafts if confirmed.
 4. **HY** differs from D0: probably dev's hybrid path. final7 arm 6.

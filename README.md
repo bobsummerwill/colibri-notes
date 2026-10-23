@@ -16,8 +16,8 @@ Project notebook for Bob Summerwill's work on [colibri](https://github.com/JustV
   TTFT 0.983x / 0.989x, decode 1.002x; `DSV4_MM_WARP_VERIFY` 1,500 calls, 0 mismatches; DeepGEMM (RTX 5070): 0.999x /
   1.004x, identical. So `DSV4_MM_WARP` stays on by default. Also: bank prefill 0.67x TTFT (1-sample dev arm), ~16k prompt
   0.69x, PR #2 second GPU +36-48 % decode, soak and speculative decoding pass.
-- **The overall gate failed on side arms**, looked into in [investigations.md](investigations.md) §6: dev's bank failed
-  once (AK), the pure-Vulkan QB was a host OOM kill (upstream pool sizing), Vulkan texts differ (probably run-time CPU/GPU
+- **The overall gate failed on side arms**, looked into in [investigations.md](investigations.md) §6: dev loses its bank on a
+  second prompt (AK; its default reserve is below the bank, as dev documents), the pure-Vulkan QB was a host OOM kill (upstream pool sizing), Vulkan texts differ (probably run-time CPU/GPU
   split), HY differs (probably dev's hybrid path), and F18's fault leaves CUDA unusable for the process (PR #2's message
   is wrong). Follow-ups: **[TEST_PLAN_20261023.md](TEST_PLAN_20261023.md)** (final7).
 - **Pushed 2026-10-23:** `docs5/pr1-reap-prefill` b286167e (two unused variables in the DeepGEMM kernels, upstream code;

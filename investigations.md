@@ -74,12 +74,16 @@
   QB's 16-19. CPU and GPU sum in different orders, so a different split gives different bits and a different greedy text.
   The same applies to VA/VB (Vulkan + CUDA). Hypothesis, to be tested in final7: repeats of one arm differ, and with the
   split pinned (`COLI_VK_TIER_STREAM_ROWS`, `COLI_VK_TIER_BALANCE=0`, a fixed `COLI_VK_TIER_HOST_GB`) dev = PR #1.
-- **AK (dev with the 256-expert bank) failed once, not always.** `[DSV4 CUDA] expert FC2 bank allocation: out of memory`
-  -> `moe-batch=off` came during prompt 2 of AK s1; prompt 1 had the bank (TTFT 129.1 s, as AS's and MA's). AS, KA and MA
-  ran dev's bank in the same configuration without a failure. dev reserves no VRAM for the bank, so whether it fits
-  depends on how many decode mirrors are already up: marginal at 24 GB, which is what PR #1's reserve (4,681 MiB here:
-  256-slot bank 3,264 MiB + 600 MiB headroom + 64 mirrors) is for. AK s2/s3 were skipped by the runner's rule; BK/AK on
-  prompt 1 (0.665) and KB/KA (0.690) are like-for-like, prompt 2's 0.481 is not.
+- **AK (dev with the 256-expert bank) lost its bank on its second prompt, as dev documents.**
+  `[DSV4 CUDA] expert FC2 bank allocation: out of memory` -> `moe-batch=off` came during prompt 2 of AK s1; prompt 1 had
+  the bank (TTFT 129.1 s, as AS's and MA's). dev's own comment (`deepseek_v4.c` at 7df8c27c, the mirror growth guard):
+  with `COLI_CUDA_MOE_BATCH` the default VRAM reserve is 2800 MiB, "smaller than the bank: once the cache has grown to it,
+  the next large prefill cannot allocate the bank and runs on the CPU union (docs: VRAM budget, ~4700 keeps the bank's
+  room)". The decode mirrors grow during request 1's answer, so request 2's prefill finds no room. AS, KA and MA kept the
+  bank only because they send **one** request. PR #1 sizes the reserve from the bank (4,681 MiB here: 256-slot bank
+  3,264 MiB + 600 MiB headroom + 64 mirrors). So BK/AK on prompt 1 (0.665) and KB/KA (0.690) are like-for-like, prompt 2's
+  0.481 compares PR #1's bank with dev's CPU union. final7 measures dev with `DSV4_CUDA_VRAM_RESERVE_MB=4681` (AR).
+  (A first reading on 2026-10-23 called this intermittent; the one-request arms explain it.)
 - **F18: the fault is caught, but device 0 does not survive it.** `test_f18_trap_cuda` (debug build) runs a `__trap()`
   on the peer in pass 2 of a decode MoE, before or after the down-projection. Both times `dsv4_cuda_moe` returned 0
   (refused), the peer latched off, no hang. Then the probe's own check of the primary ("AFTER all-on-primary call")

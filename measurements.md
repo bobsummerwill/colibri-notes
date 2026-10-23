@@ -28,7 +28,7 @@ Evidence: `manifests/final6/bench.tgz` (sha256 6b9b1d36…), `pilot.tgz`, `summa
 
 | comparison | TTFT ratio | decode ratio | note |
 |---|---|---|---|
-| BK/AK 256-expert bank | 0.665 (85.9 vs 129.1 s) / 0.481 | 0.973 | AK: 1 sample; dev's bank allocation failed during prompt 2 only (`moe-batch=off`), so **only the 2k ratio is like-for-like**; dev's bank worked in AS, KA, MA (same config) |
+| BK/AK 256-expert bank | 0.665 (85.9 vs 129.1 s) / 0.481 | 0.973 | AK: 1 sample; dev's bank allocation failed on prompt 2 (`moe-batch=off`: dev's 2800 MiB default reserve is below the bank once decode mirrors grow, as dev's comment says), so **only the 2k ratio is like-for-like**; AS, KA, MA send one request and kept it |
 | BD/BK double bank | 0.775 / 0.822 | 0.974 | 66.6 s / 101.4 s |
 | LB/LA ~8k prompt, default | 0.982 | 1.000 | 832 vs 847 s |
 | KB/KA ~16k prompt, bank, `--ctx 32768` | **0.690** (795 vs 1151 s) | 0.997 | like-for-like (dev's bank on) |

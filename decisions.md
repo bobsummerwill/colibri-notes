@@ -43,7 +43,8 @@
   the full model) is met on both builds (generic CUDA on shadowfax, DeepGEMM on computer4).
 - **The failed gate is not read as a PR #1 failure**, but each item gets its own run before anything is claimed
   upstream (final7, [TEST_PLAN_20261023.md](TEST_PLAN_20261023.md)): the bank ratio from the 1-sample AK arm is quoted
-  for prompt 1 only (0.665x), where dev's bank was on.
+  for prompt 1 only (0.665x), where dev's bank was on; the like-for-like number is BK vs dev with
+  `DSV4_CUDA_VRAM_RESERVE_MB=4681` (AR, final7), dev's own documented setting for the bank.
 - **The unused-variable fix (b286167e) is a separate commit on #2264**: upstream code in the DeepGEMM kernels that the
   first DeepGEMM build here warned about (Bob asked, 2026-10-22). Generic builds do not compile those functions, so the
   generic-CUDA final6 numbers stand. Pushed after `make check` at both tips.
