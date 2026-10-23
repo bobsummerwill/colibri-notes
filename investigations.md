@@ -58,3 +58,35 @@
 ## 5. Side questions answered
 - GLM-5.2 (744B, 429 GB) was judged not worth downloading for practical use. colibri's GLM engine can use both GPUs (`COLI_GPUS=0,1`), but at that size it would be far slower than llama.cpp + Qwen.
 - Logprobs are not supported for the dsv4 engine, so determinism probes use debug fprintf builds instead.
+
+## 6. final6 failures, looked into (2026-10-23)
+- **QB (pure Vulkan, PR #1) did not crash: the kernel's OOM killer killed it** (`journalctl`: "colibri-final6-serve.service:
+  A process of this unit has been killed by the OOM killer", global OOM, `deepseek_v4` anon-rss 44.1 GB + file-rss 17.1 GB
+  on the 62 GB box). The server log's last line is the gateway's "colibri engine is shutting down", so prompt 2 got
+  "connection refused". Cause, as read in upstream's `c/vk_tier.c` `host_init` (unchanged by PR #1, which touches no
+  Vulkan file): the Vulkan tier's host pool is sized from **`MemAvailable` at start, less 4 GiB**, beside the engine's
+  `--ram 40` cache. QA (dev) started with less free RAM and got 898 experts / 13.25 GiB; QB, an hour later, 1,058 /
+  15.75 GiB, and the two together no longer fit. So QB's failure is a property of when it started, not of its code;
+  to be confirmed by running dev with QB's pool (`COLI_VK_TIER_HOST_GB=15.75`) — final7.
+- **Vulkan texts may not be reproducible at all, dev against dev.** The tier chooses per step which cold experts go to
+  the device and which stay on the CPU from timings it measures at run time ("cold experts with N rows or more go to the
+  device (an upload of 15.0 MiB at 3.2 GB/s takes 4.98 ms, the CPU 0.60 ms a row ...)"): QA's threshold was 23-30 rows,
+  QB's 16-19. CPU and GPU sum in different orders, so a different split gives different bits and a different greedy text.
+  The same applies to VA/VB (Vulkan + CUDA). Hypothesis, to be tested in final7: repeats of one arm differ, and with the
+  split pinned (`COLI_VK_TIER_STREAM_ROWS`, `COLI_VK_TIER_BALANCE=0`, a fixed `COLI_VK_TIER_HOST_GB`) dev = PR #1.
+- **AK (dev with the 256-expert bank) failed once, not always.** `[DSV4 CUDA] expert FC2 bank allocation: out of memory`
+  -> `moe-batch=off` came during prompt 2 of AK s1; prompt 1 had the bank (TTFT 129.1 s, as AS's and MA's). AS, KA and MA
+  ran dev's bank in the same configuration without a failure. dev reserves no VRAM for the bank, so whether it fits
+  depends on how many decode mirrors are already up: marginal at 24 GB, which is what PR #1's reserve (4,681 MiB here:
+  256-slot bank 3,264 MiB + 600 MiB headroom + 64 mirrors) is for. AK s2/s3 were skipped by the runner's rule; BK/AK on
+  prompt 1 (0.665) and KB/KA (0.690) are like-for-like, prompt 2's 0.481 is not.
+- **F18: the fault is caught, but device 0 does not survive it.** `test_f18_trap_cuda` (debug build) runs a `__trap()`
+  on the peer in pass 2 of a decode MoE, before or after the down-projection. Both times `dsv4_cuda_moe` returned 0
+  (refused), the peer latched off, no hang. Then the probe's own check of the primary ("AFTER all-on-primary call")
+  **also returned 0** with "MoE activation upload: unspecified launch failure": a launch failure is sticky for the whole
+  process's CUDA, not one device's context. So after a peer fault the engine falls back to host copies for the rest of
+  the process; it does not "continue on device 0" as PR #2's log line says. The probe printed "every fault handled"
+  because its verdict ignores the AFTER line. Open: what a real server does then (final7: a fault mid-request).
+- **HY** (`DSV4_HYBRID=1` on PR #2 with everything on) differs from D0 on decode_0, as in final5. `DSV4_HYBRID` is dev's
+  own switch (`deepseek_v4.c`, also at 7df8c27c), so the likely cause is dev's hybrid path, not PR #2; untested — final7
+  runs it on dev too.

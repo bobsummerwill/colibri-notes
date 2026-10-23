@@ -6,7 +6,21 @@
 > [#2264](https://github.com/JustVugg/colibri/pull/2264), opened 2026-10-20; **PR #2** (two-GPU decode) is not opened yet. Documents dated before 2026-10-17 describe earlier
 > versions of these changes, on the old base 7b55a9b3.
 
-## Open now (2026-10-22)
+## Open now (2026-10-23) — plan: [TEST_PLAN_20261023.md](TEST_PLAN_20261023.md)
+1. **#2264:** final6 answered JustVugg's question (bit-identical, 0.98-0.99x TTFT, decode equal; verify 0 mismatches;
+   DeepGEMM the same). To do: manifests (`manifests/final6/`), and the comment on #2264 (draft first; Bob posts or OKs).
+2. **Bank like-for-like:** dev's bank failed once in AK, so BK/AK has one sample and its prompt-2 ratio is not
+   like-for-like. final7 arm 1.
+3. **Vulkan:** QB was a host OOM kill (pool sized from free RAM at start, upstream `vk_tier.c`); Vulkan texts likely
+   depend on run-time timings (CPU/GPU split). final7 arms 2-5; upstream issue drafts if confirmed.
+4. **HY** differs from D0: probably dev's hybrid path. final7 arm 6.
+5. **F18 (PR #2):** a real peer fault is caught (no hang, no wrong output), but CUDA is then lost for the whole process;
+   PR #2's "decode continues on device 0" is wrong. final7 arm 7 (fault inside a real server), then a PR #2 fix.
+6. **Handled `kv comp` allocation failures** in dev and PR #1 alike at 24 GB on the full model (252 a sample);
+   computer4 B s2 had 421. Pre-existing; final7 step 1b re-checks computer4.
+7. **tasks-personal #2824** (align NVIDIA drivers between shadowfax and computer4): still hold until final7 is done.
+
+## Open on 2026-10-22 (superseded by the list above)
 1. **#2264 (PR #1):** run the pilot, then the overnight `final6` A/B on the full V4 Flash, default configuration
    (dev vs the merged branch, prompt and decode, plus `DSV4_MM_WARP_VERIFY=1`), and post the result as a manifest and a
    comment. If PR #1 is slower there or not bit-identical, make `DSV4_MM_WARP` default to 0 (opt-in).
@@ -21,8 +35,9 @@
 3. Attach `manifests/final4/` (4 validated manifests, `evidence/`, `bench.tgz`) to PR #1; PR #2's numbers are a one-sample sanity check (a manifest would need >=3 samples per arm).
 
 ## Untested / known gaps
-- **F18:** the peer-compute success path never checks the peer context for asynchronous faults. A sticky peer fault could let a wrong token through or hang. The hang case has not been tested.
-- Windows build (the loader and `dsv4.def` parity test passes on Linux only) and DeepGEMM / tensor-core builds (sm_86 here uses `NO_TC=1`) have not been tested. The full 256-expert DeepSeek V4 checkpoint is being tested now (2026-10-22, `final6`).
+- **F18:** tested 2026-10-22 with a real `__trap()` on the peer (final6): caught, no hang, no wrong output; CUDA is lost for the process afterwards (see Open now #5).
+- Windows build (the loader and `dsv4.def` parity test passes on Linux only; upstream CI builds it, incl. CUDA/MSVC, and it passes on #2264). DeepGEMM was tested on computer4 (RTX 5070, final6) on one GPU only. The full 256-expert checkpoint was tested in final6.
+- Apple Silicon (zebra): not tested and not planned for these PRs; the V4 engine has no Metal path and the PRs are CUDA-only (TEST_PLAN_20261023.md).
 - Upstream test `test_dsv4_attention_batch_cuda` uses a stub that exits 4. This is pre-existing and not caused by this work.
 
 ## Performance ideas not pursued

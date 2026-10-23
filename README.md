@@ -10,6 +10,20 @@ Project notebook for Bob Summerwill's work on [colibri](https://github.com/JustV
 
 **Rule: no PRs and no pushes to upstream JustVugg/colibri.** Branches go to the fork only; Bob decides on submission (PR #0 and PR #1 were opened at his request).
 
+## Status (2026-10-23)
+- **final6 ran overnight** (shadowfax 17:46-23:56, computer4 DeepGEMM 17:43-19:01; [measurements.md](measurements.md)
+  FINAL6). **JustVugg's question is answered:** default configuration, full V4 Flash, PR #1 vs dev: texts byte-identical,
+  TTFT 0.983x / 0.989x, decode 1.002x; `DSV4_MM_WARP_VERIFY` 1,500 calls, 0 mismatches; DeepGEMM (RTX 5070): 0.999x /
+  1.004x, identical. So `DSV4_MM_WARP` stays on by default. Also: bank prefill 0.67x TTFT (1-sample dev arm), ~16k prompt
+  0.69x, PR #2 second GPU +36-48 % decode, soak and speculative decoding pass.
+- **The overall gate failed on side arms**, looked into in [investigations.md](investigations.md) §6: dev's bank failed
+  once (AK), the pure-Vulkan QB was a host OOM kill (upstream pool sizing), Vulkan texts differ (probably run-time CPU/GPU
+  split), HY differs (probably dev's hybrid path), and F18's fault leaves CUDA unusable for the process (PR #2's message
+  is wrong). Follow-ups: **[TEST_PLAN_20261023.md](TEST_PLAN_20261023.md)** (final7).
+- **Pushed 2026-10-23:** `docs5/pr1-reap-prefill` b286167e (two unused variables in the DeepGEMM kernels, upstream code;
+  found by the first DeepGEMM build) and `docs5/pr2-two-gpu-decode` 0523e8e0 (its merge).
+- **Not done yet:** final6 manifests, the reply on #2264 (draft first).
+
 ## Status (2026-10-22)
 - **PR #1 is [#2264](https://github.com/JustVugg/colibri/pull/2264)** (opened 2026-10-20). JustVugg's review (2026-10-22, [comment](https://github.com/JustVugg/colibri/pull/2264#issuecomment-6335156265)) left it out of the day's batch (#2284) for three points: (1) merge dev (a one-line conflict in `coli_v4_gpu_engine_open`); (2) `DSV4_MM_WARP` is on by default (auto), so measure the **default configuration (no `COLI_CUDA_MOE_BATCH`) on the full V4 Flash**, dev against the branch, prompt and decode, interleaved; it stays on by default if bit-identical and not slower; (3) say in the description why `test_v4_moe_batch_speculative_source.py` is deleted (its checks moved into `test_v4_moe_batch_lifecycle_source.py`).
 - **Done 2026-10-22:** dev 7df8c27c merged into `docs5/pr1-reap-prefill` and, through it, `docs5/pr2-two-gpu-decode` (merge commits, no force-push; PR #2 had two more conflicts with dev's CUDA expert tier `cu_tier.c`, resolved keeping both sides, see [decisions.md](decisions.md)); the PR description says why the test file went; a reply on #2264 says the full-model measurement is coming.
@@ -39,8 +53,9 @@ Compare against upstream `dev`, never `main`. **The rebased branches are on the 
 | `rebased/pr2/two-gpu-decode` | PR #2 final (8 commits on PR #1) |
 | `refresh/pr1-reap-prefill` | **PR #1 on upstream dev 736a0682** (2026-10-19, after PR #0 merged): the same 8 commits directly on dev |
 | `refresh/pr2-two-gpu-decode` | **PR #2 on upstream dev 736a0682** (2026-10-19): the same 8 commits on refresh/pr1 |
-| `docs5/pr1-reap-prefill` | **PR #1, opened as #2264** (2026-10-20): refresh/pr1 with its docs commit carrying the final5 numbers; upstream dev 7df8c27c merged in on 2026-10-22 |
-| `docs5/pr2-two-gpu-decode` | **PR #2 to submit** (2026-10-20): refresh/pr2 on docs5/pr1, its docs commit carrying the final5 numbers; docs5/pr1's dev merge merged in on 2026-10-22 |
+| `docs5/pr1-reap-prefill` | **PR #1, opened as #2264** (2026-10-20): refresh/pr1 with its docs commit carrying the final5 numbers; upstream dev 7df8c27c merged in on 2026-10-22 (ebe82123); b286167e (DeepGEMM unused variables) on 2026-10-22, pushed 2026-10-23 |
+| `docs5/pr2-two-gpu-decode` | **PR #2 to submit** (2026-10-20): refresh/pr2 on docs5/pr1, its docs commit carrying the final5 numbers; docs5/pr1's dev merge merged in on 2026-10-22 (073f18d2), then b286167e (0523e8e0) |
+| `f18-probe` (local only, never pushed) | b62d1068: PR #2 + the F18 probe, debug build only (`-DCOLI_F18_PROBE`) |
 | `pr0*/…`, `pr1/reap-prefill`, `pr2/two-gpu-decode`, `pr1/v6`, `pr1/v7`, `pr2/v5`, … | the 2026-10-15/16 stack on 7b55a9b3 (history) |
 
 ## Contents

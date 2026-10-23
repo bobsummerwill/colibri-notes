@@ -192,7 +192,10 @@ def premise(arm, s):
     for pat in must_not_log:
         if re.search(pat, log, re.M):
             p.append("/%s/ in serve.log" % pat)
-    if re.search(r"out of memory|Traceback|Segmentation fault|Aborted", log, re.I):
+    # "[DSV4 CUDA] <what> allocation: out of memory" is a handled failure (the engine falls back and goes
+    # on): counted per sample (handled_oom) and compared between arms, not a premise. Anything else is.
+    rest = HANDLED_OOM.sub("", log)
+    if re.search(r"out of memory|Traceback|Segmentation fault|Aborted|core dumped", rest, re.I):
         p.append("out of memory / crash in serve.log")
     if len(s["rows"]) < rows:
         p.append("%d request rows, expected %d" % (len(s["rows"]), rows))
@@ -215,6 +218,18 @@ def premise(arm, s):
     return p
 
 
+HANDLED_OOM = re.compile(r"^\[DSV4 CUDA\] [a-z0-9 _-]+ allocation: out of memory$", re.M)
+
+
+def handled_oom(log):
+    """{what: count} of handled allocation failures ("[DSV4 CUDA] kv comp allocation: out of memory")."""
+    out = {}
+    for m in HANDLED_OOM.finditer(log):
+        what = m.group(0)[len("[DSV4 CUDA] "):].split(" allocation")[0]
+        out[what] = out.get(what, 0) + 1
+    return out
+
+
 def verify_counts(log):
     hits = re.findall(r"mm-warp verify calls=(\d+) mismatches=(\d+)", log)
     return (int(hits[-1][0]), int(hits[-1][1])) if hits else None
@@ -234,6 +249,9 @@ def check(arm, d):
     vc = verify_counts(s["log"])
     if vc:
         extra = " mm-warp verify calls=%d mismatches=%d" % vc
+    ho = handled_oom(s["log"])
+    if ho:
+        extra += " handled allocation failures %s" % ho
     print("check %s s%d: %s; GPU0 peak %d MiB GPU1 peak %d MiB%s" % (
         arm, s["k"], "; ".join(p) if p else "ok", gpu_peak_mib(d, 0), gpu_peak_mib(d, 1), extra))
     return 1 if p else 0
@@ -274,7 +292,7 @@ def summarize(base):
             x = {"k": s["k"], "seq": s["meta"].get("seq"), "wall_s": s["meta"].get("wall_s"),
                  "binary_sha256": s["meta"].get("binary_sha256"), "premise_problems": premise(arm, s),
                  "gpu0_peak_mib": gpu_peak_mib(s["dir"], 0), "gpu1_peak_mib": gpu_peak_mib(s["dir"], 1),
-                 "mm_warp_verify": verify_counts(s["log"]), "requests": {}}
+                 "mm_warp_verify": verify_counts(s["log"]), "handled_oom": handled_oom(s["log"]), "requests": {}}
             for r in s["rows"]:
                 n = r.get("name")
                 rs = ref.get(group, {}).get(n)
@@ -310,6 +328,12 @@ def summarize(base):
             for r in s["rows"]:
                 if a_text is not None and r.get("text") is not None and not a_text.startswith(r["text"]):
                     out["gates"]["notes"].append("%s s%d: the 24-token MTP answer is not a prefix of A's answer" % (arm, s["k"]))
+    for arm, a in out["arms"].items():
+        tot = sum(sum(x["handled_oom"].values()) for x in a["samples"])
+        a["handled_oom_total"] = tot
+        if tot:
+            out["gates"]["notes"].append("%s: %d handled allocation failures over %d samples (%s)" % (
+                arm, tot, len(a["samples"]), "; ".join("s%d %s" % (x["k"], x["handled_oom"]) for x in a["samples"] if x["handled_oom"])))
     for new, old, what in COMPARE:
         if new in out["arms"] and old in out["arms"]:
             rn, ro = out["arms"][new]["requests"], out["arms"][old]["requests"]
@@ -335,9 +359,10 @@ def print_summary(out):
     for arm, a in out["arms"].items():
         print("arm %s (%s, %s, group %s)%s" % (arm, a["tree"], a["model"], a["group"], "  (warm-up, discarded)" if arm in ("W", "WR") else ""))
         for x in a["samples"]:
-            print("  s%d seq=%s wall=%ss GPU peak %d/%d MiB %s%s" % (
+            print("  s%d seq=%s wall=%ss GPU peak %d/%d MiB %s%s%s" % (
                 x["k"], x["seq"], x["wall_s"], x["gpu0_peak_mib"], x["gpu1_peak_mib"],
                 "; ".join(x["premise_problems"]) or "ok",
+                "" if not x["handled_oom"] else " handled allocation failures %s" % x["handled_oom"],
                 "" if not x["mm_warp_verify"] else " mm-warp verify (calls, mismatches)=%s" % (x["mm_warp_verify"],)))
             for n, r in x["requests"].items():
                 print("    %-16s ttft=%s decode=%s identical=%s" % (n, r["ttft_s"], r["decode_tok_s"], r["identical_to_group_reference"]))
@@ -407,6 +432,14 @@ def selftest():
         _fake(base, "SK", 1, 1, rows, "COLI_CUDA_MOE_BATCH=1 V4_GPU_RESIDENT_FIRST=1 DSV4_CUDA_PEER_DEVICE=1", "")
         p = premise("SK", load_sample(os.path.join(base, "SK", "s1")))
         assert len(p) == 1 and "rep3_turn4" in p[0], p
+    with tempfile.TemporaryDirectory() as base:
+        rows2 = [{"name": "long_prefill", "ttft_s": 1.0, "decode_tok_s": 1.0, "text": "x"},
+                 {"name": "long_prefill_2", "ttft_s": 1.0, "decode_tok_s": 1.0, "text": "y"}]
+        _fake(base, "A", 1, 1, rows2, "COLI_CUDA=1", "[DSV4 CUDA] kv comp allocation: out of memory\n" * 3)
+        s1 = load_sample(os.path.join(base, "A", "s1"))
+        assert premise("A", s1) == [] and handled_oom(s1["log"]) == {"kv comp": 3}, (premise("A", s1), handled_oom(s1["log"]))
+        _fake(base, "A", 2, 2, rows2, "COLI_CUDA=1", "CUDA error: out of memory at foo\n")
+        assert premise("A", load_sample(os.path.join(base, "A", "s2")))
     print("selftest ok")
     return 0
 

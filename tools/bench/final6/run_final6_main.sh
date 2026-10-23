@@ -4,8 +4,8 @@
 # configuration (no COLI_CUDA_MOE_BATCH) on the FULL DeepSeek V4 Flash, upstream dev against PR #1
 # merged with that dev, prompt and decode, interleaved. DSV4_MM_WARP (auto) is on by default in
 # PR #1's mm_batch, so this is the configuration every FP8 checkpoint on a generic CUDA build gets.
-#   A = upstream dev 7df8c27c, B = docs5/pr1-reap-prefill merged with it (ebe82123),
-#   PR2 (pilot only, for its CUDA tests) = docs5/pr2-two-gpu-decode merged (073f18d2).
+#   A = upstream dev 7df8c27c, B = docs5/pr1-reap-prefill merged with it + the unused-variable fix (b286167e),
+#   PR2 = docs5/pr2-two-gpu-decode with both merged (0523e8e0).
 # Trees and builds live under ~/colibri-bench/cw22 (persistent; /tmp vanishes on reboot).
 # Arms (final6_tools.py's ARMS has each arm's premises; every sample is a fresh server):
 #   1. the question, full model, default configuration: W warm-up, A dev, B PR #1, interleaved
@@ -42,8 +42,8 @@ source /home/maplemercury/colibri-bench/final6/final_common.sh
 
 REPO=$W22/repo
 DEV_SHA=7df8c27c95acf7019dd60714ec1c42fa7e36b730
-PR1_SHA_WANT=ebe82123
-PR2_SHA_WANT=073f18d2
+PR1_SHA_WANT=b286167e
+PR2_SHA_WANT=0523e8e0
 CLIENT_SHA_PR1=eca4360bdd5a0601c0a7138f49464874a648486519235bbc22d40997c3e2de53     # final/clients/bench_pr1.py
 TZ_NAME=America/Vancouver
 STOP_AT="${STOP_AT:?set STOP_AT=\x27YYYY-MM-DD HH:MM:SS\x27}"
@@ -237,8 +237,9 @@ for item in $ORDER; do
     fi
 done
 
-# ---- 6. pilot: CUDA tests at the merged tips while llama is still down (results, not aborts)
-if [ "${PILOT:-0}" = 1 ]; then
+# ---- 6. CUDA tests at the tips while llama is still down (results, not aborts; the main run repeats the
+# pilot's at b286167e / 0523e8e0, whose generic code is identical to ebe82123 / 073f18d2: same SASS)
+if true; then
     NVF="-O3 -std=c++17 -ftz=false -arch=sm_86 -Xcompiler=-Wall,-Wextra -DCOLI_DSV4_NO_TC"
     for t in "$PR1" "$PR2"; do
         n=$(basename "$t")

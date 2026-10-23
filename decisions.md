@@ -38,6 +38,20 @@
 - Subagents account for 87% of it: 298 agents in total, and the in-depth review alone used about 116M effective tokens.
 - Script: `tools/analysis/usage_analysis.py`. Summary: `tools/analysis/usage_summary.json`.
 
+## final6 results and the follow-ups (2026-10-23)
+- **`DSV4_MM_WARP` stays on by default**: the plan's rule (bit-identical and not slower in the default configuration on
+  the full model) is met on both builds (generic CUDA on shadowfax, DeepGEMM on computer4).
+- **The failed gate is not read as a PR #1 failure**, but each item gets its own run before anything is claimed
+  upstream (final7, [TEST_PLAN_20261023.md](TEST_PLAN_20261023.md)): the bank ratio from the 1-sample AK arm is quoted
+  for prompt 1 only (0.665x), where dev's bank was on.
+- **The unused-variable fix (b286167e) is a separate commit on #2264**: upstream code in the DeepGEMM kernels that the
+  first DeepGEMM build here warned about (Bob asked, 2026-10-22). Generic builds do not compile those functions, so the
+  generic-CUDA final6 numbers stand. Pushed after `make check` at both tips.
+- **Vulkan runs get a memory cap** (`MemoryMax` on the server's unit) from final7 on: QB's host OOM was global and
+  could have taken another process on shadowfax.
+- **No reply on #2264 until the follow-ups are in**; a draft goes in `review/` and Bob posts it or OKs it.
+- **zebra not used**: no Metal path in the V4 engine and the PRs are CUDA-only; upstream CI covers macOS and ARM.
+
 ## #2264 review: dev merge, full V4 Flash measurement (2026-10-22)
 - **JustVugg's review** ([comment](https://github.com/JustVugg/colibri/pull/2264#issuecomment-6335156265)) kept PR #1 out
   of the day's batch (#2284) for three points: merge dev; measure the default configuration on the full V4 Flash because

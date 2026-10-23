@@ -6,7 +6,65 @@
 > [#2264](https://github.com/JustVugg/colibri/pull/2264), opened 2026-10-20; **PR #2** (two-GPU decode) is not opened yet. Documents dated before 2026-10-17 describe earlier
 > versions of these changes, on the old base 7b55a9b3.
 
-All on shadowfax (see environment.md), DeepSeek V4 Flash REAP 150B, `--ram 40 --ctx 8192`, llama.cpp stopped for the window, one fresh server per sample. The engine is greedy, so "identical" means byte-identical output text (sha256 compared).
+Up to final5: all on shadowfax (see environment.md), DeepSeek V4 Flash REAP 150B, `--ram 40 --ctx 8192`, llama.cpp stopped for the window, one fresh server per sample. The engine is greedy, so "identical" means byte-identical output text (sha256 compared). final6 adds the full 256-expert V4 Flash and computer4 (DeepGEMM).
+
+## FINAL6 (2026-10-22 17:46-23:56 PDT, shadowfax, `manifests/final6/`) — full DeepSeek V4 Flash (256 experts) + REAP-150B; dev 7df8c27c, pr1 b286167e, pr2 0523e8e0
+Harness `tools/bench/final6/` ([TEST_PLAN_20261022.md](TEST_PLAN_20261022.md)); base environment = the canonical serve
+line **without** `COLI_CUDA_MOE_BATCH`, `--ram 40`, fresh server per sample, W discarded. 3 samples for A, B, BK, BD and
+the PR #2 decode arms; 1 for the rest. **"QUESTION (A vs B, V) ANSWERED CLEANLY: True"; GATES: FAIL** (side arms, below).
+Evidence: `manifests/final6/bench.tgz` (sha256 6b9b1d36…), `pilot.tgz`, `summary.txt`.
+
+**JustVugg's question (default configuration, full model, interleaved W A B B A A B):**
+
+| arm | 1,992-tok TTFT | 3,005-tok TTFT | decode (2k / 3k) | text |
+|---|---|---|---|---|
+| A dev 7df8c27c | 160.9 s | 264.6 s | 2.009 / 1.897 | reference |
+| B PR #1 | 158.2 s (0.983x) | 261.5 s (0.989x) | 2.010 / 1.900 (1.002x mean) | identical, all samples |
+| V B + `DSV4_MM_WARP_VERIFY=1` | 164.3 s | 276.0 s | | identical; **1,500 calls, 0 mismatches** |
+
+=> `DSV4_MM_WARP` stays on by default (the plan's rule: bit-identical and not slower).
+
+**The rest (PR #1 vs dev unless noted; texts identical within each group unless noted):**
+
+| comparison | TTFT ratio | decode ratio | note |
+|---|---|---|---|
+| BK/AK 256-expert bank | 0.665 (85.9 vs 129.1 s) / 0.481 | 0.973 | AK: 1 sample; dev's bank allocation failed during prompt 2 only (`moe-batch=off`), so **only the 2k ratio is like-for-like**; dev's bank worked in AS, KA, MA (same config) |
+| BD/BK double bank | 0.775 / 0.822 | 0.974 | 66.6 s / 101.4 s |
+| LB/LA ~8k prompt, default | 0.982 | 1.000 | 832 vs 847 s |
+| KB/KA ~16k prompt, bank, `--ctx 32768` | **0.690** (795 vs 1151 s) | 0.997 | like-for-like (dev's bank on) |
+| MB/MA MTP drafting, bank | 0.665 | 0.997 | |
+| AS/BS speculative, bank | 129.0 / 85.7 s | | texts = A's; pass |
+| CC two requests at once | | | each text = its sequential one; pass |
+| VB/VA Vulkan+CUDA build, bank | 0.587 / 0.535 | 1.008 | **texts differ from RB (CUDA only)**; VA = VB on prompt 1, not prompt 2 |
+| QB/QA pure Vulkan | 0.979 | | **QB text differs; QB killed by the host OOM killer** after prompt 1 (see investigations §6) |
+| G1/D0 PR #2 switches off vs dev (REAP) | ~1.00 | 0.999 | 3.011 vs 3.014 tok/s |
+| R1/G1 VRAM-first | | 1.021-1.030 | 3.096 tok/s |
+| X3/R1 second GPU | | **1.36-1.48** | 4.343 tok/s (+44% vs dev) |
+| P0 (`DSV4_CUDA_PEER_COMPUTE=0`), NB (`DSV4_CUDA_BATCHED=0`) | | | 3.66 / 3.12 tok/s; texts = D0's; pass |
+| HY (`DSV4_HYBRID=1`, PR #2 all on) | | | 2.91 tok/s; **decode_0 text differs from D0** (also differed in final5) |
+| SK soak, 6-turn chat x3, PR #2 all on | | | every repeat = the first; pass |
+
+- **Handled allocation failures** (`[DSV4 CUDA] kv comp allocation: out of memory`, the engine falls back and goes on)
+  in **both** arms of the default configuration: 252 per sample in W, A, B and CC, 420 in V, 316 (`buffer`) in LA/LB.
+  Pre-existing on dev at 24 GB with the full model, not PR #1's.
+- **F18 probe** (PR #2, `DSV4_F18_TRAP`, a real `__trap()` on the peer GPU): both cases CAUGHT-REFUSED (no hang, no silent
+  wrong output), **but the next all-on-primary call on device 0 also fails** ("MoE activation upload: unspecified launch
+  failure"): the sticky fault takes the whole process's CUDA, so PR #2's log line "decode continues on device 0" is wrong
+  (the engine falls back to host copies). The probe's verdict ignored that line. See investigations §6.
+- GPU tests in the pilot: `dsv4-cuda-test` rc=0 at pr1 and pr2 (0 warning lines), `cuda-test` rc=0 at pr2.
+
+## FINAL6 DeepGEMM (2026-10-22 17:43-19:01 PDT, computer4, `manifests/final6-c4ab/`) — RTX 5070 12 GB (sm_120a), CUDA 12.8
+First DeepGEMM build in this project (`DSV4_MM_WARP` and `DSV4_MOE_EXPERT_MAJOR` are compiled out there). dev, pr1, pr2
+build and pass their GPU tests (two-GPU and >9 GB tests skip). Full V4 Flash, default configuration, W A B B A A B,
+`run_c4ab.sh`. **GATES: PASS.** The ~10 GB bank row does not fit beside Voxtype's 1.5 GB and was not run.
+
+| arm | 1,992-tok TTFT | 3,005-tok TTFT | decode (2k / 3k) | text |
+|---|---|---|---|---|
+| A dev 7df8c27c | 242.6 s | 373.1 s | 1.372 / 1.305 | reference |
+| B PR #1 b286167e | 242.3 s (0.999x) | 374.4 s (1.004x) | 1.375 / 1.294 (1.002x mean) | identical, all samples |
+
+- B s2 alone: 421 handled allocation failures (1 weight, 420 kv comp), GPU0 peak 11,747 vs ~11,255 MiB, its 3k TTFT
+  409 s (vs ~373). Same baseline VRAM before the sample; cause not found. Medians unaffected.
 
 ## FINAL5 (2026-10-20 00:15-03:00 PDT, `manifests/final5/`) — on upstream dev 736a0682 (PR #0 merged); pr1 34fe3f80, pr2 4558700f (= refresh/* tips; the docs5/* branches to submit differ only in docs/)
 Harness `run_final5.sh` = final4's plus decode arms D0 (dev) and R1 (VRAM-first only) and 3 samples for every decode arm; Hermes's model server is now TabbyAPI (GPU check covers its whole cgroup, health accepts "healthy"). 3 cold samples per arm (+1 discarded warm-up), rotated order, medians; `.coli_usage` empty. GATES: PASS; all 92 outputs identical to this run's dev text (and to the older fixed references). Six manifests, all valid.
