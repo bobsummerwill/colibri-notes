@@ -6,10 +6,10 @@
 > [#2264](https://github.com/JustVugg/colibri/pull/2264), opened 2026-10-20; **PR #2** (two-GPU decode) is not opened yet. Documents dated before 2026-10-17 describe earlier
 > versions of these changes, on the old base 7b55a9b3.
 
-Two machines: **computer4** runs Claude Code, holds the git clones (`~/Projects/colibri`, `~/Projects/colibri-claude`), pushes to GitHub and does CPU builds / `make check`. **shadowfax** is the GPU testground only (CUDA builds, GPU tests, benchmarks), reached with `ssh maplemercury@shadowfax`. Paths below are on the machine whose section they are in.
+Three machines (zebra, a Mac M4 Pro 64 GB reached as `ssh zebra@zebra`, is not used for colibri: the V4 engine has no Metal path). Two that run colibri: **computer4** runs Claude Code, holds the git clones (`~/Projects/colibri`, `~/Projects/colibri-claude`), pushes to GitHub and does CPU builds / `make check`. **shadowfax** is the GPU testground only (CUDA builds, GPU tests, benchmarks), reached with `ssh maplemercury@shadowfax`. Paths below are on the machine whose section they are in.
 
 ## shadowfax (GPU box)
-- AMD Ryzen 9 9950X3D (16C/32T), 62 GB DDR5, WD_BLACK SN850X 4 TB (ext4, O_DIRECT reads ~6.5 GB/s), Ubuntu 24.04.4, kernel 7.0.0-34, gcc 13.3, CUDA toolkit 12.0.140 (apt), driver 595.84.
+- AMD Ryzen 9 9950X3D (16C/32T), 62 GB DDR5, WD_BLACK SN850X 4 TB (ext4, O_DIRECT reads ~6.5 GB/s), Ubuntu 24.04.5, kernel 7.0.0-38, gcc 13.3, CUDA toolkit 12.0.140 (apt), driver 595.99.02 (final6's host.txt, 2026-10-22; was 24.04.4 / 7.0.0-34 / 595.84 through final5).
 - 2x RTX 3090 24 GB, **each on PCIe 4.0 x8** (host->GPU uploads measured ~12 GB/s), **joined by an NVLink bridge** (`nvidia-smi topo -m` shows NV4, P2P OK, ~56 GB/s). GeForce cards normally lack P2P; the bridge is why the peer pool works.
 - Reach: `ssh maplemercury@shadowfax` from computer4 (Tailscale SSH; user `zombietiger` is refused). Claude Code allow rule `Bash(ssh maplemercury@shadowfax:*)` exists in computer4 `~/.claude/settings.json`.
 - Services (do not break them):
@@ -21,6 +21,7 @@ Two machines: **computer4** runs Claude Code, holds the git clones (`~/Projects/
 - The shadowfax clone `/tmp/colibri` has its upstream push URL set to `DISABLED-no-upstream-pushes` on purpose.
 
 ## computer4 (where Claude Code runs; every `~/Projects/...` path is here)
+- GPU since 2026-10-22: RTX 5070 12 GB (sm_120), driver 595.99.02, CUDA 12.8 at `/usr/local/cuda-12.8` (not on PATH); Voxtype keeps ~1.5 GB of it. DeepGEMM builds and the c4ab runs live in `~/colibri-bench/{dg,c4ab,c4ab2}`; the full V4 Flash in `~/colibri-models/deepseek-v4-flash`. i5-12600K, 62 GB.
 - Has Bob's git identity (Bob Summerwill <bob@summerwill.net>) and `gh` logged in as bobsummerwill (HTTPS; the ssh key is not registered with GitHub). No nvcc — CUDA builds happen on shadowfax.
 - Local clone of the code: `~/Projects/colibri` (remote `origin` = the fork bobsummerwill/colibri, HTTPS with `credential.helper=!gh auth git-credential`; remote `upstream` = JustVugg/colibri, push URL disabled; remote `shadowfax` = maplemercury@shadowfax:/tmp/colibri, fetch only). These notes: `~/Projects/colibri-claude`.
 

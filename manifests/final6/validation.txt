@@ -1,0 +1,5 @@
+pr1-default-1992.json: ok (engine_commit, improvement)
+pr1-default-3005.json: ok (engine_commit, improvement)
+pr1-double-1992.json: ok (COLI_CUDA_MOE_DOUBLE, improvement)
+pr1-double-3005.json: ok (COLI_CUDA_MOE_DOUBLE, improvement)
+rc=0

@@ -1,0 +1,12 @@
+pr1-default-1992.json      improvement  12.3790 ->  12.5951 tok/s (1.0175x, TTFT 0.9828x) quality True/True
+pr1-default-3005.json      improvement  11.3574 ->  11.4899 tok/s (1.0117x, TTFT 0.9885x) quality True/True
+pr1-double-1992.json       improvement  23.1938 ->  29.9188 tok/s (1.2899x, TTFT 0.7752x) quality True/True
+pr1-double-3005.json       improvement  24.3500 ->  29.6409 tok/s (1.2173x, TTFT 0.8215x) quality True/True
+A long_prefill    ttft median  160.917 cv  0.05% | tok/s median 12.3790 | identical_to_A=True
+A long_prefill_2  ttft median  264.585 cv  0.02% | tok/s median 11.3574 | identical_to_A=True
+B long_prefill    ttft median  158.157 cv  0.25% | tok/s median 12.5951 | identical_to_A=True
+B long_prefill_2  ttft median  261.534 cv  0.29% | tok/s median 11.4899 | identical_to_A=True
+BK long_prefill    ttft median   85.885 cv  0.16% | tok/s median 23.1938 | identical_to_A=True
+BK long_prefill_2  ttft median  123.408 cv  0.18% | tok/s median 24.3500 | identical_to_A=True
+BD long_prefill    ttft median   66.580 cv  0.13% | tok/s median 29.9188 | identical_to_A=True
+BD long_prefill_2  ttft median  101.380 cv  0.15% | tok/s median 29.6409 | identical_to_A=True

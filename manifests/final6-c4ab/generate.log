@@ -1,0 +1,6 @@
+pr1-deepgemm-1992.json     no-change     8.2123 ->   8.2226 tok/s (1.0013x, TTFT 0.9988x) quality True/True
+pr1-deepgemm-3005.json     no-change     8.0542 ->   8.0256 tok/s (0.9964x, TTFT 1.0036x) quality True/True
+A long_prefill    ttft median  242.562 cv  0.18% | tok/s median  8.2123 | identical_to_A=True
+A long_prefill_2  ttft median  373.095 cv  0.04% | tok/s median  8.0542 | identical_to_A=True
+B long_prefill    ttft median  242.259 cv  0.17% | tok/s median  8.2226 | identical_to_A=True
+B long_prefill_2  ttft median  374.425 cv  5.39% | tok/s median  8.0256 | identical_to_A=True

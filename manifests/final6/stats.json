@@ -1,0 +1,696 @@
+{
+  "mode": "final6",
+  "bench_tgz_sha256": "6b9b1d3624e9f67f7684b6fb6c2bf0015b78f523e765d618d09f7dfff1737e5c",
+  "reference_A_sha256": {
+    "long_prefill": "a397814f650a80340c40cca3197295a49dd5d2dc9d55211f27473036bb4efd64",
+    "long_prefill_2": "8b3f437baa347d887b5dada5bd950743d49b3181fdab9f27a87f64ad0433d4c0"
+  },
+  "order": "A s1 B s1 B s2 A s2 A s3 B s3 BK s1 BD s1 BK s2 BD s2 BD s3 BK s3",
+  "arms": {
+    "A": {
+      "samples": [
+        {
+          "dir": "A/s1",
+          "seq": 2,
+          "start": "2026-10-22T18:05:32-07:00",
+          "wall_s": 455,
+          "gpu_mem_used_mib_max": {
+            "0": 24116,
+            "1": 84
+          },
+          "handled_allocation_failures": {
+            "kv comp": 252
+          },
+          "requests": {
+            "long_prefill": {
+              "ttft_s": 160.968,
+              "prefill_tok_s": 12.3751,
+              "decode_tok_s": 2.0087,
+              "decode_chunks": 32,
+              "total_s": 176.401,
+              "text_sha256": "a397814f650a80340c40cca3197295a49dd5d2dc9d55211f27473036bb4efd64"
+            },
+            "long_prefill_2": {
+              "ttft_s": 264.485,
+              "prefill_tok_s": 11.3617,
+              "decode_tok_s": 1.8969,
+              "decode_chunks": 13,
+              "total_s": 270.811,
+              "text_sha256": "8b3f437baa347d887b5dada5bd950743d49b3181fdab9f27a87f64ad0433d4c0"
+            }
+          }
+        },
+        {
+          "dir": "A/s2",
+          "seq": 5,
+          "start": "2026-10-22T18:28:02-07:00",
+          "wall_s": 453,
+          "gpu_mem_used_mib_max": {
+            "0": 24116,
+            "1": 84
+          },
+          "handled_allocation_failures": {
+            "kv comp": 252
+          },
+          "requests": {
+            "long_prefill": {
+              "ttft_s": 160.917,
+              "prefill_tok_s": 12.379,
+              "decode_tok_s": 2.0062,
+              "decode_chunks": 32,
+              "total_s": 176.37,
+              "text_sha256": "a397814f650a80340c40cca3197295a49dd5d2dc9d55211f27473036bb4efd64"
+            },
+            "long_prefill_2": {
+              "ttft_s": 264.585,
+              "prefill_tok_s": 11.3574,
+              "decode_tok_s": 1.8923,
+              "decode_chunks": 13,
+              "total_s": 270.927,
+              "text_sha256": "8b3f437baa347d887b5dada5bd950743d49b3181fdab9f27a87f64ad0433d4c0"
+            }
+          }
+        },
+        {
+          "dir": "A/s3",
+          "seq": 6,
+          "start": "2026-10-22T18:35:36-07:00",
+          "wall_s": 454,
+          "gpu_mem_used_mib_max": {
+            "0": 24116,
+            "1": 84
+          },
+          "handled_allocation_failures": {
+            "kv comp": 252
+          },
+          "requests": {
+            "long_prefill": {
+              "ttft_s": 160.8,
+              "prefill_tok_s": 12.3881,
+              "decode_tok_s": 2.0157,
+              "decode_chunks": 32,
+              "total_s": 176.179,
+              "text_sha256": "a397814f650a80340c40cca3197295a49dd5d2dc9d55211f27473036bb4efd64"
+            },
+            "long_prefill_2": {
+              "ttft_s": 264.596,
+              "prefill_tok_s": 11.357,
+              "decode_tok_s": 1.8991,
+              "decode_chunks": 13,
+              "total_s": 270.915,
+              "text_sha256": "8b3f437baa347d887b5dada5bd950743d49b3181fdab9f27a87f64ad0433d4c0"
+            }
+          }
+        }
+      ],
+      "requests": {
+        "long_prefill": {
+          "ttft_s": {
+            "mean": 160.895,
+            "stdev": 0.0861,
+            "cv_pct": 0.05,
+            "median": 160.917,
+            "min": 160.8,
+            "max": 160.968,
+            "n": 3
+          },
+          "prefill_tok_s": {
+            "mean": 12.3807,
+            "stdev": 0.0067,
+            "cv_pct": 0.05,
+            "median": 12.379,
+            "min": 12.3751,
+            "max": 12.3881,
+            "n": 3
+          },
+          "decode_tok_s": {
+            "mean": 2.0102,
+            "stdev": 0.0049,
+            "cv_pct": 0.24,
+            "median": 2.0087,
+            "min": 2.0062,
+            "max": 2.0157,
+            "n": 3
+          },
+          "identical_to_A": true
+        },
+        "long_prefill_2": {
+          "ttft_s": {
+            "mean": 264.5553,
+            "stdev": 0.0612,
+            "cv_pct": 0.02,
+            "median": 264.585,
+            "min": 264.485,
+            "max": 264.596,
+            "n": 3
+          },
+          "prefill_tok_s": {
+            "mean": 11.3587,
+            "stdev": 0.0026,
+            "cv_pct": 0.02,
+            "median": 11.3574,
+            "min": 11.357,
+            "max": 11.3617,
+            "n": 3
+          },
+          "decode_tok_s": {
+            "mean": 1.8961,
+            "stdev": 0.0035,
+            "cv_pct": 0.18,
+            "median": 1.8969,
+            "min": 1.8923,
+            "max": 1.8991,
+            "n": 3
+          },
+          "identical_to_A": true
+        }
+      },
+      "gate_problems": []
+    },
+    "B": {
+      "samples": [
+        {
+          "dir": "B/s1",
+          "seq": 3,
+          "start": "2026-10-22T18:13:07-07:00",
+          "wall_s": 447,
+          "gpu_mem_used_mib_max": {
+            "0": 24116,
+            "1": 84
+          },
+          "handled_allocation_failures": {
+            "kv comp": 252
+          },
+          "requests": {
+            "long_prefill": {
+              "ttft_s": 157.838,
+              "prefill_tok_s": 12.6205,
+              "decode_tok_s": 2.0096,
+              "decode_chunks": 32,
+              "total_s": 173.264,
+              "text_sha256": "a397814f650a80340c40cca3197295a49dd5d2dc9d55211f27473036bb4efd64"
+            },
+            "long_prefill_2": {
+              "ttft_s": 260.349,
+              "prefill_tok_s": 11.5422,
+              "decode_tok_s": 1.9036,
+              "decode_chunks": 13,
+              "total_s": 266.653,
+              "text_sha256": "8b3f437baa347d887b5dada5bd950743d49b3181fdab9f27a87f64ad0433d4c0"
+            }
+          }
+        },
+        {
+          "dir": "B/s2",
+          "seq": 4,
+          "start": "2026-10-22T18:20:34-07:00",
+          "wall_s": 448,
+          "gpu_mem_used_mib_max": {
+            "0": 24116,
+            "1": 84
+          },
+          "handled_allocation_failures": {
+            "kv comp": 252
+          },
+          "requests": {
+            "long_prefill": {
+              "ttft_s": 158.618,
+              "prefill_tok_s": 12.5584,
+              "decode_tok_s": 2.0102,
+              "decode_chunks": 32,
+              "total_s": 174.04,
+              "text_sha256": "a397814f650a80340c40cca3197295a49dd5d2dc9d55211f27473036bb4efd64"
+            },
+            "long_prefill_2": {
+              "ttft_s": 261.534,
+              "prefill_tok_s": 11.4899,
+              "decode_tok_s": 1.8998,
+              "decode_chunks": 13,
+              "total_s": 267.851,
+              "text_sha256": "8b3f437baa347d887b5dada5bd950743d49b3181fdab9f27a87f64ad0433d4c0"
+            }
+          }
+        },
+        {
+          "dir": "B/s3",
+          "seq": 7,
+          "start": "2026-10-22T18:43:09-07:00",
+          "wall_s": 450,
+          "gpu_mem_used_mib_max": {
+            "0": 24116,
+            "1": 84
+          },
+          "handled_allocation_failures": {
+            "kv comp": 252
+          },
+          "requests": {
+            "long_prefill": {
+              "ttft_s": 158.157,
+              "prefill_tok_s": 12.5951,
+              "decode_tok_s": 2.0142,
+              "decode_chunks": 32,
+              "total_s": 173.548,
+              "text_sha256": "a397814f650a80340c40cca3197295a49dd5d2dc9d55211f27473036bb4efd64"
+            },
+            "long_prefill_2": {
+              "ttft_s": 261.755,
+              "prefill_tok_s": 11.4802,
+              "decode_tok_s": 1.8979,
+              "decode_chunks": 13,
+              "total_s": 268.078,
+              "text_sha256": "8b3f437baa347d887b5dada5bd950743d49b3181fdab9f27a87f64ad0433d4c0"
+            }
+          }
+        }
+      ],
+      "requests": {
+        "long_prefill": {
+          "ttft_s": {
+            "mean": 158.2043,
+            "stdev": 0.3921,
+            "cv_pct": 0.25,
+            "median": 158.157,
+            "min": 157.838,
+            "max": 158.618,
+            "n": 3
+          },
+          "prefill_tok_s": {
+            "mean": 12.5913,
+            "stdev": 0.0312,
+            "cv_pct": 0.25,
+            "median": 12.5951,
+            "min": 12.5584,
+            "max": 12.6205,
+            "n": 3
+          },
+          "decode_tok_s": {
+            "mean": 2.0113,
+            "stdev": 0.0025,
+            "cv_pct": 0.12,
+            "median": 2.0102,
+            "min": 2.0096,
+            "max": 2.0142,
+            "n": 3
+          },
+          "identical_to_A": true
+        },
+        "long_prefill_2": {
+          "ttft_s": {
+            "mean": 261.2127,
+            "stdev": 0.7561,
+            "cv_pct": 0.29,
+            "median": 261.534,
+            "min": 260.349,
+            "max": 261.755,
+            "n": 3
+          },
+          "prefill_tok_s": {
+            "mean": 11.5041,
+            "stdev": 0.0334,
+            "cv_pct": 0.29,
+            "median": 11.4899,
+            "min": 11.4802,
+            "max": 11.5422,
+            "n": 3
+          },
+          "decode_tok_s": {
+            "mean": 1.9004,
+            "stdev": 0.0029,
+            "cv_pct": 0.15,
+            "median": 1.8998,
+            "min": 1.8979,
+            "max": 1.9036,
+            "n": 3
+          },
+          "identical_to_A": true
+        }
+      },
+      "gate_problems": []
+    },
+    "BK": {
+      "samples": [
+        {
+          "dir": "BK/s1",
+          "seq": 10,
+          "start": "2026-10-22T19:05:21-07:00",
+          "wall_s": 239,
+          "gpu_mem_used_mib_max": {
+            "0": 23332,
+            "1": 84
+          },
+          "handled_allocation_failures": {},
+          "requests": {
+            "long_prefill": {
+              "ttft_s": 85.671,
+              "prefill_tok_s": 23.2517,
+              "decode_tok_s": 1.9243,
+              "decode_chunks": 32,
+              "total_s": 101.781,
+              "text_sha256": "a397814f650a80340c40cca3197295a49dd5d2dc9d55211f27473036bb4efd64"
+            },
+            "long_prefill_2": {
+              "ttft_s": 123.195,
+              "prefill_tok_s": 24.3923,
+              "decode_tok_s": 1.8284,
+              "decode_chunks": 13,
+              "total_s": 129.758,
+              "text_sha256": "8b3f437baa347d887b5dada5bd950743d49b3181fdab9f27a87f64ad0433d4c0"
+            }
+          }
+        },
+        {
+          "dir": "BK/s2",
+          "seq": 12,
+          "start": "2026-10-22T19:12:37-07:00",
+          "wall_s": 240,
+          "gpu_mem_used_mib_max": {
+            "0": 23332,
+            "1": 84
+          },
+          "handled_allocation_failures": {},
+          "requests": {
+            "long_prefill": {
+              "ttft_s": 85.885,
+              "prefill_tok_s": 23.1938,
+              "decode_tok_s": 1.9145,
+              "decode_chunks": 32,
+              "total_s": 102.077,
+              "text_sha256": "a397814f650a80340c40cca3197295a49dd5d2dc9d55211f27473036bb4efd64"
+            },
+            "long_prefill_2": {
+              "ttft_s": 123.408,
+              "prefill_tok_s": 24.35,
+              "decode_tok_s": 1.8254,
+              "decode_chunks": 13,
+              "total_s": 129.982,
+              "text_sha256": "8b3f437baa347d887b5dada5bd950743d49b3181fdab9f27a87f64ad0433d4c0"
+            }
+          }
+        },
+        {
+          "dir": "BK/s3",
+          "seq": 15,
+          "start": "2026-10-22T19:23:14-07:00",
+          "wall_s": 241,
+          "gpu_mem_used_mib_max": {
+            "0": 23332,
+            "1": 84
+          },
+          "handled_allocation_failures": {},
+          "requests": {
+            "long_prefill": {
+              "ttft_s": 85.915,
+              "prefill_tok_s": 23.1857,
+              "decode_tok_s": 1.904,
+              "decode_chunks": 32,
+              "total_s": 102.196,
+              "text_sha256": "a397814f650a80340c40cca3197295a49dd5d2dc9d55211f27473036bb4efd64"
+            },
+            "long_prefill_2": {
+              "ttft_s": 123.648,
+              "prefill_tok_s": 24.3028,
+              "decode_tok_s": 1.8212,
+              "decode_chunks": 13,
+              "total_s": 130.237,
+              "text_sha256": "8b3f437baa347d887b5dada5bd950743d49b3181fdab9f27a87f64ad0433d4c0"
+            }
+          }
+        }
+      ],
+      "requests": {
+        "long_prefill": {
+          "ttft_s": {
+            "mean": 85.8237,
+            "stdev": 0.1331,
+            "cv_pct": 0.16,
+            "median": 85.885,
+            "min": 85.671,
+            "max": 85.915,
+            "n": 3
+          },
+          "prefill_tok_s": {
+            "mean": 23.2104,
+            "stdev": 0.036,
+            "cv_pct": 0.16,
+            "median": 23.1938,
+            "min": 23.1857,
+            "max": 23.2517,
+            "n": 3
+          },
+          "decode_tok_s": {
+            "mean": 1.9143,
+            "stdev": 0.0102,
+            "cv_pct": 0.53,
+            "median": 1.9145,
+            "min": 1.904,
+            "max": 1.9243,
+            "n": 3
+          },
+          "identical_to_A": true
+        },
+        "long_prefill_2": {
+          "ttft_s": {
+            "mean": 123.417,
+            "stdev": 0.2266,
+            "cv_pct": 0.18,
+            "median": 123.408,
+            "min": 123.195,
+            "max": 123.648,
+            "n": 3
+          },
+          "prefill_tok_s": {
+            "mean": 24.3484,
+            "stdev": 0.0448,
+            "cv_pct": 0.18,
+            "median": 24.35,
+            "min": 24.3028,
+            "max": 24.3923,
+            "n": 3
+          },
+          "decode_tok_s": {
+            "mean": 1.825,
+            "stdev": 0.0036,
+            "cv_pct": 0.2,
+            "median": 1.8254,
+            "min": 1.8212,
+            "max": 1.8284,
+            "n": 3
+          },
+          "identical_to_A": true
+        }
+      },
+      "gate_problems": []
+    },
+    "BD": {
+      "samples": [
+        {
+          "dir": "BD/s1",
+          "seq": 11,
+          "start": "2026-10-22T19:09:20-07:00",
+          "wall_s": 197,
+          "gpu_mem_used_mib_max": {
+            "0": 23332,
+            "1": 84
+          },
+          "handled_allocation_failures": {},
+          "requests": {
+            "long_prefill": {
+              "ttft_s": 66.58,
+              "prefill_tok_s": 29.9188,
+              "decode_tok_s": 1.874,
+              "decode_chunks": 32,
+              "total_s": 83.122,
+              "text_sha256": "a397814f650a80340c40cca3197295a49dd5d2dc9d55211f27473036bb4efd64"
+            },
+            "long_prefill_2": {
+              "ttft_s": 101.38,
+              "prefill_tok_s": 29.6409,
+              "decode_tok_s": 1.779,
+              "decode_chunks": 13,
+              "total_s": 108.126,
+              "text_sha256": "8b3f437baa347d887b5dada5bd950743d49b3181fdab9f27a87f64ad0433d4c0"
+            }
+          }
+        },
+        {
+          "dir": "BD/s2",
+          "seq": 13,
+          "start": "2026-10-22T19:16:37-07:00",
+          "wall_s": 197,
+          "gpu_mem_used_mib_max": {
+            "0": 23332,
+            "1": 84
+          },
+          "handled_allocation_failures": {},
+          "requests": {
+            "long_prefill": {
+              "ttft_s": 66.617,
+              "prefill_tok_s": 29.9022,
+              "decode_tok_s": 1.855,
+              "decode_chunks": 32,
+              "total_s": 83.329,
+              "text_sha256": "a397814f650a80340c40cca3197295a49dd5d2dc9d55211f27473036bb4efd64"
+            },
+            "long_prefill_2": {
+              "ttft_s": 101.438,
+              "prefill_tok_s": 29.624,
+              "decode_tok_s": 1.7706,
+              "decode_chunks": 13,
+              "total_s": 108.215,
+              "text_sha256": "8b3f437baa347d887b5dada5bd950743d49b3181fdab9f27a87f64ad0433d4c0"
+            }
+          }
+        },
+        {
+          "dir": "BD/s3",
+          "seq": 14,
+          "start": "2026-10-22T19:19:54-07:00",
+          "wall_s": 199,
+          "gpu_mem_used_mib_max": {
+            "0": 23334,
+            "1": 84
+          },
+          "handled_allocation_failures": {},
+          "requests": {
+            "long_prefill": {
+              "ttft_s": 66.458,
+              "prefill_tok_s": 29.9736,
+              "decode_tok_s": 1.8669,
+              "decode_chunks": 32,
+              "total_s": 83.063,
+              "text_sha256": "a397814f650a80340c40cca3197295a49dd5d2dc9d55211f27473036bb4efd64"
+            },
+            "long_prefill_2": {
+              "ttft_s": 101.154,
+              "prefill_tok_s": 29.7072,
+              "decode_tok_s": 1.7776,
+              "decode_chunks": 13,
+              "total_s": 107.905,
+              "text_sha256": "8b3f437baa347d887b5dada5bd950743d49b3181fdab9f27a87f64ad0433d4c0"
+            }
+          }
+        }
+      ],
+      "requests": {
+        "long_prefill": {
+          "ttft_s": {
+            "mean": 66.5517,
+            "stdev": 0.0832,
+            "cv_pct": 0.13,
+            "median": 66.58,
+            "min": 66.458,
+            "max": 66.617,
+            "n": 3
+          },
+          "prefill_tok_s": {
+            "mean": 29.9315,
+            "stdev": 0.0374,
+            "cv_pct": 0.12,
+            "median": 29.9188,
+            "min": 29.9022,
+            "max": 29.9736,
+            "n": 3
+          },
+          "decode_tok_s": {
+            "mean": 1.8653,
+            "stdev": 0.0096,
+            "cv_pct": 0.51,
+            "median": 1.8669,
+            "min": 1.855,
+            "max": 1.874,
+            "n": 3
+          },
+          "identical_to_A": true
+        },
+        "long_prefill_2": {
+          "ttft_s": {
+            "mean": 101.324,
+            "stdev": 0.1501,
+            "cv_pct": 0.15,
+            "median": 101.38,
+            "min": 101.154,
+            "max": 101.438,
+            "n": 3
+          },
+          "prefill_tok_s": {
+            "mean": 29.6574,
+            "stdev": 0.044,
+            "cv_pct": 0.15,
+            "median": 29.6409,
+            "min": 29.624,
+            "max": 29.7072,
+            "n": 3
+          },
+          "decode_tok_s": {
+            "mean": 1.7757,
+            "stdev": 0.0045,
+            "cv_pct": 0.25,
+            "median": 1.7776,
+            "min": 1.7706,
+            "max": 1.779,
+            "n": 3
+          },
+          "identical_to_A": true
+        }
+      },
+      "gate_problems": []
+    }
+  },
+  "notes": {
+    "outputs": "24 outputs in 12 samples (A 6, B 6, BK 6, BD 6), all byte-identical (full-text sha256, recomputed from the stored text) to arm A's per-request text (long_prefill a397814f650a, long_prefill_2 8b3f437baa34); the discarded warm-up W also matched.",
+    "handled_allocation_failures": "Handled allocation failures (serve.log '[DSV4 CUDA] <what> allocation: out of memory'; the engine falls back and goes on, the texts are unaffected) per sample: A s1 {'kv comp': 252}, s2 {'kv comp': 252}, s3 {'kv comp': 252}; B s1 {'kv comp': 252}, s2 {'kv comp': 252}, s3 {'kv comp': 252}; BK s1 none, s2 none, s3 none; BD s1 none, s2 none, s3 none.",
+    "gpu": "Peak memory.used (nvsmi.csv every 5 s, max over the arm's samples): A GPU0 24116 MiB, GPU1 84 MiB; B GPU0 24116 MiB, GPU1 84 MiB; BK GPU0 23332 MiB, GPU1 84 MiB; BD GPU0 23334 MiB, GPU1 84 MiB. Decode-mirror reserve lines in serve.log: A none printed, B none printed, BK mirror-reserve=4681MiB, BD mirror-reserve=7945MiB.",
+    "observation_decode": "Observation (not the hypothesis): decode right after the prefill (bench_pr1.py decode_tok_s, 3-sample means): long_prefill: A 2.0102, B 2.0113, BK 1.9143, BD 1.8653; long_prefill_2: A 1.8961, B 1.9004, BK 1.8250, BD 1.7757.",
+    "decode_means": {
+      "long_prefill": {
+        "A": 2.0102,
+        "B": 2.0113,
+        "BK": 1.9143,
+        "BD": 1.8653
+      },
+      "long_prefill_2": {
+        "A": 1.8961,
+        "B": 1.9004,
+        "BK": 1.825,
+        "BD": 1.7757
+      }
+    },
+    "warmup": {
+      "long_prefill": "warmup_runs 0: request 1 (long_prefill) is the first request the client sends to each freshly started server process. The run's discarded W sample (seq 1, pr1 tip, both requests, texts identical to A's) was a separate server process before the first measured sample.",
+      "long_prefill_2": "warmup_runs 1: request 2 (long_prefill_2) is served by the same server process right after request 1 (the 1992-token prompt, max_tokens 100), its one warm-up here; request 1 is itself measured, in the matching -1992 manifest"
+    },
+    "mm_warp_verify": "Arm V (seq 8, not timed for a manifest: verify runs the old kernel beside the new one): B's configuration plus DSV4_MM_WARP_VERIFY=1 on the pr1 tip. serve.log counts 1500 mm_batch_w calls with 0 mismatching bits (last line 'mm-warp verify calls=1500 mismatches=0'); its texts are identical to A's. So the warp dense kernel that is on by default (auto: fp8 shapes with I a multiple of 256 and <= 1024) produced the old kernel's bits on every call it took in this configuration."
+  },
+  "manifests": [
+    "pr1-default-1992.json",
+    "pr1-default-3005.json",
+    "pr1-double-1992.json",
+    "pr1-double-3005.json"
+  ],
+  "evidence": {
+    "A": {
+      "uri": "evidence/final6-arm-A.tgz",
+      "sha256": "6766c18257a11a2d9fede929d22fdae19a1dbc896ad346ca91f2bafeed3dbeaf",
+      "contains": "final6/A/s*/ (serve.log, bench.jsonl with full texts, sample.txt, nvsmi.csv, engine_environ.txt, serve_environ.txt, procs.txt, gpu_*.csv, mode.txt, bench.out/err, error_count.txt)",
+      "full_run": "bench.tgz (sha256 6b9b1d3624e9f67f7684b6fb6c2bf0015b78f523e765d618d09f7dfff1737e5c, also in bench.tgz.sha256): every arm, meta/, run.log, summary.txt"
+    },
+    "B": {
+      "uri": "evidence/final6-arm-B.tgz",
+      "sha256": "448fe161cfe6246570640b3ebd8c9020e66a5fb8fc3ad9f5e5953de5614f48fe",
+      "contains": "final6/B/s*/ (serve.log, bench.jsonl with full texts, sample.txt, nvsmi.csv, engine_environ.txt, serve_environ.txt, procs.txt, gpu_*.csv, mode.txt, bench.out/err, error_count.txt)",
+      "full_run": "bench.tgz (sha256 6b9b1d3624e9f67f7684b6fb6c2bf0015b78f523e765d618d09f7dfff1737e5c, also in bench.tgz.sha256): every arm, meta/, run.log, summary.txt"
+    },
+    "BK": {
+      "uri": "evidence/final6-arm-BK.tgz",
+      "sha256": "ed9d3018afa438ea4e99762ae8d08d2a95c606c245eb67d1b2406753c6bef3ea",
+      "contains": "final6/BK/s*/ (serve.log, bench.jsonl with full texts, sample.txt, nvsmi.csv, engine_environ.txt, serve_environ.txt, procs.txt, gpu_*.csv, mode.txt, bench.out/err, error_count.txt)",
+      "full_run": "bench.tgz (sha256 6b9b1d3624e9f67f7684b6fb6c2bf0015b78f523e765d618d09f7dfff1737e5c, also in bench.tgz.sha256): every arm, meta/, run.log, summary.txt"
+    },
+    "BD": {
+      "uri": "evidence/final6-arm-BD.tgz",
+      "sha256": "fcdd5dfa94362bdb7a8ec6ca646c68229d73d181615c1ed998e755a8f893ea53",
+      "contains": "final6/BD/s*/ (serve.log, bench.jsonl with full texts, sample.txt, nvsmi.csv, engine_environ.txt, serve_environ.txt, procs.txt, gpu_*.csv, mode.txt, bench.out/err, error_count.txt)",
+      "full_run": "bench.tgz (sha256 6b9b1d3624e9f67f7684b6fb6c2bf0015b78f523e765d618d09f7dfff1737e5c, also in bench.tgz.sha256): every arm, meta/, run.log, summary.txt"
+    }
+  }
+}

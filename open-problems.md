@@ -18,7 +18,8 @@
    PR #2's "decode continues on device 0" is wrong. final7 arm 7 (fault inside a real server), then a PR #2 fix.
 6. **Handled `kv comp` allocation failures** in dev and PR #1 alike at 24 GB on the full model (252 a sample);
    computer4 B s2 had 421. Pre-existing; final7 step 1b re-checks computer4.
-7. **tasks-personal #2824** (align NVIDIA drivers between shadowfax and computer4): still hold until final7 is done.
+7. **tasks-personal #2824** (align NVIDIA drivers between shadowfax and computer4): both already report 595.99.02
+   (final6's host.txt on each); check and close it after final7.
 
 ## Open on 2026-10-22 (superseded by the list above)
 1. **#2264 (PR #1):** run the pilot, then the overnight `final6` A/B on the full V4 Flash, default configuration

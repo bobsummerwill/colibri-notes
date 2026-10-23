@@ -1,0 +1,354 @@
+{
+  "mode": "c4ab",
+  "bench_tgz_sha256": "aae9fd46763cfe5facfa3c3ad7c9f621af58e0d79cafb940b3572069810e534f",
+  "reference_A_sha256": {
+    "long_prefill": "a397814f650a80340c40cca3197295a49dd5d2dc9d55211f27473036bb4efd64",
+    "long_prefill_2": "8b3f437baa347d887b5dada5bd950743d49b3181fdab9f27a87f64ad0433d4c0"
+  },
+  "order": "A s1 B s1 B s2 A s2 A s3 B s3",
+  "arms": {
+    "A": {
+      "samples": [
+        {
+          "dir": "A/s1",
+          "seq": 2,
+          "start": "2026-10-22T17:54:55-07:00",
+          "wall_s": 658,
+          "gpu_mem_used_mib_max": {
+            "0": 11263
+          },
+          "handled_allocation_failures": {},
+          "requests": {
+            "long_prefill": {
+              "ttft_s": 242.562,
+              "prefill_tok_s": 8.2123,
+              "decode_tok_s": 1.3723,
+              "decode_chunks": 32,
+              "total_s": 265.152,
+              "text_sha256": "a397814f650a80340c40cca3197295a49dd5d2dc9d55211f27473036bb4efd64"
+            },
+            "long_prefill_2": {
+              "ttft_s": 373.339,
+              "prefill_tok_s": 8.049,
+              "decode_tok_s": 1.2955,
+              "decode_chunks": 13,
+              "total_s": 382.602,
+              "text_sha256": "8b3f437baa347d887b5dada5bd950743d49b3181fdab9f27a87f64ad0433d4c0"
+            }
+          }
+        },
+        {
+          "dir": "A/s2",
+          "seq": 5,
+          "start": "2026-10-22T18:28:26-07:00",
+          "wall_s": 658,
+          "gpu_mem_used_mib_max": {
+            "0": 11255
+          },
+          "handled_allocation_failures": {},
+          "requests": {
+            "long_prefill": {
+              "ttft_s": 243.173,
+              "prefill_tok_s": 8.1917,
+              "decode_tok_s": 1.3741,
+              "decode_chunks": 32,
+              "total_s": 265.732,
+              "text_sha256": "a397814f650a80340c40cca3197295a49dd5d2dc9d55211f27473036bb4efd64"
+            },
+            "long_prefill_2": {
+              "ttft_s": 373.021,
+              "prefill_tok_s": 8.0559,
+              "decode_tok_s": 1.3087,
+              "decode_chunks": 13,
+              "total_s": 382.19,
+              "text_sha256": "8b3f437baa347d887b5dada5bd950743d49b3181fdab9f27a87f64ad0433d4c0"
+            }
+          }
+        },
+        {
+          "dir": "A/s3",
+          "seq": 6,
+          "start": "2026-10-22T18:39:24-07:00",
+          "wall_s": 657,
+          "gpu_mem_used_mib_max": {
+            "0": 11255
+          },
+          "handled_allocation_failures": {},
+          "requests": {
+            "long_prefill": {
+              "ttft_s": 242.325,
+              "prefill_tok_s": 8.2204,
+              "decode_tok_s": 1.3628,
+              "decode_chunks": 32,
+              "total_s": 265.071,
+              "text_sha256": "a397814f650a80340c40cca3197295a49dd5d2dc9d55211f27473036bb4efd64"
+            },
+            "long_prefill_2": {
+              "ttft_s": 373.095,
+              "prefill_tok_s": 8.0542,
+              "decode_tok_s": 1.3051,
+              "decode_chunks": 13,
+              "total_s": 382.29,
+              "text_sha256": "8b3f437baa347d887b5dada5bd950743d49b3181fdab9f27a87f64ad0433d4c0"
+            }
+          }
+        }
+      ],
+      "requests": {
+        "long_prefill": {
+          "ttft_s": {
+            "mean": 242.6867,
+            "stdev": 0.4375,
+            "cv_pct": 0.18,
+            "median": 242.562,
+            "min": 242.325,
+            "max": 243.173,
+            "n": 3
+          },
+          "prefill_tok_s": {
+            "mean": 8.2081,
+            "stdev": 0.0148,
+            "cv_pct": 0.18,
+            "median": 8.2123,
+            "min": 8.1917,
+            "max": 8.2204,
+            "n": 3
+          },
+          "decode_tok_s": {
+            "mean": 1.3697,
+            "stdev": 0.0061,
+            "cv_pct": 0.44,
+            "median": 1.3723,
+            "min": 1.3628,
+            "max": 1.3741,
+            "n": 3
+          },
+          "identical_to_A": true
+        },
+        "long_prefill_2": {
+          "ttft_s": {
+            "mean": 373.1517,
+            "stdev": 0.1664,
+            "cv_pct": 0.04,
+            "median": 373.095,
+            "min": 373.021,
+            "max": 373.339,
+            "n": 3
+          },
+          "prefill_tok_s": {
+            "mean": 8.053,
+            "stdev": 0.0036,
+            "cv_pct": 0.04,
+            "median": 8.0542,
+            "min": 8.049,
+            "max": 8.0559,
+            "n": 3
+          },
+          "decode_tok_s": {
+            "mean": 1.3031,
+            "stdev": 0.0068,
+            "cv_pct": 0.52,
+            "median": 1.3051,
+            "min": 1.2955,
+            "max": 1.3087,
+            "n": 3
+          },
+          "identical_to_A": true
+        }
+      },
+      "gate_problems": []
+    },
+    "B": {
+      "samples": [
+        {
+          "dir": "B/s1",
+          "seq": 3,
+          "start": "2026-10-22T18:05:53-07:00",
+          "wall_s": 659,
+          "gpu_mem_used_mib_max": {
+            "0": 11249
+          },
+          "handled_allocation_failures": {},
+          "requests": {
+            "long_prefill": {
+              "ttft_s": 241.675,
+              "prefill_tok_s": 8.2425,
+              "decode_tok_s": 1.3797,
+              "decode_chunks": 32,
+              "total_s": 264.144,
+              "text_sha256": "a397814f650a80340c40cca3197295a49dd5d2dc9d55211f27473036bb4efd64"
+            },
+            "long_prefill_2": {
+              "ttft_s": 374.425,
+              "prefill_tok_s": 8.0256,
+              "decode_tok_s": 1.2938,
+              "decode_chunks": 13,
+              "total_s": 383.7,
+              "text_sha256": "8b3f437baa347d887b5dada5bd950743d49b3181fdab9f27a87f64ad0433d4c0"
+            }
+          }
+        },
+        {
+          "dir": "B/s2",
+          "seq": 4,
+          "start": "2026-10-22T18:16:52-07:00",
+          "wall_s": 694,
+          "gpu_mem_used_mib_max": {
+            "0": 11747
+          },
+          "handled_allocation_failures": {
+            "weight": 1,
+            "kv comp": 420
+          },
+          "requests": {
+            "long_prefill": {
+              "ttft_s": 242.452,
+              "prefill_tok_s": 8.2161,
+              "decode_tok_s": 1.3711,
+              "decode_chunks": 32,
+              "total_s": 265.061,
+              "text_sha256": "a397814f650a80340c40cca3197295a49dd5d2dc9d55211f27473036bb4efd64"
+            },
+            "long_prefill_2": {
+              "ttft_s": 408.966,
+              "prefill_tok_s": 7.3478,
+              "decode_tok_s": 1.2408,
+              "decode_chunks": 13,
+              "total_s": 418.637,
+              "text_sha256": "8b3f437baa347d887b5dada5bd950743d49b3181fdab9f27a87f64ad0433d4c0"
+            }
+          }
+        },
+        {
+          "dir": "B/s3",
+          "seq": 7,
+          "start": "2026-10-22T18:50:21-07:00",
+          "wall_s": 656,
+          "gpu_mem_used_mib_max": {
+            "0": 11255
+          },
+          "handled_allocation_failures": {},
+          "requests": {
+            "long_prefill": {
+              "ttft_s": 242.259,
+              "prefill_tok_s": 8.2226,
+              "decode_tok_s": 1.3753,
+              "decode_chunks": 32,
+              "total_s": 264.8,
+              "text_sha256": "a397814f650a80340c40cca3197295a49dd5d2dc9d55211f27473036bb4efd64"
+            },
+            "long_prefill_2": {
+              "ttft_s": 371.814,
+              "prefill_tok_s": 8.082,
+              "decode_tok_s": 1.3002,
+              "decode_chunks": 13,
+              "total_s": 381.043,
+              "text_sha256": "8b3f437baa347d887b5dada5bd950743d49b3181fdab9f27a87f64ad0433d4c0"
+            }
+          }
+        }
+      ],
+      "requests": {
+        "long_prefill": {
+          "ttft_s": {
+            "mean": 242.1287,
+            "stdev": 0.4046,
+            "cv_pct": 0.17,
+            "median": 242.259,
+            "min": 241.675,
+            "max": 242.452,
+            "n": 3
+          },
+          "prefill_tok_s": {
+            "mean": 8.2271,
+            "stdev": 0.0138,
+            "cv_pct": 0.17,
+            "median": 8.2226,
+            "min": 8.2161,
+            "max": 8.2425,
+            "n": 3
+          },
+          "decode_tok_s": {
+            "mean": 1.3754,
+            "stdev": 0.0043,
+            "cv_pct": 0.31,
+            "median": 1.3753,
+            "min": 1.3711,
+            "max": 1.3797,
+            "n": 3
+          },
+          "identical_to_A": true
+        },
+        "long_prefill_2": {
+          "ttft_s": {
+            "mean": 385.0683,
+            "stdev": 20.7371,
+            "cv_pct": 5.39,
+            "median": 374.425,
+            "min": 371.814,
+            "max": 408.966,
+            "n": 3
+          },
+          "prefill_tok_s": {
+            "mean": 7.8185,
+            "stdev": 0.4086,
+            "cv_pct": 5.23,
+            "median": 8.0256,
+            "min": 7.3478,
+            "max": 8.082,
+            "n": 3
+          },
+          "decode_tok_s": {
+            "mean": 1.2783,
+            "stdev": 0.0326,
+            "cv_pct": 2.55,
+            "median": 1.2938,
+            "min": 1.2408,
+            "max": 1.3002,
+            "n": 3
+          },
+          "identical_to_A": true
+        }
+      },
+      "gate_problems": []
+    }
+  },
+  "notes": {
+    "outputs": "12 outputs in 6 samples (A 6, B 6), all byte-identical (full-text sha256, recomputed from the stored text) to arm A's per-request text (long_prefill a397814f650a, long_prefill_2 8b3f437baa34); the discarded warm-up W also matched. The same two texts as the shadowfax final6 run (generic CUDA build, RTX 3090).",
+    "handled_allocation_failures": "Handled allocation failures (serve.log '[DSV4 CUDA] <what> allocation: out of memory'; the engine falls back and goes on, the texts are unaffected) per sample: A s1 none, s2 none, s3 none; B s1 none, s2 {'weight': 1, 'kv comp': 420}, s3 none.",
+    "gpu": "Peak memory.used (nvsmi.csv every 5 s, max over the arm's samples): A GPU0 11263 MiB; B GPU0 11747 MiB. Decode-mirror reserve lines in serve.log: A none printed, B none printed.",
+    "observation_decode": "Observation (not the hypothesis): decode right after the prefill (bench_pr1.py decode_tok_s, 3-sample means): long_prefill: A 1.3697, B 1.3754; long_prefill_2: A 1.3031, B 1.2783.",
+    "decode_means": {
+      "long_prefill": {
+        "A": 1.3697,
+        "B": 1.3754
+      },
+      "long_prefill_2": {
+        "A": 1.3031,
+        "B": 1.2783
+      }
+    },
+    "warmup": {
+      "long_prefill": "warmup_runs 0: request 1 (long_prefill) is the first request the client sends to each freshly started server process. The run's discarded W sample (seq 1, pr1 tip, both requests, texts identical to A's) was a separate server process before the first measured sample.",
+      "long_prefill_2": "warmup_runs 1: request 2 (long_prefill_2) is served by the same server process right after request 1 (the 1992-token prompt, max_tokens 100), its one warm-up here; request 1 is itself measured, in the matching -1992 manifest"
+    }
+  },
+  "manifests": [
+    "pr1-deepgemm-1992.json",
+    "pr1-deepgemm-3005.json"
+  ],
+  "evidence": {
+    "A": {
+      "uri": "evidence/c4ab-arm-A.tgz",
+      "sha256": "18f9ff980c48a19b9859c5b7f5b8b7f5b2007206ceaa7d6d93d1114e4052f20c",
+      "contains": "c4ab/A/s*/ (serve.log, bench.jsonl with full texts, sample.txt, nvsmi.csv, bench.out/err)",
+      "full_run": "bench.tgz (sha256 aae9fd46763cfe5facfa3c3ad7c9f621af58e0d79cafb940b3572069810e534f, also in bench.tgz.sha256): every arm, meta/, run.log, summary.txt"
+    },
+    "B": {
+      "uri": "evidence/c4ab-arm-B.tgz",
+      "sha256": "b6067e180b8d69324a874cd7239ae0a37846fd6d4221b18610411eadbd7de8a3",
+      "contains": "c4ab/B/s*/ (serve.log, bench.jsonl with full texts, sample.txt, nvsmi.csv, bench.out/err)",
+      "full_run": "bench.tgz (sha256 aae9fd46763cfe5facfa3c3ad7c9f621af58e0d79cafb940b3572069810e534f, also in bench.tgz.sha256): every arm, meta/, run.log, summary.txt"
+    }
+  }
+}

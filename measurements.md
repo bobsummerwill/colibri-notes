@@ -13,6 +13,9 @@ Harness `tools/bench/final6/` ([TEST_PLAN_20261022.md](TEST_PLAN_20261022.md)); 
 line **without** `COLI_CUDA_MOE_BATCH`, `--ram 40`, fresh server per sample, W discarded. 3 samples for A, B, BK, BD and
 the PR #2 decode arms; 1 for the rest. **"QUESTION (A vs B, V) ANSWERED CLEANLY: True"; GATES: FAIL** (side arms, below).
 Evidence: `manifests/final6/bench.tgz` (sha256 6b9b1d36…), `pilot.tgz`, `summary.txt`.
+Manifests (all valid, `validation.txt`): `pr1-default-1992/3005` (A -> B: 1.0175x / 1.0117x tok/s, every B sample
+faster than every A sample), `pr1-double-1992/3005` (BK -> BD: 1.29x / 1.22x); computer4 `pr1-deepgemm-1992/3005`
+(1.0013x / 0.9964x: no-change).
 
 **JustVugg's question (default configuration, full model, interleaved W A B B A A B):**
 

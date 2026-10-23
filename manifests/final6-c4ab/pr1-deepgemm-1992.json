@@ -1,0 +1,197 @@
+{
+  "version": 1,
+  "hypothesis": "On a DeepGEMM build (RTX 5070, sm_120a), PR #1 does not slow down the full DeepSeek V4 Flash's prefill in the default configuration and leaves the output text byte-identical to upstream dev's",
+  "commit": "b286167e614bb208e5a84a25812d7fb29786b230",
+  "model": "DeepSeek V4 Flash (deepseek-ai/DeepSeek-V4-Flash-0731, 256 routed experts, fp4 experts / fp8 dense, 48 safetensors shards), colibri safetensors layout, the same checkpoint copied to computer4",
+  "command": "build: cd c && make -f Makefile.deepseek-v4 deepseek-v4 CUDA=1 DEEPGEMM=1 DEEPGEMM_HOME=<pinned DeepGEMM checkout> CUDA_HOME=/usr/local/cuda-12.8 NVCC=/usr/local/cuda-12.8/bin/nvcc -j8; run: python3 c/coli serve --model <V4 Flash dir> --ram 40 --ctx 8192 --host 127.0.0.1 --port 8090, server environment exactly PATH/HOME/USER/LOGNAME/LANG/LD_LIBRARY_PATH + the config's env keys (env -i); one freshly started server process per sample (OS page cache not dropped between samples); one discarded warm-up sample W on the pr1 tip first, then the arms interleaved, run order (seq) A s1 B s1 B s2 A s2 A s3 B s3; client bench_pr1.py sends request 1 (long_prefill: 1992-token prompt, max_tokens 100) then request 2 (long_prefill_2: 3005-token prompt, max_tokens 60), streamed, greedy; tok_s = prompt_tokens / time-to-first-token of the named request; metric: request 'long_prefill' (1992 prompt tokens); baseline arm A, trial arm B",
+  "prompt_hash": "13fc61ddae676a87f55d68c32d7488f90f0c99af634f30dc846eaa8d1707257f",
+  "hardware": {
+    "cpu": "12th Gen Intel(R) Core(TM) i5-12600K, 16 threads (meta/host.txt lscpu; engine: 10 OpenMP compute threads + 3 expert-loader lanes)",
+    "ram": "62 GiB (free -g; 7 GiB swap), 55 GiB available at the start of the run; engine --ram 40 (ram_tiers: 31.59 GiB routed-expert RAM cache = 59 of 256 experts per layer, 6.27 GiB dense resident)",
+    "storage": "not recorded in this run's meta/host.txt (the model directory's disk and filesystem are not in the evidence); OS page cache not dropped between samples",
+    "os": "Linux kernel 7.0.0-38-generic (computer4), CUDA toolkit 12.8 (/usr/local/cuda-12.8, DeepGEMM build: -gencode arch=compute_120a,code=sm_120a -DCOLI_DSV4_DEEPGEMM, pinned DeepGEMM headers), NVIDIA driver 595.99.02; 1x NVIDIA GeForce RTX 5070, 12227 MiB, of which the desktop's Voxtype held 1554 MiB (nvidia-smi at the start)"
+  },
+  "warmup_runs": 0,
+  "changed_variables": [
+    "engine_commit"
+  ],
+  "baseline": {
+    "config": {
+      "COLI_CUDA": "1",
+      "COLI_GPU": "0",
+      "DSV4_CUDA_DEVICE": "0",
+      "CUDA_DENSE": "1",
+      "COLI_CUDA_PIPE": "2",
+      "COLI_CUDA_ATTN_BATCH": "1",
+      "V4_MOE_REFILL_GROUP": "12",
+      "V4_LOADER_LANES": "3",
+      "V4_PREFIX_CKPT_DISK": "0",
+      "ram_gib": "40",
+      "ctx": "8192",
+      "temperature": "0",
+      "engine_commit": "7df8c27c95acf7019dd60714ec1c42fa7e36b730"
+    },
+    "samples": {
+      "tok_s": [
+        8.2123,
+        8.1917,
+        8.2204
+      ],
+      "ttft_s": [
+        242.562,
+        243.173,
+        242.325
+      ],
+      "decode_tok_s": [
+        1.3723,
+        1.3741,
+        1.3628
+      ],
+      "prompt_tokens": [
+        1992,
+        1992,
+        1992
+      ],
+      "text_sha256": [
+        "a397814f650a80340c40cca3197295a49dd5d2dc9d55211f27473036bb4efd64",
+        "a397814f650a80340c40cca3197295a49dd5d2dc9d55211f27473036bb4efd64",
+        "a397814f650a80340c40cca3197295a49dd5d2dc9d55211f27473036bb4efd64"
+      ],
+      "sample_dirs": [
+        "A/s1",
+        "A/s2",
+        "A/s3"
+      ],
+      "run_order_seq": [
+        2,
+        5,
+        6
+      ],
+      "handled_allocation_failures": [
+        {},
+        {},
+        {}
+      ],
+      "tok_s_mean": 8.2081,
+      "tok_s_stdev": 0.0148,
+      "ttft_s_mean": 242.687,
+      "ttft_s_stdev": 0.438
+    },
+    "median_tok_s": 8.2123,
+    "engine": {
+      "commit": "7df8c27c95acf7019dd60714ec1c42fa7e36b730",
+      "binary_sha256": "f4e8534ffe16dc77f21da35c03d745992d11f65f8b01e56cf8955c8bcb3bab89"
+    },
+    "quality": {
+      "method": "greedy (the engine ignores temperature): the full output text of both requests in every sample of this arm has the same sha256 (recomputed from the stored text) as upstream dev's (arm A, itself identical across its 3 samples); per sample also checked: the server's environment (sample.txt server_env (env -i)), tree SHA and binary sha256, the serve.log moe-batch / moe-double lines, no crash and no unhandled out-of-memory line",
+      "passed": true,
+      "problems": []
+    },
+    "evidence": {
+      "uri": "evidence/c4ab-arm-A.tgz",
+      "sha256": "18f9ff980c48a19b9859c5b7f5b8b7f5b2007206ceaa7d6d93d1114e4052f20c",
+      "contains": "c4ab/A/s*/ (serve.log, bench.jsonl with full texts, sample.txt, nvsmi.csv, bench.out/err)",
+      "full_run": "bench.tgz (sha256 aae9fd46763cfe5facfa3c3ad7c9f621af58e0d79cafb940b3572069810e534f, also in bench.tgz.sha256): every arm, meta/, run.log, summary.txt"
+    }
+  },
+  "trial": {
+    "config": {
+      "COLI_CUDA": "1",
+      "COLI_GPU": "0",
+      "DSV4_CUDA_DEVICE": "0",
+      "CUDA_DENSE": "1",
+      "COLI_CUDA_PIPE": "2",
+      "COLI_CUDA_ATTN_BATCH": "1",
+      "V4_MOE_REFILL_GROUP": "12",
+      "V4_LOADER_LANES": "3",
+      "V4_PREFIX_CKPT_DISK": "0",
+      "ram_gib": "40",
+      "ctx": "8192",
+      "temperature": "0",
+      "engine_commit": "b286167e614bb208e5a84a25812d7fb29786b230"
+    },
+    "samples": {
+      "tok_s": [
+        8.2425,
+        8.2161,
+        8.2226
+      ],
+      "ttft_s": [
+        241.675,
+        242.452,
+        242.259
+      ],
+      "decode_tok_s": [
+        1.3797,
+        1.3711,
+        1.3753
+      ],
+      "prompt_tokens": [
+        1992,
+        1992,
+        1992
+      ],
+      "text_sha256": [
+        "a397814f650a80340c40cca3197295a49dd5d2dc9d55211f27473036bb4efd64",
+        "a397814f650a80340c40cca3197295a49dd5d2dc9d55211f27473036bb4efd64",
+        "a397814f650a80340c40cca3197295a49dd5d2dc9d55211f27473036bb4efd64"
+      ],
+      "sample_dirs": [
+        "B/s1",
+        "B/s2",
+        "B/s3"
+      ],
+      "run_order_seq": [
+        3,
+        4,
+        7
+      ],
+      "handled_allocation_failures": [
+        {},
+        {
+          "weight": 1,
+          "kv comp": 420
+        },
+        {}
+      ],
+      "tok_s_mean": 8.2271,
+      "tok_s_stdev": 0.0138,
+      "ttft_s_mean": 242.129,
+      "ttft_s_stdev": 0.405
+    },
+    "median_tok_s": 8.2226,
+    "engine": {
+      "commit": "b286167e614bb208e5a84a25812d7fb29786b230",
+      "binary_sha256": "86d8eee1bbaab03a46c5fedba9a559a1280f9dabd45a23407603925f1d7afd54"
+    },
+    "quality": {
+      "method": "greedy (the engine ignores temperature): the full output text of both requests in every sample of this arm has the same sha256 (recomputed from the stored text) as upstream dev's (arm A, itself identical across its 3 samples); per sample also checked: the server's environment (sample.txt server_env (env -i)), tree SHA and binary sha256, the serve.log moe-batch / moe-double lines, no crash and no unhandled out-of-memory line",
+      "passed": true,
+      "problems": []
+    },
+    "evidence": {
+      "uri": "evidence/c4ab-arm-B.tgz",
+      "sha256": "b6067e180b8d69324a874cd7239ae0a37846fd6d4221b18610411eadbd7de8a3",
+      "contains": "c4ab/B/s*/ (serve.log, bench.jsonl with full texts, sample.txt, nvsmi.csv, bench.out/err)",
+      "full_run": "bench.tgz (sha256 aae9fd46763cfe5facfa3c3ad7c9f621af58e0d79cafb940b3572069810e534f, also in bench.tgz.sha256): every arm, meta/, run.log, summary.txt"
+    }
+  },
+  "outcome": "no-change",
+  "speedup_median_tok_s": 1.0013,
+  "ttft_ratio_median": 0.9988,
+  "notes": {
+    "run": "final6 DeepGEMM, computer4, samples 17:43:18 - 19:01:17 PDT (run.log, start of W to the end of the last sample; the tarball was packed before the run.log line ALL SAMPLES DONE); bench.tgz sha256 aae9fd46763cfe5facfa3c3ad7c9f621af58e0d79cafb940b3572069810e534f",
+    "warmup": "warmup_runs 0: request 1 (long_prefill) is the first request the client sends to each freshly started server process. The run's discarded W sample (seq 1, pr1 tip, both requests, texts identical to A's) was a separate server process before the first measured sample.",
+    "outcome_rule": "outcome: 'improvement' when the median tok/s ratio is above 1.01 and every trial sample is faster than every baseline sample, 'regression' the mirror image, else 'no-change' (final5's 1% threshold plus a no-overlap condition). Here: median ratio 1.0013; baseline tok/s [8.2123, 8.1917, 8.2204], trial [8.2425, 8.2161, 8.2226].",
+    "variability": "TTFT stdev / CV over 3 samples: A 0.438 s / 0.18%; B 0.405 s / 0.17%",
+    "outputs": "12 outputs in 6 samples (A 6, B 6), all byte-identical (full-text sha256, recomputed from the stored text) to arm A's per-request text (long_prefill a397814f650a, long_prefill_2 8b3f437baa34); the discarded warm-up W also matched. The same two texts as the shadowfax final6 run (generic CUDA build, RTX 3090).",
+    "handled_allocation_failures": "Handled allocation failures (serve.log '[DSV4 CUDA] <what> allocation: out of memory'; the engine falls back and goes on, the texts are unaffected) per sample: A s1 none, s2 none, s3 none; B s1 none, s2 {'weight': 1, 'kv comp': 420}, s3 none.",
+    "gpu": "Peak memory.used (nvsmi.csv every 5 s, max over the arm's samples): A GPU0 11263 MiB; B GPU0 11747 MiB. Decode-mirror reserve lines in serve.log: A none printed, B none printed.",
+    "observation_decode": "Observation (not the hypothesis): decode right after the prefill (bench_pr1.py decode_tok_s, 3-sample means): long_prefill: A 1.3697, B 1.3754; long_prefill_2: A 1.3031, B 1.2783.",
+    "question": "JustVugg's question on #2264 (2026-10-22): DSV4_MM_WARP is on by default (auto) in PR #1's mm_batch, so it changes the prefill of every FP8 checkpoint on a generic CUDA build, not only the COLI_CUDA_MOE_BATCH=1 path the earlier manifests measured; measure the default configuration (no COLI_CUDA_MOE_BATCH) on the full V4 Flash, dev against the branch, prompt and decode, interleaved. It stays on by default if bit-identical and not slower. The point of this manifest is therefore 'not slower, bit-identical', not a speed-up: in the default configuration the prefill MoE runs on the CPU union in both arms, and the warp kernel only takes the batched attention's short fp8 rows. On a DeepGEMM build DSV4_MM_WARP and DSV4_MOE_EXPERT_MAJOR are compiled out (#ifndef COLI_DSV4_DEEPGEMM), so this checks that the rest of PR #1 leaves the DeepGEMM path's texts and speed alone.",
+    "build": "Binaries from DeepGEMM builds (meta/host.txt binary sha256: dev f4e8534ffe16dc77, pr1 86d8eee1bbaab03a); the build logs are not in this tarball but copied next to it (builds/build-dev.log, builds/build-pr1b.log: nvcc -gencode arch=compute_120a,code=sm_120a -DCOLI_DSV4_DEEPGEMM), and `cuobjdump --list-elf` of both binaries lists deepseek_v4.1.sm_120a.cubin (checked 2026-10-23, not recorded in the run).",
+    "b_s2": "B s2 (seq 4) alone had handled allocation failures ({'weight': 1, 'kv comp': 420}) and a GPU0 peak of 11747 MiB (the other samples ~11255 MiB); its request-2 TTFT was 408.966 s against 374.425 s / 371.814 s for the other B samples. GPU memory in use at the start of the sample was the same as in the others; the cause is not established. The median is unaffected for request 1 and takes B s1's value for request 2.",
+    "cache_state": "Every serve.log says 'expert cache: 59 of 256 experts per layer fit and no usage history says which'. OS page cache not dropped between samples.",
+    "not_filled": "This run's meta records less than shadowfax's: no engine /proc environ (the env -i line is checked instead), no storage, OS release, gcc or Python versions, no host journal."
+  }
+}
