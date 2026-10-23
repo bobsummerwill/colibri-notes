@@ -94,3 +94,21 @@
 - **HY** (`DSV4_HYBRID=1` on PR #2 with everything on) differs from D0 on decode_0, as in final5. `DSV4_HYBRID` is dev's
   own switch (`deepseek_v4.c`, also at 7df8c27c), so the likely cause is dev's hybrid path, not PR #2; untested — final7
   runs it on dev too.
+
+## 7. final7 / final8 findings (2026-10-23, as they came in)
+- **Bank, like for like (final7 arm 1, shadowfax, full model, `COLI_CUDA_MOE_BATCH=1`):** dev given PR #1's reserve
+  (`DSV4_CUDA_VRAM_RESERVE_MB=4681`, AR) keeps its bank on both prompts, 0 allocation failures in 3 samples; PR #1 (BK)
+  likewise. TTFT BK/AR 85.9 / 129.2 s = **0.665** and 123.4 / 187.2 s = **0.659**; decode equal (1.921 vs 1.926,
+  1.828 vs 1.795 tok/s); all texts = final6's A texts. AK (dev as it is) again lost its bank on prompt 2 (one
+  `expert FC2 bank allocation: out of memory`), confirming §6's reading.
+- **The default configuration's text depends on VRAM headroom, on dev as on PR #1** (computer4, c4ab2). When the
+  decode mirrors have taken VRAM down to dev's 600 MiB reserve, `dsv4_cuda_kv_comp_append` (upstream code, unchanged
+  by PR #1) cannot grow the compressed-KV buffer ("[DSV4 CUDA] kv comp allocation: out of memory"),
+  `coli_v4_gpu_kv_cache_sync` returns 0 and that layer's attention runs on the CPU. CPU and CUDA attention do not give
+  the same bits, so the greedy text can change: c4ab2's W (PR #1, 458 failures, 59 of them in prompt 2's prefill)
+  answered prompt 2 with `f0baf6ae…`, A s1 (**dev**, 1,066 failures) with `e79e1278…`, both != the reference `8b3f437b…`.
+  The number of failures varies from run to run (0 in final6's computer4 A samples, 420 in its B s2, 252 in every
+  shadowfax A/B sample, where the texts stayed equal). So a text difference between two default-configuration samples
+  only counts when neither had kv comp failures; final6's A/B comparison holds (shadowfax: same 252 in every sample,
+  all texts equal; computer4: equal texts). c4ab3 (final8) tests it directly: attention on the CPU for both, and a
+  2 GB mirror reserve for both.
