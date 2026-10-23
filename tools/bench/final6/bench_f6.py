@@ -4,6 +4,10 @@
   BENCH_MODE=long      one ~8k-token prompt (60 tokens decoded); the server's usage gives the count
   BENCH_MODE=parallel  bench_pr1.py's two requests at the same moment, from two threads; each record
                        is bench_pr1.py's, so the texts compare with the sequential arms'
+  BENCH_MODE=long16    one ~16k-token prompt (60 tokens decoded)
+  BENCH_MODE=short     bench_pr1.py's first prompt, 24 tokens decoded (MTP drafting is slow here)
+  BENCH_MODE=soak      a 6-turn conversation (each answer goes back into the history), run 3 times on
+                       the same server: records rep<r>_turn<t>; every repeat must match the first
 Usage: BENCH_MODE=... bench_f6.py OUT.jsonl
 """
 import hashlib, json, os, sys, threading, time, urllib.request
@@ -25,11 +29,21 @@ SITES = ["Ashford", "Brightwater", "Calder", "Dunmore", "Eastleigh", "Fernhill",
 filler8k = " ".join(["Entry %d: the %s depot shipped %d %s to bay %d on day %d, and %d were returned for inspection."
                      % (i, SITES[i % len(SITES)], 20 + (i * 37) % 180, ITEMS[(i * 7) % len(ITEMS)], 1 + (i * 13) % 40,
                         1 + (i * 11) % 30, (i * 5) % 9) for i in range(300)])
+filler16k = " ".join(["Entry %d: the %s depot shipped %d %s to bay %d on day %d, and %d were returned for inspection."
+                      % (i, SITES[i % len(SITES)], 20 + (i * 37) % 180, ITEMS[(i * 7) % len(ITEMS)], 1 + (i * 13) % 40,
+                         1 + (i * 11) % 30, (i * 5) % 9) for i in range(600)])
+LONG16_REQUEST = ("prompt_16k", filler16k + "\n\nWhich depot shipped the most units in a single entry, and how many? Answer briefly.", 60, None)
+SOAK_TURNS = ["Give me three ideas for a weekend project with a Raspberry Pi.",
+              "Pick the second idea and list the parts I would need.",
+              "Write the first ten lines of a Python script for it.",
+              "What could go wrong with that script on a cold morning?",
+              "Summarize our conversation so far in two sentences.",
+              "Now suggest a name for the project."]
 LONG_REQUEST = ("prompt_8k", filler8k + "\n\nWhich depot shipped the most units in a single entry, and how many? Answer briefly.", 60, None)
 
 
-def run(name, prompt, max_tokens, prompt_tokens, position):
-    body = json.dumps({"model": "deepseek-v4-colibri", "messages": [{"role": "user", "content": prompt}],
+def run(name, prompt, max_tokens, prompt_tokens, position, messages=None):
+    body = json.dumps({"model": "deepseek-v4-colibri", "messages": messages or [{"role": "user", "content": prompt}],
                        "max_tokens": max_tokens, "temperature": 0, "stream": True}).encode()
     req = urllib.request.Request(URL, data=body, headers={"Content-Type": "application/json"})
     t0 = time.time(); first = None; n = 0; text = ""; usage = None
@@ -66,6 +80,20 @@ def write(f, rec):
 with open(OUT, "w") as f:
     if MODE == "long":
         write(f, run(*LONG_REQUEST, 1))
+    elif MODE == "long16":
+        write(f, run(*LONG16_REQUEST, 1))
+    elif MODE == "short":
+        write(f, run(PR1_REQUESTS[0][0] + "_24", PR1_REQUESTS[0][1], 24, PR1_REQUESTS[0][3], 1))
+    elif MODE == "soak":
+        pos = 0
+        for rep in range(1, 4):
+            history = []
+            for t, question in enumerate(SOAK_TURNS, 1):
+                history.append({"role": "user", "content": question})
+                pos += 1
+                rec = run("rep%d_turn%d" % (rep, t), None, 120, None, pos, messages=list(history))
+                history.append({"role": "assistant", "content": rec["text"]})
+                write(f, rec)
     elif MODE == "parallel":
         recs, errs = [None, None], []
 
@@ -86,5 +114,5 @@ with open(OUT, "w") as f:
             print("errors: " + "; ".join(errs), file=sys.stderr)
             sys.exit(1)
     else:
-        print("BENCH_MODE must be long or parallel", file=sys.stderr)
+        print("BENCH_MODE must be long, long16, short, soak or parallel", file=sys.stderr)
         sys.exit(2)

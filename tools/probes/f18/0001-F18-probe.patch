@@ -1,0 +1,171 @@
+From b62d10680ff947f0942d854f6a1a2e3a32cbbf1a Mon Sep 17 00:00:00 2001
+From: Bob Summerwill <bob@summerwill.net>
+Date: Thu, 22 Oct 2026 16:56:41 -0700
+Subject: [PATCH] F18 probe (debug only): DSV4_F18_TRAP traps the peer GPU in
+ the decode MoE
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+---
+ c/Makefile                   |  6 +++
+ c/backend_cuda_dsv4.cu       | 20 +++++++-
+ c/tests/test_f18_trap_cuda.c | 93 ++++++++++++++++++++++++++++++++++++
+ 3 files changed, 118 insertions(+), 1 deletion(-)
+ create mode 100644 c/tests/test_f18_trap_cuda.c
+
+diff --git a/c/Makefile b/c/Makefile
+index 7d6a4df2..a0665078 100644
+--- a/c/Makefile
++++ b/c/Makefile
+@@ -1318,6 +1318,12 @@ cuda-test: tests/test_mxfp4_expert_cuda.cu backend_cuda.cu backend_cuda.h fp8_fo
+ # context exists), then the decode MoE with experts on a peer GPU (peer
+ # compute and in-place reads vs one GPU, and an injected peer failure; skips
+ # without two peer-capable GPUs).
++# F18 probe (debug only, never in a release): build backend_cuda_dsv4.o with -DCOLI_F18_PROBE in
++# NVCCFLAGS, then this runs a real __trap() on the peer GPU inside the decode MoE.
++f18-probe-test: tests/test_f18_trap_cuda.c backend_cuda_dsv4.cu backend_cuda_dsv4.h $(DSV4_CUDA_OBJ)
++	$(CC) $(CFLAGS) tests/test_f18_trap_cuda.c $(DSV4_CUDA_OBJ) -o f18_trap_cuda_test$(EXE) $(LDFLAGS)
++	./f18_trap_cuda_test$(EXE)
++
+ dsv4-cuda-test: tests/test_dsv4_dense_batch_cuda.c tests/test_dsv4_attention_batch_cuda.c tests/test_dsv4_moe_batch_cuda.c tests/test_dsv4_generic_bitwise_cuda.c tests/test_dsv4_bank_bytes_cuda.c tests/test_dsv4_peer_init_cuda.cu tests/test_dsv4_peer_moe_cuda.c backend_cuda_dsv4.cu backend_cuda_dsv4.h $(DSV4_CUDA_OBJ)
+ 	"$(NVCC)" $(NVCCFLAGS) tests/test_dsv4_peer_init_cuda.cu -o dsv4_peer_init_cuda_test$(EXE) -lcuda -lcublasLt $(if $(filter 1,$(NCCL)),-lnccl)
+ 	./dsv4_peer_init_cuda_test$(EXE)
+diff --git a/c/backend_cuda_dsv4.cu b/c/backend_cuda_dsv4.cu
+index 34e0b0e7..58e352bf 100644
+--- a/c/backend_cuda_dsv4.cu
++++ b/c/backend_cuda_dsv4.cu
+@@ -2072,6 +2072,24 @@ static bool peer_fault(bool*lost){
+     if(at<0){const char*e=getenv("DSV4_CUDA_PEER_FAULT");at=e&&*e?atol(e):0;gone=e&&strstr(e,":lost");}
+     if(at<=0||++n!=at)return false;*lost=gone;
+     fprintf(stderr,"[DSV4 CUDA] DSV4_CUDA_PEER_FAULT: peer-compute pass #%ld fails%s\n",at,gone?", device lost":"");return true;}
++#ifdef COLI_F18_PROBE
++/* F18 probe (debug builds only, -DCOLI_F18_PROBE; never in a release): DSV4_F18_TRAP=n[:after] makes
++ * the n-th peer-compute pass launch a kernel that executes __trap() on the peer, a real sticky
++ * fault in the peer's context. Default: before the peer's down-projection, so the primary's reduce
++ * buffer keeps stale rows if its wait on the join is released; :after puts it after the
++ * down-projection, just before the join record. One stderr line says when it fired. */
++__global__ void f18_trap_kernel(){__trap();}
++static int f18_trap(bool after_down){
++    static long at=-1,n;static bool aft;
++    if(at<0){const char*e=getenv("DSV4_F18_TRAP");at=e&&*e?atol(e):0;aft=e&&strstr(e,":after");}
++    if(at<=0||aft!=after_down)return 0;
++    if(++n!=at)return 0;
++    fprintf(stderr,"[DSV4 CUDA] F18 probe: __trap() on the peer in pass #%ld (%s the down-projection)\n",at,after_down?"after":"before");
++    return 1;}
++#define F18_TRAP(after,stream) do{if(f18_trap(after))f18_trap_kernel<<<1,1,0,stream>>>();}while(0)
++#else
++#define F18_TRAP(after,stream) do{}while(0)
++#endif
+ /* Latch the peer off; peer_latch is for a peer already drained (alive: it
+  * drained). -1: it still answers (an allocation or launch failure), so its
+  * mirrors are readable and the caller computes their experts here, reading
+@@ -2127,7 +2145,7 @@ static int moe_once(Dsv4CudaTensor *const *gate,Dsv4CudaTensor *const *up,Dsv4Cu
+                 expert_act_grouped<<<(count*I+255)/256,256,0,pc->stream>>>(pc->p3,pc->p1,pc->p2,pc->expert_weights,limit,count,I);fp8_sim<<<count*((I+127)/128),128,0,pc->stream>>>(pc->p3,count,I);
+                 k=0;for(int e=0;e<count;e++)if(on_peer[e])pd[k++]={(uint8_t*)down[e]->w,down[e]->scale,pc->p3+(long long)e*I,c->p4+(long long)e*H};
+                 fine=pstep(cudaMemcpyAsync(pc->mvdesc,pd,(size_t)k*sizeof(MvDesc),cudaMemcpyHostToDevice,pc->stream),"down descriptors upload",&why,&err);}
+-            if(fine){mv_fp4_grouped<4><<<dim3((H+3)/4,k),256,0,pc->stream>>>(pc->mvdesc,k,H,I);
++            if(fine){F18_TRAP(false,pc->stream);mv_fp4_grouped<4><<<dim3((H+3)/4,k),256,0,pc->stream>>>(pc->mvdesc,k,H,I);F18_TRAP(true,pc->stream);
+                 fine=pstep(cudaGetLastError(),"launch",&why,&err)&&pstep(cudaEventRecord(pc->join,pc->stream),"join record",&why,&err);}
+             if(!fine)return peer_fail(pc,sg->device,why,err,false);
+             if(!ok(cudaSetDevice(sg->device),"select MoE device")){peer_drain(pc,sg->device);return 0;}
+diff --git a/c/tests/test_f18_trap_cuda.c b/c/tests/test_f18_trap_cuda.c
+new file mode 100644
+index 00000000..f6ba8148
+--- /dev/null
++++ b/c/tests/test_f18_trap_cuda.c
+@@ -0,0 +1,93 @@
++/* F18 probe: what the fused decode MoE does when the peer GPU really faults.
++ *
++ * Debug build only: backend_cuda_dsv4.cu compiled with -DCOLI_F18_PROBE, which adds
++ * DSV4_F18_TRAP=n[:after] (the n-th peer-compute pass launches a __trap() kernel on the peer,
++ * before its down-projection, or after it with :after). test_dsv4_peer_moe_cuda.c covers the
++ * fault as the backend sees it at the join (DSV4_CUDA_PEER_FAULT); this one makes the device
++ * fault for real, which was never tested (review finding F18): the primary's wait on the peer's
++ * join event may be released (then the reduce reads stale peer rows unless the fault is caught),
++ * or never released (a hang).
++ *
++ * Each scenario runs in a child process with an alarm, so a hang is a result, not a stuck test:
++ *   HANG             the child did not finish within the alarm
++ *   CAUGHT-CORRECT   the call returned 1 with the all-on-primary bytes, the peer latched off
++ *   CAUGHT-REFUSED   the call returned 0 (the engine falls back to host copies), peer latched off
++ *   SILENT-WRONG     the call returned 1 with other bytes (F18's wrong-token case)
++ *   UNNOTICED        the call returned 1 with the right bytes, the peer still counted healthy
++ * and, after the faulting call, whether an all-on-primary call still gives the reference bytes.
++ * Needs two devices with peer access both ways: DSV4_CUDA_DEVICE / DSV4_CUDA_PEER_DEVICE (0, 1).
++ * Tiny: under 3 MiB of tensors per device beyond the CUDA context. */
++#include <math.h>
++#include <signal.h>
++#include <stdint.h>
++#include <stdio.h>
++#include <stdlib.h>
++#include <string.h>
++#include <unistd.h>
++#include "../backend_cuda_dsv4.h"
++
++enum { H=512, I=256, E=6, SKIP=77, ALARM_S=60 };
++static uint64_t g_rng;
++static uint32_t rnd(void){g_rng=g_rng*6364136223846793005ull+1442695040888963407ull;return (uint32_t)(g_rng>>33);}
++static void fill(uint8_t *p,size_t n,int lo,int span){for(size_t i=0;i<n;i++)p[i]=(uint8_t)(span?lo+(int)(rnd()%(unsigned)span):(int)rnd());}
++static void fill_fp8(uint8_t *p,size_t n){for(size_t i=0;i<n;i++){uint8_t v=(uint8_t)rnd();p[i]=(v&0x7f)==0x7f?v^1:v;}}
++static Dsv4CudaTensor *fp4(const uint8_t *w,const uint8_t *s,int O,int In,int dev){Dsv4CudaTensor*t=NULL;return dsv4_cuda_upload_fp4(&t,w,s,O,In,dev)?t:NULL;}
++static Dsv4CudaTensor *fp8(int O,int In,int dev){
++    size_t wn=(size_t)O*In,sn=(size_t)((O+127)/128)*((In+127)/128);uint8_t*w=malloc(wn),*s=malloc(sn);Dsv4CudaTensor*t=NULL;
++    if(w&&s){fill_fp8(w,wn);fill(s,sn,118,4);if(!dsv4_cuda_upload_fp8(&t,w,s,O,In,dev))t=NULL;}free(w);free(s);return t;}
++
++static int child(const char *mode){
++    const char*a=getenv("DSV4_CUDA_DEVICE"),*b=getenv("DSV4_CUDA_PEER_DEVICE");int devs[2]={a?atoi(a):0,b?atoi(b):1};
++    if(devs[0]==devs[1]||!dsv4_cuda_init(devs,2)){printf("SKIP: devices %d and %d did not initialise\n",devs[0],devs[1]);return SKIP;}
++    int p=devs[0],q=devs[1];
++    if(!dsv4_cuda_peer_access(p,q)||!dsv4_cuda_peer_compute(p,q)){printf("SKIP: no peer compute between devices %d and %d\n",p,q);return SKIP;}
++    g_rng=0x5eed;
++    Dsv4CudaTensor*gP[E],*uP[E],*dP[E],*gQ[E],*uQ[E],*dQ[E];
++    size_t w1=(size_t)I*H/2,s1=(size_t)I*H/32,w2=(size_t)H*I/2,s2=(size_t)H*I/32;
++    uint8_t*gw=malloc(w1),*gs=malloc(s1),*uw=malloc(w1),*us=malloc(s1),*dw=malloc(w2),*ds=malloc(s2);if(!gw||!gs||!uw||!us||!dw||!ds)return 3;
++    for(int e=0;e<E;e++){
++        fill(gw,w1,0,0);fill(gs,s1,119,4);fill(uw,w1,0,0);fill(us,s1,119,4);fill(dw,w2,0,0);fill(ds,s2,120,4);
++        if(!(gP[e]=fp4(gw,gs,I,H,p))||!(uP[e]=fp4(uw,us,I,H,p))||!(dP[e]=fp4(dw,ds,H,I,p))||
++           !(gQ[e]=fp4(gw,gs,I,H,q))||!(uQ[e]=fp4(uw,us,I,H,q))||!(dQ[e]=fp4(dw,ds,H,I,q)))return 3;}
++    free(gw);free(gs);free(uw);free(us);free(dw);free(ds);
++    Dsv4CudaTensor*sg=fp8(I,H,p),*su=fp8(I,H,p),*sd=fp8(H,I,p);if(!sg||!su||!sd)return 3;
++    float x[H],wt[E]={.31f,.22f,.17f,.13f,.10f,.07f},ref[H],got[H];for(int i=0;i<H;i++)x[i]=(float)((int)(rnd()%2001)-1000)/1000.f;
++    if(!dsv4_cuda_moe(gP,uP,dP,wt,E,sg,su,sd,10.f,ref,x)){fprintf(stderr,"%s: all-on-primary MoE failed\n",mode);return 4;}
++    Dsv4CudaTensor*g[E],*u[E],*d[E];
++#define MASK(m) for(int e=0;e<E;e++){int on=((m)>>e)&1;g[e]=on?gQ[e]:gP[e];u[e]=on?uQ[e]:uP[e];d[e]=on?dQ[e]:dP[e];}
++#define SAME() (memcmp(got,ref,sizeof ref)==0)
++    /* pass 1 is clean (and fills the reduce buffer's peer rows with the right values, so a stale
++     * row would go unseen); pass 2 traps, with other weights so stale rows differ */
++    MASK(0x2d);memset(got,0,sizeof got);
++    if(!dsv4_cuda_moe(g,u,d,wt,E,sg,su,sd,10.f,got,x)||!SAME()){fprintf(stderr,"%s: the clean peer pass differs\n",mode);return 5;}
++    float x2[H],ref2[H];for(int i=0;i<H;i++)x2[i]=-x[i]*0.5f;
++    if(!dsv4_cuda_moe(gP,uP,dP,wt,E,sg,su,sd,10.f,ref2,x2)){fprintf(stderr,"%s: all-on-primary MoE (second input) failed\n",mode);return 4;}
++    printf("%s: trapping call starts\n",mode);fflush(stdout);
++    memset(got,0,sizeof got);
++    int r=dsv4_cuda_moe(g,u,d,wt,E,sg,su,sd,10.f,got,x2);
++    int same=memcmp(got,ref2,sizeof ref2)==0,healthy=dsv4_cuda_peer_healthy(q);
++    const char*verdict=r&&same?(healthy?"UNNOTICED":"CAUGHT-CORRECT"):r?"SILENT-WRONG":healthy?"REFUSED-PEER-HEALTHY":"CAUGHT-REFUSED";
++    printf("%s: RESULT %s (returned %d, output %s, peer healthy %d)\n",mode,verdict,r,same?"= all-on-primary":"differs",healthy);fflush(stdout);
++    memset(got,0,sizeof got);int r2=dsv4_cuda_moe(gP,uP,dP,wt,E,sg,su,sd,10.f,got,x2);
++    printf("%s: AFTER all-on-primary call returned %d, output %s\n",mode,r2,memcmp(got,ref2,sizeof ref2)==0?"= reference":"differs");fflush(stdout);
++    return 0;
++}
++
++int main(int argc,char **argv){
++    if(argc>2&&!strcmp(argv[1],"--child")){alarm(ALARM_S);return child(argv[2]);}
++    static const char *modes[][2]={{"before","2"},{"after","2:after"}};
++    if(!getenv("CUDA_MODULE_LOADING"))setenv("CUDA_MODULE_LOADING","LAZY",1);
++    int bad=0;
++    for(size_t k=0;k<2;k++){
++        setenv("DSV4_F18_TRAP",modes[k][1],1);
++        char cmd[4096],out[1<<14];snprintf(cmd,sizeof cmd,"\"%s\" --child %s 2>&1",argv[0],modes[k][0]);
++        FILE*f=popen(cmd,"r");if(!f)return 1;size_t n=fread(out,1,sizeof out-1,f);out[n]=0;int st=pclose(f);
++        int sig=(st!=-1&&(st&0x7f))?(st&0x7f):0,code=(st!=-1&&!sig)?(st>>8)&0xff:-1;
++        printf("=== %s (DSV4_F18_TRAP=%s): exit %d signal %d%s\n%s",modes[k][0],modes[k][1],code,sig,
++               sig==SIGALRM?"  -> HANG (no answer within the alarm)":"",out);
++        if(code==SKIP){puts("f18 probe: SKIP");return 0;}
++        if(sig==SIGALRM||strstr(out,"SILENT-WRONG")||code!=0)bad++;
++    }
++    puts(bad?"f18 probe: a fault was not handled (see above)":"f18 probe: every fault handled");
++    return bad?2:0;
++}
+-- 
+2.43.0
+

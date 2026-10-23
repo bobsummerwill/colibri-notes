@@ -46,6 +46,24 @@ ARMS = {
     "BS": ("pr1", "full", "full", {"COLI_CUDA_MOE_BATCH": "1", "V4_DRAFT": "4"}, ["COLI_CUDA_MOE_DOUBLE"], [BANK], [], 1, False),
     # 5. two requests at once (default configuration): each text must equal its sequential one
     "CC": ("pr1", "full", "full", {}, NOT_DEFAULT, [], [r"moe-batch=on"], 2, False),
+    # 8. Vulkan + CUDA builds (F22: the router's Vulkan gate matmul), REAP-150B prefill with
+    #    COLI_CUDA_MOE_BATCH=1 and COLI_VULKAN=1; RB is the same without Vulkan (the reference)
+    "RB": ("pr1", "reap", "reap-pf", {"COLI_CUDA_MOE_BATCH": "1"}, ["COLI_VULKAN", "V4_DRAFT"], [r"moe-batch=on bank=132-experts"], [], 2, False),
+    "VA": ("dev-vk", "reap", "reap-pf", {"COLI_CUDA_MOE_BATCH": "1", "COLI_VULKAN": "1"}, ["V4_DRAFT"], [], [], 2, False),
+    "VB": ("pr1-vk", "reap", "reap-pf", {"COLI_CUDA_MOE_BATCH": "1", "COLI_VULKAN": "1"}, ["V4_DRAFT"], [r"moe-batch=on bank=132-experts"], [], 2, False),
+    #    pure Vulkan (CUDA off): dev vs PR #1, compared with each other (Vulkan's matmuls may differ from CUDA's)
+    "QA": ("dev-vk", "reap", "reap-vk", {"COLI_VULKAN": "1", "DSV4_CUDA": "0", "COLI_CUDA": "0"}, ["COLI_CUDA_MOE_BATCH", "V4_DRAFT"],
+           [], [r"moe-batch=on", r"DSV4 CUDA\] device"], 2, False),
+    "QB": ("pr1-vk", "reap", "reap-vk", {"COLI_VULKAN": "1", "DSV4_CUDA": "0", "COLI_CUDA": "0"}, ["COLI_CUDA_MOE_BATCH", "V4_DRAFT"],
+           [], [r"moe-batch=on", r"DSV4 CUDA\] device"], 2, False),
+    # 9. a ~16k-token prompt with the bank on (--ctx 32768), dev vs PR #1
+    "KA": ("dev", "full", "long16", {"COLI_CUDA_MOE_BATCH": "1"}, ["V4_DRAFT"], [BANK], [r"moe-batch=off"], 1, False),
+    "KB": ("pr1", "full", "long16", {"COLI_CUDA_MOE_BATCH": "1"}, ["V4_DRAFT"], [BANK], [r"moe-batch=off"], 1, False),
+    # 10. MTP drafting with the bank on, 24 tokens: the two texts must match, and (a note) be a prefix of A's
+    "MA": ("dev", "full", "mtp", {"COLI_CUDA_MOE_BATCH": "1", "V4_MTP": "1", "V4_DRAFT": "3"}, [], [BANK], [], 1, False),
+    "MB": ("pr1", "full", "mtp", {"COLI_CUDA_MOE_BATCH": "1", "V4_MTP": "1", "V4_DRAFT": "3"}, [], [BANK], [], 1, False),
+    # 11. soak / multi-turn: PR #2 with everything on, one server, the 6-turn conversation 3 times
+    "SK": ("pr2", "reap", "soak", {"COLI_CUDA_MOE_BATCH": "1", "V4_GPU_RESIDENT_FIRST": "1", "DSV4_CUDA_PEER_DEVICE": "1"}, [], [], [], 18, False),
     # 6. PR #2 after the dev merge, on REAP, final5's decode arms (COLI_CUDA_MOE_BATCH=1 as in final5)
     "WR": ("pr2", "reap", "reap-dec", {"COLI_CUDA_MOE_BATCH": "1"}, PR2_OFF, [], [], 6, False),
     "D0": ("dev", "reap", "reap-dec", {"COLI_CUDA_MOE_BATCH": "1"}, PR2_OFF, [], [], 6, False),
@@ -63,7 +81,9 @@ REF_G1_OLD = {"decode_0": "2aa40adc7d4deb49fa84db4e070a48f4d14d10981ed8103efe833
 TIMED = ["A", "B", "AK", "BK", "BD", "D0", "G1", "R1", "X3"]
 COMPARE = [("B", "A", "PR #1 vs dev, default configuration"), ("BK", "AK", "PR #1 vs dev, 256-expert bank"),
            ("BD", "BK", "double bank vs single"), ("G1", "D0", "PR #2 switches off vs dev"),
-           ("R1", "G1", "VRAM-first"), ("X3", "R1", "second GPU"), ("LB", "LA", "PR #1 vs dev, ~8k prompt")]
+           ("R1", "G1", "VRAM-first"), ("X3", "R1", "second GPU"), ("LB", "LA", "PR #1 vs dev, ~8k prompt"),
+           ("KB", "KA", "PR #1 vs dev, ~16k prompt, bank"), ("VB", "VA", "PR #1 vs dev, Vulkan + CUDA build"), ("QB", "QA", "PR #1 vs dev, pure Vulkan"),
+           ("MB", "MA", "PR #1 vs dev, MTP drafting")]
 
 
 def sha(text):
@@ -132,6 +152,17 @@ def gpu_peak_mib(d, index):
     return peak
 
 
+def gpu_series_mib(d, index):
+    out = []
+    for line in text(os.path.join(d, "nvsmi.csv")).splitlines()[1:]:
+        f = [x.strip() for x in line.split(",")]
+        if len(f) > 2 and f[1] == str(index):
+            m = re.match(r"(\d+)", f[2])
+            if m:
+                out.append(int(m.group(1)))
+    return out
+
+
 def env_of(s):
     return dict(kv.split("=", 1) for kv in s["meta"].get("server_env", "").split() if "=" in kv)
 
@@ -165,6 +196,18 @@ def premise(arm, s):
         p.append("out of memory / crash in serve.log")
     if len(s["rows"]) < rows:
         p.append("%d request rows, expected %d" % (len(s["rows"]), rows))
+    if arm == "SK":
+        first = {r["name"].split("_", 1)[1]: r.get("text_sha256") for r in s["rows"] if r.get("name", "").startswith("rep1_")}
+        for r in s["rows"]:
+            t = r.get("name", "").split("_", 1)[-1]
+            if t in first and r.get("text_sha256") != first[t]:
+                p.append("%s differs from rep1_%s (the same conversation on the same server)" % (r["name"], t))
+        mem = gpu_series_mib(s["dir"], 0)
+        if len(mem) > 20:
+            q = len(mem) // 4
+            early, late = max(mem[q:2 * q] or [0]), max(mem[3 * q:] or [0])
+            if late > early + 1024:
+                p.append("GPU0 memory grew %d -> %d MiB over the soak" % (early, late))
     if arm in ("AS", "BS"):
         n = len(re.findall(BANK, log))
         if n != len(s["rows"]):
@@ -261,6 +304,12 @@ def summarize(base):
         if arm in TIMED and len(a["samples"]) < 3:
             out["gates"]["notes"].append("%s has %d samples, fewer than 3" % (arm, len(a["samples"])))
         out["arms"][arm] = a
+    a_text = next((r.get("text") for s in samples(base, "A") for r in s["rows"] if r.get("name") == "long_prefill"), None)
+    for arm in ("MA", "MB"):
+        for s in samples(base, arm):
+            for r in s["rows"]:
+                if a_text is not None and r.get("text") is not None and not a_text.startswith(r["text"]):
+                    out["gates"]["notes"].append("%s s%d: the 24-token MTP answer is not a prefix of A's answer" % (arm, s["k"]))
     for new, old, what in COMPARE:
         if new in out["arms"] and old in out["arms"]:
             rn, ro = out["arms"][new]["requests"], out["arms"][old]["requests"]
@@ -352,6 +401,12 @@ def selftest():
         for want in ("differs", "COLI_CUDA_MOE_BATCH set", "moe-batch=on", "mismatches=[1-9]", "F2"):
             assert want in probs, (want, probs)
         assert not out["gates"]["question_answered"]
+    with tempfile.TemporaryDirectory() as base:
+        rows = [{"name": "rep%d_turn%d" % (r, t), "ttft_s": 1.0, "decode_tok_s": 3.0, "text": "t%d" % t + ("!" if (r, t) == (3, 4) else "")}
+                for r in (1, 2, 3) for t in range(1, 7)]
+        _fake(base, "SK", 1, 1, rows, "COLI_CUDA_MOE_BATCH=1 V4_GPU_RESIDENT_FIRST=1 DSV4_CUDA_PEER_DEVICE=1", "")
+        p = premise("SK", load_sample(os.path.join(base, "SK", "s1")))
+        assert len(p) == 1 and "rep3_turn4" in p[0], p
     print("selftest ok")
     return 0
 
