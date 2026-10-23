@@ -121,3 +121,13 @@
   (1,127 experts; MemAvailable was higher at its start) and the kernel OOM-killed `deepseek_v4` after prompt 1
   (anon-rss 43.0 GB, file-rss 18.3 GB, oom_score_adj 1000 = the new cap's), exactly final6's QB. The runner then
   skipped QA s2/s3, so "is unpinned Vulkan reproducible?" moves to final8 (QF: pool fixed at 12 GiB, split free, x3).
+- **HY is dev's hybrid, not PR #2** (final7 arm 4, REAP decode): HD = **dev** + `DSV4_HYBRID=1` changes decode_0's text
+  from D0's `2aa40adc…` to `14b09ca5…` (the other five answers identical), and final6's HY (PR #2 all on + hybrid)
+  produced exactly `14b09ca5…` too. The hybrid split computes some missed experts on the CPU ("v4_hybrid gpu=5 cpu=1
+  ..."), and the CPU expert does not give the GPU's bits, so the greedy text can change. dev's hybrid is opt-in and
+  documented as "off by default until the split is validated on real GPUs"; PR #2 leaves it as it is.
+- **Vulkan + CUDA, each arm reproducible:** VA (dev) x2 = final6's VA (`6ec1…` / `1bdc…`), VB (PR #1 bank) x2 = final6's
+  VB (`6ec1…` / `1f01…`), VU (PR #1, no bank) x2 = `6ec1…` / `1f01…` but with 1,340 kv comp fallbacks each (no
+  `COLI_CUDA_MOE_BATCH`, so only dev's 600 MiB reserve). `1f01…` is also dev's CUDA-only text for prompt 2 (final5's
+  reference A); dev's Vulkan + CUDA arm is the one that differs. final8 repeats VA/VU/VB with one 3,100 MiB reserve
+  and adds VA3 (dev with VU's exact environment) to isolate the tree from the environment.
