@@ -112,3 +112,12 @@
   only counts when neither had kv comp failures; final6's A/B comparison holds (shadowfax: same 252 in every sample,
   all texts equal; computer4: equal texts). c4ab3 (final8) tests it directly: attention on the CPU for both, and a
   2 GB mirror reserve for both.
+- **Pure Vulkan, tier pinned (final7 arm 2, shadowfax, REAP, `COLI_VK_TIER_HOST_GB=12 COLI_VK_TIER_STREAM_ROWS=16
+  COLI_VK_TIER_BALANCE=0`):** QP (dev) x3 and QQ (PR #1) x3, interleaved: **all six byte-identical** (`32534c06…` = the
+  CUDA path's prompt-1 text, `a683dba1…`), TTFT 102.8-103.6 s / 138.9-142.8 s, decode equal, no OOM (the pins show in
+  the log: "cold experts with 16 rows or more go to the device (COLI_VK_TIER_STREAM_ROWS", "host pool on, 816 experts
+  in 12.00 GiB"). Even at 12 GiB the box got within 1.5 GB of MemAvailable (engine RSS 60 GB with file pages).
+- **QB's failure is upstream dev's:** QA s1 (dev, unpinned, as final6's QA) sized its host pool at 16.75 GiB
+  (1,127 experts; MemAvailable was higher at its start) and the kernel OOM-killed `deepseek_v4` after prompt 1
+  (anon-rss 43.0 GB, file-rss 18.3 GB, oom_score_adj 1000 = the new cap's), exactly final6's QB. The runner then
+  skipped QA s2/s3, so "is unpinned Vulkan reproducible?" moves to final8 (QF: pool fixed at 12 GiB, split free, x3).
