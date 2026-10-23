@@ -131,3 +131,19 @@
   `COLI_CUDA_MOE_BATCH`, so only dev's 600 MiB reserve). `1f01…` is also dev's CUDA-only text for prompt 2 (final5's
   reference A); dev's Vulkan + CUDA arm is the one that differs. final8 repeats VA/VU/VB with one 3,100 MiB reserve
   and adds VA3 (dev with VU's exact environment) to isolate the tree from the environment.
+- **c4ab3 (computer4, full model, DeepGEMM; `manifests/final8-c4ab/c4ab3/`), GATES: PASS:** with a 2 GB mirror reserve
+  (`DSV4_CUDA_VRAM_RESERVE_MB=2000`) dev (HA x2) and PR #1 (HB x2) have **0 kv comp fallbacks**, GPU0 peak ~10.4 GB, the
+  reference texts and normal prompt-2 TTFT (373-375 s, vs ~410 s with fallbacks). With every attention on the CPU
+  (`COLI_CUDA_ATTN_BATCH=0`) dev (CA) and PR #1 (CB) are byte-identical to each other (`32534c06…` / `6a57aeae…`) and
+  differ from the GPU-attention texts on both prompts. So: CPU and CUDA attention differ in bits (dev's code), a partial
+  fallback mid-request can change a text (c4ab2: W `f0baf6ae…`, A s1 `e79e1278…`), and PR #1 is identical to dev on
+  either path. c4ab2's other five samples (dev 2, PR #1 3) gave the reference texts; B/A 0.998 / 0.995 TTFT.
+- **F18 in a real server (final7 F7; probe build, PR #2 all on, `DSV4_F18_TRAP=3000`):** the trap fired 83 tokens into
+  decode_0. The streamed 393 characters are an exact prefix of D0's answer (no wrong token), then
+  "request failed: block computation failed"; every later request returned one token and failed the same way (3,349
+  "unspecified launch failure" lines, from activation uploads, attention, kv appends, allocations on **device 0**).
+  No hang, no wrong output, but the server stays up and fails every request until it is restarted, and the client
+  saw HTTP 200 with a truncated stream. PR #2's line "latched off, decode continues on device 0" is false in practice.
+  Next (final8 F18 step): a probe variant whose host waits for the peer's join (`DSV4_F18_HOSTWAIT=1`) instead of
+  device 0's stream waiting on the peer's event, to see whether device 0 then survives.
+- **QO (dev, pure Vulkan, `COLI_VK_TIER_HOST_GB=15.75`):** OOM-killed after prompt 1 (anon-rss 43.3 GB), as QB and QA.

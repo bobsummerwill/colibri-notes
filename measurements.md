@@ -8,6 +8,22 @@
 
 Up to final5: all on shadowfax (see environment.md), DeepSeek V4 Flash REAP 150B, `--ram 40 --ctx 8192`, llama.cpp stopped for the window, one fresh server per sample. The engine is greedy, so "identical" means byte-identical output text (sha256 compared). final6 adds the full 256-expert V4 Flash and computer4 (DeepGEMM).
 
+## FINAL7 (2026-10-23 10:00-12:57 PDT, shadowfax, `manifests/final7/`) and the computer4 repeats (`manifests/final8-c4ab/`)
+Follow-ups to final6 ([TEST_PLAN_20261023.md](TEST_PLAN_20261023.md)); reading in [investigations.md](investigations.md) §7.
+
+| question | arms | result |
+|---|---|---|
+| bank like for like (full model, `COLI_CUDA_MOE_BATCH=1`) | AR dev + `DSV4_CUDA_VRAM_RESERVE_MB=4681` x3, BK PR #1 x3 | **BK/AR TTFT 0.665 / 0.659** (85.9 vs 129.2 s, 123.4 vs 187.2 s), decode 0.997 / 1.018, all texts = final6's A, 0 allocation failures |
+| dev as it is | AK x2 | loses its bank on prompt 2 every time (`expert FC2 bank allocation: out of memory`), as dev's comment says |
+| pure Vulkan, tier pinned | QP dev x3, QQ PR #1 x3 | **all 6 byte-identical**, TTFT 1.001 / 0.985, no OOM |
+| pure Vulkan, dev unpinned | QA (x3 planned) | s1 OOM-killed (pool 16.75 GiB) = final6's QB failure, on dev; s2/s3 skipped |
+| dev with QB's pool | QO | OOM-killed |
+| Vulkan + CUDA | VA dev x2, VU PR #1 union x2, VB PR #1 bank x2 | each arm reproducible; VB = VU = dev's CUDA text on prompt 2, VA (dev) differs; VU had 1,340 kv comp fallbacks (600 MiB reserve) -> final8 |
+| hybrid | D0, HD dev+hybrid x2, HG PR #2 off+hybrid, HY x2 | HD = HG = HY = final6's HY (decode_0 `14b09ca5…`, rest = D0): dev's hybrid text; PR #2 turns its peer pool off under hybrid (logged) |
+| F18 in a server | F7 | fault caught, prefix correct, then every request fails until restart |
+| computer4 default A/B again | c4ab2: W + 3+3 | 5 of 6 = reference; dev A s1 and PR #1 W changed prompt 2 under kv comp fallbacks; B/A 0.998 / 0.995 |
+| computer4 controls | c4ab3: HA/HB x2 (2 GB reserve), CA/CB (CPU attention) | no fallbacks + reference with 2 GB; CA = CB on CPU attention (!= GPU texts). GATES: PASS |
+
 ## FINAL6 (2026-10-22 17:46-23:56 PDT, shadowfax, `manifests/final6/`) — full DeepSeek V4 Flash (256 experts) + REAP-150B; dev 7df8c27c, pr1 b286167e, pr2 0523e8e0
 Harness `tools/bench/final6/` ([TEST_PLAN_20261022.md](TEST_PLAN_20261022.md)); base environment = the canonical serve
 line **without** `COLI_CUDA_MOE_BATCH`, `--ram 40`, fresh server per sample, W discarded. 3 samples for A, B, BK, BD and
