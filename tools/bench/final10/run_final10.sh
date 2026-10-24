@@ -39,7 +39,8 @@ arm A  "$DEV"  "$FULL" 8192 pr1:both 3600 700
 arm F  "$FIXA" "$FULL" 8192 pr1:both 3600 700
 arm M  "$DEVV" "$REAP" 8192 pr1:both 3600 400  $VKO
 arm M2 "$DEVV" "$REAP" 8192 pr1:both 3600 400  $VKO COLI_VK_UP_IMPORT=0
-ORDER="W:1 A:1 F:1 F:2 A:2 A:3 F:3 M:1 M2:1"
+ORDER1="M:1 M2:1"   # first: the memory probe, then the F18 probe (section 6), then fix A
+ORDER="W:1 A:1 F:1 F:2 A:2 A:3 F:3"
 [ -n "${ORDER_OVERRIDE:-}" ] && ORDER=$ORDER_OVERRIDE
 
 lock_or_exit
@@ -89,7 +90,7 @@ nvidia-smi --query-compute-apps=pid,process_name,used_memory --format=csv > "$OU
     || log "WARNING: $MODEL/.coli_usage is not empty ($(usage_state)): the RAM pins start from a history (recorded, not an abort)"
 [ "$(df -Pk "$FINAL" | awk 'NR==2{print $4}')" -gt 2000000 ] || die_pre "less than 2 GB free in $FINAL"
 total_est=0
-for item in $ORDER; do total_est=$((total_est + ${EST[${item%%:*}]})); done
+for item in $ORDER1 $ORDER; do total_est=$((total_est + ${EST[${item%%:*}]})); done
 log "plan: $ORDER (estimated $total_est s of samples; cap $MAX_GPU_S s, watchdog at $((MAX_GPU_S - HARD_MARGIN_S)) s)"
 [ $((total_est + 240)) -le "$MAX_GPU_S" ] || die_pre "plan estimate $total_est s exceeds the cap"
 log "preflight ok"
@@ -123,7 +124,8 @@ capture_meta "$DEV" "$FIXA" "$DEVV"
 stop_llama
 start_watchdog
 
-for item in $ORDER; do
+run_order() {
+for item in $1; do
     arm=${item%%:*}; k=${item#*:}
     if over_budget "$(est_for "$arm" "${EST[$arm]}")"; then log "budget: skipping $arm s$k (GPU window $(gpu_elapsed) s)"; continue; fi
     MODEL=${MDL[$arm]}
@@ -134,16 +136,20 @@ for item in $ORDER; do
     # final9: a premise failure (an OOM kill above all) is recorded and the plan goes on
     [ "${PIPESTATUS[0]}" != 0 ] && log "$arm s$k broke a premise (recorded; the run goes on)"
 done
+}
+run_order "$ORDER1"
 
 # ---- 6. F18 probe with the host-wait variant (cw22/f18hw 1b93f1ef, -DCOLI_F18_PROBE, debug only): a real __trap()
 # on the peer GPU in the decode MoE, before/after its down-projection, with device 0's stream waiting on the peer's
 # join (modes 1-2) and with the host waiting for it (DSV4_F18_HOSTWAIT=1, modes 3-4). Does device 0 survive?
-# Last, because a faulted context could disturb what follows.
+# Each scenario is its own process; fix A's samples follow it, each in a fresh server.
 F18HW=$W22/f18hw
 if over_budget 600; then log "budget: skipping the F18 probe"; elif [ ! -x "$F18HW/c/f18_trap_cuda_test" ]; then log "F18 probe binary missing"; else
     ( cd "$F18HW/c" && CUDA_VISIBLE_DEVICES=0,1 timeout 400 ./f18_trap_cuda_test ) > "$OUT/meta/f18-probe.log" 2>&1
     log "F18 probe: rc=$? $(grep -E 'RESULT|AFTER|HANG|f18 probe:|survive' "$OUT/meta/f18-probe.log" | tr '\n' ' ' | cut -c1-1500)"
     nvidia-smi --query-gpu=index,memory.used --format=csv,noheader >> "$OUT/meta/f18-probe.log" 2>&1
 fi
+
+run_order "$ORDER"
 
 finish

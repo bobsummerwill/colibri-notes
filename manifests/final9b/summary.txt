@@ -1,0 +1,29 @@
+FINAL9B SUMMARY (diagnostic builds of dev 61646cbd / PR #1 47c8ec51, REAP-150B, Vulkan + CUDA)
+arm DA (dev-vkdiag, reap, group x-da)
+  s1 seq=1 wall=372s GPU peak 21784/84 MiB RSS peak 40.09 GiB MemAvailable min 18.55 GiB oom_kill=0 ok
+    vkdiag {"refused_p1": 0, "refused_after_p1": 0, "refused_shapes": [], "last_tally": null}
+    long_prefill     ttft=128.739 decode=2.2273 identical=True text=6ec1e4b7 (VK+CUDA p1)
+    long_prefill_2   ttft=204.157 decode=2.9683 identical=True text=1bdc5d70 (VK+CUDA-union p2)
+  median long_prefill     ttft=128.739 s (cv None) prefill=15.4731 tok/s decode=2.2273 tok/s (mean 2.2273)
+  median long_prefill_2   ttft=204.157 s (cv None) prefill=14.7191 tok/s decode=2.9683 tok/s (mean 2.9683)
+  median of per-sample mean decode: 2.5978 tok/s
+arm DB (pr1-vkdiag, reap, group x-db)
+  s1 seq=2 wall=225s GPU peak 23476/84 MiB RSS peak 40.14 GiB MemAvailable min 18.61 GiB oom_kill=0 ok
+    vkdiag {"refused_p1": 0, "refused_after_p1": 0, "refused_shapes": [], "last_tally": null}
+    long_prefill     ttft=75.325 decode=2.1855 identical=True text=6ec1e4b7 (VK+CUDA p1)
+    long_prefill_2   ttft=108.784 decode=3.0076 identical=True text=1f019203 (CUDA/pure-VK p2)
+  median long_prefill     ttft=75.325 s (cv None) prefill=26.4456 tok/s decode=2.1855 tok/s (mean 2.1855)
+  median long_prefill_2   ttft=108.784 s (cv None) prefill=27.6236 tok/s decode=3.0076 tok/s (mean 3.0076)
+  median of per-sample mean decode: 2.5966 tok/s
+arm DF (pr1-vkdiag, reap, group x-df)
+  s1 seq=3 wall=227s GPU peak 20212/84 MiB RSS peak 40.14 GiB MemAvailable min 18.66 GiB oom_kill=0 ok
+    vkdiag {"refused_p1": 0, "refused_after_p1": 0, "refused_shapes": [], "last_tally": null}
+    long_prefill     ttft=75.784 decode=2.1962 identical=True text=6ec1e4b7 (VK+CUDA p1)
+    long_prefill_2   ttft=108.922 decode=2.8911 identical=True text=1f019203 (CUDA/pure-VK p2)
+  median long_prefill     ttft=75.784 s (cv None) prefill=26.2853 tok/s decode=2.1962 tok/s (mean 2.1962)
+  median long_prefill_2   ttft=108.922 s (cv None) prefill=27.5886 tok/s decode=2.8911 tok/s (mean 2.8911)
+  median of per-sample mean decode: 2.5436 tok/s
+DB/DA  {'what': 'PR #1 bank vs dev union, Vulkan + CUDA, diagnostic builds', 'long_prefill_ttft_ratio': 0.5851, 'long_prefill_decode_ratio': 0.9812, 'long_prefill_2_ttft_ratio': 0.5328, 'long_prefill_2_decode_ratio': 1.0132, 'mean_decode_ratio': 0.9995}
+DF/DB  {'what': 'bank, 6000 vs 3100 MiB reserve', 'long_prefill_ttft_ratio': 1.0061, 'long_prefill_decode_ratio': 1.0049, 'long_prefill_2_ttft_ratio': 1.0013, 'long_prefill_2_decode_ratio': 0.9613, 'mean_decode_ratio': 0.9796}
+DA/DB CLEAN: False
+GATES: PASS

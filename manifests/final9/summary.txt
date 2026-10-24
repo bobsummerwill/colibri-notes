@@ -1,0 +1,79 @@
+FINAL9 SUMMARY (merged tips dev 61646cbd / PR #1 47c8ec51, REAP-150B)
+arm WQ (dev-vk, reap, group vk-default)  (warm-up, discarded)
+  s1 seq=1 wall=156s GPU peak 24114/84 MiB RSS peak 57.93 GiB MemAvailable min 0.13 GiB oom_kill=2 client rc 1; 1 request rows, expected 2
+    long_prefill     ttft=102.484 decode=1.2868 identical=False text=504d507b (new)
+  median long_prefill     ttft=102.484 s (cv None) prefill=19.4371 tok/s decode=1.2868 tok/s (mean 1.2868)
+  median of per-sample mean decode: 1.2868 tok/s
+arm QD (dev-vk, reap, group vk-default)
+  s1 seq=2 wall=136s GPU peak 24115/84 MiB RSS peak 58.12 GiB MemAvailable min 0.18 GiB oom_kill=3 client rc 1; 1 request rows, expected 2
+    long_prefill     ttft=103.588 decode=3.481 identical=True text=e26d4523 (new)
+  s2 seq=5 wall=139s GPU peak 24115/84 MiB RSS peak 58.7 GiB MemAvailable min 0.28 GiB oom_kill=2 client rc 1; 1 request rows, expected 2
+    long_prefill     ttft=103.659 decode=3.0811 identical=False text=32534c06 (CUDA/pure-VK p1)
+  s3 seq=6 wall=142s GPU peak 24115/84 MiB RSS peak 58.6 GiB MemAvailable min 0.64 GiB oom_kill=2 client rc 1; 1 request rows, expected 2
+    long_prefill     ttft=104.183 decode=2.3436 identical=False text=62fdfbd5 (new)
+  median long_prefill     ttft=103.659 s (cv 0.0026) prefill=19.2169 tok/s decode=3.0811 tok/s (mean 2.9686)
+  median of per-sample mean decode: 3.0811 tok/s
+arm QE (pr1-vk, reap, group vk-default)
+  s1 seq=3 wall=157s GPU peak 24115/84 MiB RSS peak 58.49 GiB MemAvailable min 0.47 GiB oom_kill=2 client rc 1; 1 request rows, expected 2
+    long_prefill     ttft=103.442 decode=1.2534 identical=False text=436599a5 (new)
+  s2 seq=4 wall=156s GPU peak 24115/84 MiB RSS peak 58.64 GiB MemAvailable min 0.0 GiB oom_kill=2 client rc 1; 1 request rows, expected 2
+    long_prefill     ttft=102.346 decode=1.1685 identical=False text=6abfc433 (new)
+  s3 seq=7 wall=140s GPU peak 24114/84 MiB RSS peak 58.42 GiB MemAvailable min 0.08 GiB oom_kill=2 client rc 1; 1 request rows, expected 2
+    long_prefill     ttft=102.847 decode=4.1294 identical=False text=32534c06 (CUDA/pure-VK p1)
+  median long_prefill     ttft=102.847 s (cv 0.0044) prefill=19.3686 tok/s decode=1.2534 tok/s (mean 2.1838)
+  median of per-sample mean decode: 1.2534 tok/s
+arm VA9 (dev-vk, reap, group d-va)
+  s1 seq=8 wall=371s GPU peak 21784/84 MiB RSS peak 40.08 GiB MemAvailable min 18.79 GiB oom_kill=0 ok
+    long_prefill     ttft=128.495 decode=2.231 identical=True text=6ec1e4b7 (VK+CUDA p1)
+    long_prefill_2   ttft=202.584 decode=2.9759 identical=True text=1bdc5d70 (VK+CUDA-union p2)
+  median long_prefill     ttft=128.495 s (cv None) prefill=15.5025 tok/s decode=2.231 tok/s (mean 2.231)
+  median long_prefill_2   ttft=202.584 s (cv None) prefill=14.8333 tok/s decode=2.9759 tok/s (mean 2.9759)
+  median of per-sample mean decode: 2.6035 tok/s
+arm VB9 (pr1-vk, reap, group d-vb)
+  s1 seq=9 wall=222s GPU peak 23476/84 MiB RSS peak 40.14 GiB MemAvailable min 18.42 GiB oom_kill=0 ok
+    long_prefill     ttft=74.778 decode=2.2241 identical=True text=6ec1e4b7 (VK+CUDA p1)
+    long_prefill_2   ttft=108.231 decode=3.024 identical=True text=1f019203 (CUDA/pure-VK p2)
+  median long_prefill     ttft=74.778 s (cv None) prefill=26.639 tok/s decode=2.2241 tok/s (mean 2.2241)
+  median long_prefill_2   ttft=108.231 s (cv None) prefill=27.7646 tok/s decode=3.024 tok/s (mean 3.024)
+  median of per-sample mean decode: 2.624 tok/s
+arm VD9 (dev-vk, reap, group d-vd)
+  s1 seq=10 wall=370s GPU peak 21578/84 MiB RSS peak 40.08 GiB MemAvailable min 18.67 GiB oom_kill=0 ok
+    long_prefill     ttft=128.757 decode=2.2391 identical=True text=32534c06 (CUDA/pure-VK p1)
+    long_prefill_2   ttft=204.362 decode=2.9507 identical=True text=1f019203 (CUDA/pure-VK p2)
+  median long_prefill     ttft=128.757 s (cv None) prefill=15.471 tok/s decode=2.2391 tok/s (mean 2.2391)
+  median long_prefill_2   ttft=204.362 s (cv None) prefill=14.7043 tok/s decode=2.9507 tok/s (mean 2.9507)
+  median of per-sample mean decode: 2.5949 tok/s
+arm VE9 (pr1-vk, reap, group d-ve)
+  s1 seq=11 wall=224s GPU peak 23264/84 MiB RSS peak 40.14 GiB MemAvailable min 18.51 GiB oom_kill=0 ok
+    long_prefill     ttft=76.411 decode=2.2093 identical=True text=32534c06 (CUDA/pure-VK p1)
+    long_prefill_2   ttft=110.417 decode=2.9394 identical=True text=1f019203 (CUDA/pure-VK p2)
+  median long_prefill     ttft=76.411 s (cv None) prefill=26.0695 tok/s decode=2.2093 tok/s (mean 2.2093)
+  median long_prefill_2   ttft=110.417 s (cv None) prefill=27.2151 tok/s decode=2.9394 tok/s (mean 2.9394)
+  median of per-sample mean decode: 2.5743 tok/s
+arm VX9 (dev-vk, reap, group d-vx)
+  s1 seq=12 wall=369s GPU peak 21524/84 MiB RSS peak 39.89 GiB MemAvailable min 18.75 GiB oom_kill=0 ok
+    long_prefill     ttft=128.915 decode=2.2385 identical=True text=32534c06 (CUDA/pure-VK p1)
+    long_prefill_2   ttft=203.809 decode=2.9444 identical=True text=1f019203 (CUDA/pure-VK p2)
+  median long_prefill     ttft=128.915 s (cv None) prefill=15.4521 tok/s decode=2.2385 tok/s (mean 2.2385)
+  median long_prefill_2   ttft=203.809 s (cv None) prefill=14.7442 tok/s decode=2.9444 tok/s (mean 2.9444)
+  median of per-sample mean decode: 2.5915 tok/s
+QE/QD  {'what': 'PR #1 vs dev, pure Vulkan, default host pool (merged tips)', 'long_prefill_ttft_ratio': 0.9922, 'long_prefill_decode_ratio': 0.4068, 'mean_decode_ratio': 0.4068}
+VB9/VA9 {'what': 'PR #1 bank vs dev union, Vulkan + CUDA, same reserve (merged tips)', 'long_prefill_ttft_ratio': 0.582, 'long_prefill_decode_ratio': 0.9969, 'long_prefill_2_ttft_ratio': 0.5343, 'long_prefill_2_decode_ratio': 1.0162, 'mean_decode_ratio': 1.0079}
+QD/QE CLEAN: False
+GATES: FAIL
+  problem: QD s1: client rc 1; 1 request rows, expected 2
+  problem: QD s2 long_prefill text differs from QD s1's
+  problem: QD s2: client rc 1; 1 request rows, expected 2
+  problem: QD s3 long_prefill text differs from QD s1's
+  problem: QD s3: client rc 1; 1 request rows, expected 2
+  problem: QE s1 long_prefill text differs from QD s1's
+  problem: QE s1: client rc 1; 1 request rows, expected 2
+  problem: QE s2 long_prefill text differs from QD s1's
+  problem: QE s2: client rc 1; 1 request rows, expected 2
+  problem: QE s3 long_prefill text differs from QD s1's
+  problem: QE s3: client rc 1; 1 request rows, expected 2
+  note: WQ s1 long_prefill differs from final8's text for its group
+  note: QD s1 long_prefill differs from final8's text for its group
+  note: QD s3 long_prefill differs from final8's text for its group
+  note: QE s1 long_prefill differs from final8's text for its group
+  note: QE s2 long_prefill differs from final8's text for its group

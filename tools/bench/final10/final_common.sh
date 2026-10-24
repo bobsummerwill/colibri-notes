@@ -460,6 +460,9 @@ mem_sampler() { # dir
         local st=; for pid in $(cat "/sys/fs/cgroup$cg/cgroup.procs" 2>/dev/null); do
             case "$(readlink "/proc/$pid/exe")" in */c/deepseek_v4) st=/proc/$pid/status ;; esac
         done
+        # final10: the engine's mappings by size once it passes 50 and 55 GiB (which allocations outgrow the plan?)
+        if [ -n "$st" ] && [ "${rss:-0}" -gt 52428800 ] && [ ! -s "$d/smaps_50g.txt" ]; then cp "${st%/status}/smaps" "$d/smaps_50g.txt" 2>/dev/null; fi
+        if [ -n "$st" ] && [ "${rss:-0}" -gt 57671680 ] && [ ! -s "$d/smaps_55g.txt" ]; then cp "${st%/status}/smaps" "$d/smaps_55g.txt" 2>/dev/null; fi
         [ -s "$d/memx.csv" ] || echo "epoch,rss_anon,rss_file,vm_lck,vm_pin,mem_free,cached,unevictable,mlocked,anon_pages,mapped" > "$d/memx.csv"
         echo "$(date +%s),$(awk '/^RssAnon/{a=$2}/^RssFile/{f=$2}/^VmLck/{l=$2}/^VmPin/{p=$2}END{printf "%d,%d,%d,%d",a,f,l,p}' "${st:-/dev/null}" 2>/dev/null),$(awk '/^MemFree:/{a=$2}/^Cached:/{b=$2}/^Unevictable:/{c=$2}/^Mlocked:/{d=$2}/^AnonPages:/{e=$2}/^Mapped:/{f=$2}END{printf "%d,%d,%d,%d,%d,%d",a,b,c,d,e,f}' /proc/meminfo)" >> "$d/memx.csv"
         sleep 5

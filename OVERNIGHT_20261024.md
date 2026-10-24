@@ -9,8 +9,8 @@
 ## Queue (in order)
 | # | item | where | state |
 |---|---|---|---|
-| 1 | **final9**: pure Vulkan with the default host pool on the merged tips; Vulkan + CUDA diagnostic arms ([TEST_PLAN_20261024.md](TEST_PLAN_20261024.md)) | shadowfax | running (started 22:52) |
-| 2 | **final9b**: diagnostic builds that log the Vulkan dense hook's silent CPU fallbacks; DA dev union, DB PR #1 bank, DF bank with a 6000 MiB reserve | shadowfax | chained after final9 |
+| 1 | **final9**: pure Vulkan with the default host pool on the merged tips; Vulkan + CUDA diagnostic arms ([TEST_PLAN_20261024.md](TEST_PLAN_20261024.md)) | shadowfax | **done** 23:35 ([manifests/final9](manifests/final9/summary.txt)) |
+| 2 | **final9b**: diagnostic builds that log the Vulkan dense hook's silent CPU fallbacks; DA dev union, DB PR #1 bank, DF bank with a 6000 MiB reserve | shadowfax | **done** 23:53 ([manifests/final9b](manifests/final9b/summary.txt)): **no refusals**, so the refusal theory is wrong; v2 of the patch (declines with their reason) runs after final10 |
 | 3 | Corrected Vulkan + CUDA explanation for #2264 (draft in `review/`, not posted) | computer4 | after 1-2 |
 | 4 | PR #2 merged with the new PR #1 tip (47c8ec51): `docs5/pr2-two-gpu-decode` 14d67f05 | computer4 | **done**: `make check` 2,716 OK (292 skipped), pushed to the fork |
 | 5 | **Upstream fix A**: the compressed-KV buffer (`dsv4_cuda_kv_comp_append`) fails to grow once the decode mirrors have filled VRAM, and attention falls back to the CPU (text changes). Root cause: the mirror growth guard overshoots the reserve by up to 64 mirrors between free-VRAM probes (F16, fixed inside PR #2's 6b7fc6c0 but not on dev). Branch `fix/dsv4-mirror-guard-overshoot` bd7103fd off dev 61646cbd (guard + docs + source test; pushed to the fork) | computer4 + shadowfax | committed; **final10** measures it (W A F F A A F, full model, default config) |
@@ -36,3 +36,22 @@
   itself when the previous one ends (background chains on computer4).
 - final9 so far: QD x3 and QE x3 (default pool) **all OOM-killed after prompt 1**. VA9 (dev, Vulkan + CUDA, merged
   tips) = final8's VA2 byte for byte (`6ec1e4b7` / `1bdc5d70`).
+- **final9 results (23:35).** Pure Vulkan, default pool: all 7 samples (WQ, QD x3, QE x3) OOM-killed after prompt 1
+  (RSS 58-58.7 GiB, MemAvailable min 0-0.6 GiB). The prompt-1 texts differ because the answers were cut off while the
+  box thrashed (decode 1.2-4.1 tok/s). Vulkan + CUDA, REAP, 3100 MiB reserve, one sample each:
+
+  | arm | p1 | p2 |
+  |---|---|---|
+  | VA9 dev union | `6ec1e4b7` VK+CUDA | `1bdc5d70` VK+CUDA union |
+  | VB9 PR #1 bank | `6ec1e4b7` VK+CUDA | `1f019203` CUDA |
+  | VD9 dev union, `COLI_VK_DENSE=0` | `32534c06` CUDA | `1f019203` CUDA |
+  | VE9 PR #1 bank, `COLI_VK_DENSE=0` | `32534c06` CUDA | `1f019203` CUDA |
+  | VX9 dev's VK build, `COLI_VULKAN=0` | `32534c06` CUDA | `1f019203` CUDA |
+
+  **Every Vulkan + CUDA text difference comes from the Vulkan dense matmul hook.** With it off, dev's union and
+  PR #1's bank give the same texts as the CUDA-only build, on both prompts. TTFT: bank / union 0.582 / 0.534.
+- **final9b (23:53):** the diagnostic builds logged **0 refused uploads** in DA, DB and DF. DF (bank, 6000 MiB
+  reserve, GPU 0 peak 20.2 GB) still gives `1f019203` on p2, so the cause is not VRAM room. The tally threshold
+  (every 20000 calls) was never reached, so the hook makes fewer calls than that per run. v2 of the patch logs every
+  declined prefill-sized call with its reason (`thread` / `omp` / other) and a tally every 500 calls; it runs after
+  final10.

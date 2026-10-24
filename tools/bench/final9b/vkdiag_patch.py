@@ -4,7 +4,7 @@
 1. an upload with no device room ("refused = 1 ... CPU from now on"): one [VKDIAG] line per matrix;
 2. v4_vk_forget (a layer that did not complete): one [VKDIAG] line per entry it refuses;
 3. every call to the hook counted, device vs declined, prefill-sized (batch > 1) vs batch 1:
-   a [VKDIAG] tally line every 20000 calls and at every refusal.
+   a [VKDIAG] tally line every 500 calls and at every refusal; every declined prefill-sized call with its reason (v2).
 Usage: vkdiag_patch.py c/deepseek_v4.c   (edits in place; refuses if a site is missing)"""
 import sys
 p = sys.argv[1]
@@ -20,7 +20,7 @@ old3 = "static int v4_vk_matmul_impl(int fmt, const void *data, const float *sca
 new3 = ("static unsigned long long g_vkdiag[4];   /* [batch>1][declined] */\n"
         "static void v4_vkdiag_tally(int force) {\n"
         "    unsigned long long n = g_vkdiag[0] + g_vkdiag[1] + g_vkdiag[2] + g_vkdiag[3];\n"
-        "    if (force || n % 20000 == 0)\n"
+        "    if (force || n % 500 == 0)\n"
         "        fprintf(stderr, \"[VKDIAG] hook calls: batch>1 device=%llu declined=%llu; batch=1 device=%llu declined=%llu\\n\",\n"
         "                g_vkdiag[2], g_vkdiag[3], g_vkdiag[0], g_vkdiag[1]);\n"
         "}\n"
@@ -32,6 +32,14 @@ new3 = ("static unsigned long long g_vkdiag[4];   /* [batch>1][declined] */\n"
         "                             const float *input, int batch) {\n"
         "    int r = v4_vk_matmul_impl0(fmt, data, scales, rows8, rows, columns, output, input, batch);\n"
         "    __atomic_add_fetch(&g_vkdiag[(batch > 1) * 2 + (r != 0)], 1, __ATOMIC_RELAXED);\n"
+        "    if (r != 0 && batch > 1) {\n"
+        "        const char *why = !pthread_equal(pthread_self(), g_v4_vk_thread) ? \"thread\" :\n"
+        "#ifdef _OPENMP\n"
+        "            omp_in_parallel() ? \"omp\" :\n"
+        "#endif\n"
+        "            \"other\";\n"
+        "        fprintf(stderr, \"[VKDIAG] declined: why=%s fmt=%d rows=%d cols=%d batch=%d\\n\", why, fmt, rows, columns, batch);\n"
+        "    }\n"
         "    v4_vkdiag_tally(0);\n"
         "    return r;\n"
         "}\n"
