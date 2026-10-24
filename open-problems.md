@@ -12,8 +12,10 @@
    to dev given the same pool / reserve). To do: update `review/REPLY_2264_20261023_DRAFT.md` with final7/8; Bob posts.
 2. **F18 (PR #2):** in a real server a peer fault leaves every later request failing until restart (final7 F7), and
    PR #2's "decode continues on device 0" is false. Fix the message, then try the host-wait probe variant / latch CUDA off.
-3. **Upstream issue drafts** (`review/UPSTREAM_ISSUES_20261023_DRAFT.md`, not filed): Vulkan host pool sized from free
-   RAM (OOM kill; 12 GiB still leaves 0.5 GiB), kv comp fallbacks changing default-config texts.
+3. **Upstream issue drafts** (`review/UPSTREAM_ISSUES_20261023_DRAFT.md`, not filed, no fixes attempted): kv comp
+   fallbacks changing default-config texts (still stands; re-check on dev tip 61646cbd, maybe prototype the fix);
+   Vulkan host pool OOM possibly fixed upstream by 0f786bfa + 5c0469ae (#2318), re-run QO on the dev tip; the Vulkan
+   timing draft is withdrawn (final8).
 4. **tasks-personal #2824** (driver alignment): same driver 595.99.02 on both, but shadowfax still has the
    graphics-drivers PPA and two precompiled `linux-modules-nvidia-595-open-*` packages (needs Bob's sudo; not colibri work).
 5. Manifests in `c/experiment_manifest.py` format for final7/8 not made (only QF has 3 samples in final8); evidence
