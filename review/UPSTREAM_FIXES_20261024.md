@@ -34,7 +34,23 @@ applies.
 | GPU 0 peak | 24,012 MiB | 23,608 MiB |
 
 Prompt 2 is faster because its attention now stays on the GPU. On this box dev's fallbacks did not change the texts.
-The RTX 5070 run (computer4, DeepGEMM, where they did) is `c4fa` (W + 5 pairs). Results follow.
+
+**Measured on the RTX 5070 12 GB** (c4fa, computer4, DeepGEMM builds of dev 61646cbd and bd7103fd, full model, default
+configuration, W + 5 interleaved pairs; [manifests/c4fa](../manifests/c4fa/summary.txt); the summary's arm labels are
+final6's tool: A = dev, B = fix A):
+
+| | dev (A, x5) | fix A (B, x5) |
+|---|---|---|
+| handled allocation failures per sample | 399-420 kv comp + 1 weight, every sample | **0** |
+| texts | `a397814f` / `8b3f437b` | identical |
+| 1,992-token TTFT (median) | 243.79 s | 244.88 s (1.004x) |
+| 3,005-token TTFT (median) | 411.41 s | **377.88 s (0.918x)** |
+| answer 2 decode (median) | 1.227 tok/s | **1.307 tok/s (+6.6%)** |
+| GPU 0 peak | 11,745 MiB | 11,239 MiB |
+
+B s5's prompt 2 (553 s) overlapped a `make check -j8` on the same machine (03:07-03:12) and is an outlier; the
+medians leave it out. In this run dev's fallbacks did not change the texts either (earlier, on this card, 2 of 7
+runs changed prompt 2's).
 
 ## Fix B: the pure-Vulkan host pool OOM-kills the server (in progress)
 
