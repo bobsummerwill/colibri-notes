@@ -1,0 +1,6 @@
+records 1036, peak live 10.19 GiB in 134 allocations; at exit 10.12 GiB live
+    4.03 GiB  129 x mmap   v4_dho_place.lto_priv.0 (??:?) <- coli_v4_layer_load (:?) <- v4c_setup_dev.lto_priv.0 (:?) <- v4_vk_open.lto_priv.0 (:?)
+    1.00 GiB    2 x malloc coli_v4_session_create.constprop.0 (:?) <- main (??:?) <- /lib/x86_64-linux-gnu/libc.so.6+0x2a1ca <- /lib/x86_64-linux-gnu/libc.so.6+0x2a28b
+    0.99 GiB    1 x malloc coli_v4_expert_store_open_planned (??:?) <- coli_v4_engine_open.constprop.0 (:?) <- main (??:?) <- /lib/x86_64-linux-gnu/libc.so.6+0x2a1ca
+    0.07 GiB    1 x malloc v4_moe_batch_union.lto_priv.0 (:?) <- v4c_forward_seg.constprop.0 (:?) <- v4c_forward.constprop.0 (:?) <- target_batch_impl.constprop.0 (:?)
+    0.07 GiB    1 x realloc issue_big.lto_priv.0 (:?) <- v4_moe_batch_union.lto_priv.0 (:?) <- v4c_forward_seg.constprop.0 (:?) <- v4c_forward.constprop.0 (:?)

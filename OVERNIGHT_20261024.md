@@ -91,3 +91,23 @@
 - 02:59 final12 started: S7b (stage-named decode errors, 8eedc83b), T1 (bigalloc trace of pure Vulkan, pool off),
   then the `COLI_VK_UP_IMPORT` A/B (W, I1/I0 x3). computer4 c4fa: 5 A samples all 420 kv comp + 1 weight
   fallbacks; B s5 running.
+- **final12 done (03:40)** ([manifests/final12](manifests/final12/summary.txt)).
+  - **S7b** names the stage: `block computation failed in attention, layer 20: attention computation failed` on the
+    faulting request, then `in attention, layer 0` on each later one. Cause: the attention's grouped `wo_a` matvec
+    (`coli_v4_gpu_matvec_grouped`, under `V4_GPU_RESIDENT_FIRST`) returned the backend's refusal as the attention's
+    error; every other GPU call falls back. Fix **693204ed** on `docs5/pr2-two-gpu-decode` (the CPU groups run when the
+    backend refuses; source test). `make check` 2,721 OK (292 skipped). final13 S7c tests it in a server; X3c checks
+    the no-fault texts.
+  - **Imports A/B** (pure Vulkan, pool 12 GiB, x3): `COLI_VK_UP_IMPORT=0` uploads at 6.2-6.6 GB/s against 3.5-4.0,
+    p1 TTFT **0.931x** (96.4 vs 103.5 s), p2 0.988x, decode +0.8%, and **5 GiB less anon** (40.3 vs 45.3 GiB). Its p2
+    text differs (`a683dba1` vs `1f019203`, all 3 samples): the tier's device/CPU split per expert depends on the
+    measured upload rate (I1 s1 logged "cold experts with 23 rows or more" once), so the arithmetic differs; p1 is
+    the same.
+  - **T1** (bigalloc trace, pool off): the >= 32 MiB allocations live at the peak are 10.2 GiB, of which 4.0 GiB are
+    `v4_dho_place`'s PROT_NONE drops (no RSS), 1.0 GiB the session, 1.0 GiB the expert store. So the 6-8 GiB past the
+    plan is in smaller allocations. With final12's 5 GiB imports delta, the lead is the uploader's host images
+    (`up_img_alloc`, backend_vulkan.c): with imports they are `posix_memalign` + `memset`, otherwise `calloc`, and
+    glibc's dynamic mmap threshold could serve the 5-15 MiB images from per-thread arenas that keep the pages (M3's
+    smaps had many 63-127 MiB anon regions). final14 tests it: H1 pool 12 + imports + a fixed
+    `glibc.malloc.mmap_threshold=4194304`; H3 the default pool without imports; H2 the default pool with imports and
+    the fixed threshold.
