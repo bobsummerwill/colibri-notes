@@ -10,6 +10,22 @@ Project notebook for Bob Summerwill's work on [colibri](https://github.com/JustV
 
 **Rule: no PRs and no pushes to upstream JustVugg/colibri.** Branches go to the fork only; Bob decides on submission (PR #0 and PR #1 were opened at his request).
 
+## Status (2026-10-24, overnight; log: [OVERNIGHT_20261024.md](OVERNIGHT_20261024.md))
+- **#2264 (PR #1):** nothing to rebase (upstream dev still 61646cbd at 05:05; the PR is clean, no new comments). The
+  Vulkan + CUDA prompt-2 text is explained (final9/9b/11): the Vulkan dense hook is used identically by dev's union and
+  the bank, and the difference is CUDA vs CPU expert sums on a near-tie. A corrected follow-up is drafted, **not
+  posted**: [review/REPLY_2264_FOLLOWUP_20261024_DRAFT.md](review/REPLY_2264_FOLLOWUP_20261024_DRAFT.md).
+- **Two upstream fixes on fork branches off dev 61646cbd, no issues or PRs** ([review/UPSTREAM_FIXES_20261024.md](review/UPSTREAM_FIXES_20261024.md)):
+  **fix A** `fix/dsv4-mirror-guard-overshoot` bd7103fd (the decode mirror cache no longer overshoots its VRAM reserve:
+  0 kv comp fallbacks instead of ~420 a sample on the full model, texts identical, prompt-2 TTFT 0.946x on the 3090
+  and 0.918x on the 5070); **fix B** `fix/vk-host-image-alloc` 72aa325a (the uploader's host images no longer pile up in
+  glibc's arenas: anon -5 GiB, pure Vulkan with the default host pool no longer OOM-killed, prompt-1 TTFT 0.957x).
+- **PR #2:** merged with #2264's tip (14d67f05); **F18 fixed** (6628f5b1 latch, 8eedc83b stage names, 693204ed the
+  attention's `wo_a` CPU fallback): after a sticky peer fault every later request completes on the host. Retest on the
+  new tip (final11/13): all texts = dev's, X3 1.437x dev's decode. Pushed to the fork; still not opened upstream.
+- **Optimisation lead:** staged uploads (`COLI_VK_UP_IMPORT=0`) beat host-page imports on this RTX 3090 (6.6 vs 3.5-4.0
+  GB/s, prompt-1 TTFT 0.931x on dev); final16 re-measures it on top of fix B.
+
 ## Status (2026-10-23, evening)
 - **#2264 refreshed (2026-10-23 18:30):** upstream dev 61646cbd merged into `docs5/pr1-reap-prefill` (47c8ec51, no
   conflicts; `make check` 2,709 tests OK, 292 skipped; generic CUDA build on shadowfax clean; GPU tests not re-run,
@@ -74,7 +90,9 @@ Compare against upstream `dev`, never `main`. **The rebased branches are on the 
 | `refresh/pr1-reap-prefill` | **PR #1 on upstream dev 736a0682** (2026-10-19, after PR #0 merged): the same 8 commits directly on dev |
 | `refresh/pr2-two-gpu-decode` | **PR #2 on upstream dev 736a0682** (2026-10-19): the same 8 commits on refresh/pr1 |
 | `docs5/pr1-reap-prefill` | **PR #1, opened as #2264** (2026-10-20): refresh/pr1 with its docs commit carrying the final5 numbers; upstream dev 7df8c27c merged in on 2026-10-22 (ebe82123); b286167e (DeepGEMM unused variables) on 2026-10-22, pushed 2026-10-23; dev 61646cbd merged in 2026-10-23 (47c8ec51), pushed |
-| `docs5/pr2-two-gpu-decode` | **PR #2 to submit** (2026-10-20): refresh/pr2 on docs5/pr1, its docs commit carrying the final5 numbers; docs5/pr1's dev merge merged in on 2026-10-22 (073f18d2), then b286167e (0523e8e0) |
+| `docs5/pr2-two-gpu-decode` | **PR #2 to submit** (2026-10-20): refresh/pr2 on docs5/pr1, its docs commit carrying the final5 numbers; docs5/pr1's dev merge merged in on 2026-10-22 (073f18d2), then b286167e (0523e8e0); docs5/pr1 47c8ec51 merged in 2026-10-24 (14d67f05), then the F18 fix 6628f5b1 + 8eedc83b + 693204ed, pushed 2026-10-24 |
+| `fix/dsv4-mirror-guard-overshoot` | **upstream fix A** (2026-10-24): bd7103fd on dev 61646cbd, the decode mirror cache guard (no issue / PR) |
+| `fix/vk-host-image-alloc` | **upstream fix B** (2026-10-24): 72aa325a on dev 61646cbd, the Vulkan uploader's host images (no issue / PR) |
 | `f18-probe` (local only, never pushed) | b62d1068: PR #2 + the F18 probe, debug build only (`-DCOLI_F18_PROBE`) |
 | `pr0*/…`, `pr1/reap-prefill`, `pr2/two-gpu-decode`, `pr1/v6`, `pr1/v7`, `pr2/v5`, … | the 2026-10-15/16 stack on 7b55a9b3 (history) |
 

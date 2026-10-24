@@ -6,6 +6,20 @@
 > [#2264](https://github.com/JustVugg/colibri/pull/2264), opened 2026-10-20; **PR #2** (two-GPU decode) is not opened yet. Documents dated before 2026-10-17 describe earlier
 > versions of these changes, on the old base 7b55a9b3.
 
+## Open now (2026-10-24 morning, after the overnight run)
+1. **#2264:** post or drop the corrected Vulkan + CUDA explanation ([draft](review/REPLY_2264_FOLLOWUP_20261024_DRAFT.md);
+   its last paragraph offers fixes A and B upstream, Bob's call). Upstream dev has not moved, so no rebase is due.
+2. **Fixes A and B** are on fork branches off dev with measurements ([review/UPSTREAM_FIXES_20261024.md](review/UPSTREAM_FIXES_20261024.md)).
+   Whether to open issues / PRs is Bob's decision.
+3. **PR #2:** F18 is fixed and the branch retested; open it upstream when #2264 lands (or as Bob decides).
+4. **`COLI_VK_UP_IMPORT`:** imports are slower than staged uploads on this NVIDIA card; the default is device dependent,
+   so at most a note upstream (final16 on top of fix B).
+5. Pure-Vulkan greedy texts vary run to run on dev itself (the tier's device/CPU split follows measured upload rates).
+   Known, not a bug of these branches; it means pure-Vulkan text identity can't be a gate.
+6. tasks-personal #2824 (driver alignment, needs Bob's sudo) unchanged.
+
+<details><summary>Open on 2026-10-23 evening (superseded)</summary>
+
 ## Open now (2026-10-23, after final7 + final8)
 1. **#2264:** every PR #1-vs-dev question this hardware can ask is answered (final6-8: default config identical and
    0.98-0.99x TTFT; bank 0.66x like for like on the full model, 0.54-0.60x on REAP; Vulkan and Vulkan + CUDA identical
@@ -20,6 +34,8 @@
    graphics-drivers PPA and two precompiled `linux-modules-nvidia-595-open-*` packages (needs Bob's sudo; not colibri work).
 5. Manifests in `c/experiment_manifest.py` format for final7/8 not made (only QF has 3 samples in final8); evidence
    tarballs are in `manifests/final7/`, `manifests/final8/`.
+
+</details>
 
 <details><summary>Open on 2026-10-23 morning (superseded)</summary>
 
@@ -54,7 +70,7 @@
 3. Attach `manifests/final4/` (4 validated manifests, `evidence/`, `bench.tgz`) to PR #1; PR #2's numbers are a one-sample sanity check (a manifest would need >=3 samples per arm).
 
 ## Untested / known gaps
-- **F18:** tested 2026-10-22 with a real `__trap()` on the peer (final6): caught, no hang, no wrong output; CUDA is lost for the process afterwards (see Open now #5).
+- **F18:** fixed 2026-10-24 (final13: a sticky fault injected at the 3000th peer pass, all later requests complete on the host). A real `__trap()` was tested 2026-10-22 / final10 (device 0 is lost with the peer); the end-to-end server test uses the `DSV4_CUDA_PEER_FAULT=n:sticky` injection.
 - Windows build (the loader and `dsv4.def` parity test passes on Linux only; upstream CI builds it, incl. CUDA/MSVC, and it passes on #2264). DeepGEMM was tested on computer4 (RTX 5070, final6) on one GPU only. The full 256-expert checkpoint was tested in final6.
 - Apple Silicon (zebra): not tested and not planned for these PRs; the V4 engine has no Metal path and the PRs are CUDA-only (TEST_PLAN_20261023.md).
 - Upstream test `test_dsv4_attention_batch_cuda` uses a stub that exits 4. This is pre-existing and not caused by this work.

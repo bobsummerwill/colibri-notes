@@ -129,7 +129,7 @@
   `posix_memalign` + `memset`; no imports: `calloc`) is the lead: candidate **8c1f0381** on
   `fix/vk-host-image-alloc` (off dev) aligns the image by hand inside a `calloc`'d block. final15 measures it (J2
   fixb pool 12 vs C1 dev x3, J1 fixb with the default pool x2).
-- **final15 done (05:05)** ([manifests/final15](manifests/final15/summary.txt)): **fix B works.** J2 (fix B, pool
+- **final15 done (05:00)** ([manifests/final15](manifests/final15/summary.txt)): **fix B works.** J2 (fix B, pool
   12 GiB, imports on) vs C1 (dev, same), x3 interleaved: anon 40.3 vs 45.4 GiB, MemAvailable min 4.8 vs 0.5-1.0,
   p1 TTFT 0.957x, p2 0.985x, decode 1.007x. J1 (fix B, **default pool**): both prompts 2 of 2 (dev OOM-killed
   every time). Pure-Vulkan p2 texts vary run to run on dev itself (C1 gave 3 different ones), so they are not a
