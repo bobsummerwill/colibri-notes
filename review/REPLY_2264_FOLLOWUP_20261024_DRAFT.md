@@ -41,4 +41,7 @@ exactly. Evidence: [final9](https://github.com/bobsummerwill/colibri-notes/tree/
 (1) at 24 GB and below, the default configuration's compressed-KV fallbacks come from the decode mirror cache growing
 up to 64 mirrors past its reserve between free-VRAM probes. A one-commit fix on dev removes all of them (421 → 0 a
 sample on the full model, same texts, prompt 2 5% faster); (2) pure Vulkan with the default host pool is still
-OOM-killed on a 62 GB box after 0f786bfa / 5c0469ae. I can open either as an issue or a PR if useful.
+OOM-killed on a 62 GB box after 0f786bfa / 5c0469ae: with the uploads' host-page imports on, the uploader's
+`posix_memalign`'d host images leave ~5 GiB in glibc's arenas that nothing counts; aligning them inside a `calloc`'d
+block, as the path without imports does, removes it (anon 45.4 -> 40.3 GiB, the default pool runs, prompt 1 4%
+faster). I can open either as an issue or a PR if useful.
