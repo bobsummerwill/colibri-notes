@@ -15,8 +15,9 @@ Project notebook for Bob Summerwill's work on [colibri](https://github.com/JustV
   conflicts; `make check` 2,709 tests OK, 292 skipped; generic CUDA build on shadowfax clean; GPU tests not re-run,
   dev's 77 new commits leave `c/backend_cuda_dsv4.cu` alone, but change `deepseek_v4.c`'s Windows memory bound and the
   Vulkan tier's host-pool sizing (5c0469ae), so the Vulkan numbers are pre-merge only), pushed; the earlier CI runs on #2264 were all *cancelled*
-  (not failed); the fresh run on 47c8ec51 is green (CI + check, 116 of 116 pass, 2026-10-24 03:2x UTC). Reply posted 2026-10-23 ([comment](https://github.com/JustVugg/colibri/pull/2264#issuecomment-6380344789), from
-  `review/REPLY_2264_20261023_DRAFT.md`). PR #2 not refreshed (it waits for #2264).
+  (not failed); the fresh run on 47c8ec51 is green (CI + check, 116 of 116 pass, 2026-10-24 03:2x UTC). Reply posted 2026-10-23 ([comment](https://github.com/JustVugg/colibri/pull/2264#issuecomment-6380394089), `review/REPLY_2264_20261024.md`: everything in final6-8
+  incl. every kv comp fallback count, sample counts, evidence links, the notes repo up front); it replaces a shorter first
+  reply (deleted). PR description updated the same day (merges, 2,709 tests, summary of the full-model results, notes repo). PR #2 not refreshed (it waits for #2264).
 - **final7 (10:00-12:57) and final8 (13:05-14:19) done on shadowfax; final8 GATES: PASS** ([measurements.md](measurements.md),
   [investigations.md](investigations.md) §7). Bank like for like: PR #1 0.665 / 0.659x dev's TTFT on the full model with
   dev given the same reserve. Every side-arm difference from final6 is explained and none is PR #1's: pure Vulkan is
