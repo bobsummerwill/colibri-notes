@@ -14,7 +14,8 @@
    PR #2's "decode continues on device 0" is false. Fix the message, then try the host-wait probe variant / latch CUDA off.
 3. **Upstream issue drafts** (`review/UPSTREAM_ISSUES_20261023_DRAFT.md`, not filed): Vulkan host pool sized from free
    RAM (OOM kill; 12 GiB still leaves 0.5 GiB), kv comp fallbacks changing default-config texts.
-4. **tasks-personal #2824** (driver alignment): both boxes report 595.99.02; close it.
+4. **tasks-personal #2824** (driver alignment): same driver 595.99.02 on both, but shadowfax still has the
+   graphics-drivers PPA and two precompiled `linux-modules-nvidia-595-open-*` packages (needs Bob's sudo; not colibri work).
 5. Manifests in `c/experiment_manifest.py` format for final7/8 not made (only QF has 3 samples in final8); evidence
    tarballs are in `manifests/final7/`, `manifests/final8/`.
 
