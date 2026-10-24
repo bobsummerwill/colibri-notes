@@ -120,3 +120,12 @@
   host expert sums are not CUDA's bits). X3c (no fault): all 6 texts = D0's references, 4.33 tok/s. Pushed
   `docs5/pr2-two-gpu-decode` (6628f5b1, 8eedc83b, 693204ed) to the fork; it backs no upstream PR.
 - 04:03 final14 started (fix B allocator theory: H1, H3, H2).
+- **final14 done (04:20)** ([manifests/final14](manifests/final14/summary.txt)): the allocator theory holds.
+  H1 (pool 12 GiB, imports on, `GLIBC_TUNABLES=glibc.malloc.mmap_threshold=4194304`): anon **40.1 GiB** (I1 45.3).
+  H2 (the **default pool**, imports on, the fixed threshold) and H3 (the default pool, imports off): **both
+  completed, no OOM** (anon 40.2, file 17.0, MemAvailable min ~1 GiB), the first default-pool pure-Vulkan runs on
+  dev that were not killed. But the fixed threshold costs speed (an mmap + munmap per image: uploads 2.8 GB/s,
+  decode 3.7 vs 4.4 tok/s), so it is not the fix. The difference between the two image allocators (imports:
+  `posix_memalign` + `memset`; no imports: `calloc`) is the lead: candidate **8c1f0381** on
+  `fix/vk-host-image-alloc` (off dev) aligns the image by hand inside a `calloc`'d block. final15 measures it (J2
+  fixb pool 12 vs C1 dev x3, J1 fixb with the default pool x2).
