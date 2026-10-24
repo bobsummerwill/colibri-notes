@@ -14,7 +14,7 @@ Project notebook for Bob Summerwill's work on [colibri](https://github.com/JustV
 - **#2264 refreshed (2026-10-23 18:30):** upstream dev 61646cbd merged into `docs5/pr1-reap-prefill` (47c8ec51, no
   conflicts; `make check` 2,709 tests OK, 292 skipped; generic CUDA build on shadowfax clean; GPU tests not re-run,
   dev's 77 new commits touch no DeepSeek V4 CUDA file), pushed; the earlier CI runs on #2264 were all *cancelled*
-  (not failed), a fresh run started. Reply draft updated with final7/8 (`review/REPLY_2264_20261023_DRAFT.md`), not
+  (not failed); the fresh run on 47c8ec51 is green (CI + check, 116 of 116 pass, 2026-10-24 03:2x UTC). Reply draft updated with final7/8 (`review/REPLY_2264_20261023_DRAFT.md`), not
   posted. PR #2 not refreshed (it waits for #2264).
 - **final7 (10:00-12:57) and final8 (13:05-14:19) done on shadowfax; final8 GATES: PASS** ([measurements.md](measurements.md),
   [investigations.md](investigations.md) §7). Bank like for like: PR #1 0.665 / 0.659x dev's TTFT on the full model with
