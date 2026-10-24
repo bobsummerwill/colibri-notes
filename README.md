@@ -14,14 +14,14 @@ Project notebook for Bob Summerwill's work on [colibri](https://github.com/JustV
 - **#2264 refreshed (2026-10-23 18:30):** upstream dev 61646cbd merged into `docs5/pr1-reap-prefill` (47c8ec51, no
   conflicts; `make check` 2,709 tests OK, 292 skipped; generic CUDA build on shadowfax clean; GPU tests not re-run,
   dev's 77 new commits touch no DeepSeek V4 CUDA file), pushed; the earlier CI runs on #2264 were all *cancelled*
-  (not failed); the fresh run on 47c8ec51 is green (CI + check, 116 of 116 pass, 2026-10-24 03:2x UTC). Reply draft updated with final7/8 (`review/REPLY_2264_20261023_DRAFT.md`), not
-  posted. PR #2 not refreshed (it waits for #2264).
+  (not failed); the fresh run on 47c8ec51 is green (CI + check, 116 of 116 pass, 2026-10-24 03:2x UTC). Reply posted 2026-10-23 ([comment](https://github.com/JustVugg/colibri/pull/2264#issuecomment-6380344789), from
+  `review/REPLY_2264_20261023_DRAFT.md`). PR #2 not refreshed (it waits for #2264).
 - **final7 (10:00-12:57) and final8 (13:05-14:19) done on shadowfax; final8 GATES: PASS** ([measurements.md](measurements.md),
   [investigations.md](investigations.md) §7). Bank like for like: PR #1 0.665 / 0.659x dev's TTFT on the full model with
   dev given the same reserve. Every side-arm difference from final6 is explained and none is PR #1's: pure Vulkan is
   reproducible (dev = PR #1 = CUDA text) once the host pool cannot OOM; Vulkan + CUDA PR #1 = dev with the same reserve
   (final7's VU had kv comp fallbacks); HY is dev's hybrid. computer4 repeats: B/A 0.998 / 0.995.
-- **Open:** F18 in a server (PR #2: later requests fail until restart), the #2264 reply draft to update, upstream issue
+- **Open:** F18 in a server (PR #2: later requests fail until restart), upstream issue
   drafts ([open-problems.md](open-problems.md)).
 
 ## Status (2026-10-23, morning)
