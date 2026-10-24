@@ -9,7 +9,7 @@
 ## Open now (2026-10-23, after final7 + final8)
 1. **#2264:** every PR #1-vs-dev question this hardware can ask is answered (final6-8: default config identical and
    0.98-0.99x TTFT; bank 0.66x like for like on the full model, 0.54-0.60x on REAP; Vulkan and Vulkan + CUDA identical
-   to dev given the same pool / reserve). To do: update `review/REPLY_2264_20261023_DRAFT.md` with final7/8; Bob posts.
+   to dev given the same pool / reserve). Reply draft updated with final7/8 and the dev 61646cbd merge (47c8ec51, pushed 2026-10-23); Bob posts.
 2. **F18 (PR #2):** in a real server a peer fault leaves every later request failing until restart (final7 F7), and
    PR #2's "decode continues on device 0" is false. Fix the message, then try the host-wait probe variant / latch CUDA off.
 3. **Upstream issue drafts** (`review/UPSTREAM_ISSUES_20261023_DRAFT.md`, not filed, no fixes attempted): kv comp

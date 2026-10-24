@@ -11,6 +11,11 @@ Project notebook for Bob Summerwill's work on [colibri](https://github.com/JustV
 **Rule: no PRs and no pushes to upstream JustVugg/colibri.** Branches go to the fork only; Bob decides on submission (PR #0 and PR #1 were opened at his request).
 
 ## Status (2026-10-23, evening)
+- **#2264 refreshed (2026-10-23 18:30):** upstream dev 61646cbd merged into `docs5/pr1-reap-prefill` (47c8ec51, no
+  conflicts; `make check` 2,709 tests OK, 292 skipped; generic CUDA build on shadowfax clean; GPU tests not re-run,
+  dev's 77 new commits touch no DeepSeek V4 CUDA file), pushed; the earlier CI runs on #2264 were all *cancelled*
+  (not failed), a fresh run started. Reply draft updated with final7/8 (`review/REPLY_2264_20261023_DRAFT.md`), not
+  posted. PR #2 not refreshed (it waits for #2264).
 - **final7 (10:00-12:57) and final8 (13:05-14:19) done on shadowfax; final8 GATES: PASS** ([measurements.md](measurements.md),
   [investigations.md](investigations.md) §7). Bank like for like: PR #1 0.665 / 0.659x dev's TTFT on the full model with
   dev given the same reserve. Every side-arm difference from final6 is explained and none is PR #1's: pure Vulkan is
@@ -66,7 +71,7 @@ Compare against upstream `dev`, never `main`. **The rebased branches are on the 
 | `rebased/pr2/two-gpu-decode` | PR #2 final (8 commits on PR #1) |
 | `refresh/pr1-reap-prefill` | **PR #1 on upstream dev 736a0682** (2026-10-19, after PR #0 merged): the same 8 commits directly on dev |
 | `refresh/pr2-two-gpu-decode` | **PR #2 on upstream dev 736a0682** (2026-10-19): the same 8 commits on refresh/pr1 |
-| `docs5/pr1-reap-prefill` | **PR #1, opened as #2264** (2026-10-20): refresh/pr1 with its docs commit carrying the final5 numbers; upstream dev 7df8c27c merged in on 2026-10-22 (ebe82123); b286167e (DeepGEMM unused variables) on 2026-10-22, pushed 2026-10-23 |
+| `docs5/pr1-reap-prefill` | **PR #1, opened as #2264** (2026-10-20): refresh/pr1 with its docs commit carrying the final5 numbers; upstream dev 7df8c27c merged in on 2026-10-22 (ebe82123); b286167e (DeepGEMM unused variables) on 2026-10-22, pushed 2026-10-23; dev 61646cbd merged in 2026-10-23 (47c8ec51), pushed |
 | `docs5/pr2-two-gpu-decode` | **PR #2 to submit** (2026-10-20): refresh/pr2 on docs5/pr1, its docs commit carrying the final5 numbers; docs5/pr1's dev merge merged in on 2026-10-22 (073f18d2), then b286167e (0523e8e0) |
 | `f18-probe` (local only, never pushed) | b62d1068: PR #2 + the F18 probe, debug build only (`-DCOLI_F18_PROBE`) |
 | `pr0*/…`, `pr1/reap-prefill`, `pr2/two-gpu-decode`, `pr1/v6`, `pr1/v7`, `pr2/v5`, … | the 2026-10-15/16 stack on 7b55a9b3 (history) |
