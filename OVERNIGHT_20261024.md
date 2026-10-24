@@ -11,7 +11,7 @@
 |---|---|---|---|
 | 1 | **final9**: pure Vulkan with the default host pool on the merged tips; Vulkan + CUDA diagnostic arms ([TEST_PLAN_20261024.md](TEST_PLAN_20261024.md)) | shadowfax | **done** 23:35 ([manifests/final9](manifests/final9/summary.txt)) |
 | 2 | **final9b**: diagnostic builds that log the Vulkan dense hook's silent CPU fallbacks; DA dev union, DB PR #1 bank, DF bank with a 6000 MiB reserve | shadowfax | **done** 23:53 ([manifests/final9b](manifests/final9b/summary.txt)): **no refusals**, so the refusal theory is wrong; v2 of the patch (declines with their reason) runs after final10 |
-| 3 | Corrected Vulkan + CUDA explanation for #2264 (draft in `review/`, not posted) | computer4 | after 1-2 |
+| 3 | Corrected Vulkan + CUDA explanation for #2264 (draft in `review/`, not posted) | computer4 | **drafted**: [review/REPLY_2264_FOLLOWUP_20261024_DRAFT.md](review/REPLY_2264_FOLLOWUP_20261024_DRAFT.md) |
 | 4 | PR #2 merged with the new PR #1 tip (47c8ec51): `docs5/pr2-two-gpu-decode` 14d67f05 | computer4 | **done**: `make check` 2,716 OK (292 skipped), pushed to the fork |
 | 5 | **Upstream fix A**: the compressed-KV buffer (`dsv4_cuda_kv_comp_append`) fails to grow once the decode mirrors have filled VRAM, and attention falls back to the CPU (text changes). Root cause: the mirror growth guard overshoots the reserve by up to 64 mirrors between free-VRAM probes (F16, fixed inside PR #2's 6b7fc6c0 but not on dev). Branch `fix/dsv4-mirror-guard-overshoot` bd7103fd off dev 61646cbd (guard + docs + source test; pushed to the fork) | computer4 + shadowfax | **works** (final10): 421 -> 0 handled allocation failures per sample, texts identical, p2 TTFT 0.946x, answer-2 decode +5.2%; computer4 RTX 5070 run c4fa (W + 5 pairs) running since 01:01. Write-up: [review/UPSTREAM_FIXES_20261024.md](review/UPSTREAM_FIXES_20261024.md) |
 | 6 | **Upstream fix B**: the Vulkan tier's host pool OOM-kills the server with the default size (dev 61646cbd: every default-pool sample in final9 and final10 M). final10: file RSS = the pool (`/dev/nvidiactl` mappings, 16.3 GiB), anon = the 37.5 GiB expert cache + ~3-4 GiB the plan does not count; M2 (`COLI_VK_UP_IMPORT=0`) survived with 0.5 GiB free (imports cost ~1.5 GiB, and halve the upload rate: 3.1 vs 6.6 GB/s). The pool's sizing leaves a fixed 4 GiB for everything the engine allocates later; deepseek_v4's `ram_later` counts 630 MiB of it. final11 M3/M4 (smaps every 15 s; pool off) locates the growth before the fix | computer4 + shadowfax | measuring |
@@ -71,3 +71,13 @@
   6628f5b1 (a local `extern` declaration: the build warned about an implicit declaration of `dsv4_cuda_lost` in the
   decode MoE, which comes before the backend header; final11 runs the c42ad524 binary, which behaves the same).
 - 01:00 final11 started on shadowfax; 01:01 c4fa (fix A on the RTX 5070, DeepGEMM) started on computer4.
+- **final11 first part (01:00-01:17).** DA2 / DB2 (diag v2): the union and the bank make the **same 1,720
+  prefill-sized hook calls on the device, 0 declined**, 0 refused; texts as before (`1bdc5d70` vs `1f019203` on p2).
+  So the hook is used identically, and the p2 difference comes from the expert arithmetic (bank: CUDA; union: CPU;
+  not bit-identical in general, F42 2026-10-16), landing on a near-tie under the hook's slightly different gate logits
+  / projections. Draft follow-up for #2264 written.
+- **M3** (default pool, smaps every 15 s): OOM-killed again. **M4 (pool off): completed, anon 45.6 GiB**, against the
+  engine's own RAM plan `projected=39.61GiB` (cache 37.48). So in pure Vulkan the engine itself overshoots its `--ram 40`
+  plan by ~6-8 GiB (CUDA runs of the same engine peak at 39.9 GiB RSS, in plan). M3's smaps: ~6 GiB of non-cache anon
+  already at server start (a 1010 MiB region, many 63-127 MiB regions: per-thread malloc arenas?), more regions of
+  0.3-1.8 GiB during prefill. Next: an LD_PRELOAD tracer of allocations >= 32 MiB with backtraces (after final11).
