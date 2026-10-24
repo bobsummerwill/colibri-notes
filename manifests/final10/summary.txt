@@ -1,0 +1,61 @@
+FINAL10 SUMMARY (fix A on the full model; Vulkan host pool memory probe)
+arm W (dev, full, group full)  (warm-up, discarded)
+  s1 seq=3 wall=468s GPU peak 24012/84 MiB RSS peak 39.94 GiB MemAvailable min 18.57 GiB oom_kill=0 ok handled allocation failures {'weight': 1, 'kv comp': 420}
+    memx {"rss_anon_peak_gib": 39.85, "rss_file_peak_gib": 0.08, "vm_lck_peak_gib": 0.0, "vm_pin_peak_gib": 0.0, "mem_free_peak_gib": 58.48, "cached_peak_gib": 15.81, "unevictable_peak_gib": 0.0, "mlocked_peak_gib": 0.0, "anon_pages_peak_gib": 40.76, "mapped_peak_gib": 0.54, "mem_free_min_gib": 3.32}
+    long_prefill     ttft=164.539 decode=1.9588 identical=True text=a397814f (full ref p1 (final6))
+    long_prefill_2   ttft=271.762 decode=1.8433 identical=True text=8b3f437b (full ref p2 (final6))
+  median long_prefill     ttft=164.539 s (cv None) prefill=12.1065 tok/s decode=1.9588 tok/s (mean 1.9588)
+  median long_prefill_2   ttft=271.762 s (cv None) prefill=11.0575 tok/s decode=1.8433 tok/s (mean 1.8433)
+  median of per-sample mean decode: 1.9011 tok/s
+arm A (dev, full, group full)
+  s1 seq=4 wall=459s GPU peak 24012/84 MiB RSS peak 39.94 GiB MemAvailable min 18.53 GiB oom_kill=0 ok handled allocation failures {'weight': 1, 'kv comp': 420}
+    memx {"rss_anon_peak_gib": 39.85, "rss_file_peak_gib": 0.08, "vm_lck_peak_gib": 0.0, "vm_pin_peak_gib": 0.0, "mem_free_peak_gib": 44.17, "cached_peak_gib": 15.82, "unevictable_peak_gib": 0.0, "mlocked_peak_gib": 0.0, "anon_pages_peak_gib": 40.71, "mapped_peak_gib": 0.53, "mem_free_min_gib": 3.19}
+    long_prefill     ttft=161.15 decode=1.9921 identical=True text=a397814f (full ref p1 (final6))
+    long_prefill_2   ttft=270.231 decode=1.8499 identical=True text=8b3f437b (full ref p2 (final6))
+  s2 seq=7 wall=460s GPU peak 24012/84 MiB RSS peak 39.94 GiB MemAvailable min 18.46 GiB oom_kill=0 ok handled allocation failures {'weight': 1, 'kv comp': 420}
+    memx {"rss_anon_peak_gib": 39.85, "rss_file_peak_gib": 0.08, "vm_lck_peak_gib": 0.0, "vm_pin_peak_gib": 0.0, "mem_free_peak_gib": 43.95, "cached_peak_gib": 15.91, "unevictable_peak_gib": 0.0, "mlocked_peak_gib": 0.0, "anon_pages_peak_gib": 40.81, "mapped_peak_gib": 0.58, "mem_free_min_gib": 3.01}
+    long_prefill     ttft=161.021 decode=1.9869 identical=True text=a397814f (full ref p1 (final6))
+    long_prefill_2   ttft=271.216 decode=1.85 identical=True text=8b3f437b (full ref p2 (final6))
+  s3 seq=8 wall=460s GPU peak 24012/84 MiB RSS peak 39.94 GiB MemAvailable min 18.48 GiB oom_kill=0 ok handled allocation failures {'weight': 1, 'kv comp': 420}
+    memx {"rss_anon_peak_gib": 39.85, "rss_file_peak_gib": 0.08, "vm_lck_peak_gib": 0.0, "vm_pin_peak_gib": 0.0, "mem_free_peak_gib": 43.98, "cached_peak_gib": 15.91, "unevictable_peak_gib": 0.0, "mlocked_peak_gib": 0.0, "anon_pages_peak_gib": 40.73, "mapped_peak_gib": 0.58, "mem_free_min_gib": 3.02}
+    long_prefill     ttft=161.238 decode=1.9966 identical=True text=a397814f (full ref p1 (final6))
+    long_prefill_2   ttft=271.048 decode=1.8495 identical=True text=8b3f437b (full ref p2 (final6))
+  median long_prefill     ttft=161.15 s (cv 0.0006) prefill=12.3612 tok/s decode=1.9921 tok/s (mean 1.9919)
+  median long_prefill_2   ttft=271.048 s (cv 0.0016) prefill=11.0866 tok/s decode=1.8499 tok/s (mean 1.8498)
+  median of per-sample mean decode: 1.921 tok/s
+arm F (fixa, full, group full)
+  s1 seq=5 wall=445s GPU peak 23608/84 MiB RSS peak 39.94 GiB MemAvailable min 18.52 GiB oom_kill=0 ok
+    memx {"rss_anon_peak_gib": 39.85, "rss_file_peak_gib": 0.08, "vm_lck_peak_gib": 0.0, "vm_pin_peak_gib": 0.0, "mem_free_peak_gib": 44.11, "cached_peak_gib": 15.86, "unevictable_peak_gib": 0.0, "mlocked_peak_gib": 0.0, "anon_pages_peak_gib": 40.74, "mapped_peak_gib": 0.54, "mem_free_min_gib": 3.15}
+    long_prefill     ttft=161.095 decode=1.9921 identical=True text=a397814f (full ref p1 (final6))
+    long_prefill_2   ttft=256.469 decode=1.9417 identical=True text=8b3f437b (full ref p2 (final6))
+  s2 seq=6 wall=445s GPU peak 23608/84 MiB RSS peak 39.94 GiB MemAvailable min 18.55 GiB oom_kill=0 ok
+    memx {"rss_anon_peak_gib": 39.85, "rss_file_peak_gib": 0.08, "vm_lck_peak_gib": 0.0, "vm_pin_peak_gib": 0.0, "mem_free_peak_gib": 44.05, "cached_peak_gib": 15.91, "unevictable_peak_gib": 0.0, "mlocked_peak_gib": 0.0, "anon_pages_peak_gib": 40.74, "mapped_peak_gib": 0.57, "mem_free_min_gib": 3.15}
+    long_prefill     ttft=160.978 decode=1.9896 identical=True text=a397814f (full ref p1 (final6))
+    long_prefill_2   ttft=256.31 decode=1.9479 identical=True text=8b3f437b (full ref p2 (final6))
+  s3 seq=9 wall=446s GPU peak 23608/84 MiB RSS peak 39.94 GiB MemAvailable min 18.55 GiB oom_kill=0 ok
+    memx {"rss_anon_peak_gib": 39.85, "rss_file_peak_gib": 0.08, "vm_lck_peak_gib": 0.0, "vm_pin_peak_gib": 0.0, "mem_free_peak_gib": 43.97, "cached_peak_gib": 15.91, "unevictable_peak_gib": 0.0, "mlocked_peak_gib": 0.0, "anon_pages_peak_gib": 40.73, "mapped_peak_gib": 0.58, "mem_free_min_gib": 3.09}
+    long_prefill     ttft=161.14 decode=1.9911 identical=True text=a397814f (full ref p1 (final6))
+    long_prefill_2   ttft=256.641 decode=1.9463 identical=True text=8b3f437b (full ref p2 (final6))
+  median long_prefill     ttft=161.095 s (cv 0.0004) prefill=12.3654 tok/s decode=1.9911 tok/s (mean 1.9909)
+  median long_prefill_2   ttft=256.469 s (cv 0.0005) prefill=11.7168 tok/s decode=1.9463 tok/s (mean 1.9453)
+  median of per-sample mean decode: 1.9687 tok/s
+arm M (dev-vk, reap, group m)
+  s1 seq=1 wall=128s GPU peak 24115/84 MiB RSS peak 58.32 GiB MemAvailable min 0.75 GiB oom_kill=2 client rc 1; 1 request rows, expected 2
+    memx {"rss_anon_peak_gib": 41.71, "rss_file_peak_gib": 16.7, "vm_lck_peak_gib": 0.0, "vm_pin_peak_gib": 0.0, "mem_free_peak_gib": 31.5, "cached_peak_gib": 30.06, "unevictable_peak_gib": 0.0, "mlocked_peak_gib": 0.0, "anon_pages_peak_gib": 42.46, "mapped_peak_gib": 17.14, "mem_free_min_gib": 0.54}
+    long_prefill     ttft=102.58 decode=3.6126 identical=True text=146af1df (new)
+  median long_prefill     ttft=102.58 s (cv None) prefill=19.419 tok/s decode=3.6126 tok/s (mean 3.6126)
+  median of per-sample mean decode: 3.6126 tok/s
+arm M2 (dev-vk, reap, group m2)
+  s1 seq=2 wall=276s GPU peak 24115/84 MiB RSS peak 57.16 GiB MemAvailable min 1.02 GiB oom_kill=1 ok
+    memx {"rss_anon_peak_gib": 40.26, "rss_file_peak_gib": 17.02, "vm_lck_peak_gib": 0.0, "vm_pin_peak_gib": 0.0, "mem_free_peak_gib": 60.0, "cached_peak_gib": 10.54, "unevictable_peak_gib": 0.0, "mlocked_peak_gib": 0.0, "anon_pages_peak_gib": 41.01, "mapped_peak_gib": 17.42, "mem_free_min_gib": 0.4}
+    long_prefill     ttft=96.07 decode=4.3736 identical=True text=e5fa384d (new)
+    long_prefill_2   ttft=138.433 decode=4.6173 identical=True text=1bdc5d70 (new)
+  median long_prefill     ttft=96.07 s (cv None) prefill=20.7349 tok/s decode=4.3736 tok/s (mean 4.3736)
+  median long_prefill_2   ttft=138.433 s (cv None) prefill=21.7073 tok/s decode=4.6173 tok/s (mean 4.6173)
+  median of per-sample mean decode: 4.4954 tok/s
+F/A    {'what': 'fix A vs dev, full model, default configuration', 'long_prefill_ttft_ratio': 0.9997, 'long_prefill_decode_ratio': 0.9995, 'long_prefill_2_ttft_ratio': 0.9462, 'long_prefill_2_decode_ratio': 1.0521, 'mean_decode_ratio': 1.0248}
+A/F CLEAN: True
+GATES: FAIL
+  problem: M s1: client rc 1; 1 request rows, expected 2
+  note: W: 421 handled allocation failures over 1 samples (s1 {'weight': 1, 'kv comp': 420})
+  note: A: 1263 handled allocation failures over 3 samples (s1 {'weight': 1, 'kv comp': 420}; s2 {'weight': 1, 'kv comp': 420}; s3 {'weight': 1, 'kv comp': 420})

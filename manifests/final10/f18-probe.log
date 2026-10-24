@@ -1,0 +1,43 @@
+=== before (DSV4_F18_TRAP=2): exit 0 signal 0
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+before: trapping call starts
+[DSV4 CUDA] F18 probe: __trap() on the peer in pass #2 (before the down-projection)
+[DSV4 CUDA] MoE result download: unspecified launch failure
+[DSV4 CUDA] peer device 1 failed in the decode MoE (join: unspecified launch failure); latched off, decode continues on device 0 (its memory is no longer read)
+before: RESULT CAUGHT-REFUSED (returned 0, output differs, peer healthy 0)
+[DSV4 CUDA] MoE activation upload: unspecified launch failure
+before: AFTER all-on-primary call returned 0, output differs -> PRIMARY LOST (its calls refuse)
+=== after (DSV4_F18_TRAP=2:after): exit 0 signal 0
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+after: trapping call starts
+[DSV4 CUDA] F18 probe: __trap() on the peer in pass #2 (after the down-projection)
+[DSV4 CUDA] MoE result download: unspecified launch failure
+[DSV4 CUDA] peer device 1 failed in the decode MoE (join: unspecified launch failure); latched off, decode continues on device 0 (its memory is no longer read)
+after: RESULT CAUGHT-REFUSED (returned 0, output differs, peer healthy 0)
+[DSV4 CUDA] MoE activation upload: unspecified launch failure
+after: AFTER all-on-primary call returned 0, output differs -> PRIMARY LOST (its calls refuse)
+=== before-hostwait (DSV4_F18_TRAP=2): exit 0 signal 0
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+before-hostwait: trapping call starts
+[DSV4 CUDA] F18 probe: __trap() on the peer in pass #2 (before the down-projection)
+[DSV4 CUDA] F18 probe: host-side join wait failed (unspecified launch failure)
+[DSV4 CUDA] peer device 1 failed in the decode MoE (join (host wait): unspecified launch failure); latched off, decode continues on device 0 (its memory is no longer read)
+before-hostwait: RESULT CAUGHT-REFUSED (returned 0, output differs, peer healthy 0)
+[DSV4 CUDA] MoE activation upload: unspecified launch failure
+before-hostwait: AFTER all-on-primary call returned 0, output differs -> PRIMARY LOST (its calls refuse)
+=== after-hostwait (DSV4_F18_TRAP=2:after): exit 0 signal 0
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+after-hostwait: trapping call starts
+[DSV4 CUDA] F18 probe: __trap() on the peer in pass #2 (after the down-projection)
+[DSV4 CUDA] F18 probe: host-side join wait failed (unspecified launch failure)
+[DSV4 CUDA] peer device 1 failed in the decode MoE (join (host wait): unspecified launch failure); latched off, decode continues on device 0 (its memory is no longer read)
+after-hostwait: RESULT CAUGHT-REFUSED (returned 0, output differs, peer healthy 0)
+[DSV4 CUDA] MoE activation upload: unspecified launch failure
+after-hostwait: AFTER all-on-primary call returned 0, output differs -> PRIMARY LOST (its calls refuse)
+f18 probe: every fault handled
+0, 182 MiB
+1, 84 MiB
