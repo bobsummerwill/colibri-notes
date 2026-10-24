@@ -24,7 +24,7 @@ Project notebook for Bob Summerwill's work on [colibri](https://github.com/JustV
   attention's `wo_a` CPU fallback): after a sticky peer fault every later request completes on the host. Retest on the
   new tip (final11/13): all texts = dev's, X3 1.437x dev's decode. Pushed to the fork; still not opened upstream.
 - **Optimisation lead:** staged uploads (`COLI_VK_UP_IMPORT=0`) beat host-page imports on this RTX 3090 (6.6 vs 3.5-4.0
-  GB/s, prompt-1 TTFT 0.931x on dev); final16 re-measures it on top of fix B.
+  GB/s, prompt-1 TTFT 0.931x on dev; on top of fix B 0.980x and decode +2.6%, final16). Device dependent: a note, not a fix.
 
 ## Status (2026-10-23, evening)
 - **#2264 refreshed (2026-10-23 18:30):** upstream dev 61646cbd merged into `docs5/pr1-reap-prefill` (47c8ec51, no

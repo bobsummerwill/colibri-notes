@@ -13,7 +13,7 @@
    Whether to open issues / PRs is Bob's decision.
 3. **PR #2:** F18 is fixed and the branch retested; open it upstream when #2264 lands (or as Bob decides).
 4. **`COLI_VK_UP_IMPORT`:** imports are slower than staged uploads on this NVIDIA card; the default is device dependent,
-   so at most a note upstream (final16 on top of fix B).
+   so at most a note upstream (final16, on top of fix B: staged 0.980x TTFT, +2.6% decode).
 5. Pure-Vulkan greedy texts vary run to run on dev itself (the tier's device/CPU split follows measured upload rates).
    Known, not a bug of these branches; it means pure-Vulkan text identity can't be a gate.
 6. tasks-personal #2824 (driver alignment, needs Bob's sudo) unchanged.

@@ -96,7 +96,8 @@ for pure Vulkan. The default-pool runs leave ~1 GiB of MemAvailable, so the pool
 this box, but it no longer overshoots by the 5 GiB nobody counted.
 
 **Also found:** `COLI_VK_UP_IMPORT=0` is faster on this box (uploads 6.2-6.7 GB/s against 3.5-4.0 with imports,
-p1 TTFT 0.931x in final12). That is a device-dependent default (the import path was presumably measured on another
+p1 TTFT 0.931x in final12 on dev). On top of fix B the gap is smaller but still there (final16, x3: staged 6.2-6.6
+vs imported 4.3 GB/s, p1 TTFT 0.980x, decode +2.6%, same memory, same texts). That is a device-dependent default (the import path was presumably measured on another
 device), so it is a note for upstream rather than a fix.
 
 ## PR #2 F18 (not upstream; on `docs5/pr2-two-gpu-decode`)
