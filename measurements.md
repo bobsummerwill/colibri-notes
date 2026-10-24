@@ -8,6 +8,21 @@
 
 Up to final5: all on shadowfax (see environment.md), DeepSeek V4 Flash REAP 150B, `--ram 40 --ctx 8192`, llama.cpp stopped for the window, one fresh server per sample. The engine is greedy, so "identical" means byte-identical output text (sha256 compared). final6 adds the full 256-expert V4 Flash and computer4 (DeepGEMM).
 
+## FINAL8 (2026-10-23 13:05-14:19 PDT, shadowfax, REAP-150B, `manifests/final8/`)
+Follow-ups to final7 (harness `tools/bench/final8/`); same trees as final7 (dev 7df8c27c, pr1 b286167e + Vulkan builds),
+fresh server per sample. **GATES: PASS**; 30 of 30 request texts = their group's first sample; 0 handled allocation
+failures; no OOM kill. (`QF/VA2 CLEAN: False` is a harness slip: the check wants 3 VA2 samples, the order runs 2.)
+Evidence: `manifests/final8/bench.tgz` (sha256 b3a61512…), `summary.txt`. Reading in [investigations.md](investigations.md) §7.
+
+| question | arms | texts (prompt 1 / 2) | ratio TTFT (2k / 3k) | decode |
+|---|---|---|---|---|
+| pure Vulkan, pool 12 GiB, split left to run time | QF dev x3, QG PR #1 x2 | all 5 `32534c06` / `1f019203` (= CUDA's) | QG/QF 0.998 / 0.997 | 1.02 |
+| Vulkan + CUDA, union, one 3,100 MiB reserve | VA2 dev x2, VA3 dev (VU's env) x2, VU2 PR #1 x2 | all 6 `6ec1e4b7` / `1bdc5d70` (= final6/7 VA) | VU2/VA2 0.979 / 0.983 | 1.00 |
+| Vulkan + CUDA, PR #1 bank | VB2 x2 | `6ec1e4b7` / `1f019203` (= final7 VB) | VB2/VA2 **0.588 / 0.537** | 1.00 |
+| CUDA only, same reserve | RA2 dev x1, RB2 PR #1 bank x1 | both `32534c06` / `1f019203` | RB2/RA2 **0.595 / 0.542** | 0.99 |
+
+Pure Vulkan with the 12 GiB pool still left only 0.50-0.63 GiB MemAvailable at its lowest (engine RSS ~58 GiB).
+
 ## FINAL7 (2026-10-23 10:00-12:57 PDT, shadowfax, `manifests/final7/`) and the computer4 repeats (`manifests/final8-c4ab/`)
 Follow-ups to final6 ([TEST_PLAN_20261023.md](TEST_PLAN_20261023.md)); reading in [investigations.md](investigations.md) §7.
 
@@ -18,7 +33,7 @@ Follow-ups to final6 ([TEST_PLAN_20261023.md](TEST_PLAN_20261023.md)); reading i
 | pure Vulkan, tier pinned | QP dev x3, QQ PR #1 x3 | **all 6 byte-identical**, TTFT 1.001 / 0.985, no OOM |
 | pure Vulkan, dev unpinned | QA (x3 planned) | s1 OOM-killed (pool 16.75 GiB) = final6's QB failure, on dev; s2/s3 skipped |
 | dev with QB's pool | QO | OOM-killed |
-| Vulkan + CUDA | VA dev x2, VU PR #1 union x2, VB PR #1 bank x2 | each arm reproducible; VB = VU = dev's CUDA text on prompt 2, VA (dev) differs; VU had 1,340 kv comp fallbacks (600 MiB reserve) -> final8 |
+| Vulkan + CUDA | VA dev x2, VU PR #1 union x2, VB PR #1 bank x2 | each arm reproducible; VB = VU = dev's CUDA text on prompt 2, VA (dev) differs; VU had 1,340 kv comp fallbacks (600 MiB reserve); with one reserve VU = VA (FINAL8) |
 | hybrid | D0, HD dev+hybrid x2, HG PR #2 off+hybrid, HY x2 | HD = HG = HY = final6's HY (decode_0 `14b09ca5…`, rest = D0): dev's hybrid text; PR #2 turns its peer pool off under hybrid (logged) |
 | F18 in a server | F7 | fault caught, prefix correct, then every request fails until restart |
 | computer4 default A/B again | c4ab2: W + 3+3 | 5 of 6 = reference; dev A s1 and PR #1 W changed prompt 2 under kv comp fallbacks; B/A 0.998 / 0.995 |

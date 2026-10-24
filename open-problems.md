@@ -6,7 +6,20 @@
 > [#2264](https://github.com/JustVugg/colibri/pull/2264), opened 2026-10-20; **PR #2** (two-GPU decode) is not opened yet. Documents dated before 2026-10-17 describe earlier
 > versions of these changes, on the old base 7b55a9b3.
 
-## Open now (2026-10-23) — plan: [TEST_PLAN_20261023.md](TEST_PLAN_20261023.md)
+## Open now (2026-10-23, after final7 + final8)
+1. **#2264:** every PR #1-vs-dev question this hardware can ask is answered (final6-8: default config identical and
+   0.98-0.99x TTFT; bank 0.66x like for like on the full model, 0.54-0.60x on REAP; Vulkan and Vulkan + CUDA identical
+   to dev given the same pool / reserve). To do: update `review/REPLY_2264_20261023_DRAFT.md` with final7/8; Bob posts.
+2. **F18 (PR #2):** in a real server a peer fault leaves every later request failing until restart (final7 F7), and
+   PR #2's "decode continues on device 0" is false. Fix the message, then try the host-wait probe variant / latch CUDA off.
+3. **Upstream issue drafts** (`review/UPSTREAM_ISSUES_20261023_DRAFT.md`, not filed): Vulkan host pool sized from free
+   RAM (OOM kill; 12 GiB still leaves 0.5 GiB), kv comp fallbacks changing default-config texts.
+4. **tasks-personal #2824** (driver alignment): both boxes report 595.99.02; close it.
+5. Manifests in `c/experiment_manifest.py` format for final7/8 not made (only QF has 3 samples in final8); evidence
+   tarballs are in `manifests/final7/`, `manifests/final8/`.
+
+<details><summary>Open on 2026-10-23 morning (superseded)</summary>
+
 1. **#2264:** final6 answered JustVugg's question (bit-identical, 0.98-0.99x TTFT, decode equal; verify 0 mismatches;
    DeepGEMM the same). To do: manifests (`manifests/final6/`), and the comment on #2264 (draft first; Bob posts or OKs).
 2. **Bank like-for-like:** dev loses its bank on a second prompt (its 2800 MiB default reserve is below the bank),
@@ -20,6 +33,8 @@
    computer4 B s2 had 421. Pre-existing; final7 step 1b re-checks computer4.
 7. **tasks-personal #2824** (align NVIDIA drivers between shadowfax and computer4): both already report 595.99.02
    (final6's host.txt on each); check and close it after final7.
+
+</details>
 
 ## Open on 2026-10-22 (superseded by the list above)
 1. **#2264 (PR #1):** run the pilot, then the overnight `final6` A/B on the full V4 Flash, default configuration

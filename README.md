@@ -10,7 +10,16 @@ Project notebook for Bob Summerwill's work on [colibri](https://github.com/JustV
 
 **Rule: no PRs and no pushes to upstream JustVugg/colibri.** Branches go to the fork only; Bob decides on submission (PR #0 and PR #1 were opened at his request).
 
-## Status (2026-10-23)
+## Status (2026-10-23, evening)
+- **final7 (10:00-12:57) and final8 (13:05-14:19) done on shadowfax; final8 GATES: PASS** ([measurements.md](measurements.md),
+  [investigations.md](investigations.md) §7). Bank like for like: PR #1 0.665 / 0.659x dev's TTFT on the full model with
+  dev given the same reserve. Every side-arm difference from final6 is explained and none is PR #1's: pure Vulkan is
+  reproducible (dev = PR #1 = CUDA text) once the host pool cannot OOM; Vulkan + CUDA PR #1 = dev with the same reserve
+  (final7's VU had kv comp fallbacks); HY is dev's hybrid. computer4 repeats: B/A 0.998 / 0.995.
+- **Open:** F18 in a server (PR #2: later requests fail until restart), the #2264 reply draft to update, upstream issue
+  drafts ([open-problems.md](open-problems.md)).
+
+## Status (2026-10-23, morning)
 - **final6 ran overnight** (shadowfax 17:46-23:56, computer4 DeepGEMM 17:43-19:01; [measurements.md](measurements.md)
   FINAL6). **JustVugg's question is answered:** default configuration, full V4 Flash, PR #1 vs dev: texts byte-identical,
   TTFT 0.983x / 0.989x, decode 1.002x; `DSV4_MM_WARP_VERIFY` 1,500 calls, 0 mismatches; DeepGEMM (RTX 5070): 0.999x /

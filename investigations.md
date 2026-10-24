@@ -147,3 +147,16 @@
   Next (final8 F18 step): a probe variant whose host waits for the peer's join (`DSV4_F18_HOSTWAIT=1`) instead of
   device 0's stream waiting on the peer's event, to see whether device 0 then survives.
 - **QO (dev, pure Vulkan, `COLI_VK_TIER_HOST_GB=15.75`):** OOM-killed after prompt 1 (anon-rss 43.3 GB), as QB and QA.
+- **final8 (shadowfax, REAP; GATES: PASS):**
+  - **Unpinned pure Vulkan is reproducible once the pool is sized safely:** QF (dev) x3 and QG (PR #1) x2 with only
+    `COLI_VK_TIER_HOST_GB=12` (split free) are byte-identical, and equal the CUDA path's texts (`32534c06…` /
+    `1f019203…`). So final6's QB difference was the OOM-killed sample, not run-time nondeterminism; the only upstream
+    issue left there is the pool's sizing (MemAvailable still fell to 0.5 GiB at 12 GiB).
+  - **Vulkan + CUDA: PR #1 = dev when both have room.** With one 3,100 MiB reserve, VU2 (PR #1, no bank) = VA2 = VA3
+    (dev) = `6ec1e4b7…` / `1bdc5d70…`, 0 kv comp fallbacks. final7's VU difference was its 1,340 fallbacks (the CPU
+    attention of §7's c4ab2 reading), not PR #1.
+  - **PR #1's bank on Vulkan + CUDA gives the CUDA-only text** on prompt 2 (VB2 `1f019203…` = RA2 = RB2), the union
+    path on that build gives `1bdc5d70…`. Reading (not proven): dev refuses the bank on REAP, so the union prefill in a
+    Vulkan build runs some experts through Vulkan, while the bank runs them all on CUDA. No dev arm exists to compare
+    the bank against on REAP; on CUDA only, RB2 (bank) = RA2 (dev union).
+  - TTFT: bank 0.59 / 0.54x dev on both builds (same as final6/7); no bank 0.98x; decode equal.
