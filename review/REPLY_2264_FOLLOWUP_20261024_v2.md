@@ -1,4 +1,4 @@
-# Draft v2: follow-up comment on #2264 (NOT posted; Bob decides)
+# Follow-up comment on #2264, POSTED 2026-10-24 (issuecomment-6387132721)
 
 > Supersedes REPLY_2264_FOLLOWUP_20261024_DRAFT.md: same correction, plus final12-16 (fix B measured, the imports
 > note, pure-Vulkan text variance). Evidence links pinned to colibri-notes d7726561. Sections 2-3 are outward-facing

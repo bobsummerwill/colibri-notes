@@ -7,8 +7,7 @@
 > versions of these changes, on the old base 7b55a9b3.
 
 ## Open now (2026-10-24 morning, after the overnight run)
-1. **#2264:** post or drop the corrected Vulkan + CUDA explanation ([draft](review/REPLY_2264_FOLLOWUP_20261024_DRAFT.md);
-   its last paragraph offers fixes A and B upstream, Bob's call). Upstream dev has not moved, so no rebase is due.
+1. **#2264:** follow-up posted 2026-10-24 ([comment](https://github.com/JustVugg/colibri/pull/2264#issuecomment-6387132721): the Vulkan + CUDA correction, fixes A and B offered, imports / pure-Vulkan variance notes; [text](review/REPLY_2264_FOLLOWUP_20261024_v2.md)). Waiting on JustVugg.
 2. **Fixes A and B** are on fork branches off dev with measurements ([review/UPSTREAM_FIXES_20261024.md](review/UPSTREAM_FIXES_20261024.md)).
    Whether to open issues / PRs is Bob's decision.
 3. **PR #2:** F18 is fixed and the branch retested; open it upstream when #2264 lands (or as Bob decides).
