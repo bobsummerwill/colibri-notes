@@ -13,7 +13,8 @@ Project notebook for Bob Summerwill's work on [colibri](https://github.com/JustV
 ## Status (2026-10-23, evening)
 - **#2264 refreshed (2026-10-23 18:30):** upstream dev 61646cbd merged into `docs5/pr1-reap-prefill` (47c8ec51, no
   conflicts; `make check` 2,709 tests OK, 292 skipped; generic CUDA build on shadowfax clean; GPU tests not re-run,
-  dev's 77 new commits touch no DeepSeek V4 CUDA file), pushed; the earlier CI runs on #2264 were all *cancelled*
+  dev's 77 new commits leave `c/backend_cuda_dsv4.cu` alone, but change `deepseek_v4.c`'s Windows memory bound and the
+  Vulkan tier's host-pool sizing (5c0469ae), so the Vulkan numbers are pre-merge only), pushed; the earlier CI runs on #2264 were all *cancelled*
   (not failed); the fresh run on 47c8ec51 is green (CI + check, 116 of 116 pass, 2026-10-24 03:2x UTC). Reply posted 2026-10-23 ([comment](https://github.com/JustVugg/colibri/pull/2264#issuecomment-6380344789), from
   `review/REPLY_2264_20261023_DRAFT.md`). PR #2 not refreshed (it waits for #2264).
 - **final7 (10:00-12:57) and final8 (13:05-14:19) done on shadowfax; final8 GATES: PASS** ([measurements.md](measurements.md),
