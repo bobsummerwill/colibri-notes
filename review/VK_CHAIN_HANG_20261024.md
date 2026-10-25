@@ -39,7 +39,7 @@ The main thread at 100% CPU and no GPU wait was the driver's compiler.
 | scratch patch, `COLI_VK_SUBGROUP=16` | 16 | 74.3, 71.6, 5.8, 194.8, 5.0 s | **PASS**, 0 FAILs, 523 s total |
 
 The scratch patch is one line in `vk_pin_sg` (backend_vulkan.c) that takes a size from `COLI_VK_SUBGROUP`
-([pin-n-scratch.patch](../manifests/counter-20261024/vk-chain-hang/pin-n-scratch.patch)); not on any branch. The
+([pin-n-scratch.patch](../manifests/counter-20261024/vk-chain-hang/pin-n-scratch.patch)). **Now a proper branch:** `fix/vk-subgroup-size-env` (d7879d19, on the fork) validates `n` against the device's range, warns on a bad value, and documents the variable in `docs/ENVIRONMENT.md` and `docs/vulkan.md`. The
 host side reads the pinned size only in `make_pipe`; `vk_chain.c:560` (chain_gemv2) needs `subgroupSize >= 16`,
 which 16 meets.
 

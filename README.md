@@ -137,6 +137,7 @@ Compare against upstream `dev`, never `main`. **The rebased branches are on the 
 | `fix/vk-host-image-alloc` | **upstream fix B** (2026-10-24): 72aa325a on dev 61646cbd, the Vulkan uploader's host images (no issue / PR); dev 561966e merged in on counter (97b26c0a, clean, pushed) |
 | `rewrite/pr2-linear` | 3ce988da, the same commit as `docs5/pr2-two-gpu-decode` now; can be deleted |
 | `split/pr2-1-guard` → `split/pr2-2-settings` → `split/pr2-3-vram-first` → `split/pr2-4-two-gpu` | **trial split of PR #2** (2026-10-24 night): a 4-part stack on dev 561966e, every part `make check` OK, part 4's tree = 3ce988da; see [review/PR2_SPLIT_OPTIONS_20261024.md](review/PR2_SPLIT_OPTIONS_20261024.md) |
+| `fix/vk-subgroup-size-env` | d7879d19 on dev 561966e: `COLI_VK_SUBGROUP=n` pins the chain at n (ANV's > 38 min SIMD32 compile of `chain_moe.spv`; see [review/VK_CHAIN_HANG_20261024.md](review/VK_CHAIN_HANG_20261024.md)) |
 | `fix/vk-chain-test-initializers` | 597b49a4 on dev 561966e: the 13 `-Wmissing-field-initializers` in `tests/test_vk_chain.c`; `test_vk_chain` passes on Lavapipe (pushed 2026-10-24 night) |
 | `scratch/fixA-x-pr2` (counter, local only) | c89353e4: trial merge of fix A into PR #2 (item 4 of open-problems); not for pushing |
 | `f18-probe` (local only, never pushed) | b62d1068: PR #2 + the F18 probe, debug build only (`-DCOLI_F18_PROBE`) |
