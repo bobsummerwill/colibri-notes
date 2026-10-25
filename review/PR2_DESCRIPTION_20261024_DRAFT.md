@@ -3,10 +3,13 @@
 > Supersedes the PR #2 section of [PR_DESCRIPTIONS_20261020.md](PR_DESCRIPTIONS_20261020.md) (final5 numbers, base
 > 736a0682, "Depends on PR #1"). #2264 (PR #1) is merged, so this PR now carries only its own 11 commits.
 
-Target: upstream `JustVugg/colibri` branch `dev`, from the fork's **`docs5/pr2-two-gpu-decode`** at **090d8160**
-(dev 561966ec merged in, 2026-10-24, no conflicts; pushed to the fork 2026-10-24).
+Target: upstream `JustVugg/colibri` branch `dev`, from the fork's **`docs5/pr2-two-gpu-decode`** at **3ce988da**:
+11 linear commits on dev 561966ec, no merges (rewritten from the merged 090d8160 and force-pushed to the fork
+2026-10-24, Bob's OK; same tree but the one test fix below). Ready to open from.
 
-Pushed: the branch on the fork is at 090d8160, ready to open from.
+Measured trees vs these commits: final11 ran c42ad524 and final13 ran 693204ed, the pre-rewrite F18 commits on dev
+61646cbd; their code is the code of 9c3f633c..3ce988da (the rewrite only re-based it; dev's changes since don't touch
+DeepSeek V4).
 
 ---
 
@@ -53,7 +56,7 @@ over the six answers; medians.
 | + `V4_GPU_RESIDENT_FIRST=1` (one GPU) | 3.096 | — | (final6: 1.021-1.030x over switches off) |
 | + `DSV4_CUDA_PEER_DEVICE=1` (peer compute on GPU 1) | 4.343 | **4.342** | **1.437x** |
 
-Every answer in every sample is byte-identical to upstream dev's. final13 (x1, the exact pre-merge tip 693204ed)
+Every answer in every sample is byte-identical to upstream dev's. final13 (x1, 693204ed = this PR's 3ce988da before the rebase)
 repeated the all-on arm: 4.332 tok/s, the same six texts.
 
 **Fault test** (final13, 693204ed): `DSV4_CUDA_PEER_FAULT=n:sticky` injects a sticky fault on the peer GPU in a server
@@ -69,11 +72,12 @@ Manifests with hashed raw evidence: [final6](https://github.com/bobsummerwill/co
   bit-identical to one GPU, peer-fault latch incl. a sticky scenario; they skip without two peer-capable GPUs),
   `test_v4_peer_init_source.py`, `test_dsv4_cuda_lost_source.py` (the F18 latch), `test_v4_moe_batch_books_source.py`,
   and a VRAM-first store test in `test_deepseek_v4.c`.
-- On the merged tip 090d8160 (counter, gcc 16.2.1, no GPU): `make -C c check` 2,741 tests OK (312 skipped).
+- On the tip 3ce988da (counter, gcc 16.2.1, no GPU): `make -C c check` 2,741 tests OK (312 skipped).
 - Every commit: the CPU engine builds, and `deepseek_v4.c` (with `-DCOLI_V4_GPU_TIER
   -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER`, and again with `-DCOLI_VULKAN`) and `tests/test_deepseek_v4.c` (with
-  `-DCOLI_V4_TEST_HOOKS`) compile with `-Wall -Wextra`: 0 diagnostics.
-- GPU (final11, shadowfax, 2× RTX 3090 + NVLink, the F18-fixed tree on dev 61646cbd): `make -C c dsv4-cuda-test` and
+  `-DCOLI_V4_TEST_HOOKS`) compile with `-Wall -Wextra`: 0 diagnostics; the dsv4 parity and V4 source tests pass.
+- GPU (final11, shadowfax, 2× RTX 3090 + NVLink, c42ad524 on dev 61646cbd: the F18 latch before its last two
+  commits, which touch only `deepseek_v4.c`'s CPU fallbacks and error messages): `make -C c dsv4-cuda-test` and
   `make -C c cuda-test` pass. dev 61646cbd..561966ec changes no DeepSeek V4 or shared CUDA code outside #2264 (the
   other GPU changes are Qwen3.6's CUDA chain; the Makefile change only adds a Qwen3.6 test target), so these results
   carry over; the GPU tests were not re-run on the merged tip.
@@ -95,11 +99,10 @@ Manifests with hashed raw evidence: [final6](https://github.com/bobsummerwill/co
 ---
 
 ### Notes for Bob (not part of the description)
-- **Fix A overlap:** `fix/dsv4-mirror-guard-overshoot` is the same guard fix as this PR's 6b7fc6c0, on its own. If fix
-  A is opened and merged first, this PR's merge of dev takes this PR's side of the guard and ports fix A's source test
-  to the per-cache fields (trial merge: scratch branch `scratch/fixA-x-pr2` c89353e4 on counter). Mention fix A in
-  this description if both are open.
-- **Bisect nit:** `test_v4_moe_batch_books_source.py` (added in fb0332a3) expects two `v4_views_fetch_host` calls in
-  `moe_token_pipeline`; the second comes with b8295605. So that one test fails at fb0332a3, a9347ef6, 6b7fc6c0 and
-  1cace62a and passes from b8295605 on. Every commit builds; fixing it means rewriting the branch (force-push).
+- **Fix A overlap:** `fix/dsv4-mirror-guard-overshoot` is the same guard fix as this PR's b9b1f0ac (was 6b7fc6c0),
+  on its own. If fix A is opened and merged first, this PR takes its own side of the guard and ports fix A's source
+  test to the per-cache fields (trial merge against the old tip: `scratch/fixA-x-pr2` c89353e4 on counter; redo it
+  against 3ce988da). Mention fix A in this description if both are open.
+- **Bisect nit: fixed by the rewrite.** The VRAM-first commit (d75d9639) now asserts at least one
+  `v4_views_fetch_host` call instead of exactly two; every commit passes its tests.
 - The manifest links are pinned to colibri-notes 70b7d97.

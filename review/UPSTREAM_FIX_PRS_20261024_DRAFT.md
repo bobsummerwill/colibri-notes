@@ -8,7 +8,7 @@
 > - fix B `fix/vk-host-image-alloc` **97b26c0a** (72aa325a + a clean merge)
 >
 > JustVugg did not answer the offer of both on #2264. Fix B is independent of everything else; fix A overlaps PR #2
-> (its 6b7fc6c0 contains the same guard fix), see the note at the end.
+> (its b9b1f0ac (was 6b7fc6c0) contains the same guard fix), see the note at the end.
 
 ---
 
@@ -136,7 +136,7 @@ default-pool runs still leave only ~1 GiB of MemAvailable on this box, so the po
 
 ### Notes for Bob (not part of the descriptions)
 - **Fix A vs PR #2, recommended order: fix A first.** It's small (one function, measured on two cards in the default
-  configuration) and fixes dev on its own; PR #2's 6b7fc6c0 contains the same fix in per-cache form. The trial merge
+  configuration) and fixes dev on its own; PR #2's b9b1f0ac (was 6b7fc6c0) contains the same fix in per-cache form. The trial merge
   (`scratch/fixA-x-pr2`, c89353e4; `make check` 2,745 OK, 312 skipped) resolves by keeping PR #2's guard and docs and porting fix A's source test to the
   per-cache fields. One behavioural difference: PR #2 gives the bank-sized default its 64-mirror margin also below 32
   live mirrors (where that default is only the 600 MiB headroom), fix A gives it none there. That only matters on a
