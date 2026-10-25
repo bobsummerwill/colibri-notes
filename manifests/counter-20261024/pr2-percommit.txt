@@ -1,0 +1,29 @@
+# Per-commit check, counter (gcc (GCC) 16.2.1 20260810), 2026-10-24T16:31:34-07:00
+# (1) make -f Makefile.deepseek-v4 deepseek-v4 (clean)  (2) deepseek_v4.c -DCOLI_V4_GPU_TIER -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER
+# (3) same + -DCOLI_VULKAN  (4) tests/test_deepseek_v4.c -DCOLI_V4_TEST_HOOKS  (5) dsv4 parity + v4 source tests (python unittest)
+# all with: -O2 -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -fopenmp -pthread -march=native -fsyntax-only ; diag = 'warning:|error:' lines excluding lto serial note
+75f3f2f898 build=0 gpu_tier=0 vk=0 test=0 py=0 diag=0  deepseek-v4: DSV4_CUDA_PIN_CAP_GB caps the page-locked expert slabs
+6992fb0d01 build=0 gpu_tier=0 vk=0 test=0 py=0 diag=0  deepseek-v4: V4_SERVE_STATS_LOG per-turn decode stats and MoE counters
+fb0332a38e build=0 gpu_tier=0 vk=0 test=0 py=1 diag=0  deepseek-v4: VRAM-first decode lookups (V4_GPU_RESIDENT_FIRST)
+#   py: Ran 15 tests in 0.057s
+#   py: 
+#   py: FAILED (failures=1)
+a9347ef653 build=0 gpu_tier=0 vk=0 test=0 py=1 diag=0  deepseek-v4: per-cache mirror growth-guard state and one LRU clock
+#   py: Ran 15 tests in 0.059s
+#   py: 
+#   py: FAILED (failures=1)
+6b7fc6c018 build=0 gpu_tier=0 vk=0 test=0 py=1 diag=0  deepseek-v4: mirror caches keep their VRAM reserve, drop failed upload
+#   py: Ran 15 tests in 0.058s
+#   py: 
+#   py: FAILED (failures=1)
+1cace62ae6 build=0 gpu_tier=0 vk=0 test=0 py=1 diag=0  deepseek-v4: peer mirror pool on a second GPU (DSV4_CUDA_PEER_DEVICE)
+#   py: Ran 20 tests in 0.065s
+#   py: 
+#   py: FAILED (failures=1)
+b82956059b build=0 gpu_tier=0 vk=0 test=0 py=0 diag=0  deepseek-v4: peer compute on the second GPU (DSV4_CUDA_PEER_COMPUTE)
+bb08dc4b90 build=0 gpu_tier=0 vk=0 test=0 py=0 diag=0  deepseek-v4: document two-GPU decode and VRAM-first lookups
+6628f5b189 build=0 gpu_tier=0 vk=0 test=0 py=0 diag=0  deepseek-v4: a sticky CUDA fault latches CUDA off for the process (F18
+8eedc83bd5 build=0 gpu_tier=0 vk=0 test=0 py=0 diag=0  deepseek-v4: a failed decode block names its stage and keeps the inner
+693204ed0e build=0 gpu_tier=0 vk=0 test=0 py=0 diag=0  deepseek-v4: the attention's grouped wo_a matvec falls back to the CPU
+090d8160ad build=0 gpu_tier=0 vk=0 test=0 py=0 diag=0  Merge remote-tracking branch 'upstream/dev' into docs5/pr2-two-gpu-dec
+# done 2026-10-24T16:33:03-07:00

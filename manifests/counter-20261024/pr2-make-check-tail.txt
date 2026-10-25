@@ -1,0 +1,30 @@
+.[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/brio HTTP/1.1" 404 -
+/usr/lib/python3.14/tempfile.py:484: ResourceWarning: Implicitly cleaning up <HTTPError 404: 'Not Found'>
+  _warnings.warn(self.warn_message, ResourceWarning)
+.[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 422 -
+[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 422 -
+[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 422 -
+[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 422 -
+[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 422 -
+.[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 422 -
+.............................ss.............  [TUNE] applied measured profile · +20.0% calibration throughput
+  [TUNE] applied measured profile · +20.0% calibration throughput
+  [TUNE] applied measured profile · +20.0% calibration throughput
+.......................................................s.....................
+----------------------------------------------------------------------
+Ran 2741 tests in 167.785s
+
+OK (skipped=312)
+  nothing running — no serve on port 9123, no SERVE engines
+make[2]: Leaving directory '/home/unagi/Projects/colibri/c'
+make[1]: Leaving directory '/home/unagi/Projects/colibri/c'
+make: Leaving directory '/home/unagi/Projects/colibri/c'
+
+real	10m24.601s
+user	94m35.888s
+sys	0m55.199s

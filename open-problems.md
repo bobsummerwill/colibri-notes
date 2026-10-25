@@ -3,8 +3,33 @@
 > **Naming key.** These notes use internal names for the upstream pull requests. **PR #0** is the six
 > fixes opened as JustVugg/colibri [#2212](https://github.com/JustVugg/colibri/pull/2212) (0a), [#2213](https://github.com/JustVugg/colibri/pull/2213) (0b), [#2214](https://github.com/JustVugg/colibri/pull/2214) (0c), [#2215](https://github.com/JustVugg/colibri/pull/2215) (0d),
 > [#2216](https://github.com/JustVugg/colibri/pull/2216) (0e) and [#2217](https://github.com/JustVugg/colibri/pull/2217) (0f). **PR #1** (batched GPU prefill for expert-pruned checkpoints) is
-> [#2264](https://github.com/JustVugg/colibri/pull/2264), opened 2026-10-20; **PR #2** (two-GPU decode) is not opened yet. Documents dated before 2026-10-17 describe earlier
+> [#2264](https://github.com/JustVugg/colibri/pull/2264), opened 2026-10-20, **merged 2026-10-24** in JustVugg's batch [#2360](https://github.com/JustVugg/colibri/pull/2360) (merge commit 60a73ec; dev 561966e).
+> **PR #2** (two-GPU decode) is not opened yet. Documents dated before 2026-10-17 describe earlier
 > versions of these changes, on the old base 7b55a9b3.
+
+## Open now (2026-10-24 evening, after #2264 merged)
+shadowfax and computer4 are unreachable; counter is the only build/test machine. Each item notes whether it needs a GPU.
+
+> **Progress (2026-10-24 night, counter; nothing pushed):** items 1, 2, 4, 5 and 7 are done locally, see the README's
+> night status. Left: **push** the three branches (counter needs `gh auth login`), item 1's CUDA/DeepGEMM builds
+> (counter has no nvcc), item 3 (shadowfax), item 6's branch retirement (Bob's go-ahead), item 8. Then Bob decides on
+> opening PR #2 and fixes A and B.
+
+1. **PR #2: bring onto dev 561966e.** *(counter, no GPU)* **Done locally** (090d8160; triage: no V4 GPU code changed; `make check` and per-commit OK; CUDA builds not possible: no nvcc).
+   - Merge dev 561966e into `docs5/pr2-two-gpu-decode`; push to the fork only.
+   - **Triage first:** `git diff --stat 61646cb..561966e` and `git log` on `c/deepseek_v4*.c`, `c/backend_cuda_dsv4.cu`, `cu_tier.c`, the Vulkan backend and the Makefile's CUDA targets. Batch #2360 is mostly API/schema/OLMoE/Qwen3.6; check whether #2332 / #2359 (Qwen3.6 CUDA chain) touch shared CUDA or Makefile code. *(verify)*
+   - If the V4/dsv4 GPU code is untouched, final11/13 (texts = dev's, X3 1.437x dev's decode, F18 fault → later requests complete on the host) still describe the merged tree. In that case PR #2 can be opened now, with the GPU results stated as measured on 14d67f05 + F18 fix.
+   - `make -C c check`, CPU-only build, engine units under `-DCOLI_V4_GPU_TIER` (and with `-DCOLI_VULKAN`), per-commit `-Wall -Wextra`, dsv4 export parity test, Python source tests (incl. the F18 latch's).
+   - CUDA engine build (generic sm_86, NO_TC) and DeepGEMM sm_120a compile: only if counter has nvcc (12.8+ for DeepGEMM).
+2. **PR #2 description.** *(no machine)* **Drafted:** [review/PR2_DESCRIPTION_20261024_DRAFT.md](review/PR2_DESCRIPTION_20261024_DRAFT.md). Replace the final5 numbers with final6 / final11 / final13. Describe the F18 fix (a sticky peer fault now falls back to the host instead of failing every later request) and correct the earlier "decode continues on device 0" claim. Say that #2264 is merged and this PR now carries only its own commits. Draft first; Bob opens.
+3. **PR #2 GPU re-check on the merged tip.** *(shadowfax, 2x GPU; blocked)* `make cuda-test`, `dsv4-cuda-test`, the F18 injection (`DSV4_CUDA_PEER_FAULT=n:sticky`) in a server, a short X3 sanity A/B. Only required before opening if item 1's triage finds GPU code changed on dev.
+4. **Fix A vs PR #2.** *(counter, no GPU)* **Done:** PR #2 already contains fix A; trial merge c89353e4 `make check` OK; fix A first. Both touch the decode-mirror growth guard / VRAM accounting. Trial-merge `fix/dsv4-mirror-guard-overshoot` with PR #2 in a scratch branch (`git merge-tree` first). Run `make check` on the result. Decide the order and mention the other in each description.
+5. **Fixes A and B onto dev 561966e.** *(counter, no GPU)* **Done locally** (f30c7b23 with a conflict resolved, 97b26c0a clean; `make check` OK); descriptions drafted: [review/UPSTREAM_FIX_PRS_20261024_DRAFT.md](review/UPSTREAM_FIX_PRS_20261024_DRAFT.md). Both are on 61646cbd; rebase or merge. Run `make check` and their source tests. Write PR descriptions from [review/UPSTREAM_FIXES_20261024.md](review/UPSTREAM_FIXES_20261024.md) (evidence on 61646cbd stands; no rerun needed to open). JustVugg did not reply to the offer on #2264; whether to open issues or PRs is Bob's decision. Fix B is independent of both PRs.
+6. **Notes housekeeping.** *(no machine)* This update. Retire history branches on the fork (Bob's go-ahead).
+7. **Superseded / low priority.** *(The kv comp issue text is folded into fix A's draft.)* The kv comp fallback issue draft (`review/UPSTREAM_ISSUES_20261023_DRAFT.md`) is superseded by fix A; fold its text into fix A's description. The `COLI_VK_UP_IMPORT` note and pure-Vulkan text variance are already reported on #2264; an issue only if JustVugg wants one. Fix B's Vulkan memory measurements on the new base need shadowfax *(blocked, optional)*.
+8. **tasks-personal #2824** (driver alignment, needs Bob's sudo) unchanged; not colibri work, and both machines are offline anyway.
+
+<details><summary>Open on 2026-10-24 morning (superseded)</summary>
 
 ## Open now (2026-10-24 morning, after the overnight run)
 1. **#2264:** follow-up posted 2026-10-24 ([comment](https://github.com/JustVugg/colibri/pull/2264#issuecomment-6387132721): the Vulkan + CUDA correction, fixes A and B offered, imports / pure-Vulkan variance notes; [text](review/REPLY_2264_FOLLOWUP_20261024_v2.md)). Waiting on JustVugg.
@@ -16,6 +41,7 @@
 5. Pure-Vulkan greedy texts vary run to run on dev itself (the tier's device/CPU split follows measured upload rates).
    Known, not a bug of these branches; it means pure-Vulkan text identity can't be a gate.
 6. tasks-personal #2824 (driver alignment, needs Bob's sudo) unchanged.
+</details>
 
 <details><summary>Open on 2026-10-23 evening (superseded)</summary>
 

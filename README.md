@@ -3,18 +3,56 @@
 > **Naming key.** These notes use internal names for the upstream pull requests. **PR #0** is the six
 > fixes opened as JustVugg/colibri [#2212](https://github.com/JustVugg/colibri/pull/2212) (0a), [#2213](https://github.com/JustVugg/colibri/pull/2213) (0b), [#2214](https://github.com/JustVugg/colibri/pull/2214) (0c), [#2215](https://github.com/JustVugg/colibri/pull/2215) (0d),
 > [#2216](https://github.com/JustVugg/colibri/pull/2216) (0e) and [#2217](https://github.com/JustVugg/colibri/pull/2217) (0f). **PR #1** (batched GPU prefill for expert-pruned checkpoints) is
-> [#2264](https://github.com/JustVugg/colibri/pull/2264), opened 2026-10-20; **PR #2** (two-GPU decode) is not opened yet. Documents dated before 2026-10-17 describe earlier
+> [#2264](https://github.com/JustVugg/colibri/pull/2264), opened 2026-10-20, **merged 2026-10-24** in JustVugg's batch [#2360](https://github.com/JustVugg/colibri/pull/2360) (merge commit 60a73ec; dev 561966e).
+> **PR #2** (two-GPU decode) is not opened yet. Documents dated before 2026-10-17 describe earlier
 > versions of these changes, on the old base 7b55a9b3.
 
 Project notebook for Bob Summerwill's work on [colibri](https://github.com/JustVugg/colibri) (pure-C/CUDA engine that runs huge MoE models by streaming experts from NVMe and caching hot experts in RAM/VRAM), done with Claude Code on 2026-10-12..14. Not branch-specific; the code lives in the fork [bobsummerwill/colibri](https://github.com/bobsummerwill/colibri).
 
 **Rule: no PRs and no pushes to upstream JustVugg/colibri.** Branches go to the fork only; Bob decides on submission (PR #0 and PR #1 were opened at his request).
 
+## Status (2026-10-24, night; counter, local only, nothing pushed)
+- **All three branches are on dev 561966e**, in the fork clone on counter (`~/Projects/colibri`), **not pushed** (no
+  GitHub credentials on counter yet):
+  - **PR #2** `docs5/pr2-two-gpu-decode` 090d8160: dev merged in, **no conflicts**. dev 61646cbd..561966e changes no
+    V4/dsv4 GPU code outside #2264 (its other GPU changes are Qwen3.6's CUDA chain, and the Makefile only gains a
+    Qwen3.6 test target), so final11/13 still describe the tree. `make check` 2,741 OK (312 skipped). Per commit: all
+    11 + the merge build, `deepseek_v4.c` (GPU tier, and with `-DCOLI_VULKAN`) and `test_deepseek_v4.c` compile with
+    `-Wall -Wextra`, 0 diagnostics ([manifests/counter-20261024/pr2-percommit.txt](manifests/counter-20261024/pr2-percommit.txt)).
+    **Bisect nit:** `test_v4_moe_batch_books_source.py` (added in fb0332a3) needs the second `v4_views_fetch_host`
+    that b8295605 adds, so it fails at the 4 commits in between and passes at every tip; fixing that needs a
+    force-push.
+  - **Fix A** f30c7b23: dev merged in **with a conflict**. #2264 replaced the fixed 2800/600 MiB reserve with
+    `v4_gpu_mirror_reserve_mb()`, so the margin is now `v4_gpu_mirror_reserve_margin_mb()`: the 64 mirrors the
+    bank-sized default carries, 0 for an explicit reserve or the 600 MiB headroom. Source test updated. `make check`
+    2,733 OK (312 skipped).
+  - **Fix B** 97b26c0a: dev merged in, clean (dev doesn't touch the Vulkan uploader). `make check` 2,732 OK (312 skipped).
+- **Fix A vs PR #2:** PR #2's 6b7fc6c0 already *contains* fix A (per-cache form). The trial merge (local
+  `scratch/fixA-x-pr2` c89353e4) keeps PR #2's guard and docs and ports fix A's test; `make check` 2,745 OK.
+  Recommended order: fix A first. See [review/UPSTREAM_FIX_PRS_20261024_DRAFT.md](review/UPSTREAM_FIX_PRS_20261024_DRAFT.md).
+- **Drafts for Bob:** [review/PR2_DESCRIPTION_20261024_DRAFT.md](review/PR2_DESCRIPTION_20261024_DRAFT.md) (final6/11/13
+  numbers, the F18 fix, the "continues on device 0" correction) and
+  [review/UPSTREAM_FIX_PRS_20261024_DRAFT.md](review/UPSTREAM_FIX_PRS_20261024_DRAFT.md) (fixes A and B; fix A absorbs the
+  2026-10-23 kv comp issue draft).
+- **Not done on counter:** CUDA/DeepGEMM builds (no nvcc) and the GPU re-check (shadowfax); triage says the re-check
+  isn't needed before opening PR #2.
+
+## Status (2026-10-24, evening)
+- **#2264 (PR #1) merged** into dev through batch [#2360](https://github.com/JustVugg/colibri/pull/2360) (merge commits
+  60a73ec for #2264, 561966e for the batch; 116 checks passed). A real merge, not a squash: the branch's commits,
+  including 47c8ec51, are now ancestors of dev. JustVugg's own check was V4 Flash UD-IQ1_S on an RTX PRO 4000, 2 rounds:
+  Vulkan and CUDA decode equal to dev, prompt the same.
+- The follow-up comment ([comment](https://github.com/JustVugg/colibri/pull/2264#issuecomment-6387132721)) was posted
+  before the merge; JustVugg did not answer its offer of fixes A and B.
+- **shadowfax and computer4 unreachable.** Only counter is available for building and testing. See
+  [open-problems.md](open-problems.md) for what that allows.
+- **Next:** PR #2 (merge dev 561966e, re-check, refresh the description, open at Bob's decision), then fixes A and B.
+
 ## Status (2026-10-24, overnight; log: [OVERNIGHT_20261024.md](OVERNIGHT_20261024.md))
 - **#2264 (PR #1):** nothing to rebase (upstream dev still 61646cbd at 05:05; the PR is clean, no new comments). The
   Vulkan + CUDA prompt-2 text is explained (final9/9b/11): the Vulkan dense hook is used identically by dev's union and
-  the bank, and the difference is CUDA vs CPU expert sums on a near-tie. A corrected follow-up is drafted, **not
-  posted**: [review/REPLY_2264_FOLLOWUP_20261024_DRAFT.md](review/REPLY_2264_FOLLOWUP_20261024_DRAFT.md).
+  the bank, and the difference is CUDA vs CPU expert sums on a near-tie. A corrected follow-up was drafted and then
+  posted 2026-10-24 ([comment](https://github.com/JustVugg/colibri/pull/2264#issuecomment-6387132721)).
 - **Two upstream fixes on fork branches off dev 61646cbd, no issues or PRs** ([review/UPSTREAM_FIXES_20261024.md](review/UPSTREAM_FIXES_20261024.md)):
   **fix A** `fix/dsv4-mirror-guard-overshoot` bd7103fd (the decode mirror cache no longer overshoots its VRAM reserve:
   0 kv comp fallbacks instead of ~420 a sample on the full model, texts identical, prompt-2 TTFT 0.946x on the 3090
@@ -89,12 +127,15 @@ Compare against upstream `dev`, never `main`. **The rebased branches are on the 
 | `rebased/pr2/two-gpu-decode` | PR #2 final (8 commits on PR #1) |
 | `refresh/pr1-reap-prefill` | **PR #1 on upstream dev 736a0682** (2026-10-19, after PR #0 merged): the same 8 commits directly on dev |
 | `refresh/pr2-two-gpu-decode` | **PR #2 on upstream dev 736a0682** (2026-10-19): the same 8 commits on refresh/pr1 |
-| `docs5/pr1-reap-prefill` | **PR #1, opened as #2264** (2026-10-20): refresh/pr1 with its docs commit carrying the final5 numbers; upstream dev 7df8c27c merged in on 2026-10-22 (ebe82123); b286167e (DeepGEMM unused variables) on 2026-10-22, pushed 2026-10-23; dev 61646cbd merged in 2026-10-23 (47c8ec51), pushed |
-| `docs5/pr2-two-gpu-decode` | **PR #2 to submit** (2026-10-20): refresh/pr2 on docs5/pr1, its docs commit carrying the final5 numbers; docs5/pr1's dev merge merged in on 2026-10-22 (073f18d2), then b286167e (0523e8e0); docs5/pr1 47c8ec51 merged in 2026-10-24 (14d67f05), then the F18 fix 6628f5b1 + 8eedc83b + 693204ed, pushed 2026-10-24 |
-| `fix/dsv4-mirror-guard-overshoot` | **upstream fix A** (2026-10-24): bd7103fd on dev 61646cbd, the decode mirror cache guard (no issue / PR) |
-| `fix/vk-host-image-alloc` | **upstream fix B** (2026-10-24): 72aa325a on dev 61646cbd, the Vulkan uploader's host images (no issue / PR) |
+| `docs5/pr1-reap-prefill` | **PR #1, merged upstream 2026-10-24** as [#2264](https://github.com/JustVugg/colibri/pull/2264) (60a73ec, in batch #2360 / dev 561966e). History: refresh/pr1 with its docs commit carrying the final5 numbers; dev 7df8c27c merged in 2026-10-22 (ebe82123); b286167e (DeepGEMM unused variables); dev 61646cbd merged in 2026-10-23 (47c8ec51). No further work. |
+| `docs5/pr2-two-gpu-decode` | **PR #2 to submit.** As before, up to the F18 fix (6628f5b1 + 8eedc83b + 693204ed, pushed 2026-10-24); dev 561966e merged in on counter 2026-10-24 (090d8160, **not pushed yet**): the PR diff is now PR #2's own 11 commits. |
+| `fix/dsv4-mirror-guard-overshoot` | **upstream fix A** (2026-10-24): bd7103fd on dev 61646cbd, the decode mirror cache guard (no issue / PR); dev 561966e merged in on counter (f30c7b23, conflict resolved, **not pushed yet**) |
+| `fix/vk-host-image-alloc` | **upstream fix B** (2026-10-24): 72aa325a on dev 61646cbd, the Vulkan uploader's host images (no issue / PR); dev 561966e merged in on counter (97b26c0a, clean, **not pushed yet**) |
+| `scratch/fixA-x-pr2` (counter, local only) | c89353e4: trial merge of fix A into PR #2 (item 4 of open-problems); not for pushing |
 | `f18-probe` (local only, never pushed) | b62d1068: PR #2 + the F18 probe, debug build only (`-DCOLI_F18_PROBE`) |
 | `pr0*/…`, `pr1/reap-prefill`, `pr2/two-gpu-decode`, `pr1/v6`, `pr1/v7`, `pr2/v5`, … | the 2026-10-15/16 stack on 7b55a9b3 (history) |
+
+The `rebased/*`, `refresh/*` and 7b55a9b3-era branches are history only; deleting them from the fork needs Bob's go-ahead.
 
 ## Contents
 - [environment.md](environment.md) — hardware, services, safe GPU-downtime procedure, build/run commands, paths.
