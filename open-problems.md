@@ -10,6 +10,8 @@
 ## Open now (2026-10-24 evening, after #2264 merged)
 shadowfax and computer4 are unreachable; counter is the only build/test machine. Each item notes whether it needs a GPU.
 
+> **Pick up from [HANDOFF_20261024.md](HANDOFF_20261024.md)** (supersedes the progress note below for what's next).
+>
 > **Progress (2026-10-24 night, counter):** items 1, 2, 4, 5 and 7 are done, the three branches pushed to the fork; see the README's
 > night status. Left: item 1's CUDA/DeepGEMM builds
 > (counter has no nvcc), item 3 (shadowfax), item 6's branch retirement (Bob's go-ahead), item 8. Then Bob decides on

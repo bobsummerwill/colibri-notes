@@ -11,6 +11,11 @@ Project notebook for Bob Summerwill's work on [colibri](https://github.com/JustV
 
 **Rule: no PRs and no pushes to upstream JustVugg/colibri.** Branches go to the fork only; Bob decides on submission (PR #0 and PR #1 were opened at his request).
 
+> **Pick up here: [HANDOFF_20261024.md](HANDOFF_20261024.md)** (branch states, what is and isn't GPU-tested, next
+> steps, decisions pending). Latest: PR #2 rewritten linearly as `rewrite/pr2-linear` (3ce988da, every commit passes
+> its tests; adopting it needs Bob's OK to force-push); shadowfax/computer4 still unreachable; counter needs
+> `omarchy-update` before the Vulkan headers will install.
+
 ## Status (2026-10-24, night; counter)
 - **All three branches are on dev 561966e**, done on counter (`~/Projects/colibri`) and
   **pushed to the fork** (not upstream; nothing opened):
@@ -131,6 +136,7 @@ Compare against upstream `dev`, never `main`. **The rebased branches are on the 
 | `docs5/pr2-two-gpu-decode` | **PR #2 to submit.** As before, up to the F18 fix (6628f5b1 + 8eedc83b + 693204ed, pushed 2026-10-24); dev 561966e merged in on counter 2026-10-24 (090d8160, pushed): the PR diff is now PR #2's own 11 commits. |
 | `fix/dsv4-mirror-guard-overshoot` | **upstream fix A** (2026-10-24): bd7103fd on dev 61646cbd, the decode mirror cache guard (no issue / PR); dev 561966e merged in on counter (f30c7b23, conflict resolved, pushed) |
 | `fix/vk-host-image-alloc` | **upstream fix B** (2026-10-24): 72aa325a on dev 61646cbd, the Vulkan uploader's host images (no issue / PR); dev 561966e merged in on counter (97b26c0a, clean, pushed) |
+| `rewrite/pr2-linear` | 3ce988da: **PR #2 rewritten** as 11 linear commits on dev 561966e (no merges; the VRAM-first commit's test fixed so every commit passes). Same tree as 090d8160 but one test line. Adopt = force-push over `docs5/pr2-two-gpu-decode` (Bob's call); see [HANDOFF_20261024.md](HANDOFF_20261024.md) |
 | `scratch/fixA-x-pr2` (counter, local only) | c89353e4: trial merge of fix A into PR #2 (item 4 of open-problems); not for pushing |
 | `f18-probe` (local only, never pushed) | b62d1068: PR #2 + the F18 probe, debug build only (`-DCOLI_F18_PROBE`) |
 | `pr0*/…`, `pr1/reap-prefill`, `pr2/two-gpu-decode`, `pr1/v6`, `pr1/v7`, `pr2/v5`, … | the 2026-10-15/16 stack on 7b55a9b3 (history) |
