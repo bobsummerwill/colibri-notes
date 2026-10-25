@@ -124,7 +124,10 @@ default-pool runs still leave only ~1 GiB of MemAvailable on this box, so the po
 
 ### How this was tested
 - New `tests/test_vk_host_image_alloc_source.py` pins the allocation and the matching free.
-- On the merged tip 97b26c0a (counter, gcc 16.2.1): `make -C c check` 2,732 tests OK (312 skipped). GPU runs as above, on
+- On the merged tip 97b26c0a (counter, gcc 16.2.1): `make -C c check` 2,732 tests OK (312 skipped). Built with `VK=1`
+  (0 warnings in `backend_vulkan.c`); on an Intel Meteor Lake iGPU (Mesa 26.2.2) `vk-memtype-check` and
+  `vk-tier-check` pass, the tier suite with the import upload path on, i.e. through this change's allocator.
+  (`vk-chain-check` hangs on that iGPU on dev 561966e too, so it says nothing about this change.) GPU runs as above, on
   61646cbd (final15; dev..561966ec does not touch `backend_vulkan.c`'s uploader).
 
 ### Validation

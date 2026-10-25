@@ -1,0 +1,10 @@
+fixB build rc=0 warnings=13 (all tests/test_vk_chain.c)
+fixB vk-memtype-check rc=0
+fixB vk-tier-check rc=0 (import path on: imp_align 4 KiB)
+fixB chain (first try) killed by a 900 s timeout after the test-small-cap stage
+fixB chain rc=143 293s (killed by hand: stalled after test-small-cap, main thread spinning in user code)
+dev build rc=0 warnings=13
+dev vk-memtype-check rc=0
+dev vk-tier-check rc=0
+dev chain stalled: log unchanged 300s; last stage: [VK] test-small-cap chain: prompt chunks of up to 7 rows (0 
+dev chain rc=143 307s
