@@ -4,9 +4,9 @@
 > 736a0682, "Depends on PR #1"). #2264 (PR #1) is merged, so this PR now carries only its own 11 commits.
 
 Target: upstream `JustVugg/colibri` branch `dev`, from the fork's **`docs5/pr2-two-gpu-decode`** at **090d8160**
-(dev 561966ec merged in, 2026-10-24, no conflicts; not pushed yet).
+(dev 561966ec merged in, 2026-10-24, no conflicts; pushed to the fork 2026-10-24).
 
-Before opening: push 090d8160 to the fork (needs `gh auth login` on counter, or push from another machine).
+Pushed: the branch on the fork is at 090d8160, ready to open from.
 
 ---
 
@@ -60,9 +60,9 @@ repeated the all-on arm: 4.332 tok/s, the same six texts.
 answering the same six prompts. All six requests complete with 300 tokens each (on the host after the fault, 2.94
 tok/s mean decode), with no hang; before the fix every request after the fault failed until restart.
 
-Manifests with hashed raw evidence: [final6](https://github.com/bobsummerwill/colibri-notes/tree/main/manifests/final6),
-[final11](https://github.com/bobsummerwill/colibri-notes/tree/main/manifests/final11),
-[final13](https://github.com/bobsummerwill/colibri-notes/tree/main/manifests/final13).
+Manifests with hashed raw evidence: [final6](https://github.com/bobsummerwill/colibri-notes/tree/70b7d97/manifests/final6),
+[final11](https://github.com/bobsummerwill/colibri-notes/tree/70b7d97/manifests/final11),
+[final13](https://github.com/bobsummerwill/colibri-notes/tree/70b7d97/manifests/final13).
 
 ### How this was tested
 - New tests: `test_dsv4_peer_init_cuda.cu` and `test_dsv4_peer_moe_cuda.c` (two-GPU init, rollback, peer compute
@@ -77,7 +77,7 @@ Manifests with hashed raw evidence: [final6](https://github.com/bobsummerwill/co
   `make -C c cuda-test` pass. dev 61646cbd..561966ec changes no DeepSeek V4 or shared CUDA code outside #2264 (the
   other GPU changes are Qwen3.6's CUDA chain; the Makefile change only adds a Qwen3.6 test target), so these results
   carry over; the GPU tests were not re-run on the merged tip.
-- **Everything else**: [colibri-notes](https://github.com/bobsummerwill/colibri-notes/blob/main/README.md). Developed
+- **Everything else**: [colibri-notes](https://github.com/bobsummerwill/colibri-notes/blob/70b7d97/README.md). Developed
   with AI assistance (Claude Code; see the `Co-Authored-By` trailers); every change was reviewed and tested as
   described here.
 
@@ -102,4 +102,4 @@ Manifests with hashed raw evidence: [final6](https://github.com/bobsummerwill/co
 - **Bisect nit:** `test_v4_moe_batch_books_source.py` (added in fb0332a3) expects two `v4_views_fetch_host` calls in
   `moe_token_pipeline`; the second comes with b8295605. So that one test fails at fb0332a3, a9347ef6, 6b7fc6c0 and
   1cace62a and passes from b8295605 on. Every commit builds; fixing it means rewriting the branch (force-push).
-- The manifest links point at `main`; pin them to the colibri-notes commit that is pushed with this update.
+- The manifest links are pinned to colibri-notes 70b7d97.

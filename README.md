@@ -11,9 +11,9 @@ Project notebook for Bob Summerwill's work on [colibri](https://github.com/JustV
 
 **Rule: no PRs and no pushes to upstream JustVugg/colibri.** Branches go to the fork only; Bob decides on submission (PR #0 and PR #1 were opened at his request).
 
-## Status (2026-10-24, night; counter, local only, nothing pushed)
-- **All three branches are on dev 561966e**, in the fork clone on counter (`~/Projects/colibri`), **not pushed** (no
-  GitHub credentials on counter yet):
+## Status (2026-10-24, night; counter)
+- **All three branches are on dev 561966e**, done on counter (`~/Projects/colibri`) and
+  **pushed to the fork** (not upstream; nothing opened):
   - **PR #2** `docs5/pr2-two-gpu-decode` 090d8160: dev merged in, **no conflicts**. dev 61646cbd..561966e changes no
     V4/dsv4 GPU code outside #2264 (its other GPU changes are Qwen3.6's CUDA chain, and the Makefile only gains a
     Qwen3.6 test target), so final11/13 still describe the tree. `make check` 2,741 OK (312 skipped). Per commit: all
@@ -128,9 +128,9 @@ Compare against upstream `dev`, never `main`. **The rebased branches are on the 
 | `refresh/pr1-reap-prefill` | **PR #1 on upstream dev 736a0682** (2026-10-19, after PR #0 merged): the same 8 commits directly on dev |
 | `refresh/pr2-two-gpu-decode` | **PR #2 on upstream dev 736a0682** (2026-10-19): the same 8 commits on refresh/pr1 |
 | `docs5/pr1-reap-prefill` | **PR #1, merged upstream 2026-10-24** as [#2264](https://github.com/JustVugg/colibri/pull/2264) (60a73ec, in batch #2360 / dev 561966e). History: refresh/pr1 with its docs commit carrying the final5 numbers; dev 7df8c27c merged in 2026-10-22 (ebe82123); b286167e (DeepGEMM unused variables); dev 61646cbd merged in 2026-10-23 (47c8ec51). No further work. |
-| `docs5/pr2-two-gpu-decode` | **PR #2 to submit.** As before, up to the F18 fix (6628f5b1 + 8eedc83b + 693204ed, pushed 2026-10-24); dev 561966e merged in on counter 2026-10-24 (090d8160, **not pushed yet**): the PR diff is now PR #2's own 11 commits. |
-| `fix/dsv4-mirror-guard-overshoot` | **upstream fix A** (2026-10-24): bd7103fd on dev 61646cbd, the decode mirror cache guard (no issue / PR); dev 561966e merged in on counter (f30c7b23, conflict resolved, **not pushed yet**) |
-| `fix/vk-host-image-alloc` | **upstream fix B** (2026-10-24): 72aa325a on dev 61646cbd, the Vulkan uploader's host images (no issue / PR); dev 561966e merged in on counter (97b26c0a, clean, **not pushed yet**) |
+| `docs5/pr2-two-gpu-decode` | **PR #2 to submit.** As before, up to the F18 fix (6628f5b1 + 8eedc83b + 693204ed, pushed 2026-10-24); dev 561966e merged in on counter 2026-10-24 (090d8160, pushed): the PR diff is now PR #2's own 11 commits. |
+| `fix/dsv4-mirror-guard-overshoot` | **upstream fix A** (2026-10-24): bd7103fd on dev 61646cbd, the decode mirror cache guard (no issue / PR); dev 561966e merged in on counter (f30c7b23, conflict resolved, pushed) |
+| `fix/vk-host-image-alloc` | **upstream fix B** (2026-10-24): 72aa325a on dev 61646cbd, the Vulkan uploader's host images (no issue / PR); dev 561966e merged in on counter (97b26c0a, clean, pushed) |
 | `scratch/fixA-x-pr2` (counter, local only) | c89353e4: trial merge of fix A into PR #2 (item 4 of open-problems); not for pushing |
 | `f18-probe` (local only, never pushed) | b62d1068: PR #2 + the F18 probe, debug build only (`-DCOLI_F18_PROBE`) |
 | `pr0*/…`, `pr1/reap-prefill`, `pr2/two-gpu-decode`, `pr1/v6`, `pr1/v7`, `pr2/v5`, … | the 2026-10-15/16 stack on 7b55a9b3 (history) |

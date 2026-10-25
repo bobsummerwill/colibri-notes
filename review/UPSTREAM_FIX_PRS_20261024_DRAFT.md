@@ -2,7 +2,7 @@
 
 > From [UPSTREAM_FIXES_20261024.md](UPSTREAM_FIXES_20261024.md) (evidence on dev 61646cbd). Fix A's description absorbs
 > issue 1 of [UPSTREAM_ISSUES_20261023_DRAFT.md](UPSTREAM_ISSUES_20261023_DRAFT.md) (the kv comp fallback), which it
-> supersedes. Both branches now have dev 561966ec merged in (counter, 2026-10-24; not pushed yet):
+> supersedes. Both branches now have dev 561966ec merged in (counter, 2026-10-24; pushed to the fork):
 > - fix A `fix/dsv4-mirror-guard-overshoot` **f30c7b23** (bd7103fd + a merge that resolves a conflict with #2264's
 >   bank-sized reserve, below)
 > - fix B `fix/vk-host-image-alloc` **97b26c0a** (72aa325a + a clean merge)
@@ -82,7 +82,7 @@ machine and is left out of the medians.
 ### Validation
 - [x] `make -C c check`: 2733 tests, OK (312 skipped)
 - [x] Performance claims include hardware, commands and repeatable measurements
-- [x] Experiment manifests with raw evidence ([final10](https://github.com/bobsummerwill/colibri-notes/tree/main/manifests/final10), [c4fa](https://github.com/bobsummerwill/colibri-notes/tree/main/manifests/c4fa))
+- [x] Experiment manifests with raw evidence ([final10](https://github.com/bobsummerwill/colibri-notes/tree/70b7d97/manifests/final10), [c4fa](https://github.com/bobsummerwill/colibri-notes/tree/70b7d97/manifests/c4fa))
 
 ---
 
@@ -130,7 +130,7 @@ default-pool runs still leave only ~1 GiB of MemAvailable on this box, so the po
 ### Validation
 - [x] `make -C c check`: 2732 tests, OK (312 skipped)
 - [x] Performance claims include hardware, commands and repeatable measurements
-- [x] Experiment manifests with raw evidence ([final15](https://github.com/bobsummerwill/colibri-notes/tree/main/manifests/final15))
+- [x] Experiment manifests with raw evidence ([final15](https://github.com/bobsummerwill/colibri-notes/tree/70b7d97/manifests/final15))
 
 ---
 
