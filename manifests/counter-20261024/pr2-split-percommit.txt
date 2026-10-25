@@ -1,0 +1,18 @@
+# Per-commit check, PR #2 split stack, counter (gcc (GCC) 16.2.1 20260810), 2026-10-24T22:19:28-07:00
+# (1) make -f Makefile.deepseek-v4 deepseek-v4 (clean) (2) deepseek_v4.c -DCOLI_V4_GPU_TIER -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER (3) +COLI_VULKAN (4) tests/test_deepseek_v4.c -DCOLI_V4_TEST_HOOKS (5) dsv4/v4 python tests present at the commit
+198e126c20 build=0 gpu_tier=0 vk=0 test=0 py=0 diag=0  deepseek-v4: per-cache mirror growth-guard state and one LRU clock
+b82e6af3e6 build=0 gpu_tier=0 vk=0 test=0 py=0 diag=0  deepseek-v4: mirror caches keep their VRAM reserve, drop failed upload
+956bb1ad12 build=0 gpu_tier=0 vk=0 test=0 py=0 diag=0  deepseek-v4: DSV4_CUDA_PIN_CAP_GB caps the page-locked expert slabs
+574adecafd build=0 gpu_tier=0 vk=0 test=0 py=0 diag=0  deepseek-v4: V4_SERVE_STATS_LOG per-turn decode stats and MoE counters
+b8530946fc build=0 gpu_tier=0 vk=0 test=0 py=0 diag=0  deepseek-v4: VRAM-first decode lookups (V4_GPU_RESIDENT_FIRST)
+9149016580 build=0 gpu_tier=0 vk=0 test=0 py=0 diag=0  deepseek-v4: peer mirror pool on a second GPU (DSV4_CUDA_PEER_DEVICE)
+13927d439b build=0 gpu_tier=0 vk=0 test=0 py=0 diag=0  deepseek-v4: peer compute on the second GPU (DSV4_CUDA_PEER_COMPUTE)
+74bef824ce build=0 gpu_tier=0 vk=0 test=0 py=0 diag=0  deepseek-v4: document two-GPU decode and VRAM-first lookups
+2c8606671d build=0 gpu_tier=0 vk=0 test=0 py=0 diag=0  deepseek-v4: a sticky CUDA fault latches CUDA off for the process (F18
+eec2409d22 build=0 gpu_tier=0 vk=0 test=0 py=0 diag=0  deepseek-v4: a failed decode block names its stage and keeps the inner
+8dcd187cd6 build=0 gpu_tier=0 vk=0 test=0 py=0 diag=0  deepseek-v4: the attention's grouped wo_a matvec falls back to the CPU
+make check split/pr2-1-guard b82e6af3 rc=0 Ran 2729 tests in 183.200s OK (skipped=312)
+make check split/pr2-2-settings 574adeca rc=0 Ran 2729 tests in 170.637s OK (skipped=312)
+make check split/pr2-3-vram-first b8530946 rc=0 Ran 2731 tests in 169.260s OK (skipped=312)
+make check split/pr2-4-two-gpu 8dcd187c rc=0 Ran 2741 tests in 170.005s OK (skipped=312)
+# done 2026-10-24T23:08:19-07:00

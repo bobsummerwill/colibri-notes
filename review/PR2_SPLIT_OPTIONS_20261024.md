@@ -52,3 +52,31 @@ checked to build and test on its own. Commit 3's test shows the parts touch the 
 - **If split:** trial split on counter (cherry-pick each part onto dev in its own worktree; per-commit check and
   `make check` at each part's tip; then check that the parts stacked in order reproduce 3ce988da's tree). No GPU
   needed for that. The GPU runs then belong to the parts that touch CUDA behaviour (fix A / guard, two-GPU).
+
+## Trial split (2026-10-24, late night, counter) — done, pushed to the fork
+Bob asked for the experiment. The stack puts the guard first, since it is the bug fix that is active with every
+switch off:
+
+| Part | Branch (fork) | Tip | Commits (PR #2 originals) | `make check` |
+|---|---|---|---|---|
+| 1 guard | `split/pr2-1-guard` | b82e6af3 | 4 a28ba9d5, 5 b9b1f0ac (on dev 561966e) | 2,729 OK |
+| 2 settings | `split/pr2-2-settings` | 574adeca | 1 d84ab940, 2 d796d4cc | 2,729 OK |
+| 3 VRAM-first | `split/pr2-3-vram-first` | b8530946 | 3 d75d9639 | 2,731 OK |
+| 4 two-GPU | `split/pr2-4-two-gpu` | 8dcd187c | 6–11 (84d901fd … 3ce988da) | 2,741 OK |
+
+(312 skipped each.) **Part 4's tree is byte-identical to 3ce988da** (`git diff 3ce988da 8dcd187c` is empty), so the
+stack is a reordering of PR #2's history, not a code change.
+- Per commit (all 11): build, `-DCOLI_V4_GPU_TIER`, `+COLI_VULKAN`, test hooks, dsv4/v4 Python tests: all 0, 0
+  diagnostics ([manifests/counter-20261024/pr2-split-percommit.txt](../manifests/counter-20261024/pr2-split-percommit.txt)).
+- **Conflicts, all one cause:** the guard commits were written on top of the stats commit (2), and they share
+  lines with its upload counter `g_v4_mirror_uploads` / `coli_v4_gpu_expert_uploads`. Resolved by leaving the
+  counter out of part 1 (only `v4_mirror_tick` and `grown_bytes`), then adding it back when 2 is picked. No other
+  hunks conflicted, and 3 and 6–11 picked cleanly.
+- **Independence:** the settings part (1, 2) also applies cleanly to dev on its own, so parts 1 and 2 could be
+  sibling PRs instead of a stack. VRAM-first (3) does **not** apply to dev alone (`deepseek_v4.c` and
+  `deepseek_v4_internal.h` conflict); it needs 2 under it. Part 4 needs 1–3.
+- **Not done:** a variant with fix A in place of part 1 (needs the "drop failed uploads" half of b9b1f0ac split
+  out). The commit messages are unchanged from PR #2's. The two guard commits' messages say "groundwork for the
+  peer pool later in this series", which still holds within the stack.
+- No GPU run. The code is PR #2's, so the GPU caveats in the handoff apply to part 4 (and to part 1, which carries
+  fix A's logic).

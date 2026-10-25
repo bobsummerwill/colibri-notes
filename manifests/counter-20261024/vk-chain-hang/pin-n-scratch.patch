@@ -1,0 +1,2 @@
+521a522
+>     if (e && *e && atoi(e) > 0) n = (uint32_t)atoi(e);   /* SCRATCH EXPERIMENT: pin at n */

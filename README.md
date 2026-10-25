@@ -136,11 +136,13 @@ Compare against upstream `dev`, never `main`. **The rebased branches are on the 
 | `fix/dsv4-mirror-guard-overshoot` | **upstream fix A** (2026-10-24): bd7103fd on dev 61646cbd, the decode mirror cache guard (no issue / PR); dev 561966e merged in on counter (f30c7b23, conflict resolved, pushed) |
 | `fix/vk-host-image-alloc` | **upstream fix B** (2026-10-24): 72aa325a on dev 61646cbd, the Vulkan uploader's host images (no issue / PR); dev 561966e merged in on counter (97b26c0a, clean, pushed) |
 | `rewrite/pr2-linear` | 3ce988da, the same commit as `docs5/pr2-two-gpu-decode` now; can be deleted |
+| `split/pr2-1-guard` → `split/pr2-2-settings` → `split/pr2-3-vram-first` → `split/pr2-4-two-gpu` | **trial split of PR #2** (2026-10-24 night): a 4-part stack on dev 561966e, every part `make check` OK, part 4's tree = 3ce988da; see [review/PR2_SPLIT_OPTIONS_20261024.md](review/PR2_SPLIT_OPTIONS_20261024.md) |
+| `fix/vk-chain-test-initializers` | 597b49a4 on dev 561966e: the 13 `-Wmissing-field-initializers` in `tests/test_vk_chain.c`; `test_vk_chain` passes on Lavapipe (pushed 2026-10-24 night) |
 | `scratch/fixA-x-pr2` (counter, local only) | c89353e4: trial merge of fix A into PR #2 (item 4 of open-problems); not for pushing |
 | `f18-probe` (local only, never pushed) | b62d1068: PR #2 + the F18 probe, debug build only (`-DCOLI_F18_PROBE`) |
 | `pr0*/…`, `pr1/reap-prefill`, `pr2/two-gpu-decode`, `pr1/v6`, `pr1/v7`, `pr2/v5`, … | the 2026-10-15/16 stack on 7b55a9b3 (history) |
 
-The `rebased/*`, `refresh/*` and 7b55a9b3-era branches are history only; deleting them from the fork needs Bob's go-ahead.
+The `rebased/*`, `refresh/*` and 7b55a9b3-era branches are history only. Bob gave the go-ahead to delete them (2026-10-24 night), but the bulk delete was blocked in-session; the list, tips and the command are in [HANDOFF_20261024.md](HANDOFF_20261024.md).
 
 ## Contents
 - [environment.md](environment.md) — hardware, services, safe GPU-downtime procedure, build/run commands, paths.

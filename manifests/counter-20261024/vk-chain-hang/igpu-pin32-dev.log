@@ -1,0 +1,50 @@
+[test] CPU: Intel(R) Core(TM) Ultra 7 165U, 14 threads, AVX-512 no
+[VK] VRAM pressure-proofing: memory_priority absent, memory_budget on
+[VK] ready: Intel(R) Graphics (MTL), compute qfam 0, memtype 0, fused gate+up, absorb attention, tiled GEMM from S=2 and S*O>=4096
+[VK] chain: chain_gemv2 stages x in 48 KiB of shared memory, the device's limit
+  decode GEMVs with x from its buffer: 43
+matmul_bd: 17 block types
+  prompt GEMMs on chain_gemm: 0
+matmul done
+norm done
+[VK] test-tight-memory chain: prompt chunks of up to 1 rows (4503599627370496 KiB a row; 19.29 GiB free on the device or in RAM, half of it at most; COLI_VK_CHAIN_ROWS sets it, COLI_VK_CHAIN_ROWS_MAX caps it at 8192)
+[VK] test-small-cap chain: prompt chunks of up to 7 rows (0 KiB a row; 19.29 GiB free on the device or in RAM, half of it at most; COLI_VK_CHAIN_ROWS sets it, COLI_VK_CHAIN_ROWS_MAX caps it at 7)
+  attention on the matrix units: 0 calls
+  blocked attention: 55 calls
+  attention in slices: 197 extra submissions
+  decode attentions in blocks of positions: 0
+attn done
+deltanet done
+  qsa selection, 12,000 blocks: 8 rows, 8 with equal scores across the cut
+  qsa selection, 12,000 blocks, 97 keys repeated: 8 rows, 8 with equal scores across the cut
+  qsa selection, 5,000 equal blocks: 3 rows, 3 with equal scores across the cut
+  qsa selection, blocks around the budget: 40 rows, 19 with equal scores across the cut
+  qsa selection, first blocks: 8 rows, 0 with equal scores across the cut
+mla ops done
+[VK] test chain: the KV cache split past the device's budget: 10 of 16 positions a layer on the device (10 blocks of 1, 0 for pins by reads; a row's newest 6 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0)
+[VK] test chain: the KV cache split past the device's budget: 18 of 74 positions a layer on the device (18 blocks of 1, 0 for pins by reads; a row's newest 10 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0)
+[VK] test chain: the KV cache split past the device's budget: 66 of 73 positions a layer on the device (66 blocks of 1, 0 for pins by reads; a row's newest 34 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0)
+[VK] test chain: the KV cache split past the device's budget: 10 of 304 positions a layer on the device (10 blocks of 1, 0 for pins by reads; a row's newest 6 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.1)
+[VK] test chain: the KV cache split past the device's budget: 18 of 75 positions a layer on the device (18 blocks of 1, 0 for pins by reads; a row's newest 10 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.2)
+[VK] test chain: the KV cache split past the device's budget: 10 of 24 positions a layer on the device (10 blocks of 1, 0 for pins by reads; a row's newest 6 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.1)
+[VK] test chain: the KV cache split past the device's budget: 18 of 404 positions a layer on the device (18 blocks of 1, 0 for pins by reads; a row's newest 10 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.1)
+[VK] test chain: the KV cache split past the device's budget: 26 of 606 positions a layer on the device (26 blocks of 1, 0 for pins by reads; a row's newest 14 positions on the device), the rest in RAM (0.1 MiB on the device instead of 1.3)
+[VK] test chain: the KV cache split past the device's budget: 18 of 305 positions a layer on the device (18 blocks of 1, 0 for pins by reads; a row's newest 10 positions on the device), the rest in RAM (0.1 MiB on the device instead of 1.2)
+  mla cores in blocks of positions: 3
+[VK] test chain: the KV cache split past the device's budget: 18 of 74 positions a layer on the device (18 blocks of 1, 0 for pins by reads; a row's newest 10 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0)
+[VK] test chain: the KV cache split past the device's budget: 66 of 73 positions a layer on the device (66 blocks of 1, 0 for pins by reads; a row's newest 34 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0)
+[VK] test chain: the KV cache split past the device's budget: 18 of 75 positions a layer on the device (18 blocks of 1, 0 for pins by reads; a row's newest 10 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.2)
+  mla core in slices: 2 extra submissions
+mla done
+dsa done
+kpool done
+kda done
+mhc done
+kda k3 done
+kda rows H 2 KD 128 S 37 flags 0: one row a call's bits
+kda rows H 3 KD 64 S 9 flags 0: one row a call's bits
+kda rows H 2 KD 128 S 40 flags 3: one row a call's bits
+kda rows H 1 KD 32 S 17 flags 2: one row a call's bits
+ares done
+route done
+rc=124 secs=2400

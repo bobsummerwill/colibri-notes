@@ -1,0 +1,237 @@
+[test] CPU: Intel(R) Core(TM) Ultra 7 165U, 14 threads, AVX-512 no
+[VK] VRAM pressure-proofing: memory_priority on, memory_budget on
+[VK] ready: llvmpipe (LLVM 23.1.3, 256 bits), compute qfam 0, memtype 0, fused gate+up, absorb attention, tiled GEMM from S=2 and S*O>=4096
+  decode GEMVs with x from its buffer: 43
+matmul_bd: 17 block types
+  prompt GEMMs on chain_gemm: 0
+matmul done
+norm done
+[VK] test-tight-memory chain: prompt chunks of up to 1 rows (4503599627370496 KiB a row; 12.53 GiB free on the device or in RAM, half of it at most; COLI_VK_CHAIN_ROWS sets it, COLI_VK_CHAIN_ROWS_MAX caps it at 8192)
+[VK] test-small-cap chain: prompt chunks of up to 7 rows (0 KiB a row; 12.53 GiB free on the device or in RAM, half of it at most; COLI_VK_CHAIN_ROWS sets it, COLI_VK_CHAIN_ROWS_MAX caps it at 7)
+  attention on the matrix units: 0 calls
+  blocked attention: 55 calls
+  attention in slices: 197 extra submissions
+  decode attentions in blocks of positions: 0
+attn done
+deltanet done
+  qsa selection, 12,000 blocks: 8 rows, 8 with equal scores across the cut
+  qsa selection, 12,000 blocks, 97 keys repeated: 8 rows, 8 with equal scores across the cut
+  qsa selection, 5,000 equal blocks: 3 rows, 3 with equal scores across the cut
+  qsa selection, blocks around the budget: 40 rows, 19 with equal scores across the cut
+  qsa selection, first blocks: 8 rows, 0 with equal scores across the cut
+mla ops done
+[VK] test chain: the KV cache split past the device's budget: 10 of 16 positions a layer on the device (10 blocks of 1, 0 for pins by reads; a row's newest 6 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0)
+[VK] test chain: the KV cache split past the device's budget: 18 of 74 positions a layer on the device (18 blocks of 1, 0 for pins by reads; a row's newest 10 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0)
+[VK] test chain: the KV cache split past the device's budget: 66 of 73 positions a layer on the device (66 blocks of 1, 0 for pins by reads; a row's newest 34 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0)
+[VK] test chain: the KV cache split past the device's budget: 10 of 304 positions a layer on the device (10 blocks of 1, 0 for pins by reads; a row's newest 6 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.1)
+[VK] test chain: the KV cache split past the device's budget: 18 of 75 positions a layer on the device (18 blocks of 1, 0 for pins by reads; a row's newest 10 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.2)
+[VK] test chain: the KV cache split past the device's budget: 10 of 24 positions a layer on the device (10 blocks of 1, 0 for pins by reads; a row's newest 6 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.1)
+[VK] test chain: the KV cache split past the device's budget: 18 of 404 positions a layer on the device (18 blocks of 1, 0 for pins by reads; a row's newest 10 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.1)
+[VK] test chain: the KV cache split past the device's budget: 26 of 606 positions a layer on the device (26 blocks of 1, 0 for pins by reads; a row's newest 14 positions on the device), the rest in RAM (0.1 MiB on the device instead of 1.3)
+[VK] test chain: the KV cache split past the device's budget: 18 of 305 positions a layer on the device (18 blocks of 1, 0 for pins by reads; a row's newest 10 positions on the device), the rest in RAM (0.1 MiB on the device instead of 1.2)
+  mla cores in blocks of positions: 3
+[VK] test chain: the KV cache split past the device's budget: 18 of 74 positions a layer on the device (18 blocks of 1, 0 for pins by reads; a row's newest 10 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0)
+[VK] test chain: the KV cache split past the device's budget: 66 of 73 positions a layer on the device (66 blocks of 1, 0 for pins by reads; a row's newest 34 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0)
+[VK] test chain: the KV cache split past the device's budget: 18 of 75 positions a layer on the device (18 blocks of 1, 0 for pins by reads; a row's newest 10 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.2)
+  mla core in slices: 2 extra submissions
+mla done
+dsa done
+kpool done
+kda done
+mhc done
+kda k3 done
+kda rows H 2 KD 128 S 37 flags 0: one row a call's bits
+kda rows H 3 KD 64 S 9 flags 0: one row a call's bits
+kda rows H 2 KD 128 S 40 flags 3: one row a call's bits
+kda rows H 1 KD 32 S 17 flags 2: one row a call's bits
+ares done
+route done
+[test] moe fmt 1/1: the route frame 0.0 s, the experts' frame 1.7 s
+  moe gv int4-g64, D 2048: the int4 fast path gives the loop's bits
+  moe gv int4-g64, D 2048: the tier's small experts give the chain's bits (4 pairs)
+  moe gv int4-g64, Qwen3.6's 2048 x 512: the int4 fast path gives the loop's bits
+  moe gv int4-g64, Qwen3.6's 2048 x 512: the tier's small experts give the chain's bits (22 pairs)
+  moe gv int8 rows: the tier's small experts give the chain's bits (5 pairs)
+  moe gv int4 rows: the tier's small experts give the chain's bits (4 pairs)
+  moe gv int4 gate/up, int8 down: the tier's small experts give the chain's bits (5 pairs)
+  moe gv int4 in groups of 8: the tier's small experts give the chain's bits (5 pairs)
+  moe gv SwiGLU clamped: the int4 fast path gives the loop's bits
+  moe gv SwiGLU clamped: the tier's small experts give the chain's bits (4 pairs)
+  moe gv SiTU-GLU: the tier's small experts give the chain's bits (3 pairs)
+  moe gv top-1, three rows: the tier's small experts give the chain's bits (2 pairs)
+  routed-expert steps on chain_moe_gv: 12
+moe rows Q4_K/Q5_K: not on this device
+moe rows IQ2_S/Q2_0: not on this device
+moe rows Q8_0/Q6_K: not on this device
+moe rows IQ2_XS/IQ2_XS: not on this device
+moe rows IQ3_XXS/Q3_K: not on this device
+moe rows IQ1_M/Q2_K: not on this device
+moe rows fmt 1: not on this device
+moe rows fmt 2: not on this device
+moe rows fmt 4: not on this device
+moe rows fmt 4: not on this device
+moe i8 IQ2_S/Q2_0 S 3 K 4: err 1.67e-07 against the CPU's integer form (the float form 8.12e-03)
+moe i8 Q4_K/Q6_K S 2 K 4: err 2.38e-07 against the CPU's integer form (the float form 9.27e-03)
+moe i8 Q5_K/Q8_0 S 2 K 3: err 1.97e-07 against the CPU's integer form (the float form 9.19e-03)
+moe i8 IQ2_XXS/IQ4_NL S 2 K 3: err 1.76e-07 against the CPU's integer form (the float form 5.93e-03)
+moe i8 IQ3_S/IQ4_XS S 2 K 3: err 2.14e-07 against the CPU's integer form (the float form 1.05e-02)
+moe i8 IQ2_XS/Q4_K S 2 K 3: err 2.44e-07 against the CPU's integer form (the float form 1.09e-02)
+moe i8 IQ3_XXS/Q3_K S 2 K 3: err 1.69e-07 against the CPU's integer form (the float form 7.50e-03)
+moe i8 IQ1_S/Q2_K S 2 K 3: err 2.33e-07 against the CPU's integer form (the float form 1.26e-02)
+moe i8 IQ1_M/Q2_K S 2 K 3: err 2.15e-07 against the CPU's integer form (the float form 1.16e-02)
+moe done
+fetch: 5 regions by address, 300000 words, as the source has them
+  relative attention in slices: 75 extra submissions
+inkling done
+  dsv4 attn S 1 H 4 hd 64 cnt 13 flags 0: rel err 1.57e-07
+  dsv4 attn S 3 H 2 hd 512 cnt 300 flags 0: rel err 3.32e-07
+  dsv4 attn S 2 H 3 hd 100 cnt 20 flags 0: rel err 1.93e-07
+  dsv4 attn S 2 H 2 hd 64 cnt 2900 flags 0: rel err 1.26e-06
+  dsv4 attn S 3 H 4 hd 64 cnt 13 flags 1: rel err 0.00e+00
+dsv4 done
+  dsv4 swiglu n 5000 lim 10: 5000 of 5000 values the CPU's bits, the rest one bf16 step away
+  dsv4 swiglu n 3000 lim 0: 3000 of 3000 values the CPU's bits, the rest one bf16 step away
+dsv4 rounding done
+[VK] test chain: the KV cache split past the device's budget: 12 of 40 positions a layer on the device (3 blocks of 4, 0 for pins by reads; a row's newest 8 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0)
+  kvs gqa T 40 step 1 rows 12 lists 0: rel err 2.45e-07, 32 split steps, 8 whole, 1152 host positions, 0 pinned
+[VK] test chain: the KV cache split past the device's budget: 12 of 41 positions a layer on the device (3 blocks of 4, 0 for pins by reads; a row's newest 8 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0)
+  kvs gqa T 41 step 3 rows 8 lists 0: rel err 2.62e-07, 12 split steps, 2 whole, 1224 host positions, 0 pinned
+[VK] test chain: the KV cache split past the device's budget: 32 of 70 positions a layer on the device (4 blocks of 8, 0 for pins by reads; a row's newest 24 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0)
+  kvs gqa T 70 step 7 rows 32 lists 0: rel err 3.06e-07, 7 split steps, 3 whole, 2496 host positions, 0 pinned
+[VK] test chain: the KV cache split past the device's budget: 64 of 300 positions a layer on the device (4 blocks of 16, 0 for pins by reads; a row's newest 48 positions on the device), the rest in RAM (0.1 MiB on the device instead of 0.3)
+  kvs gqa T 300 step 1 rows 64 lists 0: rel err 8.85e-07, 252 split steps, 48 whole, 67584 host positions, 0 pinned
+[VK] test chain: the KV cache split past the device's budget: 128 of 600 positions a layer on the device (8 blocks of 16, 0 for pins by reads; a row's newest 80 positions on the device), the rest in RAM (0.1 MiB on the device instead of 0.3)
+  kvs gqa T 600 step 48 rows 128 lists 0: rel err 1.04e-06, 12 split steps, 1 whole, 557568 host positions, 0 pinned
+[VK] test chain: the KV cache split past the device's budget: 24 of 60 positions a layer on the device (6 blocks of 4, 3 for pins by reads; a row's newest 8 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0)
+  kvs gqa T 60 step 3 rows 24 lists 1: rel err 2.64e-07, 18 split steps, 2 whole, 1752 host positions, 4 pinned
+[VK] test chain: the KV cache split past the device's budget: 16 of 50 positions a layer on the device (4 blocks of 4, 1 for pins by reads; a row's newest 8 positions on the device), the rest in RAM (0.1 MiB on the device instead of 0.2)
+  kvs gqa T 50 step 2 rows 16 lists 1: rel err 3.49e-07, 21 split steps, 4 whole, 1344 host positions, 1 pinned
+[VK] test chain: the KV cache split past the device's budget: 16 of 60 positions a layer on the device (4 blocks of 4, 0 for pins by reads; a row's newest 12 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0)
+  kvs gqa T 60 step 2 rows 16 lists 0: rel err 1.95e-07, 24 split steps, 6 whole, 856 host positions, 0 pinned
+[VK] test chain: the KV cache split past the device's budget: 40 of 48 positions a layer on the device (10 blocks of 4, 0 for pins by reads; a row's newest 24 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0)
+  kvs gqa T 48 step 12 rows 40 lists 0: rel err 2.72e-07, 2 split steps, 2 whole, 672 host positions, 0 pinned
+[VK] test chain: the KV cache split past the device's budget: 12 of 40 positions a layer on the device (3 blocks of 4, 0 for pins by reads; a row's newest 8 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0)
+  kvs mla T 40 step 1 K 32 rows 12 lists 0: rel err 3.40e-07, 32 split steps, 576 host positions, 0 pinned
+[VK] test chain: the KV cache split past the device's budget: 40 of 90 positions a layer on the device (5 blocks of 8, 2 for pins by reads; a row's newest 16 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.1)
+  kvs mla T 90 step 5 K 64 rows 40 lists 1: rel err 2.43e-07, 15 split steps, 1380 host positions, 3 pinned
+[VK] test chain: the KV cache split past the device's budget: 16 of 60 positions a layer on the device (4 blocks of 4, 0 for pins by reads; a row's newest 12 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0)
+  kvs mla T 60 step 4 K 48 rows 16 lists 0: rel err 3.43e-07, 12 split steps, 1248 host positions, 0 pinned
+[VK] test chain: the KV cache split past the device's budget: 32 of 70 positions a layer on the device (4 blocks of 8, 0 for pins by reads; a row's newest 24 positions on the device), the rest in RAM (0.1 MiB on the device instead of 0.3)
+  kvs mla T 70 step 2 K 512 rows 32 lists 0: rel err 3.21e-07, 23 split steps, 1018 host positions, 0 pinned
+[VK] test chain: the KV cache split past the device's budget: 16 of 40 positions a layer on the device (4 blocks of 4, 1 for pins by reads; a row's newest 8 positions on the device), the rest in RAM (0.1 MiB on the device instead of 0.3)
+  kvs mla T 40 step 3 K 1024 rows 16 lists 1: rel err 2.21e-07, 12 split steps, 321 host positions, 2 pinned
+[VK] test chain: the KV cache split past the device's budget: 16 of 60 positions a layer on the device (4 blocks of 4, 0 for pins by reads; a row's newest 12 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0)
+  kvs rel T 60 step 1 rows 16 ext 8: rel err 2.71e-07, 48 split steps, 2496 host positions
+[VK] test chain: the KV cache split past the device's budget: 32 of 80 positions a layer on the device (4 blocks of 8, 0 for pins by reads; a row's newest 24 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0)
+  kvs rel T 80 step 5 rows 32 ext 40: rel err 4.26e-07, 12 split steps, 3584 host positions
+[VK] test chain: the KV cache split past the device's budget: 24 of 50 positions a layer on the device (6 blocks of 4, 0 for pins by reads; a row's newest 16 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0)
+  kvs rel T 50 step 3 rows 24 ext 16: rel err 9.40e-07, 12 split steps, 648 host positions
+[VK] test chain: the KV cache split past the device's budget: 12 of 48 positions a layer on the device (3 blocks of 4, 0 for pins by reads; a row's newest 8 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0)
+  kvs ds S 1 hd 64 cnt 30 v4 0 rows 12: rel err 1.37e-07 against the reference, 0.00e+00 against the whole op
+[VK] test chain: the KV cache split past the device's budget: 40 of 48 positions a layer on the device (10 blocks of 4, 5 for pins by reads; a row's newest 12 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0)
+  kvs ds S 1 hd 64 cnt 30 v4 0 rows 40: rel err 1.37e-07 against the reference, 0.00e+00 against the whole op (its bits)
+[VK] test chain: the KV cache split past the device's budget: 64 of 232 positions a layer on the device (4 blocks of 16, 1 for pins by reads; a row's newest 32 positions on the device), the rest in RAM (0.1 MiB on the device instead of 0.5)
+  kvs ds S 3 hd 512 cnt 300 v4 0 rows 64: rel err 5.08e-07 against the reference, 0.00e+00 against the whole op
+[VK] test chain: the KV cache split past the device's budget: 208 of 232 positions a layer on the device (13 blocks of 16, 7 for pins by reads; a row's newest 64 positions on the device), the rest in RAM (0.4 MiB on the device instead of 0.5)
+  kvs ds S 3 hd 512 cnt 300 v4 0 rows 208: rel err 5.08e-07 against the reference, 0.00e+00 against the whole op (its bits)
+[VK] test chain: the KV cache split past the device's budget: 32 of 106 positions a layer on the device (4 blocks of 8, 1 for pins by reads; a row's newest 16 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.1)
+  kvs ds S 2 hd 128 cnt 2900 v4 0 rows 32: rel err 9.77e-07 against the reference, 0.00e+00 against the whole op
+[VK] test chain: the KV cache split past the device's budget: 96 of 106 positions a layer on the device (12 blocks of 8, 6 for pins by reads; a row's newest 32 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.1)
+  kvs ds S 2 hd 128 cnt 2900 v4 0 rows 96: rel err 9.77e-07 against the reference, 0.00e+00 against the whole op (its bits)
+[VK] test chain: the KV cache split past the device's budget: 16 of 68 positions a layer on the device (4 blocks of 4, 1 for pins by reads; a row's newest 8 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0)
+  kvs ds S 3 hd 64 cnt 40 v4 1 rows 16: rel err 0.00e+00 against the reference, 0.00e+00 against the whole op
+[VK] test chain: the KV cache split past the device's budget: 60 of 68 positions a layer on the device (15 blocks of 4, 8 for pins by reads; a row's newest 16 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0)
+  kvs ds S 3 hd 64 cnt 40 v4 1 rows 60: rel err 0.00e+00 against the reference, 0.00e+00 against the whole op (its bits)
+[VK] test chain: the KV cache split past the device's budget: 12 of 38 positions a layer on the device (3 blocks of 4, 0 for pins by reads; a row's newest 8 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.1)
+  kvs ds S 2 hd 1024 cnt 20 v4 1 rows 12: rel err 0.00e+00 against the reference, 0.00e+00 against the whole op
+[VK] test chain: the KV cache split past the device's budget: 32 of 38 positions a layer on the device (8 blocks of 4, 4 for pins by reads; a row's newest 12 positions on the device), the rest in RAM (0.1 MiB on the device instead of 0.1)
+  kvs ds S 2 hd 1024 cnt 20 v4 1 rows 32: rel err 0.00e+00 against the reference, 0.00e+00 against the whole op (its bits)
+[VK] test chain: the KV cache split past the device's budget: 32 of 70 positions a layer on the device (8 blocks of 4, 0 for pins by reads; a row's newest 20 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0)
+  kvs gqa T 70 step 1 rows 32 lists 0: rel err 4.97e-07, 50 split steps, 20 whole, 2704 host positions, 0 pinned
+[VK] test chain: the KV cache split past the device's budget: 32 of 70 positions a layer on the device (8 blocks of 4, 0 for pins by reads; a row's newest 20 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0)
+  kvs gqa T 70 step 3 rows 32 lists 0: rel err 4.87e-07, 18 split steps, 6 whole, 2704 host positions, 0 pinned
+[VK] test chain: the KV cache split past the device's budget: 32 of 70 positions a layer on the device (8 blocks of 4, 0 for pins by reads; a row's newest 20 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0)
+  kvs gqa T 70 step 3 rows 32 lists 0: rel err 4.87e-07, 18 split steps, 6 whole, 2704 host positions, 0 pinned
+[VK] test chain: the KV cache split past the device's budget: 32 of 70 positions a layer on the device (8 blocks of 4, 0 for pins by reads; a row's newest 20 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0)
+  kvs gqa T 70 step 1 rows 32 lists 1: rel err 3.23e-07, 50 split steps, 20 whole, 2058 host positions, 0 pinned
+[VK] test chain: the KV cache split past the device's budget: 32 of 70 positions a layer on the device (8 blocks of 4, 0 for pins by reads; a row's newest 20 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0)
+  kvs gqa T 70 step 4 rows 32 lists 1: rel err 2.99e-07, 13 split steps, 5 whole, 2058 host positions, 0 pinned
+[VK] test chain: the KV cache split past the device's budget: 32 of 70 positions a layer on the device (8 blocks of 4, 0 for pins by reads; a row's newest 20 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0)
+  kvs mla T 70 step 1 K 64 rows 32 lists 0: rel err 3.56e-07, 50 split steps, 1352 host positions, 0 pinned
+[VK] test chain: the KV cache split past the device's budget: 32 of 70 positions a layer on the device (8 blocks of 4, 0 for pins by reads; a row's newest 20 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0)
+  kvs mla T 70 step 2 K 64 rows 32 lists 0: rel err 3.31e-07, 25 split steps, 1352 host positions, 0 pinned
+[VK] test chain: the KV cache split past the device's budget: 32 of 70 positions a layer on the device (8 blocks of 4, 0 for pins by reads; a row's newest 20 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0)
+  kvs rel T 70 step 1 rows 32 ext 16: rel err 4.07e-07, 50 split steps, 2704 host positions
+[VK] test chain: the KV cache split past the device's budget: 32 of 70 positions a layer on the device (8 blocks of 4, 0 for pins by reads; a row's newest 20 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0)
+  kvs rel T 70 step 4 rows 32 ext 16: rel err 3.57e-07, 13 split steps, 2704 host positions
+  kvs: the same bits for every position in steps of 1, 2, 3 and 4, and in slices of rows
+[VK] test chain: the KV cache split past the device's budget: 512 of 65543 positions a layer on the device (8 blocks of 64, 0 for pins by reads; a row's newest 320 positions on the device), the rest in RAM (0.1 MiB on the device instead of 8.0)
+  kvs gqa T 65543 step 1 rows 512 lists 0: rel err 1.08e-06, 12 split steps, 0 whole, 783040 host positions, 0 pinned
+[VK] test chain: the KV cache split past the device's budget: 512 of 65543 positions a layer on the device (8 blocks of 64, 0 for pins by reads; a row's newest 320 positions on the device), the rest in RAM (0.1 MiB on the device instead of 8.0)
+  kvs gqa T 65543 step 7 rows 512 lists 0: rel err 8.11e-07, 2 split steps, 0 whole, 783040 host positions, 0 pinned
+  kvs: compared all 12 rows crossing 64K bit for bit across chunk sizes
+[VK] test chain: the KV cache split past the device's budget: 12 of 40 positions a layer on the device (3 blocks of 4, 0 for pins by reads; a row's newest 8 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0), its attention on the device too (COLI_VK_KV_COLD=device)
+  kvs gqa T 40 step 1 rows 12 lists 0: rel err 3.09e-07, 32 split steps, 8 whole, 0 host positions, 0 pinned, the host's part on the device
+[VK] test chain: the KV cache split past the device's budget: 12 of 41 positions a layer on the device (3 blocks of 4, 0 for pins by reads; a row's newest 8 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0), its attention on the device too (COLI_VK_KV_COLD=device)
+  kvs gqa T 41 step 3 rows 8 lists 0: rel err 3.04e-07, 12 split steps, 2 whole, 0 host positions, 0 pinned, the host's part on the device
+[VK] test chain: the KV cache split past the device's budget: 32 of 70 positions a layer on the device (4 blocks of 8, 0 for pins by reads; a row's newest 24 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0), its attention on the device too (COLI_VK_KV_COLD=device)
+  kvs gqa T 70 step 7 rows 32 lists 0: rel err 2.68e-07, 7 split steps, 3 whole, 0 host positions, 0 pinned, the host's part on the device
+[VK] test chain: the KV cache split past the device's budget: 64 of 300 positions a layer on the device (4 blocks of 16, 0 for pins by reads; a row's newest 48 positions on the device), the rest in RAM (0.1 MiB on the device instead of 0.3), its attention on the device too (COLI_VK_KV_COLD=device)
+  kvs gqa T 300 step 1 rows 64 lists 0: rel err 7.39e-07, 252 split steps, 48 whole, 0 host positions, 0 pinned, the host's part on the device
+[VK] test chain: the KV cache split past the device's budget: 128 of 600 positions a layer on the device (8 blocks of 16, 0 for pins by reads; a row's newest 80 positions on the device), the rest in RAM (0.1 MiB on the device instead of 0.3), its attention on the device too (COLI_VK_KV_COLD=device)
+  kvs gqa T 600 step 48 rows 128 lists 0: rel err 9.12e-07, 12 split steps, 1 whole, 0 host positions, 0 pinned, the host's part on the device
+[VK] test chain: the KV cache split past the device's budget: 24 of 60 positions a layer on the device (6 blocks of 4, 0 for pins by reads; a row's newest 16 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0), its attention on the device too (COLI_VK_KV_COLD=device)
+  kvs gqa T 60 step 3 rows 24 lists 1: rel err 2.94e-07, 15 split steps, 5 whole, 0 host positions, 0 pinned, the host's part on the device
+[VK] test chain: the KV cache split past the device's budget: 16 of 50 positions a layer on the device (4 blocks of 4, 0 for pins by reads; a row's newest 12 positions on the device), the rest in RAM (0.1 MiB on the device instead of 0.2), its attention on the device too (COLI_VK_KV_COLD=device)
+  kvs gqa T 50 step 2 rows 16 lists 1: rel err 3.49e-07, 19 split steps, 6 whole, 0 host positions, 0 pinned, the host's part on the device
+[VK] test chain: the KV cache split past the device's budget: 16 of 60 positions a layer on the device (4 blocks of 4, 0 for pins by reads; a row's newest 12 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0), its attention on the device too (COLI_VK_KV_COLD=device)
+  kvs gqa T 60 step 2 rows 16 lists 0: rel err 1.95e-07, 24 split steps, 6 whole, 0 host positions, 0 pinned, the host's part on the device
+[VK] test chain: the KV cache split past the device's budget: 40 of 48 positions a layer on the device (10 blocks of 4, 0 for pins by reads; a row's newest 24 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0), its attention on the device too (COLI_VK_KV_COLD=device)
+  kvs gqa T 48 step 12 rows 40 lists 0: rel err 2.19e-07, 2 split steps, 2 whole, 0 host positions, 0 pinned, the host's part on the device
+[VK] test chain: the KV cache split past the device's budget: 12 of 40 positions a layer on the device (3 blocks of 4, 0 for pins by reads; a row's newest 8 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0), its attention on the device too (COLI_VK_KV_COLD=device)
+  kvs mla T 40 step 1 K 32 rows 12 lists 0: rel err 2.91e-07, 32 split steps, 0 host positions, 0 pinned, the host's part on the device
+[VK] test chain: the KV cache split past the device's budget: 40 of 90 positions a layer on the device (5 blocks of 8, 0 for pins by reads; a row's newest 24 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.1), its attention on the device too (COLI_VK_KV_COLD=device)
+  kvs mla T 90 step 5 K 64 rows 40 lists 1: rel err 3.13e-07, 14 split steps, 0 host positions, 0 pinned, the host's part on the device
+[VK] test chain: the KV cache split past the device's budget: 16 of 60 positions a layer on the device (4 blocks of 4, 0 for pins by reads; a row's newest 12 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0), its attention on the device too (COLI_VK_KV_COLD=device)
+  kvs mla T 60 step 4 K 48 rows 16 lists 0: rel err 3.27e-07, 12 split steps, 0 host positions, 0 pinned, the host's part on the device
+[VK] test chain: the KV cache split past the device's budget: 32 of 70 positions a layer on the device (4 blocks of 8, 0 for pins by reads; a row's newest 24 positions on the device), the rest in RAM (0.1 MiB on the device instead of 0.3), its attention on the device too (COLI_VK_KV_COLD=device)
+  kvs mla T 70 step 2 K 512 rows 32 lists 0: rel err 4.22e-07, 23 split steps, 0 host positions, 0 pinned, the host's part on the device
+[VK] test chain: the KV cache split past the device's budget: 16 of 40 positions a layer on the device (4 blocks of 4, 0 for pins by reads; a row's newest 12 positions on the device), the rest in RAM (0.1 MiB on the device instead of 0.3), its attention on the device too (COLI_VK_KV_COLD=device)
+  kvs mla T 40 step 3 K 1024 rows 16 lists 1: rel err 1.90e-07, 10 split steps, 0 host positions, 0 pinned, the host's part on the device
+[VK] test chain: the KV cache split past the device's budget: 16 of 60 positions a layer on the device (4 blocks of 4, 0 for pins by reads; a row's newest 12 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0), its attention on the device too (COLI_VK_KV_COLD=device)
+  kvs rel T 60 step 1 rows 16 ext 8: rel err 2.87e-07, 48 split steps, 0 host positions, the host's part on the device
+[VK] test chain: the KV cache split past the device's budget: 32 of 80 positions a layer on the device (4 blocks of 8, 0 for pins by reads; a row's newest 24 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0), its attention on the device too (COLI_VK_KV_COLD=device)
+  kvs rel T 80 step 5 rows 32 ext 40: rel err 4.26e-07, 12 split steps, 0 host positions, the host's part on the device
+[VK] test chain: the KV cache split past the device's budget: 24 of 50 positions a layer on the device (6 blocks of 4, 0 for pins by reads; a row's newest 16 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0), its attention on the device too (COLI_VK_KV_COLD=device)
+  kvs rel T 50 step 3 rows 24 ext 16: rel err 9.40e-07, 12 split steps, 0 host positions, the host's part on the device
+[VK] test chain: the KV cache split past the device's budget: 32 of 70 positions a layer on the device (8 blocks of 4, 0 for pins by reads; a row's newest 20 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0), its attention on the device too (COLI_VK_KV_COLD=device)
+  kvs gqa T 70 step 1 rows 32 lists 0: rel err 3.25e-07, 50 split steps, 20 whole, 0 host positions, 0 pinned, the host's part on the device
+[VK] test chain: the KV cache split past the device's budget: 32 of 70 positions a layer on the device (8 blocks of 4, 0 for pins by reads; a row's newest 20 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0), its attention on the device too (COLI_VK_KV_COLD=device)
+  kvs gqa T 70 step 3 rows 32 lists 0: rel err 3.25e-07, 18 split steps, 6 whole, 0 host positions, 0 pinned, the host's part on the device
+[VK] test chain: the KV cache split past the device's budget: 32 of 70 positions a layer on the device (8 blocks of 4, 0 for pins by reads; a row's newest 20 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0), its attention on the device too (COLI_VK_KV_COLD=device)
+  kvs gqa T 70 step 3 rows 32 lists 0: rel err 3.25e-07, 18 split steps, 6 whole, 0 host positions, 0 pinned, the host's part on the device
+[VK] test chain: the KV cache split past the device's budget: 32 of 70 positions a layer on the device (8 blocks of 4, 0 for pins by reads; a row's newest 20 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0), its attention on the device too (COLI_VK_KV_COLD=device)
+  kvs gqa T 70 step 1 rows 32 lists 1: rel err 3.93e-07, 50 split steps, 20 whole, 0 host positions, 0 pinned, the host's part on the device
+[VK] test chain: the KV cache split past the device's budget: 32 of 70 positions a layer on the device (8 blocks of 4, 0 for pins by reads; a row's newest 20 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0), its attention on the device too (COLI_VK_KV_COLD=device)
+  kvs gqa T 70 step 4 rows 32 lists 1: rel err 3.51e-07, 13 split steps, 5 whole, 0 host positions, 0 pinned, the host's part on the device
+[VK] test chain: the KV cache split past the device's budget: 32 of 70 positions a layer on the device (8 blocks of 4, 0 for pins by reads; a row's newest 20 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0), its attention on the device too (COLI_VK_KV_COLD=device)
+  kvs mla T 70 step 1 K 64 rows 32 lists 0: rel err 2.85e-07, 50 split steps, 0 host positions, 0 pinned, the host's part on the device
+[VK] test chain: the KV cache split past the device's budget: 32 of 70 positions a layer on the device (8 blocks of 4, 0 for pins by reads; a row's newest 20 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0), its attention on the device too (COLI_VK_KV_COLD=device)
+  kvs mla T 70 step 2 K 64 rows 32 lists 0: rel err 2.70e-07, 25 split steps, 0 host positions, 0 pinned, the host's part on the device
+[VK] test chain: the KV cache split past the device's budget: 32 of 70 positions a layer on the device (8 blocks of 4, 0 for pins by reads; a row's newest 20 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0), its attention on the device too (COLI_VK_KV_COLD=device)
+  kvs rel T 70 step 1 rows 32 ext 16: rel err 2.94e-07, 50 split steps, 0 host positions, the host's part on the device
+[VK] test chain: the KV cache split past the device's budget: 32 of 70 positions a layer on the device (8 blocks of 4, 0 for pins by reads; a row's newest 20 positions on the device), the rest in RAM (0.0 MiB on the device instead of 0.0), its attention on the device too (COLI_VK_KV_COLD=device)
+  kvs rel T 70 step 4 rows 32 ext 16: rel err 2.59e-07, 13 split steps, 0 host positions, the host's part on the device
+  kvs: the same bits for every position in steps of 1, 2, 3 and 4, and in slices of rows
+[VK] test chain: the KV cache split past the device's budget: 512 of 65543 positions a layer on the device (8 blocks of 64, 0 for pins by reads; a row's newest 320 positions on the device), the rest in RAM (0.1 MiB on the device instead of 8.0), its attention on the device too (COLI_VK_KV_COLD=device)
+  kvs gqa T 65543 step 1 rows 512 lists 0: rel err 5.15e-07, 12 split steps, 0 whole, 0 host positions, 0 pinned, the host's part on the device
+[VK] test chain: the KV cache split past the device's budget: 512 of 65543 positions a layer on the device (8 blocks of 64, 0 for pins by reads; a row's newest 320 positions on the device), the rest in RAM (0.1 MiB on the device instead of 8.0), its attention on the device too (COLI_VK_KV_COLD=device)
+  kvs gqa T 65543 step 7 rows 512 lists 0: rel err 5.10e-07, 2 split steps, 0 whole, 0 host positions, 0 pinned, the host's part on the device
+  kvs cold: every case with the host's part on the device, the same bits however the forward is cut
+kvs done
+attn full done
+attn full coop: no matrix units here
+vae ops done
+chain: 6325 frames, 7074 ops, 437 matmuls (12 GEMM), 20392 barriers
+PASS
+rc=0 secs=43
