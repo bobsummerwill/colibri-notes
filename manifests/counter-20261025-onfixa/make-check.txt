@@ -1,0 +1,6 @@
+# make -C c check, counter (gcc (GCC) 16.2.1 20260810), 2026-10-25T22:54:16-07:00, base fix/dsv4-mirror-guard-overshoot dd03a9de
+split1 split/pr2-1-guard a04e58a4 make_check=0 Ran 2746 tests in 184.315s OK (skipped=320) 2939s
+pr2 docs5/pr2-two-gpu-decode 5b3f4601 make_check=0 Ran 2758 tests in 185.141s OK (skipped=320) 2953s
+split2 split/pr2-2-settings 282700fc make_check=0 Ran 2746 tests in 172.587s OK (skipped=320) 3054s
+split3 split/pr2-3-vram-first cb325fee make_check=0 Ran 2748 tests in 170.706s OK (skipped=320) 3057s
+ALL DONE 2026-10-25T23:48:15-07:00
