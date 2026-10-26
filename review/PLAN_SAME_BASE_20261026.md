@@ -183,8 +183,10 @@ If shadowfax must wait for the evening, its window moves (e.g. 19:00-22:30) and 
   - Attach, peek and the VRAM-held scan use the layer's own cache, then the peer.
   - Every unit compiles clean in 4 configs. Python tests pass, with PR #2's peer-init source test re-pinned to the
     three-way init.
-  - nvcc not run yet. Shadowfax and computer4 are busy with Stage 1, and a local CUDA toolchain download was refused
-    by the permission check. Fork CI's "CUDA syntax check" job runs on it.
+  - nvcc: Bob installed Arch's `cuda` 13.4.3 on counter (~11:00).
+    - M and C+ build the full CUDA engine for sm_86 (NO_TC, as on the 3090s).
+    - Their backend also builds for sm_120 with the tensor-core path.
+    - 0 warnings, 0 errors ([manifests/counter-20261026-samebase](../manifests/counter-20261026-samebase), `cb-*.log`).
 - **Fork CI:** draft PRs bobsummerwill/colibri#1 (M) and #2 (C+); the fork's `dev` fast-forwarded to 77530b49.
   - **Slip:** PR #1's first body used `owner/repo#N` links, which put "mentioned this" backlinks on upstream #1766 and
     #2401. Edited within a minute, but the timeline entries stay (GitHub can't delete a PR). Memory rule added.
