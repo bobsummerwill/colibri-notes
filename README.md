@@ -11,7 +11,8 @@ Project notebook for Bob Summerwill's work on [colibri](https://github.com/JustV
 
 **Rule: no PRs and no pushes to upstream JustVugg/colibri.** Branches go to the fork only; Bob decides on submission (PR #0 and PR #1 were opened at his request).
 
-> **Pick up here: [HANDOFF_20261024.md](HANDOFF_20261024.md)** (branch states, what is and isn't GPU-tested, next
+> **Pick up here: [HANDOFF_20261025.md](HANDOFF_20261025.md)** (2026-10-25: every branch rebased onto dev 77530b49,
+> upstream clash check, GPU re-runs on shadowfax + computer4). Before that: [HANDOFF_20261024.md](HANDOFF_20261024.md) (branch states, what is and isn't GPU-tested, next
 > steps, decisions pending). Latest: PR #2 rewritten linearly and force-pushed (3ce988da, every commit passes its tests); shadowfax/computer4 still unreachable; Vulkan headers now on counter (fix B's Vulkan suites:
 > see the handoff).
 

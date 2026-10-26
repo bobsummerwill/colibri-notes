@@ -1,0 +1,36 @@
+make: Entering directory '/home/unagi/Projects/wt-r-fixa/c'
+make clean
+make[1]: Entering directory '/home/unagi/Projects/wt-r-fixa/c'
+python3 tools/clean.py
+clean: removed 0 files/dirs
+make[1]: Leaving directory '/home/unagi/Projects/wt-r-fixa/c'
+make portable
+make[1]: Entering directory '/home/unagi/Projects/wt-r-fixa/c'
+make colibri ARCH=x86-64-v3
+make[2]: Entering directory '/home/unagi/Projects/wt-r-fixa/c'
+gcc -O3 -march=x86-64-v3 -fopenmp -pthread -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function  -MMD -MP colibri.c     -o colibri -lm -fopenmp -pthread 
+make[2]: Leaving directory '/home/unagi/Projects/wt-r-fixa/c'
+make[1]: Leaving directory '/home/unagi/Projects/wt-r-fixa/c'
+make test
+make[1]: Entering directory '/home/unagi/Projects/wt-r-fixa/c'
+make test-c
+make[2]: Entering directory '/home/unagi/Projects/wt-r-fixa/c'
+gcc -O3 -march=native -fopenmp -pthread -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function  -MMD -MP tests/test_dsv4_mhc.c -o tests/test_dsv4_mhc -lm -fopenmp -pthread 
+gcc -O3 -march=native -fopenmp -pthread -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function  -MMD -MP tests/test_dsv4_quant.c -o tests/test_dsv4_quant -lm -fopenmp -pthread 
+gcc -O3 -march=native -fopenmp -pthread -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function  -MMD -MP tests/test_qi_gemm.c -o tests/test_qi_gemm -lm -fopenmp -pthread 
+gcc -O3 -march=native -fopenmp -pthread -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function  -MMD -MP tests/test_spec_draft.c -o tests/test_spec_draft -lm -fopenmp -pthread 
+gcc -O3 -march=native -fopenmp -pthread -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function  -MMD -MP tests/test_qwen38_spec_alloc.c  -o tests/test_qwen38_spec_alloc -lm -fopenmp -pthread 
+gcc -O3 -march=native -fopenmp -pthread -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function  -MMD -MP tests/test_qwen36_ctx.c    -o tests/test_qwen36_ctx -lm -fopenmp -pthread 
+gcc -O3 -march=native -fopenmp -pthread -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function  -MMD -MP tests/test_qwen36_prefill_control.c    -o tests/test_qwen36_prefill_control -lm -fopenmp -pthread 
+gcc -O3 -march=native -fopenmp -pthread -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function  -MMD -MP tests/test_qwen36_weight_alloc.c    -o tests/test_qwen36_weight_alloc -lm -fopenmp -pthread 
+In file included from tests/test_qwen36_weight_alloc.c:35:
+tests/../qwen36.c:1177:12: warning: ‘g_q36_mux_cur’ defined but not used [-Wunused-variable]
+ 1177 | static int g_q36_mux_cur;
+      |            ^~~~~~~~~~~~~
+tests/../qwen36.c:1176:16: warning: ‘g_q36_mux_seq’ defined but not used [-Wunused-variable]
+ 1176 | static Q36Seq *g_q36_mux_seq;
+      |                ^~~~~~~~~~~~~
+tests/../qwen36.c:1175:12: warning: ‘g_q36_mux_slots’ defined but not used [-Wunused-variable]
+ 1175 | static int g_q36_mux_slots;
+      |            ^~~~~~~~~~~~~~~
+gcc -O3 -march=native -fopenmp -pthread -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function  -MMD -MP tests/test_qwen36_cache_route.c    -o tests/test_qwen36_cache_route -lm -fopenmp -pthread 
