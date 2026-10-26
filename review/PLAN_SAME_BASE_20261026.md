@@ -1,6 +1,7 @@
 # Same-base comparison of #1766, PR #2 and a combined "C+" (plan, 2026-10-26)
 
-Status: **planned and waiting for Bob's go** (written 10:00). Nothing here is upstream. Trees stay local or on the fork.
+Status: **planned and waiting for Bob's go** (written 10:00). **10:10, Bob: C+ (and the Phase 0 ablation that
+informs it) comes after the B/M/P run.** See "Revised timeline" at the end. Nothing here is upstream. Trees stay local or on the fork.
 Results go to `manifests/*-2026102[67]-samebase/` and a handoff.
 
 ## Why (what final23/24 taught us)
@@ -140,3 +141,25 @@ note only.
 - Go/no-go on this plan.
 - shadowfax's llama down for about 6 h (overnight fits). hermes stays stopped until then.
 - Whether the fork-internal draft PRs for the CI runs are OK. They're visible on the public fork, though not upstream.
+
+## Revised timeline (10:10: C+ after the other steps)
+**Stage 1: B, M, P only**
+| Step | Time | Clock (from 10:15) |
+|---|---|---|
+| M: merge #1766 onto B, resolve, build | 1-1.5 h | to ~11:45 |
+| counter checks for M (make check, per-commit, CPU build, tiny oracle); fork CI for M in background | ~1.25 h | to ~13:00 |
+| Harness and pilots (shadowfax final25, computer4 c4m25) | 0.75 h | to ~13:45 |
+| shadowfax: REAP 10 samples (~1.6 h), full 10 (~0.9 h), Vulkan 3 (~0.75 h), CUDA tests (~0.3 h) | ~3.5 h llama down | ~14:00-17:30 |
+| computer4: 5070 pilot and 6 samples (~2.1 h), then CPU-only 6 (~1.5 h) | ~3.6 h | ~14:00-17:45 |
+| Write-up | 0.5 h | **~18:15** |
+
+If shadowfax must wait for the evening, its window moves (e.g. 19:00-22:30) and the write-up follows about 23:00.
+
+**Stage 2: C+.** Its engineering starts once Stage 1 is running on the GPUs, without delaying Stage 1.
+| Step | Time | Clock |
+|---|---|---|
+| C+ merge, 29 hunks, mutual exclusion, peer-concurrency check (nsys) | 4-6 h | ~14:00-19:30 |
+| counter checks and fork CI for C+ | ~1.5 h | to ~21:00 |
+| shadowfax: C+ 1 GPU and 2 GPUs on REAP and full (8 samples), Phase 0 ablation of #1766 (~1 h), Vulkan C+ (1), anchor samples of B and P in the same session (~0.75 h) | ~3.5 h llama down | ~21:00-00:30 |
+| computer4: C+ on the 5070 (2) and CPU-only (2), plus a B anchor | ~1.5 h | ~21:00-22:30 |
+| Write-up, redrafted #1766 / #2405 text (shown, not posted) | 0.75 h | **~01:15** |
