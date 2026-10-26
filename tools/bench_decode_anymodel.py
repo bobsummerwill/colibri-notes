@@ -18,7 +18,10 @@ def run(name, prompt, max_tokens):
                     if first is None: first=time.time()
                     n+=1; text+=delta
     t1=time.time()
-    vram=subprocess.run(["nvidia-smi","--query-gpu=memory.used","--format=csv,noheader"],capture_output=True,text=True).stdout.split()
+    try:
+        vram=subprocess.run(["nvidia-smi","--query-gpu=memory.used","--format=csv,noheader"],capture_output=True,text=True).stdout.split()
+    except FileNotFoundError:   # no NVIDIA tools (counter's iGPU)
+        vram=None
     res={"name":name,"ttft_s":round(first-t0,2) if first else None,"decode_chunks":n,"decode_s":round(t1-first,2) if first else None,
          "decode_tok_s":round((n-1)/(t1-first),3) if first and n>1 else None,"total_s":round(t1-t0,2),"usage":usage,"vram":vram,"text_head":text[:200],"text":text}
     print(json.dumps(res), flush=True)

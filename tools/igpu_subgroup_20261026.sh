@@ -5,6 +5,7 @@
 # bench_decode.py (6 prompts x 300 tokens, streamed), 3 client runs per server, servers in the order 16, 32, 32, 16:
 # each start's time to "listening" shows whether the chain_moe.spv compile at 32 (38+ min in test_vk_chain) repeats.
 # Waits for counter's colibri-recheck2 so the CPU is quiet.
+# Server start is lazy (the engine loads on the first request), so the first request's TTFT carries the pipeline compile.
 set -u
 while systemctl --user is-active -q colibri-recheck2; do sleep 60; done
 T=/home/unagi/Projects/wt-r-sg; M=/home/unagi/colibri-notes/manifests/counter-20261026-igpu; mkdir -p "$M"

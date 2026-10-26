@@ -1,0 +1,81 @@
+[gguf] /home/unagi/colibri-models/olmoe/olmoe-1b-7b-0924-instruct-q4_k_m.gguf: olmoe, 1 part(s), 3219 tensors under the checkpoint's names (147 renamed, 48 fused expert tensors split per expert, 0 kept as named), read in place
+olmoe: GGUF experts Q4_K gate/up, Q6_K down (layer 0)
+[cache] 64 slots/layer of 64 experts: 16.0 GB budget (RAM_GB), 0.3 GB dense resident, 4 MB per expert; the KV takes slots back as the context grows
+[VK] VRAM pressure-proofing: memory_priority absent, memory_budget on
+[VK] ready: Intel(R) Graphics (MTL), compute qfam 0, memtype 0, fused gate+up, absorb attention, tiled GEMM from S=2 and S*O>=4096
+[VK] olmoe: device ready, dense matrices on the CPU (an integrated GPU shares the CPU's RAM and the expert tier is on; COLI_VK_DENSE=1 puts them on the device)
+[VK] olmoe: a GGUF: the dense matrices on the device go up with the chain only (ggml blocks)
+[VK] olmoe chain fit: free 22305308672 B, reserve 1073741824 B, fixed 514282240 B (the engine's 27742976 B, the pools' 486539264 B), tail 84510976 B, layers 13960448 13960448 12879104 12879104 13960448 12879104 12879104 12879104 13960448 12879104 12879104 13960448 12879104 13960448 13960448 13960448 B, matrices 10780692 10780692 9699348 9699348 10780692 9699348 9699348 9699348 10780692 9699348 9699348 10780692 9699348 10780692 10780692 10780692 B
+[VK] olmoe chain: 16 of 16 layers on the device (204.8 MiB), 0 on the CPU (free 20.77 GiB, reserve 1.00 GiB)
+[VK] chain: chain_gemv2 stages x in 48 KiB of shared memory, the device's limit
+[VK] olmoe chain: 16 of 16 layers placed: 163840320 B of matrices on the device (the fit counted 163840320 B for these layers), chain buffers 1581312 B, device memory held 402653184 B
+[VK] olmoe chain: 16 layers on the device, 0.5 MiB of parameters
+[VK] tier olmoe: the GGUF experts' blocks go to the device as the file has them (Q4_K gate/up, Q6_K down on 8 of 16 layers, the others their own types)
+[VK] tier olmoe: on, Intel(R) Graphics (MTL), budget 4.30 GiB = 1024 experts of 3.6 MiB (fmt 112, down fmt 114; 8 layers in 1 form other than most layers', their experts in the room of the biggest of those, the rest at their own size), shared RAM: a quarter of what the expert cache leaves, shared queue, up to 16 promotions per token, balanced against the CPU, streaming cold experts of prompt steps through 64 slots
+[VK] tier olmoe: warm start, 1024 experts in 1.0s (0 from the history, 1024 more to fill the device: every expert of the model)
+[VK] olmoe: dense chain on (COLI_VK_CHAIN=1)
+[stop] batched serve mode: filtered 3 non-EOS stop tokens (tool-call safety, #401)
+[stop] 1 stop tokens: 0
+[gateway] input modalities: text
+OpenAI-compatible API listening on http://127.0.0.1:8090/v1
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[VK] olmoe chain: prompt chunks of up to 8192 rows (497 KiB a row; 17.38 GiB free on the device or in RAM, half of it at most; COLI_VK_CHAIN_ROWS sets it, COLI_VK_CHAIN_ROWS_MAX caps it at 8192)
+[VK] chain: fence wait failed (2): the device is lost
+[VK] olmoe chain: the device was lost; the CPU redoes the step from position 0 (the KV rows below it are the host's) and runs from here on
+[VK] tier olmoe: the device stopped answering, the experts stay on the CPU
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[VK] olmoe: 0 matmuls on the GPU (82 matrices resident, 236.9 MiB)
+[VK] tier olmoe turn: device 0 of 0 routed experts (0.0%; this turn 0 of 0) | CPU RAM hits 42776, disk loads 1000 | resident 1024 (budget 1024, 3.63 GiB of 4.30 GiB, 15 blocks, frag 0.06) | uploads 1024 (3.63 GiB, 1024 warm), evictions 0, skipped 0 queue + 0 rate, failed 0 | device 0.0 ms, CPU share 0.0 ms, waited 0.0 ms (0% of device time hidden) | balance: device share 1.00, 0 rows handed to the CPU | exclusive: 0 RAM copies of device experts given up first
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[VK] olmoe: 0 matmuls on the GPU (82 matrices resident, 236.9 MiB)
+[VK] tier olmoe turn: device 0 of 0 routed experts (0.0%; this turn 0 of 0) | CPU RAM hits 85251, disk loads 1021 | resident 1024 (budget 1024, 3.63 GiB of 4.30 GiB, 15 blocks, frag 0.06) | uploads 1024 (3.63 GiB, 1024 warm), evictions 0, skipped 0 queue + 0 rate, failed 0 | device 0.0 ms, CPU share 0.0 ms, waited 0.0 ms (0% of device time hidden) | balance: device share 1.00, 0 rows handed to the CPU | exclusive: 0 RAM copies of device experts given up first
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[VK] olmoe: 0 matmuls on the GPU (82 matrices resident, 236.9 MiB)
+[VK] tier olmoe turn: device 0 of 0 routed experts (0.0%; this turn 0 of 0) | CPU RAM hits 128513, disk loads 1023 | resident 1024 (budget 1024, 3.63 GiB of 4.30 GiB, 15 blocks, frag 0.06) | uploads 1024 (3.63 GiB, 1024 warm), evictions 0, skipped 0 queue + 0 rate, failed 0 | device 0.0 ms, CPU share 0.0 ms, waited 0.0 ms (0% of device time hidden) | balance: device share 1.00, 0 rows handed to the CPU | exclusive: 0 RAM copies of device experts given up first
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[VK] olmoe: 0 matmuls on the GPU (82 matrices resident, 236.9 MiB)
+[VK] tier olmoe turn: device 0 of 0 routed experts (0.0%; this turn 0 of 0) | CPU RAM hits 170624, disk loads 1024 | resident 1024 (budget 1024, 3.63 GiB of 4.30 GiB, 15 blocks, frag 0.06) | uploads 1024 (3.63 GiB, 1024 warm), evictions 0, skipped 0 queue + 0 rate, failed 0 | device 0.0 ms, CPU share 0.0 ms, waited 0.0 ms (0% of device time hidden) | balance: device share 1.00, 0 rows handed to the CPU | exclusive: 0 RAM copies of device experts given up first
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[VK] olmoe: 0 matmuls on the GPU (82 matrices resident, 236.9 MiB)
+[VK] tier olmoe turn: device 0 of 0 routed experts (0.0%; this turn 0 of 0) | CPU RAM hits 213120, disk loads 1024 | resident 1024 (budget 1024, 3.63 GiB of 4.30 GiB, 15 blocks, frag 0.06) | uploads 1024 (3.63 GiB, 1024 warm), evictions 0, skipped 0 queue + 0 rate, failed 0 | device 0.0 ms, CPU share 0.0 ms, waited 0.0 ms (0% of device time hidden) | balance: device share 1.00, 0 rows handed to the CPU | exclusive: 0 RAM copies of device experts given up first
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[VK] olmoe: 0 matmuls on the GPU (82 matrices resident, 236.9 MiB)
+[VK] tier olmoe turn: device 0 of 0 routed experts (0.0%; this turn 0 of 0) | CPU RAM hits 256128, disk loads 1024 | resident 1024 (budget 1024, 3.63 GiB of 4.30 GiB, 15 blocks, frag 0.06) | uploads 1024 (3.63 GiB, 1024 warm), evictions 0, skipped 0 queue + 0 rate, failed 0 | device 0.0 ms, CPU share 0.0 ms, waited 0.0 ms (0% of device time hidden) | balance: device share 1.00, 0 rows handed to the CPU | exclusive: 0 RAM copies of device experts given up first
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[VK] olmoe: 0 matmuls on the GPU (82 matrices resident, 236.9 MiB)
+[VK] tier olmoe turn: device 0 of 0 routed experts (0.0%; this turn 0 of 0) | CPU RAM hits 299904, disk loads 1024 | resident 1024 (budget 1024, 3.63 GiB of 4.30 GiB, 15 blocks, frag 0.06) | uploads 1024 (3.63 GiB, 1024 warm), evictions 0, skipped 0 queue + 0 rate, failed 0 | device 0.0 ms, CPU share 0.0 ms, waited 0.0 ms (0% of device time hidden) | balance: device share 1.00, 0 rows handed to the CPU | exclusive: 0 RAM copies of device experts given up first
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[VK] olmoe: 0 matmuls on the GPU (82 matrices resident, 236.9 MiB)
+[VK] tier olmoe turn: device 0 of 0 routed experts (0.0%; this turn 0 of 0) | CPU RAM hits 342400, disk loads 1024 | resident 1024 (budget 1024, 3.63 GiB of 4.30 GiB, 15 blocks, frag 0.06) | uploads 1024 (3.63 GiB, 1024 warm), evictions 0, skipped 0 queue + 0 rate, failed 0 | device 0.0 ms, CPU share 0.0 ms, waited 0.0 ms (0% of device time hidden) | balance: device share 1.00, 0 rows handed to the CPU | exclusive: 0 RAM copies of device experts given up first
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[VK] olmoe: 0 matmuls on the GPU (82 matrices resident, 236.9 MiB)
+[VK] tier olmoe turn: device 0 of 0 routed experts (0.0%; this turn 0 of 0) | CPU RAM hits 385664, disk loads 1024 | resident 1024 (budget 1024, 3.63 GiB of 4.30 GiB, 15 blocks, frag 0.06) | uploads 1024 (3.63 GiB, 1024 warm), evictions 0, skipped 0 queue + 0 rate, failed 0 | device 0.0 ms, CPU share 0.0 ms, waited 0.0 ms (0% of device time hidden) | balance: device share 1.00, 0 rows handed to the CPU | exclusive: 0 RAM copies of device experts given up first
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[VK] olmoe: 0 matmuls on the GPU (82 matrices resident, 236.9 MiB)
+[VK] tier olmoe turn: device 0 of 0 routed experts (0.0%; this turn 0 of 0) | CPU RAM hits 427776, disk loads 1024 | resident 1024 (budget 1024, 3.63 GiB of 4.30 GiB, 15 blocks, frag 0.06) | uploads 1024 (3.63 GiB, 1024 warm), evictions 0, skipped 0 queue + 0 rate, failed 0 | device 0.0 ms, CPU share 0.0 ms, waited 0.0 ms (0% of device time hidden) | balance: device share 1.00, 0 rows handed to the CPU | exclusive: 0 RAM copies of device experts given up first
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[VK] olmoe: 0 matmuls on the GPU (82 matrices resident, 236.9 MiB)
+[VK] tier olmoe turn: device 0 of 0 routed experts (0.0%; this turn 0 of 0) | CPU RAM hits 470272, disk loads 1024 | resident 1024 (budget 1024, 3.63 GiB of 4.30 GiB, 15 blocks, frag 0.06) | uploads 1024 (3.63 GiB, 1024 warm), evictions 0, skipped 0 queue + 0 rate, failed 0 | device 0.0 ms, CPU share 0.0 ms, waited 0.0 ms (0% of device time hidden) | balance: device share 1.00, 0 rows handed to the CPU | exclusive: 0 RAM copies of device experts given up first
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[VK] olmoe: 0 matmuls on the GPU (82 matrices resident, 236.9 MiB)
+[VK] tier olmoe turn: device 0 of 0 routed experts (0.0%; this turn 0 of 0) | CPU RAM hits 513280, disk loads 1024 | resident 1024 (budget 1024, 3.63 GiB of 4.30 GiB, 15 blocks, frag 0.06) | uploads 1024 (3.63 GiB, 1024 warm), evictions 0, skipped 0 queue + 0 rate, failed 0 | device 0.0 ms, CPU share 0.0 ms, waited 0.0 ms (0% of device time hidden) | balance: device share 1.00, 0 rows handed to the CPU | exclusive: 0 RAM copies of device experts given up first
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[VK] olmoe: 0 matmuls on the GPU (82 matrices resident, 236.9 MiB)
+[VK] tier olmoe turn: device 0 of 0 routed experts (0.0%; this turn 0 of 0) | CPU RAM hits 557056, disk loads 1024 | resident 1024 (budget 1024, 3.63 GiB of 4.30 GiB, 15 blocks, frag 0.06) | uploads 1024 (3.63 GiB, 1024 warm), evictions 0, skipped 0 queue + 0 rate, failed 0 | device 0.0 ms, CPU share 0.0 ms, waited 0.0 ms (0% of device time hidden) | balance: device share 1.00, 0 rows handed to the CPU | exclusive: 0 RAM copies of device experts given up first
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[VK] olmoe: 0 matmuls on the GPU (82 matrices resident, 236.9 MiB)
+[VK] tier olmoe turn: device 0 of 0 routed experts (0.0%; this turn 0 of 0) | CPU RAM hits 599552, disk loads 1024 | resident 1024 (budget 1024, 3.63 GiB of 4.30 GiB, 15 blocks, frag 0.06) | uploads 1024 (3.63 GiB, 1024 warm), evictions 0, skipped 0 queue + 0 rate, failed 0 | device 0.0 ms, CPU share 0.0 ms, waited 0.0 ms (0% of device time hidden) | balance: device share 1.00, 0 rows handed to the CPU | exclusive: 0 RAM copies of device experts given up first
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[VK] olmoe: 0 matmuls on the GPU (82 matrices resident, 236.9 MiB)
+[VK] tier olmoe turn: device 0 of 0 routed experts (0.0%; this turn 0 of 0) | CPU RAM hits 642816, disk loads 1024 | resident 1024 (budget 1024, 3.63 GiB of 4.30 GiB, 15 blocks, frag 0.06) | uploads 1024 (3.63 GiB, 1024 warm), evictions 0, skipped 0 queue + 0 rate, failed 0 | device 0.0 ms, CPU share 0.0 ms, waited 0.0 ms (0% of device time hidden) | balance: device share 1.00, 0 rows handed to the CPU | exclusive: 0 RAM copies of device experts given up first
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[VK] olmoe: 0 matmuls on the GPU (82 matrices resident, 236.9 MiB)
+[VK] tier olmoe turn: device 0 of 0 routed experts (0.0%; this turn 0 of 0) | CPU RAM hits 684928, disk loads 1024 | resident 1024 (budget 1024, 3.63 GiB of 4.30 GiB, 15 blocks, frag 0.06) | uploads 1024 (3.63 GiB, 1024 warm), evictions 0, skipped 0 queue + 0 rate, failed 0 | device 0.0 ms, CPU share 0.0 ms, waited 0.0 ms (0% of device time hidden) | balance: device share 1.00, 0 rows handed to the CPU | exclusive: 0 RAM copies of device experts given up first
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[VK] olmoe: 0 matmuls on the GPU (82 matrices resident, 236.9 MiB)
+[VK] tier olmoe turn: device 0 of 0 routed experts (0.0%; this turn 0 of 0) | CPU RAM hits 727424, disk loads 1024 | resident 1024 (budget 1024, 3.63 GiB of 4.30 GiB, 15 blocks, frag 0.06) | uploads 1024 (3.63 GiB, 1024 warm), evictions 0, skipped 0 queue + 0 rate, failed 0 | device 0.0 ms, CPU share 0.0 ms, waited 0.0 ms (0% of device time hidden) | balance: device share 1.00, 0 rows handed to the CPU | exclusive: 0 RAM copies of device experts given up first
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[VK] olmoe: 0 matmuls on the GPU (82 matrices resident, 236.9 MiB)
+[VK] tier olmoe turn: device 0 of 0 routed experts (0.0%; this turn 0 of 0) | CPU RAM hits 770432, disk loads 1024 | resident 1024 (budget 1024, 3.63 GiB of 4.30 GiB, 15 blocks, frag 0.06) | uploads 1024 (3.63 GiB, 1024 warm), evictions 0, skipped 0 queue + 0 rate, failed 0 | device 0.0 ms, CPU share 0.0 ms, waited 0.0 ms (0% of device time hidden) | balance: device share 1.00, 0 rows handed to the CPU | exclusive: 0 RAM copies of device experts given up first

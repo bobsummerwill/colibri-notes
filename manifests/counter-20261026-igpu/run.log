@@ -1,0 +1,21 @@
+[2026-10-26 00:35:00] === server 1: subgroup 16 (COLI_VK_SUBGROUP=16)
+[2026-10-26 00:35:02] server 1 ready=1 after 2 s
+[2026-10-26 00:36:29] server 1 run 1 rc=0 rows=6 mean_decode=28.53 tok/s median_ttft=3.99 s texts=bcdf22ef 57c98b86 2312ec44 a8cdef80 5d19b893 774b7f69
+[2026-10-26 00:37:57] server 1 run 2 rc=0 rows=6 mean_decode=28.44 tok/s median_ttft=3.99 s texts=57a9996c a912b059 c46fa164 a66d6829 cc8e8c54 384900c4
+[2026-10-26 00:39:23] server 1 run 3 rc=0 rows=6 mean_decode=28.50 tok/s median_ttft=4.00 s texts=764788f0 e3733cfc 0a246407 b98a16aa dd0b5ea7 e82b95c1
+[2026-10-26 00:39:29] === server 2: subgroup 32 (unset: the reported 32)
+[2026-10-26 00:39:31] server 2 ready=1 after 2 s
+[2026-10-26 00:41:16] server 2 run 1 rc=0 rows=6 mean_decode=22.85 tok/s median_ttft=1.01 s texts=54afd172 0626ae7f 6a934aa9 9589048a d1155f79 da7600c2
+[2026-10-26 00:42:42] server 2 run 2 rc=0 rows=6 mean_decode=22.75 tok/s median_ttft=1.04 s texts=4864be01 b2946387 8c138b35 754a0959 237b1ad3 149f2b08
+[2026-10-26 00:44:07] server 2 run 3 rc=0 rows=6 mean_decode=22.56 tok/s median_ttft=0.99 s texts=8948f13b ac938764 0a246407 c9837889 07d2b5f4 efcc00a4
+[2026-10-26 00:44:12] === server 3: subgroup 32 (unset: the reported 32)
+[2026-10-26 00:44:14] server 3 ready=1 after 2 s
+[2026-10-26 00:49:05] server 3 run 1 rc=0 rows=6 mean_decode=10.58 tok/s median_ttft=20.14 s texts=5c78fdae d5c38002 9419e432 6d0b4405 8b74c4c8 51327512
+[2026-10-26 00:53:06] server 3 run 2 rc=0 rows=6 mean_decode=14.88 tok/s median_ttft=20.13 s texts=87130ccd 40c8bb61 a4adb512 1889068a 237b1ad3 149f2b08
+[2026-10-26 00:54:32] server 3 run 3 rc=0 rows=6 mean_decode=22.74 tok/s median_ttft=1.06 s texts=8948f13b ac938764 0a246407 c9837889 07d2b5f4 efcc00a4
+[2026-10-26 00:54:37] === server 4: subgroup 16 (COLI_VK_SUBGROUP=16)
+[2026-10-26 00:54:39] server 4 ready=1 after 2 s
+[2026-10-26 00:56:06] server 4 run 1 rc=0 rows=6 mean_decode=28.60 tok/s median_ttft=4.01 s texts=bcdf22ef 57c98b86 2312ec44 a8cdef80 5d19b893 774b7f69
+[2026-10-26 00:57:32] server 4 run 2 rc=0 rows=6 mean_decode=28.61 tok/s median_ttft=3.98 s texts=57a9996c a912b059 c46fa164 a66d6829 cc8e8c54 384900c4
+[2026-10-26 00:58:59] server 4 run 3 rc=0 rows=6 mean_decode=28.53 tok/s median_ttft=3.99 s texts=764788f0 e3733cfc 0a246407 b98a16aa dd0b5ea7 e82b95c1
+[2026-10-26 00:59:04] ALL DONE
