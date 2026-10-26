@@ -17,7 +17,8 @@ OK too. Opened at his request: PR #0 (#2212-#2217), PR #1 (#2264, merged); 2026-
 
 > **Pick up here: [HANDOFF_20261026.md](HANDOFF_20261026.md)** (2026-10-26 morning: #2401/#2402 accepted for the next
 > upstream batch; #1766 measured against its dev base on 2x 3090 + 5070, with a draft comment waiting for Bob's OK; PR #2
-> is draft #2405 on #2401; hermes on shadowfax left stopped). Before that: [HANDOFF_20261025.md](HANDOFF_20261025.md),
+> is draft #2405 on #2401; hermes on shadowfax left stopped). Next: [review/PLAN_SAME_BASE_20261026.md](review/PLAN_SAME_BASE_20261026.md)
+> (#1766, PR #2 and a combined C+ on one base). Before that: [HANDOFF_20261025.md](HANDOFF_20261025.md),
 > [HANDOFF_20261024.md](HANDOFF_20261024.md).
 
 ## Status (2026-10-24, night; counter)

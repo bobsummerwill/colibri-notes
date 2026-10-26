@@ -84,7 +84,11 @@ Logs, scripts and per-request numbers:
 
 ---
 
-## Optional: #2405 "Related" paragraph (our own draft PR)
+## Optional: #2405 "Related" paragraph (our own draft PR): ON HOLD
+
+On hold (2026-10-26 10:00): it leads with the base-mixed 0.94x head to head. Redraft it from the same-base run
+([PLAN_SAME_BASE_20261026.md](PLAN_SAME_BASE_20261026.md)), around what the second GPU adds (PR #2 1.43x / 1.15x vs
+#1766 1.29x / 1.04x).
 
 Add these sub-bullets under the #1766 bullet in #2405's Related section, after the two that are there:
 
