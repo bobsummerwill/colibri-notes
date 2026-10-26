@@ -226,3 +226,23 @@ If shadowfax must wait for the evening, its window moves (e.g. 19:00-22:30) and 
   - Banner rewritten: #2401 is merged, and the diff is the PR's own 11 commits. Body: [PR2_BODY_20261026.md](PR2_BODY_20261026.md).
   - Split branches rebased the same way, every patch unchanged: pr2-1 6a191e90, pr2-2 c45b6962, pr2-3 695a7be4,
     pr2-4 1c881700. pr2-4's tree equals P.
+
+## PR #2's four splits in the suite (Bob, ~11:10)
+- Splits on dev c1c06ac6:
+  - S1 `split/pr2-1-guard` 6a191e90: the per-cache guard
+  - S2 `split/pr2-2-settings` c45b6962: PIN_CAP_GB, stats log
+  - S3 `split/pr2-3-vram-first` 695a7be4: VRAM-first
+  - S4 = P (same tree)
+- **shadowfax final29**, after final28, built between runs: REAP, one GPU.
+  - Arms: S1 x2, S2 x2, S3 x2 (VRAM-first on), anchors B1 and P1 x1.
+  - One text group: everything must equal B.
+  - About 1.4 h more, so shadowfax ends ~19:40.
+- **computer4 c4m28**, after c4m27: S1, S2, S3 and B anchor x1 on the 5070. About 1.3 h.
+- **Expectations:** S1 and S2 are neutral against dev (that's what makes them easy to merge); S3 is VRAM-first's one-GPU
+  gain on its own (P1 measures it with split 4's inactive code present).
+- **How the splits fit with #1766:**
+  - S1 is the shared foundation: #1766's per-device caches need its per-cache guard state, which is what the M merge did.
+  - S2 is orthogonal.
+  - S3 combines cleanly: C+ looks VRAM-first up in the layer's own cache, and C+ on one GPU (C1) is effectively #1766 + S3.
+  - S4 is the overlap: two multi-GPU setups in the backend, both claiming GPU 1. C+ is the worked combination.
+  - Natural landing order: S1, then #1766, then S2/S3, then S4 (if the numbers back it).
