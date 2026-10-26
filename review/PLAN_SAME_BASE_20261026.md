@@ -165,3 +165,35 @@ If shadowfax must wait for the evening, its window moves (e.g. 19:00-22:30) and 
 | shadowfax: C+ 1 GPU and 2 GPUs on REAP and full (8 samples), Phase 0 ablation of #1766 (~1 h), Vulkan C+ (1), anchor samples of B and P in the same session (~0.75 h) | ~3.5 h llama down | ~21:00-00:30 |
 | computer4: C+ on the 5070 (2) and CPU-only (2), plus a B anchor | ~1.5 h | ~21:00-22:30 |
 | Write-up, redrafted #1766 / #2405 text (shown, not posted) | 0.75 h | **~01:15** |
+
+## Progress log (2026-10-26)
+- **10:15 Stage 1 launched**, far earlier than the plan's 14:00:
+  - shadowfax final25 (B/M/P; REAP and full, 1 and 2 GPUs; Vulkan; CUDA tests; ~3.4 h, llama down)
+  - computer4 c4m25 (pilot, 5070 B/M/P, CPU-only B/M/P; ~3-4 h)
+  - Harness: [manifests/shadowfax-20261026-samebase](../manifests/shadowfax-20261026-samebase), [manifests/computer4-20261026-samebase](../manifests/computer4-20261026-samebase).
+- **M** = fork `samebase/m1766`. Engine 63df714d (merge), then tests-only d4d8ab3f and the `dsv4.def` fix 819cd03d.
+  - 13 hunks resolved. Main point: #2401's fuller guard moves into #1766's per-device cache fields.
+  - Builds: CUDA sm_86 (shadowfax), sm_120 and CPU-only (computer4), no nvcc or gcc warnings.
+  - Every deepseek_v4.c unit compiles clean in 4 configs (plain, GPU tier, +Vulkan, +prefetch).
+  - Tiny V4 oracle: 21 PASS on B, P and M.
+  - Python v4/dsv4 tests pass after the test follow-ups.
+- **C+** = fork `samebase/cplus`. Engine d0ccbfe2 (M merged into PR #2: 24 hunks), then `dsv4.def` d5e6e2c1.
+  - The engine open is rewritten: #1766's device list first, PR #2's peer settling for one device only, and the peer
+    pool refused (with a warning) when there is a device list.
+  - Attach, peek and the VRAM-held scan use the layer's own cache, then the peer.
+  - Every unit compiles clean in 4 configs. Python tests pass, with PR #2's peer-init source test re-pinned to the
+    three-way init.
+  - nvcc not run yet. Shadowfax and computer4 are busy with Stage 1, and a local CUDA toolchain download was refused
+    by the permission check. Fork CI's "CUDA syntax check" job runs on it.
+- **Fork CI:** draft PRs bobsummerwill/colibri#1 (M) and #2 (C+); the fork's `dev` fast-forwarded to 77530b49.
+  - **Slip:** PR #1's first body used `owner/repo#N` links, which put "mentioned this" backlinks on upstream #1766 and
+    #2401. Edited within a minute, but the timeline entries stay (GitHub can't delete a PR). Memory rule added.
+- **Found in #1766 itself:** `dsv4_cuda_wo_decode` is declared in `backend_cuda_dsv4.h` and resolved by the loader, but
+  never listed in `dsv4.def`. An MSVC DLL would not export it, so Windows would silently run without WO decode. dev's
+  `test_backend_loader_dsv4_parity.py` catches it once #1766 sits on current dev. Worth a line in the #1766 comment.
+- **#1766's placement test after the merge** needs stubs for backend entries dev added later, and native-FP4 views
+  (dev's mirror cache attaches FP4 only). It's a test-side drift, not an engine problem.
+- **Upstream:** JustVugg opened batch PR #2412 with #2401-#2404 (108 checks passed, 8 pending at 10:40).
+- **Ablation switches** (#1766, all default on): DSV4_CUDA_COMPRESSOR, _HEAD, _HEAD_BATCH, _INDEXER_PREP,
+  _INDEXER_HEADS, _RESIDENT_INDEXER, _WO_DECODE, _RESIDENT_EXPERTS, _RESIDENT_ROUTE (full table only). Native E4M3
+  conversion has no switch: its share is whatever "M, all off" keeps over B.

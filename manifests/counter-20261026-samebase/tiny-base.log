@@ -1,0 +1,269 @@
+tree=base sha=dd03a9de6ba9cd83ad9640ad1189cafb33d4f5fc start=2026-10-26T10:07:32-07:00
+/home/unagi/colibri-bench/v4tiny-venv/bin/python tools/make_deepseek_v4_tiny.py \
+	--output ./deepseek_v4_tiny --force
+[target] 180 tensors
+  embed.weight: [128, 128] torch.bfloat16
+  head.weight: [128, 128] torch.bfloat16
+  norm.weight: [128] torch.bfloat16
+  hc_head_fn: [2, 256] torch.float32
+  hc_head_base: [2] torch.float32
+  hc_head_scale: [1] torch.float32
+  layers.0.attn.attn_sink: [4] torch.float32
+  layers.0.attn.kv_norm.weight: [32] torch.bfloat16
+  layers.0.attn.q_norm.weight: [128] torch.bfloat16
+  layers.0.attn.wkv.weight: [32, 128] torch.float8_e4m3fn
+  layers.0.attn.wkv.scale: [1, 1] torch.float8_e8m0fnu
+  layers.0.attn.wo_a.weight: [128, 128] torch.float8_e4m3fn
+  layers.0.attn.wo_a.scale: [1, 1] torch.float8_e8m0fnu
+  layers.0.attn.wo_b.weight: [128, 128] torch.float8_e4m3fn
+  layers.0.attn.wo_b.scale: [1, 1] torch.float8_e8m0fnu
+  layers.0.attn.wq_a.weight: [128, 128] torch.float8_e4m3fn
+  layers.0.attn.wq_a.scale: [1, 1] torch.float8_e8m0fnu
+  layers.0.attn.wq_b.weight: [128, 128] torch.float8_e4m3fn
+  layers.0.attn.wq_b.scale: [1, 1] torch.float8_e8m0fnu
+  layers.0.attn_norm.weight: [128] torch.bfloat16
+  layers.0.ffn.gate.weight: [4, 128] torch.bfloat16
+  layers.0.ffn.gate.tid2eid: [128, 2] torch.int64
+  layers.0.ffn.shared_experts.w1.weight: [128, 128] torch.float8_e4m3fn
+  layers.0.ffn.shared_experts.w1.scale: [1, 1] torch.float8_e8m0fnu
+  layers.0.ffn.shared_experts.w2.weight: [128, 128] torch.float8_e4m3fn
+  layers.0.ffn.shared_experts.w2.scale: [1, 1] torch.float8_e8m0fnu
+  layers.0.ffn.shared_experts.w3.weight: [128, 128] torch.float8_e4m3fn
+  layers.0.ffn.shared_experts.w3.scale: [1, 1] torch.float8_e8m0fnu
+  layers.0.ffn_norm.weight: [128] torch.bfloat16
+  layers.0.hc_attn_base: [8] torch.float32
+  layers.0.hc_attn_fn: [8, 256] torch.float32
+  layers.0.hc_attn_scale: [3] torch.float32
+  layers.0.hc_ffn_base: [8] torch.float32
+  layers.0.hc_ffn_fn: [8, 256] torch.float32
+  layers.0.hc_ffn_scale: [3] torch.float32
+  layers.0.ffn.experts.0.w1.scale: [128, 4] torch.float8_e8m0fnu
+  layers.0.ffn.experts.0.w2.scale: [128, 4] torch.float8_e8m0fnu
+  layers.0.ffn.experts.0.w3.scale: [128, 4] torch.float8_e8m0fnu
+  layers.0.ffn.experts.0.w1.weight: [128, 64] torch.int8
+  layers.0.ffn.experts.0.w2.weight: [128, 64] torch.int8
+  layers.0.ffn.experts.0.w3.weight: [128, 64] torch.int8
+  layers.0.ffn.experts.1.w1.scale: [128, 4] torch.float8_e8m0fnu
+  layers.0.ffn.experts.1.w2.scale: [128, 4] torch.float8_e8m0fnu
+  layers.0.ffn.experts.1.w3.scale: [128, 4] torch.float8_e8m0fnu
+  layers.0.ffn.experts.1.w1.weight: [128, 64] torch.int8
+  layers.0.ffn.experts.1.w2.weight: [128, 64] torch.int8
+  layers.0.ffn.experts.1.w3.weight: [128, 64] torch.int8
+  layers.0.ffn.experts.2.w1.scale: [128, 4] torch.float8_e8m0fnu
+  layers.0.ffn.experts.2.w2.scale: [128, 4] torch.float8_e8m0fnu
+  layers.0.ffn.experts.2.w3.scale: [128, 4] torch.float8_e8m0fnu
+  layers.0.ffn.experts.2.w1.weight: [128, 64] torch.int8
+  layers.0.ffn.experts.2.w2.weight: [128, 64] torch.int8
+  layers.0.ffn.experts.2.w3.weight: [128, 64] torch.int8
+  layers.0.ffn.experts.3.w1.scale: [128, 4] torch.float8_e8m0fnu
+  layers.0.ffn.experts.3.w2.scale: [128, 4] torch.float8_e8m0fnu
+  layers.0.ffn.experts.3.w3.scale: [128, 4] torch.float8_e8m0fnu
+  layers.0.ffn.experts.3.w1.weight: [128, 64] torch.int8
+  layers.0.ffn.experts.3.w2.weight: [128, 64] torch.int8
+  layers.0.ffn.experts.3.w3.weight: [128, 64] torch.int8
+  layers.1.attn.attn_sink: [4] torch.float32
+  layers.1.attn.kv_norm.weight: [32] torch.bfloat16
+  layers.1.attn.q_norm.weight: [128] torch.bfloat16
+  layers.1.attn.wkv.weight: [32, 128] torch.float8_e4m3fn
+  layers.1.attn.wkv.scale: [1, 1] torch.float8_e8m0fnu
+  layers.1.attn.wo_a.weight: [128, 128] torch.float8_e4m3fn
+  layers.1.attn.wo_a.scale: [1, 1] torch.float8_e8m0fnu
+  layers.1.attn.wo_b.weight: [128, 128] torch.float8_e4m3fn
+  layers.1.attn.wo_b.scale: [1, 1] torch.float8_e8m0fnu
+  layers.1.attn.wq_a.weight: [128, 128] torch.float8_e4m3fn
+  layers.1.attn.wq_a.scale: [1, 1] torch.float8_e8m0fnu
+  layers.1.attn.wq_b.weight: [128, 128] torch.float8_e4m3fn
+  layers.1.attn.wq_b.scale: [1, 1] torch.float8_e8m0fnu
+  layers.1.attn_norm.weight: [128] torch.bfloat16
+  layers.1.attn.compressor.ape: [4, 64] torch.float32
+  layers.1.attn.compressor.norm.weight: [32] torch.bfloat16
+  layers.1.attn.compressor.wgate.weight: [64, 128] torch.bfloat16
+  layers.1.attn.compressor.wkv.weight: [64, 128] torch.bfloat16
+  layers.1.attn.indexer.compressor.ape: [4, 64] torch.float32
+  layers.1.attn.indexer.compressor.norm.weight: [32] torch.bfloat16
+  layers.1.attn.indexer.compressor.wgate.weight: [64, 128] torch.bfloat16
+  layers.1.attn.indexer.compressor.wkv.weight: [64, 128] torch.bfloat16
+  layers.1.attn.indexer.weights_proj.weight: [2, 128] torch.bfloat16
+  layers.1.attn.indexer.wq_b.weight: [64, 128] torch.float8_e4m3fn
+  layers.1.attn.indexer.wq_b.scale: [1, 1] torch.float8_e8m0fnu
+  layers.1.ffn.gate.weight: [4, 128] torch.bfloat16
+  layers.1.ffn.gate.bias: [4] torch.float32
+  layers.1.ffn.shared_experts.w1.weight: [128, 128] torch.float8_e4m3fn
+  layers.1.ffn.shared_experts.w1.scale: [1, 1] torch.float8_e8m0fnu
+  layers.1.ffn.shared_experts.w2.weight: [128, 128] torch.float8_e4m3fn
+  layers.1.ffn.shared_experts.w2.scale: [1, 1] torch.float8_e8m0fnu
+  layers.1.ffn.shared_experts.w3.weight: [128, 128] torch.float8_e4m3fn
+  layers.1.ffn.shared_experts.w3.scale: [1, 1] torch.float8_e8m0fnu
+  layers.1.ffn_norm.weight: [128] torch.bfloat16
+  layers.1.hc_attn_base: [8] torch.float32
+  layers.1.hc_attn_fn: [8, 256] torch.float32
+  layers.1.hc_attn_scale: [3] torch.float32
+  layers.1.hc_ffn_base: [8] torch.float32
+  layers.1.hc_ffn_fn: [8, 256] torch.float32
+  layers.1.hc_ffn_scale: [3] torch.float32
+  layers.1.ffn.experts.0.w1.scale: [128, 4] torch.float8_e8m0fnu
+  layers.1.ffn.experts.0.w2.scale: [128, 4] torch.float8_e8m0fnu
+  layers.1.ffn.experts.0.w3.scale: [128, 4] torch.float8_e8m0fnu
+  layers.1.ffn.experts.0.w1.weight: [128, 64] torch.int8
+  layers.1.ffn.experts.0.w2.weight: [128, 64] torch.int8
+  layers.1.ffn.experts.0.w3.weight: [128, 64] torch.int8
+  layers.1.ffn.experts.1.w1.scale: [128, 4] torch.float8_e8m0fnu
+  layers.1.ffn.experts.1.w2.scale: [128, 4] torch.float8_e8m0fnu
+  layers.1.ffn.experts.1.w3.scale: [128, 4] torch.float8_e8m0fnu
+  layers.1.ffn.experts.1.w1.weight: [128, 64] torch.int8
+  layers.1.ffn.experts.1.w2.weight: [128, 64] torch.int8
+  layers.1.ffn.experts.1.w3.weight: [128, 64] torch.int8
+  layers.1.ffn.experts.2.w1.scale: [128, 4] torch.float8_e8m0fnu
+  layers.1.ffn.experts.2.w2.scale: [128, 4] torch.float8_e8m0fnu
+  layers.1.ffn.experts.2.w3.scale: [128, 4] torch.float8_e8m0fnu
+  layers.1.ffn.experts.2.w1.weight: [128, 64] torch.int8
+  layers.1.ffn.experts.2.w2.weight: [128, 64] torch.int8
+  layers.1.ffn.experts.2.w3.weight: [128, 64] torch.int8
+  layers.1.ffn.experts.3.w1.scale: [128, 4] torch.float8_e8m0fnu
+  layers.1.ffn.experts.3.w2.scale: [128, 4] torch.float8_e8m0fnu
+  layers.1.ffn.experts.3.w3.scale: [128, 4] torch.float8_e8m0fnu
+  layers.1.ffn.experts.3.w1.weight: [128, 64] torch.int8
+  layers.1.ffn.experts.3.w2.weight: [128, 64] torch.int8
+  layers.1.ffn.experts.3.w3.weight: [128, 64] torch.int8
+  layers.2.attn.attn_sink: [4] torch.float32
+  layers.2.attn.kv_norm.weight: [32] torch.bfloat16
+  layers.2.attn.q_norm.weight: [128] torch.bfloat16
+  layers.2.attn.wkv.weight: [32, 128] torch.float8_e4m3fn
+  layers.2.attn.wkv.scale: [1, 1] torch.float8_e8m0fnu
+  layers.2.attn.wo_a.weight: [128, 128] torch.float8_e4m3fn
+  layers.2.attn.wo_a.scale: [1, 1] torch.float8_e8m0fnu
+  layers.2.attn.wo_b.weight: [128, 128] torch.float8_e4m3fn
+  layers.2.attn.wo_b.scale: [1, 1] torch.float8_e8m0fnu
+  layers.2.attn.wq_a.weight: [128, 128] torch.float8_e4m3fn
+  layers.2.attn.wq_a.scale: [1, 1] torch.float8_e8m0fnu
+  layers.2.attn.wq_b.weight: [128, 128] torch.float8_e4m3fn
+  layers.2.attn.wq_b.scale: [1, 1] torch.float8_e8m0fnu
+  layers.2.attn_norm.weight: [128] torch.bfloat16
+  layers.2.attn.compressor.ape: [8, 32] torch.float32
+  layers.2.attn.compressor.norm.weight: [32] torch.bfloat16
+  layers.2.attn.compressor.wgate.weight: [32, 128] torch.bfloat16
+  layers.2.attn.compressor.wkv.weight: [32, 128] torch.bfloat16
+  layers.2.ffn.gate.weight: [4, 128] torch.bfloat16
+  layers.2.ffn.gate.bias: [4] torch.float32
+  layers.2.ffn.shared_experts.w1.weight: [128, 128] torch.float8_e4m3fn
+  layers.2.ffn.shared_experts.w1.scale: [1, 1] torch.float8_e8m0fnu
+  layers.2.ffn.shared_experts.w2.weight: [128, 128] torch.float8_e4m3fn
+  layers.2.ffn.shared_experts.w2.scale: [1, 1] torch.float8_e8m0fnu
+  layers.2.ffn.shared_experts.w3.weight: [128, 128] torch.float8_e4m3fn
+  layers.2.ffn.shared_experts.w3.scale: [1, 1] torch.float8_e8m0fnu
+  layers.2.ffn_norm.weight: [128] torch.bfloat16
+  layers.2.hc_attn_base: [8] torch.float32
+  layers.2.hc_attn_fn: [8, 256] torch.float32
+  layers.2.hc_attn_scale: [3] torch.float32
+  layers.2.hc_ffn_base: [8] torch.float32
+  layers.2.hc_ffn_fn: [8, 256] torch.float32
+  layers.2.hc_ffn_scale: [3] torch.float32
+  layers.2.ffn.experts.0.w1.scale: [128, 4] torch.float8_e8m0fnu
+  layers.2.ffn.experts.0.w2.scale: [128, 4] torch.float8_e8m0fnu
+  layers.2.ffn.experts.0.w3.scale: [128, 4] torch.float8_e8m0fnu
+  layers.2.ffn.experts.0.w1.weight: [128, 64] torch.int8
+  layers.2.ffn.experts.0.w2.weight: [128, 64] torch.int8
+  layers.2.ffn.experts.0.w3.weight: [128, 64] torch.int8
+  layers.2.ffn.experts.1.w1.scale: [128, 4] torch.float8_e8m0fnu
+  layers.2.ffn.experts.1.w2.scale: [128, 4] torch.float8_e8m0fnu
+  layers.2.ffn.experts.1.w3.scale: [128, 4] torch.float8_e8m0fnu
+  layers.2.ffn.experts.1.w1.weight: [128, 64] torch.int8
+  layers.2.ffn.experts.1.w2.weight: [128, 64] torch.int8
+  layers.2.ffn.experts.1.w3.weight: [128, 64] torch.int8
+  layers.2.ffn.experts.2.w1.scale: [128, 4] torch.float8_e8m0fnu
+  layers.2.ffn.experts.2.w2.scale: [128, 4] torch.float8_e8m0fnu
+  layers.2.ffn.experts.2.w3.scale: [128, 4] torch.float8_e8m0fnu
+  layers.2.ffn.experts.2.w1.weight: [128, 64] torch.int8
+  layers.2.ffn.experts.2.w2.weight: [128, 64] torch.int8
+  layers.2.ffn.experts.2.w3.weight: [128, 64] torch.int8
+  layers.2.ffn.experts.3.w1.scale: [128, 4] torch.float8_e8m0fnu
+  layers.2.ffn.experts.3.w2.scale: [128, 4] torch.float8_e8m0fnu
+  layers.2.ffn.experts.3.w3.scale: [128, 4] torch.float8_e8m0fnu
+  layers.2.ffn.experts.3.w1.weight: [128, 64] torch.int8
+  layers.2.ffn.experts.3.w2.weight: [128, 64] torch.int8
+  layers.2.ffn.experts.3.w3.weight: [128, 64] torch.int8
+wrote /tmp/claude-1000/-home-unagi-Projects-colibri/a8895ae0-68dc-4caa-9b60-0246bf920a28/scratchpad/s25/wt-base/c/deepseek_v4_tiny (928662 bytes, transformers=5.14.1)
+make -f Makefile.deepseek-v4 deepseek-v4-clean
+make[1]: Entering directory '/tmp/claude-1000/-home-unagi-Projects-colibri/a8895ae0-68dc-4caa-9b60-0246bf920a28/scratchpad/s25/wt-base/c'
+rm -f deepseek_v4 COLI_V4_UNIT_ST.o COLI_V4_UNIT_CONFIG.o COLI_V4_UNIT_LAYER_RESIDENT.o COLI_V4_UNIT_RESOURCE_PLAN.o COLI_V4_UNIT_HEAD_CACHE.o COLI_V4_UNIT_EXPERT_STORE_AUTO.o COLI_V4_UNIT_NATIVE_QUANT.o COLI_V4_UNIT_NATIVE_QUANT_DUAL.o COLI_V4_UNIT_NATIVE_QUANT_BATCH.o COLI_V4_UNIT_NATIVE_QUANT_ROWS16.o COLI_V4_UNIT_MATH.o COLI_V4_UNIT_ATTENTION.o COLI_V4_UNIT_ATTENTION_BATCH.o COLI_V4_UNIT_COMPRESSOR.o COLI_V4_UNIT_INDEXER.o COLI_V4_UNIT_SPARSE_ATTENTION.o COLI_V4_UNIT_BLOCK_HYBRID.o COLI_V4_UNIT_COMPRESSOR_SNAPSHOT.o COLI_V4_UNIT_INDEXER_SNAPSHOT.o COLI_V4_UNIT_ATTENTION_TRANSACTION.o COLI_V4_UNIT_EXPERT_STORE_HOT_ROWS16.o COLI_V4_UNIT_EXPERT_ROWS16.o COLI_V4_UNIT_ROUTE_BF16.o COLI_V4_UNIT_RUNTIME.o COLI_V4_UNIT_GPU.o COLI_V4_UNIT_PROMPT.o COLI_V4_UNIT_GENERATE_STATS.o  expert_store_registry.o   COLI_V4_UNIT_KV_CACHE.o COLI_V4_UNIT_ATTENTION_CACHE.o COLI_V4_UNIT_EXPERT.o COLI_V4_UNIT_EXPERT_STORE.o COLI_V4_UNIT_LAYER.o COLI_V4_UNIT_EXPERT_STORE_HOT_ROWS16_TEST.o \
+	COLI_V4_UNIT_NATIVE_QUANT_BATCH_TEST.o \
+	tests/test_v4_serve_framing test_expert_store_registry deepseek_v4.cflags \
+	deepseek_v4.cudaflags backend_vulkan_v4.o vk_tier_v4.o vk_chain_v4.o
+make[1]: Leaving directory '/tmp/claude-1000/-home-unagi-Projects-colibri/a8895ae0-68dc-4caa-9b60-0246bf920a28/scratchpad/s25/wt-base/c'
+make -f Makefile.deepseek-v4 ARCH=native deepseek-v4
+make[1]: Entering directory '/tmp/claude-1000/-home-unagi-Projects-colibri/a8895ae0-68dc-4caa-9b60-0246bf920a28/scratchpad/s25/wt-base/c'
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_UNIT_ST -c deepseek_v4.c -o COLI_V4_UNIT_ST.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_UNIT_CONFIG -c deepseek_v4.c -o COLI_V4_UNIT_CONFIG.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_UNIT_LAYER_RESIDENT -c deepseek_v4.c -o COLI_V4_UNIT_LAYER_RESIDENT.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_UNIT_RESOURCE_PLAN -c deepseek_v4.c -o COLI_V4_UNIT_RESOURCE_PLAN.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_UNIT_HEAD_CACHE -c deepseek_v4.c -o COLI_V4_UNIT_HEAD_CACHE.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_UNIT_EXPERT_STORE_AUTO -c deepseek_v4.c -o COLI_V4_UNIT_EXPERT_STORE_AUTO.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_UNIT_NATIVE_QUANT -c deepseek_v4.c -o COLI_V4_UNIT_NATIVE_QUANT.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_UNIT_NATIVE_QUANT_DUAL -c deepseek_v4.c -o COLI_V4_UNIT_NATIVE_QUANT_DUAL.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_UNIT_NATIVE_QUANT_BATCH -c deepseek_v4.c -o COLI_V4_UNIT_NATIVE_QUANT_BATCH.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_UNIT_NATIVE_QUANT_ROWS16 -c deepseek_v4.c -o COLI_V4_UNIT_NATIVE_QUANT_ROWS16.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_UNIT_MATH -c deepseek_v4.c -o COLI_V4_UNIT_MATH.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_UNIT_ATTENTION -c deepseek_v4.c -o COLI_V4_UNIT_ATTENTION.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_UNIT_ATTENTION_BATCH -c deepseek_v4.c -o COLI_V4_UNIT_ATTENTION_BATCH.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_UNIT_COMPRESSOR -c deepseek_v4.c -o COLI_V4_UNIT_COMPRESSOR.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_UNIT_INDEXER -c deepseek_v4.c -o COLI_V4_UNIT_INDEXER.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_UNIT_SPARSE_ATTENTION -c deepseek_v4.c -o COLI_V4_UNIT_SPARSE_ATTENTION.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_UNIT_BLOCK_HYBRID -c deepseek_v4.c -o COLI_V4_UNIT_BLOCK_HYBRID.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_UNIT_COMPRESSOR_SNAPSHOT -c deepseek_v4.c -o COLI_V4_UNIT_COMPRESSOR_SNAPSHOT.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_UNIT_INDEXER_SNAPSHOT -c deepseek_v4.c -o COLI_V4_UNIT_INDEXER_SNAPSHOT.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_UNIT_ATTENTION_TRANSACTION -c deepseek_v4.c -o COLI_V4_UNIT_ATTENTION_TRANSACTION.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_UNIT_EXPERT_STORE_HOT_ROWS16 -c deepseek_v4.c -o COLI_V4_UNIT_EXPERT_STORE_HOT_ROWS16.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_UNIT_EXPERT_ROWS16 -c deepseek_v4.c -o COLI_V4_UNIT_EXPERT_ROWS16.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_UNIT_ROUTE_BF16 -c deepseek_v4.c -o COLI_V4_UNIT_ROUTE_BF16.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_UNIT_RUNTIME -c deepseek_v4.c -o COLI_V4_UNIT_RUNTIME.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_UNIT_GPU -c deepseek_v4.c -o COLI_V4_UNIT_GPU.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_UNIT_PROMPT -c deepseek_v4.c -o COLI_V4_UNIT_PROMPT.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_UNIT_GENERATE_STATS -c deepseek_v4.c -o COLI_V4_UNIT_GENERATE_STATS.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -c expert_store_registry.c -o expert_store_registry.o
+gcc COLI_V4_UNIT_ST.o COLI_V4_UNIT_CONFIG.o COLI_V4_UNIT_LAYER_RESIDENT.o COLI_V4_UNIT_RESOURCE_PLAN.o COLI_V4_UNIT_HEAD_CACHE.o COLI_V4_UNIT_EXPERT_STORE_AUTO.o COLI_V4_UNIT_NATIVE_QUANT.o COLI_V4_UNIT_NATIVE_QUANT_DUAL.o COLI_V4_UNIT_NATIVE_QUANT_BATCH.o COLI_V4_UNIT_NATIVE_QUANT_ROWS16.o COLI_V4_UNIT_MATH.o COLI_V4_UNIT_ATTENTION.o COLI_V4_UNIT_ATTENTION_BATCH.o COLI_V4_UNIT_COMPRESSOR.o COLI_V4_UNIT_INDEXER.o COLI_V4_UNIT_SPARSE_ATTENTION.o COLI_V4_UNIT_BLOCK_HYBRID.o COLI_V4_UNIT_COMPRESSOR_SNAPSHOT.o COLI_V4_UNIT_INDEXER_SNAPSHOT.o COLI_V4_UNIT_ATTENTION_TRANSACTION.o COLI_V4_UNIT_EXPERT_STORE_HOT_ROWS16.o COLI_V4_UNIT_EXPERT_ROWS16.o COLI_V4_UNIT_ROUTE_BF16.o COLI_V4_UNIT_RUNTIME.o COLI_V4_UNIT_GPU.o COLI_V4_UNIT_PROMPT.o COLI_V4_UNIT_GENERATE_STATS.o  expert_store_registry.o   -o deepseek_v4 -lm -fopenmp -pthread  -flto
+make[1]: Leaving directory '/tmp/claude-1000/-home-unagi-Projects-colibri/a8895ae0-68dc-4caa-9b60-0246bf920a28/scratchpad/s25/wt-base/c'
+/home/unagi/colibri-bench/v4tiny-venv/bin/python tests/test_deepseek_v4_tiny.py \
+	--binary ./deepseek_v4 \
+	--fixture ./deepseek_v4_tiny
+[OMP] deepseek-v4: 11 compute threads (14 logical CPUs minus 3 expert-loader workers); OMP_NUM_THREADS=<n> overrides, COLI_NO_OMP_TUNE=1 disables
+ram_tiers available=24.77GiB dense=resident(0.00GiB) target_slots=4 target_cache=0.00GiB head=resident-bf16 projected=3.60GiB
+v4_open index=0.00s plan=0.00s (index built once, reused by plan/inventory/head)
+v4_ssd_io mode=direct-aligned fallback=buffered-pread
+v4_autopin history=/tmp/claude-1000/-home-unagi-Projects-colibri/a8895ae0-68dc-4caa-9b60-0246bf920a28/scratchpad/s25/wt-base/c/deepseek_v4_tiny/.coli_usage selections=608
+v4_hot_policy pin_slots_per_layer=0 repin_interval=4 mode=resident-ram rows16=hot-pins
+v4_dense_resident layers=3 bytes=0.000GiB
+[v4] expert cache: reading every expert (12 experts, 0.0 GiB) before the first request; COLI_V4_PREWARM=0 starts with it empty
+[v4] expert cache: 12 experts, 0.0 GiB, read in 0.0 s (0.23 GiB/s)
+[STATS] 714 selections across 12 distinct experts -> /tmp/claude-1000/-home-unagi-Projects-colibri/a8895ae0-68dc-4caa-9b60-0246bf920a28/scratchpad/s25/wt-base/c/deepseek_v4_tiny/.coli_usage
+v4_rows16 packed_slots=0
+v4_direct reads=12 flock_reads=12 fallbacks=0 payload_bytes=313344
+PASS target short: teacher forcing and greedy token-exact
+PASS target greedy: truncated prefix rejected
+PASS target compressed: teacher forcing and greedy token-exact
+PASS target long: teacher forcing and greedy token-exact
+PASS target session short: exact IDs and exact length
+PASS target session short: exact IDs and exact length
+PASS target session short: exact IDs and exact length
+PASS target session long: exact IDs and exact length
+PASS target CLI: TUNE decode line is present and parseable
+PASS target CLI: prompt beyond the old 512-token cap
+SKIP mtp draft gpu=False: fixture has no 3-stage MTP profile
+SKIP mtp draft gpu=True: fixture has no 3-stage MTP profile
+PASS target serve: persistent SUBMIT/DATA/DONE protocol is token-exact, PROF phases filled
+PASS tiny DeepSeek V4 target oracle: all checks completed
+/home/unagi/colibri-bench/v4tiny-venv/bin/python tests/test_deepseek_v4_prefix.py \
+	--binary /tmp/claude-1000/-home-unagi-Projects-colibri/a8895ae0-68dc-4caa-9b60-0246bf920a28/scratchpad/s25/wt-base/c/deepseek_v4 \
+	--fixture /tmp/claude-1000/-home-unagi-Projects-colibri/a8895ae0-68dc-4caa-9b60-0246bf920a28/scratchpad/s25/wt-base/c/deepseek_v4_tiny
+PASS prefix reuse: 11 tokens reused, output identical to a cold prefill
+PASS prefix repeat: identical prompt re-prefills, answer unchanged
+PASS prefix reset: divergent prompt re-prefills and matches cold
+PASS DeepSeek V4 KV prefix reuse: all checks completed
+/home/unagi/colibri-bench/v4tiny-venv/bin/python tests/test_deepseek_v4_brio.py \
+	--binary /tmp/claude-1000/-home-unagi-Projects-colibri/a8895ae0-68dc-4caa-9b60-0246bf920a28/scratchpad/s25/wt-base/c/deepseek_v4 \
+	--fixture /tmp/claude-1000/-home-unagi-Projects-colibri/a8895ae0-68dc-4caa-9b60-0246bf920a28/scratchpad/s25/wt-base/c/deepseek_v4_tiny
+PASS read-only: 7 ECHO frames, zero generated tokens
+PASS echo is the head: best ECHO token == greedy token from the same prefix
+PASS pin: both options reused 8 tokens and read the pinned predictor, equal to a cold prefill
+PASS generation: 4 tokens unchanged, each DATA frame with its tail
+PASS DeepSeek V4 numeric channel: all checks completed
+EXIT=0 end=2026-10-26T10:07:46-07:00

@@ -1,0 +1,8 @@
+s25base dd03a9de EXIT=0 end=2026-10-26T10:07:20-07:00 warn=0 bin=cb54d78792a67975 cuda_linked=1
+s25pr2 5b3f4601 EXIT=0 end=2026-10-26T10:07:44-07:00 warn=0 bin=c2d173b00aba2319 cuda_linked=1
+s25basecpu dd03a9de EXIT=0 end=2026-10-26T10:08:01-07:00 warn=0 bin=922de7c0531f664c cuda_linked=0
+s25pr2cpu 5b3f4601 EXIT=0 end=2026-10-26T10:08:17-07:00 warn=0 bin=ab82bc9c1dfb70a5 cuda_linked=0
+done base:dd03a9de:cuda pr2:5b3f4601:cuda basecpu:dd03a9de:cpu pr2cpu:5b3f4601:cpu
+s25m 63df714d EXIT=0 end=2026-10-26T10:09:11-07:00 warn=0 bin=1ae8325b1199c008 cuda_linked=1
+s25mcpu 63df714d EXIT=0 end=2026-10-26T10:09:27-07:00 warn=0 bin=1d49e144fce11c66 cuda_linked=0
+done m:63df714d:cuda mcpu:63df714d:cpu
