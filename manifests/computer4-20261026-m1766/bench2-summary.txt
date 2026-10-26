@@ -1,0 +1,9 @@
+arm M1R
+  s1: 6 rows (300/300/300/300/300/300 tokens), mean decode 1.885 tok/s, median TTFT 6.609999999999999 s, texts 3d0a5275 f0e57dde d27222f1 6f58d36c 82d3caa6 4306da7d
+  s2: 6 rows (300/300/300/300/300/300 tokens), mean decode 1.884 tok/s, median TTFT 6.425 s, texts 3d0a5275 f0e57dde d27222f1 6f58d36c 82d3caa6 4306da7d
+  median of per-sample mean decode: 1.885 tok/s
+arm MR
+  s1: 6 rows (300/300/300/300/300/300 tokens), mean decode 1.592 tok/s, median TTFT 6.505000000000001 s, texts 3d0a5275 f0e57dde d27222f1 6f58d36c 82d3caa6 4306da7d
+  s2: 6 rows (300/300/300/300/300/300 tokens), mean decode 1.595 tok/s, median TTFT 6.46 s, texts 3d0a5275 f0e57dde d27222f1 6f58d36c 82d3caa6 4306da7d
+  median of per-sample mean decode: 1.594 tok/s
+M1R/MR (#1766 vs its dev base, one RTX 5070): mean decode ratio 1.183

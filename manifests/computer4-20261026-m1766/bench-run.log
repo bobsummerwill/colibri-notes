@@ -1,0 +1,30 @@
+[2026-10-25 23:02:02] run_c4m22 start: W:1 MB:1 M1:1 M1:2 MB:2
+[2026-10-25 23:02:02] === sample 1: W s1 tree=/home/zombietiger/colibri-bench/dg/mbase
+[2026-10-25 23:22:39] --- W s1: ready=1 client_rc=0 wall=1237s decode_0   ttft=12.07 decode=1.522 chunks=300 text=3d0a5275398f decode_1   ttft=7.32 decode=1.576 chunks=300 text=f0e57dde9023 decode_2   ttft=9.61 decode=1.518 chunks=300 text=d27222f106e3 decode_3   ttft=7.43 decode=1.504 chunks=300 text=6f58d36c3ba4 decode_4   ttft=7.42 decode=1.52 chunks=300 text=82d3caa69654 decode_5   ttft=7.6 decode=1.519 chunks=300 text=4306da7d3301 
+[2026-10-25 23:22:39] check W s1: 0 error lines; ram_tiers available=40.00GiB dense=resident(6.27GiB) target_slots=59 target_cache=31.59GiB head=resident-bf16 projected=39.79GiB v4_hot_policy pin_slots_per_layer=16 repin_interval=6 mode=resident-ram rows16=hot-pins v4_dense_resident layers=43 bytes=6.267GiB 
+[2026-10-25 23:22:39] === sample 2: MB s1 tree=/home/zombietiger/colibri-bench/dg/mbase
+[2026-10-25 23:42:57] --- MB s1: ready=1 client_rc=0 wall=1218s decode_0   ttft=12.73 decode=1.586 chunks=300 text=3d0a5275398f decode_1   ttft=6.58 decode=1.599 chunks=300 text=f0e57dde9023 decode_2   ttft=8.3 decode=1.549 chunks=300 text=d27222f106e3 decode_3   ttft=6.77 decode=1.533 chunks=300 text=6f58d36c3ba4 decode_4   ttft=7.12 decode=1.551 chunks=300 text=82d3caa69654 decode_5   ttft=7.74 decode=1.506 chunks=300 text=4306da7d3301 
+[2026-10-25 23:42:57] check MB s1: 0 error lines; ram_tiers available=40.00GiB dense=resident(6.27GiB) target_slots=59 target_cache=31.59GiB head=resident-bf16 projected=39.79GiB v4_hot_policy pin_slots_per_layer=16 repin_interval=6 mode=resident-ram rows16=hot-pins v4_dense_resident layers=43 bytes=6.267GiB 
+[2026-10-25 23:42:57] === sample 3: M1 s1 tree=/home/zombietiger/colibri-bench/dg/m1766
+[2026-10-26 00:02:18] --- M1 s1: ready=1 client_rc=0 wall=1161s decode_0   ttft=11.54 decode=1.636 chunks=300 text=a33616d4083e decode_1   ttft=6.38 decode=1.664 chunks=300 text=7ebc817a4e87 decode_2   ttft=8.7 decode=1.648 chunks=300 text=5f9e42e59865 decode_3   ttft=6.84 decode=1.61 chunks=300 text=f12aff48cb60 decode_4   ttft=6.71 decode=1.632 chunks=300 text=612577292ea5 decode_5   ttft=7.66 decode=1.589 chunks=300 text=28145f600192 
+[2026-10-26 00:02:18] check M1 s1: 543472 error lines; ram_tiers available=40.00GiB dense=resident(6.27GiB) target_slots=59 target_cache=31.59GiB head=resident-bf16 projected=39.79GiB v4_hot_policy pin_slots_per_layer=16 repin_interval=6 mode=resident-ram rows16=hot-pins v4_gpu indexer-resident=on device=0 layer=2 bytes=8390656 
+[2026-10-26 00:02:18] === sample 4: M1 s2 tree=/home/zombietiger/colibri-bench/dg/m1766
+[2026-10-26 00:21:08] --- M1 s2: ready=1 client_rc=0 wall=1130s decode_0   ttft=11.57 decode=1.491 chunks=300 text=7c0903ec02ca decode_1   ttft=6.61 decode=1.654 chunks=300 text=e661755c57a7 decode_2   ttft=8.12 decode=1.619 chunks=300 text=78269686f35c decode_3   ttft=6.61 decode=1.724 chunks=300 text=f41cd839f28a decode_4   ttft=6.32 decode=1.814 chunks=300 text=96b5cca8e5e4 decode_5   ttft=6.91 decode=1.783 chunks=300 text=a8d3b4272d63 
+[2026-10-26 00:21:08] check M1 s2: 312640 error lines; ram_tiers available=40.00GiB dense=resident(6.27GiB) target_slots=59 target_cache=31.59GiB head=resident-bf16 projected=39.79GiB v4_hot_policy pin_slots_per_layer=16 repin_interval=6 mode=resident-ram rows16=hot-pins v4_gpu indexer-resident=on device=0 layer=2 bytes=8390656 
+[2026-10-26 00:21:08] === sample 5: MB s2 tree=/home/zombietiger/colibri-bench/dg/mbase
+[2026-10-26 00:28:48] --- MB s2: ready=1 client_rc=0 wall=460s decode_0   ttft=11.37 decode=1.218 chunks=95 text=2a30de354e97 decode_1   ttft=6.08 decode=1.589 chunks=105 text=766c852ca488 decode_2   ttft=7.65 decode=1.563 chunks=99 text=bb3b700ed782 decode_3   ttft=6.07 decode=1.557 chunks=106 text=688f07efe292 decode_4   ttft=6.09 decode=1.571 chunks=105 text=4ca201a672a6 decode_5   ttft=6.71 decode=1.571 chunks=103 text=9e39c5544801 
+[2026-10-26 00:28:48] check MB s2: 166658 error lines; ram_tiers available=40.00GiB dense=resident(6.27GiB) target_slots=59 target_cache=31.59GiB head=resident-bf16 projected=39.79GiB v4_hot_policy pin_slots_per_layer=16 repin_interval=6 mode=resident-ram rows16=hot-pins v4_dense_resident layers=43 bytes=6.267GiB 
+arm M1
+  s1: 6 rows, mean decode 1.63 tok/s, median TTFT 7.25 s, texts a33616d4 7ebc817a 5f9e42e5 f12aff48 61257729 28145f60
+  s2: 6 rows, mean decode 1.681 tok/s, median TTFT 6.76 s, texts 7c0903ec e661755c 78269686 f41cd839 96b5cca8 a8d3b427
+  median of per-sample mean decode: 1.655 tok/s
+arm MB
+  s1: 6 rows, mean decode 1.554 tok/s, median TTFT 7.43 s, texts 3d0a5275 f0e57dde d27222f1 6f58d36c 82d3caa6 4306da7d
+  s2: 6 rows, mean decode 1.511 tok/s, median TTFT 6.4 s, texts 2a30de35 766c852c bb3b700e 688f07ef 4ca201a6 9e39c554
+  median of per-sample mean decode: 1.533 tok/s
+arm W
+  s1: 6 rows, mean decode 1.526 tok/s, median TTFT 7.515 s, texts 3d0a5275 f0e57dde d27222f1 6f58d36c 82d3caa6 4306da7d
+  median of per-sample mean decode: 1.526 tok/s
+M1/MB (#1766 vs its dev base, one RTX 5070): mean decode ratio 1.080
+[2026-10-26 00:28:49] ALL SAMPLES DONE
+dsv4-cuda-test r22pr2: EXIT=0 dsv4 peer MoE: SKIP;dsv4 dense batch: OK;dsv4 attention batch: OK (output projection; sparse batch sk;dsv4 MoE batch: OK;dsv4 generic bitwise: SKIP (deepgemm-sm120 build has no gene;

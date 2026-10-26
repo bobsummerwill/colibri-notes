@@ -1,0 +1,24 @@
+bench/M1/s1: 543472 handled OOM lines
+ 429708 [DSV CUDA] weight allocation: out of memory
+  77037 [DSV CUDA] matvec launch: out of memory
+  18362 [DSV CUDA] decode output launch: out of memory
+  16818 [DSV CUDA] kv comp allocation: out of memory
+bench/M1/s2: 312640 handled OOM lines
+ 219601 [DSV CUDA] weight allocation: out of memory
+  42805 [DSV CUDA] matvec launch: out of memory
+  21743 [DSV CUDA] scale allocation: out of memory
+  14244 [DSV CUDA] kv comp allocation: out of memory
+bench/MB/s2: 166658 handled OOM lines
+ 140440 [DSV CUDA] weight allocation: out of memory
+  26212 [DSV CUDA] matvec launch: out of memory
+      6 [DSV CUDA] kv comp allocation: out of memory
+ram_tiers available=40.00GiB dense=resident(6.27GiB) target_slots=59 target_cache=31.59GiB head=resident-bf16 projected=39.79GiB
+v4_hot_policy pin_slots_per_layer=16 repin_interval=6 mode=resident-ram rows16=hot-pins
+v4_gpu indexer-resident=on device=0 layer=2 bytes=8390656
+1893 MiB
+bench2/MR/s1 peak  10195 MiB
+bench2/M1R/s1 peak  10141 MiB
+tree=m1766 sha=ca55947c62b1d342d3e0aa890e2959dec1b1de5e flags=CUDA=1 CUDA_ARCH=sm_120 start=2026-10-25T23:01:06-07:00
+
+#1766 residency decision (bench2, DSV4_CUDA_VRAM_RESERVE_MB=2000):
+v4_gpu resident-experts=cache-fallback (resident experts exceed device 0 budget (free=2577 MiB reserve=2000 MiB))

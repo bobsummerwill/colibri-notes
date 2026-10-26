@@ -1,0 +1,12 @@
+arm M1
+  s1: 6 rows, mean decode 1.63 tok/s, median TTFT 7.25 s, texts a33616d4 7ebc817a 5f9e42e5 f12aff48 61257729 28145f60
+  s2: 6 rows, mean decode 1.681 tok/s, median TTFT 6.76 s, texts 7c0903ec e661755c 78269686 f41cd839 96b5cca8 a8d3b427
+  median of per-sample mean decode: 1.655 tok/s
+arm MB
+  s1: 6 rows, mean decode 1.554 tok/s, median TTFT 7.43 s, texts 3d0a5275 f0e57dde d27222f1 6f58d36c 82d3caa6 4306da7d
+  s2: 6 rows, mean decode 1.511 tok/s, median TTFT 6.4 s, texts 2a30de35 766c852c bb3b700e 688f07ef 4ca201a6 9e39c554
+  median of per-sample mean decode: 1.533 tok/s
+arm W
+  s1: 6 rows, mean decode 1.526 tok/s, median TTFT 7.515 s, texts 3d0a5275 f0e57dde d27222f1 6f58d36c 82d3caa6 4306da7d
+  median of per-sample mean decode: 1.526 tok/s
+M1/MB (#1766 vs its dev base, one RTX 5070): mean decode ratio 1.080
