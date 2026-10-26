@@ -9,7 +9,10 @@
 
 Project notebook for Bob Summerwill's work on [colibri](https://github.com/JustVugg/colibri) (pure-C/CUDA engine that runs huge MoE models by streaming experts from NVMe and caching hot experts in RAM/VRAM), done with Claude Code on 2026-10-12..14. Not branch-specific; the code lives in the fork [bobsummerwill/colibri](https://github.com/bobsummerwill/colibri).
 
-**Rule: no PRs and no pushes to upstream JustVugg/colibri.** Branches go to the fork only; Bob decides on submission (PR #0 and PR #1 were opened at his request).
+**Rule: nothing goes to upstream JustVugg/colibri unless Bob asks for that specific submission.** Branches go to the
+fork (`--force-with-lease`); Bob decides what is opened and when, and comments on other people's upstream PRs need his
+OK too. Opened at his request: PR #0 (#2212-#2217), PR #1 (#2264, merged); 2026-10-25: issues #2399 (fix A) and
+#2400 (fix B), PRs #2401 (fix A), #2402 (fix B), #2403 (test_vk_chain initializers), #2404 (`COLI_VK_SUBGROUP=n`).
 
 > **Pick up here: [HANDOFF_20261025.md](HANDOFF_20261025.md)** (2026-10-25: every branch rebased onto dev 77530b49,
 > upstream clash check, GPU re-runs on shadowfax + computer4). Before that: [HANDOFF_20261024.md](HANDOFF_20261024.md) (branch states, what is and isn't GPU-tested, next
