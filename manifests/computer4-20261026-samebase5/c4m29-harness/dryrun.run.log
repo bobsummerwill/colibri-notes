@@ -1,0 +1,8 @@
+[2026-10-26 14:17:57] DRY: would fail a real run now: other runs hold their locks: c4m27-holds-its-lock
+[2026-10-26 14:17:57] DRY: would fail a real run now: a deepseek_v4 process is running
+[2026-10-26 14:17:58] run_c4m29 start: MODE=gpu RESERVE=c4m27 M=ecc92586 order: B:1 M:1 MX:1 (est ~700 s each: c4f21's pr1 TTFT 250 / 390 s + decode + load)
+[2026-10-26 14:17:58] arm B: tree=/home/zombietiger/colibri-bench/dg/s27base env=''
+[2026-10-26 14:17:58] arm M: tree=/home/zombietiger/colibri-bench/dg/s27m env=''
+[2026-10-26 14:17:58] arm MX: tree=/home/zombietiger/colibri-bench/dg/s27m env='DSV4_CUDA_COMPRESSOR=0 DSV4_CUDA_HEAD=0 DSV4_CUDA_HEAD_BATCH=0 DSV4_CUDA_INDEXER_PREP=0 DSV4_CUDA_INDEXER_HEADS=0 DSV4_CUDA_RESIDENT_INDEXER=0 DSV4_CUDA_WO_DECODE=0 DSV4_CUDA_RESIDENT_EXPERTS=0'
+[2026-10-26 14:17:58] reserve from c4m27's pilot: 'no reserve setting'
+[2026-10-26 14:17:58] preflight done (PREFLIGHT_ONLY=1: nothing run; DRY lines above would stop a real run now)

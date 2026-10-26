@@ -1,0 +1,56 @@
+[2026-10-26 14:15:25] run_final30.sh start (pid 1181665, unit session-c474.scope, PILOT=0)
+[2026-10-26 14:15:25] llama stop planned at 2026-10-26 14:17:25 PDT (120 s from now)
+[2026-10-26 14:15:25] tips: f27-base=c1c06ac6fcb32157e4da130fd96775a32a757052 binary=26da888f17ce7f67b03301a75e0a05c32f78a30d09516efdbd06328cdf76a8a0 f27-pr2=11c400389ce4bc95adc34364eb84b3d3949ea99d binary=a2ad77ac8fd953d3c6d2e211ab52c55486bd508094feb4d97197e831dd15d69c f27-m1766=ecc9258653efdb8d3e24a8993e11aebd768ae831 binary=c86cb958b57692984d73a3d4e4d9c45c37f4b6a07bf6749357027b80d05e8eb5 f27-cplus=b659ac8d12cd50e2cfc141982ad9b69a8b88a753 binary=35c64a7d5bcca96318e4c91346bc3bd9e5d4143511619b6755246b08a964fec0 
+DRY: would fail a real run now: port 8090 already in use
+DRY: would fail a real run now: another colibri unit is active: colibri-final28-serve.service colibri-final28.service 
+DRY: would fail a real run now: llama-server-active is not active
+DRY: would fail a real run now: llama /health is not ok: ''
+[2026-10-26 14:15:25] preflight common done (DRY_RUN, 4 box-busy checks recorded above): MemAvailable=19004 MiB, llama inactive
+DRY: would fail a real run now: colibri-final28 is still running
+DRY: would fail a real run now: cbench-chain2 is still running
+DRY: would fail a real run now: other GPU compute processes: 1174204 
+[2026-10-26 14:15:25] plan: AB1F:1 AM1F:1 FAC:1 FAP:1 FAI:1 FAR:1 FAH:1 FAHB:1 FAW:1 FMX:1 PB1F:1 PM1F:1 | DB1F:1 DP1F:1 DP2F:1 DM1F:1 DM2F:1 DC1F:1 DC2F:1 | SP1F:1 SP2F:1 | no tests (estimated 8600 s of samples; cap 11200 s)
+arms: all 21 in ARMS
+envcheck AB1F: ok
+envcheck AM1F: ok
+envcheck FAC: ok
+envcheck FAP: ok
+envcheck FAI: ok
+envcheck FAR: ok
+envcheck FAH: ok
+envcheck FAHB: ok
+envcheck FAW: ok
+envcheck FMX: ok
+envcheck PB1F: ok
+envcheck PM1F: ok
+envcheck DB1F: ok
+envcheck DP1F: ok
+envcheck DP2F: ok
+envcheck DM1F: ok
+envcheck DM2F: ok
+envcheck DC1F: ok
+envcheck DC2F: ok
+envcheck SP1F: ok
+envcheck SP2F: ok
+[2026-10-26 14:15:25] DRY arm AB1F: tree=f27-base client=pr1:both timeout=3600 est=270 env='COLI_CUDA_MOE_BATCH=1'
+[2026-10-26 14:15:25] DRY arm AM1F: tree=f27-m1766 client=pr1:both timeout=3600 est=290 env='COLI_CUDA_MOE_BATCH=1'
+[2026-10-26 14:15:25] DRY arm FAC: tree=f27-m1766 client=pr1:both timeout=3600 est=300 env='COLI_CUDA_MOE_BATCH=1 DSV4_CUDA_COMPRESSOR=0'
+[2026-10-26 14:15:25] DRY arm FAP: tree=f27-m1766 client=pr1:both timeout=3600 est=300 env='COLI_CUDA_MOE_BATCH=1 DSV4_CUDA_INDEXER_PREP=0'
+[2026-10-26 14:15:25] DRY arm FAI: tree=f27-m1766 client=pr1:both timeout=3600 est=300 env='COLI_CUDA_MOE_BATCH=1 DSV4_CUDA_INDEXER_HEADS=0'
+[2026-10-26 14:15:25] DRY arm FAR: tree=f27-m1766 client=pr1:both timeout=3600 est=300 env='COLI_CUDA_MOE_BATCH=1 DSV4_CUDA_RESIDENT_INDEXER=0'
+[2026-10-26 14:15:25] DRY arm FAH: tree=f27-m1766 client=pr1:both timeout=3600 est=300 env='COLI_CUDA_MOE_BATCH=1 DSV4_CUDA_HEAD=0'
+[2026-10-26 14:15:25] DRY arm FAHB: tree=f27-m1766 client=pr1:both timeout=3600 est=300 env='COLI_CUDA_MOE_BATCH=1 DSV4_CUDA_HEAD_BATCH=0'
+[2026-10-26 14:15:25] DRY arm FAW: tree=f27-m1766 client=pr1:both timeout=3600 est=300 env='COLI_CUDA_MOE_BATCH=1 DSV4_CUDA_WO_DECODE=0'
+[2026-10-26 14:15:25] DRY arm FMX: tree=f27-m1766 client=pr1:both timeout=3600 est=320 env='COLI_CUDA_MOE_BATCH=1 DSV4_CUDA_COMPRESSOR=0 DSV4_CUDA_HEAD=0 DSV4_CUDA_HEAD_BATCH=0 DSV4_CUDA_INDEXER_PREP=0 DSV4_CUDA_INDEXER_HEADS=0 DSV4_CUDA_RESIDENT_INDEXER=0 DSV4_CUDA_WO_DECODE=0 DSV4_CUDA_RESIDENT_EXPERTS=0'
+[2026-10-26 14:15:25] DRY arm PB1F: tree=f27-base client=pr1:both timeout=3600 est=320 env='COLI_CUDA_MOE_BATCH=1 DSV4_ATTN_PROF=1 V4_MOE_BATCH_PROF=1'
+[2026-10-26 14:15:25] DRY arm PM1F: tree=f27-m1766 client=pr1:both timeout=3600 est=320 env='COLI_CUDA_MOE_BATCH=1 DSV4_ATTN_PROF=1 V4_MOE_BATCH_PROF=1'
+[2026-10-26 14:15:25] DRY arm DB1F: tree=f27-base client=fdec timeout=2400 est=660 env='COLI_CUDA_MOE_BATCH=1'
+[2026-10-26 14:15:25] DRY arm DP1F: tree=f27-pr2 client=fdec timeout=2400 est=660 env='COLI_CUDA_MOE_BATCH=1 V4_GPU_RESIDENT_FIRST=1'
+[2026-10-26 14:15:25] DRY arm DP2F: tree=f27-pr2 client=fdec timeout=2400 est=600 env='COLI_CUDA_MOE_BATCH=1 V4_SERVE_STATS_LOG=1 V4_GPU_RESIDENT_FIRST=1 DSV4_CUDA_PEER_DEVICE=1'
+[2026-10-26 14:15:25] DRY arm DM1F: tree=f27-m1766 client=fdec timeout=2400 est=660 env='COLI_CUDA_MOE_BATCH=1'
+[2026-10-26 14:15:25] DRY arm DM2F: tree=f27-m1766 client=fdec timeout=2400 est=600 env='COLI_CUDA_MOE_BATCH=1 DSV4_CUDA_DEVICES=0,1'
+[2026-10-26 14:15:25] DRY arm DC1F: tree=f27-cplus client=fdec timeout=2400 est=660 env='COLI_CUDA_MOE_BATCH=1 V4_GPU_RESIDENT_FIRST=1'
+[2026-10-26 14:15:25] DRY arm DC2F: tree=f27-cplus client=fdec timeout=2400 est=600 env='COLI_CUDA_MOE_BATCH=1 V4_SERVE_STATS_LOG=1 V4_GPU_RESIDENT_FIRST=1 DSV4_CUDA_PEER_DEVICE=1'
+[2026-10-26 14:15:25] DRY arm SP1F: tree=f27-pr2 client=pr1:swap timeout=3600 est=270 env='COLI_CUDA_MOE_BATCH=1 V4_GPU_RESIDENT_FIRST=1'
+[2026-10-26 14:15:25] DRY arm SP2F: tree=f27-pr2 client=pr1:swap timeout=3600 est=270 env='COLI_CUDA_MOE_BATCH=1 V4_SERVE_STATS_LOG=1 V4_GPU_RESIDENT_FIRST=1 DSV4_CUDA_PEER_DEVICE=1'
+[2026-10-26 14:15:25] DRY_RUN: preflight done (7 box-busy checks recorded, see above); exiting before the wait, llama untouched
