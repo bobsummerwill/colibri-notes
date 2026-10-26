@@ -1,0 +1,36 @@
+[gguf] /home/unagi/colibri-models/olmoe/olmoe-1b-7b-0924-instruct-q4_k_m.gguf: olmoe, 1 part(s), 3219 tensors under the checkpoint's names (147 renamed, 48 fused expert tensors split per expert, 0 kept as named), read in place
+olmoe: GGUF experts Q4_K gate/up, Q6_K down (layer 0)
+[cache] 64 slots/layer of 64 experts: 16.0 GB budget (RAM_GB), 0.3 GB dense resident, 4 MB per expert; the KV takes slots back as the context grows
+[VK] VRAM pressure-proofing: memory_priority absent, memory_budget on
+[VK] ready: Intel(R) Graphics (MTL), compute qfam 0, memtype 0, fused gate+up, absorb attention, tiled GEMM from S=2 and S*O>=4096
+[VK] olmoe: device ready, dense matrices on the CPU (an integrated GPU shares the CPU's RAM and the expert tier is on; COLI_VK_DENSE=1 puts them on the device)
+[VK] olmoe: a GGUF: the dense matrices on the device go up with the chain only (ggml blocks)
+[VK] olmoe chain fit: free 22305308672 B, reserve 1073741824 B, fixed 514282240 B (the engine's 27742976 B, the pools' 486539264 B), tail 84510976 B, layers 13960448 13960448 12879104 12879104 13960448 12879104 12879104 12879104 13960448 12879104 12879104 13960448 12879104 13960448 13960448 13960448 B, matrices 10780692 10780692 9699348 9699348 10780692 9699348 9699348 9699348 10780692 9699348 9699348 10780692 9699348 10780692 10780692 10780692 B
+[VK] olmoe chain: 16 of 16 layers on the device (204.8 MiB), 0 on the CPU (free 20.77 GiB, reserve 1.00 GiB)
+[VK] chain: chain_gemv2 stages x in 48 KiB of shared memory, the device's limit
+[VK] olmoe chain: 16 of 16 layers placed: 163840320 B of matrices on the device (the fit counted 163840320 B for these layers), chain buffers 1581312 B, device memory held 402653184 B
+[VK] olmoe chain: 16 layers on the device, 0.5 MiB of parameters
+[VK] tier olmoe: the GGUF experts' blocks go to the device as the file has them (Q4_K gate/up, Q6_K down on 8 of 16 layers, the others their own types)
+[VK] tier olmoe: on, Intel(R) Graphics (MTL), budget 4.31 GiB = 1024 experts of 3.6 MiB (fmt 112, down fmt 114; 8 layers in 1 form other than most layers', their experts in the room of the biggest of those, the rest at their own size), shared RAM: a quarter of what the expert cache leaves, shared queue, up to 16 promotions per token, balanced against the CPU, streaming cold experts of prompt steps through 64 slots
+[VK] tier olmoe: warm start, 1024 experts in 1.0s (0 from the history, 1024 more to fill the device: every expert of the model)
+[VK] olmoe: dense chain on (COLI_VK_CHAIN=1)
+[stop] batched serve mode: filtered 3 non-EOS stop tokens (tool-call safety, #401)
+[stop] 1 stop tokens: 0
+[gateway] input modalities: text
+OpenAI-compatible API listening on http://127.0.0.1:8090/v1
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[VK] olmoe chain: prompt chunks of up to 8192 rows (497 KiB a row; 17.39 GiB free on the device or in RAM, half of it at most; COLI_VK_CHAIN_ROWS sets it, COLI_VK_CHAIN_ROWS_MAX caps it at 8192)
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[VK] olmoe: 0 matmuls on the GPU (82 matrices resident, 236.9 MiB)
+[VK] tier olmoe turn: device 43776 of 43776 routed experts (100.0%; this turn 43776 of 43776) | CPU RAM hits 0, disk loads 0 | resident 1024 (budget 1024, 3.63 GiB of 4.31 GiB, 15 blocks, frag 0.06) | uploads 1024 (3.63 GiB, 1024 warm), evictions 0, skipped 0 queue + 0 rate, failed 0 | device 0.0 ms, CPU share 0.0 ms, waited 0.0 ms (0% of device time hidden) | balance: device share 1.00, 0 rows handed to the CPU | in the dense chain: 43776 routed experts with no host step | exclusive: 0 RAM copies of device experts given up first
+[VK] olmoe chain: 300 forwards, 1201 frames (87080 ops, 24300 matmuls, 64 tiled GEMM), 47090.4 ms waiting for the device, 0.0 ms of routed experts on the host, 4800 layer steps with the routed experts in the frame, 1050.1 MiB on the device
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[VK] olmoe: 0 matmuls on the GPU (82 matrices resident, 236.9 MiB)
+[VK] tier olmoe turn: device 87552 of 87552 routed experts (100.0%; this turn 43776 of 43776) | CPU RAM hits 0, disk loads 0 | resident 1024 (budget 1024, 3.63 GiB of 4.31 GiB, 15 blocks, frag 0.06) | uploads 1024 (3.63 GiB, 1024 warm), evictions 0, skipped 0 queue + 0 rate, failed 0 | device 0.0 ms, CPU share 0.0 ms, waited 0.0 ms (0% of device time hidden) | balance: device share 1.00, 0 rows handed to the CPU | in the dense chain: 87552 routed experts with no host step | exclusive: 0 RAM copies of device experts given up first
+[VK] olmoe chain: 600 forwards, 2401 frames (174160 ops, 48600 matmuls, 128 tiled GEMM), 94236.6 ms waiting for the device, 0.0 ms of routed experts on the host, 9600 layer steps with the routed experts in the frame, 1050.1 MiB on the device
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[VK] olmoe: 0 matmuls on the GPU (82 matrices resident, 236.9 MiB)
+[VK] tier olmoe turn: device 131328 of 131328 routed experts (100.0%; this turn 43776 of 43776) | CPU RAM hits 0, disk loads 0 | resident 1024 (budget 1024, 3.63 GiB of 4.31 GiB, 15 blocks, frag 0.06) | uploads 1024 (3.63 GiB, 1024 warm), evictions 0, skipped 0 queue + 0 rate, failed 0 | device 0.0 ms, CPU share 0.0 ms, waited 0.0 ms (0% of device time hidden) | balance: device share 1.00, 0 rows handed to the CPU | in the dense chain: 131328 routed experts with no host step | exclusive: 0 RAM copies of device experts given up first
+[VK] olmoe chain: 900 forwards, 3601 frames (261240 ops, 72900 matmuls, 192 tiled GEMM), 141285.4 ms waiting for the device, 0.0 ms of routed experts on the host, 14400 layer steps with the routed experts in the frame, 1050.1 MiB on the device

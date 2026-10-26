@@ -1,0 +1,32 @@
+== M1
+      2 v4_gpu resident-experts=cache-fallback (resident experts exceed device 0 budget (free=16749 MiB reserve=2800 MiB))
+== M2
+      2 v4_gpu resident-experts=cache-fallback (resident experts exceed device 0 budget (free=20313 MiB reserve=2800 MiB))
+== M1F
+      1 [DSV4 CUDA] expert FC2 bank allocation: out of memory
+      1 v4_gpu moe-batch refill layer=0 missing=1 lookup=0.00s upload=0.00s
+      1 v4_gpu moe-batch refill layer=0 missing=10 lookup=0.04s upload=0.01s
+      1 v4_gpu moe-batch refill layer=0 missing=11 lookup=0.04s upload=0.01s
+      1 v4_gpu moe-batch refill layer=0 missing=124 lookup=0.03s upload=0.24s
+      1 v4_gpu moe-batch refill layer=0 missing=14 lookup=0.04s upload=0.02s
+== M2F
+      1 [DSV4 CUDA] expert FC1 bank allocation: out of memory
+      1 v4_gpu moe-batch refill layer=0 missing=1 lookup=0.02s upload=0.00s
+      1 v4_gpu moe-batch refill layer=0 missing=10 lookup=0.04s upload=0.01s
+      1 v4_gpu moe-batch refill layer=0 missing=11 lookup=0.04s upload=0.01s
+      1 v4_gpu moe-batch refill layer=0 missing=124 lookup=0.04s upload=0.25s
+      1 v4_gpu moe-batch refill layer=0 missing=14 lookup=0.04s upload=0.02s
+== P0F
+      1 v4_gpu mirror-reserve=4681MiB (256-slot bank 3264MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)
+      3 v4_gpu moe-batch refill layer=0 missing=1 lookup=0.00s upload=0.00s
+      1 v4_gpu moe-batch refill layer=0 missing=10 lookup=0.02s upload=0.01s
+      1 v4_gpu moe-batch refill layer=0 missing=11 lookup=0.02s upload=0.01s
+      1 v4_gpu moe-batch refill layer=0 missing=11 lookup=0.04s upload=0.01s
+      1 v4_gpu moe-batch refill layer=0 missing=124 lookup=0.02s upload=0.25s
+== P2F
+      1 v4_gpu mirror-reserve=4681MiB (256-slot bank 3264MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)
+      3 v4_gpu moe-batch refill layer=0 missing=1 lookup=0.00s upload=0.00s
+      1 v4_gpu moe-batch refill layer=0 missing=10 lookup=0.02s upload=0.01s
+      2 v4_gpu moe-batch refill layer=0 missing=11 lookup=0.02s upload=0.01s
+      1 v4_gpu moe-batch refill layer=0 missing=124 lookup=0.02s upload=0.25s
+      1 v4_gpu moe-batch refill layer=0 missing=136 lookup=0.01s upload=0.24s

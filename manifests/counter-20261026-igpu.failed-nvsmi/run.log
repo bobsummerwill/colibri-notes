@@ -1,0 +1,21 @@
+[2026-10-25 23:48:16] === server 1: subgroup 16 (COLI_VK_SUBGROUP=16)
+[2026-10-25 23:48:18] server 1 ready=1 after 2 s
+[2026-10-25 23:48:33] server 1 run 1 rc=1 rows=0 mean_decode=0.00 tok/s median_ttft=0.00 s texts=
+[2026-10-25 23:48:47] server 1 run 2 rc=1 rows=0 mean_decode=0.00 tok/s median_ttft=0.00 s texts=
+[2026-10-25 23:49:02] server 1 run 3 rc=1 rows=0 mean_decode=0.00 tok/s median_ttft=0.00 s texts=
+[2026-10-25 23:49:07] === server 2: subgroup 32 (unset: the reported 32)
+[2026-10-25 23:49:09] server 2 ready=1 after 2 s
+[2026-10-25 23:50:05] server 2 run 1 rc=1 rows=0 mean_decode=0.00 tok/s median_ttft=0.00 s texts=
+[2026-10-25 23:50:53] server 2 run 2 rc=1 rows=0 mean_decode=0.00 tok/s median_ttft=0.00 s texts=
+[2026-10-25 23:51:42] server 2 run 3 rc=1 rows=0 mean_decode=0.00 tok/s median_ttft=0.00 s texts=
+[2026-10-25 23:51:47] === server 3: subgroup 32 (unset: the reported 32)
+[2026-10-25 23:51:49] server 3 ready=1 after 2 s
+[2026-10-25 23:52:37] server 3 run 1 rc=1 rows=0 mean_decode=0.00 tok/s median_ttft=0.00 s texts=
+[2026-10-25 23:53:26] server 3 run 2 rc=1 rows=0 mean_decode=0.00 tok/s median_ttft=0.00 s texts=
+[2026-10-25 23:54:14] server 3 run 3 rc=1 rows=0 mean_decode=0.00 tok/s median_ttft=0.00 s texts=
+[2026-10-25 23:54:19] === server 4: subgroup 16 (COLI_VK_SUBGROUP=16)
+[2026-10-25 23:54:21] server 4 ready=1 after 2 s
+[2026-10-25 23:54:36] server 4 run 1 rc=1 rows=0 mean_decode=0.00 tok/s median_ttft=0.00 s texts=
+[2026-10-25 23:54:51] server 4 run 2 rc=1 rows=0 mean_decode=0.00 tok/s median_ttft=0.00 s texts=
+[2026-10-25 23:55:05] server 4 run 3 rc=1 rows=0 mean_decode=0.00 tok/s median_ttft=0.00 s texts=
+[2026-10-25 23:55:10] ALL DONE

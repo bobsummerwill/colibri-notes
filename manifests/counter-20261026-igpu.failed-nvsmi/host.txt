@@ -1,0 +1,9 @@
+tree=/home/unagi/Projects/wt-r-sg head=d0765490f598eb1d4d0ab304398a8fc81049a8a4 binary=f494eee3fc8ec248a9477aa161f3d15b4fd9fcf1c00ea4278bbd47920aaa39c3
+8c310f1435a1222338fd2d3d974975be9cd908180b644bab0c2a94da1ac32f3f  olmoe-1b-7b-0924-instruct-q4_k_m.gguf
+	apiVersion         = 1.4.354
+	deviceName         = Intel(R) Graphics (MTL)
+	driverInfo         = Mesa 26.2.5-arch1.1
+	apiVersion         = 1.4.354
+Model name:                              Intel(R) Core(TM) Ultra 7 165U
+               total        used        free      shared  buff/cache   available
+Mem:              30           5          15           0          11          24

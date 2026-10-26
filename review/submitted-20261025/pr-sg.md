@@ -1,3 +1,5 @@
+> **Update (2026-10-26):** a decode test with a real model (OLMoE-1B-7B Q4_K_M, `coli serve`, Meteor Lake) found more than the compile time. At the reported 32 the chain **hangs the GPU at run time**: i915 fence timeouts, `the device is lost`, and decode falls back to the CPU at 22.7 tok/s. At `COLI_VK_SUBGROUP=16` the chain runs at 28.5 tok/s and never lost the device. In `coli serve` the compile at 32 took ~21 s, not 38 minutes. Numbers in the [comment below](https://github.com/JustVugg/colibri/pull/2404#issuecomment-6411097645).
+
 ## Summary
 
 Since #1954 and #2046, every pipeline that takes a required subgroup size is pinned at the size the device reports: the dense chain's, `build_pipeline`'s (the GEMVs) and the expert batch's, on both devices. On Intel Meteor Lake with Mesa 26.2 (ANV, sizes 8 to 32, reports 32), that size makes `chain_moe.spv` take over 38 minutes to compile in `vkCreateComputePipelines`. It looks as though `test_vk_chain` hangs in its first `test_moe`.
