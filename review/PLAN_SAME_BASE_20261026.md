@@ -199,3 +199,24 @@ If shadowfax must wait for the evening, its window moves (e.g. 19:00-22:30) and 
 - **Ablation switches** (#1766, all default on): DSV4_CUDA_COMPRESSOR, _HEAD, _HEAD_BATCH, _INDEXER_PREP,
   _INDEXER_HEADS, _RESIDENT_INDEXER, _WO_DECODE, _RESIDENT_EXPERTS, _RESIDENT_ROUTE (full table only). Native E4M3
   conversion has no switch: its share is whatever "M, all off" keeps over B.
+
+## Restart on the new dev (2026-10-26 ~10:50)
+- **10:41Z+: upstream merged batch #2412 (#2401-#2404 among 44 commits). dev = c1c06ac6.** Bob: "rebase everything
+  and start everything again".
+- Stage 1 stopped at ~10:45: final25 after B1 s1, M1 s1 and P1 (P1's client cut short); c4m25 during its pilot.
+  llama restored and healthy. Partial logs archived under `manifests/*-samebase/stopped-*`.
+  - One early sample, same base, one GPU, REAP: P1/M1 decode ≈ 0.84, so #1766's single-GPU kernels lead PR #2's
+    one-GPU VRAM-first path. This is the expected direction. Not used, only noted.
+- New trees on the fork:
+  - **B = c1c06ac6** (dev)
+  - **P = `samebase/pr2` 11c40038:** PR #2 rebased; range-diff shows all 11 patches identical; the #2401 commit is in dev
+  - **M = `samebase/m1766` ecc92586:** dev merged into the previous M, keeping its resolutions
+  - **C+ = `samebase/cplus` b659ac8d:** the same for C+
+  - Cross-check: C+ minus P has the same file set as M minus dev, except the test each side adapted.
+- counter: all four build the CUDA engine (sm_86, NO_TC) and the sm_120 backend with nvcc 13.4, 0 diagnostics. M and C+:
+  every unit is clean in 4 configs; Python v4/dsv4/loader tests OK. Tiny oracle and make check on all four run in the
+  background (`cb2/status`).
+- Upstream draft #2405 still points at the pre-rebase branch (`docs5/pr2-two-gpu-decode` 5b3f4601). The rebased PR #2 is
+  `samebase/pr2`. Updating #2405 is Bob's call.
+- Next: the helper rebuilds f27-* (shadowfax) and s27* (computer4). shadowfax runs final27 (B/M/P) then final28 (C+,
+  same-session anchors, ablation) as one chain. computer4 runs c4m27 (pilot, B/M/P/C on the 5070, then CPU-only).
