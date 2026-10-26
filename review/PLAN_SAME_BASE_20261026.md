@@ -220,3 +220,9 @@ If shadowfax must wait for the evening, its window moves (e.g. 19:00-22:30) and 
   `samebase/pr2`. Updating #2405 is Bob's call.
 - Next: the helper rebuilds f27-* (shadowfax) and s27* (computer4). shadowfax runs final27 (B/M/P) then final28 (C+,
   same-session anchors, ablation) as one chain. computer4 runs c4m27 (pilot, B/M/P/C on the 5070, then CPU-only).
+- **~11:05 #2405 updated (Bob's OK):**
+  - `docs5/pr2-two-gpu-decode` force-pushed with lease, 5b3f4601 → 11c40038 (= `samebase/pr2`). Upstream shows
+    11 commits, mergeable, still a draft.
+  - Banner rewritten: #2401 is merged, and the diff is the PR's own 11 commits. Body: [PR2_BODY_20261026.md](PR2_BODY_20261026.md).
+  - Split branches rebased the same way, every patch unchanged: pr2-1 6a191e90, pr2-2 c45b6962, pr2-3 695a7be4,
+    pr2-4 1c881700. pr2-4's tree equals P.
