@@ -246,3 +246,87 @@ If shadowfax must wait for the evening, its window moves (e.g. 19:00-22:30) and 
   - S3 combines cleanly: C+ looks VRAM-first up in the layer's own cache, and C+ on one GPU (C1) is effectively #1766 + S3.
   - S4 is the overlap: two multi-GPU setups in the backend, both claiming GPU 1. C+ is the worked combination.
   - Natural landing order: S1, then #1766, then S2/S3, then S4 (if the numbers back it).
+
+## Results so far (2026-10-26 14:05)
+All trees on dev c1c06ac6. Every sample so far passes its gates: answers byte-identical within each text group, 0
+handled out-of-memory lines, no OOM kills.
+
+### shadowfax final27 (B / M / P), done 13:33, GATES: PASS
+Logs: [manifests/shadowfax-20261026-samebase5/final27](../manifests/shadowfax-20261026-samebase5/final27) (run.log,
+summary.txt, bench.tgz sha256).
+
+REAP-150B, 6 prompts x 300 tokens, 2 samples per arm (decode = median of the per-sample mean; samples agree within 0.2%):
+
+| Arm | Decode tok/s | vs B1 | Median TTFT |
+|---|---|---|---|
+| B1 dev, 1 GPU | 3.010 | 1.00x | 3.63 s |
+| P1 PR #2 (VRAM-first), 1 GPU | 3.098 | 1.03x | 3.56 s |
+| M1 #1766, 1 GPU | 3.784 | 1.26x | 3.47 s |
+| P2 PR #2 (peer), 2 GPUs | 4.332 | 1.44x | 3.90 s |
+| M2 #1766 (`DSV4_CUDA_DEVICES=0,1`), 2 GPUs | 4.818 | 1.60x | 3.50 s |
+
+- What the second GPU adds: PR #2 1.40x (P2/P1), #1766 1.27x (M2/M1).
+- Head to head: P1/M1 0.82x, P2/M2 0.90x.
+
+Full V4 Flash, prompts of 1,992 and 3,005 tokens, default reserve (dev's bank-aware reserve keeps the bank: 0 OOM lines),
+2 samples per arm:
+
+| Arm | Decode, prompt 1 / 2 | Mean vs B1F | TTFT, prompt 1 / 2 |
+|---|---|---|---|
+| B1F dev, 1 GPU | 1.91 / 1.81 | 1.00x | 86 / 124 s |
+| P1F PR #2, 1 GPU | 1.93 / 1.86 | 1.02x | 86 / 124 s |
+| M1F #1766, 1 GPU | 2.24 / 2.11 | 1.17x | **98 / 141 s (1.14x slower)** |
+| P2F PR #2, 2 GPUs | 1.96 / 2.30 | 1.15x | 86 / 124 s |
+| M2F #1766, 2 GPUs | 2.29 / 2.28 | 1.23x | 98 / 140 s (1.13x slower) |
+
+- **#1766 is slower to first token than dev on the full model, by 13-14%.** On the old base (88f25a60) it was faster
+  (116 vs 137 s). Current dev's prefill dropped from 137 to 86 s and #1766 doesn't keep that gain. To look into
+  (likely one of its prefill-side paths: compressor, indexer prepare, or the head batch; the ablation in final28 runs
+  on REAP decode only, so it may not show this).
+- **PR #2's peer helps only the second prompt on the full model:** 1.01x on prompt 1, 1.24x on prompt 2. To look into.
+- Full model, head to head: P1F/M1F 0.87x, P2F/M2F 0.93x on decode; PR #2 reaches the first token 12-13% sooner.
+- Vulkan only (REAP, one GPU, 1 sample each): B 4.25, M 4.40, P 4.38 tok/s. Neither PR touches Vulkan; the spread is
+  noise-sized and texts are identical across the three.
+- CUDA self-tests (dsv4-cuda-test, cuda-test) pass on B, P and M.
+
+### shadowfax final28 (C+), started 13:37, running
+Partial log: [manifests/shadowfax-20261026-samebase5/final28-partial](../manifests/shadowfax-20261026-samebase5/final28-partial).
+First samples, REAP, one each, same client as final27:
+
+| Arm | Decode tok/s | vs B1 (final27) | vs #1766, same GPU count |
+|---|---|---|---|
+| C1 C+, 1 GPU (VRAM-first on) | 3.911 | 1.30x | 1.03x |
+| **C2 C+, 2 GPUs (peer)** | **6.054** | **2.01x** | **1.26x** |
+
+- The two halves more than stack: C+'s second GPU adds 1.55x (C2/C1), against 1.40x for PR #2 and 1.27x for #1766.
+  The plan's guess was ~5.3 tok/s.
+- C2's answers equal M2's for all 6 prompts. Peer log: `peer-mirrors device=1 reserve=1024MB mode=compute`;
+  residency `cache-fallback` (free 16764 MiB, reserve 2800 MiB), as for M.
+- Median TTFT: C1 3.41 s, C2 3.79 s (the peer costs ~0.4 s to first token, as with P2).
+- Still to come in final28: same-session anchors B1/P2/M2/M1, C2 and C1 second samples, the #1766 ablation, full model
+  C1F/C2F/B1F/P2F, Vulkan C+, CUDA tests. ETA ~17:45, then final29 (splits) to ~19:30.
+
+### computer4 c4m27 (RTX 5070, full model, default settings), running
+Partial log: [manifests/computer4-20261026-samebase5](../manifests/computer4-20261026-samebase5).
+Pilot: M at defaults logged 0 out-of-memory lines, so no arm sets a reserve.
+
+| Arm | Decode tok/s, s1 / s2 | vs B |
+|---|---|---|
+| B dev | 1.54 / (s2 running) | 1.00x |
+| P PR #2 | 1.54 / 1.56 | 1.00-1.02x |
+| M #1766 | 1.81 / 1.86 | 1.18x |
+| C C+ | 1.82 / 1.81 | 1.18x |
+
+- All answers byte-identical, 0 out-of-memory lines. C+ equals #1766 on one card, as it should (no peer).
+- CPU-only arms started 13:42; c4m28 (splits) follows. ETA 16:00-17:30.
+
+### CI
+Fork draft PRs 1 (M) and 2 (C+): 116 jobs queued since ~10:47 PDT, nothing in progress; upstream #2405: 2 pass, 114
+queued. Standard hosted runners; githubstatus shows Actions operational. Re-trigger if still stuck when final28 ends.
+
+### Where this points (not yet a decision)
+- As separate PRs, #1766 beats PR #2 everywhere except full-model TTFT.
+- PR #2's peer tier is complementary: on top of #1766 (C+) it gives the best result measured, 2.01x dev on two GPUs.
+- So the pitch is not "PR #2 instead of #1766" but "#1766, then PR #2's peer tier on top": S1, #1766, S2/S3, S4/C+.
+- Waiting for: C2 second sample and same-session anchors, C+ on the full model, the splits. #2405 stays draft;
+  nothing is posted upstream without Bob's OK.

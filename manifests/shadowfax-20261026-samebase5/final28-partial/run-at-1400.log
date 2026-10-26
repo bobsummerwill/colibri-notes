@@ -1,0 +1,44 @@
+[2026-10-26 13:35:25] run_final28.sh start (pid 1137828, unit colibri-final28.service, PILOT=0)
+[2026-10-26 13:35:25] llama stop planned at 2026-10-26 13:37:25 PDT (120 s from now)
+[2026-10-26 13:35:26] tips: f27-base=c1c06ac6fcb32157e4da130fd96775a32a757052 binary=26da888f17ce7f67b03301a75e0a05c32f78a30d09516efdbd06328cdf76a8a0 f27-pr2=11c400389ce4bc95adc34364eb84b3d3949ea99d binary=a2ad77ac8fd953d3c6d2e211ab52c55486bd508094feb4d97197e831dd15d69c f27-m1766=ecc9258653efdb8d3e24a8993e11aebd768ae831 binary=c86cb958b57692984d73a3d4e4d9c45c37f4b6a07bf6749357027b80d05e8eb5 f27-cplus=b659ac8d12cd50e2cfc141982ad9b69a8b88a753 binary=35c64a7d5bcca96318e4c91346bc3bd9e5d4143511619b6755246b08a964fec0 f27-cplusvk=b659ac8d12cd50e2cfc141982ad9b69a8b88a753 binary=ef187b4876cf8e8f3ae76520977793408f5b535f50962f606e813f74902ae20c 
+[2026-10-26 13:35:26] preflight common ok: MemAvailable=55008 MiB, llama active health ok, port 8090 free, no other colibri unit
+[2026-10-26 13:35:26] plan: C1:1 C2:1 B1:1 P2:1 M2:1 M1:1 C2:2 C1:2 MX:1 AC:1 AH:1 AP:1 AI:1 AR:1 AW:1 | C1F:1 C2F:1 B1F:1 P2F:1 C2F:2 C1F:2 | VKC:1 | CUDA tests (estimated 10800 s of samples + ~2700 s of tests; cap 15000 s)
+[2026-10-26 13:35:26] preflight ok
+[2026-10-26 13:35:26] waiting until 2026-10-26 13:37:25 (119 s)
+[2026-10-26 13:37:05] re-check ok
+[2026-10-26 13:37:26] stopping llama-server-active at 2026-10-26 13:37:26.126561315 (the EXIT trap restarts it)
+idle gpu 0, 180 MiB, 24576 MiB
+idle gpu 1, 83 MiB, 24576 MiB
+[2026-10-26 13:37:27] watchdog 1139802: TERM at 2026-10-26 17:45:26 (llama stop + 14880 s)
+[2026-10-26 13:37:27] === sample 1: C1 s1 tree=/home/maplemercury/colibri-bench/cw22/f27-cplus client=decode timeout=1800s extra='COLI_CUDA_MOE_BATCH=1 V4_GPU_RESIDENT_FIRST=1' (GPU window 1 s)
+Running as unit: colibri-final28-serve.service; invocation ID: ea17a994db1e41639616a33b833d31f3
+[2026-10-26 13:45:44] --- C1 s1 done: client_rc=0 ready=1 wall=497s 
+  decode_0         ttft=6.94 s prefill=None tok/s decode=3.453 tok/s chunks=300 text=2aa40adc7d4d
+  decode_1         ttft=3.41 s prefill=None tok/s decode=3.69 tok/s chunks=300 text=643fa3d128e4
+  decode_2         ttft=3.79 s prefill=None tok/s decode=4.057 tok/s chunks=300 text=d64c91874f9e
+  decode_3         ttft=3.34 s prefill=None tok/s decode=3.626 tok/s chunks=300 text=9fffce519994
+  decode_4         ttft=3.13 s prefill=None tok/s decode=4.724 tok/s chunks=300 text=e3bb3209f760
+  decode_5         ttft=3.39 s prefill=None tok/s decode=3.914 tok/s chunks=300 text=31cbd1c1700f
+check C1 s1: ok; GPU0 peak 21564 MiB GPU1 peak 83 MiB
+[2026-10-26 13:45:44] === sample 2: C2 s1 tree=/home/maplemercury/colibri-bench/cw22/f27-cplus client=decode timeout=1800s extra='COLI_CUDA_MOE_BATCH=1 V4_SERVE_STATS_LOG=1 V4_GPU_RESIDENT_FIRST=1 DSV4_CUDA_PEER_DEVICE=1' (GPU window 498 s)
+Running as unit: colibri-final28-serve.service; invocation ID: dc2303c6714d4879b6cb5c695f3c6f5b
+[2026-10-26 13:51:16] --- C2 s1 done: client_rc=0 ready=1 wall=332s 
+  decode_0         ttft=6.28 s prefill=None tok/s decode=5.122 tok/s chunks=300 text=2aa40adc7d4d
+  decode_1         ttft=3.66 s prefill=None tok/s decode=6.096 tok/s chunks=300 text=643fa3d128e4
+  decode_2         ttft=3.91 s prefill=None tok/s decode=6.127 tok/s chunks=300 text=d64c91874f9e
+  decode_3         ttft=3.5 s prefill=None tok/s decode=5.798 tok/s chunks=300 text=9fffce519994
+  decode_4         ttft=3.32 s prefill=None tok/s decode=7.018 tok/s chunks=300 text=e3bb3209f760
+  decode_5         ttft=3.79 s prefill=None tok/s decode=6.162 tok/s chunks=300 text=31cbd1c1700f
+check C2 s1: ok; GPU0 peak 21564 MiB GPU1 peak 23136 MiB
+[2026-10-26 13:51:16] === sample 3: B1 s1 tree=/home/maplemercury/colibri-bench/cw22/f27-base client=decode timeout=1800s extra='COLI_CUDA_MOE_BATCH=1' (GPU window 830 s)
+Running as unit: colibri-final28-serve.service; invocation ID: 439bcf611c114ba59323113cf95bafec
+[2026-10-26 14:01:49] --- B1 s1 done: client_rc=0 ready=1 wall=633s 
+  decode_0         ttft=6.52 s prefill=None tok/s decode=2.753 tok/s chunks=300 text=2aa40adc7d4d
+  decode_1         ttft=3.68 s prefill=None tok/s decode=2.895 tok/s chunks=300 text=643fa3d128e4
+  decode_2         ttft=3.95 s prefill=None tok/s decode=3.088 tok/s chunks=300 text=d64c91874f9e
+  decode_3         ttft=3.59 s prefill=None tok/s decode=2.808 tok/s chunks=300 text=9fffce519994
+  decode_4         ttft=3.3 s prefill=None tok/s decode=3.487 tok/s chunks=300 text=e3bb3209f760
+  decode_5         ttft=3.59 s prefill=None tok/s decode=3.02 tok/s chunks=300 text=31cbd1c1700f
+check B1 s1: ok; GPU0 peak 21424 MiB GPU1 peak 83 MiB
+[2026-10-26 14:01:49] === sample 4: P2 s1 tree=/home/maplemercury/colibri-bench/cw22/f27-pr2 client=decode timeout=1800s extra='COLI_CUDA_MOE_BATCH=1 V4_SERVE_STATS_LOG=1 V4_GPU_RESIDENT_FIRST=1 DSV4_CUDA_PEER_DEVICE=1' (GPU window 1463 s)
+Running as unit: colibri-final28-serve.service; invocation ID: 2bc6a0ae04a849babc56a58b3219b5f2
