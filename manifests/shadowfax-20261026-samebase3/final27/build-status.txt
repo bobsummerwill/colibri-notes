@@ -1,0 +1,10 @@
+f27-base c1c06ac6 EXIT=0 end=2026-10-26T10:47:49-07:00 warnings=0 bin=26da888f17ce7f67
+f27-basevk c1c06ac6 EXIT=0 end=2026-10-26T10:47:56-07:00 warnings=0 bin=809e234d0c02de83
+f27-pr2 11c40038 EXIT=0 end=2026-10-26T10:48:12-07:00 warnings=0 bin=a2ad77ac8fd953d3
+f27-pr2vk 11c40038 EXIT=0 end=2026-10-26T10:48:25-07:00 warnings=0 bin=7e2de57530fe55b9
+f27-m1766 ecc92586 EXIT=0 end=2026-10-26T10:48:34-07:00 warnings=0 bin=c86cb958b5769298
+f27-m1766vk ecc92586 EXIT=0 end=2026-10-26T10:48:53-07:00 warnings=0 bin=15648776e29f6eed
+f27-cplus b659ac8d EXIT=0 end=2026-10-26T10:48:56-07:00 warnings=0 bin=35c64a7d5bcca963
+done-cuda
+f27-cplusvk b659ac8d EXIT=0 end=2026-10-26T10:49:21-07:00 warnings=0 bin=ef187b4876cf8e8f
+done-vk

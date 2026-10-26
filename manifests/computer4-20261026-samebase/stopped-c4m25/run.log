@@ -1,0 +1,7 @@
+[2026-10-26 10:15:33] run_c4m25 start: MODE=all RESERVE=auto M=63df714d
+[2026-10-26 10:15:33] === sample 1: M s1 tree=/home/zombietiger/colibri-bench/dg/s25m 
+[2026-10-26 10:32:17] --- M s1: ready=1 client_rc=0 wall=1004s decode_0   ttft=9.72 decode=1.917 chunks=300 text=3d0a5275398f decode_1   ttft=4.99 decode=1.953 chunks=300 text=f0e57dde9023 decode_2   ttft=6.69 decode=1.876 chunks=300 text=d27222f106e3 decode_3   ttft=5.15 decode=1.884 chunks=300 text=6f58d36c3ba4 decode_4   ttft=5.09 decode=1.889 chunks=300 text=82d3caa69654 decode_5   ttft=5.7 decode=1.761 chunks=300 text=4306da7d3301 
+[2026-10-26 10:32:17] check M s1: 0 OOM lines, 0 crash lines; ram_tiers available=40.00GiB dense=resident(6.27GiB) target_slots=59 target_cache=31.59GiB head=resident-bf16 projected=39.79GiB v4_hot_policy pin_slots_per_layer=16 repin_interval=6 mode=resident-ram rows16=hot-pins v4_gpu tier=dense-matvec device=0 devices=1 placement=contiguous-layers v4_gpu devi
+[2026-10-26 10:32:17] pilot: M at the defaults logged 0 'out of memory' lines -> GPU arms get 'no reserve setting'
+[2026-10-26 10:32:17] === sample 2: B s1 tree=/home/zombietiger/colibri-bench/dg/s25base 
+[2026-10-26 10:45:15] signal: exiting
