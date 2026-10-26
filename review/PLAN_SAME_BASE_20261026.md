@@ -390,3 +390,7 @@ Tests:
 | computer4 | **c4m29 (F1 on the 5070), ~40 min** | **to ~18:15** |
 | counter | code bisect / nsys plan as the ablation points | evening |
 | — | write-up with both findings explained | **~22:45** |
+
+**GPU power (14:40):** every shadowfax sample in final27-final30 runs with both 3090s at a 300 W limit (default 420 W).
+Full-model prefill peaks at 267-286 W and decode at 210-277 W (5 s nvidia-smi samples), so prefill sits just under the cap.
+Bob will change the power profile only after final30 is done; later runs are not comparable with these without anchors.
