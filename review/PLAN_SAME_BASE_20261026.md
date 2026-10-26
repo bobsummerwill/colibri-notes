@@ -1,7 +1,9 @@
 # Same-base comparison of #1766, PR #2 and a combined "C+" (plan, 2026-10-26)
 
 Status: **planned and waiting for Bob's go** (written 10:00). **10:10, Bob: C+ (and the Phase 0 ablation that
-informs it) comes after the B/M/P run.** See "Revised timeline" at the end. Nothing here is upstream. Trees stay local or on the fork.
+informs it) comes after the B/M/P run.** **10:15, Bob: GO. Don't gate Stage 2 on Stage 1 (do whatever is faster in
+aggregate); shadowfax may go down (daytime is fine); draft PRs inside the fork are fine.** C+ = M merged into P (base B shared,
+so only the PR #2 vs #1766 conflicts are left). See "Revised timeline" at the end. Nothing here is upstream. Trees stay local or on the fork.
 Results go to `manifests/*-2026102[67]-samebase/` and a handoff.
 
 ## Why (what final23/24 taught us)
