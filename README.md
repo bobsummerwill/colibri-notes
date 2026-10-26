@@ -12,12 +12,13 @@ Project notebook for Bob Summerwill's work on [colibri](https://github.com/JustV
 **Rule: nothing goes to upstream JustVugg/colibri unless Bob asks for that specific submission.** Branches go to the
 fork (`--force-with-lease`); Bob decides what is opened and when, and comments on other people's upstream PRs need his
 OK too. Opened at his request: PR #0 (#2212-#2217), PR #1 (#2264, merged); 2026-10-25: issues #2399 (fix A) and
-#2400 (fix B), PRs #2401 (fix A), #2402 (fix B), #2403 (test_vk_chain initializers), #2404 (`COLI_VK_SUBGROUP=n`).
+#2400 (fix B), PRs #2401 (fix A), #2402 (fix B), #2403 (test_vk_chain initializers), #2404 (`COLI_VK_SUBGROUP=n`);
+2026-10-26: draft PR #2405 (PR #2, on #2401).
 
-> **Pick up here: [HANDOFF_20261025.md](HANDOFF_20261025.md)** (2026-10-25: every branch rebased onto dev 77530b49,
-> upstream clash check, GPU re-runs on shadowfax + computer4). Before that: [HANDOFF_20261024.md](HANDOFF_20261024.md) (branch states, what is and isn't GPU-tested, next
-> steps, decisions pending). Latest: PR #2 rewritten linearly and force-pushed (3ce988da, every commit passes its tests); shadowfax/computer4 still unreachable; Vulkan headers now on counter (fix B's Vulkan suites:
-> see the handoff).
+> **Pick up here: [HANDOFF_20261026.md](HANDOFF_20261026.md)** (2026-10-26 morning: #2401/#2402 accepted for the next
+> upstream batch; #1766 measured against its dev base on 2x 3090 + 5070, with a draft comment waiting for Bob's OK; PR #2
+> is draft #2405 on #2401; hermes on shadowfax left stopped). Before that: [HANDOFF_20261025.md](HANDOFF_20261025.md),
+> [HANDOFF_20261024.md](HANDOFF_20261024.md).
 
 ## Status (2026-10-24, night; counter)
 - **All three branches are on dev 561966e**, done on counter (`~/Projects/colibri`) and
