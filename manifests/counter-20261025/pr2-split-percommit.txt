@@ -1,0 +1,13 @@
+# Per-commit check, counter (gcc (GCC) 16.2.1 20260810), 2026-10-25T20:06:45-07:00, range upstream/dev..split/pr2-4-two-gpu
+# (1) make -f Makefile.deepseek-v4 deepseek-v4 (clean) (2) deepseek_v4.c -DCOLI_V4_GPU_TIER -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER (3) +COLI_VULKAN (4) tests/test_deepseek_v4.c -DCOLI_V4_TEST_HOOKS (5) dsv4/v4 python tests present at the commit
+acad19759d build=0 gpu_tier=0 vk=0 test=0 py=1 diag=0  deepseek-v4: per-cache mirror growth-guard state and one LRU clock
+b072cdd533 build=0 gpu_tier=0 vk=0 test=0 py=1 diag=0  deepseek-v4: mirror caches keep their VRAM reserve, drop failed uploads
+1e0cc4f92a build=0 gpu_tier=0 vk=0 test=0 py=1 diag=0  deepseek-v4: DSV4_CUDA_PIN_CAP_GB caps the page-locked expert slabs
+06fde765ee build=0 gpu_tier=0 vk=0 test=0 py=1 diag=0  deepseek-v4: V4_SERVE_STATS_LOG per-turn decode stats and MoE counters
+3d9298a802 build=0 gpu_tier=0 vk=0 test=0 py=1 diag=0  deepseek-v4: VRAM-first decode lookups (V4_GPU_RESIDENT_FIRST)
+41dfaa645e build=0 gpu_tier=0 vk=0 test=0 py=1 diag=0  deepseek-v4: peer mirror pool on a second GPU (DSV4_CUDA_PEER_DEVICE)
+85785872f4 build=0 gpu_tier=0 vk=0 test=0 py=1 diag=0  deepseek-v4: peer compute on the second GPU (DSV4_CUDA_PEER_COMPUTE)
+d7b12fed13 build=0 gpu_tier=0 vk=0 test=0 py=1 diag=0  deepseek-v4: document two-GPU decode and VRAM-first lookups
+76c2208e07 build=0 gpu_tier=0 vk=0 test=0 py=1 diag=0  deepseek-v4: a sticky CUDA fault latches CUDA off for the process (F18)
+7f8c9d9c5f build=0 gpu_tier=0 vk=0 test=0 py=1 diag=0  deepseek-v4: a failed decode block names its stage and keeps the inner error
+5b2b363ab4 build=0 gpu_tier=0 vk=0 test=0 py=1 diag=0  deepseek-v4: the attention's grouped wo_a matvec falls back to the CPU when the 

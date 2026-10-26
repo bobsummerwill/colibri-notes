@@ -1,0 +1,100 @@
+gcc -O3 -march=native -fopenmp -pthread -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function  -MMD -MP -DCOLI_VULKAN -c backend_vulkan.c -o backend_vulkan.o
+gcc -O3 -march=native -fopenmp -pthread -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function  -MMD -MP -DCOLI_VULKAN -c vk_tier.c -o vk_tier.o
+gcc -O3 -march=native -fopenmp -pthread -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function  -MMD -MP -DCOLI_VULKAN -c vk_chain.c -o vk_chain.o
+glslc --target-env=vulkan1.2 shaders/qmatmul_gate_up.comp -o shaders/qmatmul_gate_up.spv
+glslc --target-env=vulkan1.2 shaders/qmatmul_bd.comp -o shaders/qmatmul_bd.spv
+glslc --target-env=vulkan1.2 shaders/qmatmul_gate_up_bd.comp -o shaders/qmatmul_gate_up_bd.spv
+glslc --target-env=vulkan1.2 shaders/attention_absorb.comp -o shaders/attention_absorb.spv
+glslc --target-env=vulkan1.2 shaders/rmsnorm.comp -o shaders/rmsnorm.spv
+glslc --target-env=vulkan1.2 shaders/expert_act.comp -o shaders/expert_act.spv
+glslc --target-env=vulkan1.2 shaders/expert_act_v4.comp -o shaders/expert_act_v4.spv
+gcc -O3 -march=native -fopenmp -pthread -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function  -MMD -MP -DCOLI_VULKAN tests/test_vk_memtype.c -o tests/test_vk_memtype -lm -fopenmp -pthread  -ldl
+gcc -O3 -march=native -fopenmp -pthread -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function  -MMD -MP -DCOLI_VULKAN tests/test_vk_tier.c backend_vulkan.o vk_tier.o vk_chain.o -o tests/test_vk_tier -lm -fopenmp -pthread  -ldl
+gcc -O3 -march=native -fopenmp -pthread -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function  -MMD -MP -DCOLI_VULKAN tests/test_vk_chain.c backend_vulkan.o vk_tier.o vk_chain.o -o tests/test_vk_chain -lm -fopenmp -pthread  -ldl
+tests/test_vk_chain.c: In function ‘test_mla’:
+tests/test_vk_chain.c:1094:5: warning: missing initializer for field ‘kv16’ of ‘VkcMla’ [-Wmissing-field-initializers]
+ 1094 |     VkcMla m = {H, Q, R, V, K, D, c.q_lora, eps, scale, c.style, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0};
+      |     ^~~~~~
+In file included from tests/test_vk_chain.c:68:
+tests/../vk_chain.h:311:9: note: ‘kv16’ declared here
+  311 |     int kv16;                     /* the new latent and rope rows rounded to float16 as they are written
+      |         ^~~~
+tests/test_vk_chain.c:1217:13: warning: missing initializer for field ‘kv16’ of ‘VkcKvPart’ [-Wmissing-field-initializers]
+ 1217 |             VkcKvPart pt[2] = {{1, K, lat, 0, dc.lat, 0}, {1, R ? R : 1, rope, 0, dc.rope, 0}};
+      |             ^~~~~~~~~
+In file included from tests/test_vk_chain.c:70:
+tests/../vk_kvsplit.h:84:9: note: ‘kv16’ declared here
+   84 |     int kv16;
+      |         ^~~~
+tests/test_vk_chain.c:1217:13: warning: missing initializer for field ‘kv16’ of ‘VkcKvPart’ [-Wmissing-field-initializers]
+ 1217 |             VkcKvPart pt[2] = {{1, K, lat, 0, dc.lat, 0}, {1, R ? R : 1, rope, 0, dc.rope, 0}};
+      |             ^~~~~~~~~
+tests/../vk_kvsplit.h:84:9: note: ‘kv16’ declared here
+   84 |     int kv16;
+      |         ^~~~
+tests/test_vk_chain.c: In function ‘test_kvs_gqa’:
+tests/test_vk_chain.c:2452:9: warning: missing initializer for field ‘kv16’ of ‘VkcKvPart’ [-Wmissing-field-initializers]
+ 2452 |         VkcKvPart pk = {kv_pm ? 1 : KVH, kv_pm ? KVH * hd : hd, Kx, (size_t)T * hd, kc, 0};
+      |         ^~~~~~~~~
+tests/../vk_kvsplit.h:84:9: note: ‘kv16’ declared here
+   84 |     int kv16;
+      |         ^~~~
+tests/test_vk_chain.c:2453:9: warning: missing initializer for field ‘kv16’ of ‘VkcKvPart’ [-Wmissing-field-initializers]
+ 2453 |         VkcKvPart pv = {kv_pm ? 1 : KVH, kv_pm ? KVH * vd : vd, Vx, (size_t)T * vd, vc, 0};
+      |         ^~~~~~~~~
+tests/../vk_kvsplit.h:84:9: note: ‘kv16’ declared here
+   84 |     int kv16;
+      |         ^~~~
+tests/test_vk_chain.c:2465:24: warning: missing initializer for field ‘kv16’ of ‘VkcKvGqa’ [-Wmissing-field-initializers]
+ 2465 |                        kv_pm ? (size_t)vd : (size_t)T * vd, kv_pm ? (size_t)KVH * vd : (size_t)vd};
+      |                        ^~~~~
+tests/../vk_kvsplit.h:855:9: note: ‘kv16’ declared here
+  855 |     int kv16;
+      |         ^~~~
+tests/test_vk_chain.c: In function ‘test_kvs_mla’:
+tests/test_vk_chain.c:2546:9: warning: missing initializer for field ‘kv16’ of ‘VkcKvPart’ [-Wmissing-field-initializers]
+ 2546 |         VkcKvPart pl = {1, K, Lx, 0, lat, 0}, pr = {1, R ? R : 1, Rx, 0, rope, 0};
+      |         ^~~~~~~~~
+tests/../vk_kvsplit.h:84:9: note: ‘kv16’ declared here
+   84 |     int kv16;
+      |         ^~~~
+tests/test_vk_chain.c:2546:9: warning: missing initializer for field ‘kv16’ of ‘VkcKvPart’ [-Wmissing-field-initializers]
+ 2546 |         VkcKvPart pl = {1, K, Lx, 0, lat, 0}, pr = {1, R ? R : 1, Rx, 0, rope, 0};
+      |         ^~~~~~~~~
+tests/../vk_kvsplit.h:84:9: note: ‘kv16’ declared here
+   84 |     int kv16;
+      |         ^~~~
+tests/test_vk_chain.c:2555:24: warning: missing initializer for field ‘kv16’ of ‘VkcKvMla’ [-Wmissing-field-initializers]
+ 2555 |                        0, H * K, K, S * H * K, H * R, R, 0, H * K, K, 0, sel_row, scale, Lx, Rx, 0};
+      |                        ^
+tests/../vk_kvsplit.h:979:9: note: ‘kv16’ declared here
+  979 |     int kv16;
+      |         ^~~~
+tests/test_vk_chain.c: In function ‘test_kvs_rel’:
+tests/test_vk_chain.c:2630:9: warning: missing initializer for field ‘kv16’ of ‘VkcKvPart’ [-Wmissing-field-initializers]
+ 2630 |         VkcKvPart pk = {KVH, hd, Kx, (size_t)T * hd, kc, 0}, pv = {KVH, hd, Vx, (size_t)T * hd, vc, 0};
+      |         ^~~~~~~~~
+tests/../vk_kvsplit.h:84:9: note: ‘kv16’ declared here
+   84 |     int kv16;
+      |         ^~~~
+tests/test_vk_chain.c:2630:9: warning: missing initializer for field ‘kv16’ of ‘VkcKvPart’ [-Wmissing-field-initializers]
+ 2630 |         VkcKvPart pk = {KVH, hd, Kx, (size_t)T * hd, kc, 0}, pv = {KVH, hd, Vx, (size_t)T * hd, vc, 0};
+      |         ^~~~~~~~~
+tests/../vk_kvsplit.h:84:9: note: ‘kv16’ declared here
+   84 |     int kv16;
+      |         ^~~~
+tests/test_vk_chain.c: In function ‘test_kvs_ds’:
+tests/test_vk_chain.c:2718:9: warning: missing initializer for field ‘kv16’ of ‘VkcKvPart’ [-Wmissing-field-initializers]
+ 2718 |         VkcKvPart pc = {1, hd, cmp, 0, dc, 0};
+      |         ^~~~~~~~~
+tests/../vk_kvsplit.h:84:9: note: ‘kv16’ declared here
+   84 |     int kv16;
+      |         ^~~~
+tests/test_vk_chain.c: In function ‘bench_xb’:
+tests/test_vk_chain.c:3541:47: warning: missing initializer for field ‘sg’ of ‘VktHostExpert’ [-Wmissing-field-initializers]
+ 3541 |                                               (size_t)ti[0].rowWords * 4, (size_t)ti[2].rowWords * 4};
+      |                                               ^
+In file included from tests/test_vk_chain.c:69:
+tests/../vk_tier.h:346:85: note: ‘sg’ declared here
+  346 | typedef struct { const uint8_t *g, *u, *d; int tg, td; size_t rgu, rd; const float *sg, *su, *sd; int gsgu, gsd; } VktHostExpert;
+      |                                                                                     ^~

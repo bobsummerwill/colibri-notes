@@ -1,1 +1,11 @@
 # make -C c check, counter (gcc (GCC) 16.2.1 20260810), 2026-10-25T17:54:16-07:00, dev 77530b49
+fixa fix/dsv4-mirror-guard-overshoot dd03a9de make_check=0 Ran 2746 tests in 172.475s OK (skipped=320) 2565s
+pr2 docs5/pr2-two-gpu-decode a09ae2f2 make_check=0 Ran 2754 tests in 171.186s OK (skipped=320) 2596s
+dev upstream/dev 77530b49 make_check=0 Ran 2742 tests in 171.836s OK (skipped=320) 2611s
+sg fix/vk-subgroup-size-env d0765490 make_check=0 Ran 2742 tests in 174.283s OK (skipped=320) 2609s
+init fix/vk-chain-test-initializers 9802407c make_check=0 Ran 2742 tests in 174.969s OK (skipped=320) 2612s
+fixb fix/vk-host-image-alloc 78dda872 make_check=0 Ran 2745 tests in 175.849s OK (skipped=320) 2626s
+split1 split/pr2-1-guard b072cdd5 make_check=0 Ran 2742 tests in 175.402s OK (skipped=320) 2569s
+split3 split/pr2-3-vram-first 3d9298a8 make_check=0 Ran 2744 tests in 170.469s OK (skipped=320) 2611s
+split2 split/pr2-2-settings 06fde765 make_check=0 Ran 2742 tests in 170.733s OK (skipped=320) 2629s
+ALL DONE 2026-10-25T20:17:29-07:00

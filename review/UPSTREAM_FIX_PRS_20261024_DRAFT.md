@@ -1,11 +1,11 @@
-# Fix A and fix B: PR descriptions (drafts, 2026-10-24 evening) — NOT submitted; Bob decides (issue or PR)
+# Fix A and fix B: PR descriptions (drafts, 2026-10-24 evening; hashes and re-runs updated 2026-10-25) — NOT submitted; Bob decides (issue or PR)
 
 > From [UPSTREAM_FIXES_20261024.md](UPSTREAM_FIXES_20261024.md) (evidence on dev 61646cbd). Fix A's description absorbs
 > issue 1 of [UPSTREAM_ISSUES_20261023_DRAFT.md](UPSTREAM_ISSUES_20261023_DRAFT.md) (the kv comp fallback), which it
-> supersedes. Both branches now have dev 561966ec merged in (counter, 2026-10-24; pushed to the fork):
-> - fix A `fix/dsv4-mirror-guard-overshoot` **f30c7b23** (bd7103fd + a merge that resolves a conflict with #2264's
->   bank-sized reserve, below)
-> - fix B `fix/vk-host-image-alloc` **97b26c0a** (72aa325a + a clean merge)
+> supersedes. Both branches are one linear commit on dev 77530b49 (2026-10-25; force-pushed to the fork):
+> - fix A `fix/dsv4-mirror-guard-overshoot` **dd03a9de** (the code of the earlier merge f30c7b23, which resolved
+>   the conflict with #2264's bank-sized reserve; 0-line diff to it)
+> - fix B `fix/vk-host-image-alloc` **78dda872** (72aa325a cherry-picked; 0-line diff)
 >
 > JustVugg did not answer the offer of both on #2264. Fix B is independent of everything else; fix A overlaps PR #2
 > (its b9b1f0ac (was 6b7fc6c0) contains the same guard fix), see the note at the end.
@@ -74,13 +74,25 @@ Prompt 2 is faster because its attention now stays on the GPU. In these runs dev
 the texts (earlier, on the 5070, 2 of 7 runs did). One 5070 sample of this PR overlapped a `make check` on the same
 machine and is left out of the medians.
 
+**Re-run on this tip** (2026-10-25, dd03a9de vs dev 77530b49, x2 each, interleaved):
+- RTX 3090: dev had **1,139 kv comp fallbacks per sample** (GPU 0 at 24,119 MiB), and this time they changed dev's
+  answer 2 (`964826e1…`, ≠ the earlier reference `8b3f437b…`). This PR: 0 fallbacks, 23,605 MiB, both answers = the
+  reference; 3,005-token TTFT **0.953x**, answer 1 equal (TTFT 0.991x, decode 1.005x).
+- RTX 5070 (DeepGEMM): neither had fallbacks this time; texts = reference on both; 0.996x mean decode, 0.987x TTFT.
+- With `COLI_CUDA_MOE_BATCH=1` on the 3090 (the bank in use, x1 each): everything 1.00x, texts equal. On the 5070 the
+  3.4 GiB bank doesn't fit on dev or here (handled: the batch stays off).
+- `dsv4-cuda-test` / `cuda-test` pass on this tip (3090, CUDA 12.0; 5070, DeepGEMM sm_120a).
+  [final21](https://github.com/bobsummerwill/colibri-notes/blob/471769a/manifests/shadowfax-20261025/final21-run.log),
+  [c4f21](https://github.com/bobsummerwill/colibri-notes/blob/471769a/manifests/computer4-20261025/c4f21-run.log).
+
 ### How this was tested
 - New `tests/test_v4_mirror_guard_source.py` pins the guard at source level (no fixture reaches a full card).
-- On the merged tip f30c7b23 (counter, gcc 16.2.1): `make -C c check` 2,733 tests OK (312 skipped); `deepseek_v4.c` compiles with
-  `-Wall -Wextra -DCOLI_V4_GPU_TIER` (and `-DCOLI_VULKAN`), 0 diagnostics. GPU runs as above, on 61646cbd.
+- On the tip dd03a9de (counter, gcc 16.2.1): `make -C c check` 2,746 tests OK (320 skipped); `deepseek_v4.c` compiles with
+  `-Wall -Wextra -DCOLI_V4_GPU_TIER` (and `-DCOLI_VULKAN`), 0 diagnostics. GPU runs as above, on 61646cbd, and
+  repeated on dd03a9de vs dev 77530b49 (2026-10-25, below).
 
 ### Validation
-- [x] `make -C c check`: 2733 tests, OK (312 skipped)
+- [x] `make -C c check`: 2746 tests, OK (320 skipped)
 - [x] Performance claims include hardware, commands and repeatable measurements
 - [x] Experiment manifests with raw evidence ([final10](https://github.com/bobsummerwill/colibri-notes/tree/70b7d97/manifests/final10), [c4fa](https://github.com/bobsummerwill/colibri-notes/tree/70b7d97/manifests/c4fa))
 
@@ -124,14 +136,14 @@ default-pool runs still leave only ~1 GiB of MemAvailable on this box, so the po
 
 ### How this was tested
 - New `tests/test_vk_host_image_alloc_source.py` pins the allocation and the matching free.
-- On the merged tip 97b26c0a (counter, gcc 16.2.1): `make -C c check` 2,732 tests OK (312 skipped). Built with `VK=1`
-  (0 warnings in `backend_vulkan.c`); on an Intel Meteor Lake iGPU (Mesa 26.2.2) `vk-memtype-check` and
+- On the tip 78dda872 (counter, gcc 16.2.1): `make -C c check` 2,745 tests OK (320 skipped). Built with `VK=1`
+  (0 warnings in `backend_vulkan.c`); on an Intel Meteor Lake iGPU (Mesa 26.2.5) `vk-memtype-check` and
   `vk-tier-check` pass, the tier suite with the import upload path on, i.e. through this change's allocator.
-  (`vk-chain-check` hangs on that iGPU on dev 561966e too, so it says nothing about this change.) GPU runs as above, on
-  61646cbd (final15; dev..561966ec does not touch `backend_vulkan.c`'s uploader).
+  `tests/test_vk_chain` passes on Lavapipe, as on dev. GPU runs as above, on 61646cbd (final15; dev..77530b49 does not
+  touch `backend_vulkan.c`'s uploader).
 
 ### Validation
-- [x] `make -C c check`: 2732 tests, OK (312 skipped)
+- [x] `make -C c check`: 2745 tests, OK (320 skipped)
 - [x] Performance claims include hardware, commands and repeatable measurements
 - [x] Experiment manifests with raw evidence ([final15](https://github.com/bobsummerwill/colibri-notes/tree/70b7d97/manifests/final15))
 
@@ -147,4 +159,5 @@ default-pool runs still leave only ~1 GiB of MemAvailable on this box, so the po
   both are open, each description should mention the other.
 - The 2026-10-23 issue draft's "possible fixes" (allocate the compressed-KV buffer at its final size; give a mirror
   slot back on a kv comp failure) are alternatives, not done; this fix removes the cause on every card measured.
-- **Also checked:** dev 61646cbd..561966ec does not touch the Vulkan uploader (`git diff --stat` on `c/backend_vulkan.c`).
+- #1766 (open, DSV4 multi-GPU) moves the same guard statics but has no logical conflict with fix A; no mention needed.
+- **Also checked:** dev 61646cbd..77530b49 does not touch the Vulkan uploader (`git diff --stat` on `c/backend_vulkan.c`).

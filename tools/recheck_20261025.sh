@@ -44,8 +44,10 @@ percommit() { # range out
           gcc $CF -DCOLI_V4_GPU_TIER -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER deepseek_v4.c > "$M/logs/pc-gt.log" 2>&1; g=$?
           gcc $CF -DCOLI_V4_GPU_TIER -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER -DCOLI_VULKAN deepseek_v4.c > "$M/logs/pc-vk.log" 2>&1; v=$?
           gcc $CF -DCOLI_V4_TEST_HOOKS -I. tests/test_deepseek_v4.c > "$M/logs/pc-test.log" 2>&1; t=$?
-          py=$(ls tests/test_dsv4*.py tests/test_v4*.py 2>/dev/null | sed 's#tests/##; s#\.py$##' | tr '\n' ' ')
-          (cd tests && python3 -m unittest $py) > "$M/logs/pc-py.log" 2>&1; p=$?
+          # discover, not module names: dev's test_dsv41_ref_topk.py raises SkipTest at import without torch,
+          # which loading by name reports as an error
+          { python3 -m unittest discover -s tests -t tests -p 'test_dsv4*.py' && \
+            python3 -m unittest discover -s tests -t tests -p 'test_v4*.py'; } > "$M/logs/pc-py.log" 2>&1; p=$?
           d=$(cat "$M"/logs/pc-{build,gt,vk,test}.log | grep -E 'warning:|error:' | grep -vc 'lto-wrapper')
           echo "$(git rev-parse --short=10 HEAD) build=$b gpu_tier=$g vk=$v test=$t py=$p diag=$d  $(git log -1 --format=%s | cut -c1-80)" ) >> "$2"
     done

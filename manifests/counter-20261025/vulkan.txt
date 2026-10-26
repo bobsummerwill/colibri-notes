@@ -1,0 +1,18 @@
+# Vulkan, counter, 2026-10-25T20:08:26-07:00, driverInfo = Mesa 26.2.5-arch1.1
+dev 77530b49 build rc=0 warnings=13
+dev vk-memtype-check rc=0
+dev vk-tier-check rc=0
+dev test_vk_chain lavapipe rc=0 43s PASS
+fixb 78dda872 build rc=0 warnings=13
+fixb vk-memtype-check rc=0
+fixb vk-tier-check rc=0
+fixb test_vk_chain lavapipe rc=0 41s PASS
+init 9802407c build rc=0 warnings=0
+init vk-memtype-check rc=0
+init vk-tier-check rc=0
+init test_vk_chain lavapipe rc=0 41s PASS
+sg d0765490 build rc=0 warnings=13
+sg vk-memtype-check rc=0
+sg vk-tier-check rc=0
+sg test_vk_chain lavapipe rc=0 41s PASS
+sg test_vk_chain iGPU COLI_VK_SUBGROUP=16 rc=0 240s PASS

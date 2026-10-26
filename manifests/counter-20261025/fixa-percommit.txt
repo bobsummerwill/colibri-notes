@@ -1,0 +1,3 @@
+# Per-commit check, counter (gcc (GCC) 16.2.1 20260810), 2026-10-25T20:08:17-07:00, range upstream/dev..fix/dsv4-mirror-guard-overshoot
+# (1) make -f Makefile.deepseek-v4 deepseek-v4 (clean) (2) deepseek_v4.c -DCOLI_V4_GPU_TIER -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER (3) +COLI_VULKAN (4) tests/test_deepseek_v4.c -DCOLI_V4_TEST_HOOKS (5) dsv4/v4 python tests present at the commit
+dd03a9de6b build=0 gpu_tier=0 vk=0 test=0 py=1 diag=0  deepseek-v4: the mirror growth guard counts mirrors grown between probes

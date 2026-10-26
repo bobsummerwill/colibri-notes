@@ -1,0 +1,25 @@
+# Rerun of step (5) with unittest discover (by-name loading errors on dev's import-time SkipTest in test_dsv41_ref_topk.py, no torch), 2026-10-25T20:18:35-07:00
+c0bf6da5a3 Ran 30 tests in 0.000s OK (skipped=30) | Ran 38 tests in 0.189s OK |  deepseek-v4: DSV4_CUDA_PIN_CAP_GB caps the page-locked exper
+3076231082 Ran 30 tests in 0.000s OK (skipped=30) | Ran 38 tests in 0.089s OK |  deepseek-v4: V4_SERVE_STATS_LOG per-turn decode stats and Mo
+a3b5afd8c5 Ran 30 tests in 0.000s OK (skipped=30) | Ran 40 tests in 0.086s OK |  deepseek-v4: VRAM-first decode lookups (V4_GPU_RESIDENT_FIRS
+81d9e2fbe2 Ran 30 tests in 0.000s OK (skipped=30) | Ran 40 tests in 0.089s OK |  deepseek-v4: per-cache mirror growth-guard state and one LRU
+dfad51970d Ran 30 tests in 0.000s OK (skipped=30) | Ran 40 tests in 0.091s OK |  deepseek-v4: mirror caches keep their VRAM reserve, drop fai
+11c764fc26 Ran 30 tests in 0.000s OK (skipped=30) | Ran 45 tests in 0.097s OK |  deepseek-v4: peer mirror pool on a second GPU (DSV4_CUDA_PEE
+8c766a4703 Ran 30 tests in 0.000s OK (skipped=30) | Ran 45 tests in 0.094s OK |  deepseek-v4: peer compute on the second GPU (DSV4_CUDA_PEER_
+c61649e1b5 Ran 30 tests in 0.000s OK (skipped=30) | Ran 45 tests in 0.098s OK |  deepseek-v4: document two-GPU decode and VRAM-first lookups
+f4ee300587 Ran 34 tests in 0.005s OK (skipped=30) | Ran 45 tests in 0.096s OK |  deepseek-v4: a sticky CUDA fault latches CUDA off for the pr
+2246cb076f Ran 34 tests in 0.006s OK (skipped=30) | Ran 45 tests in 0.097s OK |  deepseek-v4: a failed decode block names its stage and keeps
+a09ae2f293 Ran 35 tests in 0.007s OK (skipped=30) | Ran 45 tests in 0.096s OK |  deepseek-v4: the attention's grouped wo_a matvec falls back 
+acad19759d Ran 30 tests in 0.000s OK (skipped=30) | Ran 38 tests in 0.086s OK |  deepseek-v4: per-cache mirror growth-guard state and one LRU
+b072cdd533 Ran 30 tests in 0.000s OK (skipped=30) | Ran 38 tests in 0.087s OK |  deepseek-v4: mirror caches keep their VRAM reserve, drop fai
+1e0cc4f92a Ran 30 tests in 0.000s OK (skipped=30) | Ran 38 tests in 0.088s OK |  deepseek-v4: DSV4_CUDA_PIN_CAP_GB caps the page-locked exper
+06fde765ee Ran 30 tests in 0.000s OK (skipped=30) | Ran 38 tests in 0.088s OK |  deepseek-v4: V4_SERVE_STATS_LOG per-turn decode stats and Mo
+3d9298a802 Ran 30 tests in 0.000s OK (skipped=30) | Ran 40 tests in 0.092s OK |  deepseek-v4: VRAM-first decode lookups (V4_GPU_RESIDENT_FIRS
+41dfaa645e Ran 30 tests in 0.000s OK (skipped=30) | Ran 45 tests in 0.099s OK |  deepseek-v4: peer mirror pool on a second GPU (DSV4_CUDA_PEE
+85785872f4 Ran 30 tests in 0.000s OK (skipped=30) | Ran 45 tests in 0.092s OK |  deepseek-v4: peer compute on the second GPU (DSV4_CUDA_PEER_
+d7b12fed13 Ran 30 tests in 0.000s OK (skipped=30) | Ran 45 tests in 0.097s OK |  deepseek-v4: document two-GPU decode and VRAM-first lookups
+76c2208e07 Ran 34 tests in 0.006s OK (skipped=30) | Ran 45 tests in 0.096s OK |  deepseek-v4: a sticky CUDA fault latches CUDA off for the pr
+7f8c9d9c5f Ran 34 tests in 0.006s OK (skipped=30) | Ran 45 tests in 0.096s OK |  deepseek-v4: a failed decode block names its stage and keeps
+5b2b363ab4 Ran 35 tests in 0.008s OK (skipped=30) | Ran 45 tests in 0.096s OK |  deepseek-v4: the attention's grouped wo_a matvec falls back 
+dd03a9de6b Ran 30 tests in 0.000s OK (skipped=30) | Ran 42 tests in 0.088s OK |  deepseek-v4: the mirror growth guard counts mirrors grown be
+77530b49dd Ran 30 tests in 0.000s OK (skipped=30) | Ran 38 tests in 0.088s OK |  Merge pull request #2386 from JustVugg/batch/external-2026-1

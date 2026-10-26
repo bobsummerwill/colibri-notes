@@ -1,0 +1,2 @@
+./tests/test_vk_memtype
+vk_memtype: all cases passed

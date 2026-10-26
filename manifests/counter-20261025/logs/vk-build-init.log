@@ -1,0 +1,13 @@
+gcc -O3 -march=native -fopenmp -pthread -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function  -MMD -MP -DCOLI_VULKAN -c backend_vulkan.c -o backend_vulkan.o
+gcc -O3 -march=native -fopenmp -pthread -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function  -MMD -MP -DCOLI_VULKAN -c vk_tier.c -o vk_tier.o
+gcc -O3 -march=native -fopenmp -pthread -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function  -MMD -MP -DCOLI_VULKAN -c vk_chain.c -o vk_chain.o
+glslc --target-env=vulkan1.2 shaders/qmatmul_gate_up.comp -o shaders/qmatmul_gate_up.spv
+glslc --target-env=vulkan1.2 shaders/qmatmul_bd.comp -o shaders/qmatmul_bd.spv
+glslc --target-env=vulkan1.2 shaders/qmatmul_gate_up_bd.comp -o shaders/qmatmul_gate_up_bd.spv
+glslc --target-env=vulkan1.2 shaders/attention_absorb.comp -o shaders/attention_absorb.spv
+glslc --target-env=vulkan1.2 shaders/rmsnorm.comp -o shaders/rmsnorm.spv
+glslc --target-env=vulkan1.2 shaders/expert_act.comp -o shaders/expert_act.spv
+glslc --target-env=vulkan1.2 shaders/expert_act_v4.comp -o shaders/expert_act_v4.spv
+gcc -O3 -march=native -fopenmp -pthread -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function  -MMD -MP -DCOLI_VULKAN tests/test_vk_memtype.c -o tests/test_vk_memtype -lm -fopenmp -pthread  -ldl
+gcc -O3 -march=native -fopenmp -pthread -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function  -MMD -MP -DCOLI_VULKAN tests/test_vk_tier.c backend_vulkan.o vk_tier.o vk_chain.o -o tests/test_vk_tier -lm -fopenmp -pthread  -ldl
+gcc -O3 -march=native -fopenmp -pthread -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function  -MMD -MP -DCOLI_VULKAN tests/test_vk_chain.c backend_vulkan.o vk_tier.o vk_chain.o -o tests/test_vk_chain -lm -fopenmp -pthread  -ldl
