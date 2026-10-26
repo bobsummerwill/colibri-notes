@@ -1,0 +1,78 @@
+[2026-10-25 17:58:03] run_c4ab start: W:1 A:1 B:1 B:2 A:2 BK:1 AK:1
+[2026-10-25 17:58:03] === sample 1: W s1 tree=/home/zombietiger/colibri-bench/dg/r21dev
+[2026-10-25 18:09:25] --- W s1: ready=1 client_rc=0 wall=682s long_prefill 251.603 1.3334 a397814f650a long_prefill_2 387.6 1.3063 8b3f437baa34 
+check W s1: ok; GPU0 peak 11271 MiB GPU1 peak 0 MiB
+[2026-10-25 18:09:25] === sample 2: A s1 tree=/home/zombietiger/colibri-bench/dg/r21dev
+[2026-10-25 18:20:51] --- A s1: ready=1 client_rc=0 wall=686s long_prefill 250.567 1.3543 a397814f650a long_prefill_2 390.175 1.2603 8b3f437baa34 
+check A s1: ok; GPU0 peak 11261 MiB GPU1 peak 0 MiB
+[2026-10-25 18:20:51] === sample 3: B s1 tree=/home/zombietiger/colibri-bench/dg/r21fixa
+[2026-10-25 18:32:07] --- B s1: ready=1 client_rc=0 wall=676s long_prefill 248.086 1.3537 a397814f650a long_prefill_2 383.818 1.2949 8b3f437baa34 
+check B s1: ok; GPU0 peak 11239 MiB GPU1 peak 0 MiB
+[2026-10-25 18:32:07] === sample 4: B s2 tree=/home/zombietiger/colibri-bench/dg/r21fixa
+[2026-10-25 18:43:20] --- B s2: ready=1 client_rc=0 wall=673s long_prefill 246.031 1.3454 a397814f650a long_prefill_2 381.41 1.2659 8b3f437baa34 
+check B s2: ok; GPU0 peak 11240 MiB GPU1 peak 0 MiB
+[2026-10-25 18:43:20] === sample 5: A s2 tree=/home/zombietiger/colibri-bench/dg/r21dev
+[2026-10-25 18:54:40] --- A s2: ready=1 client_rc=0 wall=680s long_prefill 249.836 1.3635 a397814f650a long_prefill_2 385.048 1.3021 8b3f437baa34 
+check A s2: ok; GPU0 peak 11245 MiB GPU1 peak 0 MiB
+[2026-10-25 18:54:40] === sample 6: BK s1 tree=/home/zombietiger/colibri-bench/dg/r21fixa
+[2026-10-25 19:06:04] --- BK s1: ready=1 client_rc=0 wall=684s long_prefill 253.26 1.3542 a397814f650a long_prefill_2 386.783 1.2029 8b3f437baa34 
+check BK s1: no /moe-batch=on bank=256-experts/ in serve.log; /moe-batch=off/ in serve.log; out of memory / crash in serve.log; GPU0 peak 9419 MiB GPU1 peak 0 MiB
+[2026-10-25 19:06:05] === sample 7: AK s1 tree=/home/zombietiger/colibri-bench/dg/r21dev
+[2026-10-25 19:17:30] --- AK s1: ready=1 client_rc=0 wall=686s long_prefill 257.493 1.3513 a397814f650a long_prefill_2 383.146 1.2973 8b3f437baa34 
+check AK s1: no /moe-batch=on bank=256-experts/ in serve.log; /moe-batch=off/ in serve.log; out of memory / crash in serve.log; GPU0 peak 9484 MiB GPU1 peak 0 MiB
+FINAL6 SUMMARY (full DeepSeek V4 Flash; REAP-150B for PR #2's arms)
+arm W (pr1, full, group full)  (warm-up, discarded)
+  s1 seq=1 wall=682s GPU peak 11271/0 MiB ok
+    long_prefill     ttft=251.603 decode=1.3334 identical=True
+    long_prefill_2   ttft=387.6 decode=1.3063 identical=True
+  median long_prefill     ttft=251.603 s (cv None) prefill=7.9172 tok/s decode=1.3334 tok/s (mean 1.3334)
+  median long_prefill_2   ttft=387.6 s (cv None) prefill=7.7528 tok/s decode=1.3063 tok/s (mean 1.3063)
+  median of per-sample mean decode: 1.3198 tok/s
+arm A (dev, full, group full)
+  s1 seq=2 wall=686s GPU peak 11261/0 MiB ok
+    long_prefill     ttft=250.567 decode=1.3543 identical=True
+    long_prefill_2   ttft=390.175 decode=1.2603 identical=True
+  s2 seq=5 wall=680s GPU peak 11245/0 MiB ok
+    long_prefill     ttft=249.836 decode=1.3635 identical=True
+    long_prefill_2   ttft=385.048 decode=1.3021 identical=True
+  median long_prefill     ttft=250.2015 s (cv 0.0015) prefill=7.9616 tok/s decode=1.3589 tok/s (mean 1.3589)
+  median long_prefill_2   ttft=387.6115 s (cv 0.0066) prefill=7.753 tok/s decode=1.2812 tok/s (mean 1.2812)
+  median of per-sample mean decode: 1.32 tok/s
+arm B (pr1, full, group full)
+  s1 seq=3 wall=676s GPU peak 11239/0 MiB ok
+    long_prefill     ttft=248.086 decode=1.3537 identical=True
+    long_prefill_2   ttft=383.818 decode=1.2949 identical=True
+  s2 seq=4 wall=673s GPU peak 11240/0 MiB ok
+    long_prefill     ttft=246.031 decode=1.3454 identical=True
+    long_prefill_2   ttft=381.41 decode=1.2659 identical=True
+  median long_prefill     ttft=247.0585 s (cv 0.0042) prefill=8.063 tok/s decode=1.3495 tok/s (mean 1.3495)
+  median long_prefill_2   ttft=382.614 s (cv 0.0031) prefill=7.854 tok/s decode=1.2804 tok/s (mean 1.2804)
+  median of per-sample mean decode: 1.315 tok/s
+arm AK (dev, full, group full)
+  s1 seq=7 wall=686s GPU peak 9484/0 MiB no /moe-batch=on bank=256-experts/ in serve.log; /moe-batch=off/ in serve.log; out of memory / crash in serve.log
+    long_prefill     ttft=257.493 decode=1.3513 identical=True
+    long_prefill_2   ttft=383.146 decode=1.2973 identical=True
+  median long_prefill     ttft=257.493 s (cv None) prefill=7.7361 tok/s decode=1.3513 tok/s (mean 1.3513)
+  median long_prefill_2   ttft=383.146 s (cv None) prefill=7.843 tok/s decode=1.2973 tok/s (mean 1.2973)
+  median of per-sample mean decode: 1.3243 tok/s
+arm BK (pr1, full, group full)
+  s1 seq=6 wall=684s GPU peak 9419/0 MiB no /moe-batch=on bank=256-experts/ in serve.log; /moe-batch=off/ in serve.log; out of memory / crash in serve.log
+    long_prefill     ttft=253.26 decode=1.3542 identical=True
+    long_prefill_2   ttft=386.783 decode=1.2029 identical=True
+  median long_prefill     ttft=253.26 s (cv None) prefill=7.8654 tok/s decode=1.3542 tok/s (mean 1.3542)
+  median long_prefill_2   ttft=386.783 s (cv None) prefill=7.7692 tok/s decode=1.2029 tok/s (mean 1.2029)
+  median of per-sample mean decode: 1.2786 tok/s
+B/A    {'what': 'PR #1 vs dev, default configuration', 'long_prefill_ttft_ratio': 0.9874, 'long_prefill_decode_ratio': 0.9931, 'long_prefill_2_ttft_ratio': 0.9871, 'long_prefill_2_decode_ratio': 0.9994, 'mean_decode_ratio': 0.9962}
+BK/AK  {'what': 'PR #1 vs dev, 256-expert bank', 'long_prefill_ttft_ratio': 0.9836, 'long_prefill_decode_ratio': 1.0021, 'long_prefill_2_ttft_ratio': 1.0095, 'long_prefill_2_decode_ratio': 0.9272, 'mean_decode_ratio': 0.9655}
+QUESTION (A vs B, V) ANSWERED CLEANLY: False
+GATES: FAIL
+  problem: AK s1: no /moe-batch=on bank=256-experts/ in serve.log; /moe-batch=off/ in serve.log; out of memory / crash in serve.log
+  problem: BK s1: no /moe-batch=on bank=256-experts/ in serve.log; /moe-batch=off/ in serve.log; out of memory / crash in serve.log
+  note: A has 2 samples, fewer than 3
+  note: B has 2 samples, fewer than 3
+  note: AK has 1 samples, fewer than 3
+  note: BK has 1 samples, fewer than 3
+[2026-10-25 19:17:31] ALL SAMPLES DONE
+dsv4-cuda-test r21pr2: EXIT=0 dsv4 peer MoE: SKIP;dsv4 dense batch: OK;dsv4 attention batch: OK (output projection; sparse batch sk;dsv4 MoE batch: OK;dsv4 generic bitwise: SKIP (deepgemm-sm120 build has no gene;
+dsv4-cuda-test r21fixa: EXIT=0 dsv4 dense batch: OK;dsv4 attention batch: OK (output projection; sparse batch sk;dsv4 MoE batch: OK;dsv4 generic bitwise: SKIP (deepgemm-sm120 build has no gene;
+dsv4-cuda-test r21dev: EXIT=0 dsv4 dense batch: OK;dsv4 attention batch: OK (output projection; sparse batch sk;dsv4 MoE batch: OK;dsv4 generic bitwise: SKIP (deepgemm-sm120 build has no gene;
