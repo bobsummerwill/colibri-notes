@@ -330,3 +330,63 @@ queued. Standard hosted runners; githubstatus shows Actions operational. Re-trig
 - So the pitch is not "PR #2 instead of #1766" but "#1766, then PR #2's peer tier on top": S1, #1766, S2/S3, S4/C+.
 - Waiting for: C2 second sample and same-session anchors, C+ on the full model, the splits. #2405 stays draft;
   nothing is posted upstream without Bob's OK.
+
+## Investigations added (Bob, ~14:20): the two open findings
+Both run after what is already queued, so nothing in flight changes: shadowfax final30 after final29, computer4 c4m29
+after c4m28. Each arm is one cold sample with the usual gates (text identity, 0 handled OOM).
+
+### F1: #1766 is 13-14% slower to first token than dev on the full model
+What we know:
+- Full model, long prompts (1,992 / 3,005 tokens): B1F 86 / 124 s, M1F 98 / 141 s, M2F 98 / 140 s. P matches B.
+- REAP, short prompts: M1 is *faster* to first token than B1 (3.47 vs 3.63 s). So it shows on long prefill only.
+- On the old base (88f25a60) #1766 was faster than its dev (116 vs 137 s). dev's prefill got much faster since
+  (137 → 86 s: the batched GPU prefill / bank work, e.g. f672fd73, 911b86db, 838416e6, 975f364f), and M doesn't keep
+  all of that gain. 838416e6's kernel is still in M's backend (checked).
+- The serve logs show the same MoE bank refills in B1F and M1F, so the extra time is outside the batched MoE.
+- Code read (counter) so far: in M, #1766 changes the batched attention's setup (compressor/indexer mirrors uploaded
+  in its packed decode form, `attn.indexer.weights_proj` for indexer prepare, mHC mirrors only with ATTN_BATCH) and adds
+  a per-token GPU compressor projection to `coli_v4_compressor_step`. The batched projection still accepts the packed
+  tensors (fmt 16 kept), so no smoking gun yet.
+
+Tests:
+- **final30 part A, full model, `pr1:both`, one GPU** (~4.5 min each): anchors B1F and M1F, then M with one #1766 switch
+  off each: COMPRESSOR, INDEXER_PREP, INDEXER_HEADS, RESIDENT_INDEXER, HEAD, HEAD_BATCH, WO_DECODE, and all off (MX).
+  An arm whose TTFT returns to ~86 / 124 s names the path. (final28's ablation is REAP decode only, so it can't show it.)
+- **final30 part A', profiled pair**: B1F and M1F with `DSV4_ATTN_PROF=1 V4_MOE_BATCH_PROF=1` (both exist on dev), to
+  get the per-phase prefill split. Timing from these two isn't used in the tables.
+- C1F/C2F in final28 already show whether C+ inherits it (expected yes: C+ has #1766's paths).
+- **computer4 c4m29**: B, M and M all-off on the 5070 with `pr1:both`, to see whether it reproduces on sm_120 with tensor
+  cores.
+- Then bisect in code on counter if the ablation points at one switch; if no switch restores it, it is in the merged
+  non-switchable code (native E4M3 conversion, placement), and the next step is a prefill timeline (nsys) of B1F vs M1F.
+
+### F2: PR #2's second GPU helps only the second full-model prompt
+What we know:
+- P2F vs P1F decode: prompt 1 1.01x, prompt 2 1.24x. On REAP (300 tokens per prompt) the peer helps every prompt.
+- **The full-model client decodes very few tokens**: the model stops after 32 tokens (prompt 1) and 13 (prompt 2)
+  (`v4_serve_turn ... completion=32/13`). So "decode tok/s" on the full model is measured over a few seconds, right
+  after a cold prefill.
+- P2F's serve stats: RAM expert-cache hit rate 4.1% on prompt 1, 12.1% on prompt 2; prompt 1's decode waits on SSD
+  expert reads. The peer only speeds compute, so it can't help while decode is disk-bound.
+  M2F/M1F shows the same pattern, smaller (1.03x / 1.08x).
+- Working hypothesis: a warm-up effect plus a too-short measurement, not a peer defect.
+
+Tests:
+- **final30 part B, full model, a new client `fdec`**: three of bench_decode's open-ended prompts, 300 tokens each, so
+  decode is measured over minutes after the cache warms. Arms B1F, P1F, P2F, M1F, M2F, C1F, C2F x1 (~10 min each).
+  This also gives the full-model decode comparison on a proper length, which the write-up needs anyway.
+- **final30 part B', order swap**: P1F and P2F with `pr1` in reverse order (prompt 2 first). If the peer then helps
+  whichever prompt comes second, it is warm-up; if it still helps only the 3,005-token prompt, it is prompt-specific.
+- No peer hit counter exists in PR #2's stats (only `vram_first_hits_total`). If B and B' don't settle it, add a
+  peer-call counter to `V4_SERVE_STATS_LOG` on the fork (a PR #2 follow-up, measured, not pushed upstream without Bob).
+
+### Timeline with the investigations
+| Machine | Run | Clock |
+|---|---|---|
+| shadowfax | final28 (C+, anchors, ablation, full, Vulkan, tests) | to ~17:45 |
+| shadowfax | final29 (splits) | to ~19:30 |
+| shadowfax | **final30 (F1 A/A', F2 B/B'), ~2.5 h** | **to ~22:15** |
+| computer4 | c4m27 CPU arms, c4m28 splits | to ~17:30 |
+| computer4 | **c4m29 (F1 on the 5070), ~40 min** | **to ~18:15** |
+| counter | code bisect / nsys plan as the ablation points | evening |
+| — | write-up with both findings explained | **~22:45** |
