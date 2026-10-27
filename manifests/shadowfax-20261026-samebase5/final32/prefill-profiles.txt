@@ -1,0 +1,76 @@
+PB1F/s1/serve.log
+  attnprof.attn               10.3 s
+  attnprof.comp                4.8 s
+  attnprof.idx                15.4 s
+  attnprof.kv                  1.7 s
+  attnprof.qa                  3.4 s
+  attnprof.qb                 15.2 s
+  attnprof.rope                0.0 s
+  attnprof.wo                 26.9 s
+  blockprof.attn              79.2 s
+  blockprof.hc1                1.7 s
+  blockprof.hc2                3.4 s
+  blockprof.hc3                1.7 s
+  blockprof.moe              122.5 s
+  moebprof.compute            72.4 s
+  moebprof.missing           15638
+  moebprof.refill             48.1 s
+  moebprof.route               1.4 s
+  moebprof.switch              0.0 s
+PM1F/s1/serve.log
+  attnprof.attn               10.3 s
+  attnprof.comp                4.8 s
+  attnprof.idx                10.8 s
+  attnprof.kv                  1.6 s
+  attnprof.qa                  3.4 s
+  attnprof.qb                 15.1 s
+  attnprof.rope                0.0 s
+  attnprof.wo                 20.2 s
+  blockprof.attn              65.5 s
+  blockprof.hc1                1.7 s
+  blockprof.hc2                3.4 s
+  blockprof.hc3                1.7 s
+  blockprof.moe              165.9 s
+  moebprof.compute           109.2 s
+  moebprof.missing           15638
+  moebprof.refill             54.7 s
+  moebprof.route               1.5 s
+  moebprof.switch              0.0 s
+PF1F/s1/serve.log
+  attnprof.attn               10.5 s
+  attnprof.comp                4.8 s
+  attnprof.idx                11.2 s
+  attnprof.kv                  1.6 s
+  attnprof.qa                  3.4 s
+  attnprof.qb                 15.1 s
+  attnprof.rope                0.0 s
+  attnprof.wo                 20.2 s
+  blockprof.attn              67.7 s
+  blockprof.hc1                1.7 s
+  blockprof.hc2                3.4 s
+  blockprof.hc3                1.7 s
+  blockprof.moe              114.7 s
+  moebprof.compute            69.5 s
+  moebprof.missing           15638
+  moebprof.refill             43.2 s
+  moebprof.route               1.5 s
+  moebprof.switch              0.0 s
+PE1F/s1/serve.log
+  attnprof.attn               10.3 s
+  attnprof.comp                4.8 s
+  attnprof.idx                12.0 s
+  attnprof.kv                  1.7 s
+  attnprof.qa                  3.4 s
+  attnprof.qb                 15.1 s
+  attnprof.rope                0.0 s
+  attnprof.wo                 26.8 s
+  blockprof.attn              74.8 s
+  blockprof.hc1                1.7 s
+  blockprof.hc2                3.4 s
+  blockprof.hc3                1.7 s
+  blockprof.moe              171.1 s
+  moebprof.compute           112.6 s
+  moebprof.missing           15638
+  moebprof.refill             56.4 s
+  moebprof.route               1.4 s
+  moebprof.switch              0.0 s

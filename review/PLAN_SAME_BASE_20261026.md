@@ -524,3 +524,26 @@ above: batched expert compute in prefill is 1.50x slower. Profile sums: [final30
 
 **C+ fix dec72809 on both 3090s:** `make dsv4-cuda-test` rc=0, "dsv4 peer init: probe, init rollback and retry: OK
 (2 devices)"; b659ac8d had 4 FAILED in final28. Log: [final30/dsv4-cuda-test-cplus-dec72809.log](../manifests/shadowfax-20261026-samebase5/final30/dsv4-cuda-test-cplus-dec72809.log).
+
+## F1 traced: #1766's new `f4()` (final31, final32; 2026-10-26 21:50-22:25)
+One GPU, full model, pr1, `COLI_CUDA_MOE_BATCH=1`, profiled, one sample each. Each run has dev and #1766 as same-session
+anchors, still at 300 W. Every answer equals the reference texts. Variant trees are local commits on shadowfax (tags
+`f31/m1766q`, `f31/m1766-mf4`, `f31/m1766-me4`), not pushed.
+
+| arm | `backend_cuda_dsv4_quant.cuh` | TTFT p1 / p2 | decode p1 / p2 | expert compute | attention block |
+|---|---|---|---|---|---|
+| dev (final32) | (dev's helpers) | 85.6 / 123.5 s | 1.90 / 1.81 | 72.4 s | 79.2 s |
+| #1766 (final32) | #1766's | 98.4 / 140.6 s | 2.22 / 2.10 | 109.2 s | 65.5 s |
+| MQ (final31) | all of dev's | 85.1 / 121.8 s | 2.07 / 1.96 | 72.8 s | 76.6 s |
+| **MF** (final32) | **dev's `f4` only** | **78.1 / 111.8 s** | **2.20 / 2.06** | **69.5 s** | 67.7 s |
+| ME (final32) | dev's `e4m3`/`e4m3_code`/`e4m3_round` only | 104.2 / 149.0 s | 2.12 / 1.99 | 112.6 s | 74.8 s |
+
+- **The cause is #1766's bit-arithmetic `f4()`.** With dev's 8-entry table `f4` put back, batched expert compute returns to
+  dev's level.
+- MF is then 0.91x dev to the first token and keeps #1766's decode (0.99x / 0.98x of M).
+- #1766's FP8 helpers are what speed up attention and decode. Restoring dev's FP8 helpers (ME) loses that and doesn't fix
+  the MoE.
+- A synthetic microbenchmark ([final32/f4bench-microbench.cu](../manifests/shadowfax-20261026-samebase5/final32/f4bench-microbench.cu))
+  had the new `f4` faster in a simplified expert-major loop. The real kernels behave differently; the engine
+  measurement is what counts.
+- Suggested change for #1766: keep the native FP8 conversion and dev's table `f4`. Same for C+.

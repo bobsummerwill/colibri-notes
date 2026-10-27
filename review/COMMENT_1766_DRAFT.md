@@ -1,11 +1,11 @@
 # Draft: comment for JustVugg/colibri#1766 (NOT POSTED; needs Bob's OK)
 
 Redrafted 2026-10-26 ~22:00 from the same-base runs (shadowfax final27-final30, computer4 c4m27-c4m29). Replaces the
-04:00 draft (base-mixed; see git history of this file). Data pinned at colibri-notes d00475b.
+04:00 draft (base-mixed; see git history of this file). Data pinned at colibri-notes d00475b; F1 trace at the commit that adds final31/final32 (update the links before posting).
 To post: `gh pr comment 1766 -R JustVugg/colibri --body-file <the part between the lines>`.
 
 Open before posting:
-- [ ] F1 cause: fill in the sentence marked TRACE once the trace (task 1) is done, or drop it.
+- [x] F1 cause: traced (final31/final32), filled in.
 - [x] #1766's own unit tests patched to devices {0,1}: filled in (manifests/shadowfax-20261026-samebase5/m1766-unit-tests-01).
 - [ ] Bob: keep or drop the optional last section (this branch together with #2405's peer tier).
 
@@ -74,7 +74,19 @@ With every switch off, the branch still decodes at 1.11x dev. That part comes fr
   | missing experts | 15,638 | 15,638 |
 
 - So the branch speeds up prefill attention by 14 s, but dev's batched expert compute takes 1.5x as long.
-- TRACE: <which change does it, once traced>
+- The cause is the new `f4()` in `backend_cuda_dsv4_quant.cuh`. I rebuilt this branch three ways and ran each with the
+  profile, one sample each, with dev and the branch as same-session anchors:
+
+  | `backend_cuda_dsv4_quant.cuh` | first token, prompt 1 / 2 | decode, prompt 1 / 2 | batched expert compute |
+  |---|---|---|---|
+  | dev | 85.6 / 123.5 s | 1.90 / 1.81 | 72.4 s |
+  | this branch | 98.4 / 140.6 s | 2.22 / 2.10 | 109.2 s |
+  | this branch, dev's table `f4` | **78.1 / 111.8 s** | **2.20 / 2.06** | **69.5 s** |
+  | this branch, dev's FP8 helpers | 104.2 / 149.0 s | 2.12 / 1.99 | 112.6 s |
+
+- With dev's 8-entry table `f4` (`const float a[8]={0,.5f,1,1.5f,2,3,4,6}`) and your native FP8 conversion, the branch
+  reaches the first token in 0.91x dev's time and keeps its decode speed. The answers are unchanged.
+- So I'd suggest keeping the table `f4` and the new FP8 helpers.
 - On the 5070 below, which runs without `COLI_CUDA_MOE_BATCH`, the branch's first token is as fast as dev's (0.98x).
 - On REAP's short prompts, the branch is faster to the first token than dev.
 
