@@ -1,0 +1,21 @@
+"/usr/local/cuda-12.8/bin/nvcc" -O3 -std=c++17 -ftz=false -arch=sm_120 -Xcompiler=-Wall,-Wextra -Xcompiler=-include,/home/zombietiger/colibri-bench/dg/t30cfix/c/glibc_c23_math_compat.h -c backend_cuda_dsv4.cu -o backend_cuda_dsv4.o
+"/usr/local/cuda-12.8/bin/nvcc" -O3 -std=c++17 -ftz=false -arch=sm_120 -Xcompiler=-Wall,-Wextra -Xcompiler=-include,/home/zombietiger/colibri-bench/dg/t30cfix/c/glibc_c23_math_compat.h tests/test_dsv4_peer_init_cuda.cu -o dsv4_peer_init_cuda_test -lcuda -lcublasLt 
+./dsv4_peer_init_cuda_test
+[DSV4 CUDA] validate device: invalid device ordinal
+[DSV4 CUDA] validate device: invalid device ordinal
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 5070 12.3 GB sm_120
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 5070 12.3 GB sm_120
+[DSV4 CUDA] stream: invalid argument
+[DSV4 CUDA] aux stream: invalid argument
+[DSV4 CUDA] Tensor Core workspace: out of memory
+[DSV4 CUDA] decode state allocation: out of memory
+[DSV4 CUDA] validate device: invalid device ordinal
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 5070 12.3 GB sm_120
+[DSV4 CUDA] decode state update: invalid device ordinal
+SKIP: one GPU, no peer probe
+FAIL tests/test_dsv4_peer_init_cuda.cu:105: invalid second device: last error left set (invalid device ordinal)
+FAIL tests/test_dsv4_peer_init_cuda.cu:196: failure line does not name device 1
+FAIL tests/test_dsv4_peer_init_cuda.cu:105: invalid second device, again: last error left set (invalid device ordinal)
+FAIL tests/test_dsv4_peer_init_cuda.cu:230: first decode_state_set after the retry failed
+dsv4 peer init: 4 FAILED
+make: *** [Makefile:1322: dsv4-cuda-test] Error 1

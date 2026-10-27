@@ -473,3 +473,7 @@ Logs: [manifests/computer4-20261026-samebase5](../manifests/computer4-20261026-s
 - So far: B1 3.011; S1 3.007 (1.00x); S2 3.017 / 3.018 (1.00x); S3 3.102 / 3.107 (1.03x); P1 3.105.
 - As expected: S1 and S2 are neutral, and S3 carries all of PR #2's one-GPU gain.
 - final30 follows at about 18:00 (it was ~19:30 in the plan).
+- **17:50 C+ fix checked on the 5070.** `make dsv4-cuda-test` on b659ac8d reproduces the same 4 peer-init failures;
+  on dec72809 it gives "probe, init rollback and retry: OK (1 device)", rc=0. Logs in
+  [manifests/computer4-20261026-samebase5](../manifests/computer4-20261026-samebase5). The two-GPU parts (peer probe,
+  peer MoE) still need shadowfax after final30.

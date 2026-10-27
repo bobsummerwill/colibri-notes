@@ -1,0 +1,54 @@
+"/usr/local/cuda-12.8/bin/nvcc" -O3 -std=c++17 -ftz=false -arch=sm_120 -Xcompiler=-Wall,-Wextra -Xcompiler=-include,/home/zombietiger/colibri-bench/dg/t30cfix/c/glibc_c23_math_compat.h -c backend_cuda_dsv4.cu -o backend_cuda_dsv4.o
+"/usr/local/cuda-12.8/bin/nvcc" -O3 -std=c++17 -ftz=false -arch=sm_120 -Xcompiler=-Wall,-Wextra -Xcompiler=-include,/home/zombietiger/colibri-bench/dg/t30cfix/c/glibc_c23_math_compat.h tests/test_dsv4_peer_init_cuda.cu -o dsv4_peer_init_cuda_test -lcuda -lcublasLt 
+./dsv4_peer_init_cuda_test
+[DSV4 CUDA] validate device: invalid device ordinal
+[DSV4 CUDA] device 1 did not initialise
+[DSV4 CUDA] validate device: invalid device ordinal
+[DSV4 CUDA] device 1 did not initialise
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 5070 12.3 GB sm_120
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 5070 12.3 GB sm_120
+[DSV4 CUDA] stream: invalid argument
+[DSV4 CUDA] aux stream: invalid argument
+[DSV4 CUDA] Tensor Core workspace: out of memory
+[DSV4 CUDA] decode state allocation: out of memory
+[DSV4 CUDA] validate device: invalid device ordinal
+[DSV4 CUDA] device 1 did not initialise
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 5070 12.3 GB sm_120
+SKIP: one GPU, no peer probe
+dsv4 peer init: probe, init rollback and retry: OK (1 device)
+gcc -O3 -march=native -fopenmp -pthread -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function  -MMD -MP -DCOLI_CUDA tests/test_dsv4_peer_moe_cuda.c backend_cuda_dsv4.o -o dsv4_peer_moe_cuda_test -lm -fopenmp -pthread  -L/usr/local/cuda-12.8/lib64 -Wl,-rpath,/usr/local/cuda-12.8/lib64 -lcudart -lcublasLt -lcublas -lstdc++
+./dsv4_peer_moe_cuda_test
+  compute: SKIP: devices 0 and 1 did not initialise
+dsv4 peer MoE: SKIP
+gcc -O3 -march=native -fopenmp -pthread -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function  -MMD -MP -DCOLI_CUDA tests/test_dsv4_bank_bytes_cuda.c backend_cuda_dsv4.o -o dsv4_bank_bytes_cuda_test -lm -fopenmp -pthread  -L/usr/local/cuda-12.8/lib64 -Wl,-rpath,/usr/local/cuda-12.8/lib64 -lcudart -lcublasLt -lcublas -lstdc++
+./dsv4_bank_bytes_cuda_test
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 5070 12.3 GB sm_120
+dsv4 bank bytes: slot 13369392, 16-slot bank took 204 MiB, mirror 13369344: OK
+gcc -O3 -march=native -fopenmp -pthread -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function  -MMD -MP -DCOLI_CUDA tests/test_dsv4_dense_batch_cuda.c backend_cuda_dsv4.o -o dsv4_cuda_test -lm -fopenmp -pthread  -L/usr/local/cuda-12.8/lib64 -Wl,-rpath,/usr/local/cuda-12.8/lib64 -lcudart -lcublasLt -lcublas -lstdc++
+./dsv4_cuda_test
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 5070 12.3 GB sm_120
+dsv4 dense batch: OK
+gcc -O3 -march=native -fopenmp -pthread -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function  -MMD -MP -DCOLI_CUDA tests/test_dsv4_attention_batch_cuda.c backend_cuda_dsv4.o -o dsv4_attention_cuda_test -lm -fopenmp -pthread  -L/usr/local/cuda-12.8/lib64 -Wl,-rpath,/usr/local/cuda-12.8/lib64 -lcudart -lcublasLt -lcublas -lstdc++
+./dsv4_attention_cuda_test
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 5070 12.3 GB sm_120
+dsv4 attention batch: sparse batch SKIP (dsv4_cuda_attention_sparse_batch returned 0 without writing output, as its `return 0` stub does)
+dsv4 attention batch: OK (output projection; sparse batch skipped)
+gcc -O3 -march=native -fopenmp -pthread -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function  -MMD -MP -DCOLI_CUDA tests/test_dsv4_moe_batch_cuda.c backend_cuda_dsv4.o -o dsv4_moe_cuda_test -lm -fopenmp -pthread  -L/usr/local/cuda-12.8/lib64 -Wl,-rpath,/usr/local/cuda-12.8/lib64 -lcudart -lcublasLt -lcublas -lstdc++
+./dsv4_moe_cuda_test
+dsv4 MoE batch: SKIP (generic build: dsv4_cuda_route_moe_batch needs DeepGEMM)
+gcc -O3 -march=native -fopenmp -pthread -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function  -MMD -MP -DCOLI_CUDA tests/test_dsv4_generic_bitwise_cuda.c backend_cuda_dsv4.o -o dsv4_generic_bitwise_cuda_test -lm -fopenmp -pthread  -L/usr/local/cuda-12.8/lib64 -Wl,-rpath,/usr/local/cuda-12.8/lib64 -lcudart -lcublasLt -lcublas -lstdc++
+./dsv4_generic_bitwise_cuda_test
+  DSV4_MOE_EXPERT_MAJOR=0: all 45 outputs bit-identical
+  DSV4_MOE_EXPERT_MAJOR=1: all 45 outputs bit-identical
+  DSV4_MOE_EM_TB=2: all 45 outputs bit-identical
+  DSV4_MOE_EM_TB=3: all 45 outputs bit-identical
+  DSV4_MOE_EM_TB=4: all 45 outputs bit-identical
+  DSV4_MOE_EM_TB=6: all 45 outputs bit-identical
+  DSV4_MOE_EXPERT_MAJOR_VERIFY=1 DSV4_MOE_EM_TB=2: all 45 outputs bit-identical
+  DSV4_MOE_EXPERT_MAJOR_VERIFY=1 DSV4_MOE_EM_TB=3: all 45 outputs bit-identical
+  DSV4_MOE_EXPERT_MAJOR_VERIFY=1 DSV4_MOE_EM_TB=4: all 45 outputs bit-identical
+  DSV4_MOE_EXPERT_MAJOR_VERIFY=1 DSV4_MOE_EM_TB=6: all 45 outputs bit-identical
+  DSV4_MM_WARP=0: all 45 outputs bit-identical
+  DSV4_MM_WARP=1: all 45 outputs bit-identical
+  DSV4_MM_WARP=1 DSV4_MM_WARP_VERIFY=1: all 45 outputs bit-identical
+dsv4 generic bitwise: OK
