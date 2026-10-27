@@ -395,7 +395,7 @@ Tests:
 Full-model prefill peaks at 267-286 W and decode at 210-277 W (5 s nvidia-smi samples), so prefill sits just under the cap.
 Bob will change the power profile only after final30 is done; later runs are not comparable with these without anchors.
 
-## Results update (2026-10-26 17:40)
+## Results update (2026-10-26 17:30)
 ### shadowfax final28 (C+), done 16:13, GATES: PASS
 Logs: [manifests/shadowfax-20261026-samebase5/final28](../manifests/shadowfax-20261026-samebase5/final28).
 Same-session anchors match final27 within 0.3% (B1 3.009, M1 3.790, M2 4.828, P2 4.336).
@@ -473,7 +473,7 @@ Logs: [manifests/computer4-20261026-samebase5](../manifests/computer4-20261026-s
 - So far: B1 3.011; S1 3.007 (1.00x); S2 3.017 / 3.018 (1.00x); S3 3.102 / 3.107 (1.03x); P1 3.105.
 - As expected: S1 and S2 are neutral, and S3 carries all of PR #2's one-GPU gain.
 - final30 follows at about 18:00 (it was ~19:30 in the plan).
-- **17:50 C+ fix checked on the 5070.** `make dsv4-cuda-test` on b659ac8d reproduces the same 4 peer-init failures;
+- **17:35 C+ fix checked on the 5070.** `make dsv4-cuda-test` on b659ac8d reproduces the same 4 peer-init failures;
   on dec72809 it gives "probe, init rollback and retry: OK (1 device)", rc=0. Logs in
   [manifests/computer4-20261026-samebase5](../manifests/computer4-20261026-samebase5). The two-GPU parts (peer probe,
   peer MoE) still need shadowfax after final30.
