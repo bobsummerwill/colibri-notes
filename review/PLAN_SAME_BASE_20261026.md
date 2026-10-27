@@ -477,3 +477,22 @@ Logs: [manifests/computer4-20261026-samebase5](../manifests/computer4-20261026-s
   on dec72809 it gives "probe, init rollback and retry: OK (1 device)", rc=0. Logs in
   [manifests/computer4-20261026-samebase5](../manifests/computer4-20261026-samebase5). The two-GPU parts (peer probe,
   peer MoE) still need shadowfax after final30.
+
+## F1 result (2026-10-26 18:45, final30 arms A/A′, one sample each)
+
+- No #1766 switch explains the slower first token. With each switch off, and with all of them off (FMX), #1766 stays at
+  98-100 / 140-142 s, against dev's 86.8 / 124.3 s (AB1F 86.8/124.3, AM1F 98.6/141.3).
+- Profiles (PB1F vs PM1F, sums over both prompts' prefill):
+
+  | stage | dev | #1766 | change |
+  |---|---|---|---|
+  | attention block | 79.6 s | 65.2 s | -14.4 s |
+  | MoE block | 123.3 s | 165.8 s | **+42.5 s** |
+  | of which batched expert compute | 72.8 s | 109.4 s | **+36.6 s (1.50x)** |
+  | of which refill | 48.3 s | 54.3 s | +6.0 s |
+  | missing experts | 15,638 | 15,638 | same |
+
+- So #1766 speeds up prefill attention and slows dev's batched-MoE expert compute by half on sm_86 NO_TC, through code
+  that has no switch. That fits c4m29: the 5070 runs without `COLI_CUDA_MOE_BATCH` and shows no TTFT loss.
+- Next: find which #1766 change touches the batched expert path (likely the native FP8 conversion or the expert matmul
+  kernels), then confirm with M1F vs B1F with `COLI_CUDA_MOE_BATCH` unset.
