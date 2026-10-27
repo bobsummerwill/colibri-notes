@@ -586,3 +586,18 @@ anchors, still at 300 W. Every answer equals the reference texts. Variant trees 
   - add a pointer to `samebase/m1766-fixes`;
   - update the C+ numbers.
 - **23:07 (Bob's OK): the #1766 comment's items 3 and 4 are corrected** (eight test files; item 4 is dev's header). The fixes-branch pointer and the C+ numbers come after cbench-t35 and final34.
+
+## final33: C+ before/after the f4 fix, full model (22:37-23:12, GATES: PASS, one sample each, 300 W)
+| | first token p1 / p2 | decode (pr1) mean | fdec decode, 2 GPUs |
+|---|---|---|---|
+| dev, 1 GPU (AB1F / DB1F) | 85.6 / 123.5 s | 1.857 | 2.649 (1 GPU) |
+| C+ b659ac8d, 1 GPU | 98.5 / 140.9 s | 2.204 | |
+| **C+ e2933955, 1 GPU** | **78.0 / 111.6 s** (0.91x dev) | 2.177 (0.99x old) | |
+| C+ b659ac8d, 2 GPUs | 98.4 / 141.6 s | 2.499 | 4.292 (1.62x dev) |
+| **C+ e2933955, 2 GPUs** | **77.9 / 112.3 s** (0.91x dev) | 2.508 (1.00x old) | **4.209 (1.59x dev, 0.98x old)** |
+
+- The f4 fix takes C+'s first token from 1.15x dev to 0.91x dev, one GPU or two.
+- Decode moves by 0-2% (fdec 0.98x), within what MF showed against M (0.98-0.99x).
+- Answers are identical.
+- For the C+ rows of both texts: V4 Flash 2 GPUs becomes 1.59x (was 1.62x). The 1-GPU fdec arm wasn't rerun, so 1.25x
+  stays the pre-fix value. REAP comes from final34.
