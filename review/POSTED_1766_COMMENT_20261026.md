@@ -99,26 +99,29 @@ With every switch off, the branch still decodes at 1.11x dev. That part comes fr
    - These tests hard-code devices 0 and 5, so on a machine with fewer than six GPUs `assert(dsv4_cuda_init(devices,2))` aborts: `test_dsv4_compressor_cuda`, `_compressor_state_cuda`, `_head_cuda`, `_indexer_prepare_cuda`, `_wo_decode_cuda`, `_resident_indexer`, `_resident_route`, and `test_dsv4_quant_cuda.cu`, which loops over `{0, 5}`.
    - Reading the device list from the command line, as `test_dsv4_multigpu_cuda` does, would let them run on 1- and 2-GPU machines.
    - `test_dsv4_wo_decode_cuda` also picks device 5 at line 46 (`device == 0 ? 5 : 0`).
-   - With both changed to devices 0 and 1, `_head_cuda`, `_wo_decode_cuda`, `_compressor_cuda` and `_compressor_state_cuda` all pass on the two 3090s, and every result is exact.
-   - `_resident_indexer` and `_resident_route` have no make target, so I didn't run them.
-4. **After the merge with current dev, `test_dsv4_indexer_prepare_cuda` doesn't build with g++ 13.3.** This one isn't the branch's doing. dev has since added `#include "ggml_view.h"` to `native_quant.h`, which brings in `ggml_quants.h`. Its type table (`ggml_quants.h:134`) uses C designated array initializers, which g++ rejects in C++, and this test is the only C++ file that includes `native_quant.h`.
+   - With both changed to devices 0 and 1, all eight pass on the two 3090s, and every result is exact.
+4. **After the merge with current dev, `test_dsv4_indexer_prepare_cuda` doesn't build with g++ 13.3.** This one isn't the branch's doing. dev has since added `#include "ggml_view.h"` to `native_quant.h`, which brings in `ggml_quants.h`. Its type table (`ggml_quants.h:134`) uses C designated array initializers, which g++ rejects in C++, and this test is the only C++ file that includes `native_quant.h`. Leaving the GGUF helpers out of C++ fixes it, since no C++ file uses them.
 
 `test_dsv4_multigpu_cuda 0,1` passes on the 3090s.
 
+The fixes for items 1-4 and the table `f4` are on [`samebase/m1766-fixes`](https://github.com/bobsummerwill/colibri/commits/28b35786) on my fork, one commit each, on top of the merge above, if you'd like to cherry-pick them. The tests there read their two devices from `DSV4_TEST_DEVICES` (default `0,1`).
+
 ### This branch with #2405's peer tier on top ("C+")
 
-I also merged #2405's peer tier onto this branch. I call the result "C+": [`e2933955`](https://github.com/bobsummerwill/colibri/commits/e2933955) on my fork, with fix 2 above and the table `f4`. The two parts add up:
+I also merged #2405's peer tier onto this branch. I call the result "C+": [`samebase/cplus`](https://github.com/bobsummerwill/colibri/commits/66982895) on my fork, with fixes 1-4 above and the table `f4`. I measured it at e2933955; the commits after that only change tests. The two parts add up:
 
 | | REAP decode, 2 GPUs | full model decode, 2 GPUs |
 |---|---|---|
 | this branch | 4.818 (1.60x dev) | 3.697 (1.40x dev) |
-| this branch + #2405's peer tier | 6.07 (**2.01x** dev) | 4.288 (**1.62x** dev) |
+| this branch + #2405's peer tier | 5.905 (**1.96x** dev) | 4.209 (**1.59x** dev) |
 
-These are from the merge before the `f4` change (b659ac8d). The run for e2933955 finishes tonight, and I'll update the table then.
+- REAP is 2 samples, and the full model one sample.
+- On the full model's long prompts, C+ reaches the first token in 0.91x dev's time, on one GPU or two.
+- The table `f4` costs about 2% of decode against the same merge with the branch's `f4`.
 
 That suggests landing this branch first and #2405's peer tier on top.
 
 Logs, scripts and per-request numbers:
-- 3090s: [final27-final30](https://github.com/bobsummerwill/colibri-notes/tree/0ce4a8b/manifests/shadowfax-20261026-samebase5) (same-base runs, switch ablation, first-token arms with profiles, 300-token full-model arms, the `f4` trace in final31/final32)
-- 5070 and CPU: [c4m27-c4m29](https://github.com/bobsummerwill/colibri-notes/tree/0ce4a8b/manifests/computer4-20261026-samebase5)
+- 3090s: [final27-final30](https://github.com/bobsummerwill/colibri-notes/tree/45c5c5e/manifests/shadowfax-20261026-samebase5) (same-base runs, switch ablation, first-token arms with profiles, 300-token full-model arms, the `f4` trace in final31/final32, C+ in final33/final34)
+- 5070 and CPU: [c4m27-c4m29](https://github.com/bobsummerwill/colibri-notes/tree/45c5c5e/manifests/computer4-20261026-samebase5)
 

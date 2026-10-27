@@ -601,3 +601,17 @@ anchors, still at 300 W. Every answer equals the reference texts. Variant trees 
 - Answers are identical.
 - For the C+ rows of both texts: V4 Flash 2 GPUs becomes 1.59x (was 1.62x). The 1-GPU fdec arm wasn't rerun, so 1.25x
   stays the pre-fix value. REAP comes from final34.
+
+## final34: C+ before/after the f4 fix, REAP (run 1 23:14-00:05, run 2 00:05-00:57, both GATES: PASS, 300 W)
+| arm | run 2 decode | run 1 decode | vs dev (run 2) |
+|---|---|---|---|
+| dev B1 | 3.012 | 3.008 | 1.00x |
+| C+ b659ac8d, 1 GPU | 3.913 | 3.919 | 1.30x |
+| **C+ e2933955, 1 GPU** | **3.828** | 3.829 | **1.27x** |
+| C+ b659ac8d, 2 GPUs | 6.064 | 6.056 | 2.01x |
+| **C+ e2933955, 2 GPUs** | **5.905** | 5.911 | **1.96x** |
+
+- The f4 fix costs 2.2% (1 GPU) and 2.6% (2 GPUs) of REAP decode; TTFT 0.99-1.01x old. Answers identical.
+- The waiter ran the arms once itself, then the unit ran them again; run 1's summary is final34/summary-run1.txt.
+- t35 (00:58): all CUDA unit tests pass on both fixes branches; see m1766-unit-tests-02.
+- Both texts updated 2026-10-27 08:10 with these numbers; notes links pinned to 45c5c5e.
