@@ -1,7 +1,7 @@
 # Draft: comment for JustVugg/colibri#1766 (NOT POSTED; needs Bob's OK)
 
 Redrafted 2026-10-26 ~22:00 from the same-base runs (shadowfax final27-final30, computer4 c4m27-c4m29). Replaces the
-04:00 draft (base-mixed; see git history of this file). Data pinned at colibri-notes d00475b; F1 trace at the commit that adds final31/final32 (update the links before posting).
+04:00 draft (base-mixed; see git history of this file). Data pinned at colibri-notes 0ce4a8b (includes the F1 trace, final31/final32).
 To post: `gh pr comment 1766 -R JustVugg/colibri --body-file <the part between the lines>`.
 
 Open before posting:
@@ -147,9 +147,9 @@ on my fork, including fix 2 above). The two parts add up:
 That suggests landing this branch first and #2405's peer tier on top.
 
 Logs, scripts and per-request numbers:
-- 3090s: [final27-final30](https://github.com/bobsummerwill/colibri-notes/tree/d00475b/manifests/shadowfax-20261026-samebase5)
-  (same-base runs, switch ablation, first-token arms with profiles, 300-token full-model arms)
-- 5070 and CPU: [c4m27-c4m29](https://github.com/bobsummerwill/colibri-notes/tree/d00475b/manifests/computer4-20261026-samebase5)
+- 3090s: [final27-final30](https://github.com/bobsummerwill/colibri-notes/tree/0ce4a8b/manifests/shadowfax-20261026-samebase5)
+  (same-base runs, switch ablation, first-token arms with profiles, 300-token full-model arms, the `f4` trace in final31/final32)
+- 5070 and CPU: [c4m27-c4m29](https://github.com/bobsummerwill/colibri-notes/tree/0ce4a8b/manifests/computer4-20261026-samebase5)
 
 ---
 
@@ -168,6 +168,6 @@ mentioned.
 >   - What a second GPU adds: this PR's peer gives 1.40x over its one-GPU run, and #1766's second device 1.27x.
 >   - The merge of the two is on my fork as `dec72809`. It needs one fix, in #1766's device check, which leaves a CUDA
 >     error set; it is in the #1766 comment.
->   - Logs: [same-base runs](https://github.com/bobsummerwill/colibri-notes/tree/d00475b/manifests/shadowfax-20261026-samebase5)
+>   - Logs: [same-base runs](https://github.com/bobsummerwill/colibri-notes/tree/0ce4a8b/manifests/shadowfax-20261026-samebase5)
 > - Of this PR's four commits, only VRAM-first changes one-GPU speed: all of the 1.03x. The guard and settings commits
 >   measure at 1.000x and 1.002x; the peer commit adds the second GPU.
