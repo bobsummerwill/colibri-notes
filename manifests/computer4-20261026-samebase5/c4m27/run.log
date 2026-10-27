@@ -40,3 +40,58 @@
 [2026-10-26 14:02:37] --- CC s1: ready=1 client_rc=0 wall=307s decode_0   ttft=14.36 decode=0.913 chunks=128 text=f4cf054289eb decode_1   ttft=10.15 decode=0.941 chunks=128 text=c162aadf403b 
 [2026-10-26 14:02:37] check CC s1: 0 OOM lines, 0 crash lines; ram_tiers available=40.00GiB dense=resident(6.27GiB) target_slots=59 target_cache=31.59GiB head=resident-bf16 projected=39.79GiB v4_hot_policy pin_slots_per_layer=16 repin_interval=6 mode=resident-ram rows16=hot-pins v4_dense_resident layers=43 bytes=6.267GiB 
 [2026-10-26 14:02:37] === sample 14: CC s2 tree=/home/zombietiger/colibri-bench/dg/s27ccpu 
+[2026-10-26 14:07:41] --- CC s2: ready=1 client_rc=0 wall=304s decode_0   ttft=13.85 decode=0.915 chunks=128 text=f4cf054289eb decode_1   ttft=10.16 decode=0.955 chunks=128 text=c162aadf403b 
+[2026-10-26 14:07:41] check CC s2: 0 OOM lines, 0 crash lines; ram_tiers available=40.00GiB dense=resident(6.27GiB) target_slots=59 target_cache=31.59GiB head=resident-bf16 projected=39.79GiB v4_hot_policy pin_slots_per_layer=16 repin_interval=6 mode=resident-ram rows16=hot-pins v4_dense_resident layers=43 bytes=6.267GiB 
+[2026-10-26 14:07:41] === sample 15: CP s2 tree=/home/zombietiger/colibri-bench/dg/s27pr2cpu 
+[2026-10-26 14:12:54] --- CP s2: ready=1 client_rc=0 wall=313s decode_0   ttft=14.25 decode=0.864 chunks=128 text=f4cf054289eb decode_1   ttft=10.23 decode=0.952 chunks=128 text=c162aadf403b 
+[2026-10-26 14:12:54] check CP s2: 0 OOM lines, 0 crash lines; ram_tiers available=40.00GiB dense=resident(6.27GiB) target_slots=59 target_cache=31.59GiB head=resident-bf16 projected=39.79GiB v4_hot_policy pin_slots_per_layer=16 repin_interval=6 mode=resident-ram rows16=hot-pins v4_dense_resident layers=43 bytes=6.267GiB 
+[2026-10-26 14:12:54] === sample 16: CM s2 tree=/home/zombietiger/colibri-bench/dg/s27mcpu 
+[2026-10-26 14:17:59] --- CM s2: ready=1 client_rc=0 wall=305s decode_0   ttft=13.81 decode=0.926 chunks=128 text=f4cf054289eb decode_1   ttft=10.19 decode=0.937 chunks=128 text=c162aadf403b 
+[2026-10-26 14:17:59] check CM s2: 0 OOM lines, 0 crash lines; ram_tiers available=40.00GiB dense=resident(6.27GiB) target_slots=59 target_cache=31.59GiB head=resident-bf16 projected=39.79GiB v4_hot_policy pin_slots_per_layer=16 repin_interval=6 mode=resident-ram rows16=hot-pins v4_dense_resident layers=43 bytes=6.267GiB 
+[2026-10-26 14:17:59] === sample 17: CB s2 tree=/home/zombietiger/colibri-bench/dg/s27basecpu 
+[2026-10-26 14:23:03] --- CB s2: ready=1 client_rc=0 wall=304s decode_0   ttft=13.8 decode=0.925 chunks=128 text=f4cf054289eb decode_1   ttft=10.53 decode=0.944 chunks=128 text=c162aadf403b 
+[2026-10-26 14:23:03] check CB s2: 0 OOM lines, 0 crash lines; ram_tiers available=40.00GiB dense=resident(6.27GiB) target_slots=59 target_cache=31.59GiB head=resident-bf16 projected=39.79GiB v4_hot_policy pin_slots_per_layer=16 repin_interval=6 mode=resident-ram rows16=hot-pins v4_dense_resident layers=43 bytes=6.267GiB 
+arm B
+  s1 (seq 2): 6 rows (300/300/300/300/300/300 tokens), mean decode 1.539 tok/s, median TTFT 5.715 s, OOM lines 0, texts 3d0a5275 f0e57dde d27222f1 6f58d36c 82d3caa6 4306da7d
+  s2 (seq 9): 6 rows (300/300/300/300/300/300 tokens), mean decode 1.562 tok/s, median TTFT 5.91 s, OOM lines 0, texts 3d0a5275 f0e57dde d27222f1 6f58d36c 82d3caa6 4306da7d
+  median of per-sample mean decode: 1.55 tok/s
+arm C
+  s1 (seq 5): 6 rows (300/300/300/300/300/300 tokens), mean decode 1.823 tok/s, median TTFT 5.635 s, OOM lines 0, texts 3d0a5275 f0e57dde d27222f1 6f58d36c 82d3caa6 4306da7d
+  s2 (seq 6): 6 rows (300/300/300/300/300/300 tokens), mean decode 1.807 tok/s, median TTFT 6.01 s, OOM lines 0, texts 3d0a5275 f0e57dde d27222f1 6f58d36c 82d3caa6 4306da7d
+  median of per-sample mean decode: 1.815 tok/s
+arm CB
+  s1 (seq 10): 2 rows (128/128 tokens), mean decode 0.928 tok/s, median TTFT 12.29 s, OOM lines 0, texts f4cf0542 c162aadf
+  s2 (seq 17): 2 rows (128/128 tokens), mean decode 0.934 tok/s, median TTFT 12.165 s, OOM lines 0, texts f4cf0542 c162aadf
+  median of per-sample mean decode: 0.931 tok/s
+arm CC
+  s1 (seq 13): 2 rows (128/128 tokens), mean decode 0.927 tok/s, median TTFT 12.254999999999999 s, OOM lines 0, texts f4cf0542 c162aadf
+  s2 (seq 14): 2 rows (128/128 tokens), mean decode 0.935 tok/s, median TTFT 12.004999999999999 s, OOM lines 0, texts f4cf0542 c162aadf
+  median of per-sample mean decode: 0.931 tok/s
+arm CM
+  s1 (seq 11): 2 rows (128/128 tokens), mean decode 0.932 tok/s, median TTFT 12.295 s, OOM lines 0, texts f4cf0542 c162aadf
+  s2 (seq 16): 2 rows (128/128 tokens), mean decode 0.931 tok/s, median TTFT 12.0 s, OOM lines 0, texts f4cf0542 c162aadf
+  median of per-sample mean decode: 0.932 tok/s
+arm CP
+  s1 (seq 12): 2 rows (128/128 tokens), mean decode 0.937 tok/s, median TTFT 12.375 s, OOM lines 0, texts f4cf0542 c162aadf
+  s2 (seq 15): 2 rows (128/128 tokens), mean decode 0.908 tok/s, median TTFT 12.24 s, OOM lines 0, texts f4cf0542 c162aadf
+  median of per-sample mean decode: 0.922 tok/s
+arm M
+  s1 (seq 3): 6 rows (300/300/300/300/300/300 tokens), mean decode 1.812 tok/s, median TTFT 5.9 s, OOM lines 0, texts 3d0a5275 f0e57dde d27222f1 6f58d36c 82d3caa6 4306da7d
+  s2 (seq 8): 6 rows (300/300/300/300/300/300 tokens), mean decode 1.863 tok/s, median TTFT 5.545 s, OOM lines 0, texts 3d0a5275 f0e57dde d27222f1 6f58d36c 82d3caa6 4306da7d
+  median of per-sample mean decode: 1.838 tok/s
+arm P
+  s1 (seq 4): 6 rows (300/300/300/300/300/300 tokens), mean decode 1.541 tok/s, median TTFT 7.41 s, OOM lines 0, texts 3d0a5275 f0e57dde d27222f1 6f58d36c 82d3caa6 4306da7d
+  s2 (seq 7): 6 rows (300/300/300/300/300/300 tokens), mean decode 1.561 tok/s, median TTFT 5.775 s, OOM lines 0, texts 3d0a5275 f0e57dde d27222f1 6f58d36c 82d3caa6 4306da7d
+  median of per-sample mean decode: 1.551 tok/s
+M/B (#1766 vs base, one RTX 5070): mean decode ratio 1.185
+P/B (PR #2 (VRAM-first) vs base, one RTX 5070): mean decode ratio 1.000
+P/M (PR #2 vs #1766, one RTX 5070): mean decode ratio 0.844
+CM/CB (#1766 vs base, CPU-only): mean decode ratio 1.000
+CP/CB (PR #2 vs base, CPU-only): mean decode ratio 0.990
+CP/CM (PR #2 vs #1766, CPU-only): mean decode ratio 0.990
+C/B (C+ (VRAM-first) vs base, one RTX 5070): mean decode ratio 1.171
+C/M (C+ vs #1766, one RTX 5070): mean decode ratio 0.988
+C/P (C+ vs PR #2, one RTX 5070): mean decode ratio 1.170
+CC/CB (C+ vs base, CPU-only): mean decode ratio 0.999
+GATES: PASS
+[2026-10-26 14:23:03] ALL SAMPLES DONE

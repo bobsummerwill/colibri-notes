@@ -1,0 +1,46 @@
+"/usr/bin/nvcc" -O3 -std=c++17 -ftz=false -arch=sm_86 -Xcompiler=-Wall,-Wextra -DCOLI_DSV4_NO_TC -c backend_cuda_dsv4.cu -o backend_cuda_dsv4.o
+"/usr/bin/nvcc" -O3 -std=c++17 -ftz=false -arch=sm_86 -Xcompiler=-Wall,-Wextra -DCOLI_DSV4_NO_TC tests/test_dsv4_peer_init_cuda.cu -o dsv4_peer_init_cuda_test -lcuda -lcublasLt 
+./dsv4_peer_init_cuda_test
+[DSV4 CUDA] validate device: invalid device ordinal
+[DSV4 CUDA] validate device: invalid device ordinal
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] stream: invalid argument
+[DSV4 CUDA] device 0 did not initialise
+[DSV4 CUDA] aux stream: invalid argument
+[DSV4 CUDA] device 0 did not initialise
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] stream: invalid argument
+[DSV4 CUDA] device 1 did not initialise
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] aux stream: invalid argument
+[DSV4 CUDA] device 1 did not initialise
+[DSV4 CUDA] decode state allocation: out of memory
+[DSV4 CUDA] device 0 did not initialise
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] decode state allocation: out of memory
+[DSV4 CUDA] device 1 did not initialise
+[DSV4 CUDA] stream: invalid argument
+[DSV4 CUDA] device 0 did not initialise
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] enable peer access: invalid device ordinal
+[DSV4 CUDA] peer access 0 -> 1 failed
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] enable peer access: invalid device ordinal
+[DSV4 CUDA] peer access 1 -> 0 failed
+[DSV4 CUDA] validate device: invalid device ordinal
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] decode state update: invalid device ordinal
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+probe 0 -> 1: usable
+FAIL tests/test_dsv4_peer_init_cuda.cu:105: invalid second device: last error left set (invalid device ordinal)
+FAIL tests/test_dsv4_peer_init_cuda.cu:196: failure line does not name device 2
+FAIL tests/test_dsv4_peer_init_cuda.cu:105: invalid second device, again: last error left set (invalid device ordinal)
+FAIL tests/test_dsv4_peer_init_cuda.cu:230: first decode_state_set after the retry failed
+dsv4 peer init: 4 FAILED
+make: *** [Makefile:1322: dsv4-cuda-test] Error 1

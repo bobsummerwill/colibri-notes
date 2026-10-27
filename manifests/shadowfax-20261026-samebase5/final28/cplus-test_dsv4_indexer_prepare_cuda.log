@@ -1,0 +1,38 @@
+g++ -O3 -std=c++20 tests/test_dsv4_indexer_prepare_cuda.cpp COLI_V4_UNIT_NATIVE_QUANT.o backend_cuda_dsv4.o -o tests/test_dsv4_indexer_prepare_cuda -lm -fopenmp -pthread  -flto -L/usr/lib64 -L/usr/lib64/stubs -Wl,-rpath,/usr/lib64 -lcudart -lcuda -lcublasLt -lstdc++
+In file included from tests/../ggml_view.h:12,
+                 from tests/../native_quant.h:201,
+                 from tests/test_dsv4_indexer_prepare_cuda.cpp:2:
+tests/../ggml_quants.h:134:1: sorry, unimplemented: non-trivial designated initializers not supported
+  134 | };
+      | ^
+tests/../ggml_quants.h:134:1: sorry, unimplemented: non-trivial designated initializers not supported
+tests/../ggml_quants.h:134:1: sorry, unimplemented: non-trivial designated initializers not supported
+tests/../ggml_quants.h:134:1: sorry, unimplemented: non-trivial designated initializers not supported
+tests/../ggml_quants.h:134:1: sorry, unimplemented: non-trivial designated initializers not supported
+tests/../ggml_quants.h:134:1: sorry, unimplemented: non-trivial designated initializers not supported
+tests/../ggml_quants.h:134:1: sorry, unimplemented: non-trivial designated initializers not supported
+tests/../ggml_quants.h:134:1: sorry, unimplemented: non-trivial designated initializers not supported
+tests/../ggml_quants.h:134:1: sorry, unimplemented: non-trivial designated initializers not supported
+tests/../ggml_quants.h:134:1: sorry, unimplemented: non-trivial designated initializers not supported
+tests/../ggml_quants.h:134:1: sorry, unimplemented: non-trivial designated initializers not supported
+tests/../ggml_quants.h:134:1: sorry, unimplemented: non-trivial designated initializers not supported
+tests/../ggml_quants.h:134:1: sorry, unimplemented: non-trivial designated initializers not supported
+tests/../ggml_quants.h:134:1: sorry, unimplemented: non-trivial designated initializers not supported
+tests/../ggml_quants.h:134:1: sorry, unimplemented: non-trivial designated initializers not supported
+tests/../ggml_quants.h:134:1: sorry, unimplemented: non-trivial designated initializers not supported
+tests/../ggml_quants.h:134:1: sorry, unimplemented: non-trivial designated initializers not supported
+tests/../ggml_quants.h:134:1: sorry, unimplemented: non-trivial designated initializers not supported
+tests/../ggml_quants.h:134:1: sorry, unimplemented: non-trivial designated initializers not supported
+tests/../ggml_quants.h:134:1: sorry, unimplemented: non-trivial designated initializers not supported
+tests/../ggml_quants.h:134:1: sorry, unimplemented: non-trivial designated initializers not supported
+tests/../ggml_quants.h:134:1: sorry, unimplemented: non-trivial designated initializers not supported
+tests/../ggml_quants.h:134:1: sorry, unimplemented: non-trivial designated initializers not supported
+tests/../ggml_quants.h:134:1: sorry, unimplemented: non-trivial designated initializers not supported
+tests/../ggml_quants.h:134:1: sorry, unimplemented: non-trivial designated initializers not supported
+tests/../ggml_quants.h:134:1: sorry, unimplemented: non-trivial designated initializers not supported
+tests/../ggml_quants.h:134:1: sorry, unimplemented: non-trivial designated initializers not supported
+tests/../ggml_quants.h:134:1: sorry, unimplemented: non-trivial designated initializers not supported
+tests/../ggml_quants.h:134:1: sorry, unimplemented: non-trivial designated initializers not supported
+tests/../ggml_quants.h:134:1: sorry, unimplemented: non-trivial designated initializers not supported
+tests/../ggml_quants.h:134:1: sorry, unimplemented: non-trivial designated initializers not supported
+make: *** [Makefile.deepseek-v4:405: tests/test_dsv4_indexer_prepare_cuda] Error 1

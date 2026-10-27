@@ -1,0 +1,18 @@
+arm B
+  s1 (seq 1): 6 rows (300/300/300/300/300/300 tokens), mean decode 1.535 tok/s, median TTFT 6.695 s, OOM lines 0, texts 3d0a5275 f0e57dde d27222f1 6f58d36c 82d3caa6 4306da7d
+  median of per-sample mean decode: 1.535 tok/s
+arm S1
+  s1 (seq 2): 6 rows (300/300/300/300/300/300 tokens), mean decode 1.565 tok/s, median TTFT 6.195 s, OOM lines 0, texts 3d0a5275 f0e57dde d27222f1 6f58d36c 82d3caa6 4306da7d
+  median of per-sample mean decode: 1.565 tok/s
+arm S2
+  s1 (seq 3): 6 rows (300/300/300/300/300/300 tokens), mean decode 1.57 tok/s, median TTFT 6.21 s, OOM lines 0, texts 3d0a5275 f0e57dde d27222f1 6f58d36c 82d3caa6 4306da7d
+  median of per-sample mean decode: 1.57 tok/s
+arm S3
+  s1 (seq 4): 6 rows (300/300/300/300/300/300 tokens), mean decode 1.561 tok/s, median TTFT 6.455 s, OOM lines 0, texts 3d0a5275 f0e57dde d27222f1 6f58d36c 82d3caa6 4306da7d
+  median of per-sample mean decode: 1.561 tok/s
+S1/B (PR #2 step 1 (per-cache guard) vs dev, one RTX 5070): mean decode ratio 1.020
+S2/B (PR #2 steps 1-2 (+ pin cap, stats log) vs dev, one RTX 5070): mean decode ratio 1.023
+S3/B (PR #2 steps 1-3 (+ VRAM-first) vs dev, one RTX 5070): mean decode ratio 1.017
+S2/S1 (what step 2 adds, one RTX 5070): mean decode ratio 1.003
+S3/S2 (what step 3 adds, one RTX 5070): mean decode ratio 0.995
+GATES: PASS

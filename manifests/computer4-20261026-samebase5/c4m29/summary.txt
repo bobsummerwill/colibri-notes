@@ -1,0 +1,14 @@
+C4M29 SUMMARY (F1 on one RTX 5070: dev B vs #1766 M vs #1766 all switches off MX, full V4 Flash, bench_pr1.py)
+arm B
+  s1 (seq 1) long_prefill    ttft=264.791 s prefill=7.5229 tok/s decode=1.323 tok/s chunks=32 text=a397814f
+  s1 (seq 1) long_prefill_2  ttft=408.626 s prefill=7.3539 tok/s decode=1.2819 tok/s chunks=13 text=8b3f437b
+arm M
+  s1 (seq 2) long_prefill    ttft=260.513 s prefill=7.6464 tok/s decode=1.5157 tok/s chunks=32 text=a397814f
+  s1 (seq 2) long_prefill_2  ttft=403.018 s prefill=7.4562 tok/s decode=1.5025 tok/s chunks=13 text=8b3f437b
+arm MX  (switch ablation: a text difference is a note)
+  s1 (seq 3) long_prefill    ttft=261.6 s prefill=7.6147 tok/s decode=1.4868 tok/s chunks=32 text=a397814f
+  s1 (seq 3) long_prefill_2  ttft=401.633 s prefill=7.482 tok/s decode=1.4083 tok/s chunks=13 text=8b3f437b
+M/B (#1766 vs dev, one RTX 5070, full): long_prefill ttft 0.9838, long_prefill decode 1.1457, long_prefill_2 ttft 0.9863, long_prefill_2 decode 1.1721
+MX/B (#1766 all switches off vs dev (1.0 = back to dev)): long_prefill ttft 0.9879, long_prefill decode 1.1238, long_prefill_2 ttft 0.9829, long_prefill_2 decode 1.0986
+MX/M (#1766 all switches off vs on): long_prefill ttft 1.0042, long_prefill decode 0.9809, long_prefill_2 ttft 0.9966, long_prefill_2 decode 0.9373
+GATES: PASS

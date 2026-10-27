@@ -1,0 +1,33 @@
+[2026-10-26 14:25:28] run_c4m28 start: MODE=gpu RESERVE=c4m27 S1=6a191e90 S2=c45b6962 S3=695a7be4
+[2026-10-26 14:25:28] reserve from c4m27's pilot: 'no reserve setting'
+[2026-10-26 14:25:28] === sample 1: B s1 tree=/home/zombietiger/colibri-bench/dg/s27base 
+[2026-10-26 14:45:54] --- B s1: ready=1 client_rc=0 wall=1226s decode_0   ttft=10.36 decode=1.579 chunks=300 text=3d0a5275398f decode_1   ttft=5.91 decode=1.549 chunks=300 text=f0e57dde9023 decode_2   ttft=7.34 decode=1.531 chunks=300 text=d27222f106e3 decode_3   ttft=6.68 decode=1.516 chunks=300 text=6f58d36c3ba4 decode_4   ttft=6.25 decode=1.531 chunks=300 text=82d3caa69654 decode_5   ttft=6.71 decode=1.503 chunks=300 text=4306da7d3301 
+[2026-10-26 14:45:54] check B s1: 0 OOM lines, 0 crash lines; ram_tiers available=40.00GiB dense=resident(6.27GiB) target_slots=59 target_cache=31.59GiB head=resident-bf16 projected=39.79GiB v4_hot_policy pin_slots_per_layer=16 repin_interval=6 mode=resident-ram rows16=hot-pins v4_dense_resident layers=43 bytes=6.267GiB 
+[2026-10-26 14:45:54] === sample 2: S1 s1 tree=/home/zombietiger/colibri-bench/dg/s28s1 
+[2026-10-26 15:05:56] --- S1 s1: ready=1 client_rc=0 wall=1202s decode_0   ttft=10.62 decode=1.588 chunks=300 text=3d0a5275398f decode_1   ttft=5.68 decode=1.607 chunks=300 text=f0e57dde9023 decode_2   ttft=7.26 decode=1.558 chunks=300 text=d27222f106e3 decode_3   ttft=5.89 decode=1.55 chunks=300 text=6f58d36c3ba4 decode_4   ttft=5.93 decode=1.559 chunks=300 text=82d3caa69654 decode_5   ttft=6.46 decode=1.53 chunks=300 text=4306da7d3301 
+[2026-10-26 15:05:56] check S1 s1: 0 OOM lines, 0 crash lines; ram_tiers available=40.00GiB dense=resident(6.27GiB) target_slots=59 target_cache=31.59GiB head=resident-bf16 projected=39.79GiB v4_hot_policy pin_slots_per_layer=16 repin_interval=6 mode=resident-ram rows16=hot-pins v4_dense_resident layers=43 bytes=6.267GiB 
+[2026-10-26 15:05:56] === sample 3: S2 s1 tree=/home/zombietiger/colibri-bench/dg/s28s2 
+[2026-10-26 15:25:54] --- S2 s1: ready=1 client_rc=0 wall=1198s decode_0   ttft=10.66 decode=1.607 chunks=300 text=3d0a5275398f decode_1   ttft=5.59 decode=1.611 chunks=300 text=f0e57dde9023 decode_2   ttft=7.1 decode=1.56 chunks=300 text=d27222f106e3 decode_3   ttft=5.92 decode=1.549 chunks=300 text=6f58d36c3ba4 decode_4   ttft=5.9 decode=1.563 chunks=300 text=82d3caa69654 decode_5   ttft=6.5 decode=1.528 chunks=300 text=4306da7d3301 
+[2026-10-26 15:25:54] check S2 s1: 0 OOM lines, 0 crash lines; ram_tiers available=40.00GiB dense=resident(6.27GiB) target_slots=59 target_cache=31.59GiB head=resident-bf16 projected=39.79GiB v4_hot_policy pin_slots_per_layer=16 repin_interval=6 mode=resident-ram rows16=hot-pins v4_dense_resident layers=43 bytes=6.267GiB 
+[2026-10-26 15:25:54] === sample 4: S3 s1 tree=/home/zombietiger/colibri-bench/dg/s28s3 
+[2026-10-26 15:45:59] --- S3 s1: ready=1 client_rc=0 wall=1205s decode_0   ttft=10.34 decode=1.599 chunks=300 text=3d0a5275398f decode_1   ttft=5.75 decode=1.599 chunks=300 text=f0e57dde9023 decode_2   ttft=7.25 decode=1.562 chunks=300 text=d27222f106e3 decode_3   ttft=6.32 decode=1.539 chunks=300 text=6f58d36c3ba4 decode_4   ttft=5.94 decode=1.552 chunks=300 text=82d3caa69654 decode_5   ttft=6.59 decode=1.517 chunks=300 text=4306da7d3301 
+[2026-10-26 15:45:59] check S3 s1: 0 OOM lines, 0 crash lines; ram_tiers available=40.00GiB dense=resident(6.27GiB) target_slots=59 target_cache=31.59GiB head=resident-bf16 projected=39.79GiB v4_hot_policy pin_slots_per_layer=16 repin_interval=6 mode=resident-ram rows16=hot-pins v4_dense_resident layers=43 bytes=6.267GiB 
+arm B
+  s1 (seq 1): 6 rows (300/300/300/300/300/300 tokens), mean decode 1.535 tok/s, median TTFT 6.695 s, OOM lines 0, texts 3d0a5275 f0e57dde d27222f1 6f58d36c 82d3caa6 4306da7d
+  median of per-sample mean decode: 1.535 tok/s
+arm S1
+  s1 (seq 2): 6 rows (300/300/300/300/300/300 tokens), mean decode 1.565 tok/s, median TTFT 6.195 s, OOM lines 0, texts 3d0a5275 f0e57dde d27222f1 6f58d36c 82d3caa6 4306da7d
+  median of per-sample mean decode: 1.565 tok/s
+arm S2
+  s1 (seq 3): 6 rows (300/300/300/300/300/300 tokens), mean decode 1.57 tok/s, median TTFT 6.21 s, OOM lines 0, texts 3d0a5275 f0e57dde d27222f1 6f58d36c 82d3caa6 4306da7d
+  median of per-sample mean decode: 1.57 tok/s
+arm S3
+  s1 (seq 4): 6 rows (300/300/300/300/300/300 tokens), mean decode 1.561 tok/s, median TTFT 6.455 s, OOM lines 0, texts 3d0a5275 f0e57dde d27222f1 6f58d36c 82d3caa6 4306da7d
+  median of per-sample mean decode: 1.561 tok/s
+S1/B (PR #2 step 1 (per-cache guard) vs dev, one RTX 5070): mean decode ratio 1.020
+S2/B (PR #2 steps 1-2 (+ pin cap, stats log) vs dev, one RTX 5070): mean decode ratio 1.023
+S3/B (PR #2 steps 1-3 (+ VRAM-first) vs dev, one RTX 5070): mean decode ratio 1.017
+S2/S1 (what step 2 adds, one RTX 5070): mean decode ratio 1.003
+S3/S2 (what step 3 adds, one RTX 5070): mean decode ratio 0.995
+GATES: PASS
+[2026-10-26 15:45:59] ALL SAMPLES DONE

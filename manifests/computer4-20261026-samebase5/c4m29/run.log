@@ -1,0 +1,29 @@
+[2026-10-26 15:48:04] run_c4m29 start: MODE=gpu RESERVE=c4m27 M=ecc92586 order: B:1 M:1 MX:1 (est ~700 s each: c4f21's pr1 TTFT 250 / 390 s + decode + load)
+[2026-10-26 15:48:04] arm B: tree=/home/zombietiger/colibri-bench/dg/s27base env=''
+[2026-10-26 15:48:04] arm M: tree=/home/zombietiger/colibri-bench/dg/s27m env=''
+[2026-10-26 15:48:04] arm MX: tree=/home/zombietiger/colibri-bench/dg/s27m env='DSV4_CUDA_COMPRESSOR=0 DSV4_CUDA_HEAD=0 DSV4_CUDA_HEAD_BATCH=0 DSV4_CUDA_INDEXER_PREP=0 DSV4_CUDA_INDEXER_HEADS=0 DSV4_CUDA_RESIDENT_INDEXER=0 DSV4_CUDA_WO_DECODE=0 DSV4_CUDA_RESIDENT_EXPERTS=0'
+[2026-10-26 15:48:04] reserve from c4m27's pilot: 'no reserve setting'
+[2026-10-26 15:48:04] === sample 1: B s1 tree=/home/zombietiger/colibri-bench/dg/s27base 
+[2026-10-26 16:00:02] --- B s1: ready=1 client_rc=0 wall=718s long_prefill    ttft=264.791 prefill=7.5229 decode=1.323 chunks=32 text=a397814f650a long_prefill_2  ttft=408.626 prefill=7.3539 decode=1.2819 chunks=13 text=8b3f437baa34 
+[2026-10-26 16:00:02] check B s1: 0 OOM lines, 0 crash lines; ram_tiers available=40.00GiB dense=resident(6.27GiB) target_slots=59 target_cache=31.59GiB head=resident-bf16 projected=39.79GiB v4_hot_policy pin_slots_per_layer=16 repin_interval=6 mode=resident-ram rows16=hot-pins v4_dense_resident layers=43 bytes=6.267GiB 
+[2026-10-26 16:00:02] === sample 2: M s1 tree=/home/zombietiger/colibri-bench/dg/s27m 
+[2026-10-26 16:11:47] --- M s1: ready=1 client_rc=0 wall=705s long_prefill    ttft=260.513 prefill=7.6464 decode=1.5157 chunks=32 text=a397814f650a long_prefill_2  ttft=403.018 prefill=7.4562 decode=1.5025 chunks=13 text=8b3f437baa34 
+[2026-10-26 16:11:47] check M s1: 0 OOM lines, 0 crash lines; ram_tiers available=40.00GiB dense=resident(6.27GiB) target_slots=59 target_cache=31.59GiB head=resident-bf16 projected=39.79GiB v4_hot_policy pin_slots_per_layer=16 repin_interval=6 mode=resident-ram rows16=hot-pins v4_gpu tier=dense-matvec device=0 devices=1 placement=contiguous-layers v4_gpu devi
+[2026-10-26 16:11:47] === sample 3: MX s1 tree=/home/zombietiger/colibri-bench/dg/s27m 
+[2026-10-26 16:23:33] --- MX s1: ready=1 client_rc=0 wall=706s long_prefill    ttft=261.6 prefill=7.6147 decode=1.4868 chunks=32 text=a397814f650a long_prefill_2  ttft=401.633 prefill=7.482 decode=1.4083 chunks=13 text=8b3f437baa34 
+[2026-10-26 16:23:33] check MX s1: 0 OOM lines, 0 crash lines; ram_tiers available=40.00GiB dense=resident(6.27GiB) target_slots=59 target_cache=31.59GiB head=resident-bf16 projected=39.79GiB v4_hot_policy pin_slots_per_layer=16 repin_interval=6 mode=resident-ram rows16=hot-pins v4_gpu tier=dense-matvec device=0 devices=1 placement=contiguous-layers v4_gpu devi
+C4M29 SUMMARY (F1 on one RTX 5070: dev B vs #1766 M vs #1766 all switches off MX, full V4 Flash, bench_pr1.py)
+arm B
+  s1 (seq 1) long_prefill    ttft=264.791 s prefill=7.5229 tok/s decode=1.323 tok/s chunks=32 text=a397814f
+  s1 (seq 1) long_prefill_2  ttft=408.626 s prefill=7.3539 tok/s decode=1.2819 tok/s chunks=13 text=8b3f437b
+arm M
+  s1 (seq 2) long_prefill    ttft=260.513 s prefill=7.6464 tok/s decode=1.5157 tok/s chunks=32 text=a397814f
+  s1 (seq 2) long_prefill_2  ttft=403.018 s prefill=7.4562 tok/s decode=1.5025 tok/s chunks=13 text=8b3f437b
+arm MX  (switch ablation: a text difference is a note)
+  s1 (seq 3) long_prefill    ttft=261.6 s prefill=7.6147 tok/s decode=1.4868 tok/s chunks=32 text=a397814f
+  s1 (seq 3) long_prefill_2  ttft=401.633 s prefill=7.482 tok/s decode=1.4083 tok/s chunks=13 text=8b3f437b
+M/B (#1766 vs dev, one RTX 5070, full): long_prefill ttft 0.9838, long_prefill decode 1.1457, long_prefill_2 ttft 0.9863, long_prefill_2 decode 1.1721
+MX/B (#1766 all switches off vs dev (1.0 = back to dev)): long_prefill ttft 0.9879, long_prefill decode 1.1238, long_prefill_2 ttft 0.9829, long_prefill_2 decode 1.0986
+MX/M (#1766 all switches off vs on): long_prefill ttft 1.0042, long_prefill decode 0.9809, long_prefill_2 ttft 0.9966, long_prefill_2 decode 0.9373
+GATES: PASS
+[2026-10-26 16:23:33] ALL SAMPLES DONE

@@ -394,3 +394,82 @@ Tests:
 **GPU power (14:40):** every shadowfax sample in final27-final30 runs with both 3090s at a 300 W limit (default 420 W).
 Full-model prefill peaks at 267-286 W and decode at 210-277 W (5 s nvidia-smi samples), so prefill sits just under the cap.
 Bob will change the power profile only after final30 is done; later runs are not comparable with these without anchors.
+
+## Results update (2026-10-26 17:40)
+### shadowfax final28 (C+), done 16:13, GATES: PASS
+Logs: [manifests/shadowfax-20261026-samebase5/final28](../manifests/shadowfax-20261026-samebase5/final28).
+Same-session anchors match final27 within 0.3% (B1 3.009, M1 3.790, M2 4.828, P2 4.336).
+
+REAP, 2 samples for C+:
+
+| Arm | Decode tok/s | vs B1 | vs #1766, same GPUs | vs PR #2, same GPUs |
+|---|---|---|---|---|
+| C1 C+, 1 GPU | 3.911 / 3.920 | 1.30x | 1.03x | 1.26x |
+| C2 C+, 2 GPUs | 6.054 / 6.077 | **2.01x** | **1.26x** | **1.40x** |
+
+Full model, 2 samples for C+ (decode prompt 1 / 2; TTFT prompt 1 / 2):
+
+| Arm | Decode | Mean vs B1F | TTFT |
+|---|---|---|---|
+| B1F (anchor) | 1.91 / 1.81 | 1.00x | 86 / 124 s |
+| P2F (anchor) | 1.95 / 2.31 | 1.14x | 86 / 124 s |
+| C1F | 2.22-2.27 / 2.14-2.15 | 1.18x | 98-99 / 141 s |
+| C2F | 2.31 / 2.76-2.78 | 1.37x | 98 / 141 s |
+
+- C+ inherits finding F1 (13-14% slower first token on the full model, like M).
+- On the full model C2F beats every other arm on decode (2.54 mean vs M2F 2.29, P2F 2.13).
+
+#1766 switch ablation (M, one GPU, REAP decode, 1 sample each; M1 = 3.790):
+
+| Off | Decode | vs M1 |
+|---|---|---|
+| all (MX) | 3.339 | 0.88x (still 1.11x over B1: native E4M3 and the non-switchable parts) |
+| HEAD | 3.591 | 0.95x |
+| RESIDENT_INDEXER | 3.600 | 0.95x |
+| INDEXER_HEADS | 3.707 | 0.98x |
+| INDEXER_PREP | 3.763 | 0.99x |
+| WO_DECODE | 3.783 | 1.00x |
+| COMPRESSOR | 3.820 | 1.01x |
+
+- So #1766's 1.26x on one GPU: ~1.11x from code with no switch (native E4M3 etc.), ~5% each from the resident head and
+  the resident indexer, ~2% indexer heads; compressor and WO decode add nothing measurable to decode here.
+- Vulkan C+ (VKC): 4.41 tok/s, same as B/M/P under Vulkan.
+
+**CUDA tests on C+:**
+- `cuda-test` OK; #1766's `test_dsv4_multigpu_cuda 0,1` OK.
+- **`dsv4-cuda-test`: PR #2's `test_dsv4_peer_init_cuda` had 4 failures. This is a real C+ merge bug, fixed.**
+  - #1766's up-front device validation in `dsv4_cuda_init` returned on an invalid ordinal with the CUDA error still
+    pending, and without init_fail's "device N did not initialise" line.
+  - A retry with one device then succeeded, but the next checked call (`decode_state_set`) failed on the stale error.
+  - #1766 alone has the same stale-error return (a note for the #1766 comment).
+  - Fixed on fork `samebase/cplus` dec72809. nvcc sm_86 compiles clean, and the Python source and loader tests pass.
+    **The GPU test is still to run** (after final30, or computer4 now that it's idle).
+- **#1766's own CUDA unit tests (compressor, compressor_state, head, wo_decode, indexer_prepare) can't run on a 2-GPU
+  box.**
+  - They hard-code `int devices[]={0,5}`, so `assert(dsv4_cuda_init(devices,2))` aborts.
+  - `test_dsv4_indexer_prepare_cuda` also doesn't build with shadowfax's g++: `ggml_quants.h:134` has designated
+    initializers in C++.
+  - These are #1766 test portability notes, not C+ defects. To run them here: patch to `{0,1}` locally after final30.
+
+### computer4: c4m27, c4m28, c4m29 all done, GATES: PASS
+Logs: [manifests/computer4-20261026-samebase5](../manifests/computer4-20261026-samebase5).
+- **5070, full model, 6 prompts x 300 tokens:**
+  - B 1.54, P 1.54-1.56, M 1.81-1.86, C+ 1.81-1.82 tok/s.
+  - All texts identical, 0 OOM.
+- **CPU only (full model, pr1):** B, M, P and C+ are all 0.91-0.94 tok/s, with identical texts. No PR changes CPU decode.
+- **Splits on the 5070 (c4m28):** B 1.535, S1 1.565, S2 1.570, S3 1.561. S3/S2 0.995, so VRAM-first adds nothing
+  measurable on the 5070.
+- **c4m29 (F1 on the 5070, full model, pr1):** M/B TTFT 0.98x and 0.99x; decode 1.15x and 1.17x.
+  - **#1766 is NOT slower to first token on the 5070.**
+  - MX/B: TTFT 0.99x, decode 1.12x and 1.10x.
+- **This narrows F1.** The 5070 runs without `COLI_CUDA_MOE_BATCH` (the bank doesn't fit in 12 GB); the 3090 arms run
+  with it.
+  - So the extra prefill time on the 3090s most likely comes from #1766 interacting with dev's batched-MoE / GPU-bank
+    prefill, or from sm_86 NO_TC.
+  - final30's per-switch arms (all with the bank) will show whether a switch is involved.
+  - If none is, the next arm is M1F vs B1F with `COLI_CUDA_MOE_BATCH` unset.
+
+### shadowfax final29 (splits, REAP, one GPU), running since 16:20
+- So far: B1 3.011; S1 3.007 (1.00x); S2 3.017 / 3.018 (1.00x); S3 3.102 / 3.107 (1.03x); P1 3.105.
+- As expected: S1 and S2 are neutral, and S3 carries all of PR #2's one-GPU gain.
+- final30 follows at about 18:00 (it was ~19:30 in the plan).

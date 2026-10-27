@@ -1,0 +1,5 @@
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_GPU_TIER tests/test_dsv4_multigpu_cuda.c backend_cuda_dsv4.o -o tests/test_dsv4_multigpu_cuda -lm -fopenmp -pthread  -flto -L/usr/lib64 -L/usr/lib64/stubs -Wl,-rpath,/usr/lib64 -lcudart -lcuda -lcublasLt -lstdc++
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+test_dsv4_multigpu_cuda: ok
