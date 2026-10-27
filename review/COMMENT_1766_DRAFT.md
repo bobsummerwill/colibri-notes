@@ -153,21 +153,41 @@ Logs, scripts and per-request numbers:
 
 ---
 
-## #2405 "Related" section (our own draft PR): redraft, NOT APPLIED
+## #2405 "Related" section (our own draft PR): rewrite, NOT APPLIED
 
-Replaces the on-hold base-mixed paragraph. Apply to #2405's body only with Bob's OK. #2401 is merged, so it is not
-mentioned.
+Rewritten from scratch 2026-10-26 ~23:00 (Bob: "rewrite it entirely"). It replaces #2405's whole current "## Related"
+section. Apply only with Bob's OK.
+- The combined row is C+ before the `f4` fix (final28/final30).
+- Update it from final33/final34 (C+ e2933955) before applying, and then repin the logs link.
 
-> **Related**
-> - #1766 (multi-GPU residency and faster CUDA execution) overlaps with this PR's second-GPU work. I measured both on
->   the same dev (c1c06ac6), 2x RTX 3090:
->   - On their own, #1766 is faster. REAP decode: #1766 1.26x dev on one GPU and 1.60x on two. This PR is 1.03x on one
->     GPU and 1.44x on two.
->   - The two are complementary. This PR's peer tier on top of #1766 gives **2.01x** dev on REAP and **1.62x** on the
->     full model, 300-token answers. That is the best result measured, 1.26x and 1.16x over #1766 alone.
->   - What a second GPU adds: this PR's peer gives 1.40x over its one-GPU run, and #1766's second device 1.27x.
->   - The merge of the two is on my fork as `dec72809`. It needs one fix, in #1766's device check, which leaves a CUDA
->     error set; it is in the #1766 comment.
->   - Logs: [same-base runs](https://github.com/bobsummerwill/colibri-notes/tree/0ce4a8b/manifests/shadowfax-20261026-samebase5)
-> - Of this PR's four commits, only VRAM-first changes one-GPU speed: all of the 1.03x. The guard and settings commits
->   measure at 1.000x and 1.002x; the peer commit adds the second GPU.
+---
+
+## Related
+- **#1766** (open) speeds up the single-GPU CUDA path and adds a layer split across GPUs (`DSV4_CUDA_DEVICES`).
+- This PR uses a second GPU differently: as an expert-mirror tier that computes its own experts over NVLink
+  (`DSV4_CUDA_PEER_DEVICE`), for a model that doesn't fit.
+- I measured dev, #1766, this PR and the two merged, all on dev c1c06ac6, on 2x RTX 3090 (sm_86). Decode against dev:
+
+  | | REAP-150B, 1 GPU | REAP-150B, 2 GPUs | V4 Flash, 1 GPU | V4 Flash, 2 GPUs |
+  |---|---|---|---|---|
+  | this PR | 1.03x | 1.44x | 1.02x | 1.27x |
+  | #1766 | 1.26x | 1.60x | 1.22x | 1.40x |
+  | #1766 + this PR's peer tier | 1.30x | **2.01x** | 1.25x | **1.62x** |
+
+  - REAP: 6 prompts x 300 tokens, 2 samples. V4 Flash: 3 prompts x 300 tokens, 1 sample.
+  - dev decodes 3.01 tok/s on REAP and 2.65 on V4 Flash.
+  - Answers are identical across all rows.
+- **The two complement each other.**
+  - #1766's kernels make each GPU faster.
+  - On these cards, this PR's peer tier gets more from the second GPU than the layer split does: 6.07 against 4.82 tok/s
+    on REAP.
+- **The two multi-GPU modes are alternatives.** Both claim GPU 1, so `DSV4_CUDA_DEVICES` and `DSV4_CUDA_PEER_DEVICE`
+  shouldn't be set together.
+  - `DSV4_CUDA_VRAM_RESERVE_MB` is #1766's preload reserve there and dev's mirror-growth reserve here.
+- **The merge** is [`e2933955`](https://github.com/bobsummerwill/colibri/commits/e2933955) on my fork. It carries two
+  fixes to #1766's code, both described on #1766:
+  - its device check leaves a CUDA error set;
+  - its new `f4()` slows batched prefill.
+- **Of this PR's commits, only VRAM-first changes one-GPU speed.** It gives all of the 1.03x. The guard and settings
+  commits measure 1.000x and 1.002x.
+- Logs: [same-base runs](https://github.com/bobsummerwill/colibri-notes/tree/0ce4a8b/manifests/shadowfax-20261026-samebase5)
