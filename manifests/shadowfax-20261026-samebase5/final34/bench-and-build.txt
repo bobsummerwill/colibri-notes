@@ -1,0 +1,9 @@
+56b4ef4178fdb79972985dac4790d2381c89e362613a84b7089b81077c3fd21c  bench.tgz
+tree=/home/maplemercury/colibri-bench/cw22/f33-cplusf4 sha=e29339554e488aed98c5cebe34563a716896884e tree_sha=2b74cf5f496a7689820cb45222b2a06d64676fe9 start=2026-10-26T22:35:48-07:00
+EXIT=0 end=2026-10-26T22:36:09-07:00
+tree=/home/maplemercury/colibri-bench/cw22/f27-base sha=c1c06ac6fcb32157e4da130fd96775a32a757052 tree_sha=8a6c1fc13fbed3a43d95de640ffd0a201b20a2f1 start=2026-10-26T10:47:27-07:00
+EXIT=0 end=2026-10-26T10:47:49-07:00
+tree=/home/maplemercury/colibri-bench/cw22/f27-cplus sha=b659ac8d12cd50e2cfc141982ad9b69a8b88a753 tree_sha=12bc2ee2ef5ff412b6346ce1d49b162857e2f38d start=2026-10-26T10:48:34-07:00
+EXIT=0 end=2026-10-26T10:48:56-07:00
+tree=/home/maplemercury/colibri-bench/cw22/f27-pr2 sha=11c400389ce4bc95adc34364eb84b3d3949ea99d tree_sha=ae3496f8c7f2952a2ee04bd026574b55f8bf99ac start=2026-10-26T10:47:50-07:00
+EXIT=0 end=2026-10-26T10:48:12-07:00

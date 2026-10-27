@@ -1,0 +1,6 @@
+[2026-10-26 22:37:33] cbench-f34 start: waiting for colibri-final33
+[2026-10-26 23:12:33] colibri-final33 ended ([2026-10-26 23:11:48] packed /home/maplemercury/colibri-bench/final33/bench.tgz e43d47f309a9a7553b0fc45f04adec38afce8a39996f76aa7085d018f878b999)
+[2026-10-27 00:05:16] final34: dry run ok, llama healthy, starting (MAX_GPU_S=6000)
+Running as unit: colibri-final34.service; invocation ID: 72c567745a6f415aada88f920d302459
+[2026-10-27 00:57:46] final34: unit ended; last lines: [2026-10-27 00:56:58] packing /home/maplemercury/colibri-bench/final34/bench.tgz [2026-10-27 00:56:58] packed /home/maplemercury/colibri-bench/final34/bench.tgz 56b4ef4178fdb79972985dac4790d2381c89e362613a84b7089b81077c3fd21c 
+[2026-10-27 00:57:46] cbench-f34 done

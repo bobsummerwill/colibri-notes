@@ -1,0 +1,28 @@
+[2026-10-26 23:04:57] t35 start: waiting for cbench-f34
+[2026-10-27 00:57:58] cbench-f34 ended; GPUs: 0, 18873 MiB, 0 % 1, 17452 MiB, 0 % 
+[2026-10-27 00:57:58] m1766fix at 28b35786
+[2026-10-27 00:58:06] m1766fix head_cuda: build ok, run rc=0 | batched head: logits and compact argmax exact; batch=1,3,4,5,9,2
+[2026-10-27 00:58:07] m1766fix wo_decode_cuda: build ok, run rc=0 | device=1 groups=8 format=9 width=4096 rank=1024 exact=3/3
+[2026-10-27 00:58:08] m1766fix compressor_cuda: build ok, run rc=0 | device=1 rows=1024 cols=4103 paired_us=197.41 exact=yes prefill=unchanged
+[2026-10-27 00:58:10] m1766fix compressor_state_cuda: build ok, run rc=0 | device=1 ratio=4 dim=128 indexer=1 state/output/reset/partial-failure exact
+[2026-10-27 00:58:11] m1766fix indexer_prepare_cuda: build ok, run rc=0 | device=1 score exact: batches 1/3, candidates 1/7/9/129/513, masked counts
+[2026-10-27 00:58:12] m1766fix multigpu_cuda: build ok, run rc=0 | test_dsv4_multigpu_cuda: ok
+[2026-10-27 00:58:13] m1766fix quant_cuda: run rc=0 | device=1 cases=35769 mismatches=0
+[2026-10-27 00:58:13] m1766fix resident_route: run rc=0 | resident route: exact parity on two devices, normal and hash routes
+[2026-10-27 00:58:14] m1766fix resident_indexer: run rc=0 | resident indexer: exact parity, both layouts, batches 1/3/33, two devices
+[2026-10-27 00:58:15] m1766fix bad pair 0,7: rc=134 (expect nonzero)
+[2026-10-27 00:58:15] m1766fix one device: rc=2 (expect 2) | DSV4_TEST_DEVICES must name two CUDA devices, e.g. 0,1
+[2026-10-27 00:58:15] cplus at 66982895
+[2026-10-27 00:58:23] cplus head_cuda: build ok, run rc=0 | batched head: logits and compact argmax exact; batch=1,3,4,5,9,2
+[2026-10-27 00:58:24] cplus wo_decode_cuda: build ok, run rc=0 | device=1 groups=8 format=9 width=4096 rank=1024 exact=3/3
+[2026-10-27 00:58:25] cplus compressor_cuda: build ok, run rc=0 | device=1 rows=1024 cols=4103 paired_us=197.14 exact=yes prefill=unchanged
+[2026-10-27 00:58:27] cplus compressor_state_cuda: build ok, run rc=0 | device=1 ratio=4 dim=128 indexer=1 state/output/reset/partial-failure exact
+[2026-10-27 00:58:28] cplus indexer_prepare_cuda: build ok, run rc=0 | device=1 score exact: batches 1/3, candidates 1/7/9/129/513, masked counts
+[2026-10-27 00:58:28] cplus multigpu_cuda: build ok, run rc=0 | test_dsv4_multigpu_cuda: ok
+[2026-10-27 00:58:29] cplus quant_cuda: run rc=0 | device=1 cases=35769 mismatches=0
+[2026-10-27 00:58:30] cplus resident_route: run rc=0 | resident route: exact parity on two devices, normal and hash routes
+[2026-10-27 00:58:30] cplus resident_indexer: run rc=0 | resident indexer: exact parity, both layouts, batches 1/3/33, two devices
+[2026-10-27 00:58:31] cplus bad pair 0,7: rc=134 (expect nonzero)
+[2026-10-27 00:58:31] cplus one device: rc=2 (expect 2) | DSV4_TEST_DEVICES must name two CUDA devices, e.g. 0,1
+[2026-10-27 00:58:55] cplus dsv4-cuda-test: rc=0 | dsv4 peer init: probe, init rollback and retry: OK (2 devices) dsv4 peer MoE: OK 
+[2026-10-27 00:58:55] t35 done
