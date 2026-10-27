@@ -1,0 +1,28 @@
+== head_cuda
+run rc=0
+batched head: logits and compact argmax exact; batch=1,3,4,5,9,2
+device=1 rows=129280 cols=4096 logits=exact trials=3 tie=first zero=exact bytes=1059061760
+batched head: logits and compact argmax exact; batch=1,3,4,5,9,2
+== wo_decode_cuda
+/bin/bash: line 1: 1609993 Aborted                 CUDA_VISIBLE_DEVICES=0,1 timeout 600 ./tests/test_dsv4_$t 0,1 > /tmp/r_$t.log 2>&1
+run rc=134
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+test_dsv4_wo_decode_cuda: tests/test_dsv4_wo_decode_cuda.cpp:46: int main(): Assertion `dsv4_cuda_upload_fp8(&peer, b.data(), bs.data(), hidden, rows, device == 0 ? 5 : 0)' failed.
+timeout: the monitored command dumped core
+== compressor_cuda
+run rc=0
+device=1 rows=512 cols=4103 paired_us=195.60 exact=yes prefill=unchanged
+device=1 rows=1024 cols=4096 paired_us=191.62 exact=yes prefill=unchanged
+device=1 rows=1024 cols=4103 paired_us=197.27 exact=yes prefill=unchanged
+== compressor_state_cuda
+run rc=0
+device=1 ratio=4 dim=512 indexer=0 state/output/reset/partial-failure exact
+device=1 ratio=128 dim=512 indexer=0 state/output/reset/partial-failure exact
+device=1 ratio=4 dim=128 indexer=1 state/output/reset/partial-failure exact
+== indexer_prepare_cuda
+BUILD FAIL
+== multigpu_cuda
+run rc=0
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+test_dsv4_multigpu_cuda: ok

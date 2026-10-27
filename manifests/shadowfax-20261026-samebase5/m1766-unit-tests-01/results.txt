@@ -1,0 +1,174 @@
+diff --git a/c/tests/test_dsv4_compressor_cuda.cpp b/c/tests/test_dsv4_compressor_cuda.cpp
+index dc6aa5df..f388aad5 100644
+--- a/c/tests/test_dsv4_compressor_cuda.cpp
++++ b/c/tests/test_dsv4_compressor_cuda.cpp
+@@ -12,7 +12,7 @@ static float decode(uint16_t v) {
+ }
+ 
+ int main() {
+-    int devices[]={0,5};
++    int devices[]={0,1};
+     assert(dsv4_cuda_init(devices,2));
+     for(int device:devices) for(int rows:{256,512,1024}) for(int cols:{4096,4103}) {
+         std::vector<uint16_t> w(rows*cols), g(rows*cols);
+diff --git a/c/tests/test_dsv4_compressor_state_cuda.c b/c/tests/test_dsv4_compressor_state_cuda.c
+index 7dab7cc4..0bb4837e 100644
+--- a/c/tests/test_dsv4_compressor_state_cuda.c
++++ b/c/tests/test_dsv4_compressor_state_cuda.c
+@@ -75,7 +75,7 @@ static void check(int device,int ratio,int dim,int rotate) {
+     printf("device=%d ratio=%d dim=%d indexer=%d state/output/reset/partial-failure exact\n",device,ratio,dim,rotate);
+ }
+ int main(void) {
+-    int devices[]={0,5};assert(dsv4_cuda_init(devices,2));
++    int devices[]={0,1};assert(dsv4_cuda_init(devices,2));
+     for(int i=0;i<2;i++) {check(devices[i],4,512,0);check(devices[i],128,512,0);check(devices[i],4,128,1);}
+     dsv4_cuda_shutdown();
+ }
+diff --git a/c/tests/test_dsv4_head_cuda.c b/c/tests/test_dsv4_head_cuda.c
+index 314d5dec..84a2f047 100644
+--- a/c/tests/test_dsv4_head_cuda.c
++++ b/c/tests/test_dsv4_head_cuda.c
+@@ -86,7 +86,7 @@ int main(int argc,char **argv) {
+     puts("head CUDA oracle requires the AVX2 head contract");
+     return 77;
+ #else
+-    int devices[] = {0, 5};
++    int devices[] = {0,1};
+     assert(dsv4_cuda_init(devices, 2));
+     int shapes[][2] = {{32, 256}, {160, 4104}, {129280, 4096}};
+     int shape_count = argc == 2 && !strcmp(argv[1], "--small") ? 2 : 3;
+diff --git a/c/tests/test_dsv4_indexer_prepare_cuda.cpp b/c/tests/test_dsv4_indexer_prepare_cuda.cpp
+index 2247747f..057d7617 100644
+--- a/c/tests/test_dsv4_indexer_prepare_cuda.cpp
++++ b/c/tests/test_dsv4_indexer_prepare_cuda.cpp
+@@ -9,7 +9,7 @@
+ #include <vector>
+ 
+ int main() {
+-    int devices[]={0,5};assert(dsv4_cuda_init(devices,2));
++    int devices[]={0,1};assert(dsv4_cuda_init(devices,2));
+     constexpr int heads=64,hidden=4096;
+     std::vector<uint16_t> weights(heads*hidden);
+     std::vector<float> input(hidden),expected_w(heads),hw(heads);
+diff --git a/c/tests/test_dsv4_quant_cuda.cu b/c/tests/test_dsv4_quant_cuda.cu
+index 87dcafd0..f89f949a 100644
+--- a/c/tests/test_dsv4_quant_cuda.cu
++++ b/c/tests/test_dsv4_quant_cuda.cu
+@@ -68,7 +68,7 @@ int main() {
+         memcpy(&value, &raw, sizeof(value));
+         if (std::isfinite(value) && fabsf(value) <= 448.f) values.push_back(value);
+     }
+-    for (int device : {0, 5}) {
++    for (int device : {0,1}) {
+         assert(cudaSetDevice(device) == cudaSuccess);
+         float *input;
+         unsigned *failures, result = 0;
+diff --git a/c/tests/test_dsv4_resident_indexer.cpp b/c/tests/test_dsv4_resident_indexer.cpp
+index 2af13d77..fa5e75bd 100644
+--- a/c/tests/test_dsv4_resident_indexer.cpp
++++ b/c/tests/test_dsv4_resident_indexer.cpp
+@@ -6,7 +6,7 @@
+ #include <vector>
+ 
+ int main() {
+-    int devices[] = {0, 5};
++    int devices[] = {0,1};
+     assert(dsv4_cuda_init(devices, 2));
+     constexpr int R = 256, C = 256;
+     for (int device : devices) for (int packed : {0, 1}) {
+diff --git a/c/tests/test_dsv4_resident_route.cpp b/c/tests/test_dsv4_resident_route.cpp
+index b7107feb..8b231a17 100644
+--- a/c/tests/test_dsv4_resident_route.cpp
++++ b/c/tests/test_dsv4_resident_route.cpp
+@@ -7,7 +7,7 @@
+ #include <vector>
+ 
+ int main() {
+-    int devices[] = {0, 5};
++    int devices[] = {0,1};
+     assert(dsv4_cuda_init(devices, 2));
+     constexpr int H = 128, I = 128, E = 256;
+     for (int device : devices) {
+diff --git a/c/tests/test_dsv4_wo_decode_cuda.cpp b/c/tests/test_dsv4_wo_decode_cuda.cpp
+index e3a2792c..3a004099 100644
+--- a/c/tests/test_dsv4_wo_decode_cuda.cpp
++++ b/c/tests/test_dsv4_wo_decode_cuda.cpp
+@@ -17,7 +17,7 @@ static void round_bf16(std::vector<float> &values) {
+ }
+ 
+ int main() {
+-    int devices[] = {0, 5};
++    int devices[] = {0,1};
+     assert(dsv4_cuda_init(devices, 2));
+     assert(!dsv4_cuda_wo_decode(nullptr, nullptr, 1, nullptr, nullptr));
+     for (int device : devices) for (int groups : {1, 8}) for (int format : {8, 9}) {
+@@ -43,7 +43,7 @@ int main() {
+         assert(!dsv4_cuda_wo_decode(wa, wb, rows + 1, actual.data(), x.data()));
+         assert(!dsv4_cuda_wo_decode(wa, wa, groups, actual.data(), x.data()));
+         assert(!dsv4_cuda_wo_decode(wa, wb, groups, nullptr, x.data()));
+-        assert(dsv4_cuda_upload_fp8(&peer, b.data(), bs.data(), hidden, rows, device == 0 ? 5 : 0));
++        assert(dsv4_cuda_upload_fp8(&peer, b.data(), bs.data(), hidden, rows, device == 0 ? 1 : 0));
+         assert(cudaDeviceSynchronize() == cudaSuccess);
+         assert(!dsv4_cuda_wo_decode(wa, peer, groups, actual.data(), x.data()));
+         for (int trial = 0; trial < 3; trial++) {
+
+== head_cuda
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+device=0 rows=32 cols=256 logits=exact trials=3 tie=first zero=exact bytes=16384
+batched head: logits and compact argmax exact; batch=1,3,4,5,9,2
+device=0 rows=160 cols=4104 logits=exact trials=3 tie=first zero=exact bytes=1313280
+batched head: logits and compact argmax exact; batch=1,3,4,5,9,2
+device=0 rows=129280 cols=4096 logits=exact trials=3 tie=first zero=exact bytes=1059061760
+batched head: logits and compact argmax exact; batch=1,3,4,5,9,2
+device=1 rows=32 cols=256 logits=exact trials=3 tie=first zero=exact bytes=16384
+batched head: logits and compact argmax exact; batch=1,3,4,5,9,2
+device=1 rows=160 cols=4104 logits=exact trials=3 tie=first zero=exact bytes=1313280
+batched head: logits and compact argmax exact; batch=1,3,4,5,9,2
+device=1 rows=129280 cols=4096 logits=exact trials=3 tie=first zero=exact bytes=1059061760
+batched head: logits and compact argmax exact; batch=1,3,4,5,9,2
+== compressor_cuda
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+device=0 rows=256 cols=4096 paired_us=112.66 exact=yes prefill=unchanged
+device=0 rows=256 cols=4103 paired_us=112.80 exact=yes prefill=unchanged
+device=0 rows=512 cols=4096 paired_us=190.07 exact=yes prefill=unchanged
+device=0 rows=512 cols=4103 paired_us=196.32 exact=yes prefill=unchanged
+device=0 rows=1024 cols=4096 paired_us=190.73 exact=yes prefill=unchanged
+device=0 rows=1024 cols=4103 paired_us=196.76 exact=yes prefill=unchanged
+device=1 rows=256 cols=4096 paired_us=112.58 exact=yes prefill=unchanged
+device=1 rows=256 cols=4103 paired_us=113.10 exact=yes prefill=unchanged
+device=1 rows=512 cols=4096 paired_us=187.92 exact=yes prefill=unchanged
+device=1 rows=512 cols=4103 paired_us=195.60 exact=yes prefill=unchanged
+device=1 rows=1024 cols=4096 paired_us=191.62 exact=yes prefill=unchanged
+device=1 rows=1024 cols=4103 paired_us=197.27 exact=yes prefill=unchanged
+== compressor_state_cuda
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+device=0 ratio=4 dim=512 indexer=0 state/output/reset/partial-failure exact
+device=0 ratio=128 dim=512 indexer=0 state/output/reset/partial-failure exact
+device=0 ratio=4 dim=128 indexer=1 state/output/reset/partial-failure exact
+device=1 ratio=4 dim=512 indexer=0 state/output/reset/partial-failure exact
+device=1 ratio=128 dim=512 indexer=0 state/output/reset/partial-failure exact
+device=1 ratio=4 dim=128 indexer=1 state/output/reset/partial-failure exact
+== multigpu_cuda
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+test_dsv4_multigpu_cuda: ok
+== wo_decode_cuda (rerun after line 46 fix)
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+device=0 groups=1 format=8 width=256 rank=128 exact=3/3
+device=0 groups=1 format=9 width=256 rank=128 exact=3/3
+device=0 groups=8 format=8 width=4096 rank=1024 exact=3/3
+device=0 groups=8 format=9 width=4096 rank=1024 exact=3/3
+device=1 groups=1 format=8 width=256 rank=128 exact=3/3
+device=1 groups=1 format=9 width=256 rank=128 exact=3/3
+device=1 groups=8 format=8 width=4096 rank=1024 exact=3/3
+device=1 groups=8 format=9 width=4096 rank=1024 exact=3/3
+rc=0
+== indexer_prepare_cuda build
+tests/../ggml_quants.h:134:1: sorry, unimplemented: non-trivial designated initializers not supported
+tests/../ggml_quants.h:134:1: sorry, unimplemented: non-trivial designated initializers not supported
+make: *** [Makefile.deepseek-v4:405: tests/test_dsv4_indexer_prepare_cuda] Error 1

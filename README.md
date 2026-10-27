@@ -15,11 +15,11 @@ OK too. Opened at his request: PR #0 (#2212-#2217), PR #1 (#2264, merged); 2026-
 #2400 (fix B), PRs #2401 (fix A), #2402 (fix B), #2403 (test_vk_chain initializers), #2404 (`COLI_VK_SUBGROUP=n`);
 2026-10-26: draft PR #2405 (PR #2, on #2401).
 
-> **Pick up here: [HANDOFF_20261026.md](HANDOFF_20261026.md)** (2026-10-26 morning: #2401/#2402 accepted for the next
-> upstream batch; #1766 measured against its dev base on 2x 3090 + 5070, with a draft comment waiting for Bob's OK; PR #2
-> is draft #2405 on #2401; hermes on shadowfax left stopped). Next: [review/PLAN_SAME_BASE_20261026.md](review/PLAN_SAME_BASE_20261026.md)
-> (#1766, PR #2 and a combined C+ on one base). Before that: [HANDOFF_20261025.md](HANDOFF_20261025.md),
-> [HANDOFF_20261024.md](HANDOFF_20261024.md).
+> **Pick up here: [HANDOFF_20261026.md](HANDOFF_20261026.md)** (2026-10-26 evening: the same-base runs of #1766,
+> PR #2 and C+ (#1766 + PR #2's peer tier) are done. C+ is fastest: 2.01x dev on REAP and 1.62x on the full model, with
+> two 3090s. The redrafted #1766 comment and #2405 "Related" section wait for Bob's OK; #2405 is draft, CI green.)
+> Plan and results: [review/PLAN_SAME_BASE_20261026.md](review/PLAN_SAME_BASE_20261026.md). Before that:
+> [HANDOFF_20261025.md](HANDOFF_20261025.md), [HANDOFF_20261024.md](HANDOFF_20261024.md).
 
 ## Status (2026-10-24, night; counter)
 - **All three branches are on dev 561966e**, done on counter (`~/Projects/colibri`) and

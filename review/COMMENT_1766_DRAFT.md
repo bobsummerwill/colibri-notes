@@ -1,101 +1,161 @@
 # Draft: comment for JustVugg/colibri#1766 (NOT POSTED; needs Bob's OK)
 
-Written 2026-10-26 ~04:00 from final23/final24 (shadowfax) and c4m22 (computer4). Data pinned at colibri-notes a1f96fc.
+Redrafted 2026-10-26 ~22:00 from the same-base runs (shadowfax final27-final30, computer4 c4m27-c4m29). Replaces the
+04:00 draft (base-mixed; see git history of this file). Data pinned at colibri-notes d00475b.
 To post: `gh pr comment 1766 -R JustVugg/colibri --body-file <the part between the lines>`.
 
-Optional second step, same decision: add the "#2405 Related" paragraph at the bottom to our own #2405 body.
+Open before posting:
+- [ ] F1 cause: fill in the sentence marked TRACE once the trace (task 1) is done, or drop it.
+- [x] #1766's own unit tests patched to devices {0,1}: filled in (manifests/shadowfax-20261026-samebase5/m1766-unit-tests-01).
+- [ ] Bob: keep or drop the optional last section (this branch together with #2405's peer tier).
 
 ---
 
-Here is the dev-vs-branch table from the open point, measured on two machines.
+I re-measured this branch on current dev, with everything on one base this time. My earlier numbers compared the branch
+against the older dev it was built on. Current dev has moved a long way since then, especially in prefill.
 
-**Trees.** This branch at ca55947c, against the dev it last merged, 88f25a60 ("dev" below), with no other changes.
-- Both are built from their own tree with the same make line.
-- Both run with this branch's documented serve line (`COLI_CUDA_ATTN_BATCH=1 COLI_CUDA_MOE_BATCH=1`) and `--ram 40 --ctx 8192`.
-- Each sample gets a fresh server, and samples are interleaved.
-- The branch runs at its defaults (`DSV4_CUDA_RESIDENT_EXPERTS=auto`) unless a row says otherwise.
+**Trees.**
+- I merged dev c1c06ac6 into this branch's head ca55947c.
+- I added one line to `dsv4.def`, explained under "Things I ran into" below.
+- The result is [`ecc92586`](https://github.com/bobsummerwill/colibri/commits/ecc92586) on my fork. "dev" below is
+  c1c06ac6 itself.
+- Both sides use the same build line and the same serve line (`COLI_CUDA_ATTN_BATCH=1 COLI_CUDA_MOE_BATCH=1` on the
+  3090s), with `--ram 40 --ctx 8192`.
+- Each sample starts a fresh server. Neither side sets a VRAM reserve: dev's reserve now accounts for the MoE bank, and
+  no run logged an out-of-memory line.
+- Every answer is byte-identical between dev and the branch.
 
-### 2x RTX 3090 24 GB (NVLink), Ryzen 9 9950X3D, 62 GB
-
-`make -f Makefile.deepseek-v4 deepseek-v4 CUDA=1 CUDA_ARCH=sm_86 NO_TC=1`, CUDA 12.0.
+### 2x RTX 3090 24 GB (NVLink), Ryzen 9 9950X3D, 62 GB, CUDA 12.0, `CUDA_ARCH=sm_86 NO_TC=1`
 
 **REAP-150B, 6 prompts x 300 tokens, 2 samples per row** (decode = median of the per-sample mean):
 
-| | GPUs | decode tok/s | vs dev | per prompt | TTFT vs dev |
-|---|---|---|---|---|---|
-| dev 88f25a60 | 1 | 2.875 | 1.00x | | |
-| this branch | 1 | 3.567 | **1.24x** | 1.21-1.30x | 0.95-0.97x |
-| this branch, `DSV4_CUDA_DEVICES=0,1` | 2 | 4.603 | **1.60x** | 1.55-1.66x | 0.95-0.97x |
+| | GPUs | decode tok/s | vs dev | median TTFT |
+|---|---|---|---|---|
+| dev | 1 | 3.010 | 1.00x | 3.63 s |
+| this branch | 1 | 3.784 | **1.26x** | 3.47 s |
+| this branch, `DSV4_CUDA_DEVICES=0,1` | 2 | 4.818 | **1.60x** | 3.50 s |
 
-- All 36 answers are byte-identical across the three rows.
-- In both configurations the branch's residency fell back to the cache, which is what `auto` should do here:
-  - one GPU: `resident-experts=cache-fallback (resident experts exceed device 0 budget (free=16749 MiB reserve=2800 MiB))`
-  - two GPUs: the same, with `free=20313 MiB`.
-- No handled allocation failures in any sample.
+A second session reproduced every row to within 0.3%.
 
-**Full DeepSeek V4 Flash, prompts of 1,992 and 3,005 tokens** (`DSV4_CUDA_VRAM_RESERVE_MB=4700` on both sides; see the
-note below):
+**Full DeepSeek V4 Flash, 3 open-ended prompts x 300 tokens, one sample per row:**
 
-| | GPUs | samples | decode tok/s, prompt 1 / 2 | mean | vs dev | TTFT, prompt 1 / 2 |
-|---|---|---|---|---|---|---|
-| dev 88f25a60 | 1 | 2 | 1.866 / 1.768 | 1.817 | 1.00x | 137.6 / 200.2 s |
-| this branch | 1 | 2 | 2.172 / 2.046 | 2.109 | **1.16x** | 116.1 / 167.0 s (0.84x / 0.83x) |
-| this branch, `DSV4_CUDA_DEVICES=0,1` | 2 | 2 | 2.298 / 2.102 | 2.200 | **1.21x** | 116.3 / 167.3 s |
-
-- Every answer equals the reference texts that dev gives on this model.
-- No handled allocation failures in any sample.
-
-Why the reserve: at the default 2800 MiB, dev and this branch both lose the 256-slot MoE bank on the second prompt.
-- Each logs `expert FC2 bank allocation: out of memory` (or FC1), then `moe-batch=off`.
-- The second prompt then takes 388-402 s to first token and gives a different answer, on both sides.
-- That is dev's mirror reserve not counting the bank. Current dev has the same gap, and #2401 fixes it (its bank-aware
-  default is 4681 MiB). It is not this branch's doing.
-
-The default-reserve runs, one sample each:
-
-| | GPUs | decode mean | TTFT, prompt 1 / 2 |
+| | GPUs | decode tok/s | vs dev |
 |---|---|---|---|
-| dev | 1 | 1.947 | 137.1 / 402.2 s |
-| this branch | 1 | 2.312 | 115.3 / 388.5 s |
-| this branch | 2 | 2.514 | 117.3 / 388.6 s |
+| dev | 1 | 2.646 | 1.00x |
+| this branch | 1 | 3.221 | **1.22x** |
+| this branch, 2 GPUs | 2 | 3.697 | **1.40x** |
 
-This branch's `test_dsv4_multigpu_cuda 0,1` passes on these two cards.
+**Where the one-GPU gain comes from.** On REAP, turning off one of the branch's switches at a time, one sample each:
 
-### 1x RTX 5070 12 GB, CUDA 12.8, `CUDA_ARCH=sm_120`
+| switched off | decode tok/s | vs all on (3.790) |
+|---|---|---|
+| `DSV4_CUDA_HEAD` | 3.591 | 0.95x |
+| `DSV4_CUDA_RESIDENT_INDEXER` | 3.600 | 0.95x |
+| `DSV4_CUDA_INDEXER_HEADS` | 3.707 | 0.98x |
+| `DSV4_CUDA_INDEXER_PREP` | 3.763 | 0.99x |
+| `DSV4_CUDA_WO_DECODE` | 3.783 | 1.00x |
+| `DSV4_CUDA_COMPRESSOR` | 3.820 | 1.01x |
+| all of the above | 3.339 | 0.88x |
 
-Full V4 Flash, 6 prompts x 300 tokens, 2 samples each, `DSV4_CUDA_VRAM_RESERVE_MB=2000` on both sides (the desktop holds
-1.9 GB of the card):
+With every switch off, the branch still decodes at 1.11x dev. That part comes from code that has no switch.
 
-| | decode tok/s, s1 / s2 | vs dev | median TTFT |
-|---|---|---|---|
-| dev 88f25a60 | 1.592 / 1.595 | 1.00x | 6.5 s |
-| this branch | 1.885 / 1.884 | **1.18x** | 6.4-6.6 s |
+**First token is slower than dev on the full model with the MoE bank.**
+- With long prompts (1,992 and 3,005 tokens), the branch takes 98 s and 141 s to the first token, against dev's 86 s and
+  124 s, about 1.14x as long. Decode on those prompts is 1.17x dev.
+- No switch changes this. With each switch off, and with all of them off, the times stay at 98-100 s and 140-142 s.
+- `DSV4_ATTN_PROF=1 V4_MOE_BATCH_PROF=1`, summed over both prompts:
 
-- All 24 answers are byte-identical, with no handled failures.
-- Residency fell back: `free=2577 MiB reserve=2000 MiB`.
-- At the default reserve this card is too tight for a clean comparison. The branch logged 543k and 312k handled
-  `[DSV4 CUDA] ... out of memory` lines in its two runs, and dev logged 0 and 167k. Texts changed on both sides, so I
-  left those runs out of the table.
+  | prefill stage | dev | this branch |
+  |---|---|---|
+  | attention block | 79.6 s | 65.2 s |
+  | MoE block | 123.3 s | 165.8 s |
+  | of which batched expert compute | 72.8 s | 109.4 s (1.50x) |
+  | of which bank refill | 48.3 s | 54.3 s |
+  | missing experts | 15,638 | 15,638 |
+
+- So the branch speeds up prefill attention by 14 s, but dev's batched expert compute takes 1.5x as long.
+- TRACE: <which change does it, once traced>
+- On the 5070 below, which runs without `COLI_CUDA_MOE_BATCH`, the branch's first token is as fast as dev's (0.98x).
+- On REAP's short prompts, the branch is faster to the first token than dev.
+
+### 1x RTX 5070 12 GB, CUDA 12.8, `CUDA_ARCH=sm_120`, default settings
+
+| full V4 Flash | decode tok/s | vs dev |
+|---|---|---|
+| dev, 6 prompts x 300 tokens | 1.54 | 1.00x |
+| this branch | 1.81 / 1.86 (2 samples) | **1.18x** |
+
+- The answers are identical, and no run logged an out-of-memory line.
+- On the long prompts, first-token time is 0.98x and 0.99x dev's, and decode is 1.15x and 1.17x.
+- With no GPU (CPU only), the branch and dev both decode at 0.91-0.94 tok/s with identical answers.
+
+### Things I ran into
+
+1. **`dsv4_cuda_wo_decode` is missing from `dsv4.def`.** It is declared in `backend_cuda_dsv4.h` and the loader resolves
+   it, but the MSVC DLL won't export it. On Windows the engine would then run without WO decode and give no error.
+   dev's `tests/test_backend_loader_dsv4_parity.py` fails on it once the branch is on current dev. The fix is one line
+   (`819cd03d` on my fork).
+2. **`dsv4_cuda_init` leaves the CUDA error set when it rejects a device.** The up-front check
+   `if(!ok(cudaGetDeviceProperties(&p,dev[i]),"validate device"))return 0;` returns on an invalid ordinal while
+   `cudaErrorInvalidDevice` is still pending.
+   - A caller that then retries with a valid device list succeeds, but its next checked CUDA call fails on the old error.
+   - The rejection also doesn't say which device failed.
+   - Calling `cudaGetLastError()` before the return fixes it. Here is what I used:
+
+     ```c
+     if(!ok(cudaGetDeviceProperties(&p,dev[i]),"validate device")){
+         if(n>1)fprintf(stderr,"[DSV4 CUDA] device %d did not initialise\n",dev[i]);
+         cudaGetLastError();return 0;}
+     ```
+3. **The new CUDA unit tests need device 5.**
+   - These tests hard-code `int devices[]={0,5}`, so on a machine with fewer than six GPUs `assert(dsv4_cuda_init(devices,2))`
+     aborts: `test_dsv4_compressor_cuda`, `_compressor_state_cuda`, `_head_cuda`, `_indexer_prepare_cuda`,
+     `_wo_decode_cuda`, `_resident_indexer`, `_resident_route`.
+   - Reading the device list from the command line, as `test_dsv4_multigpu_cuda` does, would let them run on 1- and
+     2-GPU machines.
+   - `test_dsv4_wo_decode_cuda` also picks device 5 at line 46 (`device == 0 ? 5 : 0`).
+   - With both changed to devices 0 and 1, `_head_cuda`, `_wo_decode_cuda`, `_compressor_cuda` and
+     `_compressor_state_cuda` all pass on the two 3090s, and every result is exact.
+   - `_resident_indexer` and `_resident_route` have no make target, so I didn't run them.
+4. **`test_dsv4_indexer_prepare_cuda` doesn't build with g++ 13.3.** `ggml_quants.h:134` uses C designated initializers,
+   which g++ rejects in C++ code.
+
+`test_dsv4_multigpu_cuda 0,1` passes on the 3090s.
+
+### Optional (Bob to decide): this branch with #2405's peer tier on top
+
+I also merged #2405's peer tier onto this branch ([`dec72809`](https://github.com/bobsummerwill/colibri/commits/dec72809)
+on my fork, including fix 2 above). The two parts add up:
+
+| | REAP decode, 2 GPUs | full model decode, 2 GPUs |
+|---|---|---|
+| this branch | 4.818 (1.60x dev) | 3.697 (1.40x dev) |
+| this branch + #2405's peer tier | 6.07 (**2.01x** dev) | 4.288 (**1.62x** dev) |
+
+That suggests landing this branch first and #2405's peer tier on top.
 
 Logs, scripts and per-request numbers:
-- 3090s, REAP and default-reserve full model: https://github.com/bobsummerwill/colibri-notes/tree/a1f96fc/manifests/shadowfax-20261026/final23
-- 3090s, reserve 4700: https://github.com/bobsummerwill/colibri-notes/tree/a1f96fc/manifests/shadowfax-20261026/final24
-- 5070: https://github.com/bobsummerwill/colibri-notes/blob/a1f96fc/manifests/computer4-20261026-m1766/SUMMARY.md
+- 3090s: [final27-final30](https://github.com/bobsummerwill/colibri-notes/tree/d00475b/manifests/shadowfax-20261026-samebase5)
+  (same-base runs, switch ablation, first-token arms with profiles, 300-token full-model arms)
+- 5070 and CPU: [c4m27-c4m29](https://github.com/bobsummerwill/colibri-notes/tree/d00475b/manifests/computer4-20261026-samebase5)
 
 ---
 
-## Optional: #2405 "Related" paragraph (our own draft PR): ON HOLD
+## #2405 "Related" section (our own draft PR): redraft, NOT APPLIED
 
-On hold (2026-10-26 10:00): it leads with the base-mixed 0.94x head to head. Redraft it from the same-base run
-([PLAN_SAME_BASE_20261026.md](PLAN_SAME_BASE_20261026.md)), around what the second GPU adds (PR #2 1.43x / 1.15x vs
-#1766 1.29x / 1.04x).
+Replaces the on-hold base-mixed paragraph. Apply to #2405's body only with Bob's OK. #2401 is merged, so it is not
+mentioned.
 
-Add these sub-bullets under the #1766 bullet in #2405's Related section, after the two that are there:
-
->   - Measured in the same session on 2x RTX 3090, REAP-150B, 6 prompts x 300 tokens, 2 samples each, each against its
->     own dev base: #1766 on two GPUs **1.60x** (4.60 tok/s), this PR **1.43x** (4.34 tok/s). Head to head, this PR
->     decodes at 0.94x of #1766 and reaches the first token 6-12% sooner. The two bases differ: this PR's one-GPU base
->     runs at 3.02 tok/s and #1766's at 2.87.
->   - On the full V4 Flash with the bank kept, one sample of this PR and two of #1766: this PR 2.10 tok/s, #1766 2.20.
->     Time to first token: 86 / 124 s for this PR, 116 / 167 s for #1766.
->   - Logs: [final23/final24](https://github.com/bobsummerwill/colibri-notes/tree/a1f96fc/manifests/shadowfax-20261026)
+> **Related**
+> - #1766 (multi-GPU residency and faster CUDA execution) overlaps with this PR's second-GPU work. I measured both on
+>   the same dev (c1c06ac6), 2x RTX 3090:
+>   - On their own, #1766 is faster. REAP decode: #1766 1.26x dev on one GPU and 1.60x on two. This PR is 1.03x on one
+>     GPU and 1.44x on two.
+>   - The two are complementary. This PR's peer tier on top of #1766 gives **2.01x** dev on REAP and **1.62x** on the
+>     full model, 300-token answers. That is the best result measured, 1.26x and 1.16x over #1766 alone.
+>   - What a second GPU adds: this PR's peer gives 1.40x over its one-GPU run, and #1766's second device 1.27x.
+>   - The merge of the two is on my fork as `dec72809`. It needs one fix, in #1766's device check, which leaves a CUDA
+>     error set; it is in the #1766 comment.
+>   - Logs: [same-base runs](https://github.com/bobsummerwill/colibri-notes/tree/d00475b/manifests/shadowfax-20261026-samebase5)
+> - Of this PR's four commits, only VRAM-first changes one-GPU speed: all of the 1.03x. The guard and settings commits
+>   measure at 1.000x and 1.002x; the peer commit adds the second GPU.
