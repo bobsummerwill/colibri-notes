@@ -496,3 +496,31 @@ Logs: [manifests/computer4-20261026-samebase5](../manifests/computer4-20261026-s
   that has no switch. That fits c4m29: the 5070 runs without `COLI_CUDA_MOE_BATCH` and shows no TTFT loss.
 - Next: find which #1766 change touches the batched expert path (likely the native FP8 conversion or the expert matmul
   kernels), then confirm with M1F vs B1F with `COLI_CUDA_MOE_BATCH` unset.
+
+## final29 / final30 complete (2026-10-26 20:15)
+
+Both passed their gates. GPUs released to Bob for the power-profile change at ~20:10.
+
+**final29, PR #2 splits, REAP, one GPU:** B1 3.011, S1 3.010 (1.000x), S2 3.018 (1.002x), S3 3.105 (1.031x), P1 3.105.
+VRAM-first (S3) carries all of PR #2's one-GPU gain; S3/P1 = 1.000.
+
+**F1 (final30 A arms):** every #1766 switch off, alone or together, leaves TTFT at 1.13-1.15x dev. See the profile table
+above: batched expert compute in prefill is 1.50x slower. Profile sums: [final30/prefill-profile-PB1F-PM1F.txt](../manifests/shadowfax-20261026-samebase5/final30/prefill-profile-PB1F-PM1F.txt).
+
+**F2 resolved: warm-up/order artifact of the short pr1 answers.**
+- fdec (full model, 3 prompts x 300 tokens), what the second GPU adds: PR #2 1.235/1.266/1.232x on all three prompts,
+  #1766 1.146/1.170/1.127x, C+ 1.285/1.340/1.278x.
+- Swapping pr1's prompt order moves the gain: with long_prefill_2 first, PR #2's peer gives long_prefill 1.13x and
+  long_prefill_2 0.93x (the opposite of final27). The peer helps whichever prompt runs second.
+
+**fdec decode tok/s (full model, one sample):**
+
+| | 1 GPU | 2 GPUs |
+|---|---|---|
+| dev | 2.646 | |
+| PR #2 | 2.697 (1.02x) | 3.357 (1.27x) |
+| #1766 | 3.221 (1.22x) | 3.697 (1.40x) |
+| C+ | 3.295 (1.25x) | **4.288 (1.62x; 1.16x #1766 2 GPUs)** |
+
+**C+ fix dec72809 on both 3090s:** `make dsv4-cuda-test` rc=0, "dsv4 peer init: probe, init rollback and retry: OK
+(2 devices)"; b659ac8d had 4 FAILED in final28. Log: [final30/dsv4-cuda-test-cplus-dec72809.log](../manifests/shadowfax-20261026-samebase5/final30/dsv4-cuda-test-cplus-dec72809.log).

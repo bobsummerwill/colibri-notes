@@ -1,0 +1,87 @@
+"/usr/bin/nvcc" -O3 -std=c++17 -ftz=false -arch=sm_86 -Xcompiler=-Wall,-Wextra -DCOLI_DSV4_NO_TC -c backend_cuda_dsv4.cu -o backend_cuda_dsv4.o
+"/usr/bin/nvcc" -O3 -std=c++17 -ftz=false -arch=sm_86 -Xcompiler=-Wall,-Wextra -DCOLI_DSV4_NO_TC tests/test_dsv4_peer_init_cuda.cu -o dsv4_peer_init_cuda_test -lcuda -lcublasLt 
+./dsv4_peer_init_cuda_test
+[DSV4 CUDA] validate device: invalid device ordinal
+[DSV4 CUDA] device 2 did not initialise
+[DSV4 CUDA] validate device: invalid device ordinal
+[DSV4 CUDA] device 2 did not initialise
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] stream: invalid argument
+[DSV4 CUDA] device 0 did not initialise
+[DSV4 CUDA] aux stream: invalid argument
+[DSV4 CUDA] device 0 did not initialise
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] stream: invalid argument
+[DSV4 CUDA] device 1 did not initialise
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] aux stream: invalid argument
+[DSV4 CUDA] device 1 did not initialise
+[DSV4 CUDA] decode state allocation: out of memory
+[DSV4 CUDA] device 0 did not initialise
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] decode state allocation: out of memory
+[DSV4 CUDA] device 1 did not initialise
+[DSV4 CUDA] stream: invalid argument
+[DSV4 CUDA] device 0 did not initialise
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] enable peer access: invalid device ordinal
+[DSV4 CUDA] peer access 0 -> 1 failed
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] enable peer access: invalid device ordinal
+[DSV4 CUDA] peer access 1 -> 0 failed
+[DSV4 CUDA] validate device: invalid device ordinal
+[DSV4 CUDA] device 2 did not initialise
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+probe 0 -> 1: usable
+dsv4 peer init: probe, init rollback and retry: OK (2 devices)
+gcc -O3 -march=native -fopenmp -pthread -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function  -MMD -MP -DCOLI_CUDA tests/test_dsv4_peer_moe_cuda.c backend_cuda_dsv4.o -o dsv4_peer_moe_cuda_test -lm -fopenmp -pthread  -L/usr/lib64 -Wl,-rpath,/usr/lib64 -lcudart -lcublasLt -lcublas -lstdc++
+./dsv4_peer_moe_cuda_test
+  compute (peer compute on): all 64 on-peer masks bit-identical to all-on-primary
+  inplace (peer compute off): all 64 on-peer masks bit-identical to all-on-primary
+  [DSV4 CUDA] peer device 1 failed in the decode MoE (join: too many resources requested for launch); latched off, decode continues on device 0
+  soft: failing call bit-identical (recomputed on the primary); peer reported unhealthy and refused, primary unaffected
+  [DSV4 CUDA] peer device 1 failed in the decode MoE (join: too many resources requested for launch); latched off, decode continues on device 0 (its memory is no longer read)
+  lost: failing call refused (host-data fallback); peer reported unhealthy and refused, primary unaffected
+  [DSV4 CUDA] peer device 1 failed in the decode MoE (join: unspecified launch failure); latched off. The fault is sticky, so device 0's context is lost with it: see the next line
+  [DSV4 CUDA] join: unspecified launch failure is a sticky fault: CUDA is lost for this process, on every device; the GPU paths stay off and the engine runs on the host until the server restarts
+  sticky: failing call refused; CUDA lost for the process, every later call refused (host paths)
+dsv4 peer MoE: OK
+gcc -O3 -march=native -fopenmp -pthread -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function  -MMD -MP -DCOLI_CUDA tests/test_dsv4_bank_bytes_cuda.c backend_cuda_dsv4.o -o dsv4_bank_bytes_cuda_test -lm -fopenmp -pthread  -L/usr/lib64 -Wl,-rpath,/usr/lib64 -lcudart -lcublasLt -lcublas -lstdc++
+./dsv4_bank_bytes_cuda_test
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+dsv4 bank bytes: slot 13369392, 16-slot bank took 204 MiB, mirror 13369344: OK
+gcc -O3 -march=native -fopenmp -pthread -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function  -MMD -MP -DCOLI_CUDA tests/test_dsv4_dense_batch_cuda.c backend_cuda_dsv4.o -o dsv4_cuda_test -lm -fopenmp -pthread  -L/usr/lib64 -Wl,-rpath,/usr/lib64 -lcudart -lcublasLt -lcublas -lstdc++
+./dsv4_cuda_test
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+dsv4 dense batch: OK
+gcc -O3 -march=native -fopenmp -pthread -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function  -MMD -MP -DCOLI_CUDA tests/test_dsv4_attention_batch_cuda.c backend_cuda_dsv4.o -o dsv4_attention_cuda_test -lm -fopenmp -pthread  -L/usr/lib64 -Wl,-rpath,/usr/lib64 -lcudart -lcublasLt -lcublas -lstdc++
+./dsv4_attention_cuda_test
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+dsv4 attention batch: sparse batch SKIP (dsv4_cuda_attention_sparse_batch returned 0 without writing output, as its `return 0` stub does)
+dsv4 attention batch: OK (output projection; sparse batch skipped)
+gcc -O3 -march=native -fopenmp -pthread -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function  -MMD -MP -DCOLI_CUDA tests/test_dsv4_moe_batch_cuda.c backend_cuda_dsv4.o -o dsv4_moe_cuda_test -lm -fopenmp -pthread  -L/usr/lib64 -Wl,-rpath,/usr/lib64 -lcudart -lcublasLt -lcublas -lstdc++
+./dsv4_moe_cuda_test
+dsv4 MoE batch: SKIP (generic build: dsv4_cuda_route_moe_batch needs DeepGEMM)
+gcc -O3 -march=native -fopenmp -pthread -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function  -MMD -MP -DCOLI_CUDA tests/test_dsv4_generic_bitwise_cuda.c backend_cuda_dsv4.o -o dsv4_generic_bitwise_cuda_test -lm -fopenmp -pthread  -L/usr/lib64 -Wl,-rpath,/usr/lib64 -lcudart -lcublasLt -lcublas -lstdc++
+./dsv4_generic_bitwise_cuda_test
+  DSV4_MOE_EXPERT_MAJOR=0: all 45 outputs bit-identical
+  DSV4_MOE_EXPERT_MAJOR=1: all 45 outputs bit-identical
+  DSV4_MOE_EM_TB=2: all 45 outputs bit-identical
+  DSV4_MOE_EM_TB=3: all 45 outputs bit-identical
+  DSV4_MOE_EM_TB=4: all 45 outputs bit-identical
+  DSV4_MOE_EM_TB=6: all 45 outputs bit-identical
+  DSV4_MOE_EXPERT_MAJOR_VERIFY=1 DSV4_MOE_EM_TB=2: all 45 outputs bit-identical
+  DSV4_MOE_EXPERT_MAJOR_VERIFY=1 DSV4_MOE_EM_TB=3: all 45 outputs bit-identical
+  DSV4_MOE_EXPERT_MAJOR_VERIFY=1 DSV4_MOE_EM_TB=4: all 45 outputs bit-identical
+  DSV4_MOE_EXPERT_MAJOR_VERIFY=1 DSV4_MOE_EM_TB=6: all 45 outputs bit-identical
+  DSV4_MM_WARP=0: all 45 outputs bit-identical
+  DSV4_MM_WARP=1: all 45 outputs bit-identical
+  DSV4_MM_WARP=1 DSV4_MM_WARP_VERIFY=1: all 45 outputs bit-identical
+dsv4 generic bitwise: OK
