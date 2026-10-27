@@ -1,4 +1,7 @@
-# Draft: comment for JustVugg/colibri#1766 (NOT POSTED; needs Bob's OK)
+# Comment for JustVugg/colibri#1766: POSTED 2026-10-26 22:51 PDT (Bob's OK)
+
+Posted text (unwrapped): [POSTED_1766_COMMENT_20261026.md](POSTED_1766_COMMENT_20261026.md), issuecomment-6434846016.
+Still to do: edit the comment's C+ table with final33/final34 (e2933955) numbers.
 
 Redrafted 2026-10-26 ~22:00 from the same-base runs (shadowfax final27-final30, computer4 c4m27-c4m29). Replaces the
 04:00 draft (base-mixed; see git history of this file). Data pinned at colibri-notes 0ce4a8b (includes the F1 trace, final31/final32).
@@ -146,6 +149,9 @@ The two parts add up:
 | this branch | 4.818 (1.60x dev) | 3.697 (1.40x dev) |
 | this branch + #2405's peer tier | 6.07 (**2.01x** dev) | 4.288 (**1.62x** dev) |
 
+These are from the merge before the `f4` change (b659ac8d). The run for e2933955 finishes tonight, and I'll update the
+table then.
+
 That suggests landing this branch first and #2405's peer tier on top.
 
 Logs, scripts and per-request numbers:
@@ -155,7 +161,7 @@ Logs, scripts and per-request numbers:
 
 ---
 
-## #2405 "Related" section (our own draft PR): rewrite, NOT APPLIED
+## #2405 "Related" section: superseded by the full rewrite in [PR2_BODY_20261026b.md](PR2_BODY_20261026b.md), applied 22:51
 
 Rewritten from scratch 2026-10-26 ~23:00 (Bob: "rewrite it entirely"). It replaces #2405's whole current "## Related"
 section. Apply only with Bob's OK.

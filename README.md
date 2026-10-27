@@ -17,7 +17,8 @@ OK too. Opened at his request: PR #0 (#2212-#2217), PR #1 (#2264, merged); 2026-
 
 > **Pick up here: [HANDOFF_20261026.md](HANDOFF_20261026.md)** (2026-10-26 evening: the same-base runs of #1766,
 > PR #2 and C+ (#1766 + PR #2's peer tier) are done. C+ is fastest: 2.01x dev on REAP and 1.62x on the full model, with
-> two 3090s. The redrafted #1766 comment and #2405 "Related" section wait for Bob's OK; #2405 is draft, CI green.)
+> two 3090s. The #1766 comment is posted and #2405's description is rewritten (22:51, Bob's OK); #2405 is draft, CI green.
+> C+ with the `f4` fix (e2933955) is being measured, and both texts get its numbers after.)
 > Plan and results: [review/PLAN_SAME_BASE_20261026.md](review/PLAN_SAME_BASE_20261026.md). Before that:
 > [HANDOFF_20261025.md](HANDOFF_20261025.md), [HANDOFF_20261024.md](HANDOFF_20261024.md).
 

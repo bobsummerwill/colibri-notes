@@ -547,3 +547,16 @@ anchors, still at 300 W. Every answer equals the reference texts. Variant trees 
   had the new `f4` faster in a simplified expert-major loop. The real kernels behave differently; the engine
   measurement is what counts.
 - Suggested change for #1766: keep the native FP8 conversion and dev's table `f4`. Same for C+.
+
+## C+ with the f4 fix, and posting (2026-10-26 22:20-23:00)
+- **C+ e2933955** on fork `samebase/cplus`: dec72809 plus dev's table `f4` (#1766's FP8 helpers kept).
+  - nvcc builds it for sm_86 and sm_120; the source and loader tests pass.
+  - On shadowfax it is built as `cw22/f33-cplusf4`, with a logged clean build, 0 diagnostics beyond lto-wrapper.
+- **final33** (shadowfax, full model, one sample each, at 300 W): AB1F, then old C+ (b659ac8d) against fixed C+ on two
+  GPUs and on one (pr1), then DB1F/DC2F/DN2F (fdec). It runs until about 23:35.
+  - First sample: XC2F (old C+, 2 GPUs) is again at 98.4 / 141.6 s to first token.
+- **final34** (shadowfax, REAP): B1, then old against fixed C+, C2/N2 x2 and C1/N1 x1. It waits for final33 (unit
+  cbench-f34) and runs until about 00:50.
+- **Posted at 22:51 with Bob's OK:** the #1766 comment, and #2405's full description rewrite (#2405 still a draft).
+  - Both say their C+ numbers are from before the `f4` fix and will be updated.
+- `make check` on 11c40038 is running on counter. It goes into #2405 when it finishes.
