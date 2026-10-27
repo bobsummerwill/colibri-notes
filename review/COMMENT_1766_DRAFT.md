@@ -7,7 +7,8 @@ To post: `gh pr comment 1766 -R JustVugg/colibri --body-file <the part between t
 Open before posting:
 - [x] F1 cause: traced (final31/final32), filled in.
 - [x] #1766's own unit tests patched to devices {0,1}: filled in (manifests/shadowfax-20261026-samebase5/m1766-unit-tests-01).
-- [ ] Bob: keep or drop the optional last section (this branch together with #2405's peer tier).
+- [x] Bob: keep the C+ section (2026-10-26 ~23:20).
+- [ ] C+ numbers: the table is C+ before the `f4` fix (b659ac8d). Update it from final33/final34 (e2933955) and repin the links.
 
 ---
 
@@ -134,10 +135,11 @@ With every switch off, the branch still decodes at 1.11x dev. That part comes fr
 
 `test_dsv4_multigpu_cuda 0,1` passes on the 3090s.
 
-### Optional (Bob to decide): this branch with #2405's peer tier on top
+### This branch with #2405's peer tier on top ("C+")
 
-I also merged #2405's peer tier onto this branch ([`dec72809`](https://github.com/bobsummerwill/colibri/commits/dec72809)
-on my fork, including fix 2 above). The two parts add up:
+I also merged #2405's peer tier onto this branch. I call the result "C+":
+[`e2933955`](https://github.com/bobsummerwill/colibri/commits/e2933955) on my fork, with fix 2 above and the table `f4`.
+The two parts add up:
 
 | | REAP decode, 2 GPUs | full model decode, 2 GPUs |
 |---|---|---|
