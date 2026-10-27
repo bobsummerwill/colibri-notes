@@ -585,3 +585,4 @@ anchors, still at 300 W. Every answer equals the reference texts. Variant trees 
   - item 4 says it is dev's header;
   - add a pointer to `samebase/m1766-fixes`;
   - update the C+ numbers.
+- **23:07 (Bob's OK): the #1766 comment's items 3 and 4 are corrected** (eight test files; item 4 is dev's header). The fixes-branch pointer and the C+ numbers come after cbench-t35 and final34.

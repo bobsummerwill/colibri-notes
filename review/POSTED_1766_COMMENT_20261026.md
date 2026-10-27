@@ -96,12 +96,12 @@ With every switch off, the branch still decodes at 1.11x dev. That part comes fr
          cudaGetLastError();return 0;}
      ```
 3. **The new CUDA unit tests need device 5.**
-   - These tests hard-code `int devices[]={0,5}`, so on a machine with fewer than six GPUs `assert(dsv4_cuda_init(devices,2))` aborts: `test_dsv4_compressor_cuda`, `_compressor_state_cuda`, `_head_cuda`, `_indexer_prepare_cuda`, `_wo_decode_cuda`, `_resident_indexer`, `_resident_route`.
+   - These tests hard-code devices 0 and 5, so on a machine with fewer than six GPUs `assert(dsv4_cuda_init(devices,2))` aborts: `test_dsv4_compressor_cuda`, `_compressor_state_cuda`, `_head_cuda`, `_indexer_prepare_cuda`, `_wo_decode_cuda`, `_resident_indexer`, `_resident_route`, and `test_dsv4_quant_cuda.cu`, which loops over `{0, 5}`.
    - Reading the device list from the command line, as `test_dsv4_multigpu_cuda` does, would let them run on 1- and 2-GPU machines.
    - `test_dsv4_wo_decode_cuda` also picks device 5 at line 46 (`device == 0 ? 5 : 0`).
    - With both changed to devices 0 and 1, `_head_cuda`, `_wo_decode_cuda`, `_compressor_cuda` and `_compressor_state_cuda` all pass on the two 3090s, and every result is exact.
    - `_resident_indexer` and `_resident_route` have no make target, so I didn't run them.
-4. **`test_dsv4_indexer_prepare_cuda` doesn't build with g++ 13.3.** `ggml_quants.h:134` uses C designated initializers, which g++ rejects in C++ code.
+4. **After the merge with current dev, `test_dsv4_indexer_prepare_cuda` doesn't build with g++ 13.3.** This one isn't the branch's doing. dev has since added `#include "ggml_view.h"` to `native_quant.h`, which brings in `ggml_quants.h`. Its type table (`ggml_quants.h:134`) uses C designated array initializers, which g++ rejects in C++, and this test is the only C++ file that includes `native_quant.h`.
 
 `test_dsv4_multigpu_cuda 0,1` passes on the 3090s.
 
