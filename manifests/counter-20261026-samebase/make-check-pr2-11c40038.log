@@ -4344,4 +4344,2205 @@ python3 -m unittest discover -s tests -p 'test_*.py'
 [api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
 [api] 127.0.0.1 - request failed: private engine diagnostic
 [api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
-............ssssssssssss........................................................................s..................................................................................................................................................................................s......................................
+............ssssssssssss........................................................................s..................................................................................................................................................................................s........................................./usr/lib/python3.14/tempfile.py:484: ResourceWarning: Implicitly cleaning up <HTTPError 400: 'Bad Request'>
+  _warnings.warn(self.warn_message, ResourceWarning)
+.....sssssssss................[gateway] 65536 tokens of context (2.7 GB of conversation state of 16.0 GB); --ctx sets it
+...........[gateway] 65536 tokens of context (2.7 GB of conversation state of 16.0 GB); --ctx sets it
+[qwen36] no RAM plan (no safetensors shards: /tmp/tmp8giyc0vm); 8 expert cache slots/layer, --cap or coli tune sets more
+.[qwen36] no RAM plan (no safetensors shards: /tmp/tmp2399l7p8); 8 expert cache slots/layer, --cap or coli tune sets more
+.[gateway] 65536 tokens of context (2.7 GB of conversation state of 16.0 GB); --ctx sets it
+[qwen36] no RAM plan (no safetensors shards: /tmp/tmpsv19uqt1); 8 expert cache slots/layer, --cap or coli tune sets more
+...........sssssss......................s......ss.sss..........[datapoint] cache eviction skipped: need 129 GB free in /tmp but only 124 GB available. Point TMPDIR (TEMP on Windows) at a larger volume, or pass --no-evict and label the run warm.
+.[datapoint] evicting page cache by writing 2 GB to a temp file (no direct eviction on this platform; --no-evict skips)
+.[datapoint] evicting page cache by writing 9 GB to a temp file (no direct eviction on this platform; --no-evict skips)
+...[datapoint] iobench requested O_DIRECT but got buffered; disk result omitted
+..[datapoint] iobench exited 1; disk result omitted
+......[datapoint] persistent cold request 1/1
+[datapoint] warm-identical upper bound 1/1
+[datapoint] rotating prompt 1/4 (suite 1/4)
+[datapoint] rotating prompt 2/4 (suite 2/4)
+[datapoint] rotating prompt 3/4 (suite 3/4)
+[datapoint] rotating prompt 4/4 (suite 4/4)
+.[datapoint] persistent cold request 1/1
+.......[datapoint] persistent cold request 1/1
+[datapoint] warm-identical upper bound 1/1
+[datapoint] rotating prompt 1/4 (suite 1/4)
+[datapoint] rotating prompt 2/4 (suite 2/4)
+[datapoint] rotating prompt 3/4 (suite 3/4)
+[datapoint] rotating prompt 4/4 (suite 4/4)
+[datapoint] warning: engine teardown did not complete cleanly, results are still valid: Command 'engine' timed out after 5 seconds
+...s.....[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 422 -
+/usr/lib/python3.14/tempfile.py:484: ResourceWarning: Implicitly cleaning up <HTTPError 422: 'Unprocessable Content'>
+  _warnings.warn(self.warn_message, ResourceWarning)
+.[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 422 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 502 -
+/usr/lib/python3.14/tempfile.py:484: ResourceWarning: Implicitly cleaning up <HTTPError 502: 'Bad Gateway'>
+  _warnings.warn(self.warn_message, ResourceWarning)
+[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 502 -
+[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 502 -
+[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 502 -
+.[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /health HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/brio HTTP/1.1" 404 -
+/usr/lib/python3.14/tempfile.py:484: ResourceWarning: Implicitly cleaning up <HTTPError 404: 'Not Found'>
+  _warnings.warn(self.warn_message, ResourceWarning)
+.[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 422 -
+[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 422 -
+[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 422 -
+[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 422 -
+.s...ss.............................................................................................
+    (\      colibri v2.0.0
+     )·>     tiny engine, immense model
+    / \      13 model families · MoE experts streamed from disk · CPU
+             convert
+             
+  ──────────────────────────────────────────────────────────
+  checkpoint: GLM-5.3-Flash -> tools/convert_glm53.py
+  [1/1] model: python3 /home/unagi/colibri-wt/check-pr2/c/tools/convert_glm53.py --repo some/checkpoint --outdir /tmp/tmpvrns_e64 --group-size 64
+
+    (\      colibri v2.0.0
+     )·>     tiny engine, immense model
+    / \      13 model families · MoE experts streamed from disk · CPU
+             convert
+             
+  ──────────────────────────────────────────────────────────
+  checkpoint: GLM-5.3-Flash -> tools/convert_glm53.py
+  [1/1] model: python3 /home/unagi/colibri-wt/check-pr2/c/tools/convert_glm53.py --repo some/checkpoint --outdir /tmp/tmpalk8776j --group-size 128
+
+    (\      colibri v2.0.0
+     )·>     tiny engine, immense model
+    / \      13 model families · MoE experts streamed from disk · CPU
+             convert
+             
+  ──────────────────────────────────────────────────────────
+  checkpoint: GLM-5.3-Flash -> tools/convert_glm53.py
+
+    (\      colibri v2.0.0
+     )·>     tiny engine, immense model
+    / \      13 model families · MoE experts streamed from disk · CPU
+             convert
+             
+  ──────────────────────────────────────────────────────────
+  [1/2] model: python3 /home/unagi/colibri-wt/check-pr2/c/tools/convert_fp8_to_int4.py --repo some/checkpoint --outdir /tmp/tmp83hlteu9 --ebits 4 --io-bits 8 --group-size 64
+  [2/2] int8 MTP head (speculative drafts)
+
+    (\      colibri v2.0.0
+     )·>     tiny engine, immense model
+    / \      13 model families · MoE experts streamed from disk · CPU
+             convert
+             
+  ──────────────────────────────────────────────────────────
+
+    (\      colibri v2.0.0
+     )·>     tiny engine, immense model
+    / \      13 model families · MoE experts streamed from disk · CPU
+             convert
+             
+  ──────────────────────────────────────────────────────────
+  checkpoint: GLM-5.2/5.3 -> tools/convert_fp8_to_int4.py
+  [1/2] model: python3 /home/unagi/colibri-wt/check-pr2/c/tools/convert_fp8_to_int4.py --repo some/checkpoint --outdir /tmp/tmprdt7bcwj --ebits 4 --io-bits 8 --group-size 64
+  [2/2] int8 MTP head (speculative drafts)
+
+    (\      colibri v2.0.0
+     )·>     tiny engine, immense model
+    / \      13 model families · MoE experts streamed from disk · CPU
+             convert
+             
+  ──────────────────────────────────────────────────────────
+  checkpoint: GLM-5.3-Flash -> tools/convert_glm53.py
+  [1/1] model: python3 /home/unagi/colibri-wt/check-pr2/c/tools/convert_glm53.py --repo some/checkpoint --outdir /tmp/tmp23bswqtd --group-size 64
+
+    (\      colibri v2.0.0
+     )·>     tiny engine, immense model
+    / \      13 model families · MoE experts streamed from disk · CPU
+             convert
+             
+  ──────────────────────────────────────────────────────────
+  checkpoint: GLM-5.2/5.3 -> tools/convert_fp8_to_int4.py
+  [1/2] model: python3 /home/unagi/colibri-wt/check-pr2/c/tools/convert_fp8_to_int4.py --repo some/checkpoint --outdir /tmp/tmpr9_ibi5r --ebits 4 --io-bits 8 --group-size 64
+  [2/2] int8 MTP head (speculative drafts)
+
+    (\      colibri v2.0.0
+     )·>     tiny engine, immense model
+    / \      13 model families · MoE experts streamed from disk · CPU
+             convert
+             
+  ──────────────────────────────────────────────────────────
+  checkpoint: GLM-5.2/5.3 -> tools/convert_fp8_to_int4.py
+  [1/1] model: python3 /home/unagi/colibri-wt/check-pr2/c/tools/convert_fp8_to_int4.py --repo some/checkpoint --outdir /tmp/tmp5weu3qnz --ebits 4 --io-bits 8 --group-size 64
+
+    (\      colibri v2.0.0
+     )·>     tiny engine, immense model
+    / \      13 model families · MoE experts streamed from disk · CPU
+             convert
+             
+  ──────────────────────────────────────────────────────────
+  checkpoint: OLMoE -> tools/convert_olmoe_merged.py
+  [1/1] model: python3 /home/unagi/colibri-wt/check-pr2/c/tools/convert_olmoe_merged.py --repo some/checkpoint --outdir /tmp/tmprao6d3oh
+
+    (\      colibri v2.0.0
+     )·>     tiny engine, immense model
+    / \      13 model families · MoE experts streamed from disk · CPU
+             convert
+             
+  ──────────────────────────────────────────────────────────
+  checkpoint: GLM-5.2/5.3 -> tools/convert_fp8_to_int4.py
+  [1/2] model: python3 /home/unagi/colibri-wt/check-pr2/c/tools/convert_fp8_to_int4.py --repo zai-org/GLM-5.2-FP8 --outdir /tmp/tmpf86uw6j0 --ebits 4 --io-bits 8 --group-size 64
+  [2/2] int8 MTP head (speculative drafts)
+
+    (\      colibri v2.0.0
+     )·>     tiny engine, immense model
+    / \      13 model families · MoE experts streamed from disk · CPU
+             convert
+             
+  ──────────────────────────────────────────────────────────
+  checkpoint: GLM-5.3-Flash -> tools/convert_glm53.py
+  [1/1] model: python3 /home/unagi/colibri-wt/check-pr2/c/tools/convert_glm53.py --repo some/checkpoint --outdir /tmp/tmpwu_sdvp7 --group-size 64
+[2mTrying ModelScope...[0m [32m✓[0m 0 shards found
+[2mUsing HuggingFace...[0m .[32m✓[0m 1 shards found
+
+[1mGLM-5.2-FP8 Download (HuggingFace)[0m
+  [2m1 shards · 0 GB · 0/1 complete[0m
+  [2m1 to download · 3 parallel[0m
+  [2mRemaining: 0 GB[0m
+
+  [36m[1/1][0m [2mmodel-00001.safetensors[0m
+  [32m✓[0m model-00001.safetensors [2m— 1/1 · 100.0% · 0s · ETA 0s[0m
+
+[32m==================================================
+  ✓ All 1 shards downloaded![0m
+
+[2mUsing HuggingFace...[0m .[32m✓[0m 1 shards found
+
+[1mGLM-5.2-FP8 Download (HuggingFace)[0m
+  [2m1 shards · 0 GB · 1/1 complete[0m
+  [2m0 to download · 3 parallel[0m
+
+[32m✓ All shards already downloaded![0m
+
+[2mUsing HuggingFace...[0m [32m✓[0m 1 shards found
+
+[1mGLM-5.2-FP8 Download (HuggingFace)[0m
+  [2m1 shards · 0 GB · 0/1 complete[0m
+  [2m1 to download · 3 parallel[0m
+  [2mRemaining: 0 GB[0m
+
+  [36m[1/1][0m [2mmodel-00001.safetensors[0m
+  [32m✓[0m model-00001.safetensors [2m— 1/1 · 100.0% · 0s · ETA 0s[0m
+
+[32m==================================================
+  ✓ All 1 shards downloaded![0m
+
+[2mTrying ModelScope...[0m .[32m✓[0m 1 shards found
+
+[1mGLM-5.2-FP8 Download (ModelScope)[0m
+  [2m1 shards · 0 GB · 0/1 complete[0m
+  [2m1 to download · 3 parallel[0m
+  [2mRemaining: 0 GB[0m
+
+  [36m[1/1][0m [2mmodel-00001.safetensors[0m
+  [32m✓[0m model-00001.safetensors [2m— 1/1 · 100.0% · 0s · ETA 0s[0m
+
+[32m==================================================
+  ✓ All 1 shards downloaded![0m
+
+[2mUsing HuggingFace...[0m .[32m✓[0m 0 shards found
+[33mNo checkpoint shards found. Exiting.[0m
+[2mTrying ModelScope...[0m .[32m✓[0m 0 shards found
+[33mNo checkpoint shards found on ModelScope. Exiting.[0m
+[2mTrying ModelScope...[0m .[33mfailed (offline)[0m
+ModelScope failed and --source ms was set. Exiting.
+[2mUsing HuggingFace...[0m ..[32m✓[0m 1 shards found
+
+[1mGLM-5.2-FP8 Download (HuggingFace)[0m
+  [2m1 shards · 0 GB · 0/1 complete[0m
+  [2m1 to download · 3 parallel[0m
+  [2mRemaining: 0 GB[0m
+
+  [36m[1/1][0m [2mmodel-00001.safetensors[0m
+    [33mretry 1: offline[0m
+    [33mretry 2: offline[0m
+    [33m✗ failed: offline[0m
+  [33m✗ GIVE UP: model-00001.safetensors[0m
+
+[33m  0/1 complete, 1 remaining[0m
+  Missing metadata: config.json, tokenizer.json, tokenizer_config.json, generation_config.json, model.safetensors.index.json
+  Re-run to resume.
+
+[2mUsing HuggingFace...[0m ..[32m✓[0m 1 shards found
+
+[1mGLM-5.2-FP8 Download (HuggingFace)[0m
+  [2m1 shards · 0 GB · 1/1 complete[0m
+  [2m0 to download · 3 parallel[0m
+
+[33mMissing metadata: config.json, tokenizer.json, tokenizer_config.json, generation_config.json, model.safetensors.index.json[0m
+[2mTrying ModelScope...[0m .[32m✓[0m 2 shards found
+
+[1mGLM-5.2-FP8 Download (ModelScope)[0m
+  [2m2 shards · 0 GB · 0/2 complete[0m
+  [2m2 to download · 1 parallel[0m
+  [2mRemaining: 0 GB[0m
+
+  [36m[1/2][0m [2mmodel-00001.safetensors[0m
+  [32m✓[0m model-00001.safetensors [2m— 1/2 · 50.0% · 0s · ETA 0s[0m
+  [36m[2/2][0m [2mmodel-00002.safetensors[0m
+  [32m✓[0m model-00002.safetensors [2m— 2/2 · 100.0% · 0s · ETA 0s[0m
+
+[32m==================================================
+  ✓ All 2 shards downloaded![0m
+
+[2mUsing HuggingFace...[0m [32m✓[0m 1 shards found
+
+[1mGLM-5.2-FP8 Download (HuggingFace)[0m
+  [2m1 shards · 0 GB · 0/1 complete[0m
+  [2m1 to download · 1 parallel[0m
+  [2mRemaining: 0 GB[0m
+
+  [36m[1/1][0m [2mmodel-00001.safetensors[0m
+  [32m✓[0m model-00001.safetensors [2m— 1/1 · 100.0% · 0s · ETA 0s[0m
+
+[32m==================================================
+  ✓ All 1 shards downloaded![0m
+
+[2mTrying ModelScope...[0m .sssssssssssssssssssssssssssssss.....s......................................................../usr/lib/python3.14/unittest/mock.py:806: ResourceWarning: unclosed file <_io.FileIO name=4 mode='rb' closefd=True>
+  def __setattr__(self, name, value):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/usr/lib/python3.14/unittest/mock.py:806: ResourceWarning: unclosed file <_io.FileIO name=6 mode='rb' closefd=True>
+  def __setattr__(self, name, value):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/usr/lib/python3.14/unittest/mock.py:806: ResourceWarning: unclosed file <_io.FileIO name=5 mode='rb' closefd=True>
+  def __setattr__(self, name, value):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/usr/lib/python3.14/unittest/mock.py:806: ResourceWarning: unclosed file <_io.FileIO name=8 mode='rb' closefd=True>
+  def __setattr__(self, name, value):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+...........  [GPU] auto-enabled CUDA · NVIDIA GeForce RTX 5070 Ti · 8.6 GB expert tier
+..  [GPU] coli_cuda.dll present but nvidia-smi not found on PATH (cannot size VRAM); running CPU-only. Add nvidia-smi to PATH or pass --vram N to enable CUDA.
+.  [GPU] coli_cuda.dll present but nvidia-smi not found on PATH (cannot size VRAM); running CPU-only. Add nvidia-smi to PATH or pass --vram N to enable CUDA.
+.  [GPU] auto-enabled CUDA · NVIDIA GeForce RTX 5070 Ti · 14.0 GB expert tier
+.  [GPU] auto-enabled CUDA · NVIDIA GeForce RTX 5070 Ti · 21.5 GB expert tier
+  [GPU] auto-enabled CUDA · NVIDIA GeForce RTX 5070 Ti · 33.0 GB expert tier
+  [GPU] auto-enabled CUDA · NVIDIA GeForce RTX 5070 Ti · 33.0 GB expert tier
+.  [GPU] auto-enabled CUDA · NVIDIA GeForce RTX 5090 · 33.0 GB expert tier
+.......................[smoke] 1 questions
+/home/unagi/colibri-wt/check-pr2/c/tools/eval_glm.py:345: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpu5gzci3f/config.json' mode='r' encoding='UTF-8'>
+  try: mt = json.load(open(os.path.join(snap, "config.json"))).get("model_type", "")
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+total requests: 3 (answer options)
+running: /fake/glm 64
+...[smoke] 1 questions
+total requests: 3 (answer options)
+  example request: 2 2 1 2 1 2 ...
+  example request: 2 2 1 2 1 2 ...
+  example request: 2 2 1 2 1 2 ...
+DRY: request construction and tokenization passed. Engine was not run.
+.EVIDENCE INCOMPLETE before engine launch: no benchmark tasks selected
+.........[smoke] 1 questions
+/home/unagi/colibri-wt/check-pr2/c/tools/eval_glm.py:346: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpiol50fbx/config.json' mode='r' encoding='UTF-8'>
+  except Exception: mt = ""
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+total requests: 3 (answer options)
+EVIDENCE INCOMPLETE before engine launch: cannot derive SCORE vocabulary from /tmp/tmpiol50fbx/config.json: Exceeds the limit (4300 digits) for integer string conversion: value has 4301 digits; use sys.set_int_max_str_digits() to increase the limit
+........[smoke] 1 questions
+/home/unagi/colibri-wt/check-pr2/c/tools/eval_glm.py:345: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmp63m6p0rc/config.json' mode='r' encoding='UTF-8'>
+  try: mt = json.load(open(os.path.join(snap, "config.json"))).get("model_type", "")
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+total requests: 3 (answer options)
+running: /fake/glm 64
+.[smoke] 1 questions
+/home/unagi/colibri-wt/check-pr2/c/tools/eval_glm.py:345: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpfiid7wk_/config.json' mode='r' encoding='UTF-8'>
+  try: mt = json.load(open(os.path.join(snap, "config.json"))).get("model_type", "")
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+total requests: 3 (answer options)
+running: /fake/glm 64
+WARNING: only 2/3 requests scored (engine exited 0); scoring partial results.
+(engine: 0s, 2/3 scored, 4 continuation tokens, exit 0)
+....[smoke] 1 questions
+/home/unagi/colibri-wt/check-pr2/c/tools/eval_glm.py:345: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmp_8qsk7xq/config.json' mode='r' encoding='UTF-8'>
+  try: mt = json.load(open(os.path.join(snap, "config.json"))).get("model_type", "")
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+total requests: 3 (answer options)
+running: /fake/glm 64
+../home/unagi/colibri-wt/check-pr2/c/tools/eval_glm.py:336: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpfyb0kdta/one_empty.jsonl' mode='r' encoding='UTF-8'>
+  docs = [json.loads(l) for l in open(path) if l.strip()]
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+[one_empty] 1 questions
+EVIDENCE INCOMPLETE before engine launch: one_empty question 0 choice 0 has no positive context/continuation token denominator
+/home/unagi/colibri-wt/check-pr2/c/tools/eval_glm.py:336: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpryzei9cn/all_empty.jsonl' mode='r' encoding='UTF-8'>
+  docs = [json.loads(l) for l in open(path) if l.strip()]
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+[all_empty] 1 questions
+EVIDENCE INCOMPLETE before engine launch: all_empty question 0 choice 0 has no positive context/continuation token denominator
+/home/unagi/colibri-wt/check-pr2/c/tools/eval_glm.py:336: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpnp5t_31s/boundary_still_empty.jsonl' mode='r' encoding='UTF-8'>
+  docs = [json.loads(l) for l in open(path) if l.strip()]
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+[boundary_still_empty] 1 questions
+EVIDENCE INCOMPLETE before engine launch: boundary_still_empty question 0 choice 0 has no positive context/continuation token denominator
+/home/unagi/colibri-wt/check-pr2/c/tools/eval_glm.py:336: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmprz6nysf9/mixed_positive_zero.jsonl' mode='r' encoding='UTF-8'>
+  docs = [json.loads(l) for l in open(path) if l.strip()]
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+[mixed_positive_zero] 1 questions
+EVIDENCE INCOMPLETE before engine launch: mixed_positive_zero question 0 choice 1 has no positive context/continuation token denominator
+./home/unagi/colibri-wt/check-pr2/c/tools/eval_glm.py:336: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmp57xtj8ci/empty.jsonl' mode='r' encoding='UTF-8'>
+  docs = [json.loads(l) for l in open(path) if l.strip()]
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+[empty] 0 questions
+total requests: 0 (answer options)
+EVIDENCE INCOMPLETE before engine launch: selected tasks produced zero SCORE requests
+................................................................................s.[api] tool-calls: 1 total, 1 strict, 0 unclosed-recovered, 0 de-mangled [CLEAN]
+.......s.......s..ssssssss...........................s...ssssssssssss...ssssssssssss............................sssss........ss[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 401 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 401 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 401 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+........sssssssss...ss...sss..sssssssssssss............ssss........s.[oracle] token validation FAILED
+.[oracle] target token validation OK
+.............................................................[api] 127.0.0.1 - "GET /metrics HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "GET /metrics HTTP/1.1" 401 -
+.[api] 127.0.0.1 - "GET /metrics HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /metrics HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "GET /metrics HTTP/1.1" 200 -
+.sssssss.....ssssssssssssss.......................s.........................s.......................................s..[32m✓[0m 1 shards found
+
+[1mGLM-5.2-FP8 Download (ModelScope)[0m
+  [2m1 shards · 0 GB · 0/1 complete[0m
+  [2m1 to download · 1 parallel[0m
+  [2mRemaining: 0 GB[0m
+
+  [36m[1/1][0m [2mmodel-00001.safetensors[0m
+  [32m✓[0m model-00001.safetensors [2m— 1/1 · 100.0% · 0s · ETA 0s[0m
+
+[32m==================================================
+  ✓ All 1 shards downloaded![0m
+
+  [CLUSTER] expert worker · 127.0.0.1:9100 · layers 0-1
+  [CLUSTER] expert worker · 127.0.0.1:9100 · layers 0-1
+  [CLUSTER] expert worker · 127.0.0.1:9100 · layers 0-1
+
+task                  n     acc  acc_norm
+smoke                 1  100.0%    100.0%
+
+MEAN acc_norm: 100.0% across 1 tasks
+
+NOTE: compare acc_norm with GLM-5.2's PUBLISHED model-card score. A close result
+      indicates that int4 quantization preserved quality. (Fill REFERENCE in tools/eval_glm.py.)
+  decode is disk-bound: this takes HOURS on slow hardware. Raise --limit on faster machines.
+
+  [1/1] model: /tmp/tmprmvy4_cg/mio_env/Scripts/python.exe /home/unagi/colibri-wt/check-pr2/c/tools/convert_fp8_to_int4.py --repo repo --outdir output --ebits 4 --io-bits 4 --group-size 128
+  wrote model-00000.safetensors (4 tensors)
+.  wrote model-00000.safetensors (1 tensors)
+.ssssssssssssssssssssssssssssssssssssssssssss.........[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 403 -
+.[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 403 -
+.[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 403 -
+.[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+..........[qwen38] RAM plan: 0 expert cache slots/layer, below one token's route; starting at 10 (--cap or --ram sets more)
+[qwen38] RAM plan: 3 expert cache slots/layer, below one token's route; starting at 10 (--cap or --ram sets more)
+[qwen38] RAM plan: 153 expert cache slots/layer; --cap overrides
+[qwen38] no RAM plan (no safetensors shards); 10 expert cache slots/layer, --cap or coli tune sets more
+[qwen36] RAM plan: 0 expert cache slots/layer, below one token's route; starting at 8 (--cap or --ram sets more)
+[qwen36] RAM plan: 3 expert cache slots/layer, below one token's route; starting at 8 (--cap or --ram sets more)
+[qwen36] RAM plan: 153 expert cache slots/layer; --cap overrides
+[qwen36] no RAM plan (no safetensors shards); 8 expert cache slots/layer, --cap or coli tune sets more
+.[qwen36] RAM plan: 153 expert cache slots/layer; --cap overrides
+[qwen38] RAM plan: 153 expert cache slots/layer; --cap overrides
+.[qwen36] no RAM plan (no safetensors shards); 8 expert cache slots/layer, --cap or coli tune sets more
+[qwen36] RAM plan: 0 expert cache slots/layer, below one token's route; starting at 8 (--cap or --ram sets more)
+[qwen38] no RAM plan (no safetensors shards); 1 expert cache slots/layer, --cap or coli tune sets more
+[qwen38] RAM plan: 0 expert cache slots/layer, below one token's route; starting at 1 (--cap or --ram sets more)
+....[v41] RAM plan: 96 expert cache slots/layer; --cap overrides
+[v41] RAM plan: 96 expert cache slots/layer; --cap overrides
+[v41] RAM plan: 96 expert cache slots/layer; --cap overrides
+...[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+.[qwen36] no RAM plan (cannot read config.json: /home/unagi/colibri-wt/check-pr2/c/model
+  coli picks the engine from config.json, so nothing runs without it. Copy the
+  checkpoint's config.json (with tokenizer.json and model.safetensors.index.json)
+  from the model repo next to the shards. An image model (a diffusers pipeline)
+  carries model_index.json instead.); 8 expert cache slots/layer, --cap or coli tune sets more
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+...[api] 127.0.0.1 - "GET /health HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /health HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /health HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /health HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /health HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "GET /health HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /health HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "GET /health HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /health HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "GET /health HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 500 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 500 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 500 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - Request timed out: TimeoutError('timed out')
+[api] 127.0.0.1 - Request timed out: TimeoutError('timed out')
+[api] 127.0.0.1 - Request timed out: TimeoutError('timed out')
+.[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - "GET /health HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /health HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /health HTTP/1.1" 200 -
+.[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - refused: per-address cap 3
+[api] 127.0.0.1 - "GET /health HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /health HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /health HTTP/1.1" 200 -
+.............[api] deepseek_v4: DSML tool_calls parse failed (Tool call format error: expected '>\n' but got '>') -- treating as plain content
+......[api] 1: the client left while the engine was reading the prompt; cancelling, the slot frees when the engine stops
+[api] 1: the engine stopped 0.0 s after the cancel; the slot is free
+.[api] 1: the client left while the engine was reading the prompt; cancelling, the slot frees when the engine stops
+[api] 1: the engine stopped 0.0 s after the cancel; the slot is free
+.................colibri: the engine dispatcher stopped: colibri engine exited unexpectedly (killed by signal 9, SIGKILL, most often the out-of-memory killer)
+..........[api] tool-calls: 1 total (kimi_k3 XTML)
+..colibri: the engine dispatcher stopped: invalid engine DATA size
+.....colibri: the engine dispatcher stopped: invalid engine response: LOGPROB 1 0.5
+..[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 500 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 500 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 500 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 500 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 500 -
+.....[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 200 -
+...........[gateway] the engine stopped (it exited); starting it again
+.colibri: the engine dispatcher stopped: colibri engine exited unexpectedly (killed by signal 9, SIGKILL, most often the out-of-memory killer)
+.[api] 127.0.0.1 - "GET /health HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /health HTTP/1.1" 503 -
+[api] 127.0.0.1 - "GET /health HTTP/1.1" 503 -
+[api] 127.0.0.1 - "GET /health HTTP/1.1" 503 -
+[api] 127.0.0.1 - "GET /health HTTP/1.1" 200 -
+.[gateway] the engine stopped (it exited); starting it again
+[gateway] the engine is running again (restart 1)
+.[gateway] the engine stopped (it exited); starting it again
+[gateway] the engine did not start (colibri engine exited unexpectedly); trying again in 0.05 s
+[gateway] the engine did not start (colibri engine exited unexpectedly); trying again in 0.08 s
+[gateway] the engine is running again (restart 1)
+.....[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] tool-calls: 1 total, 1 strict, 0 unclosed-recovered, 0 de-mangled [CLEAN]
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "OPTIONS /v1/chat/completions HTTP/1.1" 204 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "GET /health HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "GET /health HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /health HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /health HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 401 -
+.[api] 127.0.0.1 - request failed: injected failure
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 500 -
+[api] 127.0.0.1 - "GET /metrics HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "GET /metrics HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /metrics HTTP/1.1" 401 -
+[api] 127.0.0.1 - "GET /metrics HTTP/1.1" 401 -
+[api] 127.0.0.1 - "GET /metrics HTTP/1.1" 401 -
+.[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models/test-model HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "GET /profile HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /profile HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+.......[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - request failed: engine died mid-stream
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 401 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 403 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 401 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 403 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 401 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 403 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 401 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 403 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - request failed: engine died mid-stream
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 200 -
+[api] 127.0.0.1 - request failed: engine died mid-stream
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 404 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+..[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+..................[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 500 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] tool-calls: 1 total, 1 strict, 0 unclosed-recovered, 0 de-mangled [CLEAN]
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] tool-calls: 1 total, 1 strict, 0 unclosed-recovered, 0 de-mangled [CLEAN]
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+..[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+....[api] 1: the client left while the engine was generating; cancelling, the slot frees when the engine stops
+.[api] 1: the client left while the engine was generating; cancelling, the slot frees when the engine stops
+...[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 503 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] tool-calls: 1 total, 1 strict, 0 unclosed-recovered, 0 de-mangled [CLEAN]
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] tool-calls: 1 total, 1 strict, 0 unclosed-recovered, 0 de-mangled [CLEAN]
+.[api] tool-calls: 1 total, 1 strict, 0 unclosed-recovered, 0 de-mangled [CLEAN]
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] 1: the client left while the engine was generating; cancelling, the slot frees when the engine stops
+[api] 1: the engine stopped 0.0 s after the cancel; the slot is free
+....................[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 429 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+...................[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models/test-model HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /health HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models/test-model HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /health HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models/test-model HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /health HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.................[api] tool-calls: 1 total, 1 strict, 0 unclosed-recovered, 0 de-mangled [CLEAN]
+.[api] 127.0.0.1 - "GET /%00 HTTP/1.1" 404 -
+.[api] 127.0.0.1 - "GET / HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /%2e%2e/dist-private/secret.txt HTTP/1.1" 404 -
+................[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+...[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 502 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 502 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+.............[api] tool-calls: 1 total (kimi_k3 XTML)
+.[api] tool-calls: 1 total (kimi_k3 XTML)
+.............s...................[api] tool-calls: 1 total, 1 strict, 0 unclosed-recovered, 0 de-mangled [CLEAN]
+.[api] tool-calls: 1 total, 1 strict, 0 unclosed-recovered, 0 de-mangled [CLEAN]
+.[api] tool-calls: 1 total, 1 strict, 0 unclosed-recovered, 0 de-mangled [CLEAN]
+.[api] tool-calls: 1 total, 1 strict, 0 unclosed-recovered, 0 de-mangled [CLEAN]
+...............[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+..................[api] tool-calls: 1 total, 0 strict, 1 unclosed-recovered, 0 de-mangled [RECOVERED]
+.[api] tool-calls: 2 total, 1 strict, 1 unclosed-recovered, 0 de-mangled [RECOVERED]
+.[api] tool-calls: 1 total, 0 strict, 1 unclosed-recovered, 0 de-mangled [RECOVERED]
+.[api] tool-calls: 1 total, 0 strict, 1 unclosed-recovered, 0 de-mangled [RECOVERED]
+.[api] tools declared and tool-call markers present, but no call parsed -- output may be quantization-mangled; try COLI_TOOL_SALVAGE=1
+.[api] tool-calls: 1 total, 0 strict, 1 unclosed-recovered, 0 de-mangled [RECOVERED]
+.[api] tools declared and tool-call markers present, but no call parsed -- output may be quantization-mangled; try COLI_TOOL_SALVAGE=1
+.[api] tool-calls: 1 total, 1 strict, 0 unclosed-recovered, 0 de-mangled [CLEAN]
+.....[api] 127.0.0.1 - request failed: failed to write SUBMIT to the engine (broken pipe)
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 500 -
+/usr/lib/python3.14/tempfile.py:484: ResourceWarning: Implicitly cleaning up <HTTPError 500: 'Internal Server Error'>
+  _warnings.warn(self.warn_message, ResourceWarning)
+.[api] 127.0.0.1 - request failed: failed to write SUBMIT to the engine (broken pipe)
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 500 -
+.[api] 127.0.0.1 - request failed: failed to write STOP to the engine (broken pipe)
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 500 -
+.[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - request failed: failed to write STOP to the engine (broken pipe)
+.........../usr/lib/python3.14/tempfile.py:484: ResourceWarning: Implicitly cleaning up <HTTPError 400: 'Bad Request'>
+  _warnings.warn(self.warn_message, ResourceWarning)
+..............[api] deepseek_v41: DSML tool calls parse failed (Tool name format error: ' name="f"') -- treating as plain content
+............................................................................................................ssssssssssss.....ss..ssssssssssss.........s...ssssssssssssssssss.ssssssss[qwenimage-stub] loading /tmp/tmpvld2nq2a/qwen-image (stub: no weights are read)
+[api] 127.0.0.1 - "GET /health HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 200 -
+[qwenimage-stub] stdin closed, exiting
+.........................................[qwenimage-stub] loading /tmp/tmp43_53yp_/qwen-image (stub: no weights are read)
+[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 401 -
+/usr/lib/python3.14/tempfile.py:484: ResourceWarning: Implicitly cleaning up <HTTPError 401: 'Unauthorized'>
+  _warnings.warn(self.warn_message, ResourceWarning)
+[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 401 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 401 -
+.[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 500 -
+[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 500 -
+[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 403 -
+/usr/lib/python3.14/tempfile.py:484: ResourceWarning: Implicitly cleaning up <HTTPError 403: 'Forbidden'>
+  _warnings.warn(self.warn_message, ResourceWarning)
+[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models/qwen-image-2.1-colibri HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 404 -
+/usr/lib/python3.14/tempfile.py:484: ResourceWarning: Implicitly cleaning up <HTTPError 404: 'Not Found'>
+  _warnings.warn(self.warn_message, ResourceWarning)
+.[qwenimage-stub] stdin closed, exiting
+[qwenimage-stub] loading /tmp/tmp4n2e95xa/qwen-image (stub: no weights are read)
+[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 503 -
+/usr/lib/python3.14/tempfile.py:484: ResourceWarning: Implicitly cleaning up <HTTPError 503: 'Service Unavailable'>
+  _warnings.warn(self.warn_message, ResourceWarning)
+[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 200 -
+[qwenimage-stub] stdin closed, exiting
+.[qwenimage-stub] loading /tmp/tmp69qr_wel/qwen-image (stub: no weights are read)
+[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 200 -
+[qwenimage-stub] stdin closed, exiting
+.[qwenimage-stub] loading /tmp/tmpdm7b4l_n/qwen-image (stub: no weights are read)
+[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 200 -
+[qwenimage-stub] crashing on purpose (__stub_crash__)
+[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 503 -
+.[api] 127.0.0.1 - "POST /v1/images/generations HTTP/1.1" 400 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 400 -
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 400 -
+.[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 200 -
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 200 -
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 200 -
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 200 -
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 200 -
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 200 -
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 200 -
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 200 -
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 200 -
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 200 -
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 200 -
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 200 -
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 200 -
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/messages HTTP/1.1" 200 -
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+....[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+.[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+.[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+.[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+.[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+[api] qwen tool markers present but no call parsed -- possibly truncated or mangled output
+.sssssssssssssssssss..ssssss.[api] 127.0.0.1 - request failed: engine operation timed out
+[api] 127.0.0.1 - "POST /v1/completions HTTP/1.1" 500 -
+...[api] 127.0.0.1 - request read deadline exceeded
+...................................................................................................................................[v41] RAM plan: 65 expert cache slots/layer; --cap overrides
+[v41] RAM plan: 128 expert cache slots/layer; --cap overrides
+[v41] RAM plan: 128 expert cache slots/layer; --cap overrides
+.....................................sssss...[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+...................................................................................................................................................[api] 127.0.0.1 - "GET /health HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /health HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /profile HTTP/1.1" 200 -
+[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 401 -
+...........
+setup stopped: the qwen36 CPU build failed (full log: /tmp/tmpigudpea5/home/logs/build-cpu.log):
+    make: *** [Makefile:949: backend_cuda.o] Error 1
+........
+download stopped: model-00000.safetensors: connection closed at 150000 of 400000 bytes (rerun to continue from 150000 of 400000 bytes)
+Run the same command again to continue.
+..
+setup stopped: the CUDA 13.0 toolkit cannot build for the Tesla V100-SXM2-16GB (compute 7.0, dropped in CUDA 13): install a CUDA 12.x toolkit for the CUDA path, or run with --backend auto to use Vulkan
+...
+download stopped: model-00000.safetensors: connection closed at 150000 of 400000 bytes (rerun to continue from 150000 of 400000 bytes)
+Run the same command again to continue.
+.
+setup stopped: --ctx must be a number of tokens, or 0 for the automatic context
+............
+setup stopped: the qwen36 CUDA build failed (full log: /tmp/tmpthqytrev/home/logs/build-cuda.log):
+    make: *** [Makefile:949: backend_cuda.o] Error 1
+...................................................................s......../usr/lib/python3.14/unittest/suite.py:107: ResourceWarning: unclosed file <_io.TextIOWrapper name=6 encoding='UTF-8'>
+  for index, test in enumerate(self):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/usr/lib/python3.14/unittest/suite.py:107: ResourceWarning: unclosed file <_io.TextIOWrapper name=4 encoding='UTF-8'>
+  for index, test in enumerate(self):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+.s...............[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+.ss[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 502 -
+/usr/lib/python3.14/tempfile.py:484: ResourceWarning: Implicitly cleaning up <HTTPError 502: 'Bad Gateway'>
+  _warnings.warn(self.warn_message, ResourceWarning)
+.[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 502 -
+.[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 422 -
+/usr/lib/python3.14/tempfile.py:484: ResourceWarning: Implicitly cleaning up <HTTPError 422: 'Unprocessable Content'>
+  _warnings.warn(self.warn_message, ResourceWarning)
+.[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 422 -
+.[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 422 -
+.[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+..[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "GET /v1/models HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+[systemone] WARNING: normalize=mean with unequal option token counts (a b=2, c=1) — per-token averages favor multi-token options; consider normalize=sum
+[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 422 -
+.[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 200 -
+.[api] 127.0.0.1 - "POST /v1/brio HTTP/1.1" 404 -
+/usr/lib/python3.14/tempfile.py:484: ResourceWarning: Implicitly cleaning up <HTTPError 404: 'Not Found'>
+  _warnings.warn(self.warn_message, ResourceWarning)
+.[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 422 -
+[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 422 -
+[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 422 -
+[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 422 -
+[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 422 -
+.[api] 127.0.0.1 - "POST /v1/systemone HTTP/1.1" 422 -
+.............................ss.............  [TUNE] applied measured profile · +20.0% calibration throughput
+  [TUNE] applied measured profile · +20.0% calibration throughput
+  [TUNE] applied measured profile · +20.0% calibration throughput
+..............................................................s.....................
+----------------------------------------------------------------------
+Ran 2775 tests in 170.093s
+
+OK (skipped=320)
+  nothing running — no serve on port 9123, no SERVE engines
+make[2]: Leaving directory '/home/unagi/colibri-wt/check-pr2/c'
+make[1]: Leaving directory '/home/unagi/colibri-wt/check-pr2/c'
+make: Leaving directory '/home/unagi/colibri-wt/check-pr2/c'
+EXIT=0
