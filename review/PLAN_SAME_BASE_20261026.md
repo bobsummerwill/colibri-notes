@@ -560,3 +560,28 @@ anchors, still at 300 W. Every answer equals the reference texts. Variant trees 
 - **Posted at 22:51 with Bob's OK:** the #1766 comment, and #2405's full description rewrite (#2405 still a draft).
   - Both say their C+ numbers are from before the `f4` fix and will be updated.
 - `make check` on 11c40038 is running on counter. It goes into #2405 when it finishes.
+
+## Fixes branch for #1766, and C+ test fixes (2026-10-26 ~23:05)
+- **Fork `samebase/m1766-fixes` 28b35786** = `samebase/m1766` (ecc92586, the measured M, unchanged) plus four commits:
+  1. aa1b4f52 `dsv4_cuda_init`: a refused device leaves no stale CUDA error. Hand-written for #1766: C+'s dec72809 builds
+     on PR #2's init_fail, so it doesn't cherry-pick.
+  2. 7411d188 `f4`: table decode again. This is C+'s e2933955 with the internal run names dropped from the comment.
+  3. 2c675407 the dsv4 CUDA tests take two devices from `DSV4_TEST_DEVICES` (default 0,1), through #1766's own
+     `coli_v4_gpu_devices_parse`.
+     - It covers eight tests, not the seven the posted comment lists: `test_dsv4_quant_cuda.cu` also looped over {0,5}.
+  4. 28b35786 `native_quant.h`: the GGUF helpers are C only.
+     - **Correction to the posted comment's item 4:** the g++ build break is not #1766's doing. At #1766's head,
+       native_quant.h includes no ggml header. dev later added `#include "ggml_view.h"` → ggml_quants.h, whose type
+       table uses C99 designated array initializers.
+     - #1766's test_dsv4_indexer_prepare_cuda.cpp is the only C++ includer, so it breaks only after the merge.
+- **C+ `samebase/cplus` 66982895** = e2933955 + commits 3 and 4 (cherry-picked) + an f4 comment wording change. No
+  engine change from e2933955, which final33/34 measure.
+- Checks on counter: the C++ tests pass a syntax check, and the source and loader tests pass.
+- **GPU check queued:** shadowfax unit `cbench-t35` (`~/colibri-bench/t35.sh`). It runs after cbench-f34 (~00:40) and
+  builds both tips. It runs the 8 unit tests with `DSV4_TEST_DEVICES=0,1`, a bad pair (0,7) and a single device (both
+  must be refused), and `dsv4-cuda-test` on C+.
+- Then edit the posted #1766 comment:
+  - item 3 lists eight files;
+  - item 4 says it is dev's header;
+  - add a pointer to `samebase/m1766-fixes`;
+  - update the C+ numbers.
