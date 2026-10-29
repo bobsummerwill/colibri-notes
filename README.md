@@ -4,7 +4,7 @@
 > fixes opened as JustVugg/colibri [#2212](https://github.com/JustVugg/colibri/pull/2212) (0a), [#2213](https://github.com/JustVugg/colibri/pull/2213) (0b), [#2214](https://github.com/JustVugg/colibri/pull/2214) (0c), [#2215](https://github.com/JustVugg/colibri/pull/2215) (0d),
 > [#2216](https://github.com/JustVugg/colibri/pull/2216) (0e) and [#2217](https://github.com/JustVugg/colibri/pull/2217) (0f). **PR #1** (batched GPU prefill for expert-pruned checkpoints) is
 > [#2264](https://github.com/JustVugg/colibri/pull/2264), opened 2026-10-20, **merged 2026-10-24** in JustVugg's batch [#2360](https://github.com/JustVugg/colibri/pull/2360) (merge commit 60a73ec; dev 561966e).
-> **PR #2** (two-GPU decode) is not opened yet. Documents dated before 2026-10-17 describe earlier
+> **PR #2** (two-GPU decode) is [#2405](https://github.com/JustVugg/colibri/pull/2405), opened as a draft 2026-10-26, **marked ready 2026-10-29**. Documents dated before 2026-10-17 describe earlier
 > versions of these changes, on the old base 7b55a9b3.
 
 Project notebook for Bob Summerwill's work on [colibri](https://github.com/JustVugg/colibri) (pure-C/CUDA engine that runs huge MoE models by streaming experts from NVMe and caching hot experts in RAM/VRAM), done with Claude Code on 2026-10-12..14. Not branch-specific; the code lives in the fork [bobsummerwill/colibri](https://github.com/bobsummerwill/colibri).
@@ -13,14 +13,36 @@ Project notebook for Bob Summerwill's work on [colibri](https://github.com/JustV
 fork (`--force-with-lease`); Bob decides what is opened and when, and comments on other people's upstream PRs need his
 OK too. Opened at his request: PR #0 (#2212-#2217), PR #1 (#2264, merged); 2026-10-25: issues #2399 (fix A) and
 #2400 (fix B), PRs #2401 (fix A), #2402 (fix B), #2403 (test_vk_chain initializers), #2404 (`COLI_VK_SUBGROUP=n`);
-2026-10-26: draft PR #2405 (PR #2, on #2401).
+2026-10-26: draft PR #2405 (PR #2, on #2401); 2026-10-29: #2405 marked ready, with a comment.
 
-> **Pick up here: [HANDOFF_20261026.md](HANDOFF_20261026.md)** (2026-10-26 evening: the same-base runs of #1766,
+> **Pick up here: [HANDOFF_20261026.md](HANDOFF_20261026.md)**, top section "2026-10-29" (#2405 merged with dev d68e16b6,
+> re-checked, re-benchmarked (final36: same 1.03x/1.44x/1.02x/1.27x), **marked ready** with a merge-order comment).
+> Earlier (2026-10-26 evening: the same-base runs of #1766,
 > PR #2 and C+ (#1766 + PR #2's peer tier) are done. C+ is fastest: 2.01x dev on REAP and 1.62x on the full model, with
 > two 3090s. The #1766 comment is posted and #2405's description is rewritten (22:51, Bob's OK); #2405 is draft, CI green.
 > C+ with the `f4` fix (e2933955) is being measured, and both texts get its numbers after.)
 > Plan and results: [review/PLAN_SAME_BASE_20261026.md](review/PLAN_SAME_BASE_20261026.md). Before that:
 > [HANDOFF_20261025.md](HANDOFF_20261025.md), [HANDOFF_20261024.md](HANDOFF_20261024.md).
+
+## Status (2026-10-29, early morning; computer4 + shadowfax)
+- **#2405 (PR #2) is ready for review.** `docs5/pr2-two-gpu-decode` = **f1e56b00**: upstream dev d68e16b6 merged into
+  11c40038, **no conflicts**. Pushed to the fork (fast-forward). Description rewritten for the new base:
+  [review/POSTED_2405_BODY_20261029.md](review/POSTED_2405_BODY_20261029.md); comment:
+  [review/POSTED_2405_COMMENT_20261029.md](review/POSTED_2405_COMMENT_20261029.md).
+- **Checks on f1e56b00 (computer4, gcc 13.3.0):** `make check` 2,795 OK (305 skipped); `-Wall -Wextra` on `deepseek_v4.c`
+  (GPU tier, and `-DCOLI_VULKAN`) and `test_deepseek_v4.c`: 0 diagnostics. shadowfax CUDA build (sm_86, NO_TC): 0 warnings.
+- **final36 (shadowfax, 2x 3090, power limits now 500/450 W, final27-34 ran at 300 W), GATES: PASS, all texts identical:**
+  REAP P1/B1 1.028x, P2/B1 1.436x (4.329 vs 3.016); full fdec DP1F 1.022x, DP2F 1.268x (3.348 vs 2.642); long-prompt
+  TTFT 1.00x; S7 sticky fault: all 6 answers complete; `dsv4-cuda-test` and `cuda-test` rc=0; tabby restored healthy.
+  Same as the c1c06ac6 runs within 0.3%, so the higher power limit changes nothing here.
+  [manifests/shadowfax-20261028/final36](manifests/shadowfax-20261028/final36) (bench.tgz on shadowfax,
+  sha256 463e29ae...).
+- **Merge order vs #1766:** independent (no shared commits); textual conflicts in 5 files (`c/Makefile`,
+  `c/backend_cuda_dsv4.cu`, `c/deepseek_v4.c`, `c/deepseek_v4_internal.h`, `docs/deepseek-v4.md`) for whichever lands
+  second. #1766 (ca55947c) already conflicts with dev. Resolution reference: `samebase/cplus` 66982895 (on c1c06ac6).
+  Bob's 2026-10-28 #1766 comment ([6462594190](https://github.com/JustVugg/colibri/pull/1766#issuecomment-6462594190))
+  offers the cherry-pick or a combined series.
+- shadowfax's `llama-server-active` now runs TabbyAPI; the harness stops and restores it unchanged.
 
 ## Status (2026-10-24, night; counter)
 - **All three branches are on dev 561966e**, done on counter (`~/Projects/colibri`) and

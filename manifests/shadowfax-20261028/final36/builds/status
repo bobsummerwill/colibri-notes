@@ -1,0 +1,3 @@
+f36-base d68e16b6 EXIT=0 end=2026-10-28T23:27:27-07:00 warnings=0 bin=b3845277e5477ec6
+f36-pr2 f1e56b00 EXIT=0 end=2026-10-28T23:27:48-07:00 warnings=0 bin=d506cd1fb0e2153d
+done-cuda

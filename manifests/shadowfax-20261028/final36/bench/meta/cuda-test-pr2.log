@@ -1,0 +1,416 @@
+make: Entering directory '/home/maplemercury/colibri-bench/cw22/f36-pr2/c'
+"/usr/bin/nvcc" -O3 -std=c++17 -ftz=false -arch=sm_86 -Xcompiler=-Wall,-Wextra -DCOLI_DSV4_NO_TC backend_cuda.cu tests/test_backend_cuda.cu -o backend_cuda_test  
+backend_cuda.cu: In function ‘int group_moe_ok(const GroupDesc*, int, int, int, int)’:
+backend_cuda.cu:2304:63: warning: unused parameter ‘total’ [-Wunused-parameter]
+ 2304 | static int group_moe_ok(const GroupDesc *host, int count, int total, int D, int I) {
+      |                                                           ~~~~^~~~~
+./backend_cuda_test
+[CUDA] device 0: NVIDIA GeForce RTX 3090, 25.3 GB VRAM, sm_86
+expecting one out-of-memory line next (deliberate ~16 TB negative case):
+[CUDA] tensor allocation: out of memory
+cuda backend: q8/q4/q2/f32/e8 correctness ok on 1 device(s)
+"/usr/bin/nvcc" -O3 -std=c++17 -ftz=false -arch=sm_86 -Xcompiler=-Wall,-Wextra -DCOLI_DSV4_NO_TC tests/test_cuda_init_failure.cu -o cuda_init_failure_test  
+tests/../backend_cuda.cu: In function ‘int group_moe_ok(const GroupDesc*, int, int, int, int)’:
+tests/../backend_cuda.cu:2304:63: warning: unused parameter ‘total’ [-Wunused-parameter]
+ 2304 | static int group_moe_ok(const GroupDesc *host, int count, int total, int D, int I) {
+      |                                                           ~~~~^~~~~
+./cuda_init_failure_test
+[CUDA] duplicate device 0
+[CUDA] invalid device 2 (available: 0..1)
+[CUDA] stream creation: out of memory
+[CUDA] device 0: NVIDIA GeForce RTX 3090, 25.3 GB VRAM, sm_86
+[CUDA] stream creation: out of memory
+[CUDA] select device: out of memory
+[CUDA] device properties: out of memory
+[CUDA] device 0: NVIDIA GeForce RTX 3090, 25.3 GB VRAM, sm_86
+[CUDA] select device: out of memory
+[CUDA] device 0: NVIDIA GeForce RTX 3090, 25.3 GB VRAM, sm_86
+[CUDA] device properties: out of memory
+[CUDA] device 0: NVIDIA GeForce RTX 3090, 25.3 GB VRAM, sm_86
+[CUDA] device 1: NVIDIA GeForce RTX 3090, 25.3 GB VRAM, sm_86
+[CUDA] invalid device 2 (available: 0..1)
+[CUDA] duplicate device 0
+[CUDA] device list change requires shutdown first
+[CUDA] device list change requires shutdown first
+[CUDA] duplicate device 0
+[CUDA] invalid device 2 (available: 0..1)
+[CUDA] stream creation: out of memory
+[CUDA] device 0: NVIDIA GeForce RTX 3090, 25.3 GB VRAM, sm_86
+[CUDA] stream creation: out of memory
+[CUDA] select device: out of memory
+[CUDA] device properties: out of memory
+[CUDA] device 0: NVIDIA GeForce RTX 3090, 25.3 GB VRAM, sm_86
+[CUDA] select device: out of memory
+[CUDA] device 0: NVIDIA GeForce RTX 3090, 25.3 GB VRAM, sm_86
+[CUDA] device properties: out of memory
+[CUDA] device 0: NVIDIA GeForce RTX 3090, 25.3 GB VRAM, sm_86
+[CUDA] device 1: NVIDIA GeForce RTX 3090, 25.3 GB VRAM, sm_86
+[CUDA] invalid device 2 (available: 0..1)
+[CUDA] duplicate device 0
+[CUDA] device list change requires shutdown first
+[CUDA] device list change requires shutdown first
+CUDA initialization rollback: PASS
+"/usr/bin/nvcc" -O3 -std=c++17 -ftz=false -arch=sm_86 -Xcompiler=-Wall,-Wextra -DCOLI_DSV4_NO_TC backend_cuda.cu tests/test_ragged_attention.cu -o ragged_attention_test 
+backend_cuda.cu: In function ‘int group_moe_ok(const GroupDesc*, int, int, int, int)’:
+backend_cuda.cu:2304:63: warning: unused parameter ‘total’ [-Wunused-parameter]
+ 2304 | static int group_moe_ok(const GroupDesc *host, int count, int total, int D, int I) {
+      |                                                           ~~~~^~~~~
+./ragged_attention_test
+[CUDA] device 0: NVIDIA GeForce RTX 3090, 25.3 GB VRAM, sm_86
+ragged_relative_rms=0 ragged_g64_relative_rms=0 warm_ms=2.445 cross_page_growth_ms=0.065 grow_1024_ms=1.272 steady_1024_ms=0.163
+# weight_at's device-side refusal (the __trap()) on real silicon. The
+# host-side half is tests/test_cuda_fmt_guard.c, which runs in the CPU
+# suite and cannot execute device code. Includes backend_cuda.cu itself:
+# weight_at is file-static, and the trap is unreachable through the public
+# API by design. Re-execs itself per probe (the trap poisons the context).
+"/usr/bin/nvcc" -O3 -std=c++17 -ftz=false -arch=sm_86 -Xcompiler=-Wall,-Wextra -DCOLI_DSV4_NO_TC tests/test_cuda_fmt_trap_cuda.cu -o cuda_fmt_trap_test  
+tests/../backend_cuda.cu: In function ‘int group_moe_ok(const GroupDesc*, int, int, int, int)’:
+tests/../backend_cuda.cu:2304:63: warning: unused parameter ‘total’ [-Wunused-parameter]
+ 2304 | static int group_moe_ok(const GroupDesc *host, int count, int total, int D, int I) {
+      |                                                           ~~~~^~~~~
+./cuda_fmt_trap_test
+[CUDA] device 0: NVIDIA GeForce RTX 3090, 25.3 GB VRAM, sm_86
+-- control: supported formats decode (in-process)
+ok   fmt=0      supported: decoded in-process, weight_at = -2.87352e-16
+ok   fmt=1      supported: decoded in-process, weight_at = -91
+ok   fmt=2      supported: decoded in-process, weight_at = 5
+ok   fmt=3      supported: decoded in-process, weight_at = -1
+ok   fmt=4      supported: decoded in-process, weight_at = 5
+ok   fmt=8      supported: decoded in-process, weight_at = -0.203125
+-- the guard: dispatch must agree with the host predicate, per fmt
+[CUDA] device 0: NVIDIA GeForce RTX 3090, 25.3 GB VRAM, sm_86
+  [child fmt=0] weight_at RETURNED -2.87352e-16
+ok   fmt=0      f32 (child-harness control): predicate says decode, silicon agrees (child exit 43)
+[CUDA] device 0: NVIDIA GeForce RTX 3090, 25.3 GB VRAM, sm_86
+  [child fmt=3] weight_at RETURNED -1
+ok   fmt=3      int2 (child-harness control): predicate says decode, silicon agrees (child exit 43)
+[CUDA] device 0: NVIDIA GeForce RTX 3090, 25.3 GB VRAM, sm_86
+  [child fmt=5] launch aborted: launch=no error sync=unspecified launch failure
+ok   fmt=5      int3-g64: predicate says refuse, silicon agrees (child exit 42)
+[CUDA] device 0: NVIDIA GeForce RTX 3090, 25.3 GB VRAM, sm_86
+  [child fmt=6] launch aborted: launch=no error sync=unspecified launch failure
+ok   fmt=6      E8/IQ3: predicate says refuse, silicon agrees (child exit 42)
+[CUDA] device 0: NVIDIA GeForce RTX 3090, 25.3 GB VRAM, sm_86
+  [child fmt=7] launch aborted: launch=no error sync=unspecified launch failure
+ok   fmt=7      MXFP4: predicate says refuse, silicon agrees (child exit 42)
+[CUDA] device 0: NVIDIA GeForce RTX 3090, 25.3 GB VRAM, sm_86
+  [child fmt=8] weight_at RETURNED -0.203125
+ok   fmt=8      fp8-e4m3-b128: predicate says decode, silicon agrees (child exit 43)
+[CUDA] device 0: NVIDIA GeForce RTX 3090, 25.3 GB VRAM, sm_86
+  [child fmt=9] launch aborted: launch=no error sync=unspecified launch failure
+ok   fmt=9      past the last defined fmt: predicate says refuse, silicon agrees (child exit 42)
+[CUDA] device 0: NVIDIA GeForce RTX 3090, 25.3 GB VRAM, sm_86
+  [child fmt=-1] launch aborted: launch=no error sync=unspecified launch failure
+ok   fmt=-1     negative fmt (the old `fmt <= 4` gate admitted this): predicate says refuse, silicon agrees (child exit 42)
+[CUDA] device 0: NVIDIA GeForce RTX 3090, 25.3 GB VRAM, sm_86
+  [child fmt=1073741824] launch aborted: launch=no error sync=unspecified launch failure
+ok   fmt=1073741824 garbage fmt: predicate says refuse, silicon agrees (child exit 42)
+cuda fmt trap tests: ok
+# fmt=8 warp kernels (COLI_CUDA_F8_WARP): decode sweep, census + tail
+# shapes, S-invariance, NaN/denormal policy. Includes backend_cuda.cu
+# itself (kernel-level oracle), so only the test file is compiled.
+# Runs BEFORE the MXFP4 test: that one has a pre-existing exponent-255
+# failure on some hosts and would otherwise abort the recipe first.
+"/usr/bin/nvcc" -O3 -std=c++17 -ftz=false -arch=sm_86 -Xcompiler=-Wall,-Wextra -DCOLI_DSV4_NO_TC tests/test_fp8_warp_cuda.cu -o fp8_warp_test  
+tests/../backend_cuda.cu: In function ‘int group_moe_ok(const GroupDesc*, int, int, int, int)’:
+tests/../backend_cuda.cu:2304:63: warning: unused parameter ‘total’ [-Wunused-parameter]
+ 2304 | static int group_moe_ok(const GroupDesc *host, int count, int total, int D, int I) {
+      |                                                           ~~~~^~~~~
+./fp8_warp_test
+[CUDA] device 0: NVIDIA GeForce RTX 3090, 25.3 GB VRAM, sm_86
+decode sweep [shared-lut]: 0 mismatches
+decode sweep [hw-cvt]: 0 mismatches
+decode sweep [shared-lut, mutated entry (must bite)]: 1 mismatches
+tail 201x300 grouped vs CPU: relative RMS 3.71e-07, max ulp 2372
+tail async/take parity: bitwise OK
+census 6144x2048/2048x6144 grouped (warp) vs CPU: relative RMS 3.79e-07, max ulp 62123
+census grouped (old kernels) vs CPU: relative RMS 4.04e-07, max ulp 35856
+census grouped old vs new (informational): relative RMS 2.31e-07, max ulp 37284
+census dense fmt=8 vs CPU: relative RMS 2.19e-07, max ulp 15928
+S-invariance (S=64 vs 64x S=1): 0 mismatching rows
+grouped accumulation convention: down bitwise 2^-25, hidden 0x1p-26
+vec/byte load-path parity: bitwise OK
+mixed fmt=8/fmt=2 group falls back to per-expert MLP: bitwise OK
+NaN injection (0x7F in down row 3): 0 policy mismatches
+denormal-scale contribution: bit-exact (0x1p-129)
+dense accumulation convention: bitwise 2^-25
+OK
+# The batch and ragged absorb kernels must reproduce their own output: they
+# reduce in a fixed tree order with no atomics, so two identical launches
+# that disagree have read shared memory another thread was still writing.
+# Needs both an oversubscribed grid and a token count in the affected band
+# (roughly 33..256 per block) to reach the output; the sweep covers both,
+# and one cell sits above the band on purpose. See the test's header.
+# Runs AFTER the fp8 test on purpose: this is the most schedule-sensitive
+# test in the recipe, and it should not cost the broader kernel suites if
+# it trips. It stays BEFORE MXFP4 so it still runs on the hosts where that
+# one is expected to fail.
+"/usr/bin/nvcc" -O3 -std=c++17 -ftz=false -arch=sm_86 -Xcompiler=-Wall,-Wextra -DCOLI_DSV4_NO_TC backend_cuda.cu tests/test_absorb_determinism.cu -o absorb_determinism_test 
+backend_cuda.cu: In function ‘int group_moe_ok(const GroupDesc*, int, int, int, int)’:
+backend_cuda.cu:2304:63: warning: unused parameter ‘total’ [-Wunused-parameter]
+ 2304 | static int group_moe_ok(const GroupDesc *host, int count, int total, int D, int I) {
+      |                                                           ~~~~^~~~~
+./absorb_determinism_test
+[CUDA] device 0: NVIDIA GeForce RTX 3090, 25.3 GB VRAM, sm_86
+absorb_determinism iters_per_cell=30 S_batch=128 S_ragged=128 batch_differing=0/145 batch_worst_pct_of_range=0 ragged_differing=0/29 ragged_worst_pct_of_range=0
+# fmt=8 (fp8-e4m3) kernel oracle + public API (LUT gate, dense, expert
+# group, byte accounting). Includes backend_cuda.cu itself, so only the
+# test file is compiled. Also runs BEFORE the MXFP4 test (same reason).
+"/usr/bin/nvcc" -O3 -std=c++17 -ftz=false -arch=sm_86 -Xcompiler=-Wall,-Wextra -DCOLI_DSV4_NO_TC tests/test_fp8_cuda.cu -o fp8_cuda_test  
+tests/../backend_cuda.cu: In function ‘int group_moe_ok(const GroupDesc*, int, int, int, int)’:
+tests/../backend_cuda.cu:2304:63: warning: unused parameter ‘total’ [-Wunused-parameter]
+ 2304 | static int group_moe_ok(const GroupDesc *host, int count, int total, int D, int I) {
+      |                                                           ~~~~^~~~~
+./fp8_cuda_test
+[CUDA] device 0: NVIDIA GeForce RTX 3090, 25.3 GB VRAM, sm_86
+[CUDA] device 0: NVIDIA GeForce RTX 3090, 25.3 GB VRAM, sm_86
+[CUDA] device list change requires shutdown first
+[CUDA] device 0: NVIDIA GeForce RTX 3090, 25.3 GB VRAM, sm_86
+fp8 oracle: 50 trials x 3 experts (128-blocks + row/col tails), 0 mismatches
+fp8 API: LUT gate + dense vs oracle + sync group vs oracle + async vs sync, 0 mismatches
+byte accounting: fmt=8 dense + fmt=4 grouped free() restores stats exactly
+tensor_bytes: fmt=8 dense + fmt=6 + fmt=4 grouped report exact footprint
+lut-gate lifecycle: shutdown clears; same-set re-init keeps; different-set re-init refused
+OK
+# Upload-failure ownership: a failed H2D weight copy must release the
+# bytes it allocated (weights_owned set by the malloc, not the copy).
+# Includes backend_cuda.cu itself to plant the memcpy failure, so only
+# the test file is compiled.
+"/usr/bin/nvcc" -O3 -std=c++17 -ftz=false -arch=sm_86 -Xcompiler=-Wall,-Wextra -DCOLI_DSV4_NO_TC tests/test_weights_owned_cuda.cu -o weights_owned_test  
+tests/../backend_cuda.cu: In function ‘int group_moe_ok(const GroupDesc*, int, int, int, int)’:
+tests/../backend_cuda.cu:2304:63: warning: unused parameter ‘total’ [-Wunused-parameter]
+ 2304 | static int group_moe_ok(const GroupDesc *host, int count, int total, int D, int I) {
+      |                                                           ~~~~^~~~~
+./weights_owned_test
+[CUDA] device 0: NVIDIA GeForce RTX 3090, 25.3 GB VRAM, sm_86
+expecting 8 upload-failure lines next (deliberate injected H2D failures):
+[CUDA] tensor upload: invalid argument
+[CUDA] tensor upload: invalid argument
+[CUDA] tensor upload: invalid argument
+[CUDA] tensor upload: invalid argument
+[CUDA] tensor upload: invalid argument
+[CUDA] tensor upload: invalid argument
+[CUDA] tensor upload: invalid argument
+[CUDA] tensor upload: invalid argument
+control: 8 upload+free cycles of 64 MiB, free-mem delta 0 bytes
+fail-cycle 0: free 24838799360 bytes (cumulative delta 0)
+fail-cycle 1: free 24838799360 bytes (cumulative delta 0)
+fail-cycle 2: free 24838799360 bytes (cumulative delta 0)
+fail-cycle 3: free 24838799360 bytes (cumulative delta 0)
+fail-cycle 4: free 24838799360 bytes (cumulative delta 0)
+fail-cycle 5: free 24838799360 bytes (cumulative delta 0)
+fail-cycle 6: free 24838799360 bytes (cumulative delta 0)
+fail-cycle 7: free 24838799360 bytes (cumulative delta 0)
+weights_owned upload-failure test passed (8 fail cycles, 0 bytes cumulative)
+# MXFP4 (fmt=7) against the CPU decoder in quant.h. The reference is built
+# as C on purpose: quant.h uses _Thread_local, which nvcc's C++ front end
+# rejects, and re-implementing it for the test would defeat the comparison.
+# Built WITHOUT OpenMP (#971). This is a correctness oracle over matrices of
+# at most S=4 I=2048 O=64, so threading it buys nothing measurable, while the
+# dependency it creates has blocked this target on two hosts: a Linux box
+# whose libgomp is absent (undefined reference to GOMP_parallel, at this very
+# link step) and MSVC, whose OpenMP predates C99 loop declarations in C mode.
+# It was also the only reason the final nvcc/hipcc link here had to drag in
+# the host OpenMP runtime, so GPU_OMP_LINK goes with it.
+# The OpenMP flags are FILTERED OUT rather than overridden with -fno-openmp
+# alone: on macOS they arrive as `-Xclang -fopenmp`, which goes straight to
+# the frontend and is not necessarily undone by a driver-level -fno-openmp.
+# Getting that wrong would leave OpenMP symbols in the object while the link
+# below no longer pulls the runtime, and CI could not catch it because CI
+# never runs cuda-test. -Xclang appears nowhere else in CFLAGS.
+gcc -O3 -march=native -pthread -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -MMD -MP -fno-openmp -fPIC -c tests/mxfp4_ref.c -o tests/mxfp4_ref.o
+In file included from tests/../quant.h:17,
+                 from tests/mxfp4_ref.c:7:
+tests/../idot.h: In function ‘matmul_q_idot’:
+tests/../idot.h:553: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+  553 |     #pragma omp parallel for schedule(static)
+      | 
+tests/../idot.h: In function ‘matmul_q_idot_rows’:
+tests/../idot.h:566: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+  566 |     #pragma omp parallel for schedule(static)
+      | 
+tests/../idot.h: In function ‘matmul_i4_idot’:
+tests/../idot.h:575: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+  575 |     #pragma omp parallel for schedule(static)
+      | 
+tests/../idot.h: In function ‘planarize_i4’:
+tests/../idot.h:627: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+  627 |     #pragma omp parallel for schedule(static)
+      | 
+tests/../idot.h: In function ‘i4p_gidot_rows’:
+tests/../idot.h:933: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+  933 |     #pragma omp parallel for schedule(static)
+      | 
+tests/../idot.h: In function ‘matmul_i4p_idot’:
+tests/../idot.h:1150: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+ 1150 |     #pragma omp parallel for schedule(static)
+      | 
+tests/../idot.h: In function ‘matmul_q_idot_r16’:
+tests/../idot.h:1314: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+ 1314 |         #pragma omp parallel for schedule(static)
+      | 
+tests/../idot.h:1326: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+ 1326 |     #pragma omp parallel for schedule(static)
+      | 
+tests/../idot.h: In function ‘matmul_q_idot_rows_r16’:
+tests/../idot.h:1346: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+ 1346 |     #pragma omp parallel
+      | 
+tests/../idot.h:1350: warning: ignoring ‘#pragma omp for’ [-Wunknown-pragmas]
+ 1350 |         #pragma omp for schedule(static)
+      | 
+In file included from tests/../quant.h:75:
+tests/../matmul_f32.h: In function ‘matmul’:
+tests/../matmul_f32.h:43: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+   43 |     #pragma omp parallel for schedule(static)
+      | 
+tests/../quant.h: In function ‘matmul_q’:
+tests/../quant.h:79: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+   79 |     #pragma omp parallel for schedule(static)
+      | 
+tests/../quant.h: In function ‘matmul_i4’:
+tests/../quant.h:100: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+  100 |     #pragma omp parallel for schedule(static)
+      | 
+tests/../quant.h: In function ‘matmul_i4_grouped’:
+tests/../quant.h:153: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+  153 |     #pragma omp parallel for schedule(static)
+      | 
+tests/../quant.h: In function ‘matmul_i4_pair’:
+tests/../quant.h:198: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+  198 |     #pragma omp parallel for schedule(static)
+      | 
+tests/../quant.h: In function ‘matmul_i2’:
+tests/../quant.h:242: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+  242 |     #pragma omp parallel for schedule(static)
+      | 
+tests/../quant.h: In function ‘matmul_i3’:
+tests/../quant.h:346: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+  346 |     #pragma omp parallel for schedule(static)
+      | 
+tests/../quant.h: In function ‘matmul_fp8_scalar’:
+tests/../quant.h:631: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+  631 |     #pragma omp parallel for schedule(static)
+      | 
+tests/../quant.h: In function ‘matmul_i4p’:
+tests/../quant.h:729: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+  729 |     #pragma omp parallel for schedule(static)
+      | 
+tests/../quant.h: In function ‘quantize_rows’:
+tests/../quant.h:835: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+  835 |     #pragma omp parallel for schedule(static)
+      | 
+tests/../quant.h: In function ‘pack_int4’:
+tests/../quant.h:845: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+  845 |     #pragma omp parallel for schedule(static)
+      | 
+tests/../quant.h: In function ‘pack_int3_g64’:
+tests/../quant.h:863: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+  863 |     #pragma omp parallel for schedule(static)
+      | 
+tests/../quant.h: In function ‘pack_int2’:
+tests/../quant.h:887: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+  887 |     #pragma omp parallel for schedule(static)
+      | 
+tests/../quant.h: In function ‘matmul_mxfp4’:
+tests/../quant.h:1274: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+ 1274 |     #pragma omp parallel for schedule(static)
+      | 
+tests/../quant.h: In function ‘matmul_mxfp4_i8_pre’:
+tests/../quant.h:1361: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+ 1361 |     #pragma omp parallel for schedule(static)
+      | 
+tests/../quant.h: In function ‘matmul_e8’:
+tests/../quant.h:1522: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+ 1522 |     #pragma omp parallel for schedule(static)
+      | 
+# -x none only under HIP: hip-test is `make cuda-test HIP=1`, so this
+# line also runs under nvcc for CUDA users, and nvcc accepts only c, c++
+# and cu for -x -- it fails the invocation on anything else. CI never
+# executes cuda-test, so that breakage would surface only on the next
+# CUDA box to run the suite.
+"/usr/bin/nvcc" -O3 -std=c++17 -ftz=false -arch=sm_86 -Xcompiler=-Wall,-Wextra -DCOLI_DSV4_NO_TC backend_cuda.cu tests/test_mxfp4_cuda.cu  tests/mxfp4_ref.o -o mxfp4_cuda_test 
+backend_cuda.cu: In function ‘int group_moe_ok(const GroupDesc*, int, int, int, int)’:
+backend_cuda.cu:2304:63: warning: unused parameter ‘total’ [-Wunused-parameter]
+ 2304 | static int group_moe_ok(const GroupDesc *host, int count, int total, int D, int I) {
+      |                                                           ~~~~^~~~~
+tests/test_mxfp4_cuda.cu(191): warning #177-D: variable "ng" was declared but never referenced
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+./mxfp4_cuda_test
+[CUDA] device 0: NVIDIA GeForce RTX 3090, 25.3 GB VRAM, sm_86
+[CUDA] device 0: NVIDIA GeForce RTX 3090, 25.3 GB VRAM, sm_86
+  ok   resident upload              S=2   I=33    O=3    worst rel 0.00e+00
+  ok   resident refresh             S=2   I=33    O=3    worst rel 0.00e+00
+  ok   resident upload              S=2   I=257   O=5    worst rel 0.00e+00
+  ok   resident refresh             S=2   I=257   O=5    worst rel 0.00e+00
+  ok   all 16 e2m1 codes decode exactly (cpu == gpu == spec)
+  ok   decode + matmul              S=1   I=64    O=32   worst rel 2.43e-06
+  ok   recycled host slot           S=1   I=64    O=32   worst rel 6.49e-08
+  ok   multi-row batch              S=4   I=128   O=64   worst rel 1.59e-05
+  ok   recycled host slot           S=4   I=128   O=64   worst rel 1.14e-07
+  ok   wide rows (many groups)      S=1   I=2048  O=16   worst rel 8.41e-07
+  ok   recycled host slot           S=1   I=2048  O=16   worst rel 1.96e-06
+  ok   non-multiple-of-32 columns   S=1   I=96    O=8    worst rel 1.23e-07
+  ok   recycled host slot           S=1   I=96    O=8    worst rel 1.89e-07
+  ok   tail group (I%32 != 0)       S=1   I=80    O=8    worst rel 6.40e-06
+  ok   recycled host slot           S=1   I=80    O=8    worst rel 0.00e+00
+  ok   exponent 0 -> +0             S=1   I=64    O=16   worst rel 0.00e+00
+  ok   recycled host slot           S=1   I=64    O=16   worst rel 0.00e+00
+  ok   exponent 255 -> inf          S=1   I=65    O=16   worst rel 0.00e+00
+  ok   recycled host slot           S=1   I=65    O=16   worst rel 8.20e-08
+  ok   exp-255 mixed rows/groups    S=1   I=97    O=16   worst rel 2.30e-07
+  ok   exp-254+255 mixed groups     S=1   I=97    O=8    worst rel 0.00e+00
+  ok   exponent 127 -> unit scale   S=1   I=64    O=16   worst rel 8.63e-07
+  ok   recycled host slot           S=1   I=64    O=16   worst rel 0.00e+00
+  ok   after shutdown/reinit        S=2   I=128   O=32   worst rel 3.55e-06
+  ok   recycled host slot           S=2   I=128   O=32   worst rel 0.00e+00
+test_mxfp4_cuda: ok
+"/usr/bin/nvcc" -O3 -std=c++17 -ftz=false -arch=sm_86 -Xcompiler=-Wall,-Wextra -DCOLI_DSV4_NO_TC backend_cuda.cu tests/test_mxfp4_expert_cuda.cu  tests/mxfp4_ref.o -o mxfp4_expert_cuda_test 
+backend_cuda.cu: In function ‘int group_moe_ok(const GroupDesc*, int, int, int, int)’:
+backend_cuda.cu:2304:63: warning: unused parameter ‘total’ [-Wunused-parameter]
+ 2304 | static int group_moe_ok(const GroupDesc *host, int count, int total, int D, int I) {
+      |                                                           ~~~~^~~~~
+./mxfp4_expert_cuda_test
+[CUDA] device 0: NVIDIA GeForce RTX 3090, 25.3 GB VRAM, sm_86
+[CUDA] device 0: NVIDIA GeForce RTX 3090, 25.3 GB VRAM, sm_86
+ok SiTU expert S=1 D=64 I=128 b1=1.5 b2=2.5
+ok SiTU expert S=3 D=33 I=65 b1=4 b2=3
+ok SiTU expert S=2 D=129 I=31 b1=0.5 b2=0.75
+ok SiTU expert S=1 D=64 I=128 b1=1.5 b2=2.5
+# Allocator footprint (#687): what a cudaMalloc really takes off the card,
+# which is what the expert tier has to be charged rather than the logical
+# byte count. Runs LAST on purpose - it is the only test here that
+# allocates in bulk to measure an amortised cost, so it should not leave
+# the card fragmented underneath a kernel test that follows it.
+"/usr/bin/nvcc" -O3 -std=c++17 -ftz=false -arch=sm_86 -Xcompiler=-Wall,-Wextra -DCOLI_DSV4_NO_TC backend_cuda.cu tests/test_alloc_footprint_cuda.cu -o alloc_footprint_test 
+backend_cuda.cu: In function ‘int group_moe_ok(const GroupDesc*, int, int, int, int)’:
+backend_cuda.cu:2304:63: warning: unused parameter ‘total’ [-Wunused-parameter]
+ 2304 | static int group_moe_ok(const GroupDesc *host, int count, int total, int D, int I) {
+      |                                                           ~~~~^~~~~
+./alloc_footprint_test
+[CUDA] device 0: NVIDIA GeForce RTX 3090, 25.3 GB VRAM, sm_86
+[CUDA] device 1: NVIDIA GeForce RTX 3090, 25.3 GB VRAM, sm_86
+ok   footprint never below the request                        4096 -> 32768
+ok   footprint never below the request                        262144 -> 262144
+ok   footprint never below the request                        524288 -> 524288
+ok   footprint never below the request                        786432 -> 1048576
+ok   footprint never below the request                        786433 -> 1082401
+ok   footprint never below the request                        1048576 -> 1048576
+ok   footprint never below the request                        1048577 -> 2097152
+ok   footprint never below the request                        1572864 -> 2097152
+ok   footprint never below the request                        2097152 -> 2097152
+ok   footprint never below the request                        6291456 -> 6291456
+ok   footprint agrees with a live measurement                 786432: probe 1048576 vs measured 1048576
+ok   footprint agrees with a live measurement                 1572864: probe 2097152 vs measured 2097152
+ok   footprint agrees with a live measurement                 6291456: probe 6291456 vs measured 6291456
+ok   an aligned request is charged exactly, not inflated      6 MiB -> 6291456 (overhead 0)
+ok   repeat calls are cached, not re-probed                   500 repeat calls moved free VRAM by 0 B
+ok   tensor_vram is never below tensor_bytes                  logical 7077888, vram 7340032, padding 262144
+ok   the 0.75 MiB scale array's padding is counted            logical 7077888, vram 7340032, padding 262144
+     per-expert unaccounted (x3 matrices): 0.7500 MiB
+     #687 measured 0.741 MiB/expert, sigma 0.019
+
+test_alloc_footprint_cuda: ok
+make: Leaving directory '/home/maplemercury/colibri-bench/cw22/f36-pr2/c'
