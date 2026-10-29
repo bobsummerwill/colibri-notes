@@ -28,7 +28,7 @@ OK too. Opened at his request: PR #0 (#2212-#2217), PR #1 (#2264, merged); 2026-
 - **#2405 (PR #2) is ready for review.** `docs5/pr2-two-gpu-decode` = **f1e56b00**: upstream dev d68e16b6 merged into
   11c40038, **no conflicts**. Pushed to the fork (fast-forward). Description rewritten for the new base:
   [review/POSTED_2405_BODY_20261029.md](review/POSTED_2405_BODY_20261029.md); comment:
-  [review/POSTED_2405_COMMENT_20261029.md](review/POSTED_2405_COMMENT_20261029.md).
+  [review/POSTED_2405_COMMENT_20261029.md](review/POSTED_2405_COMMENT_20261029.md) ([posted](https://github.com/JustVugg/colibri/pull/2405#issuecomment-6491918784)). CI on f1e56b00 queued at 08:34Z.
 - **Checks on f1e56b00 (computer4, gcc 13.3.0):** `make check` 2,795 OK (305 skipped); `-Wall -Wextra` on `deepseek_v4.c`
   (GPU tier, and `-DCOLI_VULKAN`) and `test_deepseek_v4.c`: 0 diagnostics. shadowfax CUDA build (sm_86, NO_TC): 0 warnings.
 - **final36 (shadowfax, 2x 3090, power limits now 500/450 W, final27-34 ran at 300 W), GATES: PASS, all texts identical:**

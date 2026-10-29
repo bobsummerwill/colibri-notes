@@ -18,7 +18,7 @@ Marking this ready for review. What changed since the draft:
 - Every answer is byte-identical to dev's.
 - Time to first token on long prompts (1,992 and 3,005 tokens) is 1.00x dev's, one GPU or two.
 - The fault test (`DSV4_CUDA_PEER_FAULT=3000:sticky`) on this tip: all six answers finish with 300 tokens, on the host after the fault.
-- Evidence: [final36](https://github.com/bobsummerwill/colibri-notes/tree/NOTESSHA/manifests/shadowfax-20261028/final36). The description is updated with these numbers.
+- Evidence: [final36](https://github.com/bobsummerwill/colibri-notes/tree/5f1807f/manifests/shadowfax-20261028/final36). The description is updated with these numbers.
 
 **Merge order with #1766.** The two are independent: no shared commits, and each applies to dev on its own. They do overlap textually in five files (`c/Makefile`, `c/backend_cuda_dsv4.cu`, `c/deepseek_v4.c`, `c/deepseek_v4_internal.h`, `docs/deepseek-v4.md`), so whichever lands second needs a conflict resolution.
 - [`samebase/cplus`](https://github.com/bobsummerwill/colibri/commits/66982895) on my fork is that resolution, done on c1c06ac6. It is the fastest combination we measured: REAP 1.96x dev with two GPUs, 1.27x with one.
