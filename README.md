@@ -43,6 +43,10 @@ OK too. Opened at his request: PR #0 (#2212-#2217), PR #1 (#2264, merged); 2026-
   Performance and correctness are no longer blockers. Full detail:
   [manifests/shadowfax-20261103-final37/SUMMARY.md](manifests/shadowfax-20261103-final37/SUMMARY.md),
   [HANDOFF_20261103.md](HANDOFF_20261103.md).
+- **Follow-up branch:** [`fix/dsv4-head-followups`](https://github.com/bobsummerwill/colibri/tree/fix/dsv4-head-followups)
+  on `bobsummerwill/colibri`, based on `aabd99d` (not rebased), six commits for the review points
+  above. Builds on shadowfax sm_86; all nine test binaries build; the mocks pass. The nine CUDA
+  tests and a short head-placement A/B still need a GPU window.
 
 ## Status (2026-10-29, early morning; computer4 + shadowfax)
 - **#2405 (PR #2) is ready for review.** `docs5/pr2-two-gpu-decode` = **f1e56b00**: upstream dev d68e16b6 merged into
