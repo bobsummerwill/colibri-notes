@@ -1,0 +1,10 @@
+Running as unit: c4-5070-serve.service; invocation ID: 56a7365b69fd4e05aedbeb77d8ef8333
+dev ready=1
+dev client_rc=0
+Running as unit: c4-5070-serve.service; invocation ID: 3595c3ca0dff4963b7759bcba2d5b2f8
+new ready=1
+v4_gpu resident-experts=cache-fallback (resident experts exceed device 0 budget (free=4369 MiB reserve=2000 MiB))
+v4_gpu head=resident device=0 bytes=1059061760 arithmetic=separate-mul-add
+new client_rc=0
+dev n=3 mean=1.6223 median=1.6190 texts=3d0a5275,f0e57dde,d27222f1
+new n=3 mean=1.9953 median=2.0130 texts=3d0a5275,f0e57dde,d27222f1

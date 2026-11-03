@@ -1,0 +1,84 @@
+[OMP] deepseek-v4: 10 compute threads (the physical cores of 16 logical CPUs; the 3 expert-loader workers take the SMT siblings); OMP_NUM_THREADS=<n> overrides, COLI_NO_OMP_TUNE=1 disables
+ram_tiers available=40.00GiB dense=resident(6.27GiB) target_slots=59 target_cache=31.59GiB head=resident-bf16 projected=39.79GiB
+v4_open index=0.08s plan=0.00s (index built once, reused by plan/inventory/head)
+v4_ssd_io mode=direct-aligned fallback=buffered-pread
+v4_hot_policy pin_slots_per_layer=16 repin_interval=6 mode=resident-ram rows16=hot-pins
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 5070 12.3 GB sm_120
+v4_gpu tier=dense-matvec device=0 devices=1 placement=contiguous-layers
+v4_gpu device=0 layers=0..42
+v4_gpu layer=0 uploaded=133.039MiB in 0.070s wall=1793726889
+v4_gpu layer=1 uploaded=133.039MiB in 0.067s wall=1793726889
+v4_gpu indexer-resident=on device=0 layer=2 bytes=8390656
+v4_gpu layer=2 uploaded=182.041MiB in 0.070s wall=1793726889
+v4_gpu layer=3 uploaded=149.040MiB in 0.068s wall=1793726889
+v4_gpu indexer-resident=on device=0 layer=4 bytes=8390656
+v4_gpu layer=4 uploaded=182.042MiB in 0.070s wall=1793726889
+v4_gpu layer=5 uploaded=149.040MiB in 0.068s wall=1793726890
+v4_gpu indexer-resident=on device=0 layer=6 bytes=8390656
+v4_gpu layer=6 uploaded=182.042MiB in 0.070s wall=1793726890
+v4_gpu layer=7 uploaded=149.040MiB in 0.070s wall=1793726890
+v4_gpu indexer-resident=on device=0 layer=8 bytes=8390656
+v4_gpu layer=8 uploaded=182.042MiB in 0.071s wall=1793726890
+v4_gpu layer=9 uploaded=149.040MiB in 0.067s wall=1793726890
+v4_gpu indexer-resident=on device=0 layer=10 bytes=8390656
+v4_gpu layer=10 uploaded=182.042MiB in 0.070s wall=1793726890
+v4_gpu layer=11 uploaded=149.040MiB in 0.067s wall=1793726890
+v4_gpu indexer-resident=on device=0 layer=12 bytes=8390656
+v4_gpu layer=12 uploaded=182.042MiB in 0.070s wall=1793726891
+v4_gpu layer=13 uploaded=149.040MiB in 0.067s wall=1793726891
+v4_gpu indexer-resident=on device=0 layer=14 bytes=8390656
+v4_gpu layer=14 uploaded=182.042MiB in 0.071s wall=1793726891
+v4_gpu layer=15 uploaded=149.040MiB in 0.068s wall=1793726891
+v4_gpu indexer-resident=on device=0 layer=16 bytes=8390656
+v4_gpu layer=16 uploaded=182.042MiB in 0.070s wall=1793726891
+v4_gpu layer=17 uploaded=149.040MiB in 0.068s wall=1793726891
+v4_gpu indexer-resident=on device=0 layer=18 bytes=8390656
+v4_gpu layer=18 uploaded=182.042MiB in 0.070s wall=1793726891
+v4_gpu layer=19 uploaded=149.040MiB in 0.068s wall=1793726891
+v4_gpu indexer-resident=on device=0 layer=20 bytes=8390656
+v4_gpu layer=20 uploaded=182.042MiB in 0.071s wall=1793726892
+v4_gpu layer=21 uploaded=149.040MiB in 0.067s wall=1793726892
+v4_gpu indexer-resident=on device=0 layer=22 bytes=8390656
+v4_gpu layer=22 uploaded=182.042MiB in 0.071s wall=1793726892
+v4_gpu layer=23 uploaded=149.040MiB in 0.068s wall=1793726892
+v4_gpu indexer-resident=on device=0 layer=24 bytes=8390656
+v4_gpu layer=24 uploaded=182.042MiB in 0.071s wall=1793726892
+v4_gpu layer=25 uploaded=149.040MiB in 0.068s wall=1793726892
+v4_gpu indexer-resident=on device=0 layer=26 bytes=8390656
+v4_gpu layer=26 uploaded=182.042MiB in 0.071s wall=1793726892
+v4_gpu layer=27 uploaded=149.040MiB in 0.068s wall=1793726892
+v4_gpu indexer-resident=on device=0 layer=28 bytes=8390656
+v4_gpu layer=28 uploaded=182.042MiB in 0.070s wall=1793726893
+v4_gpu layer=29 uploaded=149.040MiB in 0.068s wall=1793726893
+v4_gpu indexer-resident=on device=0 layer=30 bytes=8390656
+v4_gpu layer=30 uploaded=182.042MiB in 0.070s wall=1793726893
+v4_gpu layer=31 uploaded=149.040MiB in 0.067s wall=1793726893
+v4_gpu indexer-resident=on device=0 layer=32 bytes=8390656
+v4_gpu layer=32 uploaded=182.042MiB in 0.071s wall=1793726893
+v4_gpu layer=33 uploaded=149.040MiB in 0.068s wall=1793726893
+v4_gpu indexer-resident=on device=0 layer=34 bytes=8390656
+v4_gpu layer=34 uploaded=182.042MiB in 0.070s wall=1793726893
+v4_gpu layer=35 uploaded=149.040MiB in 0.068s wall=1793726893
+v4_gpu indexer-resident=on device=0 layer=36 bytes=8390656
+v4_gpu layer=36 uploaded=182.042MiB in 0.070s wall=1793726893
+v4_gpu layer=37 uploaded=149.040MiB in 0.068s wall=1793726894
+v4_gpu indexer-resident=on device=0 layer=38 bytes=8390656
+v4_gpu layer=38 uploaded=182.042MiB in 0.070s wall=1793726894
+v4_gpu layer=39 uploaded=149.040MiB in 0.068s wall=1793726894
+v4_gpu indexer-resident=on device=0 layer=40 bytes=8390656
+v4_gpu layer=40 uploaded=182.042MiB in 0.070s wall=1793726894
+v4_gpu layer=41 uploaded=149.040MiB in 0.068s wall=1793726894
+v4_gpu indexer-resident=on device=0 layer=42 bytes=8390656
+v4_gpu layer=42 uploaded=182.042MiB in 0.070s wall=1793726894
+v4_dense_resident layers=43 bytes=6.267GiB
+v4_gpu resident-experts=cache-fallback (resident experts exceed device 0 budget (free=4369 MiB reserve=2000 MiB))
+v4_gpu head=resident device=0 bytes=1059061760 arithmetic=separate-mul-add
+[v4] expert cache: 59 of 256 experts per layer fit and no usage history says which, so it fills as experts are used
+[gateway] input modalities: text
+OpenAI-compatible API listening on http://127.0.0.1:8091/v1
+[V4] top_p 0.9 ignored; target engine is greedy
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[V4] top_p 0.9 ignored; target engine is greedy
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -
+[V4] top_p 0.9 ignored; target engine is greedy
+[api] 127.0.0.1 - "POST /v1/chat/completions HTTP/1.1" 200 -

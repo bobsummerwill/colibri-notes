@@ -1,0 +1,27 @@
+[OMP] deepseek-v4: 11 compute threads (14 logical CPUs minus 3 expert-loader workers); OMP_NUM_THREADS=<n> overrides, COLI_NO_OMP_TUNE=1 disables
+ram_tiers available=21.68GiB dense=resident(0.00GiB) target_slots=4 target_cache=0.00GiB head=resident-bf16 projected=3.21GiB
+v4_open index=0.00s plan=0.00s (index built once, reused by plan/inventory/head)
+v4_ssd_io mode=direct-aligned fallback=buffered-pread
+v4_autopin history=/home/unagi/colibri-bench/v4tiny-headfix/.coli_usage selections=1417
+v4_hot_policy pin_slots_per_layer=0 repin_interval=4 mode=resident-ram rows16=hot-pins
+[VK] deepseek_v4: COLI_VULKAN is not set: the Vulkan device stays unused (COLI_VULKAN=1 uses it)
+v4_dense_resident layers=3 bytes=0.000GiB
+[v4] expert cache: reading every expert (12 experts, 0.0 GiB) before the first request; COLI_V4_PREWARM=0 starts with it empty
+[v4] expert cache: 12 experts, 0.0 GiB, read in 0.1 s (0.01 GiB/s)
+[STATS] 1523 selections across 12 distinct experts -> /home/unagi/colibri-bench/v4tiny-headfix/.coli_usage
+v4_rows16 packed_slots=0
+v4_direct reads=12 flock_reads=12 fallbacks=0 payload_bytes=313344
+PASS target short: teacher forcing and greedy token-exact
+PASS target greedy: truncated prefix rejected
+PASS target compressed: teacher forcing and greedy token-exact
+PASS target long: teacher forcing and greedy token-exact
+PASS target session short: exact IDs and exact length
+PASS target session short: exact IDs and exact length
+PASS target session short: exact IDs and exact length
+PASS target session long: exact IDs and exact length
+PASS target CLI: TUNE decode line is present and parseable
+PASS target CLI: prompt beyond the old 512-token cap
+SKIP mtp draft gpu=False: fixture has no 3-stage MTP profile
+SKIP mtp draft gpu=True: fixture has no 3-stage MTP profile
+PASS target serve: persistent SUBMIT/DATA/DONE protocol is token-exact, PROF phases filled
+PASS tiny DeepSeek V4 target oracle: all checks completed

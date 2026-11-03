@@ -47,7 +47,11 @@ OK too. Opened at his request: PR #0 (#2212-#2217), PR #1 (#2264, merged); 2026-
   on `bobsummerwill/colibri`, based on `aabd99d` (not rebased), seven commits for the review points
   above. Builds on shadowfax sm_86; **9/9 CUDA tests pass** (`DSV4_TEST_DEVICES=0,1`); the
   head-placement A/B on 2×3090 is neutral (device 0 3.6037 vs device 1 3.6107 tok/s, identical
-  texts). Logs: [manifests/shadowfax-20261103-headfix/SUMMARY.md](manifests/shadowfax-20261103-headfix/SUMMARY.md).
+  texts). On the RTX 5070, full model: dev 1.6223 vs branch 1.9953 tok/s = **1.230x**, identical
+  texts. On counter, the CPU tiny V4 suite passes and a `VK=1` iGPU run matches the CPU tokens.
+  Logs: [manifests/shadowfax-20261103-headfix/SUMMARY.md](manifests/shadowfax-20261103-headfix/SUMMARY.md),
+  [manifests/computer4-20261103-5070-headfix/SUMMARY.md](manifests/computer4-20261103-5070-headfix/SUMMARY.md),
+  [manifests/counter-20261103-headfix/SUMMARY.md](manifests/counter-20261103-headfix/SUMMARY.md).
 
 ## Status (2026-10-29, early morning; computer4 + shadowfax)
 - **#2405 (PR #2) is ready for review.** `docs5/pr2-two-gpu-decode` = **f1e56b00**: upstream dev d68e16b6 merged into
