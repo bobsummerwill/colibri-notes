@@ -15,6 +15,10 @@ OK too. Opened at his request: PR #0 (#2212-#2217), PR #1 (#2264, merged); 2026-
 #2400 (fix B), PRs #2401 (fix A), #2402 (fix B), #2403 (test_vk_chain initializers), #2404 (`COLI_VK_SUBGROUP=n`);
 2026-10-26: draft PR #2405 (PR #2, on #2401); 2026-10-29: #2405 marked ready, with a comment.
 
+> **Pick up here for #1766: [HANDOFF_20261103.md](HANDOFF_20261103.md)** — final37 at head `aabd99d`
+> (1.22x/1.54x/1.19x/1.36x, 9/9 CUDA tests, `auto` falls back on 24 GB). Remaining review points are
+> `auto`/reserve semantics and docs, not kernels.
+>
 > **Pick up here: [HANDOFF_20261026.md](HANDOFF_20261026.md)**, top section "2026-10-29" (#2405 merged with dev d68e16b6,
 > re-checked, re-benchmarked (final36: same 1.03x/1.44x/1.02x/1.27x), **marked ready** with a merge-order comment).
 > Earlier (2026-10-26 evening: the same-base runs of #1766,
@@ -23,6 +27,22 @@ OK too. Opened at his request: PR #0 (#2212-#2217), PR #1 (#2264, merged); 2026-
 > C+ with the `f4` fix (e2933955) is being measured, and both texts get its numbers after.)
 > Plan and results: [review/PLAN_SAME_BASE_20261026.md](review/PLAN_SAME_BASE_20261026.md). Before that:
 > [HANDOFF_20261025.md](HANDOFF_20261025.md), [HANDOFF_20261024.md](HANDOFF_20261024.md).
+
+## Status (2026-11-03, morning; shadowfax)
+- **final37: exact-head #1766 re-baseline done.** Trees: dev `3b953308`, #1766 `aabd99d` (Bob's
+  `samebase/m1766-fixes` + dev `3b953308`). 2x 3090, 500/450 W, cold server, 2 samples, all texts
+  byte-identical. REAP **1.224x** one GPU, **1.542x** two GPUs vs dev one GPU; full `fdec`
+  **1.195x** one GPU, **~1.363x** two GPUs; long-prompt TTFT **0.895x/0.889x**. Nine CUDA tests
+  pass, including 35,769 quant cases with 0 mismatches.
+- **`auto` falls back on 24 GB.** Both models log `resident-experts=cache-fallback` at
+  `free=16596/16768 MiB reserve=2800 MiB`; the gain on these cards is kernel-side, not residency.
+  `DSV4_CUDA_RESIDENT_EXPERTS=1` refuses cleanly with the same budget message.
+- **Review:** request changes narrowed to (1) `auto` swallowing hard preload failures vs the docs,
+  (2) the overloaded `DSV4_CUDA_VRAM_RESERVE_MB` (flat 2800 vs bank-aware 4681), (3) docs/headline
+  numbers, (4) wiring the CUDA tests into a target/CI, (5) best-effort P2P / 6-GPU NCCL docs.
+  Performance and correctness are no longer blockers. Full detail:
+  [manifests/shadowfax-20261103-final37/SUMMARY.md](manifests/shadowfax-20261103-final37/SUMMARY.md),
+  [HANDOFF_20261103.md](HANDOFF_20261103.md).
 
 ## Status (2026-10-29, early morning; computer4 + shadowfax)
 - **#2405 (PR #2) is ready for review.** `docs5/pr2-two-gpu-decode` = **f1e56b00**: upstream dev d68e16b6 merged into

@@ -1,0 +1,95 @@
+[OMP] deepseek-v4: 16 compute threads (the physical cores of 32 logical CPUs; the 3 expert-loader workers take the SMT siblings); OMP_NUM_THREADS=<n> overrides, COLI_NO_OMP_TUNE=1 disables
+ram_tiers available=40.00GiB dense=resident(6.27GiB) target_slots=59 target_cache=31.59GiB head=resident-bf16 projected=39.79GiB
+v4_open index=0.06s plan=0.00s (index built once, reused by plan/inventory/head)
+v4_ssd_io mode=direct-aligned fallback=buffered-pread
+v4_hot_policy pin_slots_per_layer=16 repin_interval=6 mode=resident-ram rows16=hot-pins
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+v4_gpu mirror-reserve=4681MiB (256-slot bank 3264MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)
+v4_gpu tier=dense-matvec device=0 devices=1 placement=contiguous-layers
+v4_gpu device=0 layers=0..42
+v4_gpu layer=0 uploaded=133.039MiB in 0.043s wall=1793705577
+v4_gpu layer=1 uploaded=133.039MiB in 0.043s wall=1793705577
+v4_gpu indexer-resident=on device=0 layer=2 bytes=8390656
+v4_gpu layer=2 uploaded=182.041MiB in 0.047s wall=1793705577
+v4_gpu layer=3 uploaded=149.040MiB in 0.045s wall=1793705577
+v4_gpu indexer-resident=on device=0 layer=4 bytes=8390656
+v4_gpu layer=4 uploaded=182.042MiB in 0.047s wall=1793705577
+v4_gpu layer=5 uploaded=149.040MiB in 0.046s wall=1793705577
+v4_gpu indexer-resident=on device=0 layer=6 bytes=8390656
+v4_gpu layer=6 uploaded=182.042MiB in 0.048s wall=1793705577
+v4_gpu layer=7 uploaded=149.040MiB in 0.044s wall=1793705577
+v4_gpu indexer-resident=on device=0 layer=8 bytes=8390656
+v4_gpu layer=8 uploaded=182.042MiB in 0.046s wall=1793705577
+v4_gpu layer=9 uploaded=149.040MiB in 0.045s wall=1793705577
+v4_gpu indexer-resident=on device=0 layer=10 bytes=8390656
+v4_gpu layer=10 uploaded=182.042MiB in 0.047s wall=1793705578
+v4_gpu layer=11 uploaded=149.040MiB in 0.045s wall=1793705578
+v4_gpu indexer-resident=on device=0 layer=12 bytes=8390656
+v4_gpu layer=12 uploaded=182.042MiB in 0.047s wall=1793705578
+v4_gpu layer=13 uploaded=149.040MiB in 0.042s wall=1793705578
+v4_gpu indexer-resident=on device=0 layer=14 bytes=8390656
+v4_gpu layer=14 uploaded=182.042MiB in 0.045s wall=1793705578
+v4_gpu layer=15 uploaded=149.040MiB in 0.044s wall=1793705578
+v4_gpu indexer-resident=on device=0 layer=16 bytes=8390656
+v4_gpu layer=16 uploaded=182.042MiB in 0.048s wall=1793705578
+v4_gpu layer=17 uploaded=149.040MiB in 0.045s wall=1793705578
+v4_gpu indexer-resident=on device=0 layer=18 bytes=8390656
+v4_gpu layer=18 uploaded=182.042MiB in 0.047s wall=1793705578
+v4_gpu layer=19 uploaded=149.040MiB in 0.045s wall=1793705578
+v4_gpu indexer-resident=on device=0 layer=20 bytes=8390656
+v4_gpu layer=20 uploaded=182.042MiB in 0.045s wall=1793705578
+v4_gpu layer=21 uploaded=149.040MiB in 0.044s wall=1793705579
+v4_gpu indexer-resident=on device=0 layer=22 bytes=8390656
+v4_gpu layer=22 uploaded=182.042MiB in 0.047s wall=1793705579
+v4_gpu layer=23 uploaded=149.040MiB in 0.045s wall=1793705579
+v4_gpu indexer-resident=on device=0 layer=24 bytes=8390656
+v4_gpu layer=24 uploaded=182.042MiB in 0.047s wall=1793705579
+v4_gpu layer=25 uploaded=149.040MiB in 0.043s wall=1793705579
+v4_gpu indexer-resident=on device=0 layer=26 bytes=8390656
+v4_gpu layer=26 uploaded=182.042MiB in 0.044s wall=1793705579
+v4_gpu layer=27 uploaded=149.040MiB in 0.044s wall=1793705579
+v4_gpu indexer-resident=on device=0 layer=28 bytes=8390656
+v4_gpu layer=28 uploaded=182.042MiB in 0.047s wall=1793705579
+v4_gpu layer=29 uploaded=149.040MiB in 0.044s wall=1793705579
+v4_gpu indexer-resident=on device=0 layer=30 bytes=8390656
+v4_gpu layer=30 uploaded=182.042MiB in 0.046s wall=1793705579
+v4_gpu layer=31 uploaded=149.040MiB in 0.043s wall=1793705580
+v4_gpu indexer-resident=on device=0 layer=32 bytes=8390656
+v4_gpu layer=32 uploaded=182.042MiB in 0.047s wall=1793705580
+v4_gpu layer=33 uploaded=149.040MiB in 0.043s wall=1793705580
+v4_gpu indexer-resident=on device=0 layer=34 bytes=8390656
+v4_gpu layer=34 uploaded=182.042MiB in 0.045s wall=1793705580
+v4_gpu layer=35 uploaded=149.040MiB in 0.045s wall=1793705580
+v4_gpu indexer-resident=on device=0 layer=36 bytes=8390656
+v4_gpu layer=36 uploaded=182.042MiB in 0.047s wall=1793705580
+v4_gpu layer=37 uploaded=149.040MiB in 0.045s wall=1793705580
+v4_gpu indexer-resident=on device=0 layer=38 bytes=8390656
+v4_gpu layer=38 uploaded=182.042MiB in 0.047s wall=1793705580
+v4_gpu layer=39 uploaded=149.040MiB in 0.043s wall=1793705580
+v4_gpu indexer-resident=on device=0 layer=40 bytes=8390656
+v4_gpu layer=40 uploaded=182.042MiB in 0.047s wall=1793705580
+v4_gpu layer=41 uploaded=149.040MiB in 0.044s wall=1793705580
+v4_gpu indexer-resident=on device=0 layer=42 bytes=8390656
+v4_gpu layer=42 uploaded=182.042MiB in 0.046s wall=1793705581
+v4_dense_resident layers=43 bytes=6.267GiB
+[STATS] 0 selections across 0 distinct experts -> /home/maplemercury/colibri-models/deepseek-v4-flash/.coli_usage
+v4_rows16 packed_slots=0
+v4_direct reads=0 flock_reads=0 fallbacks=0 payload_bytes=0
+resident experts exceed device 0 budget (free=16596 MiB reserve=2800 MiB)
+Traceback (most recent call last):
+  File "/home/maplemercury/colibri-bench/cw22/f37-head/c/coli", line 4366, in <module>
+    main()
+  File "/home/maplemercury/colibri-bench/cw22/f37-head/c/coli", line 4359, in main
+    sys.exit(handler(a) or 0)
+             ^^^^^^^^^^
+  File "/home/maplemercury/colibri-bench/cw22/f37-head/c/coli", line 3544, in cmd_serve
+    openai_server.serve(a.model,a.host,a.port,model_id,a.api_key,
+  File "/home/maplemercury/colibri-bench/cw22/f37-head/c/openai_server.py", line 10425, in serve
+    runtime = start_engine()
+              ^^^^^^^^^^^^^^
+  File "/home/maplemercury/colibri-bench/cw22/f37-head/c/openai_server.py", line 10416, in start_engine
+    return Engine(engine,model,cap,max_tokens,env,kv_slots,family)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maplemercury/colibri-bench/cw22/f37-head/c/openai_server.py", line 6993, in __init__
+    raise RuntimeError(f"{error} ({engine_exit_status(status)})") from None
+RuntimeError: colibri engine exited unexpectedly (exit status 1)

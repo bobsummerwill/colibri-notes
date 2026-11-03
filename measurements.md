@@ -8,6 +8,37 @@
 
 Up to final5: all on shadowfax (see environment.md), DeepSeek V4 Flash REAP 150B, `--ram 40 --ctx 8192`, llama.cpp stopped for the window, one fresh server per sample. The engine is greedy, so "identical" means byte-identical output text (sha256 compared). final6 adds the full 256-expert V4 Flash and computer4 (DeepGEMM).
 
+## FINAL37 (2026-11-03 02:37-04:37 PST, shadowfax, 2x 3090, `manifests/shadowfax-20261103-final37/`)
+The first exact-head re-baseline of **#1766 at `aabd99d`** against dev **`3b953308`**. `aabd99d` is
+Bob's `samebase/m1766-fixes` (`28b35786`) merged with dev `3b953308`; the earlier same-base numbers
+were at `ecc92586` (pre-`f4`). Both trees built clean (sm_86, `NO_TC=1`), 500/450 W, two samples
+per headline arm, all texts byte-identical. **GATES: PASS except the intentional `=1` negative
+control** (see below); 9/9 CUDA tests pass.
+
+| arm | model | GPUs | decode tok/s | vs dev 1 GPU |
+|---|---|---:|---:|---:|
+| B1 | REAP-150B | 1 | 2.9753 | — |
+| M1 | REAP-150B | 1 | 3.6425 | **1.224x** |
+| M2 | REAP-150B | 2 | 4.5877 | **1.542x** |
+| DB1F | full fdec | 1 | 2.6290 | — |
+| DM1F | full fdec | 1 | 3.1412 | **1.195x** |
+| DM2F | full fdec | 2 | 3.5838 | **~1.363x** |
+
+TTFT (long prompts): head/dev **0.895x / 0.889x** (the `f4` fix holds). Reserve variants: 2000 MiB
+1.017x, 4700 MiB 0.990x, resident off 1.0025x. `DSV4_CUDA_RESIDENT_EXPERTS=1` refused cleanly with
+`resident experts exceed device 0 budget (free=16596 MiB reserve=2800 MiB)`.
+
+**Key interpretation:** on 24 GB both the full model and REAP log
+`resident-experts=cache-fallback (free=16596/16768 MiB reserve=2800 MiB)`. The measured gains are
+therefore from the faster kernels (head, resident indexer, compressor, `wo_decode`), not from
+resident experts. The bank-aware `mirror-reserve=4681MiB` line is present, but the preload path
+still uses the flat 2800 MiB. The 6x 5090 residency target is not covered by this run.
+
+The head numbers are 2-4 points lower than the pre-head same-base numbers (1.22/1.54/1.19/1.36 vs
+1.26/1.60/1.22/1.40), because the current dev base is newer and faster; use the head numbers for
+`aabd99d`. Full detail and review implications:
+[manifests/shadowfax-20261103-final37/SUMMARY.md](manifests/shadowfax-20261103-final37/SUMMARY.md).
+
 ## FINAL8 (2026-10-23 13:05-14:19 PDT, shadowfax, REAP-150B, `manifests/final8/`)
 Follow-ups to final7 (harness `tools/bench/final8/`); same trees as final7 (dev 7df8c27c, pr1 b286167e + Vulkan builds),
 fresh server per sample. **GATES: PASS**; 30 of 30 request texts = their group's first sample; 0 handled allocation

@@ -7,6 +7,38 @@
 > **PR #2** (two-GPU decode) is not opened yet. Documents dated before 2026-10-17 describe earlier
 > versions of these changes, on the old base 7b55a9b3.
 
+## After final37 (2026-11-03): #1766 at `aabd99d`
+
+The exact-head GPU run is done: 1.22x/1.54x REAP, 1.19x/1.36x full model, TTFT 0.89x, 9/9 CUDA
+tests, all texts byte-identical. The remaining items are config/docs, not kernels. Detail:
+[manifests/shadowfax-20261103-final37/SUMMARY.md](manifests/shadowfax-20261103-final37/SUMMARY.md),
+[HANDOFF_20261103.md](HANDOFF_20261103.md).
+
+1. **`auto` hard-failure semantics (P1, code or docs).** `coli_v4_gpu_experts_init` does
+   `if (preload && !resident_auto) return -1;`, so under the default `auto` every nonzero preload
+   result — including hard `-1` from a missing shared mirror or a layer load — is turned into
+   `cache-fallback`. The docs say "Other loading failures still reject engine open." Either split
+   "budget refusal" from "hard failure" or correct the docs. The final37 `=1` arm shows a clean
+   refusal is already possible.
+2. **`DSV4_CUDA_VRAM_RESERVE_MB` is overloaded (P1/P2).** #1766's preload/head path uses a flat
+   2800 MiB default; dev/#2405 use the same name as the bank-aware mirror-growth reserve
+   (`mirror-reserve=4681MiB` on the full model here). On 24 GB `auto` falls back either way, so
+   document that, or split/rename the variable.
+3. **Docs and headline numbers (P2).** Quote 1.22x/1.54x/1.19x/1.36x for `aabd99d`, not the old
+   1.26/1.60/1.22/1.40. State that `auto` falls back on 24 GB and the gain there is kernel-side.
+   Add the new switches (`DSV4_CUDA_HEAD`, `HEAD_BATCH`, `HEAD_VERIFY`, `RESIDENT_INDEXER`,
+   `INDEXER_HEADS`, `INDEXER_PREP`, `WO_DECODE`, `COMPRESSOR`, `RESIDENT_ROUTE`, `BATCHED`) to the
+   env table.
+4. **CUDA tests still not in CI (P2).** All nine pass manually on 2x 3090, but `quant_cuda`,
+   `resident_route` and `resident_indexer` are in no makefile, and none are in `dsv4-cuda-test` or
+   CI. Add a `dsv4-cuda-tests` target and a documented `DSV4_TEST_DEVICES=0,1` gate.
+5. **P2P/NCCL gating (P2).** `dsv4_cuda_init` attempts peer access for every pair and aborts if
+   enabling fails; layer split does not require P2P. Make it best-effort and document that the
+   6-GPU path initializes NCCL. The 6x 5090 target remains independently unverified.
+6. **Lower priority.** Head upload is pinned to device 0; the GGUF dense path still targets one
+   device; `v4_gpu_expert_find` and `coli_v4_gpu_resident_route` lack a couple of defensive NULL
+   checks; KV ownership relies on shutdown/reinit when the device list changes.
+
 ## Open now (2026-10-24 evening, after #2264 merged)
 shadowfax and computer4 are unreachable; counter is the only build/test machine. Each item notes whether it needs a GPU.
 

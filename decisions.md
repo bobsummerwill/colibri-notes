@@ -22,6 +22,11 @@
   - one changed variable per manifest;
   - hashed evidence;
   - full output text compared.
+- **#1766 at `aabd99d`: use the exact-head numbers (2026-11-03).** REAP 1.22x one GPU, 1.54x two
+  GPUs vs dev one GPU; full `fdec` 1.19x one GPU, ~1.36x two GPUs; TTFT 0.89x; 9/9 CUDA tests, all
+  texts identical. On 24 GB `auto` falls back to the cache, so the gain there is kernel-side, not
+  residency. The review narrows to `auto`/reserve semantics and docs, not performance. Do not quote
+  the pre-head 1.26/1.60/1.22/1.40 for this head.
 - **Hermes stays on llama.cpp.**
   - colibri decode is ~3.9 tok/s at best, against ~72 tok/s for Qwen3.8-27B on llama.cpp.
   - The work is worth having as an upstream contribution and a learning exercise, not as Hermes's model server.
