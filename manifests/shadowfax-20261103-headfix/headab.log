@@ -1,0 +1,32 @@
+hermes frozen: 3 pids
+gpu compute processes after stop: 0
+Running as unit: headab-serve.service; invocation ID: 6bae658203dd47a6aa9ffa6b870f8bb6
+H0 s1 ready=1
+v4_gpu mirror-reserve=4681MiB (256-slot bank 3264MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)
+v4_gpu resident-experts=cache-fallback (resident experts exceed device 0 budget (free=20248 MiB reserve=2800 MiB))
+v4_gpu head=resident device=0 bytes=1059061760 arithmetic=separate-mul-add
+H0 s1 client_rc=0
+Running as unit: headab-serve.service; invocation ID: 0191e28a60c44446bb8715d100542de1
+H1 s1 ready=1
+v4_gpu mirror-reserve=4681MiB (256-slot bank 3264MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)
+v4_gpu resident-experts=cache-fallback (resident experts exceed device 0 budget (free=20248 MiB reserve=2800 MiB))
+v4_gpu head=resident device=1 bytes=1059061760 arithmetic=separate-mul-add
+H1 s1 client_rc=0
+Running as unit: headab-serve.service; invocation ID: c874642161e846038cfc31335649cbfe
+H1 s2 ready=1
+v4_gpu mirror-reserve=4681MiB (256-slot bank 3264MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)
+v4_gpu resident-experts=cache-fallback (resident experts exceed device 0 budget (free=20248 MiB reserve=2800 MiB))
+v4_gpu head=resident device=1 bytes=1059061760 arithmetic=separate-mul-add
+H1 s2 client_rc=0
+Running as unit: headab-serve.service; invocation ID: 9aef90dc3e524c00ad01cb628208aa51
+H0 s2 ready=1
+v4_gpu mirror-reserve=4681MiB (256-slot bank 3264MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)
+v4_gpu resident-experts=cache-fallback (resident experts exceed device 0 budget (free=20248 MiB reserve=2800 MiB))
+v4_gpu head=resident device=0 bytes=1059061760 arithmetic=separate-mul-add
+H0 s2 client_rc=0
+H0-s1 n=3 mean=3.6017 median=3.4960 texts=3d0a5275,f0e57dde,d27222f1
+H0-s2 n=3 mean=3.6057 median=3.5020 texts=3d0a5275,f0e57dde,d27222f1
+H1-s1 n=3 mean=3.6120 median=3.5040 texts=3d0a5275,f0e57dde,d27222f1
+H1-s2 n=3 mean=3.6093 median=3.5030 texts=3d0a5275,f0e57dde,d27222f1
+restoring llama...
+hermes resumed: 3 pids

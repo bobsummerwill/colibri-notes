@@ -1,0 +1,82 @@
+hermes frozen: 3 pids
+gpu compute processes after stop: 0
+== tests/test_dsv4_head_cuda
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+device=0 rows=32 cols=256 logits=exact trials=3 tie=first zero=exact bytes=16384
+batched head: logits and compact argmax exact; batch=1,3,4,5,9,2
+device=0 rows=160 cols=4104 logits=exact trials=3 tie=first zero=exact bytes=1313280
+batched head: logits and compact argmax exact; batch=1,3,4,5,9,2
+device=0 rows=129280 cols=4096 logits=exact trials=3 tie=first zero=exact bytes=1059061760
+batched head: logits and compact argmax exact; batch=1,3,4,5,9,2
+device=1 rows=32 cols=256 logits=exact trials=3 tie=first zero=exact bytes=16384
+batched head: logits and compact argmax exact; batch=1,3,4,5,9,2
+device=1 rows=160 cols=4104 logits=exact trials=3 tie=first zero=exact bytes=1313280
+batched head: logits and compact argmax exact; batch=1,3,4,5,9,2
+device=1 rows=129280 cols=4096 logits=exact trials=3 tie=first zero=exact bytes=1059061760
+batched head: logits and compact argmax exact; batch=1,3,4,5,9,2
+== tests/test_dsv4_wo_decode_cuda
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+device=0 groups=1 format=8 width=256 rank=128 exact=3/3
+device=0 groups=1 format=9 width=256 rank=128 exact=3/3
+device=0 groups=8 format=8 width=4096 rank=1024 exact=3/3
+device=0 groups=8 format=9 width=4096 rank=1024 exact=3/3
+device=1 groups=1 format=8 width=256 rank=128 exact=3/3
+device=1 groups=1 format=9 width=256 rank=128 exact=3/3
+device=1 groups=8 format=8 width=4096 rank=1024 exact=3/3
+device=1 groups=8 format=9 width=4096 rank=1024 exact=3/3
+== tests/test_dsv4_compressor_cuda
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+device=0 rows=256 cols=4096 paired_us=112.62 exact=yes prefill=unchanged
+device=0 rows=256 cols=4103 paired_us=113.50 exact=yes prefill=unchanged
+device=0 rows=512 cols=4096 paired_us=188.98 exact=yes prefill=unchanged
+device=0 rows=512 cols=4103 paired_us=196.72 exact=yes prefill=unchanged
+device=0 rows=1024 cols=4096 paired_us=191.10 exact=yes prefill=unchanged
+device=0 rows=1024 cols=4103 paired_us=197.20 exact=yes prefill=unchanged
+device=1 rows=256 cols=4096 paired_us=102.60 exact=yes prefill=unchanged
+device=1 rows=256 cols=4103 paired_us=103.21 exact=yes prefill=unchanged
+device=1 rows=512 cols=4096 paired_us=177.95 exact=yes prefill=unchanged
+device=1 rows=512 cols=4103 paired_us=185.22 exact=yes prefill=unchanged
+device=1 rows=1024 cols=4096 paired_us=178.79 exact=yes prefill=unchanged
+device=1 rows=1024 cols=4103 paired_us=186.04 exact=yes prefill=unchanged
+== tests/test_dsv4_compressor_state_cuda
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+device=0 ratio=4 dim=512 indexer=0 state/output/reset/partial-failure exact
+device=0 ratio=128 dim=512 indexer=0 state/output/reset/partial-failure exact
+device=0 ratio=4 dim=128 indexer=1 state/output/reset/partial-failure exact
+device=1 ratio=4 dim=512 indexer=0 state/output/reset/partial-failure exact
+device=1 ratio=128 dim=512 indexer=0 state/output/reset/partial-failure exact
+device=1 ratio=4 dim=128 indexer=1 state/output/reset/partial-failure exact
+== tests/test_dsv4_indexer_prepare_cuda
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+device=0 dim=32 query/head-weights exact
+device=0 dim=128 query/head-weights exact
+device=0 dim=512 query/head-weights exact
+device=0 score exact: batches 1/3, candidates 1/7/9/129/513, masked counts
+device=1 dim=32 query/head-weights exact
+device=1 dim=128 query/head-weights exact
+device=1 dim=512 query/head-weights exact
+device=1 score exact: batches 1/3, candidates 1/7/9/129/513, masked counts
+== tests/test_dsv4_multigpu_cuda
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+test_dsv4_multigpu_cuda: ok
+== tests/test_dsv4_quant_cuda
+device=0 cases=35769 mismatches=0
+device=1 cases=35769 mismatches=0
+== tests/test_dsv4_resident_route
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+resident route: exact parity on two devices, normal and hash routes
+== tests/test_dsv4_resident_indexer
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+resident indexer: exact parity, both layouts, batches 1/3/33, two devices
+TESTS_RC=0
+restoring llama...
+hermes resumed: 3 pids
