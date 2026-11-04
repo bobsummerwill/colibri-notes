@@ -55,3 +55,15 @@ is unaffected. Enabling CPU sampling needs root:
 
 `~/.bashrc` on shadowfax contains a plaintext `SUDO_PASSWORD`. It was not used.
 Recommend moving it to a root-only file or removing it.
+
+## Undo script
+
+`ops/fix-nsys.sh` (also at `~/fix-nsys.sh` on shadowfax) creates the missing
+sibling link, removes the shim and any PATH block it added, optionally sets
+`kernel.perf_event_paranoid=1` (`--perf`), and verifies with a real kernel.
+
+```bash
+bash ~/fix-nsys.sh --dry-run      # show what would change
+bash ~/fix-nsys.sh                # apply (re-executes via sudo)
+bash ~/fix-nsys.sh --perf         # also enable CPU sampling
+```
