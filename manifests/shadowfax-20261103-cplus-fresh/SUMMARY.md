@@ -2,7 +2,8 @@
 
 Branch: `feat/dsv4-cplus-fresh` on `bobsummerwill/colibri`, built from the #1766
 head-followups branch (`f4586dca`) plus a merge of PR #2405's 11 commits
-(`11c40038`):
+(`11c40038`). PR: [bobsummerwill/colibri#3](https://github.com/bobsummerwill/colibri/pull/3)
+(base `fix/dsv4-head-followups`).
 
 - `64fd75e3` — merge of #2405 into the #1766 + fixes base, C+ conflict
   resolution (mutually exclusive layer split / peer pool, per-device caches,

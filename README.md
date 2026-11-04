@@ -52,8 +52,11 @@ OK too. Opened at his request: PR #0 (#2212-#2217), PR #1 (#2264, merged); 2026-
   Logs: [manifests/shadowfax-20261103-headfix/SUMMARY.md](manifests/shadowfax-20261103-headfix/SUMMARY.md),
   [manifests/computer4-20261103-5070-headfix/SUMMARY.md](manifests/computer4-20261103-5070-headfix/SUMMARY.md),
   [manifests/counter-20261103-headfix/SUMMARY.md](manifests/counter-20261103-headfix/SUMMARY.md).
-- **Fresh C+ branch:** [`feat/dsv4-cplus-fresh`](https://github.com/bobsummerwill/colibri/tree/feat/dsv4-cplus-fresh)
-  merges PR #2405's 11 commits onto the #1766 + fixes base (not a rebase). 2×3090:
+- **Fresh C+ branch / PR:** [`feat/dsv4-cplus-fresh`](https://github.com/bobsummerwill/colibri/tree/feat/dsv4-cplus-fresh)
+  merges PR #2405's 11 commits onto the #1766 + fixes base (not a rebase).
+  [PR bobsummerwill/colibri#3](https://github.com/bobsummerwill/colibri/pull/3)
+  targets `fix/dsv4-head-followups`; its diff is exactly the 2405 functionality + the
+  strict peer-init fix. 2×3090:
   REAP **1.94x** vs dev with 2 GPUs, full model **1.59x**, C+ 1 GPU 1.265x/1.22x;
   RTX 5070 **1.214x**; nine CUDA and 2405 peer/batch tests pass; soak 3/3 identical.
   A 2405 peer-init test caught the best-effort P2P change leaking peer state; fixed in
