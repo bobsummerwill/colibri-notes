@@ -57,6 +57,11 @@ OK too. Opened at his request: PR #0 (#2212-#2217), PR #1 (#2264, merged); 2026-
   closed as folded. 31 source commits + 1 merge became 15 commits. No build,
   test or profiling yet. See
   [review/SPLIT_BUILT_6PR_20261103.md](review/SPLIT_BUILT_6PR_20261103.md).
+- **Test round (executed 2026-11-03):** all six PRs and the integration
+  build on sm_86/sm_120 and pass their tests; decode 2.55 tok/s on `dev`
+  vs 2.84 (single), 3.25 (placement), 3.31 (peer) with identical output;
+  `nsys` profiles captured. Results are comments on #4–#9 and #11. See
+  [review/TEST_ROUND_20261103.md](review/TEST_ROUND_20261103.md).
 - **Test round estimate:** ~25–34 h wall for a complete per-PR
   build/test/bench round on shadowfax+computer4, or ~15–20 h if only the
   aggregate gets the full matrix. See
