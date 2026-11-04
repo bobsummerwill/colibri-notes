@@ -131,3 +131,54 @@ Other numbers:
 Corrections to the smoke round: the dual expert loader is on by default, so
 `V4_GPU_RESIDENT_FIRST` is measurable (the earlier comment on #8 said
 otherwise and has been corrected).
+
+## Expanded round (2026-11-04, second pass)
+
+Interleaved (5 rounds × 3 reps, 128 tokens, dev→single→placement→peer):
+
+| config | mean |
+|---|---:|
+| dev | 3.60 tok/s |
+| single | 3.95 |
+| placement | 4.96 |
+| peer | 5.03 |
+
+Context / generation:
+
+| cell | result |
+|---|---|
+| 1k-token context (4k-char prompt) | TTFT 41.9 / 42.0 s (single/placement), steady 3.21 / 3.24, identical output |
+| 256-token generation, single | 3.77 overall, TTFT 5.5 s, steady 4.09 |
+| CPU-only, 8 tokens | 2.02 tok/s |
+
+Soak (1024 tokens × 3, VRAM sampled every 5 s): single 4.27 tok/s peak
+23 564 MiB; placement 5.75 tok/s peak 23 560 MiB both cards; peer 5.74 tok/s
+peak 23 564 / 23 136 MiB. Stable, identical output, ~96 % VRAM at peak.
+
+Feature cells:
+
+| cell | value |
+|---|---|
+| `INDEXER_HEADS` 0/1 | 3.93 / 3.95 |
+| `RESIDENT_INDEXER` 0/1 | 3.93 / 3.95 |
+| `COLI_CUDA_MOE_BATCH` 0/1 | 3.92 / 3.79 |
+| `COLI_CUDA_ATTN_BATCH` 0/1 | 3.89 / 3.75 (text changes: `65e321b385ef`) |
+| `PIN_CAP_GB` 0/1 | 3.68 / 3.67 |
+| `VRAM_RESERVE_MB` 600/2000 | 3.58 / 3.52 |
+| peer mirrors 512/4096 | 3.89 / 4.30 |
+| peer reserve 512/2048 | 4.30 / 4.27 |
+| full model peer compute | 3.21 |
+
+Refusals: `RESIDENT_EXPERTS=1` over budget exits 1 with the budget line;
+`DSV4_CUDA_DEVICES>1` + `PEER_DEVICE` exits 1 with the mutual-exclusion line.
+
+Lane profiles: decode ≈ 32 % `mv_fp4_grouped`, 28 % `mv<8>`, 23 % compressor;
+prefill 64 % compressor, 27 % `mm_batch*`; peer decode GPU memops 98.7 % HtoD
+(2.07 s, 18 379 copies), 1.3 % DtoH, 0.04 % PtoP.
+
+sm_120 runtime: `test_dsv4_quant_cuda` passes on the 5070 (35 769 cases, 0
+mismatches). The remaining CUDA tests require two distinct devices by
+construction; they ran on the 2×3090.
+
+Caveat: `COLI_CUDA_ATTN_BATCH=1` changes greedy text (documented
+summation-order difference, not a break).

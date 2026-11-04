@@ -57,6 +57,10 @@ OK too. Opened at his request: PR #0 (#2212-#2217), PR #1 (#2264, merged); 2026-
   closed as folded. 31 source commits + 1 merge became 15 commits. No build,
   test or profiling yet. See
   [review/SPLIT_BUILT_6PR_20261103.md](review/SPLIT_BUILT_6PR_20261103.md).
+- **Expanded round (2026-11-04):** interleaved medians dev 3.60 / single
+  3.95 / placement 4.96 / peer 5.03 tok/s; 1024-token soak stable at
+  ~23.5 GB peak; 1k context, 256-token generation, CPU-only, refusal
+  paths and per-lane nsys profiles recorded.
 - **Long round (executed 2026-11-04):** 128-token decode, 3 repeats per
   cell. dev 3.54 tok/s → integration 3.93 single, 4.88 placement, 4.98
   peer; full checkpoint 2.61/3.09; prefill 53 s for a 512-token prompt;
