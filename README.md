@@ -52,6 +52,11 @@ OK too. Opened at his request: PR #0 (#2212-#2217), PR #1 (#2264, merged); 2026-
   Logs: [manifests/shadowfax-20261103-headfix/SUMMARY.md](manifests/shadowfax-20261103-headfix/SUMMARY.md),
   [manifests/computer4-20261103-5070-headfix/SUMMARY.md](manifests/computer4-20261103-5070-headfix/SUMMARY.md),
   [manifests/counter-20261103-headfix/SUMMARY.md](manifests/counter-20261103-headfix/SUMMARY.md).
+- **Full-stack split plan:** #1766 + fixes + #2405/C+ (37 files, +5,280) is
+  proposed as **9 PRs**: build fixes, shared-expert, single-GPU kernels,
+  multi-GPU layers, resident/routing, mirror+VRAM-first, peer pool, fault/F18,
+  and C+ integration. See
+  [review/SPLIT_FULL_STACK_20261103.md](review/SPLIT_FULL_STACK_20261103.md).
 - **Split plan for #1766 + fixes:** the branch is 31 files / +3,086; proposed as a
   5-PR stack (build fixes, single-GPU kernels, multi-GPU layer placement, resident
   experts/routing, shared-expert fix) with C+ remaining separate. Direct cherry-picks
