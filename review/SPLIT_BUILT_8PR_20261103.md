@@ -1,3 +1,8 @@
+> **Superseded for the next window:** this 8-PR linear stack is to be replaced
+> by the 18-PR, three-lane structure in
+> [SPLIT_DAG_PLAN_20261103.md](SPLIT_DAG_PLAN_20261103.md). Keep this document
+> as the record of what was built and why the linear order was chosen.
+
 # Full-stack split, as built: #1766 + head-followups + #2405/C+ (2026-11-03)
 
 This supersedes the 9-PR plan in `SPLIT_FULL_STACK_20261103.md`. The split was

@@ -52,6 +52,13 @@ OK too. Opened at his request: PR #0 (#2212-#2217), PR #1 (#2264, merged); 2026-
   Logs: [manifests/shadowfax-20261103-headfix/SUMMARY.md](manifests/shadowfax-20261103-headfix/SUMMARY.md),
   [manifests/computer4-20261103-5070-headfix/SUMMARY.md](manifests/computer4-20261103-5070-headfix/SUMMARY.md),
   [manifests/counter-20261103-headfix/SUMMARY.md](manifests/counter-20261103-headfix/SUMMARY.md).
+- **Restructure plan (next window):** the linear 8-PR stack is planned to be
+  replaced by **18 small PRs in three parallel review lanes** (2 base, 6 for
+  #1766, 6 for #2405) plus an integration PR and three polish PRs. Measured
+  on throwaway worktrees: both feature lines replay onto `dev` with zero
+  conflicts, so the serialisation was avoidable. See
+  [review/SPLIT_DAG_PLAN_20261103.md](review/SPLIT_DAG_PLAN_20261103.md).
+  **Not executed yet.**
 - **Full-stack split, as built:** the combined stack is open as an **8-PR
   linear stack** in `bobsummerwill/colibri` (#4–#12), on a refreshed
   `dev`. See [review/SPLIT_BUILT_8PR_20261103.md](review/SPLIT_BUILT_8PR_20261103.md).
