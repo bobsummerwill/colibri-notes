@@ -69,6 +69,9 @@ Per branch tip:
   the split (same as the author's branch). Decide keep-or-drop before merge.
 - `tests/test_v4_gpu_placement.c` mocks evolve per PR (peer stubs only in #11);
   a build of each tip is the only way to be certain every stub set is complete.
+- Profiling: `nsys` on shadowfax is fixed via a user-level shim
+  (`ops/NSYS_SHADOWFAX.md`), GPU tracing verified with a real kernel; CPU
+  sampling remains blocked by `perf_event_paranoid=4` (root).
 
 ## Next: the test/profiling round
 

@@ -14,8 +14,9 @@ Hermes/llama services on shadowfax are paused for the GPU windows.
 3. **Benchmark**: A/B vs `dev` on the PR's feature, same prompt and model,
    identical-output check plus decode/prefill tok/s.
 4. **Profiling**: built-in `DECODE`/`ATTN`/`MOE` lines and `V4_SERVE_STATS_LOG`;
-   `nsys` is unavailable on shadowfax, `ncu` is not usable on these cards for
-   the long runs.
+   `nsys` on shadowfax now works through a user-level shim (2026-11-03, see
+   `ops/NSYS_SHADOWFAX.md`) — GPU tracing only, CPU sampling stays disabled by
+   `perf_event_paranoid=4`. `ncu` is not usable on these cards for the long runs.
 5. **Notes**: numbers and verdicts written back into the PR.
 
 ## Cost per PR
