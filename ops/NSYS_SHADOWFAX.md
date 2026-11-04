@@ -94,3 +94,11 @@ nsys stats --report gpukernsum run.nsys-rep
 ```
 
 The shim and `fix-nsys.sh` both use the separate `nsys stats` process and work.
+
+## Report IDs differ by version
+
+- shadowfax (2022.4): `--report cudaapisum`, `--report gpukernsum`
+- computer4 (2024.6): `--report cuda_api_sum`, `--report cuda_gpu_kern_sum`
+  (or no `--report` for the default set)
+
+Both machines now have `kernel.perf_event_paranoid=1` persisted.
