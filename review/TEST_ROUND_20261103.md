@@ -91,3 +91,43 @@ work, not by the exact head.
 - llama/TabbyAPI restarted by request; hermes left stopped (it was stopped by
   the user before the run).
 - All results also posted as comments on each PR.
+
+## Long round (2026-11-04)
+
+128-token decode, 3 repeats per cell, median; REAP unless stated; same prompt
+everywhere; llama/TabbyAPI and hermes stopped. Output text identical in every
+REAP cell (sha `bdda375698df`) and in both full-checkpoint cells.
+
+| config | TTFT | steady |
+|---|---:|---:|
+| `dev` | 9.5 s | 3.54 tok/s |
+| integration single | 5.6 s | 3.93 tok/s |
+| integration, `DSV4_CUDA_DEVICES=0,1` | 5.7 s | 4.88 tok/s |
+| integration, peer compute | 5.6 s | 4.98 tok/s |
+| full checkpoint single | 4.35 s | 2.61 tok/s |
+| full checkpoint placement | 4.06 s | 3.09 tok/s |
+
+Per feature (branch-local):
+
+| cell | value |
+|---|---|
+| resident `0` / `auto` | 3.59 / 3.60 tok/s (auto falls back on budget) |
+| `V4_GPU_RESIDENT_FIRST` 0 / 1 | 3.57 / 3.62 tok/s |
+| mirrors 512 / 2048 / 4096 | 2.99 / 3.57 / 3.57 tok/s |
+| peer off / P2P / compute | 3.58 / 3.86 / 4.27 tok/s |
+| head off / on | 3.72 / 3.93 tok/s |
+| batch-head, wo, compressor, indexer-prep | within noise (±1.5 %) |
+
+Other numbers:
+
+- prefill-heavy 512-token prompt: TTFT 53.2 s single / 53.3 s placement;
+  post-prefill decode 3.30 / 3.32 tok/s. Placement does not help prefill.
+- soak: 15 consecutive runs, identical, 3.94 tok/s mean.
+- peer fault injection: peer latched off, decode continued on the primary,
+  same output.
+- nsys decode: `mv_fp4_grouped` 31.7 %, `mv<8>` 28.1 %, `compressor` 22.9 %.
+- nsys prefill: `compressor_project_exact` 63.8 %, `mm_batch*` 27.2 %.
+
+Corrections to the smoke round: the dual expert loader is on by default, so
+`V4_GPU_RESIDENT_FIRST` is measurable (the earlier comment on #8 said
+otherwise and has been corrected).
