@@ -1,0 +1,228 @@
+From https://github.com/bobsummerwill/colibri
+   64fd75e3..8a30a985  feat/dsv4-cplus-fresh -> bob-cplus-fresh
+Previous HEAD position was 64fd75e3 Merge PR #2405 (11c40038) into the #1766 head-followups base
+HEAD is now at 8a30a985 fix(dsv4): keep peer init strict for the peer tier
+=== build 8a30a985 ===
+make: Entering directory '/home/maplemercury/colibri-bench/cw22/f39-cplus/c'
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_GPU_TIER -DCOLI_V4_UNIT_ST -c deepseek_v4.c -o COLI_V4_UNIT_ST.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_GPU_TIER -DCOLI_V4_UNIT_CONFIG -c deepseek_v4.c -o COLI_V4_UNIT_CONFIG.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_GPU_TIER -DCOLI_V4_UNIT_LAYER_RESIDENT -c deepseek_v4.c -o COLI_V4_UNIT_LAYER_RESIDENT.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_GPU_TIER -DCOLI_V4_UNIT_RESOURCE_PLAN -c deepseek_v4.c -o COLI_V4_UNIT_RESOURCE_PLAN.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_GPU_TIER -DCOLI_V4_UNIT_HEAD_CACHE -c deepseek_v4.c -o COLI_V4_UNIT_HEAD_CACHE.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_GPU_TIER -DCOLI_V4_UNIT_EXPERT_STORE_AUTO -c deepseek_v4.c -o COLI_V4_UNIT_EXPERT_STORE_AUTO.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_GPU_TIER -DCOLI_V4_UNIT_NATIVE_QUANT -c deepseek_v4.c -o COLI_V4_UNIT_NATIVE_QUANT.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_GPU_TIER -DCOLI_V4_UNIT_NATIVE_QUANT_DUAL -c deepseek_v4.c -o COLI_V4_UNIT_NATIVE_QUANT_DUAL.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_GPU_TIER -DCOLI_V4_UNIT_NATIVE_QUANT_BATCH -c deepseek_v4.c -o COLI_V4_UNIT_NATIVE_QUANT_BATCH.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_GPU_TIER -DCOLI_V4_UNIT_NATIVE_QUANT_ROWS16 -c deepseek_v4.c -o COLI_V4_UNIT_NATIVE_QUANT_ROWS16.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_GPU_TIER -DCOLI_V4_UNIT_MATH -c deepseek_v4.c -o COLI_V4_UNIT_MATH.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_GPU_TIER -DCOLI_V4_UNIT_ATTENTION -c deepseek_v4.c -o COLI_V4_UNIT_ATTENTION.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_GPU_TIER -DCOLI_V4_UNIT_ATTENTION_BATCH -c deepseek_v4.c -o COLI_V4_UNIT_ATTENTION_BATCH.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_GPU_TIER -DCOLI_V4_UNIT_COMPRESSOR -c deepseek_v4.c -o COLI_V4_UNIT_COMPRESSOR.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_GPU_TIER -DCOLI_V4_UNIT_INDEXER -c deepseek_v4.c -o COLI_V4_UNIT_INDEXER.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_GPU_TIER -DCOLI_V4_UNIT_SPARSE_ATTENTION -c deepseek_v4.c -o COLI_V4_UNIT_SPARSE_ATTENTION.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_GPU_TIER -DCOLI_V4_UNIT_BLOCK_HYBRID -c deepseek_v4.c -o COLI_V4_UNIT_BLOCK_HYBRID.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_GPU_TIER -DCOLI_V4_UNIT_COMPRESSOR_SNAPSHOT -c deepseek_v4.c -o COLI_V4_UNIT_COMPRESSOR_SNAPSHOT.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_GPU_TIER -DCOLI_V4_UNIT_INDEXER_SNAPSHOT -c deepseek_v4.c -o COLI_V4_UNIT_INDEXER_SNAPSHOT.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_GPU_TIER -DCOLI_V4_UNIT_ATTENTION_TRANSACTION -c deepseek_v4.c -o COLI_V4_UNIT_ATTENTION_TRANSACTION.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_GPU_TIER -DCOLI_V4_UNIT_EXPERT_STORE_HOT_ROWS16 -c deepseek_v4.c -o COLI_V4_UNIT_EXPERT_STORE_HOT_ROWS16.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_GPU_TIER -DCOLI_V4_UNIT_EXPERT_ROWS16 -c deepseek_v4.c -o COLI_V4_UNIT_EXPERT_ROWS16.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_GPU_TIER -DCOLI_V4_UNIT_ROUTE_BF16 -c deepseek_v4.c -o COLI_V4_UNIT_ROUTE_BF16.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_GPU_TIER -DCOLI_V4_UNIT_RUNTIME -c deepseek_v4.c -o COLI_V4_UNIT_RUNTIME.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_GPU_TIER -DCOLI_V4_UNIT_GPU -c deepseek_v4.c -o COLI_V4_UNIT_GPU.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_GPU_TIER -DCOLI_V4_UNIT_PROMPT -c deepseek_v4.c -o COLI_V4_UNIT_PROMPT.o
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_GPU_TIER -DCOLI_V4_UNIT_GENERATE_STATS -c deepseek_v4.c -o COLI_V4_UNIT_GENERATE_STATS.o
+"/usr/bin/nvcc" -O3 -std=c++20 --expt-relaxed-constexpr --expt-extended-lambda -Xcompiler=-fPIC -arch=sm_86 -DCOLI_DSV4_NO_TC -c backend_cuda_dsv4.cu -o backend_cuda_dsv4.o
+gcc COLI_V4_UNIT_ST.o COLI_V4_UNIT_CONFIG.o COLI_V4_UNIT_LAYER_RESIDENT.o COLI_V4_UNIT_RESOURCE_PLAN.o COLI_V4_UNIT_HEAD_CACHE.o COLI_V4_UNIT_EXPERT_STORE_AUTO.o COLI_V4_UNIT_NATIVE_QUANT.o COLI_V4_UNIT_NATIVE_QUANT_DUAL.o COLI_V4_UNIT_NATIVE_QUANT_BATCH.o COLI_V4_UNIT_NATIVE_QUANT_ROWS16.o COLI_V4_UNIT_MATH.o COLI_V4_UNIT_ATTENTION.o COLI_V4_UNIT_ATTENTION_BATCH.o COLI_V4_UNIT_COMPRESSOR.o COLI_V4_UNIT_INDEXER.o COLI_V4_UNIT_SPARSE_ATTENTION.o COLI_V4_UNIT_BLOCK_HYBRID.o COLI_V4_UNIT_COMPRESSOR_SNAPSHOT.o COLI_V4_UNIT_INDEXER_SNAPSHOT.o COLI_V4_UNIT_ATTENTION_TRANSACTION.o COLI_V4_UNIT_EXPERT_STORE_HOT_ROWS16.o COLI_V4_UNIT_EXPERT_ROWS16.o COLI_V4_UNIT_ROUTE_BF16.o COLI_V4_UNIT_RUNTIME.o COLI_V4_UNIT_GPU.o COLI_V4_UNIT_PROMPT.o COLI_V4_UNIT_GENERATE_STATS.o backend_cuda_dsv4.o expert_store_registry.o   -o deepseek_v4 -lm -fopenmp -pthread  -flto -L/usr/lib64 -L/usr/lib64/stubs -Wl,-rpath,/usr/lib64 -lcudart -lcuda -lcublasLt -lstdc++
+lto-wrapper: warning: using serial compilation of 29 LTRANS jobs
+lto-wrapper: note: see the ‘-flto’ option documentation for more information
+make: Leaving directory '/home/maplemercury/colibri-bench/cw22/f39-cplus/c'
+BUILD_RC=0
+=== nine tests ===
+make: Entering directory '/home/maplemercury/colibri-bench/cw22/f39-cplus/c'
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_GPU_TIER tests/test_dsv4_head_cuda.c backend_cuda_dsv4.o -o tests/test_dsv4_head_cuda -lm -fopenmp -pthread  -flto -L/usr/lib64 -L/usr/lib64/stubs -Wl,-rpath,/usr/lib64 -lcudart -lcuda -lcublasLt -lstdc++
+g++ -I/usr/include -O3 -std=c++20 tests/test_dsv4_wo_decode_cuda.cpp backend_cuda_dsv4.o -o tests/test_dsv4_wo_decode_cuda -lm -fopenmp -pthread  -flto -L/usr/lib64 -L/usr/lib64/stubs -Wl,-rpath,/usr/lib64 -lcudart -lcuda -lcublasLt -lstdc++
+g++ -O3 -std=c++20 tests/test_dsv4_compressor_cuda.cpp backend_cuda_dsv4.o -o tests/test_dsv4_compressor_cuda -lm -fopenmp -pthread  -flto -L/usr/lib64 -L/usr/lib64/stubs -Wl,-rpath,/usr/lib64 -lcudart -lcuda -lcublasLt -lstdc++
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_GPU_TIER tests/test_dsv4_compressor_state_cuda.c COLI_V4_UNIT_NATIVE_QUANT.o COLI_V4_UNIT_MATH.o \
+	backend_cuda_dsv4.o -o tests/test_dsv4_compressor_state_cuda -lm -fopenmp -pthread  -flto -L/usr/lib64 -L/usr/lib64/stubs -Wl,-rpath,/usr/lib64 -lcudart -lcuda -lcublasLt -lstdc++
+g++ -O3 -std=c++20 tests/test_dsv4_indexer_prepare_cuda.cpp COLI_V4_UNIT_NATIVE_QUANT.o backend_cuda_dsv4.o -o tests/test_dsv4_indexer_prepare_cuda -lm -fopenmp -pthread  -flto -L/usr/lib64 -L/usr/lib64/stubs -Wl,-rpath,/usr/lib64 -lcudart -lcuda -lcublasLt -lstdc++
+gcc -D_GNU_SOURCE -O3 -march=native -fopenmp -pthread -include pthread.h -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function -DCOLI_V4_MAX_PIN_SLOTS_PER_LAYER=16 -DCOLI_V4_PIN_RAMP_REQUESTS=24 -DCOLI_V4_EXPERIMENTAL_DUAL_EXPERT_LOADER  -flto -DCOLI_V4_GPU_TIER tests/test_dsv4_multigpu_cuda.c backend_cuda_dsv4.o -o tests/test_dsv4_multigpu_cuda -lm -fopenmp -pthread  -flto -L/usr/lib64 -L/usr/lib64/stubs -Wl,-rpath,/usr/lib64 -lcudart -lcuda -lcublasLt -lstdc++
+/usr/bin/nvcc -O3 -std=c++20 --expt-relaxed-constexpr --expt-extended-lambda -Xcompiler=-fPIC -arch=sm_86 -DCOLI_DSV4_NO_TC tests/test_dsv4_quant_cuda.cu backend_cuda_dsv4.o -o tests/test_dsv4_quant_cuda \
+	-L/usr/lib64 -L/usr/lib64/stubs -lcudart -lcuda -lcublasLt
+g++ -O3 -std=c++20 -DCOLI_DSV4_NO_TC tests/test_dsv4_resident_route.cpp backend_cuda_dsv4.o -o tests/test_dsv4_resident_route -lm -fopenmp -pthread  -flto -L/usr/lib64 -L/usr/lib64/stubs -Wl,-rpath,/usr/lib64 -lcudart -lcuda -lcublasLt -lstdc++
+g++ -O3 -std=c++20 -DCOLI_DSV4_NO_TC tests/test_dsv4_resident_indexer.cpp backend_cuda_dsv4.o -o tests/test_dsv4_resident_indexer -lm -fopenmp -pthread  -flto -L/usr/lib64 -L/usr/lib64/stubs -Wl,-rpath,/usr/lib64 -lcudart -lcuda -lcublasLt -lstdc++
+== tests/test_dsv4_head_cuda
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+device=0 rows=32 cols=256 logits=exact trials=3 tie=first zero=exact bytes=16384
+batched head: logits and compact argmax exact; batch=1,3,4,5,9,2
+device=0 rows=160 cols=4104 logits=exact trials=3 tie=first zero=exact bytes=1313280
+batched head: logits and compact argmax exact; batch=1,3,4,5,9,2
+device=0 rows=129280 cols=4096 logits=exact trials=3 tie=first zero=exact bytes=1059061760
+batched head: logits and compact argmax exact; batch=1,3,4,5,9,2
+device=1 rows=32 cols=256 logits=exact trials=3 tie=first zero=exact bytes=16384
+batched head: logits and compact argmax exact; batch=1,3,4,5,9,2
+device=1 rows=160 cols=4104 logits=exact trials=3 tie=first zero=exact bytes=1313280
+batched head: logits and compact argmax exact; batch=1,3,4,5,9,2
+device=1 rows=129280 cols=4096 logits=exact trials=3 tie=first zero=exact bytes=1059061760
+batched head: logits and compact argmax exact; batch=1,3,4,5,9,2
+== tests/test_dsv4_wo_decode_cuda
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+device=0 groups=1 format=8 width=256 rank=128 exact=3/3
+device=0 groups=1 format=9 width=256 rank=128 exact=3/3
+device=0 groups=8 format=8 width=4096 rank=1024 exact=3/3
+device=0 groups=8 format=9 width=4096 rank=1024 exact=3/3
+device=1 groups=1 format=8 width=256 rank=128 exact=3/3
+device=1 groups=1 format=9 width=256 rank=128 exact=3/3
+device=1 groups=8 format=8 width=4096 rank=1024 exact=3/3
+device=1 groups=8 format=9 width=4096 rank=1024 exact=3/3
+== tests/test_dsv4_compressor_cuda
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+device=0 rows=256 cols=4096 paired_us=112.62 exact=yes prefill=unchanged
+device=0 rows=256 cols=4103 paired_us=112.75 exact=yes prefill=unchanged
+device=0 rows=512 cols=4096 paired_us=188.84 exact=yes prefill=unchanged
+device=0 rows=512 cols=4103 paired_us=196.86 exact=yes prefill=unchanged
+device=0 rows=1024 cols=4096 paired_us=190.49 exact=yes prefill=unchanged
+device=0 rows=1024 cols=4103 paired_us=195.83 exact=yes prefill=unchanged
+device=1 rows=256 cols=4096 paired_us=102.81 exact=yes prefill=unchanged
+device=1 rows=256 cols=4103 paired_us=103.43 exact=yes prefill=unchanged
+device=1 rows=512 cols=4096 paired_us=178.17 exact=yes prefill=unchanged
+device=1 rows=512 cols=4103 paired_us=185.40 exact=yes prefill=unchanged
+device=1 rows=1024 cols=4096 paired_us=178.71 exact=yes prefill=unchanged
+device=1 rows=1024 cols=4103 paired_us=186.50 exact=yes prefill=unchanged
+== tests/test_dsv4_compressor_state_cuda
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+device=0 ratio=4 dim=512 indexer=0 state/output/reset/partial-failure exact
+device=0 ratio=128 dim=512 indexer=0 state/output/reset/partial-failure exact
+device=0 ratio=4 dim=128 indexer=1 state/output/reset/partial-failure exact
+device=1 ratio=4 dim=512 indexer=0 state/output/reset/partial-failure exact
+device=1 ratio=128 dim=512 indexer=0 state/output/reset/partial-failure exact
+device=1 ratio=4 dim=128 indexer=1 state/output/reset/partial-failure exact
+== tests/test_dsv4_indexer_prepare_cuda
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+device=0 dim=32 query/head-weights exact
+device=0 dim=128 query/head-weights exact
+device=0 dim=512 query/head-weights exact
+device=0 score exact: batches 1/3, candidates 1/7/9/129/513, masked counts
+device=1 dim=32 query/head-weights exact
+device=1 dim=128 query/head-weights exact
+device=1 dim=512 query/head-weights exact
+device=1 score exact: batches 1/3, candidates 1/7/9/129/513, masked counts
+== tests/test_dsv4_multigpu_cuda
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+test_dsv4_multigpu_cuda: ok
+== tests/test_dsv4_quant_cuda
+device=0 cases=35769 mismatches=0
+device=1 cases=35769 mismatches=0
+== tests/test_dsv4_resident_route
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+resident route: exact parity on two devices, normal and hash routes
+== tests/test_dsv4_resident_indexer
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+resident indexer: exact parity, both layouts, batches 1/3/33, two devices
+make: Leaving directory '/home/maplemercury/colibri-bench/cw22/f39-cplus/c'
+NINE_RC=0
+=== peer/batch tests ===
+make: Entering directory '/home/maplemercury/colibri-bench/cw22/f39-cplus/c'
+"/usr/bin/nvcc" -O3 -std=c++20 -ftz=false -arch=sm_86 -Xcompiler=-Wall,-Wextra -DCOLI_DSV4_NO_TC tests/test_dsv4_peer_init_cuda.cu -o dsv4_peer_init_cuda_test -lcuda -lcublasLt 
+./dsv4_peer_init_cuda_test
+[DSV4 CUDA] validate device: invalid device ordinal
+[DSV4 CUDA] device 2 did not initialise
+[DSV4 CUDA] validate device: invalid device ordinal
+[DSV4 CUDA] device 2 did not initialise
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] stream: invalid argument
+[DSV4 CUDA] device 0 did not initialise
+[DSV4 CUDA] aux stream: invalid argument
+[DSV4 CUDA] device 0 did not initialise
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] stream: invalid argument
+[DSV4 CUDA] device 1 did not initialise
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] aux stream: invalid argument
+[DSV4 CUDA] device 1 did not initialise
+[DSV4 CUDA] decode state allocation: out of memory
+[DSV4 CUDA] device 0 did not initialise
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] decode state allocation: out of memory
+[DSV4 CUDA] device 1 did not initialise
+[DSV4 CUDA] stream: invalid argument
+[DSV4 CUDA] device 0 did not initialise
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] peer access 0 -> 1 failed
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] peer access 1 -> 0 failed
+[DSV4 CUDA] validate device: invalid device ordinal
+[DSV4 CUDA] device 2 did not initialise
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+[DSV4 CUDA] device 1: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+probe 0 -> 1: usable
+dsv4 peer init: probe, init rollback and retry: OK (2 devices)
+gcc -O3 -march=native -fopenmp -pthread -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function  -MMD -MP -DCOLI_CUDA tests/test_dsv4_peer_moe_cuda.c backend_cuda_dsv4.o -o dsv4_peer_moe_cuda_test -lm -fopenmp -pthread  -L/usr/lib64 -Wl,-rpath,/usr/lib64 -lcudart -lcublasLt -lcublas -lstdc++
+./dsv4_peer_moe_cuda_test
+  compute (peer compute on): all 64 on-peer masks bit-identical to all-on-primary
+  inplace (peer compute off): all 64 on-peer masks bit-identical to all-on-primary
+  [DSV4 CUDA] peer device 1 failed in the decode MoE (join: too many resources requested for launch); latched off, decode continues on device 0
+  soft: failing call bit-identical (recomputed on the primary); peer reported unhealthy and refused, primary unaffected
+  [DSV4 CUDA] peer device 1 failed in the decode MoE (join: too many resources requested for launch); latched off, decode continues on device 0 (its memory is no longer read)
+  lost: failing call refused (host-data fallback); peer reported unhealthy and refused, primary unaffected
+  [DSV4 CUDA] peer device 1 failed in the decode MoE (join: unspecified launch failure); latched off. The fault is sticky, so device 0's context is lost with it: see the next line
+  [DSV4 CUDA] join: unspecified launch failure is a sticky fault: CUDA is lost for this process, on every device; the GPU paths stay off and the engine runs on the host until the server restarts
+  sticky: failing call refused; CUDA lost for the process, every later call refused (host paths)
+dsv4 peer MoE: OK
+gcc -O3 -march=native -fopenmp -pthread -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function  -MMD -MP -DCOLI_CUDA tests/test_dsv4_bank_bytes_cuda.c backend_cuda_dsv4.o -o dsv4_bank_bytes_cuda_test -lm -fopenmp -pthread  -L/usr/lib64 -Wl,-rpath,/usr/lib64 -lcudart -lcublasLt -lcublas -lstdc++
+./dsv4_bank_bytes_cuda_test
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+dsv4 bank bytes: slot 13369392, 16-slot bank took 204 MiB, mirror 13369344: OK
+gcc -O3 -march=native -fopenmp -pthread -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function  -MMD -MP -DCOLI_CUDA tests/test_dsv4_dense_batch_cuda.c backend_cuda_dsv4.o -o dsv4_cuda_test -lm -fopenmp -pthread  -L/usr/lib64 -Wl,-rpath,/usr/lib64 -lcudart -lcublasLt -lcublas -lstdc++
+./dsv4_cuda_test
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+dsv4 dense batch: OK
+gcc -O3 -march=native -fopenmp -pthread -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function  -MMD -MP -DCOLI_CUDA tests/test_dsv4_attention_batch_cuda.c backend_cuda_dsv4.o -o dsv4_attention_cuda_test -lm -fopenmp -pthread  -L/usr/lib64 -Wl,-rpath,/usr/lib64 -lcudart -lcublasLt -lcublas -lstdc++
+./dsv4_attention_cuda_test
+[DSV4 CUDA] device 0: NVIDIA GeForce RTX 3090 25.3 GB sm_86
+dsv4 attention batch: sparse batch SKIP (dsv4_cuda_attention_sparse_batch returned 0 without writing output, as its `return 0` stub does)
+dsv4 attention batch: OK (output projection; sparse batch skipped)
+gcc -O3 -march=native -fopenmp -pthread -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function  -MMD -MP -DCOLI_CUDA tests/test_dsv4_moe_batch_cuda.c backend_cuda_dsv4.o -o dsv4_moe_cuda_test -lm -fopenmp -pthread  -L/usr/lib64 -Wl,-rpath,/usr/lib64 -lcudart -lcublasLt -lcublas -lstdc++
+./dsv4_moe_cuda_test
+dsv4 MoE batch: SKIP (generic build: dsv4_cuda_route_moe_batch needs DeepGEMM)
+gcc -O3 -march=native -fopenmp -pthread -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation -Wno-unused-function  -MMD -MP -DCOLI_CUDA tests/test_dsv4_generic_bitwise_cuda.c backend_cuda_dsv4.o -o dsv4_generic_bitwise_cuda_test -lm -fopenmp -pthread  -L/usr/lib64 -Wl,-rpath,/usr/lib64 -lcudart -lcublasLt -lcublas -lstdc++
+./dsv4_generic_bitwise_cuda_test
+  DSV4_MOE_EXPERT_MAJOR=0: all 45 outputs bit-identical
+  DSV4_MOE_EXPERT_MAJOR=1: all 45 outputs bit-identical
+  DSV4_MOE_EM_TB=2: all 45 outputs bit-identical
+  DSV4_MOE_EM_TB=3: all 45 outputs bit-identical
+  DSV4_MOE_EM_TB=4: all 45 outputs bit-identical
+  DSV4_MOE_EM_TB=6: all 45 outputs bit-identical
+  DSV4_MOE_EXPERT_MAJOR_VERIFY=1 DSV4_MOE_EM_TB=2: all 45 outputs bit-identical
+  DSV4_MOE_EXPERT_MAJOR_VERIFY=1 DSV4_MOE_EM_TB=3: all 45 outputs bit-identical
+  DSV4_MOE_EXPERT_MAJOR_VERIFY=1 DSV4_MOE_EM_TB=4: all 45 outputs bit-identical
+  DSV4_MOE_EXPERT_MAJOR_VERIFY=1 DSV4_MOE_EM_TB=6: all 45 outputs bit-identical
+  DSV4_MM_WARP=0: all 45 outputs bit-identical
+  DSV4_MM_WARP=1: all 45 outputs bit-identical
+  DSV4_MM_WARP=1 DSV4_MM_WARP_VERIFY=1: all 45 outputs bit-identical
+dsv4 generic bitwise: OK
+make: Leaving directory '/home/maplemercury/colibri-bench/cw22/f39-cplus/c'
+PEER_RC=0
+=== soak ===
+Running as unit: cplus-post2-serve.service; invocation ID: f480fb46717843208615681717d7b662
+soak1 rc=0
+soak2 rc=0
+soak3 rc=0
+=== nsys ===
+Running as unit: cplus-post2-serve.service; invocation ID: 295112809ca44f27a9437f7271b754f5
+nsys client rc=0
+POST2 DONE

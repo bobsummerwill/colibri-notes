@@ -52,6 +52,14 @@ OK too. Opened at his request: PR #0 (#2212-#2217), PR #1 (#2264, merged); 2026-
   Logs: [manifests/shadowfax-20261103-headfix/SUMMARY.md](manifests/shadowfax-20261103-headfix/SUMMARY.md),
   [manifests/computer4-20261103-5070-headfix/SUMMARY.md](manifests/computer4-20261103-5070-headfix/SUMMARY.md),
   [manifests/counter-20261103-headfix/SUMMARY.md](manifests/counter-20261103-headfix/SUMMARY.md).
+- **Fresh C+ branch:** [`feat/dsv4-cplus-fresh`](https://github.com/bobsummerwill/colibri/tree/feat/dsv4-cplus-fresh)
+  merges PR #2405's 11 commits onto the #1766 + fixes base (not a rebase). 2×3090:
+  REAP **1.94x** vs dev with 2 GPUs, full model **1.59x**, C+ 1 GPU 1.265x/1.22x;
+  RTX 5070 **1.214x**; nine CUDA and 2405 peer/batch tests pass; soak 3/3 identical.
+  A 2405 peer-init test caught the best-effort P2P change leaking peer state; fixed in
+  `8a30a985` (strict default, best-effort only for layer split). `nsys` is unavailable on
+  shadowfax (missing importer); built-in profiles ran.
+  [manifests/shadowfax-20261103-cplus-fresh/SUMMARY.md](manifests/shadowfax-20261103-cplus-fresh/SUMMARY.md).
 
 ## Status (2026-10-29, early morning; computer4 + shadowfax)
 - **#2405 (PR #2) is ready for review.** `docs5/pr2-two-gpu-decode` = **f1e56b00**: upstream dev d68e16b6 merged into

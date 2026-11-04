@@ -1,0 +1,256 @@
+hermes frozen: 3 pids
+gpu compute processes after stop: 0
+=== CUDA tests ===
+make: Makefile.deepseek-v4: No such file or directory
+make: *** No rule to make target 'Makefile.deepseek-v4'.  Stop.
+NINE_RC=2
+make: Entering directory '/home/maplemercury/colibri-bench/cw22/f39-cplus/c'
+"/usr/bin/nvcc" -O3 -std=c++17 -ftz=false -arch=sm_86 -Xcompiler=-Wall,-Wextra -Xcompiler=-include,/home/maplemercury/colibri-bench/cw22/f39-cplus/c/glibc_c23_math_compat.h -c backend_cuda_dsv4.cu -o backend_cuda_dsv4.o
+backend_cuda_dsv4.cu(2315): error: identifier "cublasLtMatmulMatrixScale_t" is undefined
+
+backend_cuda_dsv4.cu(2315): error: identifier "CUBLASLT_MATMUL_MATRIX_SCALE_VEC32_UE8M0" is undefined
+
+backend_cuda_dsv4.cu(2319): error: identifier "CUBLASLT_MATMUL_DESC_A_SCALE_MODE" is undefined
+
+backend_cuda_dsv4.cu(2320): error: identifier "CUBLASLT_MATMUL_DESC_B_SCALE_MODE" is undefined
+
+4 errors detected in the compilation of "backend_cuda_dsv4.cu".
+make: *** [Makefile:1110: backend_cuda_dsv4.o] Error 2
+make: Leaving directory '/home/maplemercury/colibri-bench/cw22/f39-cplus/c'
+PEER_BATCH_RC=2
+Running as unit: cplus-serve.service; invocation ID: 832585f1544a40208e4a8231dfb8e586
+v4_gpu mirror-reserve=3100MiB (132-slot bank 1683MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)
+v4_gpu tier=dense-matvec device=0
+B1 s1 rc=0
+Running as unit: cplus-serve.service; invocation ID: da2f53084f3d4f9b9378cfadf02bea1c
+v4_gpu mirror-reserve=3100MiB (132-slot bank 1683MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)
+v4_gpu tier=dense-matvec device=0 devices=1 placement=contiguous-layers
+v4_gpu device=0 layers=0..42
+v4_gpu resident-experts=cache-fallback (resident experts exceed device 0 budget (free=16768 MiB reserve=2800 MiB))
+v4_gpu head=resident device=0 bytes=1059061760 arithmetic=separate-mul-add
+M1 s1 rc=0
+Running as unit: cplus-serve.service; invocation ID: 2794d53d81cd4e078cdff8169a859e8b
+v4_gpu mirror-reserve=3100MiB (132-slot bank 1683MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)
+v4_gpu tier=dense-matvec device=0
+v4_gpu resident-experts=cache-fallback (resident experts exceed device 0 budget (free=16768 MiB reserve=2800 MiB))
+v4_gpu head=resident device=0 bytes=1059061760 arithmetic=separate-mul-add
+C1 s1 rc=0
+Running as unit: cplus-serve.service; invocation ID: 9354b1c2db8f496f8123ec591ca075f5
+v4_gpu mirror-reserve=3100MiB (132-slot bank 1683MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)
+v4_gpu tier=dense-matvec device=0
+v4_gpu peer=1 peer-mirrors=4096
+v4_gpu resident-experts=cache-fallback (resident experts exceed device 0 budget (free=16768 MiB reserve=2800 MiB))
+v4_gpu head=resident device=0 bytes=1059061760 arithmetic=separate-mul-add
+C2 s1 rc=0
+Running as unit: cplus-serve.service; invocation ID: a3d36079c58a435d80ea373fc3809c2b
+v4_gpu mirror-reserve=3100MiB (132-slot bank 1683MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)
+v4_gpu tier=dense-matvec device=0
+v4_gpu peer=1 peer-mirrors=4096
+v4_gpu resident-experts=cache-fallback (resident experts exceed device 0 budget (free=16767 MiB reserve=2800 MiB))
+v4_gpu head=resident device=0 bytes=1059061760 arithmetic=separate-mul-add
+C2 s2 rc=0
+Running as unit: cplus-serve.service; invocation ID: b6dec763b55b4767bf4814b33d2c84ed
+v4_gpu mirror-reserve=3100MiB (132-slot bank 1683MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)
+v4_gpu tier=dense-matvec device=0
+v4_gpu resident-experts=cache-fallback (resident experts exceed device 0 budget (free=16768 MiB reserve=2800 MiB))
+v4_gpu head=resident device=0 bytes=1059061760 arithmetic=separate-mul-add
+C1 s2 rc=0
+Running as unit: cplus-serve.service; invocation ID: 5f44d63827b148838271900c9f99d8a6
+v4_gpu mirror-reserve=3100MiB (132-slot bank 1683MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)
+v4_gpu tier=dense-matvec device=0 devices=1 placement=contiguous-layers
+v4_gpu device=0 layers=0..42
+v4_gpu resident-experts=cache-fallback (resident experts exceed device 0 budget (free=16768 MiB reserve=2800 MiB))
+v4_gpu head=resident device=0 bytes=1059061760 arithmetic=separate-mul-add
+M1 s2 rc=0
+Running as unit: cplus-serve.service; invocation ID: da454b5216824b43b367d91edc42e25a
+v4_gpu mirror-reserve=3100MiB (132-slot bank 1683MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)
+v4_gpu tier=dense-matvec device=0
+B1 s2 rc=0
+Running as unit: cplus-serve.service; invocation ID: 210193ad7a55485a84d007b184fd61a8
+v4_gpu mirror-reserve=4681MiB (256-slot bank 3264MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)
+v4_gpu tier=dense-matvec device=0
+DB1F s1 rc=0
+Running as unit: cplus-serve.service; invocation ID: 98145c4214d44faf9be0dc3e4325b3e0
+v4_gpu mirror-reserve=4681MiB (256-slot bank 3264MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)
+v4_gpu tier=dense-matvec device=0 devices=1 placement=contiguous-layers
+v4_gpu device=0 layers=0..42
+v4_gpu resident-experts=cache-fallback (resident experts exceed device 0 budget (free=16596 MiB reserve=2800 MiB))
+v4_gpu head=resident device=0 bytes=1059061760 arithmetic=separate-mul-add
+DM1F s1 rc=0
+Running as unit: cplus-serve.service; invocation ID: 13d7f4ad0b2b495cbb1c2df1f72826c9
+v4_gpu mirror-reserve=4681MiB (256-slot bank 3264MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)
+v4_gpu tier=dense-matvec device=0
+v4_gpu resident-experts=cache-fallback (resident experts exceed device 0 budget (free=16596 MiB reserve=2800 MiB))
+v4_gpu head=resident device=0 bytes=1059061760 arithmetic=separate-mul-add
+DC1F s1 rc=0
+Running as unit: cplus-serve.service; invocation ID: 8a79053748a0457686f63599aa64d6a0
+v4_gpu mirror-reserve=4681MiB (256-slot bank 3264MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)
+v4_gpu tier=dense-matvec device=0
+v4_gpu peer=1 peer-mirrors=4096
+v4_gpu resident-experts=cache-fallback (resident experts exceed device 0 budget (free=16596 MiB reserve=2800 MiB))
+v4_gpu head=resident device=0 bytes=1059061760 arithmetic=separate-mul-add
+DC2F s1 rc=0
+Running as unit: cplus-serve.service; invocation ID: 247cac2b5faa4e94930e907ed1bcae05
+v4_gpu mirror-reserve=4681MiB (256-slot bank 3264MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)
+v4_gpu tier=dense-matvec device=0
+v4_gpu peer=1 peer-mirrors=4096
+v4_gpu resident-experts=cache-fallback (resident experts exceed device 0 budget (free=16596 MiB reserve=2800 MiB))
+v4_gpu head=resident device=0 bytes=1059061760 arithmetic=separate-mul-add
+DC2F s2 rc=0
+Running as unit: cplus-serve.service; invocation ID: c3a97c24bc044b8eac717dd39e1bf584
+v4_gpu mirror-reserve=4681MiB (256-slot bank 3264MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)
+v4_gpu tier=dense-matvec device=0
+v4_gpu resident-experts=cache-fallback (resident experts exceed device 0 budget (free=16596 MiB reserve=2800 MiB))
+v4_gpu head=resident device=0 bytes=1059061760 arithmetic=separate-mul-add
+DC1F s2 rc=0
+Running as unit: cplus-serve.service; invocation ID: 75f0525a0ce64d5f913307db2eeb18b4
+v4_gpu mirror-reserve=4681MiB (256-slot bank 3264MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)
+v4_gpu tier=dense-matvec device=0 devices=1 placement=contiguous-layers
+v4_gpu device=0 layers=0..42
+v4_gpu resident-experts=cache-fallback (resident experts exceed device 0 budget (free=16596 MiB reserve=2800 MiB))
+v4_gpu head=resident device=0 bytes=1059061760 arithmetic=separate-mul-add
+DM1F s2 rc=0
+Running as unit: cplus-serve.service; invocation ID: 38a18e367966497bb7fda65f9feea1e1
+v4_gpu mirror-reserve=4681MiB (256-slot bank 3264MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)
+v4_gpu tier=dense-matvec device=0
+DB1F s2 rc=0
+Running as unit: cplus-serve.service; invocation ID: 02fd41036f2d4791bb1bbdc74e02cb82
+v4_gpu mirror-reserve=4681MiB (256-slot bank 3264MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)
+v4_gpu tier=dense-matvec device=0
+AB1F s1 rc=1
+Running as unit: cplus-serve.service; invocation ID: 9fc4032dab784dffb36a283f73d433a5
+v4_gpu mirror-reserve=4681MiB (256-slot bank 3264MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)
+v4_gpu tier=dense-matvec device=0 devices=1 placement=contiguous-layers
+v4_gpu device=0 layers=0..42
+v4_gpu resident-experts=cache-fallback (resident experts exceed device 0 budget (free=16596 MiB reserve=2800 MiB))
+v4_gpu head=resident device=0 bytes=1059061760 arithmetic=separate-mul-add
+AM1F s1 rc=1
+Running as unit: cplus-serve.service; invocation ID: e63dec4cc3a145668f16f348faf3ac35
+v4_gpu mirror-reserve=4681MiB (256-slot bank 3264MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)
+v4_gpu tier=dense-matvec device=0
+v4_gpu resident-experts=cache-fallback (resident experts exceed device 0 budget (free=16596 MiB reserve=2800 MiB))
+v4_gpu head=resident device=0 bytes=1059061760 arithmetic=separate-mul-add
+AC1F s1 rc=1
+Running as unit: cplus-serve.service; invocation ID: 1b8276d3f63142e58645e56fe4f6de5d
+v4_gpu mirror-reserve=4681MiB (256-slot bank 3264MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)
+v4_gpu tier=dense-matvec device=0
+v4_gpu peer=1 peer-mirrors=4096
+v4_gpu resident-experts=cache-fallback (resident experts exceed device 0 budget (free=16596 MiB reserve=2800 MiB))
+v4_gpu head=resident device=0 bytes=1059061760 arithmetic=separate-mul-add
+AC2F s1 rc=1
+Running as unit: cplus-serve.service; invocation ID: 99870882993942ff9391c6272039f174
+v4_gpu mirror-reserve=4681MiB (256-slot bank 3264MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)
+v4_gpu tier=dense-matvec device=0
+v4_gpu resident-experts=cache-fallback (resident experts exceed device 0 budget (free=16596 MiB reserve=2800 MiB))
+v4_gpu head=resident device=0 bytes=1059061760 arithmetic=separate-mul-add
+X0 s1 rc=0
+Running as unit: cplus-serve.service; invocation ID: 16287743d5e74f62966fad5638f86c70
+v4_gpu mirror-reserve=4681MiB (256-slot bank 3264MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)
+v4_gpu tier=dense-matvec device=0
+v4_gpu resident-experts=cache-fallback (resident experts exceed device 0 budget (free=16596 MiB reserve=2800 MiB))
+v4_gpu head=resident device=0 bytes=1059061760 arithmetic=separate-mul-add
+X1 s1 rc=0
+Running as unit: cplus-serve.service; invocation ID: 382fd26fadab416c871447d3df43efb0
+v4_gpu mirror-reserve=4681MiB (256-slot bank 3264MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)
+v4_gpu tier=dense-matvec device=0
+v4_gpu resident-experts=cache-fallback (resident experts exceed device 0 budget (free=16596 MiB reserve=2800 MiB))
+XH s1 rc=0
+Running as unit: cplus-serve.service; invocation ID: 60dd9a0645e94f0c9d8c6d0d3202ffe2
+v4_gpu mirror-reserve=4681MiB (256-slot bank 3264MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)
+v4_gpu tier=dense-matvec device=0
+v4_gpu resident-experts=cache-fallback (resident experts exceed device 0 budget (free=16764 MiB reserve=2800 MiB))
+v4_gpu head=resident device=0 bytes=1059061760 arithmetic=separate-mul-add
+XI s1 rc=0
+Running as unit: cplus-serve.service; invocation ID: d5909298ebf94a428bebd4db4c965807
+v4_gpu mirror-reserve=4681MiB (256-slot bank 3264MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)
+v4_gpu tier=dense-matvec device=0
+v4_gpu resident-experts=cache-fallback (resident experts exceed device 0 budget (free=16596 MiB reserve=2800 MiB))
+v4_gpu head=resident device=0 bytes=1059061760 arithmetic=separate-mul-add
+XP s1 rc=0
+Running as unit: cplus-serve.service; invocation ID: a6cfc232cd45426c839a0d018f35eedf
+v4_gpu mirror-reserve=4681MiB (256-slot bank 3264MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)
+v4_gpu tier=dense-matvec device=0
+v4_gpu resident-experts=cache-fallback (resident experts exceed device 0 budget (free=16596 MiB reserve=2800 MiB))
+v4_gpu head=resident device=0 bytes=1059061760 arithmetic=separate-mul-add
+XA s1 rc=0
+Running as unit: cplus-serve.service; invocation ID: 8145d928f6a04089b23b80da4adaae1c
+v4_gpu mirror-reserve=4681MiB (256-slot bank 3264MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)
+v4_gpu tier=dense-matvec device=0
+v4_gpu resident-experts=cache-fallback (resident experts exceed device 0 budget (free=16596 MiB reserve=2800 MiB))
+v4_gpu head=resident device=0 bytes=1059061760 arithmetic=separate-mul-add
+XW s1 rc=0
+Running as unit: cplus-serve.service; invocation ID: 3a349e44bef14458bfd74ad923ae98aa
+v4_gpu mirror-reserve=4681MiB (256-slot bank 3264MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)
+v4_gpu tier=dense-matvec device=0
+v4_gpu resident-experts=cache-fallback (resident experts exceed device 0 budget (free=17176 MiB reserve=2800 MiB))
+v4_gpu head=resident device=0 bytes=1059061760 arithmetic=separate-mul-add
+XC s1 rc=0
+Running as unit: cplus-serve.service; invocation ID: ac047d1b774a4c21a0f5d2c6566d892b
+v4_gpu mirror-reserve=4681MiB (256-slot bank 3264MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)
+v4_gpu tier=dense-matvec device=0
+v4_gpu resident-experts=cache-fallback (resident experts exceed device 0 budget (free=16596 MiB reserve=2800 MiB))
+v4_gpu head=resident device=0 bytes=1059061760 arithmetic=separate-mul-add
+XR s1 rc=0
+Running as unit: cplus-serve.service; invocation ID: 80aadd8eca6644d6a4267bd5371f51cc
+v4_gpu mirror-reserve=4681MiB (256-slot bank 3264MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)
+v4_gpu tier=dense-matvec device=0
+v4_gpu resident-experts=cache-fallback (resident experts exceed device 0 budget (free=16596 MiB reserve=2800 MiB))
+v4_gpu head=resident device=0 bytes=1059061760 arithmetic=separate-mul-add
+XB s1 rc=0
+Running as unit: cplus-serve.service; invocation ID: 50bb65eef7064112aeee226f6ab700c4
+v4_gpu mirror-reserve=4681MiB (256-slot bank 3264MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)
+v4_gpu tier=dense-matvec device=0
+v4_gpu peer=1 peer-mirrors=4096
+v4_gpu resident-experts=cache-fallback (resident experts exceed device 0 budget (free=16596 MiB reserve=2800 MiB))
+v4_gpu head=resident device=0 bytes=1059061760 arithmetic=separate-mul-add
+PC s1 rc=0
+Running as unit: cplus-serve.service; invocation ID: 11cacb0ba0ad41eb8eb96dc7f74dbf00
+v4_gpu mirror-reserve=3100MiB (132-slot bank 1683MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)
+v4_gpu tier=dense-matvec device=0
+v4_gpu peer=1 peer-mirrors=4096
+v4_gpu resident-experts=cache-fallback (resident experts exceed device 0 budget (free=16768 MiB reserve=2800 MiB))
+v4_gpu head=resident device=0 bytes=1059061760 arithmetic=separate-mul-add
+[DSV4 CUDA] join: unspecified launch failure is a sticky fault: CUDA is lost for this process, on every device; the GPU paths stay off and the engine runs on the host until the server restarts
+PF s1 rc=0
+Running as unit: cplus-serve.service; invocation ID: 0f8160c526f5457f9f8b6c6981285aed
+v4_gpu mirror-reserve=4681MiB (256-slot bank 3264MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)
+v4_gpu tier=dense-matvec device=0
+v4_gpu resident-experts=cache-fallback (resident experts exceed device 0 budget (free=16596 MiB reserve=2800 MiB))
+v4_gpu head=resident device=0 bytes=1059061760 arithmetic=separate-mul-add
+PA s1 rc=0
+Running as unit: cplus-serve.service; invocation ID: 6563b66280164aaa95d3006080f9b640
+v4_gpu mirror-reserve=4681MiB (256-slot bank 3264MiB x1 + 600MiB headroom + 64 mirrors; DSV4_CUDA_VRAM_RESERVE_MB overrides)
+v4_gpu tier=dense-matvec device=0
+v4_gpu peer=1 peer-mirrors=4096
+v4_gpu resident-experts=cache-fallback (resident experts exceed device 0 budget (free=16596 MiB reserve=2800 MiB))
+v4_gpu head=resident device=0 bytes=1059061760 arithmetic=separate-mul-add
+PB s1 rc=0
+AB1F   n=1 mean=0.0000 samples=['0.0000']
+AC1F   n=1 mean=0.0000 samples=['0.0000']
+AC2F   n=1 mean=0.0000 samples=['0.0000']
+AM1F   n=1 mean=0.0000 samples=['0.0000']
+B1     n=2 mean=2.9811 samples=['2.9828', '2.9793']
+C1     n=2 mean=3.7714 samples=['3.7728', '3.7700']
+C2     n=2 mean=5.7778 samples=['5.7400', '5.8155']
+DB1F   n=2 mean=2.6385 samples=['2.6290', '2.6480']
+DC1F   n=2 mean=3.2202 samples=['3.2317', '3.2087']
+DC2F   n=2 mean=4.1852 samples=['4.1760', '4.1943']
+DM1F   n=2 mean=3.1573 samples=['3.1587', '3.1560']
+M1     n=2 mean=3.6469 samples=['3.6473', '3.6465']
+PA     n=1 mean=3.2087 samples=['3.2087']
+PB     n=1 mean=4.1653 samples=['4.1653']
+PC     n=1 mean=3.5303 samples=['3.5303']
+PF     n=1 mean=2.8845 samples=['2.8845']
+X0     n=1 mean=3.1337 samples=['3.1337']
+X1     n=1 mean=3.2097 samples=['3.2097']
+XA     n=1 mean=3.1517 samples=['3.1517']
+XB     n=1 mean=2.8400 samples=['2.8400']
+XC     n=1 mean=3.1937 samples=['3.1937']
+XH     n=1 mean=3.0567 samples=['3.0567']
+XI     n=1 mean=3.0770 samples=['3.0770']
+XP     n=1 mean=3.1900 samples=['3.1900']
+XR     n=1 mean=3.2097 samples=['3.2097']
+XW     n=1 mean=3.1987 samples=['3.1987']
+CAMPAIGN DONE
+restoring llama...
+hermes resumed: 3 pids

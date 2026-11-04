@@ -1,0 +1,23 @@
+build C+ sm_120
+make: Entering directory '/home/zombietiger/Projects/colibri/c'
+make: Leaving directory '/home/zombietiger/Projects/colibri/c'
+build rc=0
+Running as unit: c4-cplus-serve.service; invocation ID: 595b77c409294c0b9b93a1cf2feab783
+ram_tiers available=40.00GiB dense=resident(6.27GiB) target_slots=59 target_cache=31.59GiB head=resident-bf16 projected=39.79GiB
+dev s1 rc=0
+Running as unit: c4-cplus-serve.service; invocation ID: c7e7abe4294f469290ba34e4aa5543bb
+ram_tiers available=40.00GiB dense=resident(6.27GiB) target_slots=59 target_cache=31.59GiB head=resident-bf16 projected=39.79GiB
+v4_gpu resident-experts=cache-fallback (resident experts exceed device 0 budget (free=4369 MiB reserve=2000 MiB))
+v4_gpu head=resident device=0 bytes=1059061760 arithmetic=separate-mul-add
+new s1 rc=0
+Running as unit: c4-cplus-serve.service; invocation ID: 5ea48db0e5c64d42bda40e7513c0031e
+ram_tiers available=40.00GiB dense=resident(6.27GiB) target_slots=59 target_cache=31.59GiB head=resident-bf16 projected=39.79GiB
+v4_gpu resident-experts=cache-fallback (resident experts exceed device 0 budget (free=4369 MiB reserve=2000 MiB))
+v4_gpu head=resident device=0 bytes=1059061760 arithmetic=separate-mul-add
+new s2 rc=0
+Running as unit: c4-cplus-serve.service; invocation ID: dbac23f709654767bf10e8ae3c766e80
+ram_tiers available=40.00GiB dense=resident(6.27GiB) target_slots=59 target_cache=31.59GiB head=resident-bf16 projected=39.79GiB
+dev s2 rc=0
+dev samples ['1.6138', '1.6058'] mean 1.6098
+new samples ['1.9580', '1.9518'] mean 1.9549
+5070 DONE
