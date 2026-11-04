@@ -53,9 +53,10 @@ OK too. Opened at his request: PR #0 (#2212-#2217), PR #1 (#2264, merged); 2026-
   [manifests/computer4-20261103-5070-headfix/SUMMARY.md](manifests/computer4-20261103-5070-headfix/SUMMARY.md),
   [manifests/counter-20261103-headfix/SUMMARY.md](manifests/counter-20261103-headfix/SUMMARY.md).
 - **Restructure plan (next window):** replace the linear 8-PR stack with
-  **7 PRs** in two independent lanes (build fixes; multi-GPU+resident;
-  kernels; mirror+VRAM-first; peer+fault) plus an integration PR and a
-  followups PR. 31 source commits, 1 merge. See
+  **6 recomposed PRs** in two independent lanes (build fixes;
+  multi-GPU+resident; kernels; mirror+VRAM-first; peer+fault) plus one
+  integration PR. Commits are authored from the final tree, not replayed:
+  31 source commits + 1 merge collapse to 15 purposeful commits. See
   [review/SPLIT_DAG_PLAN_20261103.md](review/SPLIT_DAG_PLAN_20261103.md).
   **Not executed yet.**
 - **Full-stack split, as built:** the combined stack is open as an **8-PR
