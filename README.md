@@ -52,13 +52,15 @@ OK too. Opened at his request: PR #0 (#2212-#2217), PR #1 (#2264, merged); 2026-
   Logs: [manifests/shadowfax-20261103-headfix/SUMMARY.md](manifests/shadowfax-20261103-headfix/SUMMARY.md),
   [manifests/computer4-20261103-5070-headfix/SUMMARY.md](manifests/computer4-20261103-5070-headfix/SUMMARY.md),
   [manifests/counter-20261103-headfix/SUMMARY.md](manifests/counter-20261103-headfix/SUMMARY.md).
-- **Restructure plan (next window):** replace the linear 8-PR stack with
-  **6 recomposed PRs** in two independent lanes (build fixes;
-  multi-GPU+resident; kernels; mirror+VRAM-first; peer+fault) plus one
-  integration PR. Commits are authored from the final tree, not replayed:
-  31 source commits + 1 merge collapse to 15 purposeful commits. See
-  [review/SPLIT_DAG_PLAN_20261103.md](review/SPLIT_DAG_PLAN_20261103.md).
-  **Not executed yet.**
+- **Recomposed split, built:** six PRs open (#4–#9, #11) in two independent
+  lanes plus an integration PR on `split/integration-base`; #10 and #12 were
+  closed as folded. 31 source commits + 1 merge became 15 commits. No build,
+  test or profiling yet. See
+  [review/SPLIT_BUILT_6PR_20261103.md](review/SPLIT_BUILT_6PR_20261103.md).
+- **Test round estimate:** ~25–34 h wall for a complete per-PR
+  build/test/bench round on shadowfax+computer4, or ~15–20 h if only the
+  aggregate gets the full matrix. See
+  [review/TEST_ROUND_ESTIMATE_20261103.md](review/TEST_ROUND_ESTIMATE_20261103.md).
 - **Full-stack split, as built:** the combined stack is open as an **8-PR
   linear stack** in `bobsummerwill/colibri` (#4–#12), on a refreshed
   `dev`. See [review/SPLIT_BUILT_8PR_20261103.md](review/SPLIT_BUILT_8PR_20261103.md).
