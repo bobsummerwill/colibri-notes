@@ -40,31 +40,49 @@ if [ "$(id -u)" -ne 0 ]; then
 fi
 
 echo "== 1. locate the two halves"
-NSYS_REAL=$(readlink -f /usr/bin/nsys)
-TARGET_DIR=$(dirname "$NSYS_REAL")
-PREFIX=$(dirname "$TARGET_DIR")
-HOST_DIR=/usr/lib/nsight-systems/host-linux-x64
-if [ ! -x "$HOST_DIR/QdstrmImporter" ]; then
-  HOST_DIR=$(dirname "$(dpkg-query -L nsight-systems 2>/dev/null |
-    grep -m1 '/host-linux-x64/QdstrmImporter$' || true)")
-fi
-LINK="$PREFIX/host-linux-x64"
-
-echo "   nsys real path : $NSYS_REAL"
-echo "   agent dir      : $TARGET_DIR"
-echo "   tools dir      : $HOST_DIR"
-echo "   missing sibling: $LINK"
-
-if [ ! -x "$HOST_DIR/QdstrmImporter" ]; then
-  echo "ERROR: QdstrmImporter not found; is nsight-systems installed?" >&2
+NSYS_BIN=$(command -v nsys || true)
+if [ -z "$NSYS_BIN" ]; then
+  echo "ERROR: nsys is not installed on this host." >&2
   exit 1
 fi
+NSYS_REAL=$(readlink -f "$NSYS_BIN")
+TARGET_DIR=$(dirname "$NSYS_REAL")
+PREFIX=$(dirname "$TARGET_DIR")
+LINK="$PREFIX/host-linux-x64"
 
-echo "== 2. link the tools beside the agent"
-if [ -e "$LINK" ] || [ -L "$LINK" ]; then
-  echo "   already present, leaving it alone"
+echo "   nsys           : $NSYS_BIN -> $NSYS_REAL"
+echo "   agent dir      : $TARGET_DIR"
+
+NEEDS_FIX=0
+if [ -x "$LINK/QdstrmImporter" ]; then
+  echo "   tools dir      : $LINK (self-contained install)"
+  echo "   this host does not have the Debian packaging split; nothing to link."
 else
-  run ln -s "$HOST_DIR" "$LINK"
+  NEEDS_FIX=1
+  HOST_DIR=/usr/lib/nsight-systems/host-linux-x64
+  if [ ! -x "$HOST_DIR/QdstrmImporter" ]; then
+    HOST_DIR=$(dirname "$(dpkg-query -L nsight-systems 2>/dev/null |
+      grep -m1 '/host-linux-x64/QdstrmImporter$' || true)")
+  fi
+  echo "   tools dir      : $HOST_DIR"
+  echo "   missing sibling: $LINK"
+  if [ ! -x "$HOST_DIR/QdstrmImporter" ]; then
+    echo "ERROR: QdstrmImporter not found for $NSYS_REAL." >&2
+    echo "       This host has neither a self-contained install nor the" >&2
+    echo "       Ubuntu nsight-systems packages; nothing to repair." >&2
+    exit 1
+  fi
+fi
+
+if [ "$NEEDS_FIX" = 1 ]; then
+  echo "== 2. link the tools beside the agent"
+  if [ -e "$LINK" ] || [ -L "$LINK" ]; then
+    echo "   already present, leaving it alone"
+  else
+    run ln -s "$HOST_DIR" "$LINK"
+  fi
+else
+  echo "== 2. no link needed on this host"
 fi
 
 echo "== 3. remove the user-level nsys shim"
@@ -112,7 +130,9 @@ if [ "$DRY" = 1 ]; then
   echo "   skipped in --dry-run"
   exit 0
 fi
-test -x "$LINK/QdstrmImporter" || { echo "ERROR: link is not usable" >&2; exit 1; }
+if [ "$NEEDS_FIX" = 1 ]; then
+  test -x "$LINK/QdstrmImporter" || { echo "ERROR: link is not usable" >&2; exit 1; }
+fi
 
 tmp=$(mktemp -d)
 trap 'rm -rf "$tmp"' EXIT
@@ -136,9 +156,12 @@ if command -v nvcc >/dev/null 2>&1; then
   nvcc -O2 -arch=sm_86 "$tmp/add.cu" -o "$tmp/add" >/dev/null 2>&1 || true
 fi
 if [ -x "$tmp/add" ]; then
+  # NOTE: this nsys build's in-process --stats path fails with
+  # "no such function: median"; run "nsys stats" as its own process.
   nsys profile -o "$tmp/p" --force-overwrite true --trace=cuda \
-    --stats=true "$tmp/add" >"$tmp/log" 2>&1 || true
-  if grep -q 'add(const float' "$tmp/log" && [ -f "$tmp/p.nsys-rep" ]; then
+    "$tmp/add" >"$tmp/log" 2>&1 || true
+  nsys stats --report gpukernsum "$tmp/p.nsys-rep" >"$tmp/stats" 2>&1 || true
+  if grep -q 'add(const float' "$tmp/stats" && [ -f "$tmp/p.nsys-rep" ]; then
     echo "   OK: plain nsys wrote a report and the kernel summary lists 'add'"
   else
     echo "   WARNING: report/kernel not found; see $tmp (kept for inspection)" >&2

@@ -67,3 +67,30 @@ bash ~/fix-nsys.sh --dry-run      # show what would change
 bash ~/fix-nsys.sh                # apply (re-executes via sudo)
 bash ~/fix-nsys.sh --perf         # also enable CPU sampling
 ```
+
+## Applied on shadowfax (2026-11-03)
+
+- sibling link created:
+  `/usr/lib/x86_64-linux-gnu/nsight-systems/host-linux-x64 -> /usr/lib/nsight-systems/host-linux-x64`
+- `~/.local/bin/nsys` shim removed
+- CPU sampling enabled: `kernel.perf_event_paranoid=1`, persisted in
+  `/etc/sysctl.d/50-nsys-perf.conf`; `nsys status --environment` now reports
+  `perf_event_open … OK`
+
+## Caveat: do not use `nsys profile --stats=true` on this build
+
+The in-process stats path of nsys 2022.4 fails on Ubuntu 24.04 with
+
+```
+ERROR: Report 'gpukernsum.py' encountered an internal error: no such function: median
+```
+
+That is a bug in how `nsys profile` runs the reports in its own process, not in
+the report scripts. Run the two steps separately:
+
+```bash
+nsys profile -o run --force-overwrite true --trace=cuda ./app
+nsys stats --report gpukernsum run.nsys-rep
+```
+
+The shim and `fix-nsys.sh` both use the separate `nsys stats` process and work.
