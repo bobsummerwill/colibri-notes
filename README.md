@@ -52,6 +52,11 @@ OK too. Opened at his request: PR #0 (#2212-#2217), PR #1 (#2264, merged); 2026-
   Logs: [manifests/shadowfax-20261103-headfix/SUMMARY.md](manifests/shadowfax-20261103-headfix/SUMMARY.md),
   [manifests/computer4-20261103-5070-headfix/SUMMARY.md](manifests/computer4-20261103-5070-headfix/SUMMARY.md),
   [manifests/counter-20261103-headfix/SUMMARY.md](manifests/counter-20261103-headfix/SUMMARY.md).
+- **Split plan for #1766 + fixes:** the branch is 31 files / +3,086; proposed as a
+  5-PR stack (build fixes, single-GPU kernels, multi-GPU layer placement, resident
+  experts/routing, shared-expert fix) with C+ remaining separate. Direct cherry-picks
+  conflict in five files; extraction is hunk-level. See
+  [review/SPLIT_1766_PLAN_20261103.md](review/SPLIT_1766_PLAN_20261103.md).
 - **Fresh C+ branch / PR:** [`feat/dsv4-cplus-fresh`](https://github.com/bobsummerwill/colibri/tree/feat/dsv4-cplus-fresh)
   merges PR #2405's 11 commits onto the #1766 + fixes base (not a rebase).
   [PR bobsummerwill/colibri#3](https://github.com/bobsummerwill/colibri/pull/3)
