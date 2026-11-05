@@ -182,3 +182,12 @@ construction; they ran on the 2×3090.
 
 Caveat: `COLI_CUDA_ATTN_BATCH=1` changes greedy text (documented
 summation-order difference, not a break).
+
+## PR descriptions rewritten (2026-11-04)
+
+Every PR body was rewritten to be free-standing: the three source streams
+(upstream #1766, upstream #2405, the head-followups fixes), the recomposition
+(the 31 commits + merge -> 15 commits in six feature PRs plus integration),
+the colibri-notes planning/test documents, the stack table, the full testing
+approach and results for that PR, and its own known deviations. Per-PR bodies
+are 4.7–7.6 kB; the comments keep the raw round-by-round numbers.
