@@ -207,3 +207,12 @@ then what the PR is, then tests, benchmarks, **profiling** and defects. Two
 missing captures were taken: placement decode (`DSV4_CUDA_DEVICES=0,1`) and
 resident decode (`auto`, fallback path), so every PR except #4 has its own
 nsys numbers; #4 states explicitly that no profile belongs to it.
+
+## Authorship and iteration timeline in every body (2026-11-04)
+
+All PRs now credit both authors in "Where this comes from": ZacharyZcR for the
+core of #1766 (placement, residency, routing, kernels; 27 Sep – 26 Oct, PR open
+since 27 Sep) and Bob Summerwill for #2405 (14–25 Oct branch work, PR opened
+26 Oct), the head-followups (3 Nov), the C+ reconciliation and this split.
+It records ~5 weeks of iteration (27 Sep – 4 Nov) and the three test/profiling
+passes on 3–4 Nov, including the fixes, rebases and force-pushes.
