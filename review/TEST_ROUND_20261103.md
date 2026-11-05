@@ -199,3 +199,11 @@ description is the single source: history, stack, testing method, per-PR
 results (smoke + long + expanded, including the full checkpoint, soaks, stats,
 prefill/context numbers and nsys), defects found while testing, and known
 deviations. Comments are now zero on #4–#9 and #11.
+
+## Descriptions restructured, profiling added everywhere (2026-11-04)
+
+Each PR body now leads with the history, the testing method and the stack,
+then what the PR is, then tests, benchmarks, **profiling** and defects. Two
+missing captures were taken: placement decode (`DSV4_CUDA_DEVICES=0,1`) and
+resident decode (`auto`, fallback path), so every PR except #4 has its own
+nsys numbers; #4 states explicitly that no profile belongs to it.
