@@ -76,3 +76,13 @@ Per branch tip:
 ## Next: the test/profiling round
 
 See `review/TEST_ROUND_ESTIMATE_20261103.md` for the per-PR cost.
+
+## Proposed upstream (2026-11-04)
+
+A comment was posted on upstream #1766 laying out the recomposed six-PR stack +
+integration, the test round, and asking ZacharyZcR whether he is happy to
+switch shape; it offers to recreate the same PRs against upstream and then
+close #1766 and #2405 as superseded. Nothing has been opened upstream yet —
+waiting on his answer.
+
+Comment: https://github.com/JustVugg/colibri/pull/1766#issuecomment-6648159113
