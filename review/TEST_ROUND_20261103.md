@@ -191,3 +191,11 @@ Every PR body was rewritten to be free-standing: the three source streams
 the colibri-notes planning/test documents, the stack table, the full testing
 approach and results for that PR, and its own known deviations. Per-PR bodies
 are 4.7–7.6 kB; the comments keep the raw round-by-round numbers.
+
+## PR descriptions now hold everything (2026-11-04)
+
+The round-by-round comments were folded into the PR bodies and deleted, so each
+description is the single source: history, stack, testing method, per-PR
+results (smoke + long + expanded, including the full checkpoint, soaks, stats,
+prefill/context numbers and nsys), defects found while testing, and known
+deviations. Comments are now zero on #4–#9 and #11.
