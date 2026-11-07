@@ -74,6 +74,24 @@ runs the C and Python suites.
 | #2669 | 3032 | OK, 375 skipped |
 | #2670 | 3034 | OK, 375 skipped |
 
+### Skipped tests in the full check
+
+The 379 skips on #2664 (375 on later branches) are optional-engine and fixture
+tests, not DSV4 failures. Broad buckets from the verbose rerun:
+
+- **169** optional engine not built (olmoe, qwen36, qwen38, mimo, deepseek_v41,
+  glm53, inkling, kimi_k3, qwenimage)
+- **110** fixture / optional model data absent (glm_tiny, glm_tiny_fmt6,
+  GLM-5.3, V4.1, Qwen3.6, tiny MiMo/olmoe, quantized trunk, tokenizer/index
+  fixtures)
+- **60** Python deps (numpy/torch)
+- **27** other/platform-specific
+- **13** Windows loader stubs
+
+The four-test difference between #2664 (379) and the later branches (375) is
+because the rerun reused some built engine binaries; the clean-tree count is
+379. None of the DSV4 CUDA tests are in the skip list — those ran on shadowfax.
+
 ### Targeted CUDA and source tests (shadowfax, 2×3090)
 
 - `dsv4-cuda-tests` 9/9 on #2667 and #2670.
